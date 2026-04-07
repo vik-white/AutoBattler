@@ -1,0 +1,18 @@
+{
+    "name": "Mvvm",
+    "rootNamespace": "",
+    "references": [
+        "GUID:919905d7ca88d6641b1b90d8d6b5011b",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:b690ff0bd26350c4a8011d13dbf54eba"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

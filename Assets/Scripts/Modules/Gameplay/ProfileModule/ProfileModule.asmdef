@@ -1,0 +1,17 @@
+{
+    "name": "Profile",
+    "rootNamespace": "",
+    "references": [
+        "GUID:919905d7ca88d6641b1b90d8d6b5011b",
+        "GUID:ba597d3a1e504d34ebf16df981b91302"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

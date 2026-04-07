@@ -1,0 +1,16 @@
+{
+    "name": "AssetLoader",
+    "rootNamespace": "",
+    "references": [
+        "GUID:919905d7ca88d6641b1b90d8d6b5011b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
