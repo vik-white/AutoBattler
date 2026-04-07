@@ -1,5 +1,6 @@
 using Unity.Entities;
-using UnityEngine;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
@@ -10,7 +11,8 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var request in SystemAPI.Query<RefRO<CreateCharacter>>())
             {
-                Debug.Log(request.ValueRO.Position);
+                var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
+                ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
             }
             ecb.Playback(state.EntityManager);
         }

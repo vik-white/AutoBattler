@@ -5,6 +5,7 @@ namespace vikwhite.ECS
 {
     public struct CreateCharacter : IComponentData
     {
+        public CharacterConfig Config;
         public float3 Position;
     }
 }
