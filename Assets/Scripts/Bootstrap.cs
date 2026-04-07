@@ -9,7 +9,7 @@ namespace vikwhite
             new Setup()
                 .Add<LobbyEnvironment>(EnvironmentType.Lobby)
                 .Add<BattleEnvironment>(EnvironmentType.Battle)
-                .Start(EnvironmentType.Lobby);
+                .Start(EnvironmentType.Battle);
         }
     }
 }
