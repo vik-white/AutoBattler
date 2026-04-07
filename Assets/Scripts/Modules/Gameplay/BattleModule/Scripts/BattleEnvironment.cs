@@ -13,10 +13,14 @@ namespace vikwhite
         protected override void Initialize()
         {
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
-
             ECSWorld.Enable<SpawnCharacterSystem>();
-            
             Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
+        }
+        
+        public override void Dispose()
+        {
+            base.Dispose();
+            SceneManager.UnloadSceneAsync("Battle");
         }
     }
 }
