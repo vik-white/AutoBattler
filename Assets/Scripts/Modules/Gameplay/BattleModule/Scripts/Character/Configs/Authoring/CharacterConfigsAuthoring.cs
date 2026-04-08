@@ -13,9 +13,10 @@ namespace vikwhite.ECS
         public override void Bake(CharacterConfigsAuthoring authoring) {  
             var entity = GetEntity(TransformUsageFlags.None);
             var entities = AddBuffer<CharacterConfig>(entity);
+            var prefab = GetEntity(authoring.Prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
             entities.Add(new CharacterConfig {
                 ID = CharacterID.IronfistDwarf,
-                Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
+                Prefab = prefab
             });
         } 
     }
