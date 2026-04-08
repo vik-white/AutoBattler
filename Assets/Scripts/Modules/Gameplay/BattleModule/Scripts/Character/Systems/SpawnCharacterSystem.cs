@@ -19,7 +19,11 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             
             var config = SystemAPI.GetSingletonBuffer<CharacterConfig>()[0];
-            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(Random.Range(-3f, 3f), 2, Random.Range(-3f, 3f))});
+            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(0, 0, 0)});
+
+            for (int i = 0; i < 5; i++) {
+                ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(Random.Range(-5f, 5f), 0, 5f)});
+            }
             
             ecb.Playback(state.EntityManager);
             state.Enabled = false;

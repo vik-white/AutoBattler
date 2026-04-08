@@ -1,4 +1,5 @@
 using Unity.Entities;
+using Unity.Physics;
 
 namespace vikwhite.ECS
 {
@@ -6,5 +7,6 @@ namespace vikwhite.ECS
     {
         public CharacterID ID;
         public Entity Prefab;
+        public BlobAssetReference<Collider> Collider;
     }
 }

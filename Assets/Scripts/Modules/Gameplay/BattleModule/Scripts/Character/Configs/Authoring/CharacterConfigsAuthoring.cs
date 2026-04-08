@@ -1,5 +1,8 @@
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Physics;
 using UnityEngine;
+using CapsuleCollider = Unity.Physics.CapsuleCollider;
 
 namespace vikwhite.ECS
 {
@@ -14,9 +17,11 @@ namespace vikwhite.ECS
             var entity = GetEntity(TransformUsageFlags.None);
             var entities = AddBuffer<CharacterConfig>(entity);
             var prefab = GetEntity(authoring.Prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
+            var collider = CapsuleCollider.Create(new CapsuleGeometry { Vertex0 = new float3(0, 0, 0), Vertex1 = new float3(0, 1, 0), Radius = 0.35f });
             entities.Add(new CharacterConfig {
                 ID = CharacterID.IronfistDwarf,
-                Prefab = prefab
+                Prefab = prefab,
+                Collider = collider,
             });
         } 
     }
