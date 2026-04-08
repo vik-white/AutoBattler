@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace vikwhite.ECS
 {
@@ -18,7 +19,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             
             var config = SystemAPI.GetSingletonBuffer<CharacterConfig>()[0];
-            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(0,0,0)});
+            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(Random.Range(-3f, 3f), 2, Random.Range(-3f, 3f))});
             
             ecb.Playback(state.EntityManager);
             state.Enabled = false;
