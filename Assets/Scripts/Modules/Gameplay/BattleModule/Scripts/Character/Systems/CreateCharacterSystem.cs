@@ -12,8 +12,10 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateCharacter>>())
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
+                ecb.AddComponent<Character>(character);
                 ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
                 ecb.SetComponent(character, PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties));
+                if(request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
             }
             ecb.Playback(state.EntityManager);
         }
