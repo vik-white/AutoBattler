@@ -23,6 +23,7 @@ namespace vikwhite.ECS
                 TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true)
             };
             state.Dependency = job.ScheduleParallel(state.Dependency);
+            //state.Dependency.Complete();
         }
     }
     
