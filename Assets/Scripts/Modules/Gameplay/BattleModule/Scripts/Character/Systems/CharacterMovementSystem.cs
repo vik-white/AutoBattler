@@ -1,3 +1,6 @@
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -11,36 +14,58 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            float speed = 3f;
-            float rotationSpeed = 5f;
-            float stopDistance = 1.5f;
-            float deltaTime = SystemAPI.Time.DeltaTime;
-
-            foreach (var (physicsVelocity, transform, target) in SystemAPI.Query<RefRW<PhysicsVelocity>, RefRW<LocalTransform>, RefRO<Target>>().WithAny<Character>())
+            var job = new CharacterMovementJob
             {
-                if (!SystemAPI.Exists(target.ValueRO.Value)) continue;
+                DeltaTime = SystemAPI.Time.DeltaTime,
+                Speed = 3f,
+                RotationSpeed = 5f,
+                StopDistance = 1.5f,
+                TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true)
+            };
+            state.Dependency = job.ScheduleParallel(state.Dependency);
+        }
+    }
+    
+    [BurstCompile]
+    public partial struct CharacterMovementJob : IJobEntity
+    {
+        public float DeltaTime;
+        public float Speed;
+        public float RotationSpeed;
+        public float StopDistance;
+        [ReadOnly] 
+        [NativeDisableContainerSafetyRestriction] 
+        public ComponentLookup<LocalTransform> TransformLookup;
 
-                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value);
-                float3 direction = targetTransform.Position - transform.ValueRW.Position;
-                float distance = math.length(direction);
+        [BurstCompile]
+        private void Execute(ref PhysicsVelocity physicsVelocity, ref LocalTransform transform, in Target target)
+        {
+            Entity targetEntity = target.Value;
+            if (!TransformLookup.HasComponent(targetEntity)) 
+            {
+                physicsVelocity.Linear = float3.zero;
+                return;
+            }
 
-                if (distance > stopDistance)
-                {
-                    float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
-                    physicsVelocity.ValueRW.Linear = moveDir * speed;
-                }
-                else
-                {
-                    physicsVelocity.ValueRW.Linear = float3.zero;
-                }
+            LocalTransform targetTransform = TransformLookup[targetEntity];
+            float3 direction = targetTransform.Position - transform.Position;
+            float distance = math.length(direction);
+            if (distance > StopDistance)
+            {
+                float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                physicsVelocity.Linear = moveDir * Speed;
+            }
+            else
+            {
+                physicsVelocity.Linear = float3.zero;
+            }
 
-                if (distance > 0.001f)
-                {
-                    float3 targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
-                    quaternion targetRot = quaternion.LookRotationSafe(targetDir, math.up());
-                    transform.ValueRW.Rotation = math.slerp(transform.ValueRW.Rotation, targetRot, rotationSpeed * deltaTime);
-                    physicsVelocity.ValueRW.Angular = float3.zero;
-                }
+            if (distance > 0.001f)
+            {
+                float3 targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                quaternion targetRot = quaternion.LookRotationSafe(targetDir, math.up());
+                transform.Rotation = math.slerp(transform.Rotation, targetRot, RotationSpeed * DeltaTime);
+                physicsVelocity.Angular = float3.zero;
             }
         }
     }
