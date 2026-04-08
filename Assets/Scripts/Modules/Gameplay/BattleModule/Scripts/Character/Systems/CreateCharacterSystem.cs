@@ -13,7 +13,7 @@ namespace vikwhite.ECS
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
                 ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
-                ecb.SetComponent(character, PhysicsHandler.CreateFreezeRotation(request.ValueRO.Config.Collider.Value.MassProperties));
+                ecb.SetComponent(character, PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties));
             }
             ecb.Playback(state.EntityManager);
         }
