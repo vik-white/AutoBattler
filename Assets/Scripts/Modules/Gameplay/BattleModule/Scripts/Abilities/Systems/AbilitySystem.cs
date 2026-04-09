@@ -26,7 +26,7 @@ namespace vikwhite.ECS
                     ability.Cooldown += SystemAPI.GetSingleton<Time>().DeltaTime;
                     if (ability.Cooldown > ability.Config.Cooldown)
                     {
-                        ability.IsReady = distance <= ability.Config.Radius;
+                        ability.IsReady = distance <= ability.Config.Radius || ability.Config.Radius == 0;
                     }
                 }
             }

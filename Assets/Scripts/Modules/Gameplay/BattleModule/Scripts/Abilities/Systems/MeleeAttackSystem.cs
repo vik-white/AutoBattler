@@ -16,7 +16,8 @@ namespace vikwhite.ECS
                     ability.Cooldown = 0;
                     
                     foreach (var effect in ability.Config.Effects) {
-                        ecb.CreateFrameEntity(new CreateEffect {
+                        ecb.CreateFrameEntity(new CreateEffect 
+                        {
                             Target = target.ValueRO.Value, 
                             Effect = effect, 
                         });
