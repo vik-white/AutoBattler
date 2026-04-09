@@ -289,7 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264d6b71afc56764d91494af30143c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.CharacterConfigsAuthoring
-  Prefab: {fileID: 5935935677353488325, guid: 27a24f1c79c50aa4c906ec8bf8809ee8, type: 3}
+  IronfistDwarf: {fileID: 5935935677353488325, guid: 27a24f1c79c50aa4c906ec8bf8809ee8, type: 3}
+  Sceleton: {fileID: 5935935677353488325, guid: dd976eb78010fa342ba1ee052431388a, type: 3}
 --- !u!114 &5857158750136928267
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var request in SystemAPI.Query<RefRO<CreateCharacter>>())
+            foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
                 ecb.AddComponent<Character>(character);
@@ -29,6 +29,7 @@ namespace vikwhite.ECS
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityConfig>()) });
                 }
                 ecb.SetComponent(character, mass);
+                request.ValueRW.Entity = character;
             }
             ecb.Playback(state.EntityManager);
         }

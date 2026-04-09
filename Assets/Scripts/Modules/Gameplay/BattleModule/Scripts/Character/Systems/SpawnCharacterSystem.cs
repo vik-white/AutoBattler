@@ -18,14 +18,15 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             
-            var config = SystemAPI.GetSingletonBuffer<CharacterConfig>()[0];
-            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(-1, 0, 0)});
-            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(0, 0, 0)});
-            ecb.CreateFrameEntity(new CreateCharacter{Config = config, Position = new float3(1, 0, 0)});
+            var ironfistDwarf = SystemAPI.GetSingletonBuffer<CharacterConfig>()[0];
+            ecb.CreateFrameEntity(new CreateCharacter{Config = ironfistDwarf, Position = new float3(-1, 0, 0)});
+            ecb.CreateFrameEntity(new CreateCharacter{Config = ironfistDwarf, Position = new float3(0, 0, 0)});
+            ecb.CreateFrameEntity(new CreateCharacter{Config = ironfistDwarf, Position = new float3(1, 0, 0)});
 
-            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = config, IsEnemy = true, Position = new float3(Random.Range(-5f, 5f), 0, Random.Range(5f, 10f))});
-            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = config, IsEnemy = true, Position = new float3(Random.Range(-5f, -10f), 0, Random.Range(-5f, 5f))});
-            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = config, IsEnemy = true, Position = new float3(Random.Range(5f, 10f), 0, Random.Range(-5f, 5f))});
+            var sceleton = SystemAPI.GetSingletonBuffer<CharacterConfig>()[1];
+            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = sceleton, IsEnemy = true, Position = new float3(Random.Range(-5f, 5f), 0, Random.Range(5f, 10f))});
+            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = sceleton, IsEnemy = true, Position = new float3(Random.Range(-5f, -10f), 0, Random.Range(-5f, 5f))});
+            for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = sceleton, IsEnemy = true, Position = new float3(Random.Range(5f, 10f), 0, Random.Range(-5f, 5f))});
             
             ecb.Playback(state.EntityManager);
             state.Enabled = false;
