@@ -16,7 +16,11 @@ namespace vikwhite.ECS
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
                 ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
                 var mass = PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties);
-                if (!request.ValueRO.IsEnemy) mass.InverseMass = 0;
+                if (!request.ValueRO.IsEnemy)
+                {
+                    mass.InverseMass = 0;
+                    ecb.CreateFrameEntity(new CreateAbility { Provider = character, ID = AbilityID.RangeAttack, Level = 0 });
+                }
                 ecb.SetComponent(character, mass);
             }
             ecb.Playback(state.EntityManager);

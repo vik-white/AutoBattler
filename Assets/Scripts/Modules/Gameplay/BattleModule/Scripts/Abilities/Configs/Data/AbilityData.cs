@@ -6,7 +6,7 @@ namespace vikwhite.ECS
     public enum AbilityID
     {
         None = -1,
-        Gun = 0,
+        RangeAttack = 0,
         DamageMultiply = 1,
         CooldownMultiply = 2
     }

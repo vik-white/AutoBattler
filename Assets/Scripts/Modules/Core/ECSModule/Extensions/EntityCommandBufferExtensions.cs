@@ -10,6 +10,12 @@ namespace vikwhite.ECS
             return entity;
         }
         
+        public static Entity CreateSceneEntity(this EntityCommandBuffer ecb) {
+            var entity = ecb.CreateEntity();
+            ecb.AddComponent<SceneEntity>(entity);
+            return entity;
+        }
+        
         public static Entity CreateFrameEntity<T>(this EntityCommandBuffer ecb, in T component) where T : unmanaged, IComponentData {
             var entity = ecb.CreateEntity();
             ecb.AddComponent(entity, component);

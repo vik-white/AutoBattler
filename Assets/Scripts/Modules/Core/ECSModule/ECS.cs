@@ -10,5 +10,11 @@ namespace vikwhite
         {
             _world.Unmanaged.ResolveSystemStateRef(_world.GetExistingSystem<T>()).Enabled = true;
         }
+
+        public static void DestroyScene()
+        {
+            Entity entity = _world.EntityManager.CreateEntity();
+            _world.EntityManager.AddComponentData(entity, new DestroyScene());
+        }
     }
 }

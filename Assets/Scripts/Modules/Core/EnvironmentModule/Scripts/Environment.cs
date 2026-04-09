@@ -19,9 +19,12 @@ namespace vikwhite
         protected virtual void Register() { }
         
         protected virtual void Initialize() { }
+        
+        protected virtual void Release() { }
 
         public virtual void Dispose()
         {
+            Release();
             _container.Dispose();
         }
     }

@@ -7,8 +7,8 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var abilityID in SystemAPI.Query<RefRO<StatAbility>>()) {
-                var ability = AbilityHandler.Get(abilityID.ValueRO.ID, SystemAPI.GetSingletonBuffer<AbilityLevel>(), SystemAPI.GetSingletonBuffer<AbilityConfig>());
+            foreach (var statAbility in SystemAPI.Query<RefRO<StatAbility>>()) {
+                var ability = AbilityHandler.Get(statAbility.ValueRO.ID, statAbility.ValueRO.Level, SystemAPI.GetSingletonBuffer<AbilityConfig>());
                 foreach (var stat in ability.Stats) 
                     ecb.CreateFrameEntity(new StatChange { ID = stat.ID, Value = stat.Value });
             }

@@ -22,8 +22,8 @@ namespace vikwhite.ECS
                 StopDistance = 1.5f,
                 TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true)
             };
-            state.Dependency = job.ScheduleParallel(state.Dependency);
-            //state.Dependency.Complete();
+            state.Dependency = job.Schedule(state.Dependency);
+            state.Dependency.Complete();
         }
     }
     
