@@ -7,8 +7,6 @@ namespace vikwhite.ECS
     {
         None = -1,
         RangeAttack = 0,
-        DamageMultiply = 1,
-        CooldownMultiply = 2
     }
 
     [Serializable]

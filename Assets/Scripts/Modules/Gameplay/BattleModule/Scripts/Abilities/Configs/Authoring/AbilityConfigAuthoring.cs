@@ -16,17 +16,19 @@ namespace vikwhite.ECS
             foreach (var ability in AbilitiesSO.Instance.Array) {
                 abilities.Add(new AbilityConfig {
                     ID = ability.ID,
-                    Levels = CreateAbilityLevels(ability.Levels),
+                    Levels = CreateAbilityLevels(ability.ID, ability.Levels),
                 });
             }
         }
 
-        private FixedList4096Bytes<AbilityLevelConfig> CreateAbilityLevels(List<AbilityLevelData> levelConfig) {
+        private FixedList4096Bytes<AbilityLevelConfig> CreateAbilityLevels(AbilityID id, List<AbilityLevelData> levelConfig) {
             var levels = new FixedList4096Bytes<AbilityLevelConfig>();
             foreach (var level in levelConfig) {
                 levels.Add(new AbilityLevelConfig {
+                    ID = id,
                     Prefab = this.RegisterPrefab(level.Prefab),
                     Cooldown = level.Cooldown,
+                    Radius = level.Radius,
                     Projectile = level.Projectile,
                     Effects = CreateEffects(level.Effects),
                     Stats = CreateStats(level.Stats)

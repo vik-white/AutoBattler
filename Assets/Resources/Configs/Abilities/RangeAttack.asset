@@ -15,6 +15,7 @@ MonoBehaviour:
   ID: 0
   Levels:
   - Cooldown: 1
+    Radius: 3
     Prefab: {fileID: 5570919014459195046, guid: 04a46f41011eafe4ca803dd20487c79d, type: 3}
     Stats: []
     Effects:

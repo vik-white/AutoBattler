@@ -9,6 +9,7 @@ namespace vikwhite.Data
     public class AbilityLevelData
     {
         public float Cooldown;
+        public float Radius;
         public GameObject Prefab;
         public List<StatData> Stats;
         public List<EffectData> Effects;

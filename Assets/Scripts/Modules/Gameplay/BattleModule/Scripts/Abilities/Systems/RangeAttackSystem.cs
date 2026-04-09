@@ -9,19 +9,24 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (ability, provider, cooldown, entity) in SystemAPI.Query<RefRO<RangeAttack>, RefRO<Provider>, RefRW<Cooldown>>().WithAll<CooldownUp>().WithEntityAccess()) {
-                var transform = SystemAPI.GetComponent<LocalToWorld>(provider.ValueRO.Value);
-                var forward = math.mul(transform.Rotation, new float3(0, 0, 0.3f));
-                ecb.CreateFrameEntity(new CreateBulletProjectile
-                {
-                    Provider = provider.ValueRO.Value, 
-                    Ability = ability.ValueRO.Value, 
-                    Position = transform.Position + forward, 
-                    Rotation = transform.Rotation,
-                });
-                ecb.RemoveComponent<CooldownUp>(entity);
-                var cooldownMultiply = StatHandler.Get(StatID.CooldownMultiply, SystemAPI.GetSingletonBuffer<StatBase>(), SystemAPI.GetSingletonBuffer<StatMultiply>());
-                cooldown.ValueRW.Value = ability.ValueRO.Value.Cooldown * cooldownMultiply;
+            foreach (var (abilities, localToWorld, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalToWorld>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
+                foreach (var ability in abilities) {
+                    if (ability.Config.ID != AbilityID.RangeAttack || !ability.IsCooldown) continue;
+                    
+                    var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value);
+                    var direction = targetTransform.Position - localToWorld.ValueRO.Position;
+                    var distance = math.length(direction);
+                    if (distance > ability.Config.Radius) continue;
+                    
+                    var forward = math.mul(localToWorld.ValueRO.Rotation, new float3(0, 0, 0.3f));
+                    ecb.CreateFrameEntity(new CreateBulletProjectile
+                    {
+                        Provider = entity, 
+                        Ability = ability.Config, 
+                        Position = localToWorld.ValueRO.Position + forward,
+                        Rotation = localToWorld.ValueRO.Rotation,
+                    });
+                }
             }
             ecb.Playback(state.EntityManager);
         }

@@ -19,7 +19,6 @@ namespace vikwhite.ECS
                 DeltaTime = SystemAPI.Time.DeltaTime,
                 Speed = 3f,
                 RotationSpeed = 5f,
-                StopDistance = 1.5f,
                 TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true)
             };
             state.Dependency = job.ScheduleParallel(state.Dependency);
@@ -32,14 +31,15 @@ namespace vikwhite.ECS
         public float DeltaTime;
         public float Speed;
         public float RotationSpeed;
-        public float StopDistance;
         [ReadOnly] 
         [NativeDisableContainerSafetyRestriction] 
         public ComponentLookup<LocalTransform> TransformLookup;
 
         [BurstCompile]
-        private void Execute(ref PhysicsVelocity physicsVelocity, ref LocalTransform transform, in Target target)
+        private void Execute(ref PhysicsVelocity physicsVelocity, ref LocalTransform transform, in Target target, in DynamicBuffer<Ability> abilities)
         {
+            var stopDistance = abilities.Length > 0 ? abilities[0].Config.Radius : float.MaxValue;
+            
             Entity targetEntity = target.Value;
             if (!TransformLookup.HasComponent(targetEntity)) 
             {
@@ -50,7 +50,7 @@ namespace vikwhite.ECS
             LocalTransform targetTransform = TransformLookup[targetEntity];
             float3 direction = targetTransform.Position - transform.Position;
             float distance = math.length(direction);
-            if (distance > StopDistance)
+            if (distance > stopDistance)
             {
                 float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
                 physicsVelocity.Linear = moveDir * Speed;
