@@ -3,6 +3,9 @@ using Unity.Entities;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SimulationSystemGroup))]
+    public partial class CleanupSystemGroup : ComponentSystemGroup { }
+    
+    [UpdateAfter(typeof(CleanupSystemGroup))]
     public partial class InitializeSystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(InitializeSystemGroup))]
@@ -28,7 +31,4 @@ namespace vikwhite.ECS
     
     [UpdateAfter(typeof(CreateSystemGroup))]
     public partial class EventSystemGroup : ComponentSystemGroup { }
-    
-    [UpdateAfter(typeof(EventSystemGroup))]
-    public partial class CleanupSystemGroup : ComponentSystemGroup { }
 }

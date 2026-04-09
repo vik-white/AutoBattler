@@ -27,7 +27,7 @@ namespace vikwhite.ECS
                 TargetLookup = SystemAPI.GetComponentLookup<Target>(true),
                 Ecb = ecb
             };
-            state.Dependency = job.ScheduleParallel(state.Dependency);
+            job.ScheduleParallel(SystemAPI.QueryBuilder().WithAll<Character>().Build());
             characters.Dispose(state.Dependency);
         }
     }
@@ -42,9 +42,9 @@ namespace vikwhite.ECS
         public EntityCommandBuffer.ParallelWriter Ecb;
 
         [BurstCompile]
-        private void Execute(Entity entity, [ReadOnly] in LocalTransform transform, [EntityIndexInQuery] int sortKey)
+        private void Execute(Entity entity, [EntityIndexInQuery] int sortKey)
         {
-            var position = transform.Position;
+            var position = TransformLookup[entity].Position;
             var isEnemy = EnemyLookup.HasComponent(entity);
             var minDistanceSq = float.MaxValue;
             var nearest = Entity.Null;

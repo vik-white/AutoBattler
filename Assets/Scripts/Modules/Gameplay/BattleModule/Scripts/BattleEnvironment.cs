@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using vikwhite.ECS;
 
@@ -15,12 +16,14 @@ namespace vikwhite
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
             ECSWorld.Enable<SpawnCharacterSystem>();
             Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
+            BattleHUD.Show();
         }
         
         protected override void Release()
         {
             SceneManager.UnloadSceneAsync("Battle");
             ECSWorld.DestroyScene();
+            BattleHUD.Hide();
         }
     }
 }
