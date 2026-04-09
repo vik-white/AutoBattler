@@ -13,6 +13,7 @@ namespace vikwhite.ECS
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
                 ecb.AddComponent<Character>(character);
+                ecb.AddComponent(character, new Health{ Value = 5 });
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
                 ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
                 var mass = PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties);

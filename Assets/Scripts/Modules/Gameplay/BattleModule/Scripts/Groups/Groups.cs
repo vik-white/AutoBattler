@@ -12,6 +12,9 @@ namespace vikwhite.ECS
     public partial class MovementSystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(MovementSystemGroup))]
+    public partial class CollisionSystemGroup : ComponentSystemGroup { }
+    
+    [UpdateAfter(typeof(CollisionSystemGroup))]
     public partial class GameplaySystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(GameplaySystemGroup))]

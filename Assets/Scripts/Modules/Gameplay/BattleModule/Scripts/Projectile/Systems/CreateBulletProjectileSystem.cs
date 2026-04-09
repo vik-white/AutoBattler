@@ -14,7 +14,7 @@ namespace vikwhite.ECS
                 var ability = request.ValueRO.Ability;
                 var projectile = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
                 ecb.SetComponent(projectile, new LocalTransform {
-                    Position = request.ValueRO.Position,
+                    Position = request.ValueRO.Position + new float3(0, 0.5f, 0),
                     Rotation = request.ValueRO.Rotation,
                     Scale = ability.Projectile.Radius
                 });
@@ -23,8 +23,9 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
                 ecb.AddComponent(projectile, new PreviousPosition{ Value = request.ValueRO.Position });
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
-                ecb.AddComponent<DestroyOutsideScene>(projectile);
                 ecb.AddBuffer<CollisionTarget>(projectile);
+                ecb.AddBuffer<CollisionBuffer>(projectile);
+                ecb.AddComponent<DestroyOutsideScene>(projectile);
                 var effects = ecb.AddBuffer<EffectData>(projectile);
                 for (int i = 0; i < ability.Effects.Length; i++) effects.Add(ability.Effects[i]);
             }

@@ -44,10 +44,11 @@ namespace vikwhite.ECS
         [BurstCompile]
         private void Execute(Entity entity, [ReadOnly] in LocalTransform transform, [EntityIndexInQuery] int sortKey)
         {
-            float3 position = transform.Position;
-            bool isEnemy = EnemyLookup.HasComponent(entity);
-            float minDistanceSq = float.MaxValue;
-            Entity nearest = Entity.Null;
+            var position = transform.Position;
+            var isEnemy = EnemyLookup.HasComponent(entity);
+            var minDistanceSq = float.MaxValue;
+            var nearest = Entity.Null;
+            var target = TargetLookup.HasComponent(entity) ? TargetLookup[entity].Value : Entity.Null;
             
             for (int i = 0; i < Characters.Length; i++)
             {
@@ -61,6 +62,7 @@ namespace vikwhite.ECS
                 {
                     minDistanceSq = distSq;
                     nearest = otherEntity;
+                    if(target == nearest) break;
                 }
             }
             

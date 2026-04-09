@@ -7,11 +7,10 @@ namespace vikwhite
     public partial struct ProjectileCleanupSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
             foreach (var (limit, projectile) in SystemAPI.Query<RefRO<CollisionTargetLimit>>().WithEntityAccess()) {
                 if(limit.ValueRO.Value <= 0) ecb.DestroyEntity(projectile);
             }
-            ecb.Playback(state.EntityManager);
         }
     }
 }
