@@ -9,22 +9,19 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (abilities, localToWorld, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalToWorld>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
-                foreach (var ability in abilities) {
-                    if (ability.Config.ID != AbilityID.RangeAttack || !ability.IsCooldown) continue;
+            foreach (var (abilities, transform, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>>().WithAll<Character>().WithEntityAccess()) {
+                for (int i = 0; i < abilities.Length; i++){
+                    ref var ability = ref abilities.ElementAt(i);
+                    if (ability.Config.ID != AbilityID.RangeAttack || !ability.IsReady) continue;
+                    ability.Cooldown = 0;
                     
-                    var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value);
-                    var direction = targetTransform.Position - localToWorld.ValueRO.Position;
-                    var distance = math.length(direction);
-                    if (distance > ability.Config.Radius) continue;
-                    
-                    var forward = math.mul(localToWorld.ValueRO.Rotation, new float3(0, 0, 0.3f));
+                    var forward = math.mul(transform.ValueRO.Rotation, new float3(0, 0, 0.3f));
                     ecb.CreateFrameEntity(new CreateBulletProjectile
                     {
                         Provider = entity, 
                         Ability = ability.Config, 
-                        Position = localToWorld.ValueRO.Position + forward,
-                        Rotation = localToWorld.ValueRO.Rotation,
+                        Position = transform.ValueRO.Position + forward,
+                        Rotation = transform.ValueRO.Rotation,
                     });
                 }
             }
