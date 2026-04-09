@@ -14,14 +14,19 @@ namespace vikwhite.ECS
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
                 ecb.AddComponent<Character>(character);
                 var abilities = ecb.AddBuffer<Ability>(character);
-                ecb.AddComponent(character, new Health{ Value = 5 });
-                if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
                 ecb.SetComponent(character, new LocalTransform{ Position = request.ValueRO.Position, Rotation = quaternion.identity, Scale = 1});
                 var mass = PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties);
                 if (!request.ValueRO.IsEnemy)
                 {
                     mass.InverseMass = 0;
+                    ecb.AddComponent(character, new Health{ Value = 500 });
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.RangeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityConfig>()) });
+                }
+                else
+                {
+                    ecb.AddComponent<Enemy>(character);
+                    ecb.AddComponent(character, new Health{ Value = 5 });
+                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityConfig>()) });
                 }
                 ecb.SetComponent(character, mass);
             }

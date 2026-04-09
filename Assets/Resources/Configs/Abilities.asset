@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Battle::vikwhite.Data.AbilitiesSO
   Array:
   - {fileID: 11400000, guid: e1d9bf02450e08e4db2a6c33ba8070e9, type: 2}
+  - {fileID: 11400000, guid: 4eac6935c43492b4cb9435e011284cf5, type: 2}

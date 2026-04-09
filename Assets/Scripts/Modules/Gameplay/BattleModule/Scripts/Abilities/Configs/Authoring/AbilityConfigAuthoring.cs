@@ -11,6 +11,7 @@ namespace vikwhite.ECS
     class AbilityConfigAuthoringBaker : Baker<AbilityConfigAuthoring>
     {
         public override void Bake(AbilityConfigAuthoring authoring) {
+            Debug.Log("AbilityConfigAuthoringBaker");
             var entity = GetEntity(TransformUsageFlags.None);
             var abilities = AddBuffer<AbilityConfig>(entity);
             foreach (var ability in AbilitiesSO.Instance.Array) {

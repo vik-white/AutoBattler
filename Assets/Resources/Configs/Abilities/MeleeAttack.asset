@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c44c561f304d493ab6f1b374db435c42, type: 3}
-  m_Name: RangeAttack
+  m_Name: MeleeAttack
   m_EditorClassIdentifier: Battle::vikwhite.Data.AbilitySO
-  ID: 0
+  ID: 1
   Levels:
   - Cooldown: 1
-    Radius: 3
-    Prefab: {fileID: 5570919014459195046, guid: 04a46f41011eafe4ca803dd20487c79d, type: 3}
+    Radius: 1.5
+    Prefab: {fileID: 0}
     Stats: []
     Effects:
     - ID: 1
       Value: 5
     Projectile:
-      Speed: 10
-      Pierce: 1
-      Radius: 0.1
+      Speed: 0
+      Pierce: 0
+      Radius: 0

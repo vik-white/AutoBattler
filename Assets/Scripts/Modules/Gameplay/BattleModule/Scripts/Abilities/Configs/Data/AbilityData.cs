@@ -1,5 +1,4 @@
 using System;
-using Unity.Entities;
 
 namespace vikwhite.ECS
 {
@@ -7,6 +6,7 @@ namespace vikwhite.ECS
     {
         None = -1,
         RangeAttack = 0,
+        MeleeAttack = 1,
     }
 
     [Serializable]
