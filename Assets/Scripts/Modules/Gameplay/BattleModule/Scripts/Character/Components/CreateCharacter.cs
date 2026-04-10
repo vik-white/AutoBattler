@@ -8,6 +8,5 @@ namespace vikwhite.ECS
         public CharacterConfig Config;
         public float3 Position;
         public bool IsEnemy;
-        public Entity Entity;
     }
 }

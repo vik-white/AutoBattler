@@ -21,6 +21,7 @@ namespace vikwhite.ECS
                     mass.InverseMass = 0;
                     ecb.AddComponent(character, new Health{ Value = 500 });
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.RangeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityConfig>()) });
+                    ecb.CreateFrameEntity(new CreateCharacterEvent { Character = character });
                 }
                 else
                 {
@@ -29,7 +30,6 @@ namespace vikwhite.ECS
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityConfig>()) });
                 }
                 ecb.SetComponent(character, mass);
-                request.ValueRW.Entity = character;
             }
             ecb.Playback(state.EntityManager);
         }

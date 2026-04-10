@@ -36,7 +36,7 @@ namespace vikwhite.ECS
         public ComponentLookup<LocalTransform> TransformLookup;
 
         [BurstCompile]
-        private void Execute(ref PhysicsVelocity physicsVelocity, ref LocalTransform transform, in Target target, in DynamicBuffer<Ability> abilities)
+        private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in Target target, in DynamicBuffer<Ability> abilities)
         {
             var stopDistance = abilities.Length > 0 ? abilities[0].Config.Radius : float.MaxValue;
             
@@ -48,7 +48,7 @@ namespace vikwhite.ECS
             }
 
             LocalTransform targetTransform = TransformLookup[targetEntity];
-            float3 direction = targetTransform.Position - transform.Position;
+            float3 direction = targetTransform.Position - TransformLookup.GetRefRO(entity).ValueRO.Position;
             float distance = math.length(direction);
             if (distance > stopDistance)
             {
@@ -64,7 +64,7 @@ namespace vikwhite.ECS
             {
                 float3 targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
                 quaternion targetRot = quaternion.LookRotationSafe(targetDir, math.up());
-                transform.Rotation = math.slerp(transform.Rotation, targetRot, RotationSpeed * DeltaTime);
+                TransformLookup.GetRefRW(entity).ValueRW.Rotation = math.slerp(TransformLookup.GetRefRO(entity).ValueRO.Rotation, targetRot, RotationSpeed * DeltaTime);
                 physicsVelocity.Angular = float3.zero;
             }
         }
