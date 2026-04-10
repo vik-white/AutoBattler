@@ -16,6 +16,7 @@ namespace vikwhite.ECS
                     ecb.AddComponent<Dead>(entity);
                     ecb.RemoveComponent<PhysicsMass>(entity);
                     ecb.RemoveComponent<PhysicsCollider>(entity);
+                    ecb.RemoveComponent<PhysicsVelocity>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });
                 }
             }
