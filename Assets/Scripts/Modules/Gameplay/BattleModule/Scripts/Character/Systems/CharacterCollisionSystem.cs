@@ -14,6 +14,7 @@ namespace vikwhite.ECS
             var job = new CharacterCollisionJob
             {
                 Characters = SystemAPI.GetComponentLookup<Character>(true),
+                Deads = SystemAPI.GetComponentLookup<Dead>(true),
                 Projectiles = SystemAPI.GetComponentLookup<Projectile>(true),
                 Providers = SystemAPI.GetComponentLookup<Provider>(true),
                 CollisionTargets = SystemAPI.GetBufferLookup<CollisionTarget>(),
@@ -25,10 +26,10 @@ namespace vikwhite.ECS
     }
 
     [BurstCompile]
-    [WithNone(typeof(Dead))]
     struct CharacterCollisionJob : ITriggerEventsJob
     {
         [ReadOnly] public ComponentLookup<Character> Characters;
+        [ReadOnly] public ComponentLookup<Dead> Deads;
         [ReadOnly] public ComponentLookup<Projectile> Projectiles;
         [ReadOnly] public ComponentLookup<Provider> Providers;
         public BufferLookup<CollisionTarget> CollisionTargets;
@@ -37,6 +38,7 @@ namespace vikwhite.ECS
 
         public void Execute(TriggerEvent triggerEvent)
         {
+            if (Deads.HasComponent(triggerEvent.EntityA) || Deads.HasComponent(triggerEvent.EntityB)) return;
             
             var a = triggerEvent.EntityA;
             var b = triggerEvent.EntityB;
