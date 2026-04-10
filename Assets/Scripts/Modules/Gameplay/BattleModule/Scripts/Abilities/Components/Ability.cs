@@ -5,7 +5,7 @@ namespace vikwhite
 {
     public struct Ability : IBufferElementData
     {
-        public AbilityLevelConfig Config;
+        public AbilityConfig Config;
         public float Cooldown;
         public bool IsReady;
     }

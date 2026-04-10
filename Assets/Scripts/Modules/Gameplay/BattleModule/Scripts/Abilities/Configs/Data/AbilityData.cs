@@ -1,18 +1,18 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using vikwhite.ECS;
 
-namespace vikwhite.ECS
+namespace vikwhite.Data
 {
-    public enum AbilityID
-    {
-        None = -1,
-        RangeAttack = 0,
-        MeleeAttack = 1,
-    }
-
     [Serializable]
-    public struct AbilityData
+    public class AbilityData
     {
-        public AbilityID ID;
-        public int Level;
+        public float Cooldown;
+        public float Radius;
+        public GameObject Prefab;
+        public List<StatData> Stats;
+        public List<EffectData> Effects;
+        public ProjectileData Projectile;
     }
 }

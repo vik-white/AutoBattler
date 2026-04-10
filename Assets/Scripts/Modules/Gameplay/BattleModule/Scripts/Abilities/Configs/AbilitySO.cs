@@ -9,6 +9,6 @@ namespace vikwhite.Data
     public class AbilitySO : ScriptableObject
     {
         public AbilityID ID;
-        public List<AbilityLevelData> Levels;
+        public List<AbilityData> Levels;
     }
 }

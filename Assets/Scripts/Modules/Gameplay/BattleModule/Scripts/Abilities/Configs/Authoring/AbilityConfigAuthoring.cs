@@ -13,19 +13,19 @@ namespace vikwhite.ECS
         public override void Bake(AbilityConfigAuthoring authoring) {
             Debug.Log("AbilityConfigAuthoringBaker");
             var entity = GetEntity(TransformUsageFlags.None);
-            var abilities = AddBuffer<AbilityConfig>(entity);
+            var abilities = AddBuffer<AbilityLevelsConfig>(entity);
             foreach (var ability in AbilitiesSO.Instance.Array) {
-                abilities.Add(new AbilityConfig {
+                abilities.Add(new AbilityLevelsConfig {
                     ID = ability.ID,
                     Levels = CreateAbilityLevels(ability.ID, ability.Levels),
                 });
             }
         }
 
-        private FixedList4096Bytes<AbilityLevelConfig> CreateAbilityLevels(AbilityID id, List<AbilityLevelData> levelConfig) {
-            var levels = new FixedList4096Bytes<AbilityLevelConfig>();
+        private FixedList4096Bytes<AbilityConfig> CreateAbilityLevels(AbilityID id, List<AbilityData> levelConfig) {
+            var levels = new FixedList4096Bytes<AbilityConfig>();
             foreach (var level in levelConfig) {
-                levels.Add(new AbilityLevelConfig {
+                levels.Add(new AbilityConfig {
                     ID = id,
                     Prefab = this.RegisterPrefab(level.Prefab),
                     Cooldown = level.Cooldown,

@@ -6,7 +6,7 @@ namespace vikwhite.ECS
     public struct CreateBulletProjectile : IComponentData
     {
         public Entity Provider;
-        public AbilityLevelConfig Ability;
+        public AbilityConfig Ability;
         public float3 Position;
         public quaternion Rotation;
     }
