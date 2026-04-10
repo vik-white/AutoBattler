@@ -8,5 +8,7 @@ namespace vikwhite.ECS
         public CharacterID ID;
         public Entity Prefab;
         public BlobAssetReference<Collider> Collider;
+        public float Scale;
+        public float Health;
     }
 }

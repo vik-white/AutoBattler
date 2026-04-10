@@ -2,7 +2,8 @@ namespace vikwhite.ECS
 {
     public enum CharacterID
     {
-        IronfistDwarf = 1,
-        Sceleton = 2,
+        IronfistDwarf = 0,
+        Sceleton = 1,
+        SceletonBoss = 2,
     }
 }

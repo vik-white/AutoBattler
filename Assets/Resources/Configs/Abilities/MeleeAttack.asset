@@ -20,7 +20,7 @@ MonoBehaviour:
     Stats: []
     Effects:
     - ID: 1
-      Value: 5
+      Value: 3
     Projectile:
       Speed: 0
       Pierce: 0

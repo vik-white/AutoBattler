@@ -12,7 +12,6 @@ namespace vikwhite.ECS
         {
             state.Enabled = false;
             state.RequireForUpdate<CharacterConfig>();
-            
         }
 
         public void OnUpdate(ref SystemState state) {
@@ -23,6 +22,9 @@ namespace vikwhite.ECS
             ecb.CreateFrameEntity(new CreateCharacter{Config = ironfistDwarf, Position = new float3(0, 0, 0)});
             ecb.CreateFrameEntity(new CreateCharacter{Config = ironfistDwarf, Position = new float3(1, 0, 0)});
 
+            var sceletonBoss = SystemAPI.GetSingletonBuffer<CharacterConfig>()[2];
+            ecb.CreateFrameEntity(new CreateCharacter{Config = sceletonBoss, IsEnemy = true, Position = new float3(Random.Range(5f, 10f), 0, Random.Range(-5f, 5f))});
+            
             var sceleton = SystemAPI.GetSingletonBuffer<CharacterConfig>()[1];
             for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = sceleton, IsEnemy = true, Position = new float3(Random.Range(-5f, 5f), 0, Random.Range(5f, 10f))});
             for (int i = 0; i < 50; i++) ecb.CreateFrameEntity(new CreateCharacter{Config = sceleton, IsEnemy = true, Position = new float3(Random.Range(-5f, -10f), 0, Random.Range(-5f, 5f))});

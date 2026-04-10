@@ -33,7 +33,8 @@ namespace vikwhite
             var position = _entityManager.GetComponentData<LocalTransform>(_character).Position + new float3(0, 1.3f, 0);
             transform.position = Camera.main.WorldToScreenPoint(position);
             var health = _entityManager.GetComponentData<Health>(_character).Value;
-            Bar.localScale = new Vector3(health / 500f, 1, 1);
+            var healthMax = _entityManager.GetComponentData<Character>(_character).Config.Health;
+            Bar.localScale = new Vector3(health / healthMax, 1, 1);
         }
 
         private void OnDeadCharacter(DeadCharacterEvent evnt)
