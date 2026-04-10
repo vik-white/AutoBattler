@@ -14,7 +14,7 @@ namespace vikwhite.ECS
             {
                 var phase = movement.ValueRO.Phase + dt * speed.ValueRO.Value;
                 movement.ValueRW.Phase = phase;
-                var newRelativePosition = new float3(Mathf.Cos(phase) * movement.ValueRO.Radius, 0, Mathf.Sin(phase) * movement.ValueRO.Radius);
+                var newRelativePosition = new float3(Mathf.Cos(phase) * movement.ValueRO.Radius, 0.5f, Mathf.Sin(phase) * movement.ValueRO.Radius);
                 var targetPosition = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value).Position;
                 transform.ValueRW.Position = newRelativePosition + targetPosition;
             }

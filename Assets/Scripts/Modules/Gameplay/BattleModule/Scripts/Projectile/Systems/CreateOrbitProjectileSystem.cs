@@ -14,7 +14,7 @@ namespace vikwhite.ECS
                 var projectile = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
                 ecb.AddComponent<Projectile>(projectile);
                 ecb.SetComponent(projectile, new LocalTransform {
-                    Position = request.ValueRO.Position + new float3(0, 0.5f, 0),
+                    Position = request.ValueRO.Position,
                     Rotation = quaternion.identity,
                     Scale = ability.Projectile.Radius
                 });

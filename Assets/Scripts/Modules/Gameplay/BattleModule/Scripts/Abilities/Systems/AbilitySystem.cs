@@ -28,7 +28,7 @@ namespace vikwhite.ECS
                     if (ability.Cooldown > ability.Config.Cooldown)
                     {
                         ability.IsReady = true;
-                        //ability.IsReady = distance <= ability.Config.Radius || ability.Config.Radius == 0;
+                        ability.IsReady = distance <= ability.Config.Radius || ability.Config.Radius == 0;
                     }
                 }
             }
