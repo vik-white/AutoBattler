@@ -21,6 +21,7 @@ namespace vikwhite
                         });
                     }
                 }
+                collisionTargets.Clear();
             }
             ecb.Playback(state.EntityManager);
         }

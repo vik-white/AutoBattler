@@ -26,6 +26,7 @@ namespace vikwhite.ECS
     }
     
     [BurstCompile]
+    [WithNone(typeof(Dead))]
     public partial struct CharacterMovementJob : IJobEntity
     {
         public float DeltaTime;

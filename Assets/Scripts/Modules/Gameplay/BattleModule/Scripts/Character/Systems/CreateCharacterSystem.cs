@@ -25,7 +25,7 @@ namespace vikwhite.ECS
                 if (!request.ValueRO.IsEnemy)
                 {
                     mass.InverseMass = 0;
-                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.RangeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
+                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.OrbitingFireBoll, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
                     ecb.CreateFrameEntity(new CreateCharacterEvent { Character = character });
                 }
                 else

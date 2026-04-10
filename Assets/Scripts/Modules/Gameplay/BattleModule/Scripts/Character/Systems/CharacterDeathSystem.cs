@@ -1,16 +1,21 @@
 using Unity.Entities;
+using Unity.Physics;
+using UnityEngine;
 
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(DeadSystemGroup), OrderFirst = true)]
-    public partial struct DeathSystem : ISystem
+    public partial struct CharacterDeathSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (health, entity) in SystemAPI.Query<RefRO<Health>>().WithEntityAccess()) {
+            foreach (var (health, abilities, entity) in SystemAPI.Query<RefRO<Health>, DynamicBuffer<Ability>>().WithNone<Dead>().WithEntityAccess()) {
                 if (health.ValueRO.Value <= 0)
                 {
+                    abilities.Clear();
                     ecb.AddComponent<Dead>(entity);
+                    ecb.RemoveComponent<PhysicsMass>(entity);
+                    ecb.RemoveComponent<PhysicsCollider>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });
                 }
             }

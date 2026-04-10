@@ -33,6 +33,7 @@ namespace vikwhite.ECS
     }
     
     [BurstCompile]
+    [WithNone(typeof(Dead))]
     public partial struct CharacterTargetJob : IJobEntity
     {
         [ReadOnly] public NativeArray<Entity> Characters;
