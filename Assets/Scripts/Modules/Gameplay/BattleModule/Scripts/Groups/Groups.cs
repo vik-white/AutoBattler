@@ -30,5 +30,8 @@ namespace vikwhite.ECS
     public partial class CreateSystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(CreateSystemGroup))]
+    public partial class AnimationSystemGroup : ComponentSystemGroup { }
+    
+    [UpdateAfter(typeof(AnimationSystemGroup))]
     public partial class EventSystemGroup : ComponentSystemGroup { }
 }

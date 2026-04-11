@@ -653,7 +653,7 @@ Animator:
   m_GameObject: {fileID: 3276994403196460185}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d81a856dc2dd3484c97cad4d4fb5c7c9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 804979e7aaebaf547817ecca67e2f92f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -685,7 +685,7 @@ MonoBehaviour:
   boneEntityStrippingMode: 0
   rootMotionMode: 0
   boneStrippingMask: {fileID: 0}
-  hasAnimationEvents: 0
+  hasAnimationEvents: 1
   hasAnimatorControllerEvents: 0
   animationEngine: 1
 --- !u!136 &8584680470241024291

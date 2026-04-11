@@ -21,6 +21,7 @@ namespace vikwhite.ECS
                         Position = transform.ValueRO.Position + forward,
                         Rotation = transform.ValueRO.Rotation,
                     });
+                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack });
                 }
             }
             ecb.Playback(state.EntityManager);

@@ -9,7 +9,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (abilities, target) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<Target>>().WithAll<Character>()) {
+            foreach (var (abilities, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
                     if (ability.Config.ID != AbilityID.MeleeAttack || !ability.IsActivate) continue;
                     
@@ -20,6 +20,7 @@ namespace vikwhite.ECS
                             Effect = effect, 
                         });
                     }
+                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack });
                 }
             }
             ecb.Playback(state.EntityManager);

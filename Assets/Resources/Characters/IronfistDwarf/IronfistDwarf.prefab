@@ -625,7 +625,7 @@ MonoBehaviour:
   boneEntityStrippingMode: 0
   rootMotionMode: 0
   boneStrippingMask: {fileID: 0}
-  hasAnimationEvents: 0
+  hasAnimationEvents: 1
   hasAnimatorControllerEvents: 0
   animationEngine: 1
 --- !u!136 &6044030589866668699
