@@ -24,10 +24,11 @@ namespace vikwhite.ECS
                 Characters = characters,
                 TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true),
                 EnemyLookup = SystemAPI.GetComponentLookup<Enemy>(true),
+                DeadLookup = SystemAPI.GetComponentLookup<Dead>(true),
                 TargetLookup = SystemAPI.GetComponentLookup<Target>(true),
                 Ecb = ecb
             };
-            job.ScheduleParallel(SystemAPI.QueryBuilder().WithAll<Character>().Build());
+            job.ScheduleParallel(SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Dead>().Build());
             characters.Dispose(state.Dependency);
         }
     }
@@ -39,6 +40,7 @@ namespace vikwhite.ECS
         [ReadOnly] public NativeArray<Entity> Characters;
         [ReadOnly] public ComponentLookup<LocalTransform> TransformLookup;
         [ReadOnly] public ComponentLookup<Enemy> EnemyLookup;
+        [ReadOnly] public ComponentLookup<Dead> DeadLookup;
         [ReadOnly] public ComponentLookup<Target> TargetLookup;
         public EntityCommandBuffer.ParallelWriter Ecb;
 
@@ -54,7 +56,8 @@ namespace vikwhite.ECS
             for (int i = 0; i < Characters.Length; i++)
             {
                 Entity otherEntity = Characters[i];
-                if (otherEntity == entity) continue;
+                bool otherIsDead = DeadLookup.HasComponent(otherEntity);
+                if (otherEntity == entity || otherIsDead) continue;
                 bool otherIsEnemy = EnemyLookup.HasComponent(otherEntity);
                 if (isEnemy == otherIsEnemy) continue;
                 float3 otherPosition = TransformLookup[otherEntity].Position;
