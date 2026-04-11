@@ -14,6 +14,7 @@ namespace vikwhite
         protected override void Initialize()
         {
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
+            ECSWorld.Enable<InitializeVFXSystem>();
             ECSWorld.Enable<SpawnCharacterSystem>();
             Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
             BattleHUD.Show();

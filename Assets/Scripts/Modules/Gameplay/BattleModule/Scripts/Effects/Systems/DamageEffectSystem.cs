@@ -9,8 +9,10 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var healths = SystemAPI.GetComponentLookup<Health>();
-            foreach (var (effect, target) in SystemAPI.Query<RefRO<EffectValue>, RefRO<Target>>().WithAny<EffectDamage>()) {
-                healths[target.ValueRO.Value] = new Health { Value = healths[target.ValueRO.Value].Value - effect.ValueRO.Value };
+            foreach (var (effect, target) in SystemAPI.Query<RefRO<EffectValue>, RefRO<Target>>().WithAny<EffectDamage>())
+            {
+                var character = target.ValueRO.Value;
+                healths[character] = new Health { Value = healths[character].Value - effect.ValueRO.Value };
             }
         }
     }

@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 5857158750136928267}
   - component: {fileID: 5857158750136928266}
   - component: {fileID: 17601881336850654}
+  - component: {fileID: 5857158750136928268}
   m_Layer: 0
   m_Name: Configs
   m_TagString: Untagged
@@ -303,6 +304,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51df67d4cd9182543b50261ceab2e9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ECS::vikwhite.PrefabRegistry
+--- !u!114 &5857158750136928268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518248118487310344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5b97f9cc764ba98c51d7a6f02358a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::vikwhite.ECS.VFXConfigsAuthoring
+  Flash: {fileID: 7399485676126892887, guid: d4e0c067f4fd9724ab2206c6662af450, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

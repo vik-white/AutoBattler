@@ -295,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3477339303486936361}
   - component: {fileID: 6360835192763800789}
+  - component: {fileID: 2716918276621923769}
   m_Layer: 0
   m_Name: LP
   m_TagString: Untagged
@@ -405,6 +406,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.020933315, y: 0.064531356, z: 0.013646364}
     m_Extent: {x: 0.4496892, y: 0.6496358, z: 0.3135848}
   m_DirtyAABB: 0
+--- !u!114 &2716918276621923769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599526737172681284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a553d1f3d97914784eb9c986ba2945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::vikwhite.ECS.DamagedMaterialPropertyAuthoring
+  Damaged: 0
 --- !u!1 &1629448254620673945
 GameObject:
   m_ObjectHideFlags: 0
