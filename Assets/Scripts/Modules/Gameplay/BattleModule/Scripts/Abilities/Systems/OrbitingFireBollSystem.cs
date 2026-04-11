@@ -10,16 +10,13 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, transform, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>>().WithAll<Character>().WithEntityAccess()) {
-                for (int i = 0; i < abilities.Length; i++)
-                {
-                    ref var ability = ref abilities.ElementAt(i);
-                    if (ability.Config.ID != AbilityID.OrbitingFireBoll || !ability.IsReady) continue;
-                    ability.Cooldown = 0;
+                foreach (var ability in abilities) {
+                    if (ability.Config.ID != AbilityID.OrbitingFireBoll || !ability.IsActivate) continue;
                     
                     var count = ability.Config.Projectile.Count;
-                    for (int j = 0; j < count; j++)
+                    for (int i = 0; i < count; i++)
                     {
-                        var phase = (2 * Mathf.PI * j) / count;
+                        var phase = (2 * Mathf.PI * i) / count;
                         ecb.CreateFrameEntity(new CreateOrbitProjectile
                         {
                             Provider = entity,

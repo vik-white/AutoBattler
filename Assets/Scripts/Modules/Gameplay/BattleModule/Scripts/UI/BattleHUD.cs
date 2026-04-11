@@ -8,6 +8,7 @@ namespace vikwhite
     public class BattleHUD : MonoBehaviour
     {
         public Text FPS;
+        public RectTransform AbilityContainer;
 
         public static void Show()
         {
@@ -28,7 +29,11 @@ namespace vikwhite
             FPS.text = $"FPS: {Mathf.RoundToInt(1f / Time.deltaTime)}";
         }
 
-        private void OnCreateCharacter(CreateCharacterEvent evnt) => HealthBar.Create(evnt.Character);
+        private void OnCreateCharacter(CreateCharacterEvent evnt)
+        {
+            HealthBar.Create(evnt.Character);
+            ActiveAbilityButton.Create(evnt.Character);
+        }
 
         private void OnDestroy()
         {

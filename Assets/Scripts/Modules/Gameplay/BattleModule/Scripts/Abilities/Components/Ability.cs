@@ -15,6 +15,6 @@ namespace vikwhite
     {
         public AbilityConfig Config;
         public float Cooldown;
-        public bool IsReady;
+        public bool IsActivate;
     }
 }
