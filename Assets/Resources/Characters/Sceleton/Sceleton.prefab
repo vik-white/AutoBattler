@@ -615,7 +615,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 789492399110794}
-  - component: {fileID: 8849169883947473355}
+  - component: {fileID: 8094440211135749005}
+  - component: {fileID: 1283431338326197748}
   - component: {fileID: 8584680470241024291}
   - component: {fileID: 8987839104152665622}
   m_Layer: 0
@@ -642,7 +643,7 @@ Transform:
   - {fileID: 7752532393183388637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8849169883947473355
+--- !u!95 &8094440211135749005
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -664,6 +665,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1283431338326197748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276994403196460185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb757bd46edfe349a52b4ea886d67e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Rukhanka.Hybrid::Rukhanka.Hybrid.RigDefinitionAuthoring
+  rigConfigSource: 0
+  avatar: {fileID: 0}
+  avatarOptimizationMask: {fileID: 0}
+  applyRootMotion: 0
+  animationCulling: 0
+  boneEntityStrippingMode: 0
+  rootMotionMode: 0
+  boneStrippingMask: {fileID: 0}
+  hasAnimationEvents: 0
+  hasAnimatorControllerEvents: 0
+  animationEngine: 0
 --- !u!136 &8584680470241024291
 CapsuleCollider:
   m_ObjectHideFlags: 0

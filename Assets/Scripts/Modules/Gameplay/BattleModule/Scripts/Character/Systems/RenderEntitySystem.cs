@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Rendering;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -13,16 +14,11 @@ namespace vikwhite.ECS
             {
                 foreach (var child in children)
                 {
-                    if (!SystemAPI.HasBuffer<Child>(child.Value)) continue;
-                    var subChildren = SystemAPI.GetBuffer<Child>(child.Value);
-                    foreach (var subChild in subChildren)
+                    if (state.EntityManager.HasComponent<RenderMeshArray>(child.Value))
                     {
-                        if (state.EntityManager.HasComponent<RenderMeshArray>(subChild.Value))
-                        {
-                            var materialInfo = SystemAPI.GetComponent<MaterialMeshInfo>(subChild.Value);
-                            ecb.AddComponent(entity, new RenderEntity { Entity = subChild.Value, Material = materialInfo.Material });
-                            goto NextEntity;
-                        }
+                        var materialInfo = SystemAPI.GetComponent<MaterialMeshInfo>(child.Value);
+                        ecb.AddComponent(entity, new RenderEntity { Entity = child.Value, Material = materialInfo.Material });
+                        goto NextEntity;
                     }
                 }
                 NextEntity:;
