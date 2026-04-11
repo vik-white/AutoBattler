@@ -8,7 +8,7 @@ namespace vikwhite.ECS
         Idle = 0,
         Attack = 1,
         Dead = 2,
-        Run = 3,
+        Running = 3,
     }
     
     public struct Animation : IComponentData

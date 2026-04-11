@@ -3,7 +3,7 @@ using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
-    [UpdateInGroup(typeof(SetupSystemGroup))]
+    [UpdateInGroup(typeof(AnimationSystemGroup), OrderLast = true)]
     public partial struct PreviousPositionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
