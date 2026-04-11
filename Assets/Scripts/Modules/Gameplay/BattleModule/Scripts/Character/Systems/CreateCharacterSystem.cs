@@ -24,7 +24,7 @@ namespace vikwhite.ECS
                 var mass = PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties);
                 if (!request.ValueRO.IsEnemy)
                 {
-                    mass.InverseMass = 0;
+                    mass.InverseMass = 0.001f;
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.RangeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.OrbitingFireBoll, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
                     ecb.AddComponent(character, new ActiveAbility{ Value = AbilityID.OrbitingFireBoll });
@@ -34,6 +34,7 @@ namespace vikwhite.ECS
                 {
                     ecb.AddComponent<Enemy>(character);
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
+                    if(request.ValueRO.Config.ID == CharacterID.SceletonBoss) mass.InverseMass = 0.5f;
                 }
                 ecb.SetComponent(character, mass);
             }

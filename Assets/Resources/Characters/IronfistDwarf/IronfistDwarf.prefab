@@ -57,6 +57,10 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -1934268713938070520, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -386731530326178724, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
+    - target: {fileID: -1934268713938070520, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 90c8ed7e40e96ca4694327c4d9b428e6, type: 2}
@@ -105,9 +109,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7473148864802303026}
-    - targetCorrespondingSourceObject: {fileID: 3124521936383007385, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7090801518955166626}
   m_SourcePrefab: {fileID: 100100000, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
 --- !u!1 &5935935677353488325 stripped
 GameObject:
@@ -186,21 +187,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!1 &8502039598538655757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3124521936383007385, guid: 992bef1681c1fea4f9b6d8894ffff6e1, type: 3}
-  m_PrefabInstance: {fileID: 6818951065337451156}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7090801518955166626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502039598538655757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a553d1f3d97914784eb9c986ba2945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Battle::vikwhite.ECS.DamagedMaterialPropertyAuthoring
-  Damaged: 1
