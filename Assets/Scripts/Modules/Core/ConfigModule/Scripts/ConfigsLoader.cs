@@ -14,6 +14,7 @@ namespace vikwhite.Data
         IConfig<ISquadData> Squad { get; }
         IConfig<IMapData> Map { get; }
         IConfig<ILocationStaticData> LocationStatic { get; }
+        IConfig<ILocationFlowData> LocationFlow { get; }
     }
     
     [Serializable]
@@ -28,11 +29,13 @@ namespace vikwhite.Data
         [SerializeField] private Config<SquadData, ISquadData> squad;
         [SerializeField] private Config<MapData, IMapData> map;
         [SerializeField] private Config<LocationStaticData, ILocationStaticData> locationStatic;
+        [SerializeField] private Config<LocationFlowData, ILocationFlowData> locationFlow;
         
         public IConfig<ICharacterData> Characters => characters;
         public IConfig<ISquadData> Squad => squad;
         public IConfig<IMapData> Map => map;
         public IConfig<ILocationStaticData> LocationStatic => locationStatic;
+        public IConfig<ILocationFlowData> LocationFlow => locationFlow;
         
         [Button("Load")][PropertyOrder(-1)]
         private void Load() {

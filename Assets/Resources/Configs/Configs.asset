@@ -68,6 +68,10 @@ MonoBehaviour:
       LocationType: 0
     - LocationID: ForestBoss
       LocationType: 0
+    - LocationID: Forest1
+      LocationType: 1
+    - LocationID: Forest2
+      LocationType: 1
   locationStatic:
     IDS:
     - Forest
@@ -83,3 +87,30 @@ MonoBehaviour:
     - ID: ForestBoss
       Enemies:
       - SceletonBoss
+  locationFlow:
+    IDS: []
+    Data:
+    - LocationID: Forest1
+      Time: 0
+      Enemies:
+      - Sceleton
+      MinCount: 10
+      SpawnInterval: 1
+    - LocationID: Forest1
+      Time: 20
+      Enemies:
+      - Sceleton
+      MinCount: 50
+      SpawnInterval: 0.5
+    - LocationID: Forest2
+      Time: 0
+      Enemies:
+      - Sceleton
+      MinCount: 10
+      SpawnInterval: 1
+    - LocationID: Forest2
+      Time: 20
+      Enemies:
+      - Sceleton
+      MinCount: 50
+      SpawnInterval: 0.5

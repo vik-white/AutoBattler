@@ -2,7 +2,7 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    public struct StartStaticLocation : IComponentData
+    public struct LocationEnemiesFlow : IComponentData
     {
         public uint ID;
     }

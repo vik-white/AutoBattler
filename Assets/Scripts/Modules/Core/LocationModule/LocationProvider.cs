@@ -1,12 +1,16 @@
+using vikwhite.Data;
+
 namespace vikwhite
 {
     public interface ILocationProvider
     {
-        string Location { get; set; }
+        string ID { get; set; }
+        LocationType Type { get; set; }
     }
     
     public class LocationProvider : ILocationProvider
     {
-        public string Location { get; set; }
+        public string ID { get; set; }
+        public LocationType Type { get; set; }
     }
 }

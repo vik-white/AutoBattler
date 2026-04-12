@@ -12,7 +12,7 @@ namespace vikwhite
             MapItems = new();
             foreach (var location in configs.Map.GetAll())
             {
-                MapItems.Add(CreateViewModel<MapItemViewModel, string>(location.LocationID));
+                MapItems.Add(CreateViewModel<MapItemViewModel, IMapData>(location));
             }
         }
     }
