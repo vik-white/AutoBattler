@@ -10,28 +10,21 @@ namespace vikwhite
     {
         public RectTransform Bar;
         private Entity _character;
-        private uint _characterID;
         private CharacterConfig _characterConfig;
-        private EntityManager _entityManager;
+        private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        public static void Create(Entity character)
+        public static void Create(Entity character, CharacterConfig characterConfig)
         {
             var prefab = Resources.Load<GameObject>("UI/HealthBar");
             var parent = FindAnyObjectByType<BattleHUD>().transform;
             var healthBar = Instantiate(prefab, parent).GetComponent<HealthBar>();
-            healthBar.Initialize(character);
+            healthBar.Initialize(character, characterConfig);
         }
         
-        public void Initialize(Entity character)
+        public void Initialize(Entity character, CharacterConfig characterConfig)
         {
-            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             _character = character;
-            _characterID = _entityManager.GetComponentData<Character>(_character).ID;
-            var entityCharacterConfig = _entityManager.CreateEntityQuery(typeof(CharacterConfig)).GetSingletonEntity();
-            foreach (var config in _entityManager.GetBuffer<CharacterConfig>(entityCharacterConfig))
-            {
-                if(config.ID == _characterID) _characterConfig = config;
-            }
+            _characterConfig = characterConfig;
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
         }
 

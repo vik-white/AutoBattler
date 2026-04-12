@@ -10,8 +10,8 @@ namespace vikwhite.ECS
         public Button Button;
         public RectTransform Bar;
         
+        private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         private Entity _character;
-        private EntityManager _entityManager;
         private AbilityID _abilityID;
         
         public static void Create(Entity character)
@@ -25,10 +25,9 @@ namespace vikwhite.ECS
         public void Initialize(Entity character)
         {
             _character = character;
-            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
-            Button.onClick.AddListener(OnActivateAbility);
             _abilityID = _entityManager.GetComponentData<ActiveAbility>(_character).Value;
+            Button.onClick.AddListener(OnActivateAbility);
+            DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
         }
 
         private void Update()

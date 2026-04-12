@@ -1,4 +1,3 @@
-using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -12,34 +11,27 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
-                var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
-                ecb.AddComponent<SceneEntity>(character);
-                ecb.AddComponent(character, new Character { ID = request.ValueRO.Config.ID });
-                ecb.AddComponent(character, new PreviousPosition { Value = request.ValueRO.Position });
-                var abilities = ecb.AddBuffer<Ability>(character);
+                var config = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(request.ValueRO.ID);
+                var character = ecb.Instantiate(config.Prefab);
                 ecb.SetComponent(character, new LocalTransform
                 {
                     Position = request.ValueRO.Position, 
                     Rotation = quaternion.identity, 
-                    Scale = request.ValueRO.Config.Scale
+                    Scale = config.Scale
                 });
-                ecb.AddComponent(character, new Health{ Value = request.ValueRO.Config.Health });
-                var mass = PhysicsHandler.CreateFreezeRotationMass(request.ValueRO.Config.Collider.Value.MassProperties);
-                if (!request.ValueRO.IsEnemy)
-                {
-                    mass.InverseMass = 0.001f;
-                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.RangeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
-                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.OrbitingFireBoll, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
-                    ecb.AddComponent(character, new ActiveAbility{ Value = AbilityID.OrbitingFireBoll });
-                    ecb.CreateFrameEntity(new CreateCharacterEvent { Character = character });
-                }
-                else
-                {
-                    ecb.AddComponent<Enemy>(character);
-                    abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
-                    if(request.ValueRO.Config.ID == "SceletonBoss".CalculateHash32()) mass.InverseMass = 0.5f;
-                }
+                ecb.AddComponent<SceneEntity>(character);
+                ecb.AddComponent(character, new PreviousPosition { Value = request.ValueRO.Position });
+                ecb.AddComponent(character, new Character { ID = config.ID });
+                if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
+                ecb.AddComponent(character, new Health{ Value = config.Health });
+                var abilities = ecb.AddBuffer<Ability>(character);
+                foreach (var ability in config.Abilities)
+                    abilities.Add(new Ability { Config = AbilityHandler.Get(ability.ID, ability.Level, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
+                if(config.ActiveAbility != AbilityID.None) ecb.AddComponent(character, new ActiveAbility{ Value = config.ActiveAbility });
+                var mass = PhysicsHandler.CreateFreezeRotationMass(config.Collider.Value.MassProperties);
+                mass.InverseMass = config.Mass;
                 ecb.SetComponent(character, mass);
+                ecb.CreateFrameEntity(new CreateCharacterEvent { Character = character });
             }
             ecb.Playback(state.EntityManager);
         }
