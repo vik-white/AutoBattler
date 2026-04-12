@@ -13,20 +13,17 @@ namespace vikwhite
     {
     }
 
-    public class BattleStartState : IBattleStartState, IUpdatable
+    public class BattleStartState : IBattleStartState
     {
-        private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ILocationProvider _locationProvider;
 
-        public BattleStartState(IEnvironmentStateMachine environmentStateMachine, ILocationProvider locationProvider)
+        public BattleStartState(ILocationProvider locationProvider)
         {
-            _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
         }
 
         public void Enter()
         {
-            Debug.Log("Entering Battle");
             BattleHUD.Show();
             ECSWorld.Enable<InitializeVFXSystem>();
             ECSWorld.CreateEntity(new StartStaticLocation{ ID = _locationProvider.Location.CalculateHash32() });
@@ -36,12 +33,6 @@ namespace vikwhite
         {
             ECSWorld.DestroyScene();
             BattleHUD.Hide();
-        }
-
-        public void Update()
-        {
-            if (Keyboard.current.lKey.wasPressedThisFrame)
-                _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
         }
     }
 }    

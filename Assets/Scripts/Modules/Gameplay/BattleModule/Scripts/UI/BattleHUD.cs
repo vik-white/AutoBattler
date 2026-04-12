@@ -9,6 +9,7 @@ namespace vikwhite
     public class BattleHUD : MonoBehaviour
     {
         public Text FPS;
+        public Button LobbyButton;
         public RectTransform AbilityContainer;
         
         private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -25,6 +26,7 @@ namespace vikwhite
         private void Initialize()
         {
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
+            LobbyButton.onClick.AddListener(() => DI.Resolve<IEnvironmentStateMachine>().SwitchState(EnvironmentType.Lobby));
         }
 
         private void Update()
@@ -35,11 +37,12 @@ namespace vikwhite
         private void OnCreateCharacter(CreateCharacterEvent evnt)
         {
             var id = _entityManager.GetComponentData<Character>(evnt.Character).ID;
+            var isEnemy = _entityManager.HasComponent<Enemy>(evnt.Character);
             var entityCharacterConfig = _entityManager.CreateEntityQuery(typeof(CharacterConfig)).GetSingletonEntity();
             var config = _entityManager.GetBuffer<CharacterConfig>(entityCharacterConfig).Get(id);
             
             if(config.HealthBar) HealthBar.Create(evnt.Character, config);
-            if(config.ActiveAbility != AbilityID.None) ActiveAbilityButton.Create(evnt.Character);
+            if(config.ActiveAbility != AbilityID.None && !isEnemy) ActiveAbilityButton.Create(evnt.Character);
         }
 
         private void OnDestroy()
