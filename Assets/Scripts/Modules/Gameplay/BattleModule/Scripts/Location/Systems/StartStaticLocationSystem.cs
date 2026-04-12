@@ -15,11 +15,23 @@ namespace vikwhite.ECS
                 var squadConfig = SystemAPI.GetSingletonBuffer<SquadConfig>();
                 var locationConfig = SystemAPI.GetSingletonBuffer<LocationStaticConfig>().Get(request.ValueRO.ID);
 
-                foreach (var character in squadConfig)
-                    ecb.CreateFrameEntity(new CreateCharacter{ID = character.ID, Position = new float3(-4, 0, 0)});
+                float spacing = 1.5f;
+                float offset = (squadConfig.Length - 1) * spacing / 2f;
+                for (int i = 0; i < squadConfig.Length; i++)
+                    ecb.CreateFrameEntity(new CreateCharacter
+                    {
+                        ID = squadConfig[i].ID, 
+                        Position = new float3(-4, 0, i * spacing - offset)
+                    });
                 
-                foreach (var enemy in locationConfig.Enemies)
-                    ecb.CreateFrameEntity(new CreateCharacter{ID = enemy, Position = new float3(4, 0, 0), IsEnemy = true});
+                offset = (locationConfig.Enemies.Length - 1) * spacing / 2f;
+                for (int i = 0; i < locationConfig.Enemies.Length; i++)
+                    ecb.CreateFrameEntity(new CreateCharacter
+                    {
+                        ID = locationConfig.Enemies[i], 
+                        Position = new float3(4, 0, i * spacing - offset), 
+                        IsEnemy = true
+                    });
                 
                 ecb.DestroyEntity(entity);
             }
