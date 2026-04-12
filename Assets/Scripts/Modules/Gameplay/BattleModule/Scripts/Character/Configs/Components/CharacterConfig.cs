@@ -5,7 +5,7 @@ namespace vikwhite.ECS
 {
     public struct CharacterConfig : IBufferElementData
     {
-        public CharacterID ID;
+        public uint ID;
         public Entity Prefab;
         public BlobAssetReference<Collider> Collider;
         public float Scale;

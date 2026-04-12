@@ -131,8 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264d6b71afc56764d91494af30143c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.CharacterConfigsAuthoring
-  IronfistDwarf: {fileID: 5935935677353488325, guid: 27a24f1c79c50aa4c906ec8bf8809ee8, type: 3}
-  Sceleton: {fileID: 3276994403196460185, guid: dd976eb78010fa342ba1ee052431388a, type: 3}
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
 --- !u!1 &415856435792566308
 GameObject:
   m_ObjectHideFlags: 0

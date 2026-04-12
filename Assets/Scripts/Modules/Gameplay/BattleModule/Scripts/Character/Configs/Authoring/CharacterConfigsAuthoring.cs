@@ -1,15 +1,16 @@
+using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using UnityEngine;
+using vikwhite.Data;
 using CapsuleCollider = Unity.Physics.CapsuleCollider;
 
 namespace vikwhite.ECS
 {
     public class CharacterConfigsAuthoring : MonoBehaviour
     {
-        public GameObject IronfistDwarf;
-        public GameObject Sceleton;
+        public ConfigsLoader Configs;
     }
 
     public class CharacterConfigsAuthoringBaker : Baker<CharacterConfigsAuthoring>
@@ -18,21 +19,22 @@ namespace vikwhite.ECS
             Debug.Log("CharacterConfigsAuthoringBaker");
             var entity = GetEntity(TransformUsageFlags.None);
             var entities = AddBuffer<CharacterConfig>(entity);
-            entities.Add(CreateCharacterConfig(CharacterID.IronfistDwarf, authoring.IronfistDwarf, 2500, 1f));
-            entities.Add(CreateCharacterConfig(CharacterID.Sceleton, authoring.Sceleton, 5, 0.7f));
-            entities.Add(CreateCharacterConfig(CharacterID.SceletonBoss, authoring.Sceleton, 50, 2f));
+
+            foreach (var characterData in authoring.Configs.Characters.GetAll())
+                entities.Add(CreateCharacterConfig(characterData));
         }
 
-        private CharacterConfig CreateCharacterConfig(CharacterID id, GameObject prefab, float health, float scale)
+        private CharacterConfig CreateCharacterConfig(ICharacterData data)
         {
+            var prefab = Resources.Load<GameObject>($"Characters/{data.Prefab}/{data.Prefab}");
             var entity = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
-            var collider = CapsuleCollider.Create(new CapsuleGeometry { Vertex0 = new float3(0, 0, 0), Vertex1 = new float3(0, 1 * scale, 0), Radius = 0.35f * scale });
+            var collider = CapsuleCollider.Create(new CapsuleGeometry { Vertex0 = new float3(0, 0, 0), Vertex1 = new float3(0, 1 * data.Scale, 0), Radius = 0.35f * data.Scale });
             return new CharacterConfig {
-                ID = id,
+                ID = data.ID.CalculateHash32(),
                 Prefab = entity,
                 Collider = collider,
-                Scale = scale,
-                Health = health,
+                Scale = data.Scale,
+                Health = data.Health,
             };
         }
     }

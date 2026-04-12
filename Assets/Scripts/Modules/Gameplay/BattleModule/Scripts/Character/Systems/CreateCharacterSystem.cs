@@ -1,3 +1,4 @@
+using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -36,7 +37,7 @@ namespace vikwhite.ECS
                 {
                     ecb.AddComponent<Enemy>(character);
                     abilities.Add(new Ability { Config = AbilityHandler.Get(AbilityID.MeleeAttack, 0, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
-                    if(request.ValueRO.Config.ID == CharacterID.SceletonBoss) mass.InverseMass = 0.5f;
+                    if(request.ValueRO.Config.ID == "SceletonBoss".CalculateHash32()) mass.InverseMass = 0.5f;
                 }
                 ecb.SetComponent(character, mass);
             }

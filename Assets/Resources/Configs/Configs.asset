@@ -21,8 +21,14 @@ MonoBehaviour:
     - SceletonBoss
     Data:
     - ID: IronfistDwarf
+      Prefab: IronfistDwarf
+      Scale: 1
       Health: 2500
     - ID: Sceleton
+      Prefab: Sceleton
+      Scale: 0.7
       Health: 5
     - ID: SceletonBoss
+      Prefab: Sceleton
+      Scale: 2
       Health: 50
