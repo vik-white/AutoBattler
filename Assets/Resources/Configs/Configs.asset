@@ -23,12 +23,60 @@ MonoBehaviour:
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
       Scale: 1
+      Mass: 0.001
       Health: 2500
+      HealthBar: 1
+      ActiveAbility: 2
+      Abilities:
+      - ID: 0
+        Level: 0
+      - ID: 2
+        Level: 0
     - ID: Sceleton
       Prefab: Sceleton
       Scale: 0.7
+      Mass: 1
       Health: 5
+      HealthBar: 0
+      ActiveAbility: -1
+      Abilities:
+      - ID: 1
+        Level: 0
     - ID: SceletonBoss
       Prefab: Sceleton
       Scale: 2
+      Mass: 0.5
       Health: 50
+      HealthBar: 1
+      ActiveAbility: -1
+      Abilities:
+      - ID: 1
+        Level: 0
+  squad:
+    IDS: []
+    Data:
+    - CharacterID: IronfistDwarf
+    - CharacterID: IronfistDwarf
+    - CharacterID: IronfistDwarf
+  map:
+    IDS: []
+    Data:
+    - LocationID: Forest
+      LocationType: 0
+    - LocationID: ForestBoss
+      LocationType: 0
+  locationStatic:
+    IDS:
+    - Forest
+    - ForestBoss
+    Data:
+    - ID: Forest
+      Enemies:
+      - IronfistDwarf
+      - IronfistDwarf
+      - IronfistDwarf
+      - IronfistDwarf
+      - IronfistDwarf
+    - ID: ForestBoss
+      Enemies:
+      - SceletonBoss

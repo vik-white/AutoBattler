@@ -17,8 +17,14 @@ namespace vikwhite.Data
         [Space(30)]
         
         [SerializeField] private Config<CharacterData, ICharacterData> characters;
+        [SerializeField] private Config<SquadData, ISquadData> squad;
+        [SerializeField] private Config<MapData, IMapData> map;
+        [SerializeField] private Config<LocationStaticData, ILocationStaticData> locationStatic;
         
         public IConfig<ICharacterData> Characters => characters;
+        public IConfig<ISquadData> Squad => squad;
+        public IConfig<IMapData> Map => map;
+        public IConfig<ILocationStaticData> LocationStatic => locationStatic;
         
         [Button("Load")][PropertyOrder(-1)]
         private void Load() {
