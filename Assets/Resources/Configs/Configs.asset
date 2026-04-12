@@ -52,6 +52,8 @@ MonoBehaviour:
       Abilities:
       - ID: 1
         Level: 0
+      - ID: 2
+        Level: 0
   squad:
     IDS:
     - IronfistDwarf

@@ -4,11 +4,25 @@ namespace vikwhite
 {
     public class CoroutineRunner : MonoBehaviour
     {
-        public static CoroutineRunner Instance;
+        private static CoroutineRunner _instance;
 
-        private void Awake()
+        public static CoroutineRunner Instance
         {
-            Instance = this;
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindAnyObjectByType<CoroutineRunner>();
+
+                    if (_instance == null)
+                    {
+                        GameObject go = new GameObject("CoroutineRunner");
+                        _instance = go.AddComponent<CoroutineRunner>();
+                    }
+                }
+
+                return _instance;
+            }
         }
     }
 }
