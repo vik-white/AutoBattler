@@ -12,6 +12,7 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
+                ecb.AddComponent<SceneEntity>(character);
                 ecb.AddComponent(character, new Character { Config = request.ValueRO.Config });
                 ecb.AddComponent(character, new PreviousPosition { Value = request.ValueRO.Position });
                 var abilities = ecb.AddBuffer<Ability>(character);

@@ -12,6 +12,7 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateOrbitProjectile>>()) {
                 var ability = request.ValueRO.Ability;
                 var projectile = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
+                ecb.AddComponent<SceneEntity>(projectile);
                 ecb.AddComponent<Projectile>(projectile);
                 ecb.SetComponent(projectile, new LocalTransform {
                     Position = request.ValueRO.Position,
