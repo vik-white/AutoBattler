@@ -7,6 +7,7 @@ namespace vikwhite
             Register<IStateMachine<IBattleState>, StateMachine<IBattleState>>();
             Register<IStateFactory<IBattleState>, StateFactory<IBattleState>>();
             Register<IBattleStartState, BattleStartState>();
+            Register<IBattleEndState, BattleEndState>();
         }
     }
 }

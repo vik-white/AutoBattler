@@ -16,6 +16,8 @@ namespace vikwhite
         
         public void Register<TInterface, TImplementation>() => _containers[0].Register<TInterface, TImplementation>();
         
+        public void Register<TInterface>(object implementation) => _containers[0].Register<TInterface>(implementation);
+        
         public object Resolve(Type type)
         {
             foreach (var c in _containers) {

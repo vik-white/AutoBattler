@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23f7b703e03a864195df0e5958d52ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::vikwhite.Bootstrap
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
 --- !u!4 &229886257
 Transform:
   m_ObjectHideFlags: 0

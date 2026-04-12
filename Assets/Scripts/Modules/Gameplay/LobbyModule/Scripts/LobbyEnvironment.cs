@@ -12,5 +12,10 @@ namespace vikwhite
         {
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
         }
+
+        protected override void Release()
+        {
+            Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyEndState>();
+        }
     }
 }

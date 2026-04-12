@@ -19,6 +19,8 @@ namespace vikwhite
         
         public static void Register<TInterface, TImplementation>() => _aggregator.Register<TInterface, TImplementation>();
         
+        public static void Register<TInterface>(object implementation) => _aggregator.Register<TInterface>(implementation);
+        
         public static T Resolve<T>() => (T)_aggregator.Resolve(typeof(T));
     }
 }

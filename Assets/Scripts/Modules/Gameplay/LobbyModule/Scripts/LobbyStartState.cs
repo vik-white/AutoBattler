@@ -10,18 +10,24 @@ namespace vikwhite
     public class LobbyStartState : ILobbyStartState, IUpdatable
     {
         private readonly IEnvironmentStateMachine _environmentStateMachine;
+        private readonly IMapWindow _mapWindow;
         
-        public LobbyStartState(IEnvironmentStateMachine environmentStateMachine)
+        public LobbyStartState(IEnvironmentStateMachine environmentStateMachine, IMapWindow mapWindow)
         {
             _environmentStateMachine = environmentStateMachine;
+            _mapWindow = mapWindow;
         }
         
         public void Enter() 
         {
             Debug.Log("Entered Lobby");
+            _mapWindow.ShowWindow();
         }
 
-        public void Exit() { }
+        public void Exit()
+        {
+            _mapWindow.CloseWindow();
+        }
 
         public void Update()
         {

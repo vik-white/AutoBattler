@@ -8,9 +8,17 @@ using System.Linq;
 
 namespace vikwhite.Data
 {
+    public interface IConfigs
+    {
+        IConfig<ICharacterData> Characters { get; }
+        IConfig<ISquadData> Squad { get; }
+        IConfig<IMapData> Map { get; }
+        IConfig<ILocationStaticData> LocationStatic { get; }
+    }
+    
     [Serializable]
     [CreateAssetMenu(fileName = "ConfigsLoader", menuName = "vikwhite/ConfigsLoader")]
-    public class ConfigsLoader : ScriptableObject
+    public class ConfigsLoader : ScriptableObject, IConfigs
     {
         public string ID = "1ZDvO0_zoEDrl4y1ueu5SGoG0xvb6Ay9yAsMuU3hQuTM";
         public string APIKey = "AIzaSyBXrlvSuX9jHyVcEAfB2NBVM1QQJQ7rPBk";

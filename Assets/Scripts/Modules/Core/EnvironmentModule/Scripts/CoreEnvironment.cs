@@ -12,6 +12,7 @@ namespace vikwhite
             Register<MvvmModuleDependency>();
             Register<WindowModuleDependency>();
             Register<EnvironmentModuleDependency>();
+            Register<LocationModuleDependency>();
         }
 
         protected override void Initialize()

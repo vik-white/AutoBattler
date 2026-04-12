@@ -1,3 +1,5 @@
+using vikwhite.Data;
+
 namespace vikwhite
 {
     public class Setup
@@ -10,6 +12,12 @@ namespace vikwhite
             new CoreEnvironment().Load();
             _stateFactory = DI.Resolve<IEnvironmentStateFactory>();
             _stateMachine = DI.Resolve<IEnvironmentStateMachine>();
+        }
+
+        public Setup Configs(IConfigs configs)
+        {
+            DI.Register<IConfigs>(configs);
+            return this;
         }
 
         public Setup Add<T>(EnvironmentType type) where T : Environment, new()
