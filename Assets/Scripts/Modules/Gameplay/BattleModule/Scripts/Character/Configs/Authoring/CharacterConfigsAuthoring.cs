@@ -20,7 +20,7 @@ namespace vikwhite.ECS
             Debug.Log("ECS CONFIGS UPDATED!");
             var entity = GetEntity(TransformUsageFlags.None);
             var entities = AddBuffer<CharacterConfig>(entity);
-
+            
             foreach (var characterData in authoring.Configs.Characters.GetAll())
                 entities.Add(CreateCharacterConfig(characterData));
         }
@@ -28,8 +28,14 @@ namespace vikwhite.ECS
         private CharacterConfig CreateCharacterConfig(ICharacterData data)
         {
             var prefab = Resources.Load<GameObject>($"Characters/{data.Prefab}/{data.Prefab}");
+            var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
             var entity = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
-            var collider = CapsuleCollider.Create(new CapsuleGeometry { Vertex0 = new float3(0, 0, 0), Vertex1 = new float3(0, 1 * data.Scale, 0), Radius = 0.35f * data.Scale });
+            var collider = CapsuleCollider.Create(new CapsuleGeometry
+            {
+                Vertex0 = new float3(0, 0, 0), 
+                Vertex1 = new float3(0, prefabCollider.height * data.Scale, 0), 
+                Radius = prefabCollider.radius * data.Scale
+            });
 
             var abilities = new FixedList128Bytes<AbilityLevelData>();
             foreach(var ability in data.Abilities)
@@ -45,6 +51,7 @@ namespace vikwhite.ECS
                 HealthBar = data.HealthBar,
                 ActiveAbility = data.ActiveAbility,
                 Abilities = abilities,
+                ColliderRadius = prefabCollider.radius * data.Scale,
             };
         }
     }

@@ -11,7 +11,7 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (abilities, transform, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>>().WithAll<Character>().WithEntityAccess()) 
+            foreach (var (abilities, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess()) 
             {
                 for (int i = 0; i < abilities.Length; i++)
                 {
@@ -24,6 +24,7 @@ namespace vikwhite.ECS
                         if (ability.Config.ID != activeAbility)
                         {
                             var distance = float.MaxValue;
+                            var characterConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
                             if (SystemAPI.HasComponent<Target>(entity))
                             {
                                 var target = SystemAPI.GetComponent<Target>(entity);
@@ -31,7 +32,7 @@ namespace vikwhite.ECS
                                 var direction = targetTransform.Position - transform.ValueRO.Position;
                                 distance = math.length(direction);
                             }
-                            if (distance <= ability.Config.Radius || ability.Config.Radius == 0)
+                            if (distance <= ability.Config.Radius + characterConfig.ColliderRadius || ability.Config.Radius == 0)
                             {
                                 ability.IsActivate = true;
                                 ability.Cooldown = 0;

@@ -15,5 +15,6 @@ namespace vikwhite.ECS
         public bool HealthBar;
         public AbilityID ActiveAbility;
         public FixedList128Bytes<AbilityLevelData> Abilities;
+        public float ColliderRadius;
     }
 }
