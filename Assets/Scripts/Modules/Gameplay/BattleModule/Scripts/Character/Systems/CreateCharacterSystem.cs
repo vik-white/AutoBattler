@@ -14,7 +14,7 @@ namespace vikwhite.ECS
             {
                 var character = ecb.Instantiate(request.ValueRO.Config.Prefab);
                 ecb.AddComponent<SceneEntity>(character);
-                ecb.AddComponent(character, new Character { Config = request.ValueRO.Config });
+                ecb.AddComponent(character, new Character { ID = request.ValueRO.Config.ID });
                 ecb.AddComponent(character, new PreviousPosition { Value = request.ValueRO.Position });
                 var abilities = ecb.AddBuffer<Ability>(character);
                 ecb.SetComponent(character, new LocalTransform

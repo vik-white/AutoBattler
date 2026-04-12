@@ -4,6 +4,6 @@ namespace vikwhite.ECS
 {
     public struct Character : IComponentData
     {
-        public CharacterConfig Config;
+        public uint ID;
     }
 }
