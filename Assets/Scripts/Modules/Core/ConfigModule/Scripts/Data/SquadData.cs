@@ -4,14 +4,14 @@ namespace vikwhite.Data
 {
     public interface ISquadData
     {
-        string CharacterID { get; }
+        string ID { get; }
     }
     
     [Serializable]
     public class SquadData : ISquadData
     {
-        public string CharacterID;
+        public string ID;
         
-        string ISquadData.CharacterID => CharacterID;
+        string ISquadData.ID => ID;
     }
 }

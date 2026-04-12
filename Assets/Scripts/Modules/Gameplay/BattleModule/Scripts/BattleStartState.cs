@@ -1,3 +1,4 @@
+using Rukhanka.Toolbox;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using vikwhite.ECS;
@@ -26,9 +27,9 @@ namespace vikwhite
         public void Enter()
         {
             Debug.Log("Entering Battle");
-            ECSWorld.Enable<InitializeVFXSystem>();
-            ECSWorld.Enable<SpawnCharacterSystem>();
             BattleHUD.Show();
+            ECSWorld.Enable<InitializeVFXSystem>();
+            ECSWorld.CreateEntity(new StartStaticLocation{ ID = _locationProvider.Location.CalculateHash32() });
         }
 
         public void Exit()

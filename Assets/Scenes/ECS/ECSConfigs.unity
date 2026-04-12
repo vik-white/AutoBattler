@@ -145,6 +145,8 @@ GameObject:
   - component: {fileID: 154412228588544271}
   - component: {fileID: 4361579178198901678}
   - component: {fileID: 2001827265975767449}
+  - component: {fileID: 5491737666832125162}
+  - component: {fileID: 5491737666832125161}
   m_Layer: 0
   m_Name: Configs
   m_TagString: Untagged
@@ -204,6 +206,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51df67d4cd9182543b50261ceab2e9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ECS::vikwhite.PrefabRegistry
+--- !u!114 &5491737666832125161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415856435792566308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74fae50825a4b50852b32e7dcf53555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::vikwhite.ECS.SquadConfigsAuthoring
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
+--- !u!114 &5491737666832125162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415856435792566308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911fa671de3d4f73a8e3bd9ed3db0a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::vikwhite.ECS.LocationStaticConfigsAuthoring
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

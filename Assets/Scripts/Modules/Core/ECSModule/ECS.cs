@@ -16,5 +16,11 @@ namespace vikwhite
             Entity entity = _world.EntityManager.CreateEntity();
             _world.EntityManager.AddComponentData(entity, new DestroyScene());
         }
+        
+        public static void CreateEntity<T>(T component) where T : unmanaged, IComponentData
+        {
+            Entity entity = _world.EntityManager.CreateEntity();
+            _world.EntityManager.AddComponentData(entity, component);
+        }
     }
 }

@@ -53,11 +53,14 @@ MonoBehaviour:
       - ID: 1
         Level: 0
   squad:
-    IDS: []
+    IDS:
+    - IronfistDwarf
+    - IronfistDwarf
+    - IronfistDwarf
     Data:
-    - CharacterID: IronfistDwarf
-    - CharacterID: IronfistDwarf
-    - CharacterID: IronfistDwarf
+    - ID: IronfistDwarf
+    - ID: IronfistDwarf
+    - ID: IronfistDwarf
   map:
     IDS: []
     Data:
@@ -72,8 +75,8 @@ MonoBehaviour:
     Data:
     - ID: Forest
       Enemies:
-      - IronfistDwarf
-      - IronfistDwarf
+      - Sceleton
+      - Sceleton
       - IronfistDwarf
       - IronfistDwarf
       - IronfistDwarf
