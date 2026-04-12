@@ -18,7 +18,7 @@ namespace vikwhite.ECS
                 ecb.SetComponent(projectile, new LocalTransform {
                     Position = request.ValueRO.Position + new float3(0, 0.5f, 0),
                     Rotation = request.ValueRO.Rotation,
-                    Scale = ability.Projectile.Radius
+                    Scale = ability.Projectile.Scale
                 });
                 ecb.AddComponent(projectile, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });

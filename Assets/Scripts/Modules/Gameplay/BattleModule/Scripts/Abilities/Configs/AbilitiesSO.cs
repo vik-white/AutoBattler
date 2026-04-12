@@ -7,7 +7,7 @@ namespace vikwhite.Data
     public class AbilitiesSO : ScriptableObject
     {
         private static AbilitiesSO _instance;
-        public static AbilitiesSO Instance => _instance ??= Resources.Load<AbilitiesSO>("Abilities/Configs/Abilities");
+        public static AbilitiesSO Instance => _instance ??= Resources.Load<AbilitiesSO>("Configs/Abilities");
         
         public List<AbilitySO> Array;
     }

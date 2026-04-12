@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c44c561f304d493ab6f1b374db435c42, type: 3}
-  m_Name: OrbitingFireBoll
+  m_Name: RangeAttack
   m_EditorClassIdentifier: Battle::vikwhite.Data.AbilitySO
-  ID: 2
+  ID: 0
   Levels:
-  - Cooldown: 3
+  - Cooldown: 1
     Radius: 3
     Prefab: {fileID: 5570919014459195046, guid: 04a46f41011eafe4ca803dd20487c79d, type: 3}
     Stats: []
     Effects:
     - ID: 1
-      Value: 3
+      Value: 5
     Projectile:
-      Count: 3
-      Speed: 5
-      Pierce: 0
-      Radius: 0.1
-      OrbitRadius: 2
-      Lifetime: 2
+      Count: 0
+      Speed: 10
+      Pierce: 1
+      Scale: 0.1
+      OrbitRadius: 0
+      Lifetime: 0

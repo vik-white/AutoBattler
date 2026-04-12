@@ -1,7 +1,7 @@
 {
-    "name": "DI",
+    "name": "SimpleJSON",
     "rootNamespace": "",
-    "references": ["GUID:60f28d51f061ad745910ab80110d195b"],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

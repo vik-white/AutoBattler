@@ -9,7 +9,7 @@ namespace vikwhite.Data
         public int Count;
         public float Speed;
         public int Pierce;
-        public float Radius;
+        public float Scale;
         public float OrbitRadius;
         public float Lifetime;
     }
