@@ -12,6 +12,7 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             foreach (var time in SystemAPI.Query<RefRW<Time>>()) {
                 time.ValueRW.DeltaTime = time.ValueRO.IsPaused ? 0 : SystemAPI.Time.DeltaTime;
+                time.ValueRW.TotalTime += time.ValueRO.DeltaTime;
             }
         }
     }

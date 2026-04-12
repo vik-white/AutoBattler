@@ -95,22 +95,22 @@ MonoBehaviour:
       Enemies:
       - Sceleton
       MinCount: 10
-      SpawnInterval: 1
+      SpawnInterval: 0.5
     - LocationID: Forest1
       Time: 20
       Enemies:
       - Sceleton
       MinCount: 50
-      SpawnInterval: 0.5
+      SpawnInterval: 0.3
     - LocationID: Forest2
       Time: 0
       Enemies:
       - Sceleton
       MinCount: 10
-      SpawnInterval: 1
+      SpawnInterval: 0.5
     - LocationID: Forest2
       Time: 20
       Enemies:
       - Sceleton
       MinCount: 50
-      SpawnInterval: 0.5
+      SpawnInterval: 0.3

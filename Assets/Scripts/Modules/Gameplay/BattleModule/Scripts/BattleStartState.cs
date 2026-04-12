@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using vikwhite.Data;
 using vikwhite.ECS;
+using Time = UnityEngine.Time;
 
 namespace vikwhite
 {
@@ -26,6 +27,7 @@ namespace vikwhite
         public void Enter()
         {
             BattleHUD.Show();
+            ECSWorld.Enable<InitializeTimeSystem>();
             ECSWorld.Enable<InitializeVFXSystem>();
             ECSWorld.CreateEntity(new InitializeSquad());
             if(_locationProvider.Type == LocationType.Static) 
