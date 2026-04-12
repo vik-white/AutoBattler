@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace vikwhite
 {
     public class LobbyEnvironment : Environment
@@ -8,9 +10,10 @@ namespace vikwhite
             Register<ProfileModuleDependency>();
         }
 
-        protected override void Initialize()
+        protected override IEnumerator Initialize()
         {
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
+            yield return null;
         }
 
         protected override void Release()

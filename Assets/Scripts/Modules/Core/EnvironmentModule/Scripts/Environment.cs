@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace vikwhite
 {
@@ -9,7 +10,7 @@ namespace vikwhite
         public void Load()
         {
             Register();
-            Initialize();
+            CoroutineRunner.Instance.StartCoroutine(Initialize());
         }
         
         protected void Register<T>() where T : DiModule, new() => new T().Initialize(_container);
@@ -18,7 +19,9 @@ namespace vikwhite
         
         protected virtual void Register() { }
         
-        protected virtual void Initialize() { }
+        protected virtual IEnumerator Initialize() { 
+            yield return null;
+        }
         
         protected virtual void Release() { }
 

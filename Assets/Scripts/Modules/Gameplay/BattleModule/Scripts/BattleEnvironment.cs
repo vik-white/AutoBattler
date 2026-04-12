@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace vikwhite
@@ -9,9 +11,11 @@ namespace vikwhite
             Register<BattleModuleDependency>();
         }
 
-        protected override void Initialize()
+        protected override IEnumerator Initialize()
         {
-            SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
+            var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
+            while (!loader.isDone) yield return null;
+            yield return new WaitForSeconds(0.1f);
             Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
         }
         

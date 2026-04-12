@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace vikwhite
@@ -15,9 +16,10 @@ namespace vikwhite
             Register<LocationModuleDependency>();
         }
 
-        protected override void Initialize()
+        protected override IEnumerator Initialize()
         {
             Resolve<IWindowViewFactory>().Initialize(GameObject.FindAnyObjectByType<Canvas>().transform);
+            yield return null;
         }
     }
 }
