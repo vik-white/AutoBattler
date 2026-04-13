@@ -11,20 +11,9 @@ namespace vikwhite.ECS
             foreach (var (abilities, entity) in SystemAPI.Query<DynamicBuffer<Ability>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
                     if (ability.Config.Type != AbilityType.Instant || !ability.IsActivate) continue;
-                    
-                    var targets = new List<Entity>();
                     if (ability.Config.Targets.Length == 0) continue;
-                    if (ability.Config.Targets.Contains(TargetType.Self)) targets.Add(entity);
-                    if (ability.Config.Targets.Contains(TargetType.Allies))
-                    {
-                        foreach (var (_, ally) in SystemAPI.Query<RefRO<Character>>().WithNone<Enemy>().WithEntityAccess()) 
-                            targets.Add(ally);
-                    }
-                    if (ability.Config.Targets.Contains(TargetType.Enemies))
-                    {
-                        foreach (var (_, enemy) in SystemAPI.Query<RefRO<Character>>().WithAll<Enemy>().WithEntityAccess()) 
-                            targets.Add(enemy);
-                    }
+
+                    var targets = GetTargets(ref state, ability, entity);
                     
                     foreach (var status in ability.Config.Statuses) {
                         foreach (var target in targets)
@@ -52,6 +41,52 @@ namespace vikwhite.ECS
                 }
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private List<Entity> GetTargets(ref SystemState state, Ability ability, Entity entity)
+        {
+            var targets = new List<Entity>();
+            
+            if (ability.Config.Targets.Contains(TargetType.Self)) 
+                targets.Add(entity);
+            
+            var isEnemy = SystemAPI.HasComponent<Enemy>(entity);
+            if (ability.Config.Targets.Contains(TargetType.Allies))
+            {
+                if (!isEnemy)
+                {
+                    foreach (var (_, ally) in SystemAPI.Query<RefRO<Character>>().WithNone<Enemy>().WithEntityAccess())
+                    {
+                        if(ally != entity) targets.Add(ally);
+                    }
+                }
+                else
+                {
+                    foreach (var (_, ally) in SystemAPI.Query<RefRO<Character>>().WithAll<Enemy>().WithEntityAccess())
+                    {
+                        if(ally != entity) targets.Add(ally);
+                    }
+                }
+            }
+            
+            if (ability.Config.Targets.Contains(TargetType.Enemies))
+            {
+                if (!isEnemy)
+                {
+                    foreach (var (_, enemy) in SystemAPI.Query<RefRO<Character>>().WithAll<Enemy>().WithEntityAccess())
+                    {
+                        if(enemy != entity) targets.Add(enemy);
+                    }
+                }
+                else
+                {
+                    foreach (var (_, enemy) in SystemAPI.Query<RefRO<Character>>().WithNone<Enemy>().WithEntityAccess())
+                    {
+                        if(enemy != entity) targets.Add(enemy);
+                    }
+                }
+            }
+            return targets;
         }
     }
 }

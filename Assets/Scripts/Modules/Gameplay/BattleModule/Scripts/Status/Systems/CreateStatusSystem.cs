@@ -21,6 +21,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(status, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent<Applied>(status);
                 if (type == StatusType.Damage) ecb.AddComponent<StatusDamage>(status);
+                if (type == StatusType.Heal) ecb.AddComponent<StatusHeal>(status);
             }
             ecb.Playback(state.EntityManager);
         }

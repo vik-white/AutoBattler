@@ -14,6 +14,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(effect, new Effect{ Value = GetEffectValue(request.ValueRO.Data) });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 if (type == EffectType.Damage) ecb.AddComponent<EffectDamage>(effect);
+                if (type == EffectType.Heal) ecb.AddComponent<EffectHeal>(effect);
             }
             ecb.Playback(state.EntityManager);
         }

@@ -20,7 +20,8 @@ MonoBehaviour:
     - IronfistDwarf
     - Sceleton
     - SceletonBoss
-    - Buffer
+    - DamageBuffer
+    - HealBuffer
     Data:
     - ID: Dummy
       Prefab: Sceleton
@@ -64,7 +65,7 @@ MonoBehaviour:
         Level: 0
       - ID: 2496368978
         Level: 0
-    - ID: Buffer
+    - ID: DamageBuffer
       Prefab: IronfistDwarf
       Scale: 1
       Mass: 0.001
@@ -74,15 +75,25 @@ MonoBehaviour:
       Abilities:
       - ID: 1179678565
         Level: 0
+    - ID: HealBuffer
+      Prefab: IronfistDwarf
+      Scale: 1
+      Mass: 0.001
+      Health: 100
+      HealthBar: 1
+      ActiveAbility: HealBaff
+      Abilities:
+      - ID: 3109583683
+        Level: 0
   squad:
     IDS:
     - IronfistDwarf
-    - IronfistDwarf
-    - Buffer
+    - HealBuffer
+    - DamageBuffer
     Data:
     - ID: IronfistDwarf
-    - ID: IronfistDwarf
-    - ID: Buffer
+    - ID: HealBuffer
+    - ID: DamageBuffer
   map:
     IDS: []
     Data:
@@ -239,16 +250,37 @@ MonoBehaviour:
     - AbilityID: DamageBaff
       Level: 0
       Type: 3
+      Icon: Axe
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 010000000200000003000000
+      Stats: []
+      Effects: []
+      Statuses:
+      - Type: 1
+        Value: 5
+        Duration: 3
+        Period: 1
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: HealBaff
+      Level: 0
+      Type: 3
       Icon: Buff
-      Cooldown: 3
+      Cooldown: 1
       Radius: 0
       Prefab: 
       Targets: 0100000002000000
       Stats: []
       Effects: []
       Statuses:
-      - Type: 1
-        Value: 3
+      - Type: 2
+        Value: 5
         Duration: 3
         Period: 1
       Count: 0
