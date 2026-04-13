@@ -17,10 +17,14 @@ namespace vikwhite.ECS
                 {
                     ref var ability = ref abilities.ElementAt(i);
                     ability.IsActivate = false;
-                    ability.Cooldown += dt;
+                    var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
+                    
+                    var cooldownMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                    if (activeAbility == ability.Config.ID) cooldownMultiply = 1;
+                    ability.Cooldown += dt * cooldownMultiply;
+                    
                     if (ability.Cooldown > ability.Config.Cooldown)
                     {
-                        var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
                         if (ability.Config.ID != activeAbility)
                         {
                             var distance = float.MaxValue;

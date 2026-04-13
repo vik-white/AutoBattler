@@ -18,11 +18,10 @@ MonoBehaviour:
     IDS:
     - Dummy
     - IronfistDwarf
+    - Healer
+    - Assassin
     - Sceleton
     - SceletonBoss
-    - DamageBuffer
-    - HealBuffer
-    - ShieldBuffer
     Data:
     - ID: Dummy
       Prefab: Sceleton
@@ -45,6 +44,30 @@ MonoBehaviour:
       - ID: 826252179
         Level: 0
       - ID: 2496368978
+        Level: 0
+    - ID: Healer
+      Prefab: IronfistDwarf
+      Scale: 1
+      Mass: 0.001
+      Health: 100
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: HealBuff
+      Abilities:
+      - ID: 3693692732
+        Level: 0
+    - ID: Assassin
+      Prefab: IronfistDwarf
+      Scale: 1
+      Mass: 0.001
+      Health: 100
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: AttackSpeedBuff
+      Abilities:
+      - ID: 1528634012
+        Level: 0
+      - ID: 3382298541
         Level: 0
     - ID: Sceleton
       Prefab: Sceleton
@@ -70,48 +93,15 @@ MonoBehaviour:
         Level: 0
       - ID: 2496368978
         Level: 0
-    - ID: DamageBuffer
-      Prefab: IronfistDwarf
-      Scale: 1
-      Mass: 0.001
-      Health: 100
-      Shield: 0
-      HealthBar: 1
-      ActiveAbility: DamageBuff
-      Abilities:
-      - ID: 3850567452
-        Level: 0
-    - ID: HealBuffer
-      Prefab: IronfistDwarf
-      Scale: 1
-      Mass: 0.001
-      Health: 100
-      Shield: 0
-      HealthBar: 1
-      ActiveAbility: HealBuff
-      Abilities:
-      - ID: 3693692732
-        Level: 0
-    - ID: ShieldBuffer
-      Prefab: IronfistDwarf
-      Scale: 1
-      Mass: 0.001
-      Health: 100
-      Shield: 0
-      HealthBar: 1
-      ActiveAbility: DamageStatBuff
-      Abilities:
-      - ID: 1522957047
-        Level: 0
   squad:
     IDS:
     - IronfistDwarf
-    - ShieldBuffer
-    - DamageBuffer
+    - Assassin
+    - Healer
     Data:
     - ID: IronfistDwarf
-    - ID: ShieldBuffer
-    - ID: DamageBuffer
+    - ID: Assassin
+    - ID: Healer
   map:
     IDS: []
     Data:
@@ -295,31 +285,14 @@ MonoBehaviour:
       Prefab: 
       Targets: 0100000002000000
       Stats: []
-      Effects: []
+      Effects:
+      - Type: 3
+        Value: 20
       Statuses:
       - Type: 2
         Value: 5
         Duration: 3
         Period: 1
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-    - AbilityID: ShieldBuff
-      Level: 0
-      Type: 3
-      Icon: Shield
-      Cooldown: 1
-      Radius: 0
-      Prefab: 
-      Targets: 0100000002000000
-      Stats: []
-      Effects:
-      - Type: 3
-        Value: 20
-      Statuses: []
       Count: 0
       Speed: 0
       Pierce: 0
@@ -333,11 +306,11 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       Prefab: 
-      Targets: 0100000002000000
+      Targets: 01000000
       Stats:
       - Type: 1
-        Value: -0.2
-        Duration: 2
+        Value: 2
+        Duration: 4
       Effects: []
       Statuses: []
       Count: 0
