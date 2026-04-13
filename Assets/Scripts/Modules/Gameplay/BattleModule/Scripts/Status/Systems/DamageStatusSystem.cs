@@ -10,7 +10,7 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (status, target) in SystemAPI.Query<RefRW<Status>, RefRO<Target>>().WithAny<StatusDamage>())
+            foreach (var (status, target) in SystemAPI.Query<RefRW<Status>, RefRO<Target>>().WithAny<DamageStatus>())
             {
                 if(status.ValueRO.TimeSinceLastTick >= 0)
                     status.ValueRW.TimeSinceLastTick -= dt;

@@ -1,0 +1,9 @@
+using Unity.Entities;
+
+namespace vikwhite.ECS
+{
+    public struct Shield : IComponentData
+    {
+        public float Value;
+    }
+}

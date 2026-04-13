@@ -8,7 +8,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var healths = SystemAPI.GetComponentLookup<Health>();
-            foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<EffectHeal>())
+            foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<HealEffect>())
             {
                 var character = target.ValueRO.Value;
                 var characterID = SystemAPI.GetComponent<Character>(character).ID;

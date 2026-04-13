@@ -13,8 +13,9 @@ namespace vikwhite.ECS
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent(effect, new Effect{ Value = GetEffectValue(request.ValueRO.Data) });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
-                if (type == EffectType.Damage) ecb.AddComponent<EffectDamage>(effect);
-                if (type == EffectType.Heal) ecb.AddComponent<EffectHeal>(effect);
+                if (type == EffectType.Damage) ecb.AddComponent<DamageEffect>(effect);
+                if (type == EffectType.Heal) ecb.AddComponent<HealEffect>(effect);
+                if (type == EffectType.Shield) ecb.AddComponent<ShieldEffect>(effect);
             }
             ecb.Playback(state.EntityManager);
         }

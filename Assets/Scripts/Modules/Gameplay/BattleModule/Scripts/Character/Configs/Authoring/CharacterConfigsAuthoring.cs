@@ -48,6 +48,7 @@ namespace vikwhite.ECS
                 Scale = data.Scale,
                 Mass = data.Mass,
                 Health = data.Health,
+                Shield = data.Shield,
                 HealthBar = data.HealthBar,
                 ActiveAbility = data.ActiveAbility.CalculateHash32(),
                 Abilities = abilities,

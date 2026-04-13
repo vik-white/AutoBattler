@@ -9,7 +9,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var target in SystemAPI.Query<RefRO<Target>>().WithAny<EffectDamage>())
+            foreach (var target in SystemAPI.Query<RefRO<Target>>().WithAny<DamageEffect>())
             {
                 var character = target.ValueRO.Value;
                 if(!SystemAPI.HasComponent<Enemy>(character)) return;

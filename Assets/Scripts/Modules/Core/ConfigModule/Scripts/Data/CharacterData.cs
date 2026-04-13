@@ -11,7 +11,8 @@ namespace vikwhite.Data
         string Prefab { get; }
         float Scale { get; }
         float Mass { get; }
-        int Health { get; }
+        float Health { get; }
+        float Shield { get; }
         bool HealthBar { get; }
         string ActiveAbility { get; }
         List<AbilityLevelData> Abilities { get; }
@@ -24,7 +25,8 @@ namespace vikwhite.Data
         public string Prefab;
         public float Scale;
         public float Mass;
-        public int Health;
+        public float Health;
+        public float Shield;
         public bool HealthBar;
         public string ActiveAbility;
         public List<AbilityLevelData> Abilities;
@@ -33,7 +35,8 @@ namespace vikwhite.Data
         string ICharacterData.Prefab => Prefab;
         float ICharacterData.Scale => Scale;
         float ICharacterData.Mass => Mass;
-        int ICharacterData.Health => Health;
+        float ICharacterData.Health => Health;
+        float ICharacterData.Shield => Shield;
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
         List<AbilityLevelData> ICharacterData.Abilities => Abilities;

@@ -22,12 +22,14 @@ MonoBehaviour:
     - SceletonBoss
     - DamageBuffer
     - HealBuffer
+    - ShieldBaffer
     Data:
     - ID: Dummy
       Prefab: Sceleton
       Scale: 1
       Mass: 1
       Health: 500
+      Shield: 100
       HealthBar: 1
       ActiveAbility: 
       Abilities: []
@@ -36,6 +38,7 @@ MonoBehaviour:
       Scale: 1
       Mass: 0.001
       Health: 2500
+      Shield: 0
       HealthBar: 1
       ActiveAbility: OrbitingFireBoll
       Abilities:
@@ -48,6 +51,7 @@ MonoBehaviour:
       Scale: 0.7
       Mass: 1
       Health: 5
+      Shield: 0
       HealthBar: 0
       ActiveAbility: 
       Abilities:
@@ -58,6 +62,7 @@ MonoBehaviour:
       Scale: 2
       Mass: 0.5
       Health: 50
+      Shield: 0
       HealthBar: 1
       ActiveAbility: 
       Abilities:
@@ -70,6 +75,7 @@ MonoBehaviour:
       Scale: 1
       Mass: 0.001
       Health: 100
+      Shield: 0
       HealthBar: 1
       ActiveAbility: DamageBaff
       Abilities:
@@ -80,19 +86,31 @@ MonoBehaviour:
       Scale: 1
       Mass: 0.001
       Health: 100
+      Shield: 0
       HealthBar: 1
       ActiveAbility: HealBaff
       Abilities:
       - ID: 3109583683
         Level: 0
+    - ID: ShieldBaffer
+      Prefab: IronfistDwarf
+      Scale: 1
+      Mass: 0.001
+      Health: 100
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: ShieldBaff
+      Abilities:
+      - ID: 2291136903
+        Level: 0
   squad:
     IDS:
     - IronfistDwarf
-    - HealBuffer
+    - ShieldBaffer
     - DamageBuffer
     Data:
     - ID: IronfistDwarf
-    - ID: HealBuffer
+    - ID: ShieldBaffer
     - ID: DamageBuffer
   map:
     IDS: []
@@ -283,6 +301,25 @@ MonoBehaviour:
         Value: 5
         Duration: 3
         Period: 1
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: ShieldBaff
+      Level: 0
+      Type: 3
+      Icon: Shield
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 0100000002000000
+      Stats: []
+      Effects:
+      - Type: 3
+        Value: 20
+      Statuses: []
       Count: 0
       Speed: 0
       Pierce: 0

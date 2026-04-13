@@ -20,8 +20,9 @@ namespace vikwhite.ECS
                 });
                 ecb.AddComponent(status, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent<Applied>(status);
-                if (type == StatusType.Damage) ecb.AddComponent<StatusDamage>(status);
-                if (type == StatusType.Heal) ecb.AddComponent<StatusHeal>(status);
+                if (type == StatusType.Damage) ecb.AddComponent<DamageStatus>(status);
+                if (type == StatusType.Heal) ecb.AddComponent<HealStatus>(status);
+                if (type == StatusType.Shield) ecb.AddComponent<ShieldStatus>(status);
             }
             ecb.Playback(state.EntityManager);
         }

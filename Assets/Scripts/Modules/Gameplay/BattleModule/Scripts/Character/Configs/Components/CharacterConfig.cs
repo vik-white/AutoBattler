@@ -12,6 +12,7 @@ namespace vikwhite.ECS
         public float Scale;
         public float Mass;
         public float Health;
+        public float Shield;
         public bool HealthBar;
         public uint ActiveAbility;
         public FixedList128Bytes<AbilityLevelData> Abilities;

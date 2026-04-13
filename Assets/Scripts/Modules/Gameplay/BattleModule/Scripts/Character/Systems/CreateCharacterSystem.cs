@@ -24,6 +24,8 @@ namespace vikwhite.ECS
                 ecb.AddComponent(character, new Character { ID = config.ID });
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(character);
                 ecb.AddComponent(character, new Health{ Value = config.Health });
+                ecb.AddComponent(character, new Shield{ Value = config.Shield });
+                ecb.AddComponent(character, new ShieldMax{ Value = config.Shield });
                 var abilities = ecb.AddBuffer<Ability>(character);
                 foreach (var ability in config.Abilities)
                     abilities.Add(new Ability { Config = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>().Get(ability.ID).Levels.Value.Array[ability.Level] });
