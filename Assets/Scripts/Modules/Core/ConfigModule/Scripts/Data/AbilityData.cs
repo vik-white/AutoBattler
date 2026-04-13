@@ -15,6 +15,7 @@ namespace vikwhite.Data
         string Prefab { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
+        List<StatusData> Statuses { get; }
         int Count { get; }
         float Speed { get; }
         int Pierce { get; }
@@ -34,6 +35,7 @@ namespace vikwhite.Data
         public string Prefab;
         public List<StatData> Stats;
         public List<EffectData> Effects;
+        public List<StatusData> Statuses;
         public int Count;
         public float Speed;
         public int Pierce;
@@ -49,6 +51,7 @@ namespace vikwhite.Data
         string IAbilityData.Prefab => Prefab;
         List<StatData> IAbilityData.Stats => Stats;
         List<EffectData> IAbilityData.Effects => Effects;
+        List<StatusData> IAbilityData.Statuses => Statuses;
         int IAbilityData.Count => Count;
         float IAbilityData.Speed => Speed;
         int IAbilityData.Pierce => Pierce;
@@ -58,10 +61,10 @@ namespace vikwhite.Data
         
         public void Parse(Dictionary<string, string> row)
         {
-            Stats = new ();
             Effects = new ();
             foreach (var abilityString in row["Effects"].Split(";"))
             {
+                if(abilityString == "") continue;
                 var parts = abilityString.Split(':');
                 var typeString = parts[0];
                 var valueString = parts[1];
@@ -71,6 +74,32 @@ namespace vikwhite.Data
                 
                 Effects.Add(new EffectData { Type = type, Value = value });
             }
+            
+            Statuses = new ();
+            foreach (var abilityString in row["Statuses"].Split(";"))
+            {
+                if(abilityString == "") continue;
+                var parts = abilityString.Split(':');
+                var typeString = parts[0];
+                var valueString = parts[1];
+                var durationString = parts[2];
+                var periodString = parts[3];
+                
+                if (!Enum.TryParse<StatusType>(typeString, out var type)) continue;
+                if (!float.TryParse(valueString, out var value)) continue;
+                if (!float.TryParse(durationString, out var duration)) continue;
+                if (!float.TryParse(periodString, out var period)) continue;
+                
+                Statuses.Add(new StatusData
+                {
+                    Type = type, 
+                    Value = value,
+                    Duration = duration,
+                    Period = period,
+                });
+            }
+            
+            Stats = new ();
         }
     }
 }

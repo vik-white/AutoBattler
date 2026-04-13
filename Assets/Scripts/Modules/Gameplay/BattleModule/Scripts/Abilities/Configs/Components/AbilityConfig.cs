@@ -13,6 +13,7 @@ namespace vikwhite.ECS
         public float Radius;
         public FixedList64Bytes<StatData> Stats;
         public FixedList64Bytes<EffectData> Effects;
+        public FixedList128Bytes<StatusData> Statuses;
         public ProjectileData Projectile;
     }
 }

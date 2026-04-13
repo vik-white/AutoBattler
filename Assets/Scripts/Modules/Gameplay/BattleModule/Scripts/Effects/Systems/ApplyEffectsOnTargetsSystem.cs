@@ -17,11 +17,10 @@ namespace vikwhite
                     foreach (var effect in effects.ValueRO.Array) {
                         ecb.CreateFrameEntity(new CreateEffect {
                             Target = collisionTargets[i].Value, 
-                            Effect = effect, 
+                            Data = effect, 
                         });
                     }
                 }
-                collisionTargets.Clear();
             }
             ecb.Playback(state.EntityManager);
         }

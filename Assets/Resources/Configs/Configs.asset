@@ -16,10 +16,21 @@ MonoBehaviour:
   APIKey: AIzaSyBXrlvSuX9jHyVcEAfB2NBVM1QQJQ7rPBk
   characters:
     IDS:
+    - Dummy
     - IronfistDwarf
     - Sceleton
     - SceletonBoss
     Data:
+    - ID: Dummy
+      Prefab: Sceleton
+      Scale: 1
+      Mass: 1
+      Health: 50
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 1803191474
+        Level: 0
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
       Scale: 1
@@ -50,7 +61,7 @@ MonoBehaviour:
       HealthBar: 1
       ActiveAbility: 
       Abilities:
-      - ID: 1528634012
+      - ID: 826252179
         Level: 0
       - ID: 2496368978
         Level: 0
@@ -66,6 +77,8 @@ MonoBehaviour:
   map:
     IDS: []
     Data:
+    - LocationID: Test
+      LocationType: 0
     - LocationID: Forest
       LocationType: 0
     - LocationID: ForestBoss
@@ -76,9 +89,13 @@ MonoBehaviour:
       LocationType: 1
   locationStatic:
     IDS:
+    - Test
     - Forest
     - ForestBoss
     Data:
+    - ID: Test
+      Enemies:
+      - Dummy
     - ID: Forest
       Enemies:
       - Sceleton
@@ -113,6 +130,21 @@ MonoBehaviour:
   abilities:
     IDS: []
     Data:
+    - AbilityID: NoAttack
+      Type: 1
+      Level: 0
+      Cooldown: 100000
+      Radius: 3
+      Prefab: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
     - AbilityID: MeleeAttack
       Type: 1
       Level: 0
@@ -123,6 +155,7 @@ MonoBehaviour:
       Effects:
       - Type: 1
         Value: 3
+      Statuses: []
       Count: 0
       Speed: 0
       Pierce: 0
@@ -139,10 +172,30 @@ MonoBehaviour:
       Effects:
       - Type: 1
         Value: 10
+      Statuses: []
       Count: 0
       Speed: 0
       Pierce: 0
       Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: DmageStatusRangeAttack
+      Type: 0
+      Level: 0
+      Cooldown: 6
+      Radius: 3
+      Prefab: Bullet
+      Stats: []
+      Effects: []
+      Statuses:
+      - Type: 1
+        Value: 3
+        Duration: 3
+        Period: 1
+      Count: 0
+      Speed: 10
+      Pierce: 1
+      Scale: 0.1
       OrbitRadius: 0
       Lifetime: 0
     - AbilityID: RangeAttack
@@ -155,6 +208,7 @@ MonoBehaviour:
       Effects:
       - Type: 1
         Value: 5
+      Statuses: []
       Count: 0
       Speed: 10
       Pierce: 1
@@ -171,6 +225,7 @@ MonoBehaviour:
       Effects:
       - Type: 1
         Value: 3
+      Statuses: []
       Count: 3
       Speed: 5
       Pierce: 0

@@ -17,7 +17,7 @@ namespace vikwhite.ECS
                         ecb.CreateFrameEntity(new CreateEffect 
                         {
                             Target = target.ValueRO.Value, 
-                            Effect = effect, 
+                            Data = effect, 
                         });
                     }
                     ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack });

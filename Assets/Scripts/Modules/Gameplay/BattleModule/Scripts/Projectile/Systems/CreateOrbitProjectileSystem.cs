@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new DestroyTimer{ Time = ability.Projectile.Lifetime });
                 ecb.AddComponent(projectile, new OrbitMovement{ Radius = ability.Projectile.OrbitRadius, Phase = request.ValueRO.Phase });
                 ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
+                ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);

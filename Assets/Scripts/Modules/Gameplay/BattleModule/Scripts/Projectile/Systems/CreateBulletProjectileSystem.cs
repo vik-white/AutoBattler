@@ -1,7 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -25,6 +24,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
                 ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
+                ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);

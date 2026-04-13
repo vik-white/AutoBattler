@@ -2,5 +2,8 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    public struct Effect : IComponentData { }
+    public struct Effect : IComponentData
+    {
+        public float Value;
+    }
 }

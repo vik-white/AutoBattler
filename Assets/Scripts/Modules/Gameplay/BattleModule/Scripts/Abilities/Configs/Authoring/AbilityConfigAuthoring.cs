@@ -40,6 +40,7 @@ namespace vikwhite.ECS
                         Cooldown = abilityData.Cooldown,
                         Radius = abilityData.Radius,
                         Effects = CreateEffects(abilityData.Effects),
+                        Statuses = CreateStatuses(abilityData.Statuses),
                         Stats = CreateStats(abilityData.Stats),
                         Projectile = new ProjectileData
                         {
@@ -66,6 +67,12 @@ namespace vikwhite.ECS
             var effects = new FixedList64Bytes<EffectData>();
             foreach (var effect in effectConfig) effects.Add(effect);
             return effects;
+        }
+        
+        private FixedList128Bytes<StatusData> CreateStatuses(List<StatusData> statusConfig) {
+            var statuses = new FixedList128Bytes<StatusData>();
+            foreach (var status in statusConfig) statuses.Add(status);
+            return statuses;
         }
         
         private FixedList64Bytes<StatData> CreateStats(List<StatData> statsConfig) {

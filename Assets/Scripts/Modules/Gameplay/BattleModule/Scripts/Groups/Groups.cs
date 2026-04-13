@@ -24,6 +24,9 @@ namespace vikwhite.ECS
     public partial class DeadSystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(DeadSystemGroup))]
+    public partial class StatusesSystemGroup : ComponentSystemGroup { }
+    
+    [UpdateAfter(typeof(StatusesSystemGroup))]
     public partial class EffectsSystemGroup : ComponentSystemGroup { }
     
     [UpdateAfter(typeof(EffectsSystemGroup))]
