@@ -108,14 +108,8 @@ MonoBehaviour:
       Time: 0
       Enemies:
       - Sceleton
-      Count: 10
-      SpawnInterval: 0.5
-    - LocationID: Forest2
-      Time: 20
-      Enemies:
-      - Sceleton
-      Count: 50
-      SpawnInterval: 0.3
+      Count: 100
+      SpawnInterval: 0.01
   abilities:
     IDS: []
     Data:
