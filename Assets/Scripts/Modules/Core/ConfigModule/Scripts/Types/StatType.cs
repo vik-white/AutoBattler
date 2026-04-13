@@ -2,8 +2,8 @@ namespace vikwhite.ECS
 {
     public enum StatType
     {
-        None = 0,
-        DamageMultiply = 1,
-        CooldownMultiply = 2,
+        None = -1,
+        DamageMultiply = 0,
+        CooldownMultiply = 1,
     }
 }

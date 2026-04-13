@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
                 ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
                 ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses });
+                ecb.AddComponent(projectile, new Stats{ Array = ability.Stats });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);

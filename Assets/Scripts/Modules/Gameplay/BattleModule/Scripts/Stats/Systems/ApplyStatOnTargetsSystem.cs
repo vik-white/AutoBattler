@@ -5,22 +5,21 @@ using vikwhite.ECS;
 namespace vikwhite
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(StatusesSystemGroup), OrderFirst = true)]
-    public partial struct ApplyStatusesOnTargetsSystem : ISystem
+    [UpdateInGroup(typeof(EffectsSystemGroup), OrderFirst = true)]
+    public partial struct ApplyStatOnTargetsSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) 
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (collisionTargets, statuses, provider) in SystemAPI.Query<DynamicBuffer<CollisionTarget>, RefRO<Statuses>, RefRO<Provider>>()) 
+            foreach (var (collisionTargets, stats) in SystemAPI.Query<DynamicBuffer<CollisionTarget>, RefRO<Stats>>()) 
             {
                 for (int i = 0; i < collisionTargets.Length; i++) 
                 {
-                    foreach (var status in statuses.ValueRO.Array) 
+                    foreach (var stat in stats.ValueRO.Array) 
                     {
-                        ecb.CreateFrameEntity(new CreateStatus {
-                            Provider = provider.ValueRO.Value,
+                        ecb.CreateFrameEntity(new CreateStatChange {
                             Target = collisionTargets[i].Value, 
-                            Data = status, 
+                            Data = stat, 
                         });
                     }
                 }

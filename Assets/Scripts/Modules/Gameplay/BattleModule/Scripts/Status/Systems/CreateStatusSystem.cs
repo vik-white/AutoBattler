@@ -18,6 +18,7 @@ namespace vikwhite.ECS
                     TileLeft = request.ValueRO.Data.Duration,
                     Period = request.ValueRO.Data.Period,
                 });
+                ecb.AddComponent(status, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(status, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent<Applied>(status);
                 if (type == StatusType.Damage) ecb.AddComponent<DamageStatus>(status);

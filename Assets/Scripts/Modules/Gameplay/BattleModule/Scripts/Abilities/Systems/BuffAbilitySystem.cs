@@ -20,6 +20,7 @@ namespace vikwhite.ECS
                         {
                             ecb.CreateFrameEntity(new CreateStatus
                             {
+                                Provider = entity,
                                 Target = target, 
                                 Data = status, 
                             });
@@ -31,8 +32,20 @@ namespace vikwhite.ECS
                         {
                             ecb.CreateFrameEntity(new CreateEffect 
                             {
+                                Provider = entity,
                                 Target = target, 
                                 Data = effect, 
+                            });
+                        }
+                    }
+                    
+                    foreach (var stat in ability.Config.Stats) {
+                        foreach (var target in targets)
+                        {
+                            ecb.CreateFrameEntity(new CreateStatChange 
+                            {
+                                Target = target, 
+                                Data = stat, 
                             });
                         }
                     }

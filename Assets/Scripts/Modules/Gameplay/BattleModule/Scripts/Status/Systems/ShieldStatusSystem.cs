@@ -10,7 +10,7 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (status, target) in SystemAPI.Query<RefRW<Status>, RefRO<Target>>().WithAny<ShieldStatus>())
+            foreach (var (status, target, provider) in SystemAPI.Query<RefRW<Status>, RefRO<Target>, RefRO<Provider>>().WithAny<ShieldStatus>())
             {
                 if(status.ValueRO.TimeSinceLastTick >= 0)
                     status.ValueRW.TimeSinceLastTick -= dt;
@@ -19,6 +19,7 @@ namespace vikwhite.ECS
                     status.ValueRW.TimeSinceLastTick = status.ValueRO.Period;
                     ecb.CreateFrameEntity(new CreateEffect
                     {
+                        Provider = provider.ValueRO.Value,
                         Target = target.ValueRO.Value, 
                         Data = new EffectData
                         {

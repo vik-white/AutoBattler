@@ -99,9 +99,9 @@ MonoBehaviour:
       Health: 100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: ShieldBuff
+      ActiveAbility: DamageStatBuff
       Abilities:
-      - ID: 3503821397
+      - ID: 1522957047
         Level: 0
   squad:
     IDS:
@@ -333,11 +333,31 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       Prefab: 
-      Targets: 01000000
+      Targets: 0100000002000000
       Stats:
-      - Type: 2
+      - Type: 1
         Value: -0.2
         Duration: 2
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: DamageStatBuff
+      Level: 0
+      Type: 3
+      Icon: Blood
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 0100000002000000
+      Stats:
+      - Type: 0
+        Value: 5
+        Duration: 5
       Effects: []
       Statuses: []
       Count: 0

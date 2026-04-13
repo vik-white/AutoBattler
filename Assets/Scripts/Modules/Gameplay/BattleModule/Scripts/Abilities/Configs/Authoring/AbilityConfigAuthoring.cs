@@ -76,8 +76,8 @@ namespace vikwhite.ECS
             return statuses;
         }
         
-        private FixedList64Bytes<StatData> CreateStats(List<StatData> statsConfig) {
-            var stats = new FixedList64Bytes<StatData>();
+        private FixedList128Bytes<StatData> CreateStats(List<StatData> statsConfig) {
+            var stats = new FixedList128Bytes<StatData>();
             foreach (var stat in statsConfig) stats.Add(stat);
             return stats;
         }
