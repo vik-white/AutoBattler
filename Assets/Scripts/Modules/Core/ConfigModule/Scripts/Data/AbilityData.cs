@@ -113,6 +113,25 @@ namespace vikwhite.Data
             }
             
             Stats = new ();
+            foreach (var abilityString in row["Stats"].Split(";"))
+            {
+                if(abilityString == "") continue;
+                var parts = abilityString.Split(':');
+                var typeString = parts[0];
+                var valueString = parts[1];
+                var durationString = parts[2];
+                
+                if (!Enum.TryParse<StatType>(typeString, out var type)) continue;
+                if (!float.TryParse(valueString, out var value)) continue;
+                if (!float.TryParse(durationString, out var duration)) continue;
+                
+                Stats.Add(new StatData
+                {
+                    Type = type, 
+                    Value = value,
+                    Duration = duration,
+                });
+            }
         }
     }
 }

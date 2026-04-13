@@ -5,7 +5,8 @@ namespace vikwhite.ECS
     [Serializable]
     public struct StatData
     {
-        public StatType type;
+        public StatType Type;
         public float Value;
+        public float Duration;
     }
 }

@@ -22,7 +22,7 @@ MonoBehaviour:
     - SceletonBoss
     - DamageBuffer
     - HealBuffer
-    - ShieldBaffer
+    - ShieldBuffer
     Data:
     - ID: Dummy
       Prefab: Sceleton
@@ -77,9 +77,9 @@ MonoBehaviour:
       Health: 100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: DamageBaff
+      ActiveAbility: DamageBuff
       Abilities:
-      - ID: 1179678565
+      - ID: 3850567452
         Level: 0
     - ID: HealBuffer
       Prefab: IronfistDwarf
@@ -88,29 +88,29 @@ MonoBehaviour:
       Health: 100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: HealBaff
+      ActiveAbility: HealBuff
       Abilities:
-      - ID: 3109583683
+      - ID: 3693692732
         Level: 0
-    - ID: ShieldBaffer
+    - ID: ShieldBuffer
       Prefab: IronfistDwarf
       Scale: 1
       Mass: 0.001
       Health: 100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: ShieldBaff
+      ActiveAbility: ShieldBuff
       Abilities:
-      - ID: 2291136903
+      - ID: 3503821397
         Level: 0
   squad:
     IDS:
     - IronfistDwarf
-    - ShieldBaffer
+    - ShieldBuffer
     - DamageBuffer
     Data:
     - ID: IronfistDwarf
-    - ID: ShieldBaffer
+    - ID: ShieldBuffer
     - ID: DamageBuffer
   map:
     IDS: []
@@ -265,7 +265,7 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 2
       Lifetime: 2
-    - AbilityID: DamageBaff
+    - AbilityID: DamageBuff
       Level: 0
       Type: 3
       Icon: Axe
@@ -286,7 +286,7 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
-    - AbilityID: HealBaff
+    - AbilityID: HealBuff
       Level: 0
       Type: 3
       Icon: Buff
@@ -307,7 +307,7 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
-    - AbilityID: ShieldBaff
+    - AbilityID: ShieldBuff
       Level: 0
       Type: 3
       Icon: Shield
@@ -319,6 +319,26 @@ MonoBehaviour:
       Effects:
       - Type: 3
         Value: 20
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: AttackSpeedBuff
+      Level: 0
+      Type: 3
+      Icon: Sword
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 01000000
+      Stats:
+      - Type: 2
+        Value: -0.2
+        Duration: 2
+      Effects: []
       Statuses: []
       Count: 0
       Speed: 0
