@@ -4,7 +4,7 @@ namespace vikwhite.ECS
 {
     public struct StatChange : IComponentData
     {
-        public StatID ID;
+        public StatType Type;
         public float Value;
     }
 }

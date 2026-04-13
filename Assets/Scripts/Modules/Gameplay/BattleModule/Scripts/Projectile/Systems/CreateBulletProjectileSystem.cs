@@ -24,11 +24,10 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
+                ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
-                var effects = ecb.AddBuffer<EffectData>(projectile);
-                for (int i = 0; i < ability.Effects.Length; i++) effects.Add(ability.Effects[i]);
             }
             ecb.Playback(state.EntityManager);
         }

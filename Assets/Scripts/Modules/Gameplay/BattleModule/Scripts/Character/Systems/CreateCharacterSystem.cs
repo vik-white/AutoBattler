@@ -26,8 +26,8 @@ namespace vikwhite.ECS
                 ecb.AddComponent(character, new Health{ Value = config.Health });
                 var abilities = ecb.AddBuffer<Ability>(character);
                 foreach (var ability in config.Abilities)
-                    abilities.Add(new Ability { Config = AbilityHandler.Get(ability.ID, ability.Level, SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>()) });
-                if(config.ActiveAbility != AbilityID.None) ecb.AddComponent(character, new ActiveAbility{ Value = config.ActiveAbility });
+                    abilities.Add(new Ability { Config = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>().Get(ability.ID).Levels.Value.Array[ability.Level] });
+                if(config.ActiveAbility != 0) ecb.AddComponent(character, new ActiveAbility{ Value = config.ActiveAbility });
                 var mass = PhysicsHandler.CreateFreezeRotationMass(config.Collider.Value.MassProperties);
                 mass.InverseMass = config.Mass;
                 ecb.SetComponent(character, mass);

@@ -12,7 +12,7 @@ namespace vikwhite.ECS
         
         private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
         private Entity _character;
-        private AbilityID _abilityID;
+        private uint _abilityID;
         
         public static void Create(Entity character)
         {

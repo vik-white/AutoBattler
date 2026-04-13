@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Rukhanka.Toolbox;
 using vikwhite.ECS;
 
 namespace vikwhite.Data
@@ -12,7 +13,7 @@ namespace vikwhite.Data
         float Mass { get; }
         int Health { get; }
         bool HealthBar { get; }
-        AbilityID ActiveAbility { get; }
+        string ActiveAbility { get; }
         List<AbilityLevelData> Abilities { get; }
     }
     
@@ -25,7 +26,7 @@ namespace vikwhite.Data
         public float Mass;
         public int Health;
         public bool HealthBar;
-        public AbilityID ActiveAbility;
+        public string ActiveAbility;
         public List<AbilityLevelData> Abilities;
         
         string ICharacterData.ID => ID;
@@ -34,7 +35,7 @@ namespace vikwhite.Data
         float ICharacterData.Mass => Mass;
         int ICharacterData.Health => Health;
         bool ICharacterData.HealthBar => HealthBar;
-        AbilityID ICharacterData.ActiveAbility => ActiveAbility;
+        string ICharacterData.ActiveAbility => ActiveAbility;
         List<AbilityLevelData> ICharacterData.Abilities => Abilities;
         
         public void Parse(Dictionary<string, string> row)
@@ -46,10 +47,9 @@ namespace vikwhite.Data
                 var idString = parts[0];
                 var levelString = parts[1];
                 
-                if (!Enum.TryParse<AbilityID>(idString, out var id)) continue;
                 if (!int.TryParse(levelString, out var level)) continue;
                 
-                Abilities.Add(new AbilityLevelData { ID = id, Level = level });
+                Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = level });
             }
         }
     }

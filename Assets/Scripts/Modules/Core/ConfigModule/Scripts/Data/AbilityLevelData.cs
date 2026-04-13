@@ -5,7 +5,7 @@ namespace vikwhite.ECS
     [Serializable]
     public struct AbilityLevelData
     {
-        public AbilityID ID;
+        public uint ID;
         public int Level;
     }
 }

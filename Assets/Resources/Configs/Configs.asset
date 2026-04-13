@@ -26,11 +26,11 @@ MonoBehaviour:
       Mass: 0.001
       Health: 2500
       HealthBar: 1
-      ActiveAbility: 2
+      ActiveAbility: OrbitingFireBoll
       Abilities:
-      - ID: 0
+      - ID: 826252179
         Level: 0
-      - ID: 2
+      - ID: 2496368978
         Level: 0
     - ID: Sceleton
       Prefab: Sceleton
@@ -38,9 +38,9 @@ MonoBehaviour:
       Mass: 1
       Health: 5
       HealthBar: 0
-      ActiveAbility: -1
+      ActiveAbility: 
       Abilities:
-      - ID: 1
+      - ID: 1528634012
         Level: 0
     - ID: SceletonBoss
       Prefab: Sceleton
@@ -48,11 +48,11 @@ MonoBehaviour:
       Mass: 0.5
       Health: 50
       HealthBar: 1
-      ActiveAbility: -1
+      ActiveAbility: 
       Abilities:
-      - ID: 1
+      - ID: 1528634012
         Level: 0
-      - ID: 2
+      - ID: 2496368978
         Level: 0
   squad:
     IDS:
@@ -116,3 +116,70 @@ MonoBehaviour:
       - Sceleton
       MinCount: 50
       SpawnInterval: 0.3
+  abilities:
+    IDS: []
+    Data:
+    - AbilityID: MeleeAttack
+      Type: 1
+      Level: 0
+      Cooldown: 1
+      Radius: 1
+      Prefab: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 3
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: MeleeAttack
+      Type: 1
+      Level: 1
+      Cooldown: 1
+      Radius: 1
+      Prefab: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 10
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: RangeAttack
+      Type: 0
+      Level: 0
+      Cooldown: 1
+      Radius: 3
+      Prefab: Bullet
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 5
+      Count: 0
+      Speed: 10
+      Pierce: 1
+      Scale: 0.1
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: OrbitingFireBoll
+      Type: 2
+      Level: 0
+      Cooldown: 3
+      Radius: 3
+      Prefab: Bullet
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 3
+      Count: 3
+      Speed: 5
+      Pierce: 0
+      Scale: 0.1
+      OrbitRadius: 2
+      Lifetime: 2

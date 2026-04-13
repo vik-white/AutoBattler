@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe20f38cba245438bb5eacef6d463e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.AbilityConfigAuthoring
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
 --- !u!114 &5491737666832125160
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,19 +9,19 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
-                var id = request.ValueRO.Effect.ID;
+                var id = request.ValueRO.Effect.Type;
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent<Effect>(effect);
                 ecb.AddComponent(effect, new EffectValue{ Value = GetEffectValue(request.ValueRO.Effect) });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent(effect, new Position{ Value = request.ValueRO.Position });
-                if (id == EffectID.Damage) ecb.AddComponent<EffectDamage>(effect);
+                if (id == EffectType.Damage) ecb.AddComponent<EffectDamage>(effect);
             }
             ecb.Playback(state.EntityManager);
         }
 
         public float GetEffectValue(EffectData effect) {
-            if (effect.ID == EffectID.Damage) return effect.Value * StatHandler.Get(StatID.DamageMultiply, SystemAPI.GetSingletonBuffer<StatBase>(), SystemAPI.GetSingletonBuffer<StatMultiply>());
+            if (effect.Type == EffectType.Damage) return effect.Value * StatHandler.Get(StatType.DamageMultiply, SystemAPI.GetSingletonBuffer<StatBase>(), SystemAPI.GetSingletonBuffer<StatMultiply>());
             return effect.Value;
         }
     }

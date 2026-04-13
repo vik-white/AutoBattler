@@ -7,7 +7,7 @@ namespace vikwhite.ECS
     public partial struct InitializeStatsSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            int count = Enum.GetValues(typeof(StatID)).Length;
+            int count = Enum.GetValues(typeof(StatType)).Length;
             var entityBase = state.EntityManager.CreateEntity();
             var statsBase = state.EntityManager.AddBuffer<StatBase>(entityBase);
             for (int i = 1; i < count; i++) statsBase.Add(new StatBase { Value = 1 });

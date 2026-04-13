@@ -24,11 +24,10 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DestroyTimer{ Time = ability.Projectile.Lifetime });
                 ecb.AddComponent(projectile, new OrbitMovement{ Radius = ability.Projectile.OrbitRadius, Phase = request.ValueRO.Phase });
+                ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
-                var effects = ecb.AddBuffer<EffectData>(projectile);
-                for (int i = 0; i < ability.Effects.Length; i++) effects.Add(ability.Effects[i]);
             }
             ecb.Playback(state.EntityManager);
         }

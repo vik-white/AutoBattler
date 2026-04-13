@@ -3,9 +3,10 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    public struct AbilityLevelsConfig : IBufferElementData
+    public struct AbilityLevelsConfig : IBufferElementData, IID
     {
-        public AbilityID ID;
-        public FixedList4096Bytes<AbilityConfig> Levels;
+        public uint ID { get; set; }
+        public AbilityType Type;
+        public BlobAssetReference<BlobArrayContainer<AbilityConfig>> Levels;
     }
 }

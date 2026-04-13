@@ -1,12 +1,11 @@
 using System;
-using Unity.Entities;
 
 namespace vikwhite.ECS
 {
     [Serializable]
-    public struct EffectData : IBufferElementData
+    public struct EffectData
     {
-        public EffectID ID;
+        public EffectType Type;
         public float Value;
     }
 }

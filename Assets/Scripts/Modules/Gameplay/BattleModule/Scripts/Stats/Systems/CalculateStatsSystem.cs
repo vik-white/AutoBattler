@@ -10,7 +10,7 @@ namespace vikwhite.ECS
             var stats = SystemAPI.GetSingletonBuffer<StatMultiply>();
             for (int i = 0; i < stats.Length; i++) stats[i] = new StatMultiply();
             foreach (var change in SystemAPI.Query<RefRO<StatChange>>()) {
-                var id = (int)change.ValueRO.ID;
+                var id = (int)change.ValueRO.Type;
                 stats[id] = new StatMultiply{ Value = stats[id].Value + change.ValueRO.Value };
             }
         }

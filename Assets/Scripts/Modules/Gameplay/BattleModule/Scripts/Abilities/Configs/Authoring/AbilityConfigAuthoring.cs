@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Rukhanka.Toolbox;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
@@ -6,35 +7,59 @@ using vikwhite.Data;
 
 namespace vikwhite.ECS
 {
-    public class AbilityConfigAuthoring : MonoBehaviour { }
+    public class AbilityConfigAuthoring : MonoBehaviour
+    {
+        public ConfigsLoader Configs;
+    }
 
     class AbilityConfigAuthoringBaker : Baker<AbilityConfigAuthoring>
     {
         public override void Bake(AbilityConfigAuthoring authoring) {
             var entity = GetEntity(TransformUsageFlags.None);
-            var abilities = AddBuffer<AbilityLevelsConfig>(entity);
-            foreach (var ability in AbilitiesSO.Instance.Array) {
-                abilities.Add(new AbilityLevelsConfig {
-                    ID = ability.ID,
-                    Levels = CreateAbilityLevels(ability.ID, ability.Levels),
-                });
+            var abilityBuffer = AddBuffer<AbilityLevelsConfig>(entity);
+            
+            
+            var abilities = new List<string>();
+            foreach (var abilityData in authoring.Configs.Abilities.GetAll())
+            {
+                if (!abilities.Contains(abilityData.AbilityID)) abilities.Add(abilityData.AbilityID);
             }
-        }
 
-        private FixedList4096Bytes<AbilityConfig> CreateAbilityLevels(AbilityID id, List<AbilityData> levelConfig) {
-            var levels = new FixedList4096Bytes<AbilityConfig>();
-            foreach (var level in levelConfig) {
-                levels.Add(new AbilityConfig {
-                    ID = id,
-                    Prefab = this.RegisterPrefab(level.Prefab),
-                    Cooldown = level.Cooldown,
-                    Radius = level.Radius,
-                    Projectile = level.Projectile,
-                    Effects = CreateEffects(level.Effects),
-                    Stats = CreateStats(level.Stats)
-                });
+            foreach (var abilityID in abilities)
+            {
+                var steps = new List<AbilityConfig>();
+                foreach (var abilityData in authoring.Configs.Abilities.GetAll())
+                {
+                    if (abilityData.AbilityID != abilityID) continue;
+                    var prefab = Resources.Load<GameObject>($"Abilities/Prefabs/{abilityData.Prefab}");
+                    steps.Add(new AbilityConfig
+                    {
+                        ID = abilityID.CalculateHash32(),
+                        Type = abilityData.Type,
+                        Prefab = this.RegisterPrefab(prefab),
+                        Cooldown = abilityData.Cooldown,
+                        Radius = abilityData.Radius,
+                        Effects = CreateEffects(abilityData.Effects),
+                        Stats = CreateStats(abilityData.Stats),
+                        Projectile = new ProjectileData
+                        {
+                            Count = abilityData.Count,
+                            Speed = abilityData.Speed,
+                            Pierce = abilityData.Pierce,
+                            Scale = abilityData.Scale,
+                            OrbitRadius = abilityData.OrbitRadius,
+                            Lifetime = abilityData.Lifetime,
+                        },
+                    });
+                    
+                    abilityBuffer.Add(new AbilityLevelsConfig
+                    {
+                        ID = abilityID.CalculateHash32(),
+                        Type = abilityData.Type,
+                        Levels = ArrayHandler.CreateBlobArray(steps.Count, e => steps[e]),
+                    });
+                }
             }
-            return levels;
         }
         
         private FixedList64Bytes<EffectData> CreateEffects(List<EffectData> effectConfig) {

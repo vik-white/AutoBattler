@@ -1,10 +1,10 @@
 namespace vikwhite
 {
-    public enum AbilityID
+    public enum AbilityType
     {
         None = -1,
         RangeAttack = 0,
         MeleeAttack = 1,
-        OrbitingFireBoll = 2,
+        OrbitAttack = 2,
     }
 }

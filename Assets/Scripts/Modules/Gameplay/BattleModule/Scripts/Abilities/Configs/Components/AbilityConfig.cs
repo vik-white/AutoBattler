@@ -6,7 +6,8 @@ namespace vikwhite.ECS
 {
     public struct AbilityConfig
     {
-        public AbilityID ID;
+        public uint ID;
+        public AbilityType Type;
         public int Prefab;
         public float Cooldown;
         public float Radius;

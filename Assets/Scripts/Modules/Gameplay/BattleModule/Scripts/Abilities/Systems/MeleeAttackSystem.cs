@@ -11,7 +11,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    if (ability.Config.ID != AbilityID.MeleeAttack || !ability.IsActivate) continue;
+                    if (ability.Config.Type != AbilityType.MeleeAttack || !ability.IsActivate) continue;
                     
                     foreach (var effect in ability.Config.Effects) {
                         ecb.CreateFrameEntity(new CreateEffect 

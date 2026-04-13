@@ -20,7 +20,7 @@ namespace vikwhite.ECS
                     ability.Cooldown += dt;
                     if (ability.Cooldown > ability.Config.Cooldown)
                     {
-                        var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : AbilityID.None;
+                        var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
                         if (ability.Config.ID != activeAbility)
                         {
                             var distance = float.MaxValue;
@@ -40,7 +40,7 @@ namespace vikwhite.ECS
                         }
                         else
                         {
-                            var useAbility = SystemAPI.HasComponent<UseAbility>(entity) ? activeAbility : AbilityID.None;
+                            var useAbility = SystemAPI.HasComponent<UseAbility>(entity) ? activeAbility : 0;
                             if (ability.Config.ID == useAbility)
                             {
                                 ecb.RemoveComponent<UseAbility>(entity);

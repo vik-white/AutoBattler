@@ -49,7 +49,7 @@ namespace vikwhite.ECS
                 Mass = data.Mass,
                 Health = data.Health,
                 HealthBar = data.HealthBar,
-                ActiveAbility = data.ActiveAbility,
+                ActiveAbility = data.ActiveAbility.CalculateHash32(),
                 Abilities = abilities,
                 ColliderRadius = prefabCollider.radius * data.Scale,
             };
