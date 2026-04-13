@@ -1,16 +1,20 @@
 using System;
+using Rukhanka.Toolbox;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
+using vikwhite.Data;
 
 namespace vikwhite.ECS
 {
     public class ActiveAbilityButton : MonoBehaviour
     {
+        public ConfigsLoader Configs;
         public Button Button;
         public RectTransform Bar;
+        public Image Icon;
         
-        private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        private EntityManager _entityManager;
         private Entity _character;
         private uint _abilityID;
         
@@ -25,14 +29,31 @@ namespace vikwhite.ECS
         public void Initialize(Entity character)
         {
             _character = character;
+            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             _abilityID = _entityManager.GetComponentData<ActiveAbility>(_character).Value;
             Button.onClick.AddListener(OnActivateAbility);
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
+            Icon.sprite = GetIcon();
         }
-
+        
         private void Update()
         {
             Bar.localScale = new Vector3(1, GetCooldownProgress(), 1);
+        }
+
+        private Sprite GetIcon()
+        {
+            var iconName = "Fire";
+            foreach (var ability in Configs.Abilities.GetAll())
+            {
+                if (ability.AbilityID.CalculateHash32() == _abilityID)
+                {
+                    iconName = ability.Icon;
+                    break;
+                }
+            }
+            Debug.Log(iconName);
+            return Resources.Load<Sprite>($"Abilities/Icons/{iconName}");
         }
 
         private void OnActivateAbility()

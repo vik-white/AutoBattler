@@ -8,8 +8,9 @@ namespace vikwhite.Data
     public interface IAbilityData
     {
         string AbilityID { get; }
-        AbilityType Type { get; }
         int Level { get; }
+        AbilityType Type { get; }
+        string Icon { get; }
         float Cooldown { get; }
         float Radius { get; }
         string Prefab { get; }
@@ -29,8 +30,9 @@ namespace vikwhite.Data
     public class AbilityData : IAbilityData, ICustomJsonParser
     {
         public string AbilityID;
-        public AbilityType Type;
         public int Level;
+        public AbilityType Type;
+        public string Icon;
         public float Cooldown;
         public float Radius;
         public string Prefab;
@@ -46,8 +48,9 @@ namespace vikwhite.Data
         public float Lifetime;
         
         string IAbilityData.AbilityID => AbilityID;
-        AbilityType IAbilityData.Type => Type;
         int IAbilityData.Level => Level;
+        AbilityType IAbilityData.Type => Type;
+        string IAbilityData.Icon => Icon;
         float IAbilityData.Cooldown => Cooldown;
         float IAbilityData.Radius => Radius;
         string IAbilityData.Prefab => Prefab;

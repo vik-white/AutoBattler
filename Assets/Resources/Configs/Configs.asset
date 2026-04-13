@@ -20,12 +20,13 @@ MonoBehaviour:
     - IronfistDwarf
     - Sceleton
     - SceletonBoss
+    - Buffer
     Data:
     - ID: Dummy
       Prefab: Sceleton
       Scale: 1
       Mass: 1
-      Health: 50
+      Health: 500
       HealthBar: 1
       ActiveAbility: 
       Abilities: []
@@ -63,15 +64,25 @@ MonoBehaviour:
         Level: 0
       - ID: 2496368978
         Level: 0
+    - ID: Buffer
+      Prefab: IronfistDwarf
+      Scale: 1
+      Mass: 0.001
+      Health: 2500
+      HealthBar: 1
+      ActiveAbility: DamageBaff
+      Abilities:
+      - ID: 1179678565
+        Level: 0
   squad:
     IDS:
     - IronfistDwarf
     - IronfistDwarf
-    - IronfistDwarf
+    - Buffer
     Data:
     - ID: IronfistDwarf
     - ID: IronfistDwarf
-    - ID: IronfistDwarf
+    - ID: Buffer
   map:
     IDS: []
     Data:
@@ -129,8 +140,9 @@ MonoBehaviour:
     IDS: []
     Data:
     - AbilityID: MeleeAttack
-      Type: 1
       Level: 0
+      Type: 1
+      Icon: Fire
       Cooldown: 1
       Radius: 1
       Prefab: 
@@ -147,8 +159,9 @@ MonoBehaviour:
       OrbitRadius: 0
       Lifetime: 0
     - AbilityID: MeleeAttack
-      Type: 1
       Level: 1
+      Type: 1
+      Icon: Fire
       Cooldown: 1
       Radius: 1
       Prefab: 
@@ -165,8 +178,9 @@ MonoBehaviour:
       OrbitRadius: 0
       Lifetime: 0
     - AbilityID: DmageStatusRangeAttack
-      Type: 0
       Level: 0
+      Type: 0
+      Icon: Fire
       Cooldown: 6
       Radius: 3
       Prefab: Bullet
@@ -185,8 +199,9 @@ MonoBehaviour:
       OrbitRadius: 0
       Lifetime: 0
     - AbilityID: RangeAttack
-      Type: 0
       Level: 0
+      Type: 0
+      Icon: Fire
       Cooldown: 1
       Radius: 3
       Prefab: Bullet
@@ -203,8 +218,9 @@ MonoBehaviour:
       OrbitRadius: 0
       Lifetime: 0
     - AbilityID: OrbitingFireBoll
-      Type: 2
       Level: 0
+      Type: 2
+      Icon: Fire
       Cooldown: 3
       Radius: 3
       Prefab: Bullet
@@ -221,8 +237,9 @@ MonoBehaviour:
       OrbitRadius: 2
       Lifetime: 2
     - AbilityID: DamageBaff
-      Type: 3
       Level: 0
+      Type: 3
+      Icon: Buff
       Cooldown: 3
       Radius: 0
       Prefab: 
