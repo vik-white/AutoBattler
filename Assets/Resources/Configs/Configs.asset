@@ -28,9 +28,7 @@ MonoBehaviour:
       Health: 50
       HealthBar: 1
       ActiveAbility: 
-      Abilities:
-      - ID: 1803191474
-        Level: 0
+      Abilities: []
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
       Scale: 1
@@ -130,27 +128,13 @@ MonoBehaviour:
   abilities:
     IDS: []
     Data:
-    - AbilityID: NoAttack
-      Type: 1
-      Level: 0
-      Cooldown: 100000
-      Radius: 3
-      Prefab: 
-      Stats: []
-      Effects: []
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
     - AbilityID: MeleeAttack
       Type: 1
       Level: 0
       Cooldown: 1
       Radius: 1
       Prefab: 
+      Targets: 
       Stats: []
       Effects:
       - Type: 1
@@ -168,6 +152,7 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 1
       Prefab: 
+      Targets: 
       Stats: []
       Effects:
       - Type: 1
@@ -185,6 +170,7 @@ MonoBehaviour:
       Cooldown: 6
       Radius: 3
       Prefab: Bullet
+      Targets: 
       Stats: []
       Effects: []
       Statuses:
@@ -204,6 +190,7 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 3
       Prefab: Bullet
+      Targets: 
       Stats: []
       Effects:
       - Type: 1
@@ -221,6 +208,7 @@ MonoBehaviour:
       Cooldown: 3
       Radius: 3
       Prefab: Bullet
+      Targets: 
       Stats: []
       Effects:
       - Type: 1
@@ -232,3 +220,23 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 2
       Lifetime: 2
+    - AbilityID: DamageBaff
+      Type: 3
+      Level: 0
+      Cooldown: 3
+      Radius: 0
+      Prefab: 
+      Targets: 0100000002000000
+      Stats: []
+      Effects: []
+      Statuses:
+      - Type: 1
+        Value: 3
+        Duration: 3
+        Period: 1
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0

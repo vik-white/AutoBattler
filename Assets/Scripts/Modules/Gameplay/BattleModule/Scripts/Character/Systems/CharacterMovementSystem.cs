@@ -39,7 +39,7 @@ namespace vikwhite.ECS
         [BurstCompile]
         private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in Target target, in DynamicBuffer<Ability> abilities)
         {
-            var stopDistance = abilities.Length > 0 ? abilities[0].Config.Radius : float.MaxValue;
+            var stopDistance = abilities.Length > 0 && abilities[0].Config.Radius != 0 ? abilities[0].Config.Radius : float.MaxValue;
             
             Entity targetEntity = target.Value;
             if (!TransformLookup.HasComponent(targetEntity)) 

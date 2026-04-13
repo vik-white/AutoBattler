@@ -43,6 +43,7 @@ namespace vikwhite.Data
             Abilities = new ();
             foreach (var abilityString in row["Abilities"].Split(";"))
             {
+                if(abilityString == "") continue;
                 var parts = abilityString.Split(':');
                 var idString = parts[0];
                 var levelString = parts[1];

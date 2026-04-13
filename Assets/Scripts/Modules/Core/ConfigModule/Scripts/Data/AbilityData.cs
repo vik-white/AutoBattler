@@ -13,6 +13,7 @@ namespace vikwhite.Data
         float Cooldown { get; }
         float Radius { get; }
         string Prefab { get; }
+        List<TargetType> Targets { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
         List<StatusData> Statuses { get; }
@@ -33,6 +34,7 @@ namespace vikwhite.Data
         public float Cooldown;
         public float Radius;
         public string Prefab;
+        public List<TargetType> Targets;
         public List<StatData> Stats;
         public List<EffectData> Effects;
         public List<StatusData> Statuses;
@@ -49,6 +51,7 @@ namespace vikwhite.Data
         float IAbilityData.Cooldown => Cooldown;
         float IAbilityData.Radius => Radius;
         string IAbilityData.Prefab => Prefab;
+        List<TargetType> IAbilityData.Targets => Targets;
         List<StatData> IAbilityData.Stats => Stats;
         List<EffectData> IAbilityData.Effects => Effects;
         List<StatusData> IAbilityData.Statuses => Statuses;
@@ -61,6 +64,13 @@ namespace vikwhite.Data
         
         public void Parse(Dictionary<string, string> row)
         {
+            Targets = new ();
+            foreach (var abilityString in row["Targets"].Split(";"))
+            {
+                if (!Enum.TryParse<TargetType>(abilityString, out var type)) continue;
+                Targets.Add(type);
+            }
+            
             Effects = new ();
             foreach (var abilityString in row["Effects"].Split(";"))
             {
