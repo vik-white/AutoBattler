@@ -36,6 +36,7 @@ namespace vikwhite.ECS
                     {
                         ID = abilityID.CalculateHash32(),
                         Type = abilityData.Type,
+                        Targets = CreateTargets(abilityData.Targets),
                         Prefab = this.RegisterPrefab(prefab),
                         Cooldown = abilityData.Cooldown,
                         Radius = abilityData.Radius,
@@ -79,6 +80,12 @@ namespace vikwhite.ECS
             var stats = new FixedList64Bytes<StatData>();
             foreach (var stat in statsConfig) stats.Add(stat);
             return stats;
+        }
+        
+        private FixedList64Bytes<TargetType> CreateTargets(List<TargetType> targetConfig) {
+            var targets = new FixedList64Bytes<TargetType>();
+            foreach (var target in targetConfig) targets.Add(target);
+            return targets;
         }
     }
 }

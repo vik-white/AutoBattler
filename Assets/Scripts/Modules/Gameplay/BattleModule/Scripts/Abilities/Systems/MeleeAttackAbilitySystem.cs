@@ -1,11 +1,9 @@
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(GameplaySystemGroup))]
-    public partial struct MeleeAttackSystem : ISystem
+    public partial struct MeleeAttackAbilitySystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);

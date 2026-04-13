@@ -5,7 +5,7 @@ using Unity.Transforms;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(GameplaySystemGroup))]
-    public partial struct RangeAttackSystem : ISystem
+    public partial struct RangeAttackAbilitySystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);

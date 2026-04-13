@@ -52,7 +52,6 @@ namespace vikwhite.ECS
                     break;
                 }
             }
-            Debug.Log(iconName);
             return Resources.Load<Sprite>($"Abilities/Icons/{iconName}");
         }
 

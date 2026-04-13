@@ -68,7 +68,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 1
       Mass: 0.001
-      Health: 2500
+      Health: 100
       HealthBar: 1
       ActiveAbility: DamageBaff
       Abilities:
