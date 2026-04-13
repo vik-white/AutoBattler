@@ -25,7 +25,7 @@ namespace vikwhite.ECS
                 request.ValueRW.Cooldown = step.SpawnInterval;
                 
                 int enemyCount = state.EntityManager.CreateEntityQuery(typeof(Enemy)).CalculateEntityCount();
-                if(enemyCount >= step.MinCount) continue;
+                if(enemyCount >= step.Count) continue;
                     
                 ecb.CreateFrameEntity(new CreateCharacter
                 {

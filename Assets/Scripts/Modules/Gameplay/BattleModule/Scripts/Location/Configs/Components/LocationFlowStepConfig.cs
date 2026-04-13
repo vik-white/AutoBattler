@@ -7,7 +7,7 @@ namespace vikwhite.ECS
     {
         public float Time;
         public FixedList128Bytes<uint> Enemies;
-        public int MinCount;
+        public int Count;
         public float SpawnInterval;
     }
 }

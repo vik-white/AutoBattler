@@ -8,7 +8,7 @@ namespace vikwhite.Data
         string LocationID { get; }
         float Time { get; }
         List<string> Enemies { get; }
-        int MinCount { get; }
+        int Count { get; }
         float SpawnInterval { get; }
     }
     
@@ -18,13 +18,13 @@ namespace vikwhite.Data
         public string LocationID;
         public float Time;
         public List<string> Enemies;
-        public int MinCount;
+        public int Count;
         public float SpawnInterval;
         
         string ILocationFlowData.LocationID => LocationID;
         float ILocationFlowData.Time => Time;
         List<string> ILocationFlowData.Enemies => Enemies;
-        int ILocationFlowData.MinCount => MinCount;
+        int ILocationFlowData.Count => Count;
         float ILocationFlowData.SpawnInterval => SpawnInterval;
         
         public void Parse(Dictionary<string, string> row)

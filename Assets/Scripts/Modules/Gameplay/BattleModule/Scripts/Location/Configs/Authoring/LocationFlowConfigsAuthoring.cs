@@ -36,7 +36,7 @@ namespace vikwhite.ECS
                     {
                         Time = locationData.Time,
                         Enemies = enemies,
-                        MinCount = locationData.MinCount,
+                        Count = locationData.Count,
                         SpawnInterval = locationData.SpawnInterval,
                     });
                 }
