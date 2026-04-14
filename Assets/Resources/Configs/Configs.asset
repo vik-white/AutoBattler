@@ -102,11 +102,11 @@ MonoBehaviour:
       Health: 2100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: AOEAttack
+      ActiveAbility: AggroBuff
       Abilities:
       - ID: 1528634012
         Level: 0
-      - ID: 151282320
+      - ID: 1376285117
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
@@ -146,12 +146,18 @@ MonoBehaviour:
   squad:
     IDS:
     - Support
+    - IronfistDwarf
+    - IronfistDwarf
     Data:
     - ID: Support
+    - ID: IronfistDwarf
+    - ID: IronfistDwarf
   map:
     IDS: []
     Data:
     - LocationID: Test
+      LocationType: 0
+    - LocationID: Test5
       LocationType: 0
     - LocationID: Forest
       LocationType: 0
@@ -166,12 +172,20 @@ MonoBehaviour:
   locationStatic:
     IDS:
     - Test
+    - Test5
     - Forest
     - ForestBoss
     - walltest
     Data:
     - ID: Test
       Enemies:
+      - Dummy
+    - ID: Test5
+      Enemies:
+      - Dummy
+      - Dummy
+      - Dummy
+      - Dummy
       - Dummy
     - ID: Forest
       Enemies:
@@ -567,6 +581,31 @@ MonoBehaviour:
       Effects:
       - Type: 1
         Value: 1
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+    - AbilityID: AggroBuff
+      Level: 0
+      Type: 3
+      Icon: Axe
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 03000000
+      Stats: []
+      Effects:
+      - Type: 5
+        Value: 2
       Statuses: []
       Count: 0
       Speed: 0

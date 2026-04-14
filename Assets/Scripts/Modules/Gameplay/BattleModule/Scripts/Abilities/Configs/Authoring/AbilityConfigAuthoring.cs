@@ -31,14 +31,18 @@ namespace vikwhite.ECS
                 foreach (var abilityData in authoring.Configs.Abilities.GetAll())
                 {
                     if (abilityData.AbilityID != abilityID) continue;
+                    Debug.Log(abilityData.Prefab);
                     var prefab = Resources.Load<GameObject>($"Abilities/Prefabs/{abilityData.Prefab}");
+                    Debug.Log(prefab);
+                    var prefabIndex = this.RegisterPrefab(prefab);
+                    Debug.Log(prefabIndex);
                     steps.Add(new AbilityConfig
                     {
                         ID = abilityID.CalculateHash32(),
                         Level = abilityData.Level,
                         Type = abilityData.Type,
                         Targets = CreateTargets(abilityData.Targets),
-                        Prefab = this.RegisterPrefab(prefab),
+                        Prefab = prefabIndex,
                         Cooldown = abilityData.Cooldown,
                         Radius = abilityData.Radius,
                         AOE = abilityData.AOE,
