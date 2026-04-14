@@ -14,11 +14,11 @@ namespace vikwhite.ECS
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             foreach (var aura in SystemAPI.Query<RefRW<Aura>>())
             {
-                if (aura.ValueRO.TileLeft >= 0)
-                    aura.ValueRW.TileLeft -= dt;
+                if (aura.ValueRO.IntervalTimeLeft >= 0)
+                    aura.ValueRW.IntervalTimeLeft -= dt;
                 else
                 {
-                    aura.ValueRW.TileLeft = aura.ValueRO.Interval;
+                    aura.ValueRW.IntervalTimeLeft = aura.ValueRO.Interval;
                     var job = new AuraCollisionJob
                     {
                         Characters = SystemAPI.GetComponentLookup<Character>(true),

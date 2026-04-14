@@ -67,7 +67,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
-      Health: 2100
+      Health: 2000
       Shield: 0
       HealthBar: 1
       ActiveAbility: Healer
@@ -80,7 +80,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
-      Health: 1500
+      Health: 1200
       Shield: 0
       HealthBar: 1
       ActiveAbility: Mage
@@ -163,16 +163,16 @@ MonoBehaviour:
         Level: 0
   squad:
     IDS:
-    - Tank
+    - Assassin
     - Healer
     - Mage
-    - Assassin
+    - Tank
     - Support
     Data:
-    - ID: Tank
+    - ID: Assassin
     - ID: Healer
     - ID: Mage
-    - ID: Assassin
+    - ID: Tank
     - ID: Support
   map:
     IDS: []
@@ -449,7 +449,7 @@ MonoBehaviour:
       - Type: 2
         Value: 100
         Duration: 3
-        Period: 1
+        Period: 0.5
       Count: 0
       Speed: 0
       Pierce: 0
@@ -470,11 +470,11 @@ MonoBehaviour:
       Radius: 0
       AOE: 0
       Prefab: 
-      Targets: 01000000
+      Targets: 0100000002000000
       Stats: []
       Effects:
       - Type: 3
-        Value: 500
+        Value: 300
       Statuses: []
       Count: 0
       Speed: 0
@@ -500,7 +500,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
-        Value: 20
+        Value: 1000
       Statuses: []
       Count: 0
       Speed: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
       Level: 0
       Type: 4
       Icon: 
-      Cooldown: 3
+      Cooldown: 1
       Radius: 0
       AOE: 0
       Prefab: Aura
@@ -526,7 +526,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 5
-        Value: 2
+        Value: 3
       Statuses: []
       Count: 0
       Speed: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
       SpawnCharacters: []
       SpawnRadius: 0
       AuraLifetime: 0
-      AuraRadius: 10
+      AuraRadius: 15
       AuraInterval: 0
       Abilities: []
     - AbilityID: OrbitingFireBoll
@@ -570,7 +570,7 @@ MonoBehaviour:
       Level: 0
       Type: 5
       Icon: Shield
-      Cooldown: 10
+      Cooldown: 8
       Radius: 0
       AOE: 0
       Prefab: 
@@ -593,12 +593,12 @@ MonoBehaviour:
       - ID: 1376285117
         Level: 0
       - ID: 3503821397
-        Level: 0
+        Level: 1
     - AbilityID: Healer
       Level: 0
       Type: 5
       Icon: Buff
-      Cooldown: 1
+      Cooldown: 10
       Radius: 0
       AOE: 0
       Prefab: 
@@ -626,15 +626,15 @@ MonoBehaviour:
       Level: 0
       Type: 3
       Icon: Fire
-      Cooldown: 1
+      Cooldown: 7
       Radius: 0
-      AOE: 2
+      AOE: 5
       Prefab: 
       Targets: 03000000
       Stats: []
       Effects:
       - Type: 1
-        Value: 1
+        Value: 500
       Statuses: []
       Count: 0
       Speed: 0

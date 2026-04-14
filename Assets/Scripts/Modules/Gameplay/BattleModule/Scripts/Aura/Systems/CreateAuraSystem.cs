@@ -7,6 +7,7 @@ using vikwhite.ECS;
 namespace vikwhite
 {
     [UpdateInGroup(typeof(CreateSystemGroup))]
+    [UpdateAfter(typeof(AuraCleanupSystem))]
     public partial struct CreateAuraSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
@@ -15,7 +16,11 @@ namespace vikwhite
                 var ability = request.ValueRO.Ability;
                 var aura = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
                 ecb.AddComponent<SceneEntity>(aura);
-                ecb.AddComponent(aura, new Aura{ Interval = ability.AuraInterval });
+                ecb.AddComponent(aura, new Aura
+                {
+                    Interval = ability.AuraInterval,
+                    TimeLeft = ability.AuraLifetime
+                });
                 ecb.SetComponent(aura, new LocalTransform {
                     Position = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Provider).Position,
                     Rotation = quaternion.identity,
@@ -25,7 +30,6 @@ namespace vikwhite
                 ecb.AddComponent(aura, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent(aura, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent(aura, new Stats{ Array = ability.Stats });
-                ecb.AddComponent(aura, new DestroyTimer{ Time = ability.AuraLifetime });
                 ecb.AddComponent<FollowingProvider>(aura);
                 ecb.AddBuffer<CollisionTarget>(aura);
             }
