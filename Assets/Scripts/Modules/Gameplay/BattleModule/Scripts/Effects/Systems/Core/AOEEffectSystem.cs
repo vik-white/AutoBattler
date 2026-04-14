@@ -23,7 +23,7 @@ namespace vikwhite.ECS
                 var isEnemy = SystemAPI.HasComponent<Enemy>(target);
                 if (isEnemy)
                 {
-                    foreach (var (transform, enemy) in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<Character, Enemy>().WithEntityAccess())
+                    foreach (var (transform, enemy) in SystemAPI.Query<RefRO<LocalTransform>>().WithAll<Character, Enemy>().WithEntityAccess())
                     {
                         if(enemy == target) continue;
                         if (math.length(transform.ValueRO.Position - position) <= abilityConfig.AOE)

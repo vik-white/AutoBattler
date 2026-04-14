@@ -54,7 +54,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 1.3
       Mass: 0.0001
-      Health: 2200
+      Health: 4400
       Shield: 0
       HealthBar: 1
       ActiveAbility: Tank
@@ -67,7 +67,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
-      Health: 2000
+      Health: 4000
       Shield: 0
       HealthBar: 1
       ActiveAbility: Healer
@@ -80,7 +80,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
-      Health: 1200
+      Health: 2400
       Shield: 0
       HealthBar: 1
       ActiveAbility: Mage
@@ -93,7 +93,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 1
       Mass: 0.0001
-      Health: 1500
+      Health: 3000
       Shield: 0
       HealthBar: 1
       ActiveAbility: Assassin
@@ -106,7 +106,7 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
-      Health: 2100
+      Health: 4000
       Shield: 0
       HealthBar: 1
       ActiveAbility: Support
@@ -119,24 +119,24 @@ MonoBehaviour:
       Prefab: Sceleton
       Scale: 1
       Mass: 1
-      Health: 2200
+      Health: 5000
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
       Abilities:
       - ID: 1528634012
-        Level: 0
+        Level: 1
     - ID: EnemyRange
       Prefab: Sceleton
-      Scale: 1
+      Scale: 0.7
       Mass: 1
-      Health: 1500
+      Health: 3500
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
       Abilities:
       - ID: 826252179
-        Level: 0
+        Level: 1
     - ID: Sceleton
       Prefab: Sceleton
       Scale: 0.7
@@ -570,7 +570,7 @@ MonoBehaviour:
       Level: 0
       Type: 5
       Icon: Shield
-      Cooldown: 8
+      Cooldown: 10
       Radius: 0
       AOE: 0
       Prefab: 
@@ -598,7 +598,7 @@ MonoBehaviour:
       Level: 0
       Type: 5
       Icon: Buff
-      Cooldown: 10
+      Cooldown: 14
       Radius: 0
       AOE: 0
       Prefab: 
@@ -626,7 +626,7 @@ MonoBehaviour:
       Level: 0
       Type: 3
       Icon: Fire
-      Cooldown: 7
+      Cooldown: 9
       Radius: 0
       AOE: 5
       Prefab: 
@@ -652,7 +652,7 @@ MonoBehaviour:
       Level: 0
       Type: 3
       Icon: Sword
-      Cooldown: 1
+      Cooldown: 11
       Radius: 0
       AOE: 0
       Prefab: 
@@ -679,7 +679,7 @@ MonoBehaviour:
       Level: 0
       Type: 3
       Icon: Nature
-      Cooldown: 1
+      Cooldown: 6
       Radius: 0
       AOE: 0
       Prefab: 
