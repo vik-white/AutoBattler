@@ -54,7 +54,9 @@ namespace vikwhite.ECS
                             Lifetime = abilityData.Lifetime,
                         },
                         SpawnCharacters = CreateSpawnCharacters(abilityData.SpawnCharacters),
-                        SpawnRadius = abilityData.SpawnRadius,
+                        AuraLifetime = abilityData.AuraLifetime,
+                        AuraRadius = abilityData.AuraRadius,
+                        AuraInterval = abilityData.AuraInterval,
                     });
                 }
                 

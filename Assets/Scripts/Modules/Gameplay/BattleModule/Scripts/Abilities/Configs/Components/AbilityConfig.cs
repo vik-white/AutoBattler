@@ -20,6 +20,9 @@ namespace vikwhite.ECS
         public ProjectileData Projectile;
         public FixedList64Bytes<SpawnCharacterData> SpawnCharacters;
         public float SpawnRadius;
+        public float AuraLifetime;
+        public float AuraRadius;
+        public float AuraInterval;
         
         public uint GetRandomSpawnCharacter()
         {

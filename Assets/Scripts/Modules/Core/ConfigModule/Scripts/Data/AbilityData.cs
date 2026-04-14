@@ -27,6 +27,9 @@ namespace vikwhite.Data
         float Lifetime { get; }
         List<SpawnCharacterData> SpawnCharacters { get; }
         float SpawnRadius { get; }
+        float AuraLifetime { get; }
+        float AuraRadius { get; }
+        float AuraInterval { get; }
     }
     
     [Serializable]
@@ -51,6 +54,9 @@ namespace vikwhite.Data
         public float Lifetime;
         public List<SpawnCharacterData> SpawnCharacters;
         public float SpawnRadius;
+        public float AuraLifetime;
+        public float AuraRadius;
+        public float AuraInterval;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -71,6 +77,9 @@ namespace vikwhite.Data
         float IAbilityData.Lifetime => Lifetime;
         List<SpawnCharacterData> IAbilityData.SpawnCharacters => SpawnCharacters;
         float IAbilityData.SpawnRadius => SpawnRadius;
+        float IAbilityData.AuraLifetime => AuraLifetime;
+        float IAbilityData.AuraRadius => AuraRadius;
+        float IAbilityData.AuraInterval => AuraInterval;
         
         public void Parse(Dictionary<string, string> row)
         {

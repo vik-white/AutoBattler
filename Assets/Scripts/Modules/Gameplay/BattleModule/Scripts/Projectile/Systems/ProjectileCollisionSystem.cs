@@ -7,11 +7,11 @@ namespace vikwhite.ECS
 {
     [BurstCompile]
     [UpdateInGroup(typeof(CollisionSystemGroup))]
-    public partial struct CharacterCollisionSystem : ISystem
+    public partial struct ProjectileCollisionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            var job = new CharacterCollisionJob
+            var job = new ProjectileCollisionJob
             {
                 Characters = SystemAPI.GetComponentLookup<Character>(true),
                 Enemies = SystemAPI.GetComponentLookup<Enemy>(true),
@@ -27,7 +27,7 @@ namespace vikwhite.ECS
     }
 
     [BurstCompile]
-    struct CharacterCollisionJob : ITriggerEventsJob
+    struct ProjectileCollisionJob : ITriggerEventsJob
     {
         [ReadOnly] public ComponentLookup<Character> Characters;
         [ReadOnly] public ComponentLookup<Enemy> Enemies;

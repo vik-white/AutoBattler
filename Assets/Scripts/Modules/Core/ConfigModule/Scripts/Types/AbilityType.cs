@@ -7,5 +7,6 @@ namespace vikwhite
         MeleeAttack = 1,
         OrbitAttack = 2,
         Buff = 3,
+        Aura = 4,
     }
 }
