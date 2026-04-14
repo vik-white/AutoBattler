@@ -12,7 +12,7 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (abilities, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess()) 
+            foreach (var (abilities, transform, character, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>, RefRO<Target>>().WithEntityAccess()) 
             {
                 for (int i = 0; i < abilities.Length; i++)
                 {
@@ -32,13 +32,12 @@ namespace vikwhite.ECS
                         {
                             var distance = float.MaxValue;
                             var characterConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
-                            var target = SystemAPI.GetComponent<Target>(entity).Value;
-                            var targetID = SystemAPI.GetComponent<Character>(target).ID;
+                            var targetID = SystemAPI.GetComponent<Character>(target.ValueRO.Value).ID;
                             var targetConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(targetID);
                             var baseDistance = ability.Config.Radius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
                             if (SystemAPI.HasComponent<Target>(entity))
                             {
-                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target);
+                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value);
                                 var direction = targetTransform.Position - transform.ValueRO.Position;
                                 distance = math.length(direction);
                             }
