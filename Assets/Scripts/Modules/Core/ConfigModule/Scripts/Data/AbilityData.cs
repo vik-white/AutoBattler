@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Rukhanka.Toolbox;
 using UnityEngine;
 using vikwhite.ECS;
@@ -105,9 +106,8 @@ namespace vikwhite.Data
                 var valueString = parts[1];
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
-                if (!float.TryParse(valueString, out var value)) continue;
                 
-                Effects.Add(new EffectData { Type = type, Value = value });
+                Effects.Add(new EffectData { Type = type, Value = valueString.ToFloat() });
             }
             
             Statuses = new ();
@@ -121,16 +121,13 @@ namespace vikwhite.Data
                 var periodString = parts[3];
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
-                if (!float.TryParse(valueString, out var value)) continue;
-                if (!float.TryParse(durationString, out var duration)) continue;
-                if (!float.TryParse(periodString, out var period)) continue;
                 
                 Statuses.Add(new StatusData
                 {
                     Type = type, 
-                    Value = value,
-                    Duration = duration,
-                    Period = period,
+                    Value = valueString.ToFloat(),
+                    Duration = durationString.ToFloat(),
+                    Period = periodString.ToFloat(),
                 });
             }
             
@@ -144,14 +141,12 @@ namespace vikwhite.Data
                 var durationString = parts[2];
                 
                 if (!Enum.TryParse<StatType>(typeString, out var type)) continue;
-                if (!float.TryParse(valueString, out var value)) continue;
-                if (!float.TryParse(durationString, out var duration)) continue;
                 
                 Stats.Add(new StatData
                 {
                     Type = type, 
-                    Value = value,
-                    Duration = duration,
+                    Value = valueString.ToFloat(),
+                    Duration = durationString.ToFloat(),
                 });
             }
             
@@ -163,9 +158,7 @@ namespace vikwhite.Data
                 var typeString = parts[0];
                 var valueString = parts[1];
                 
-                if (!float.TryParse(valueString, out var value)) continue;
-                
-                SpawnCharacters.Add(new SpawnCharacterData { ID = typeString.CalculateHash32(), Probability = value });
+                SpawnCharacters.Add(new SpawnCharacterData { ID = typeString.CalculateHash32(), Probability = valueString.ToFloat() });
             }
             
             Abilities = new ();

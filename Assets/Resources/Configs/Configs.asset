@@ -24,6 +24,7 @@ MonoBehaviour:
     - Assassin
     - Support
     - Enemy
+    - EnemyRange
     - Sceleton
     - SceletonBoss
     Data:
@@ -39,7 +40,7 @@ MonoBehaviour:
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 0.001
+      Mass: 1
       Health: 2500
       Shield: 0
       HealthBar: 1
@@ -51,8 +52,8 @@ MonoBehaviour:
         Level: 0
     - ID: Tank
       Prefab: IronfistDwarf
-      Scale: 1.2
-      Mass: 0.001
+      Scale: 1
+      Mass: 1
       Health: 2200
       Shield: 0
       HealthBar: 1
@@ -64,8 +65,8 @@ MonoBehaviour:
         Level: 0
     - ID: Healer
       Prefab: IronfistDwarf
-      Scale: 0.85
-      Mass: 0.001
+      Scale: 1
+      Mass: 1
       Health: 2100
       Shield: 0
       HealthBar: 1
@@ -77,8 +78,8 @@ MonoBehaviour:
         Level: 0
     - ID: Mage
       Prefab: IronfistDwarf
-      Scale: 0.85
-      Mass: 0.001
+      Scale: 1
+      Mass: 1
       Health: 1500
       Shield: 0
       HealthBar: 1
@@ -91,7 +92,7 @@ MonoBehaviour:
     - ID: Assassin
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 0.001
+      Mass: 1
       Health: 1500
       Shield: 0
       HealthBar: 1
@@ -103,28 +104,39 @@ MonoBehaviour:
         Level: 0
     - ID: Support
       Prefab: IronfistDwarf
-      Scale: 0.85
-      Mass: 0.001
+      Scale: 1
+      Mass: 1
       Health: 2100
       Shield: 0
       HealthBar: 1
       ActiveAbility: Support
       Abilities:
-      - ID: 1528634012
+      - ID: 826252179
         Level: 0
       - ID: 1516922681
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
       Scale: 1
-      Mass: 0.001
+      Mass: 1
       Health: 2200
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
       Abilities:
       - ID: 1528634012
-        Level: 1
+        Level: 0
+    - ID: EnemyRange
+      Prefab: Sceleton
+      Scale: 1
+      Mass: 1
+      Health: 1500
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 826252179
+        Level: 0
     - ID: Sceleton
       Prefab: Sceleton
       Scale: 0.7
@@ -139,8 +151,8 @@ MonoBehaviour:
     - ID: SceletonBoss
       Prefab: Sceleton
       Scale: 2
-      Mass: 0.5
-      Health: 50
+      Mass: 1
+      Health: 5000
       Shield: 0
       HealthBar: 1
       ActiveAbility: SceletonBoss
@@ -212,8 +224,8 @@ MonoBehaviour:
       - Enemy
       - Enemy
       - Enemy
-      - Enemy
-      - Enemy
+      - EnemyRange
+      - EnemyRange
   locationFlow:
     IDS: []
     Data:
@@ -250,7 +262,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 5
+        Value: 83
       Statuses: []
       Count: 0
       Speed: 0
@@ -295,7 +307,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 1
-      Radius: 3
+      Radius: 10
       AOE: 0
       Prefab: Bullet
       Targets: 
@@ -321,7 +333,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 1
-      Radius: 3
+      Radius: 10
       AOE: 0
       Prefab: Bullet
       Targets: 
