@@ -98,7 +98,7 @@ namespace vikwhite.Data
                 var durationString = parts[2];
                 var periodString = parts[3];
                 
-                if (!Enum.TryParse<StatusType>(typeString, out var type)) continue;
+                if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
                 if (!float.TryParse(valueString, out var value)) continue;
                 if (!float.TryParse(durationString, out var duration)) continue;
                 if (!float.TryParse(periodString, out var period)) continue;

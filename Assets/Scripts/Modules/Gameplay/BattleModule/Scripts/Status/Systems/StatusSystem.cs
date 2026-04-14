@@ -4,13 +4,13 @@ namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(StatusesSystemGroup))]
     [UpdateAfter(typeof(CreateStatusSystem))]
-    public partial struct DamageStatusSystem : ISystem
+    public partial struct StatusSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (status, target, provider) in SystemAPI.Query<RefRW<Status>, RefRO<Target>, RefRO<Provider>>().WithAny<DamageStatus>())
+            foreach (var (status, target, provider) in SystemAPI.Query<RefRW<Status>, RefRO<Target>, RefRO<Provider>>())
             {
                 if(status.ValueRO.TimeSinceLastTick >= 0)
                     status.ValueRW.TimeSinceLastTick -= dt;
@@ -23,7 +23,7 @@ namespace vikwhite.ECS
                         Target = target.ValueRO.Value, 
                         Data = new EffectData
                         {
-                            Type = EffectType.Damage, 
+                            Type = status.ValueRO.Type, 
                             Value  = status.ValueRO.Value
                         }
                     });

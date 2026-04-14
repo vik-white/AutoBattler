@@ -20,6 +20,10 @@ MonoBehaviour:
     - IronfistDwarf
     - Healer
     - Assassin
+    - Mage
+    - Tank
+    - Support
+    - Enemy
     - Sceleton
     - SceletonBoss
     Data:
@@ -47,9 +51,9 @@ MonoBehaviour:
         Level: 0
     - ID: Healer
       Prefab: IronfistDwarf
-      Scale: 1
+      Scale: 0.85
       Mass: 0.001
-      Health: 100
+      Health: 2100
       Shield: 0
       HealthBar: 1
       ActiveAbility: HealBuff
@@ -60,15 +64,59 @@ MonoBehaviour:
       Prefab: IronfistDwarf
       Scale: 1
       Mass: 0.001
-      Health: 100
+      Health: 1500
       Shield: 0
       HealthBar: 1
       ActiveAbility: AttackSpeedBuff
       Abilities:
       - ID: 1528634012
-        Level: 0
+        Level: 1
       - ID: 3382298541
         Level: 0
+    - ID: Mage
+      Prefab: IronfistDwarf
+      Scale: 0.85
+      Mass: 0.001
+      Health: 1500
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 826252179
+        Level: 1
+    - ID: Tank
+      Prefab: IronfistDwarf
+      Scale: 1.2
+      Mass: 0.001
+      Health: 2200
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 1528634012
+        Level: 0
+    - ID: Support
+      Prefab: IronfistDwarf
+      Scale: 0.85
+      Mass: 0.001
+      Health: 2100
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 826252179
+        Level: 0
+    - ID: Enemy
+      Prefab: Sceleton
+      Scale: 1
+      Mass: 0.001
+      Health: 2200
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: 
+      Abilities:
+      - ID: 1528634012
+        Level: 1
     - ID: Sceleton
       Prefab: Sceleton
       Scale: 0.7
@@ -96,12 +144,8 @@ MonoBehaviour:
   squad:
     IDS:
     - IronfistDwarf
-    - Assassin
-    - Healer
     Data:
     - ID: IronfistDwarf
-    - ID: Assassin
-    - ID: Healer
   map:
     IDS: []
     Data:
@@ -110,6 +154,8 @@ MonoBehaviour:
     - LocationID: Forest
       LocationType: 0
     - LocationID: ForestBoss
+      LocationType: 0
+    - LocationID: walltest
       LocationType: 0
     - LocationID: Forest1
       LocationType: 1
@@ -120,6 +166,7 @@ MonoBehaviour:
     - Test
     - Forest
     - ForestBoss
+    - walltest
     Data:
     - ID: Test
       Enemies:
@@ -134,6 +181,13 @@ MonoBehaviour:
     - ID: ForestBoss
       Enemies:
       - SceletonBoss
+    - ID: walltest
+      Enemies:
+      - Enemy
+      - Enemy
+      - Enemy
+      - Enemy
+      - Enemy
   locationFlow:
     IDS: []
     Data:
@@ -161,7 +215,7 @@ MonoBehaviour:
     - AbilityID: MeleeAttack
       Level: 0
       Type: 1
-      Icon: Fire
+      Icon: 
       Cooldown: 1
       Radius: 1
       Prefab: 
@@ -169,7 +223,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 3
+        Value: 83
       Statuses: []
       Count: 0
       Speed: 0
@@ -180,7 +234,7 @@ MonoBehaviour:
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
-      Icon: Fire
+      Icon: 
       Cooldown: 1
       Radius: 1
       Prefab: 
@@ -188,7 +242,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 10
+        Value: 150
       Statuses: []
       Count: 0
       Speed: 0
@@ -199,7 +253,7 @@ MonoBehaviour:
     - AbilityID: DmageStatusRangeAttack
       Level: 0
       Type: 0
-      Icon: Fire
+      Icon: 
       Cooldown: 6
       Radius: 3
       Prefab: Bullet
@@ -220,7 +274,7 @@ MonoBehaviour:
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
-      Icon: Fire
+      Icon: 
       Cooldown: 1
       Radius: 3
       Prefab: Bullet
@@ -228,7 +282,26 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 5
+        Value: 107
+      Statuses: []
+      Count: 0
+      Speed: 10
+      Pierce: 1
+      Scale: 0.1
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: RangeAttack
+      Level: 1
+      Type: 0
+      Icon: 
+      Cooldown: 1
+      Radius: 3
+      Prefab: Bullet
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 150
       Statuses: []
       Count: 0
       Speed: 10
@@ -331,6 +404,23 @@ MonoBehaviour:
       - Type: 0
         Value: 5
         Duration: 5
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+    - AbilityID: SpawnBuff
+      Level: 0
+      Type: 3
+      Icon: Blood
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 01000000
+      Stats: []
       Effects: []
       Statuses: []
       Count: 0

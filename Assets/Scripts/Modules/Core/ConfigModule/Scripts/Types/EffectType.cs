@@ -6,5 +6,6 @@ namespace vikwhite.ECS
         Damage = 1,
         Heal = 2,
         Shield = 3,
+        Spawn = 4,
     }
 }

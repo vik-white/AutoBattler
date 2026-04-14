@@ -4,6 +4,7 @@ namespace vikwhite.ECS
 {
     public struct Status : IComponentData
     {
+        public EffectType Type;
         public float Value;
         public float Duration;
         public float TileLeft;

@@ -13,6 +13,7 @@ namespace vikwhite.ECS
                 var status = ecb.CreateSceneEntity();
                 ecb.AddComponent(status, new Status
                 {
+                    Type = request.ValueRO.Data.Type,
                     Value = request.ValueRO.Data.Value,
                     Duration = request.ValueRO.Data.Duration,
                     TileLeft = request.ValueRO.Data.Duration,
@@ -21,9 +22,6 @@ namespace vikwhite.ECS
                 ecb.AddComponent(status, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(status, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent<Applied>(status);
-                if (type == StatusType.Damage) ecb.AddComponent<DamageStatus>(status);
-                if (type == StatusType.Heal) ecb.AddComponent<HealStatus>(status);
-                if (type == StatusType.Shield) ecb.AddComponent<ShieldStatus>(status);
             }
             ecb.Playback(state.EntityManager);
         }

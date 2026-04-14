@@ -5,7 +5,7 @@ namespace vikwhite.ECS
     [Serializable]
     public struct StatusData
     {
-        public StatusType Type;
+        public EffectType Type;
         public float Value;
         public float Duration;
         public float Period;
