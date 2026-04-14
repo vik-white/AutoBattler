@@ -53,14 +53,16 @@ namespace vikwhite.ECS
                             Lifetime = abilityData.Lifetime,
                         },
                     });
-                    
-                    abilityBuffer.Add(new AbilityLevelsConfig
-                    {
-                        ID = abilityID.CalculateHash32(),
-                        Type = abilityData.Type,
-                        Levels = ArrayHandler.CreateBlobArray(steps.Count, e => steps[e]),
-                    });
+
                 }
+                
+                var abilityLevelsConfig = new AbilityLevelsConfig
+                {
+                    ID = abilityID.CalculateHash32(),
+                    Type = steps[0].Type,
+                    Levels = ArrayHandler.CreateBlobArray(steps.Count, e => steps[e]),
+                };
+                abilityBuffer.Add(abilityLevelsConfig);
             }
         }
         
