@@ -3,7 +3,7 @@ using Unity.Entities;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(EffectsSystemGroup))]
-    [UpdateAfter(typeof(ApplyEffectsOnTargetsSystem))]
+    [UpdateAfter(typeof(AOEEffectSystem))]
     public partial struct CreateEffectSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {

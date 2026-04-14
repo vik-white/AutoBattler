@@ -1,6 +1,4 @@
 using Unity.Entities;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-using UnityEngine;
 
 namespace vikwhite.ECS
 {

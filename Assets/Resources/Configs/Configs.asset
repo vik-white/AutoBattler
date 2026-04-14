@@ -102,11 +102,11 @@ MonoBehaviour:
       Health: 2100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: AuraBuff
+      ActiveAbility: AOEAttack
       Abilities:
       - ID: 1528634012
         Level: 0
-      - ID: 2950378476
+      - ID: 151282320
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
@@ -220,6 +220,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 1
       Radius: 1
+      AOE: 0
       Prefab: 
       Targets: 
       Stats: []
@@ -244,6 +245,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 1
       Radius: 1
+      AOE: 0
       Prefab: 
       Targets: 
       Stats: []
@@ -268,6 +270,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 6
       Radius: 3
+      AOE: 0
       Prefab: Bullet
       Targets: 
       Stats: []
@@ -294,6 +297,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 1
       Radius: 3
+      AOE: 0
       Prefab: Bullet
       Targets: 
       Stats: []
@@ -318,6 +322,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 1
       Radius: 3
+      AOE: 0
       Prefab: Bullet
       Targets: 
       Stats: []
@@ -342,6 +347,7 @@ MonoBehaviour:
       Icon: Fire
       Cooldown: 3
       Radius: 3
+      AOE: 0
       Prefab: Bullet
       Targets: 
       Stats: []
@@ -366,6 +372,7 @@ MonoBehaviour:
       Icon: Axe
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 010000000200000003000000
       Stats: []
@@ -392,6 +399,7 @@ MonoBehaviour:
       Icon: Buff
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 0100000002000000
       Stats: []
@@ -420,6 +428,7 @@ MonoBehaviour:
       Icon: Sword
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 01000000
       Stats:
@@ -445,6 +454,7 @@ MonoBehaviour:
       Icon: Blood
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 0100000002000000
       Stats:
@@ -470,6 +480,7 @@ MonoBehaviour:
       Icon: Blood
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 01000000
       Stats: []
@@ -498,6 +509,7 @@ MonoBehaviour:
       Icon: Buff
       Cooldown: 1
       Radius: 0
+      AOE: 0
       Prefab: 
       Targets: 0100000002000000
       Stats:
@@ -523,6 +535,7 @@ MonoBehaviour:
       Icon: Nature
       Cooldown: 3
       Radius: 0
+      AOE: 0
       Prefab: Aura
       Targets: 
       Stats: []
@@ -541,3 +554,28 @@ MonoBehaviour:
       AuraLifetime: 2.6
       AuraRadius: 2
       AuraInterval: 0.2
+    - AbilityID: AOEAttack
+      Level: 0
+      Type: 3
+      Icon: Nature
+      Cooldown: 1
+      Radius: 0
+      AOE: 2
+      Prefab: 
+      Targets: 03000000
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 1
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0

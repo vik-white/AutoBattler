@@ -41,6 +41,7 @@ namespace vikwhite.ECS
                         Prefab = this.RegisterPrefab(prefab),
                         Cooldown = abilityData.Cooldown,
                         Radius = abilityData.Radius,
+                        AOE = abilityData.AOE,
                         Effects = CreateEffects(abilityData.Effects),
                         Statuses = CreateStatuses(abilityData.Statuses),
                         Stats = CreateStats(abilityData.Stats),
