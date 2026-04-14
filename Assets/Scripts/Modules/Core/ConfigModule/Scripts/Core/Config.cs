@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Reflection;
+using System.Globalization;
 
 namespace vikwhite.Data
 {
@@ -181,7 +182,11 @@ namespace vikwhite.Data
                 if(row.ContainsKey(field.Name)) {
                     if(field.FieldType == typeof(string)) field.SetValue(data, row[field.Name]);
                     else if(field.FieldType == typeof(int)) field.SetValue(data, row[field.Name] != "" ? int.Parse(row[field.Name].Replace(" ", "")) : 0);
-                    else if(field.FieldType == typeof(float)) field.SetValue(data, row[field.Name] != "" ? float.Parse(row[field.Name]) : 0f);
+                    else if (field.FieldType == typeof(float))
+                    {
+                        var value = row[field.Name].Replace(",", ".");
+                        field.SetValue(data, value != "" ? float.Parse(value, CultureInfo.InvariantCulture) : 0f);
+                    } 
                     else if(field.FieldType == typeof(bool)) field.SetValue(data, row[field.Name] != "" ? row[field.Name] == "TRUE" : false);
                     //else if(field.FieldType == typeof(GameObject)) field.SetValue(data, ResourcesEx.Load<GameObject>(Constants.Directories.Prefabs.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Sprite)) field.SetValue(data, ResourcesEx.Load<Sprite>(Constants.Directories.Images.Paths, row[field.Name]));

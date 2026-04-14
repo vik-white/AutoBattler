@@ -69,9 +69,11 @@ MonoBehaviour:
       Health: 2100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: HealBuff
+      ActiveAbility: Healer
       Abilities:
-      - ID: 3693692732
+      - ID: 826252179
+        Level: 0
+      - ID: 370847456
         Level: 0
     - ID: Mage
       Prefab: IronfistDwarf
@@ -80,10 +82,12 @@ MonoBehaviour:
       Health: 1500
       Shield: 0
       HealthBar: 1
-      ActiveAbility: 
+      ActiveAbility: Mage
       Abilities:
       - ID: 826252179
         Level: 1
+      - ID: 2475848034
+        Level: 0
     - ID: Assassin
       Prefab: IronfistDwarf
       Scale: 1
@@ -91,11 +95,11 @@ MonoBehaviour:
       Health: 1500
       Shield: 0
       HealthBar: 1
-      ActiveAbility: AttackSpeedBuff
+      ActiveAbility: Assassin
       Abilities:
       - ID: 1528634012
         Level: 1
-      - ID: 3382298541
+      - ID: 703911167
         Level: 0
     - ID: Support
       Prefab: IronfistDwarf
@@ -104,11 +108,11 @@ MonoBehaviour:
       Health: 2100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: AggroBuff
+      ActiveAbility: Support
       Abilities:
       - ID: 1528634012
         Level: 0
-      - ID: 1376285117
+      - ID: 1516922681
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
@@ -139,17 +143,25 @@ MonoBehaviour:
       Health: 50
       Shield: 0
       HealthBar: 1
-      ActiveAbility: 
+      ActiveAbility: SceletonBoss
       Abilities:
       - ID: 826252179
         Level: 0
-      - ID: 2496368978
+      - ID: 1107468141
         Level: 0
   squad:
     IDS:
     - Tank
+    - Healer
+    - Mage
+    - Assassin
+    - Support
     Data:
     - ID: Tank
+    - ID: Healer
+    - ID: Mage
+    - ID: Assassin
+    - ID: Support
   map:
     IDS: []
     Data:
@@ -278,34 +290,6 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-    - AbilityID: DmageStatusRangeAttack
-      Level: 0
-      Type: 0
-      Icon: 
-      Cooldown: 6
-      Radius: 3
-      AOE: 0
-      Prefab: Bullet
-      Targets: 
-      Stats: []
-      Effects: []
-      Statuses:
-      - Type: 1
-        Value: 3
-        Duration: 3
-        Period: 1
-      Count: 0
-      Speed: 10
-      Pierce: 1
-      Scale: 0.1
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -358,44 +342,44 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-    - AbilityID: OrbitingFireBoll
+    - AbilityID: RangeAttackAOE
       Level: 0
-      Type: 2
-      Icon: Fire
-      Cooldown: 3
-      Radius: 3
-      AOE: 0
+      Type: 0
+      Icon: 
+      Cooldown: 1
+      Radius: 10
+      AOE: 3
       Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
       - Type: 1
-        Value: 3
+        Value: 50
       Statuses: []
-      Count: 3
-      Speed: 5
-      Pierce: 0
-      Scale: 0.1
-      OrbitRadius: 2
-      Lifetime: 2
+      Count: 0
+      Speed: 10
+      Pierce: 1
+      Scale: 0.3
+      OrbitRadius: 0
+      Lifetime: 0
       SpawnCharacters: []
       SpawnRadius: 0
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-    - AbilityID: AuraBuff
+    - AbilityID: SpawnSkeletons
       Level: 0
-      Type: 4
-      Icon: Nature
-      Cooldown: 3
+      Type: 3
+      Icon: Blood
+      Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: Aura
-      Targets: 
+      Prefab: 
+      Targets: 01000000
       Stats: []
       Effects:
-      - Type: 1
+      - Type: 4
         Value: 1
       Statuses: []
       Count: 0
@@ -404,36 +388,12 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 2.6
-      AuraRadius: 2
-      AuraInterval: 0.2
-      Abilities: []
-    - AbilityID: DamageBuff
-      Level: 0
-      Type: 3
-      Icon: Axe
-      Cooldown: 1
-      Radius: 0
-      AOE: 0
-      Prefab: 
-      Targets: 010000000200000003000000
-      Stats: []
-      Effects: []
-      Statuses:
-      - Type: 1
-        Value: 5
-        Duration: 3
-        Period: 1
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
+      SpawnCharacters:
+      - ID: 769574570
+        Probability: 0.7
+      - ID: 1107468141
+        Probability: 0.3
+      SpawnRadius: 4
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
@@ -466,64 +426,10 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-    - AbilityID: AttackSpeedBuff
+    - AbilityID: ShieldBuff
       Level: 0
       Type: 3
-      Icon: Sword
-      Cooldown: 1
-      Radius: 0
-      AOE: 0
-      Prefab: 
-      Targets: 01000000
-      Stats:
-      - Type: 1
-        Value: 2
-        Duration: 4
-      Effects: []
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: DamageStatBuff
-      Level: 0
-      Type: 3
-      Icon: Blood
-      Cooldown: 1
-      Radius: 0
-      AOE: 0
-      Prefab: 
-      Targets: 0100000002000000
-      Stats:
-      - Type: 0
-        Value: 5
-        Duration: 5
-      Effects: []
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: SpawnBuff
-      Level: 0
-      Type: 3
-      Icon: Blood
+      Icon: Shield
       Cooldown: 1
       Radius: 0
       AOE: 0
@@ -531,65 +437,8 @@ MonoBehaviour:
       Targets: 01000000
       Stats: []
       Effects:
-      - Type: 4
-        Value: 1
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters:
-      - ID: 769574570
-        Probability: 0.7
-      - ID: 1107468141
-        Probability: 0.3
-      SpawnRadius: 4
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: ActiveAbilityBuff
-      Level: 0
-      Type: 3
-      Icon: Buff
-      Cooldown: 1
-      Radius: 0
-      AOE: 0
-      Prefab: 
-      Targets: 0100000002000000
-      Stats:
-      - Type: 2
-        Value: 20
-        Duration: 1
-      Effects: []
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: AOEAttack
-      Level: 0
-      Type: 3
-      Icon: Nature
-      Cooldown: 1
-      Radius: 0
-      AOE: 2
-      Prefab: 
-      Targets: 03000000
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 1
+      - Type: 3
+        Value: 10
       Statuses: []
       Count: 0
       Speed: 0
@@ -604,7 +453,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
     - AbilityID: ShieldBuff
-      Level: 0
+      Level: 1
       Type: 3
       Icon: Shield
       Cooldown: 1
@@ -655,6 +504,32 @@ MonoBehaviour:
       AuraRadius: 2
       AuraInterval: 0
       Abilities: []
+    - AbilityID: OrbitingFireBoll
+      Level: 0
+      Type: 2
+      Icon: Fire
+      Cooldown: 3
+      Radius: 3
+      AOE: 0
+      Prefab: Bullet
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 3
+      Statuses: []
+      Count: 3
+      Speed: 5
+      Pierce: 0
+      Scale: 0.1
+      OrbitRadius: 2
+      Lifetime: 2
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -679,7 +554,143 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities:
-      - ID: 2496368978
+      - ID: 1376285117
         Level: 0
       - ID: 3503821397
+        Level: 1
+    - AbilityID: Healer
+      Level: 0
+      Type: 5
+      Icon: Buff
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities:
+      - ID: 3693692732
+        Level: 0
+      - ID: 3503821397
+        Level: 0
+    - AbilityID: Mage
+      Level: 0
+      Type: 3
+      Icon: Fire
+      Cooldown: 1
+      Radius: 0
+      AOE: 2
+      Prefab: 
+      Targets: 03000000
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 1
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+    - AbilityID: Assassin
+      Level: 0
+      Type: 3
+      Icon: Sword
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 01000000
+      Stats:
+      - Type: 1
+        Value: 2
+        Duration: 4
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+    - AbilityID: Support
+      Level: 0
+      Type: 3
+      Icon: Nature
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 02000000
+      Stats:
+      - Type: 2
+        Value: 20
+        Duration: 1
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+    - AbilityID: SceletonBoss
+      Level: 0
+      Type: 5
+      Icon: Fire
+      Cooldown: 3
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities:
+      - ID: 232099915
+        Level: 0
+      - ID: 3753657975
         Level: 0
