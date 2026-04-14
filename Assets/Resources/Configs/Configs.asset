@@ -65,7 +65,7 @@ MonoBehaviour:
         Level: 0
     - ID: Healer
       Prefab: IronfistDwarf
-      Scale: 0.85
+      Scale: 0.8
       Mass: 0.0001
       Health: 2100
       Shield: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
         Level: 0
     - ID: Mage
       Prefab: IronfistDwarf
-      Scale: 0.85
+      Scale: 0.8
       Mass: 0.0001
       Health: 1500
       Shield: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
         Level: 0
     - ID: Support
       Prefab: IronfistDwarf
-      Scale: 0.85
+      Scale: 0.8
       Mass: 0.0001
       Health: 2100
       Shield: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 4
-        Value: 1
+        Value: 2
       Statuses: []
       Count: 0
       Speed: 0
@@ -428,9 +428,7 @@ MonoBehaviour:
       Lifetime: 0
       SpawnCharacters:
       - ID: 769574570
-        Probability: 0.7
-      - ID: 1107468141
-        Probability: 0.3
+        Probability: 1
       SpawnRadius: 4
       AuraLifetime: 0
       AuraRadius: 0
@@ -449,7 +447,7 @@ MonoBehaviour:
       Effects: []
       Statuses:
       - Type: 2
-        Value: 5
+        Value: 100
         Duration: 3
         Period: 1
       Count: 0
@@ -476,7 +474,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
-        Value: 10
+        Value: 500
       Statuses: []
       Count: 0
       Speed: 0
@@ -539,7 +537,7 @@ MonoBehaviour:
       SpawnCharacters: []
       SpawnRadius: 0
       AuraLifetime: 0
-      AuraRadius: 2
+      AuraRadius: 10
       AuraInterval: 0
       Abilities: []
     - AbilityID: OrbitingFireBoll
@@ -572,7 +570,7 @@ MonoBehaviour:
       Level: 0
       Type: 5
       Icon: Shield
-      Cooldown: 1
+      Cooldown: 10
       Radius: 0
       AOE: 0
       Prefab: 
@@ -595,7 +593,7 @@ MonoBehaviour:
       - ID: 1376285117
         Level: 0
       - ID: 3503821397
-        Level: 1
+        Level: 0
     - AbilityID: Healer
       Level: 0
       Type: 5
