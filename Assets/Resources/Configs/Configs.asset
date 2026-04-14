@@ -40,7 +40,7 @@ MonoBehaviour:
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 2500
       Shield: 0
       HealthBar: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     - ID: Tank
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 2200
       Shield: 0
       HealthBar: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
     - ID: Healer
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 2100
       Shield: 0
       HealthBar: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
     - ID: Mage
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 1500
       Shield: 0
       HealthBar: 1
@@ -92,7 +92,7 @@ MonoBehaviour:
     - ID: Assassin
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 1500
       Shield: 0
       HealthBar: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
     - ID: Support
       Prefab: IronfistDwarf
       Scale: 1
-      Mass: 1
+      Mass: 0.0001
       Health: 2100
       Shield: 0
       HealthBar: 1
@@ -151,7 +151,7 @@ MonoBehaviour:
     - ID: SceletonBoss
       Prefab: Sceleton
       Scale: 2
-      Mass: 1
+      Mass: 0.25
       Health: 5000
       Shield: 0
       HealthBar: 1
@@ -383,7 +383,7 @@ MonoBehaviour:
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
-      Icon: Blood
+      Icon: 
       Cooldown: 1
       Radius: 0
       AOE: 0
@@ -413,7 +413,7 @@ MonoBehaviour:
     - AbilityID: HealBuff
       Level: 0
       Type: 3
-      Icon: Buff
+      Icon: 
       Cooldown: 1
       Radius: 0
       AOE: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
     - AbilityID: ShieldBuff
       Level: 0
       Type: 3
-      Icon: Shield
+      Icon: 
       Cooldown: 1
       Radius: 0
       AOE: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
-      Icon: Shield
+      Icon: 
       Cooldown: 1
       Radius: 0
       AOE: 0
@@ -492,8 +492,8 @@ MonoBehaviour:
       Abilities: []
     - AbilityID: AggroBuff
       Level: 0
-      Type: 3
-      Icon: Axe
+      Type: 4
+      Icon: 
       Cooldown: 3
       Radius: 0
       AOE: 0
@@ -681,7 +681,7 @@ MonoBehaviour:
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5
-      Icon: Fire
+      Icon: 
       Cooldown: 3
       Radius: 0
       AOE: 0

@@ -32,14 +32,17 @@ namespace vikwhite.ECS
                         {
                             var distance = float.MaxValue;
                             var characterConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
+                            var target = SystemAPI.GetComponent<Target>(entity).Value;
+                            var targetID = SystemAPI.GetComponent<Character>(target).ID;
+                            var targetConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(targetID);
+                            var baseDistance = ability.Config.Radius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
                             if (SystemAPI.HasComponent<Target>(entity))
                             {
-                                var target = SystemAPI.GetComponent<Target>(entity);
-                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.Value);
+                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target);
                                 var direction = targetTransform.Position - transform.ValueRO.Position;
                                 distance = math.length(direction);
                             }
-                            if (distance <= ability.Config.Radius + characterConfig.ColliderRadius || ability.Config.Radius == 0)
+                            if (distance <= baseDistance || ability.Config.Radius == 0)
                             {
                                 ability.IsActivate = true;
                                 ability.Cooldown = 0;
