@@ -17,10 +17,12 @@ namespace vikwhite.ECS
                     Value = GetEffectValue(ref state, request.ValueRO.Data, request.ValueRO.Provider)
                 });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
+                ecb.AddComponent(effect, new Provider{ Value = request.ValueRO.Provider });
                 if (type == EffectType.Damage) ecb.AddComponent<DamageEffect>(effect);
                 if (type == EffectType.Heal) ecb.AddComponent<HealEffect>(effect);
                 if (type == EffectType.Shield) ecb.AddComponent<ShieldEffect>(effect);
                 if (type == EffectType.Spawn) ecb.AddComponent<SpawnEffect>(effect);
+                if (type == EffectType.Aggro) ecb.AddComponent<AggroEffect>(effect);
             }
             ecb.Playback(state.EntityManager);
         }

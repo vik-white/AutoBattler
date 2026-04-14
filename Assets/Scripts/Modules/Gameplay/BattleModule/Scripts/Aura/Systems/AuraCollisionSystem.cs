@@ -34,7 +34,7 @@ namespace vikwhite.ECS
             }
         }
     }
-    
+
     [BurstCompile]
     struct AuraCollisionJob : ITriggerEventsJob
     {

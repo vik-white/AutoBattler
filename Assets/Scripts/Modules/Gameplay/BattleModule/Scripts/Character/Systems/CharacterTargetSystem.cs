@@ -26,6 +26,7 @@ namespace vikwhite.ECS
                 EnemyLookup = SystemAPI.GetComponentLookup<Enemy>(true),
                 DeadLookup = SystemAPI.GetComponentLookup<Dead>(true),
                 TargetLookup = SystemAPI.GetComponentLookup<Target>(true),
+                AggroLookup = SystemAPI.GetComponentLookup<Aggro>(true),
                 Ecb = ecb
             };
             job.ScheduleParallel(SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Dead>().Build());
@@ -42,6 +43,7 @@ namespace vikwhite.ECS
         [ReadOnly] public ComponentLookup<Enemy> EnemyLookup;
         [ReadOnly] public ComponentLookup<Dead> DeadLookup;
         [ReadOnly] public ComponentLookup<Target> TargetLookup;
+        [ReadOnly] public ComponentLookup<Aggro> AggroLookup;
         public EntityCommandBuffer.ParallelWriter Ecb;
 
         [BurstCompile]
@@ -50,32 +52,39 @@ namespace vikwhite.ECS
             var position = TransformLookup[entity].Position;
             var isEnemy = EnemyLookup.HasComponent(entity);
             var minDistanceSq = float.MaxValue;
-            var nearest = Entity.Null;
-            var target = TargetLookup.HasComponent(entity) ? TargetLookup[entity].Value : Entity.Null;
-            
-            for (int i = 0; i < Characters.Length; i++)
+            var newTarget = Entity.Null;
+            var oldTarget = TargetLookup.HasComponent(entity) ? TargetLookup[entity].Value : Entity.Null;
+
+            if (!AggroLookup.HasComponent(entity))
             {
-                Entity otherEntity = Characters[i];
-                bool otherIsDead = DeadLookup.HasComponent(otherEntity);
-                if (otherEntity == entity || otherIsDead) continue;
-                bool otherIsEnemy = EnemyLookup.HasComponent(otherEntity);
-                if (isEnemy == otherIsEnemy) continue;
-                float3 otherPosition = TransformLookup[otherEntity].Position;
-                float distSq = math.distancesq(position, otherPosition);
-                if (distSq < minDistanceSq)
+                for (int i = 0; i < Characters.Length; i++)
                 {
-                    minDistanceSq = distSq;
-                    nearest = otherEntity;
-                    if(target == nearest) break;
+                    Entity otherEntity = Characters[i];
+                    bool otherIsDead = DeadLookup.HasComponent(otherEntity);
+                    if (otherEntity == entity || otherIsDead) continue;
+                    bool otherIsEnemy = EnemyLookup.HasComponent(otherEntity);
+                    if (isEnemy == otherIsEnemy) continue;
+                    float3 otherPosition = TransformLookup[otherEntity].Position;
+                    float distSq = math.distancesq(position, otherPosition);
+                    if (distSq < minDistanceSq)
+                    {
+                        minDistanceSq = distSq;
+                        newTarget = otherEntity;
+                        if(oldTarget == newTarget) break;
+                    }
                 }
             }
+            else
+            {
+                newTarget = AggroLookup[entity].Provider;
+            }
             
-            if (nearest != Entity.Null)
+            if (newTarget != Entity.Null)
             {
                 if (!TargetLookup.HasComponent(entity))
-                    Ecb.AddComponent(sortKey, entity, new Target { Value = nearest });
+                    Ecb.AddComponent(sortKey, entity, new Target { Value = newTarget });
                 else
-                    Ecb.SetComponent(sortKey, entity, new Target { Value = nearest });
+                    Ecb.SetComponent(sortKey, entity, new Target { Value = newTarget });
             }
             else if (TargetLookup.HasComponent(entity))
             {
