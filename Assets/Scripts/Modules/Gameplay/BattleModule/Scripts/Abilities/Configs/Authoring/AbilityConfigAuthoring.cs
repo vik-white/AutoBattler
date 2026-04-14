@@ -31,11 +31,8 @@ namespace vikwhite.ECS
                 foreach (var abilityData in authoring.Configs.Abilities.GetAll())
                 {
                     if (abilityData.AbilityID != abilityID) continue;
-                    Debug.Log(abilityData.Prefab);
                     var prefab = Resources.Load<GameObject>($"Abilities/Prefabs/{abilityData.Prefab}");
-                    Debug.Log(prefab);
                     var prefabIndex = this.RegisterPrefab(prefab);
-                    Debug.Log(prefabIndex);
                     steps.Add(new AbilityConfig
                     {
                         ID = abilityID.CalculateHash32(),
@@ -62,6 +59,7 @@ namespace vikwhite.ECS
                         AuraLifetime = abilityData.AuraLifetime,
                         AuraRadius = abilityData.AuraRadius,
                         AuraInterval = abilityData.AuraInterval,
+                        Abilities = CreateAbilities(abilityData.Abilities),
                     });
                 }
                 
@@ -103,6 +101,12 @@ namespace vikwhite.ECS
             var spawnCharacters = new FixedList64Bytes<SpawnCharacterData>();
             foreach (var spawnCharacter in spawnCharacterConfig) spawnCharacters.Add(spawnCharacter);
             return spawnCharacters;
+        }
+        
+        private FixedList64Bytes<AbilityLevelData> CreateAbilities(List<AbilityLevelData> abilitiesConfig) {
+            var abilities = new FixedList64Bytes<AbilityLevelData>();
+            foreach (var ability in abilitiesConfig) abilities.Add(ability);
+            return abilities;
         }
     }
 }

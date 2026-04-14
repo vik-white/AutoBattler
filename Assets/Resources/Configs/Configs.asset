@@ -18,10 +18,10 @@ MonoBehaviour:
     IDS:
     - Dummy
     - IronfistDwarf
-    - Healer
-    - Assassin
-    - Mage
     - Tank
+    - Healer
+    - Mage
+    - Assassin
     - Support
     - Enemy
     - Sceleton
@@ -49,6 +49,19 @@ MonoBehaviour:
         Level: 0
       - ID: 2496368978
         Level: 0
+    - ID: Tank
+      Prefab: IronfistDwarf
+      Scale: 1.2
+      Mass: 0.001
+      Health: 2200
+      Shield: 0
+      HealthBar: 1
+      ActiveAbility: Tank
+      Abilities:
+      - ID: 1528634012
+        Level: 0
+      - ID: 1605752999
+        Level: 0
     - ID: Healer
       Prefab: IronfistDwarf
       Scale: 0.85
@@ -59,19 +72,6 @@ MonoBehaviour:
       ActiveAbility: HealBuff
       Abilities:
       - ID: 3693692732
-        Level: 0
-    - ID: Assassin
-      Prefab: IronfistDwarf
-      Scale: 1
-      Mass: 0.001
-      Health: 1500
-      Shield: 0
-      HealthBar: 1
-      ActiveAbility: AttackSpeedBuff
-      Abilities:
-      - ID: 1528634012
-        Level: 1
-      - ID: 3382298541
         Level: 0
     - ID: Mage
       Prefab: IronfistDwarf
@@ -84,16 +84,18 @@ MonoBehaviour:
       Abilities:
       - ID: 826252179
         Level: 1
-    - ID: Tank
+    - ID: Assassin
       Prefab: IronfistDwarf
-      Scale: 1.2
+      Scale: 1
       Mass: 0.001
-      Health: 2200
+      Health: 1500
       Shield: 0
       HealthBar: 1
-      ActiveAbility: 
+      ActiveAbility: AttackSpeedBuff
       Abilities:
       - ID: 1528634012
+        Level: 1
+      - ID: 3382298541
         Level: 0
     - ID: Support
       Prefab: IronfistDwarf
@@ -145,13 +147,9 @@ MonoBehaviour:
         Level: 0
   squad:
     IDS:
-    - Support
-    - IronfistDwarf
-    - IronfistDwarf
+    - Tank
     Data:
-    - ID: Support
-    - ID: IronfistDwarf
-    - ID: IronfistDwarf
+    - ID: Tank
   map:
     IDS: []
     Data:
@@ -253,6 +251,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -278,6 +277,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: DmageStatusRangeAttack
       Level: 0
       Type: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -330,6 +331,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -355,6 +357,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -380,6 +383,33 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
+    - AbilityID: AuraBuff
+      Level: 0
+      Type: 4
+      Icon: Nature
+      Cooldown: 3
+      Radius: 0
+      AOE: 0
+      Prefab: Aura
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 1
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 2.6
+      AuraRadius: 2
+      AuraInterval: 0.2
+      Abilities: []
     - AbilityID: DamageBuff
       Level: 0
       Type: 3
@@ -407,6 +437,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -417,9 +448,7 @@ MonoBehaviour:
       Prefab: 
       Targets: 0100000002000000
       Stats: []
-      Effects:
-      - Type: 3
-        Value: 20
+      Effects: []
       Statuses:
       - Type: 2
         Value: 5
@@ -436,6 +465,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: AttackSpeedBuff
       Level: 0
       Type: 3
@@ -462,6 +492,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: DamageStatBuff
       Level: 0
       Type: 3
@@ -488,6 +519,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: SpawnBuff
       Level: 0
       Type: 3
@@ -517,6 +549,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities: []
     - AbilityID: ActiveAbilityBuff
       Level: 0
       Type: 3
@@ -543,31 +576,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-    - AbilityID: AuraBuff
-      Level: 0
-      Type: 4
-      Icon: Nature
-      Cooldown: 3
-      Radius: 0
-      AOE: 0
-      Prefab: Aura
-      Targets: 
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 1
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 2.6
-      AuraRadius: 2
-      AuraInterval: 0.2
+      Abilities: []
     - AbilityID: AOEAttack
       Level: 0
       Type: 3
@@ -593,15 +602,42 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-    - AbilityID: AggroBuff
+      Abilities: []
+    - AbilityID: ShieldBuff
       Level: 0
       Type: 3
-      Icon: Axe
+      Icon: Shield
       Cooldown: 1
       Radius: 0
       AOE: 0
       Prefab: 
-      Targets: 03000000
+      Targets: 01000000
+      Stats: []
+      Effects:
+      - Type: 3
+        Value: 20
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+    - AbilityID: AggroBuff
+      Level: 0
+      Type: 3
+      Icon: Axe
+      Cooldown: 3
+      Radius: 0
+      AOE: 0
+      Prefab: Aura
+      Targets: 
       Stats: []
       Effects:
       - Type: 5
@@ -616,5 +652,34 @@ MonoBehaviour:
       SpawnCharacters: []
       SpawnRadius: 0
       AuraLifetime: 0
+      AuraRadius: 2
+      AuraInterval: 0
+      Abilities: []
+    - AbilityID: Tank
+      Level: 0
+      Type: 5
+      Icon: Shield
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
+      Abilities:
+      - ID: 2496368978
+        Level: 0
+      - ID: 3503821397
+        Level: 0

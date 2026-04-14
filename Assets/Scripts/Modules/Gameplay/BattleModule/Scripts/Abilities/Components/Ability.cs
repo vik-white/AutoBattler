@@ -8,5 +8,6 @@ namespace vikwhite
         public AbilityConfig Config;
         public float Cooldown;
         public bool IsActivate;
+        public bool IsChild;
     }
 }

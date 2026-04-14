@@ -18,8 +18,10 @@ namespace vikwhite.ECS
                 {
                     ref var ability = ref abilities.ElementAt(i);
                     ability.IsActivate = false;
+                    
+                    if(ability.IsChild) continue;
+                    
                     var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
-
                     var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
                     var cooldownMultiply = activeAbility == ability.Config.ID ? statBuffer[(int)StatType.ActiveAbilityCooldownMultiply].Value : statBuffer[(int)StatType.CooldownMultiply].Value;
                     ability.Cooldown += dt * cooldownMultiply;
@@ -49,8 +51,20 @@ namespace vikwhite.ECS
                             if (ability.Config.ID == useAbility)
                             {
                                 ecb.RemoveComponent<UseAbility>(entity);
-                                ability.IsActivate = true;
                                 ability.Cooldown = 0;
+
+                                if (ability.Config.Type != AbilityType.Abilities)
+                                {
+                                    ability.IsActivate = true;
+                                }
+                                else
+                                {
+                                    for (int j = 0; j < abilities.Length; j++)
+                                    {
+                                        ref var abilityChild = ref abilities.ElementAt(j);
+                                        if(abilityChild.IsChild) abilityChild.IsActivate = true;
+                                    }
+                                }
                             }
                         }
                     }

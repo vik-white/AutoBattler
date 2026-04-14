@@ -36,8 +36,20 @@ namespace vikwhite.ECS
                 ecb.AddComponent(character, new ShieldMax{ Value = config.Shield });
                 
                 var abilities = ecb.AddBuffer<Ability>(character);
+                var abilityBuffer = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>();
                 foreach (var ability in config.Abilities)
-                    abilities.Add(new Ability { Config = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>().Get(ability.ID).Levels.Value.Array[ability.Level] });
+                {
+                    var abilityConfig = abilityBuffer.Get(ability.ID).Levels.Value.Array[ability.Level];
+                    if (abilityConfig.Type == AbilityType.Abilities)
+                    {
+                        foreach (var abilityChild in abilityConfig.Abilities)
+                        {
+                            var abilityChildConfig = abilityBuffer.Get(abilityChild.ID).Levels.Value.Array[abilityChild.Level];
+                            abilities.Add(new Ability { Config = abilityChildConfig, IsChild = true });
+                        }    
+                    }
+                    abilities.Add(new Ability { Config = abilityConfig });
+                }
                 if(config.ActiveAbility != 0) ecb.AddComponent(character, new ActiveAbility{ Value = config.ActiveAbility });
                 
                 int statCount = Enum.GetValues(typeof(StatType)).Length;

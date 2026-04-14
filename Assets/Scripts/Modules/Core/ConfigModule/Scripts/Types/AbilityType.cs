@@ -8,5 +8,6 @@ namespace vikwhite
         OrbitAttack = 2,
         Buff = 3,
         Aura = 4,
+        Abilities = 5,
     }
 }

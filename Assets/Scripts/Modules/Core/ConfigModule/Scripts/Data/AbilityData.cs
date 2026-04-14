@@ -31,6 +31,7 @@ namespace vikwhite.Data
         float AuraLifetime { get; }
         float AuraRadius { get; }
         float AuraInterval { get; }
+        List<AbilityLevelData> Abilities { get; }
     }
     
     [Serializable]
@@ -59,6 +60,7 @@ namespace vikwhite.Data
         public float AuraLifetime;
         public float AuraRadius;
         public float AuraInterval;
+        public List<AbilityLevelData> Abilities;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -83,6 +85,7 @@ namespace vikwhite.Data
         float IAbilityData.AuraLifetime => AuraLifetime;
         float IAbilityData.AuraRadius => AuraRadius;
         float IAbilityData.AuraInterval => AuraInterval;
+        List<AbilityLevelData> IAbilityData.Abilities => Abilities;
         
         public void Parse(Dictionary<string, string> row)
         {
@@ -163,6 +166,19 @@ namespace vikwhite.Data
                 if (!float.TryParse(valueString, out var value)) continue;
                 
                 SpawnCharacters.Add(new SpawnCharacterData { ID = typeString.CalculateHash32(), Probability = value });
+            }
+            
+            Abilities = new ();
+            foreach (var abilityString in row["Abilities"].Split(";"))
+            {
+                if(abilityString == "") continue;
+                var parts = abilityString.Split(':');
+                var idString = parts[0];
+                var valueString = parts[1];
+                
+                if (!int.TryParse(valueString, out var value)) continue;
+                
+                Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = value });
             }
         }
     }
