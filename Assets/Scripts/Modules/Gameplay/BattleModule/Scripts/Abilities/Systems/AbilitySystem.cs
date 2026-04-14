@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -18,9 +19,9 @@ namespace vikwhite.ECS
                     ref var ability = ref abilities.ElementAt(i);
                     ability.IsActivate = false;
                     var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
-                    
-                    var cooldownMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                    if (activeAbility == ability.Config.ID) cooldownMultiply = 1;
+
+                    var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
+                    var cooldownMultiply = activeAbility == ability.Config.ID ? statBuffer[(int)StatType.ActiveAbilityCooldownMultiply].Value : statBuffer[(int)StatType.CooldownMultiply].Value;
                     ability.Cooldown += dt * cooldownMultiply;
                     
                     if (ability.Cooldown > ability.Config.Cooldown)

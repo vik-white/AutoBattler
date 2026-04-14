@@ -102,9 +102,11 @@ MonoBehaviour:
       Health: 2100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: 
+      ActiveAbility: ActiveAbilityBuff
       Abilities:
       - ID: 826252179
+        Level: 0
+      - ID: 1875276309
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
@@ -144,8 +146,12 @@ MonoBehaviour:
   squad:
     IDS:
     - IronfistDwarf
+    - IronfistDwarf
+    - Support
     Data:
     - ID: IronfistDwarf
+    - ID: IronfistDwarf
+    - ID: Support
   map:
     IDS: []
     Data:
@@ -444,6 +450,29 @@ MonoBehaviour:
       Effects:
       - Type: 4
         Value: 1
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters:
+      - ID: 769574570
+        Probability: 0.7
+      - ID: 1107468141
+        Probability: 0.3
+      SpawnRadius: 4
+    - AbilityID: ActiveAbilityBuff
+      Level: 0
+      Type: 3
+      Icon: Buff
+      Cooldown: 1
+      Radius: 0
+      Prefab: 
+      Targets: 0100000002000000
+      Stats: []
+      Effects: []
       Statuses: []
       Count: 0
       Speed: 0
