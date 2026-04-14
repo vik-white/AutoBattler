@@ -43,8 +43,20 @@ namespace vikwhite.ECS
                             }
                             if (distance <= baseDistance || ability.Config.Radius == 0)
                             {
-                                ability.IsActivate = true;
                                 ability.Cooldown = 0;
+                                
+                                if (ability.Config.Type != AbilityType.Abilities)
+                                {
+                                    ability.IsActivate = true;
+                                }
+                                else
+                                {
+                                    for (int j = 0; j < abilities.Length; j++)
+                                    {
+                                        ref var abilityChild = ref abilities.ElementAt(j);
+                                        if(abilityChild.IsChild) abilityChild.IsActivate = true;
+                                    }
+                                }
                             }
                         }
                         else
