@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Rukhanka.Toolbox;
 using UnityEngine;
 using vikwhite.ECS;
 
@@ -24,6 +25,8 @@ namespace vikwhite.Data
         float Scale { get; }
         float OrbitRadius { get; }
         float Lifetime { get; }
+        List<SpawnCharacterData> SpawnCharacters { get; }
+        float SpawnRadius { get; }
     }
     
     [Serializable]
@@ -46,6 +49,8 @@ namespace vikwhite.Data
         public float Scale;
         public float OrbitRadius;
         public float Lifetime;
+        public List<SpawnCharacterData> SpawnCharacters;
+        public float SpawnRadius;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -64,6 +69,8 @@ namespace vikwhite.Data
         float IAbilityData.Scale => Scale;
         float IAbilityData.OrbitRadius => OrbitRadius;
         float IAbilityData.Lifetime => Lifetime;
+        List<SpawnCharacterData> IAbilityData.SpawnCharacters => SpawnCharacters;
+        float IAbilityData.SpawnRadius => SpawnRadius;
         
         public void Parse(Dictionary<string, string> row)
         {
@@ -131,6 +138,19 @@ namespace vikwhite.Data
                     Value = value,
                     Duration = duration,
                 });
+            }
+            
+            SpawnCharacters = new ();
+            foreach (var abilityString in row["SpawnCharacters"].Split(";"))
+            {
+                if(abilityString == "") continue;
+                var parts = abilityString.Split(':');
+                var typeString = parts[0];
+                var valueString = parts[1];
+                
+                if (!float.TryParse(valueString, out var value)) continue;
+                
+                SpawnCharacters.Add(new SpawnCharacterData { ID = typeString.CalculateHash32(), Probability = value });
             }
         }
     }

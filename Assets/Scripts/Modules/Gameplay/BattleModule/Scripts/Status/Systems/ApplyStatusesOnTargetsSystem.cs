@@ -18,6 +18,7 @@ namespace vikwhite
                     foreach (var status in statuses.ValueRO.Array) 
                     {
                         ecb.CreateFrameEntity(new CreateStatus {
+                            Ability = statuses.ValueRO.Ability,
                             Provider = provider.ValueRO.Value,
                             Target = collisionTargets[i].Value, 
                             Data = status, 

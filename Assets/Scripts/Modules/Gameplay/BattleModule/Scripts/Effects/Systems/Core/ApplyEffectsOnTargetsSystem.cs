@@ -18,6 +18,7 @@ namespace vikwhite
                     foreach (var effect in effects.ValueRO.Array) 
                     {
                         ecb.CreateFrameEntity(new CreateEffect {
+                            Ability = effects.ValueRO.Ability,
                             Provider = provider.ValueRO.Value,
                             Target = collisionTargets[i].Value, 
                             Data = effect, 

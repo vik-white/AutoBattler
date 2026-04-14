@@ -19,6 +19,7 @@ namespace vikwhite.ECS
                     status.ValueRW.TimeSinceLastTick = status.ValueRO.Period;
                     ecb.CreateFrameEntity(new CreateEffect
                     {
+                        Ability = status.ValueRO.Ability,
                         Provider = provider.ValueRO.Value,
                         Target = target.ValueRO.Value, 
                         Data = new EffectData

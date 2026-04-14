@@ -11,11 +11,16 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
                 var effect = ecb.CreateEntity();
-                ecb.AddComponent(effect, new Effect{ Value = GetEffectValue(ref state, request.ValueRO.Data, request.ValueRO.Provider) });
+                ecb.AddComponent(effect, new Effect
+                {
+                    Ability = request.ValueRO.Ability,
+                    Value = GetEffectValue(ref state, request.ValueRO.Data, request.ValueRO.Provider)
+                });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 if (type == EffectType.Damage) ecb.AddComponent<DamageEffect>(effect);
                 if (type == EffectType.Heal) ecb.AddComponent<HealEffect>(effect);
                 if (type == EffectType.Shield) ecb.AddComponent<ShieldEffect>(effect);
+                if (type == EffectType.Spawn) ecb.AddComponent<SpawnEffect>(effect);
             }
             ecb.Playback(state.EntityManager);
         }

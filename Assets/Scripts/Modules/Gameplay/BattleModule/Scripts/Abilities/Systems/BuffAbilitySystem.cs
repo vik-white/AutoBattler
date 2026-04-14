@@ -20,6 +20,7 @@ namespace vikwhite.ECS
                         {
                             ecb.CreateFrameEntity(new CreateStatus
                             {
+                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
                                 Provider = entity,
                                 Target = target, 
                                 Data = status, 
@@ -32,6 +33,7 @@ namespace vikwhite.ECS
                         {
                             ecb.CreateFrameEntity(new CreateEffect 
                             {
+                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
                                 Provider = entity,
                                 Target = target, 
                                 Data = effect, 

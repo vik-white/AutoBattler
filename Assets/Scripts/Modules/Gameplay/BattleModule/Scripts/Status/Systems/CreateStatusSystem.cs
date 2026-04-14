@@ -13,6 +13,7 @@ namespace vikwhite.ECS
                 var status = ecb.CreateSceneEntity();
                 ecb.AddComponent(status, new Status
                 {
+                    Ability = request.ValueRO.Ability,
                     Type = request.ValueRO.Data.Type,
                     Value = request.ValueRO.Data.Value,
                     Duration = request.ValueRO.Data.Duration,

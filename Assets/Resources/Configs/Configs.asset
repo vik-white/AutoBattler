@@ -231,6 +231,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -250,6 +252,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: DmageStatusRangeAttack
       Level: 0
       Type: 0
@@ -271,6 +275,8 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -290,6 +296,8 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -309,6 +317,8 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -328,6 +338,8 @@ MonoBehaviour:
       Scale: 0.1
       OrbitRadius: 2
       Lifetime: 2
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: DamageBuff
       Level: 0
       Type: 3
@@ -349,6 +361,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -372,6 +386,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: AttackSpeedBuff
       Level: 0
       Type: 3
@@ -392,6 +408,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: DamageStatBuff
       Level: 0
       Type: 3
@@ -412,6 +430,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
     - AbilityID: SpawnBuff
       Level: 0
       Type: 3
@@ -421,7 +441,9 @@ MonoBehaviour:
       Prefab: 
       Targets: 01000000
       Stats: []
-      Effects: []
+      Effects:
+      - Type: 4
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0
@@ -429,3 +451,9 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
+      SpawnCharacters:
+      - ID: 769574570
+        Probability: 0.7
+      - ID: 1107468141
+        Probability: 0.3
+      SpawnRadius: 4

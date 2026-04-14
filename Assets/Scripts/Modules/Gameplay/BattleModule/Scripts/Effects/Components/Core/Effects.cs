@@ -5,6 +5,7 @@ namespace vikwhite.ECS
 {
     public struct Effects : IComponentData
     {
+        public AbilityLevelData Ability;
         public FixedList64Bytes<EffectData> Array;
     }
 }

@@ -1,5 +1,6 @@
 using Unity.Collections;
 using Unity.Entities;
+using UnityEngine;
 using vikwhite.Data;
 
 namespace vikwhite.ECS
@@ -7,6 +8,7 @@ namespace vikwhite.ECS
     public struct AbilityConfig
     {
         public uint ID;
+        public int Level;
         public AbilityType Type;
         public int Prefab;
         public float Cooldown;
@@ -16,5 +18,19 @@ namespace vikwhite.ECS
         public FixedList128Bytes<StatusData> Statuses;
         public FixedList128Bytes<StatData> Stats;
         public ProjectileData Projectile;
+        public FixedList64Bytes<SpawnCharacterData> SpawnCharacters;
+        public float SpawnRadius;
+        
+        public uint GetRandomSpawnCharacter()
+        {
+            float r = Random.value;
+            float cumulative = 0f;
+            foreach (var character in SpawnCharacters)
+            {
+                cumulative += character.Probability;
+                if (r <= cumulative) return character.ID;
+            }
+            return 0;
+        }
     }
 }

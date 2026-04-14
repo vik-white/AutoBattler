@@ -23,8 +23,8 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
-                ecb.AddComponent(projectile, new Effects{ Array = ability.Effects });
-                ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses });
+                ecb.AddComponent(projectile, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
+                ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent(projectile, new Stats{ Array = ability.Stats });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);

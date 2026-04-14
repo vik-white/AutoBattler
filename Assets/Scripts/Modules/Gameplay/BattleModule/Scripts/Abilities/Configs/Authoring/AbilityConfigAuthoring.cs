@@ -35,6 +35,7 @@ namespace vikwhite.ECS
                     steps.Add(new AbilityConfig
                     {
                         ID = abilityID.CalculateHash32(),
+                        Level = abilityData.Level,
                         Type = abilityData.Type,
                         Targets = CreateTargets(abilityData.Targets),
                         Prefab = this.RegisterPrefab(prefab),
@@ -52,8 +53,9 @@ namespace vikwhite.ECS
                             OrbitRadius = abilityData.OrbitRadius,
                             Lifetime = abilityData.Lifetime,
                         },
+                        SpawnCharacters = CreateSpawnCharacters(abilityData.SpawnCharacters),
+                        SpawnRadius = abilityData.SpawnRadius,
                     });
-
                 }
                 
                 var abilityLevelsConfig = new AbilityLevelsConfig
@@ -88,6 +90,12 @@ namespace vikwhite.ECS
             var targets = new FixedList64Bytes<TargetType>();
             foreach (var target in targetConfig) targets.Add(target);
             return targets;
+        }
+        
+        private FixedList64Bytes<SpawnCharacterData> CreateSpawnCharacters(List<SpawnCharacterData> spawnCharacterConfig) {
+            var spawnCharacters = new FixedList64Bytes<SpawnCharacterData>();
+            foreach (var spawnCharacter in spawnCharacterConfig) spawnCharacters.Add(spawnCharacter);
+            return spawnCharacters;
         }
     }
 }
