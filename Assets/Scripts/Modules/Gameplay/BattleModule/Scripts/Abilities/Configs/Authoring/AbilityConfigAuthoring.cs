@@ -61,6 +61,8 @@ namespace vikwhite.ECS
                         AuraRadius = abilityData.AuraRadius,
                         AuraInterval = abilityData.AuraInterval,
                         Abilities = CreateAbilities(abilityData.Abilities),
+                        ImpulseUp = abilityData.ImpulseUp,
+                        ImpulseProvider = abilityData.ImpulseProvider,
                     });
                 }
                 

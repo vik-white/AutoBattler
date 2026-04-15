@@ -28,12 +28,13 @@ MonoBehaviour:
     - EnemyRange
     - Sceleton
     - SceletonBoss
+    - Sceletonminiboss
     Data:
     - ID: Dummy
       Prefab: Sceleton
       Scale: 1
-      Mass: 1
-      Health: 500
+      Mass: 0.0001
+      Health: 5000
       Shield: 100
       HealthBar: 1
       ActiveAbility: 
@@ -55,7 +56,7 @@ MonoBehaviour:
       Prefab: Tank
       Scale: 1.3
       Mass: 0.0001
-      Health: 1200
+      Health: 1400
       Shield: 0
       HealthBar: 1
       ActiveAbility: Tank
@@ -94,7 +95,7 @@ MonoBehaviour:
       Prefab: Assassin
       Scale: 1
       Mass: 0.0001
-      Health: 600
+      Health: 750
       Shield: 0
       HealthBar: 1
       ActiveAbility: Assassin
@@ -164,15 +165,26 @@ MonoBehaviour:
       Prefab: Sceleton
       Scale: 2
       Mass: 0.25
-      Health: 6000
+      Health: 3200
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
       Abilities:
       - ID: 826252179
-        Level: 0
+        Level: 2
       - ID: 1107468141
         Level: 0
+    - ID: Sceletonminiboss
+      Prefab: Sceleton
+      Scale: 0.7
+      Mass: 1
+      Health: 250
+      Shield: 0
+      HealthBar: 0
+      ActiveAbility: 
+      Abilities:
+      - ID: 1528634012
+        Level: 1
   squad:
     IDS:
     - Assassin
@@ -262,84 +274,6 @@ MonoBehaviour:
   abilities:
     IDS: []
     Data:
-    - AbilityID: MeleeAttack
-      Level: 0
-      Type: 1
-      Icon: 
-      Cooldown: 1.2
-      Radius: 0.3
-      AOE: 0
-      Prefab: 
-      Targets: 
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 80
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: MeleeAttack
-      Level: 1
-      Type: 1
-      Icon: 
-      Cooldown: 2
-      Radius: 0.3
-      AOE: 0
-      Prefab: 
-      Targets: 
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 50
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-    - AbilityID: MeleeAttack
-      Level: 2
-      Type: 1
-      Icon: 
-      Cooldown: 2
-      Radius: 0.3
-      AOE: 0
-      Prefab: 
-      Targets: 
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 20
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
     - AbilityID: FlowMeleeAttack
       Level: 0
       Type: 1
@@ -366,6 +300,92 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+    - AbilityID: MeleeAttack
+      Level: 0
+      Type: 1
+      Icon: 
+      Cooldown: 1.2
+      Radius: 0.3
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 80
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+    - AbilityID: MeleeAttack
+      Level: 1
+      Type: 1
+      Icon: 
+      Cooldown: 2
+      Radius: 0.3
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 50
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+    - AbilityID: MeleeAttack
+      Level: 2
+      Type: 1
+      Icon: 
+      Cooldown: 2
+      Radius: 0.3
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 20
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -392,6 +412,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -418,11 +440,13 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 2
       Type: 0
       Icon: 
-      Cooldown: 1
+      Cooldown: 1.8
       Radius: 10
       AOE: 0
       Prefab: Bullet
@@ -430,7 +454,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 150
+        Value: 95
       Statuses: []
       Count: 0
       Speed: 10
@@ -444,6 +468,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 3
       Type: 0
@@ -470,19 +496,21 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 1
     - AbilityID: RangeAttackAOE
       Level: 0
       Type: 0
       Icon: 
       Cooldown: 1
       Radius: 10
-      AOE: 3
+      AOE: 10
       Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
       - Type: 1
-        Value: 50
+        Value: 220
       Statuses: []
       Count: 0
       Speed: 10
@@ -496,6 +524,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
@@ -508,7 +538,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 4
-        Value: 2
+        Value: 4
       Statuses: []
       Count: 0
       Speed: 0
@@ -517,13 +547,15 @@ MonoBehaviour:
       OrbitRadius: 0
       Lifetime: 0
       SpawnCharacters:
-      - ID: 769574570
+      - ID: 4180849589
         Probability: 1
       SpawnRadius: 4
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -537,9 +569,9 @@ MonoBehaviour:
       Effects: []
       Statuses:
       - Type: 2
-        Value: 50
-        Duration: 2
-        Period: 0.5
+        Value: 200
+        Duration: 1
+        Period: 1
       Count: 0
       Speed: 0
       Pierce: 0
@@ -552,6 +584,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: ShieldBuff
       Level: 0
       Type: 3
@@ -578,6 +612,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
@@ -604,6 +640,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: AggroBuff
       Level: 0
       Type: 4
@@ -630,6 +668,8 @@ MonoBehaviour:
       AuraRadius: 15
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -656,6 +696,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -684,6 +726,8 @@ MonoBehaviour:
         Level: 0
       - ID: 3503821397
         Level: 1
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: Healer
       Level: 0
       Type: 5
@@ -712,6 +756,8 @@ MonoBehaviour:
         Level: 0
       - ID: 3503821397
         Level: 0
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: Mage
       Level: 0
       Type: 3
@@ -738,6 +784,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: Assassin
       Level: 0
       Type: 3
@@ -765,6 +813,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: Support
       Level: 0
       Type: 3
@@ -792,11 +842,13 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5
       Icon: 
-      Cooldown: 3
+      Cooldown: 9
       Radius: 0
       AOE: 0
       Prefab: 
@@ -820,3 +872,5 @@ MonoBehaviour:
         Level: 0
       - ID: 3753657975
         Level: 0
+      ImpulseUp: 0
+      ImpulseProvider: 0

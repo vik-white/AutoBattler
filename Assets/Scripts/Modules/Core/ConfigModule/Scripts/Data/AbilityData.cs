@@ -33,6 +33,8 @@ namespace vikwhite.Data
         float AuraRadius { get; }
         float AuraInterval { get; }
         List<AbilityLevelData> Abilities { get; }
+        float ImpulseUp { get; }
+        float ImpulseProvider { get; }
     }
     
     [Serializable]
@@ -62,6 +64,8 @@ namespace vikwhite.Data
         public float AuraRadius;
         public float AuraInterval;
         public List<AbilityLevelData> Abilities;
+        public float ImpulseUp;
+        public float ImpulseProvider;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -87,6 +91,8 @@ namespace vikwhite.Data
         float IAbilityData.AuraRadius => AuraRadius;
         float IAbilityData.AuraInterval => AuraInterval;
         List<AbilityLevelData> IAbilityData.Abilities => Abilities;
+        float IAbilityData.ImpulseUp => ImpulseUp;
+        float IAbilityData.ImpulseProvider => ImpulseProvider;
         
         public void Parse(Dictionary<string, string> row)
         {

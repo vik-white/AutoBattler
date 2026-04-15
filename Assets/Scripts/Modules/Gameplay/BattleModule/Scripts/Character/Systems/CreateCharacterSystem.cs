@@ -30,6 +30,7 @@ namespace vikwhite.ECS
                 var mass = PhysicsHandler.CreateFreezeRotationMass(config.Collider.Value.MassProperties);
                 mass.InverseMass = config.Mass;
                 ecb.SetComponent(character, mass);
+                ecb.AddComponent<ExternalVelocity>(character);
                 
                 ecb.AddComponent(character, new Health{ Value = config.Health });
                 ecb.AddComponent(character, new Shield{ Value = config.Shield });

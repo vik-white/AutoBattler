@@ -25,6 +25,8 @@ namespace vikwhite.ECS
         public float AuraRadius;
         public float AuraInterval;
         public FixedList64Bytes<AbilityLevelData> Abilities;
+        public float ImpulseUp;
+        public float ImpulseProvider;
         
         public uint GetRandomSpawnCharacter()
         {

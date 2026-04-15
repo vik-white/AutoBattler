@@ -1,0 +1,34 @@
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+using UnityEngine;
+
+namespace vikwhite.ECS
+{
+    [UpdateInGroup(typeof(EffectsSystemGroup))]
+    [UpdateAfter(typeof(AOEEffectSystem))]
+    public partial struct CreateEffectImpulseSystem : ISystem
+    {
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var abilityLevelConfig = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>();
+            foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>())
+            {
+                var abilityConfig = abilityLevelConfig.Get(request.ValueRO.Ability.ID).Levels.Value.Array[request.ValueRO.Ability.Level];
+                var impulse = float3.zero;
+                if (abilityConfig.ImpulseUp > 0) impulse += new float3(0, abilityConfig.ImpulseUp * 0.2f, 0);
+                if (abilityConfig.ImpulseProvider > 0)
+                {
+                    var targetPosition = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Target).Position;
+                    var providerPosition = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Provider).Position;
+                    var direction = math.normalize(targetPosition - providerPosition);
+                    impulse += direction * abilityConfig.ImpulseProvider;
+                }
+                if (impulse.x == 0 && impulse.y == 0 && impulse.z == 0) continue;
+                ecb.AddComponent(request.ValueRO.Target, new Impulse { Value = impulse });
+            }
+            ecb.Playback(state.EntityManager);
+        }
+    }
+}

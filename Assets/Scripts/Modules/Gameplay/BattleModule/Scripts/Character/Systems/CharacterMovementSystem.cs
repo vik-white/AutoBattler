@@ -42,35 +42,35 @@ namespace vikwhite.ECS
         [ReadOnly] public DynamicBuffer<CharacterConfig> CharacterConfigs;
 
         [BurstCompile]
-        private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in Target target, in DynamicBuffer<Ability> abilities, in Character character)
+        private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in ExternalVelocity externalVelocity, in Target target, in DynamicBuffer<Ability> abilities, in Character character)
         {
+            var velocity = float3.zero;
             var targetCharacter = target.Value;
             var targetConfig = CharacterConfigs.Get(Characters[targetCharacter].ID);
             var characterConfig = CharacterConfigs.Get(character.ID);
-            var baseDistance = abilities[0].Config.Radius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
-            var stopDistance = abilities.Length > 0 && abilities[0].Config.Radius != 0 ? baseDistance : float.MaxValue;
+            var abilityRadius = abilities.Length > 0 ? abilities[0].Config.Radius : 0;
+            var baseDistance = abilityRadius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
+            var stopDistance = abilities.Length > 0 && abilityRadius != 0 ? baseDistance : float.MaxValue;
+            var targetTransform = TransformLookup[targetCharacter];
+            var direction = targetTransform.Position - TransformLookup.GetRefRO(entity).ValueRO.Position;
             
-            if (!TransformLookup.HasComponent(targetCharacter)) 
+            if (TransformLookup.HasComponent(targetCharacter)) 
             {
-                physicsVelocity.Linear = float3.zero;
-                return;
+                float distance = math.length(direction);
+                if (distance > stopDistance)
+                {
+                    float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                    velocity = moveDir * Speed;
+                }
             }
+            float3 currentVelocity = physicsVelocity.Linear;
+            physicsVelocity.Linear = new float3(
+                velocity.x + externalVelocity.Value.x,
+                currentVelocity.y + externalVelocity.Value.y,
+                velocity.z + externalVelocity.Value.z);
 
-            LocalTransform targetTransform = TransformLookup[targetCharacter];
-            float3 direction = targetTransform.Position - TransformLookup.GetRefRO(entity).ValueRO.Position;
-            float distance = math.length(direction);
-            if (distance > stopDistance)
-            {
-                float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
-                physicsVelocity.Linear = moveDir * Speed;
-            }
-            else
-            {
-                physicsVelocity.Linear = float3.zero;
-            }
-
-            float3 targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
-            quaternion targetRot = quaternion.LookRotationSafe(targetDir, math.up());
+            var targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
+            var targetRot = quaternion.LookRotationSafe(targetDir, math.up());
             TransformLookup.GetRefRW(entity).ValueRW.Rotation = math.slerp(TransformLookup.GetRefRO(entity).ValueRO.Rotation, targetRot, RotationSpeed * DeltaTime);
             physicsVelocity.Angular = float3.zero;
         }

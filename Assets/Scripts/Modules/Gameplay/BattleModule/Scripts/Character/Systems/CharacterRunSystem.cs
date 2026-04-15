@@ -15,7 +15,7 @@ namespace vikwhite.ECS
             {
                 var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(entity);
                 var param = animator[(int)AnimationID.Running];
-                param.BoolValue = math.length(transform.ValueRO.Position - previous.ValueRO.Value) > 0.01f;
+                param.BoolValue = transform.ValueRO.Position.y < 0.001f && math.length(transform.ValueRO.Position - previous.ValueRO.Value) > 0.01f;
                 animator[(int)AnimationID.Running] = param;
             }
         }
