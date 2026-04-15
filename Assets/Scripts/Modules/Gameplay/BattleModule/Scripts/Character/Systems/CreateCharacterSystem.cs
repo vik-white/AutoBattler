@@ -26,6 +26,7 @@ namespace vikwhite.ECS
                     Scale = config.Scale
                 });
                 ecb.AddComponent(character, new PreviousPosition { Value = request.ValueRO.Position });
+                ecb.AddComponent<MoveDistance>(character);
                 
                 var mass = PhysicsHandler.CreateFreezeRotationMass(config.Collider.Value.MassProperties);
                 mass.InverseMass = config.Mass;

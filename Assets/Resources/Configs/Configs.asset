@@ -187,16 +187,16 @@ MonoBehaviour:
         Level: 1
   squad:
     IDS:
-    - Assassin
+    - Tank
     - Healer
     - Mage
-    - Tank
+    - Assassin
     - Support
     Data:
-    - ID: Assassin
+    - ID: Tank
     - ID: Healer
     - ID: Mage
-    - ID: Tank
+    - ID: Assassin
     - ID: Support
   map:
     IDS: []
@@ -412,7 +412,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
+      ImpulseUp: 1
       ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 1
@@ -440,7 +440,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
+      ImpulseUp: 1
       ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 2
@@ -468,7 +468,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
+      ImpulseUp: 1
       ImpulseProvider: 1
     - AbilityID: RangeAttack
       Level: 3
@@ -496,7 +496,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
+      ImpulseUp: 1
       ImpulseProvider: 1
     - AbilityID: RangeAttackAOE
       Level: 0
