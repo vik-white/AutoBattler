@@ -10,6 +10,7 @@ namespace vikwhite.ECS
             var healths = SystemAPI.GetComponentLookup<Health>();
             var shields = SystemAPI.GetComponentLookup<Shield>();
             var shieldMaxes = SystemAPI.GetComponentLookup<ShieldMax>();
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<DamageEffect>())
             {
                 var character = target.ValueRO.Value;
@@ -39,6 +40,7 @@ namespace vikwhite.ECS
                 
                 healths[character] = new Health { Value = healths[character].Value - damage };
             }
+            ecb.Playback(state.EntityManager);
         }
     }
 }

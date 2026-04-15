@@ -6,7 +6,7 @@ using UnityEngine;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(EffectsSystemGroup))]
-    [UpdateAfter(typeof(AOEEffectSystem))]
+    [UpdateAfter(typeof(CreateEffectVFXSystem))]
     public partial struct CreateEffectImpulseSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
