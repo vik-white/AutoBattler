@@ -1,7 +1,6 @@
 using Unity.Entities;
 using Unity.Rendering;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -10,18 +9,24 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (children, entity) in SystemAPI.Query<DynamicBuffer<Child>>().WithAny<Character>().WithNone<RenderEntity>().WithEntityAccess())
+            foreach (var (children, character, entity) in SystemAPI.Query<DynamicBuffer<Child>, RefRO<Character>>().WithNone<RenderEntity>().WithEntityAccess())
             {
-                foreach (var child in children)
+                var renderEntities = ecb.AddBuffer<RenderEntity>(entity);
+                var config = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
+                var materialInfo = new MaterialMeshInfo{
+                    MaterialID = config.MaterialID,
+                    MeshID  = config.MeshID,
+                    SubMesh = 0,
+                };
+                for (int i = 0; i < children.Length; i++)
                 {
+                    var child = children[i];
                     if (state.EntityManager.HasComponent<RenderMeshArray>(child.Value))
                     {
-                        var materialInfo = SystemAPI.GetComponent<MaterialMeshInfo>(child.Value);
-                        ecb.AddComponent(entity, new RenderEntity { Entity = child.Value, Material = materialInfo.Material });
-                        goto NextEntity;
+                        ecb.SetComponent(child.Value, materialInfo);
+                        renderEntities.Add(new RenderEntity { Entity = child.Value, MaterialIndex = materialInfo.Material });
                     }
                 }
-                NextEntity:;
             }
             ecb.Playback(state.EntityManager);
         }

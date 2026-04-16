@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.VFXConfigsAuthoring
   Flash: {fileID: 7399485676126892887, guid: d4e0c067f4fd9724ab2206c6662af450, type: 3}
+  FlashMaterial: {fileID: 2100000, guid: 50a648589ded001408d1162828b08f5a, type: 2}
 --- !u!114 &4361579178198901678
 MonoBehaviour:
   m_ObjectHideFlags: 0

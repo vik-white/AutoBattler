@@ -28,7 +28,6 @@ namespace vikwhite
         {
             BattleHUD.Show();
             ECSWorld.Enable<InitializeTimeSystem>();
-            ECSWorld.Enable<InitializeVFXSystem>();
             ECSWorld.CreateEntity(new InitializeSquad());
             if(_locationProvider.Type == LocationType.Static) 
                 ECSWorld.CreateEntity(new InitializeStaticEnemies{ ID = _locationProvider.ID.CalculateHash32() });

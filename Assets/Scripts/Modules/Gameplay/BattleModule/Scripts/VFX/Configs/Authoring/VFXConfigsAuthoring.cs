@@ -6,17 +6,16 @@ namespace vikwhite.ECS
 {
     public class VFXConfigsAuthoring: MonoBehaviour
     {
-        public GameObject Flash;
+        public Material FlashMaterial;
     }
 
     public class VFXConfigsAuthoringBaker : Baker<VFXConfigsAuthoring>
     {
-        public override void Bake(VFXConfigsAuthoring authoring) {  
+        public override void Bake(VFXConfigsAuthoring authoring) {
+            var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             var entity = GetEntity(TransformUsageFlags.None);
-            AddComponent(entity, new VFXConfig
-            {
-                Flash = GetEntity(authoring.Flash, TransformUsageFlags.Dynamic)
-            });
+            var newFlashMaterialInfo = new MaterialMeshInfo { MaterialID = entitiesGraphicsSystem.RegisterMaterial(authoring.FlashMaterial) };
+            AddComponent(entity, new VFXConfig { FlashMaterial = newFlashMaterialInfo.Material });
         }
     }
 }

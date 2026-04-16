@@ -1,10 +1,10 @@
 using Unity.Entities;
+using UnityEngine.Rendering;
 
 namespace vikwhite.ECS
 {
     public struct VFXConfig : IComponentData
     {
-        public Entity Flash;
         public int FlashMaterial;
     }
 }

@@ -3,6 +3,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Rendering;
 using UnityEngine;
 using vikwhite.Data;
 using CapsuleCollider = Unity.Physics.CapsuleCollider;
@@ -27,9 +28,12 @@ namespace vikwhite.ECS
 
         private CharacterConfig CreateCharacterConfig(ICharacterData data)
         {
+            var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             var prefab = Resources.Load<GameObject>($"Characters/{data.Prefab}/{data.Prefab}");
+            var skinnedMeshRenderer = prefab.GetComponentInChildren<SkinnedMeshRenderer>();
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
             var entity = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
+            
             var collider = CapsuleCollider.Create(new CapsuleGeometry
             {
                 Vertex0 = new float3(0, 0, 0), 
@@ -53,6 +57,8 @@ namespace vikwhite.ECS
                 ActiveAbility = data.ActiveAbility.CalculateHash32(),
                 Abilities = abilities,
                 ColliderRadius = prefabCollider.radius * data.Scale,
+                MaterialID = entitiesGraphicsSystem.RegisterMaterial(skinnedMeshRenderer.sharedMaterial),
+                MeshID = entitiesGraphicsSystem.RegisterMesh(skinnedMeshRenderer.sharedMesh)
             };
         }
     }

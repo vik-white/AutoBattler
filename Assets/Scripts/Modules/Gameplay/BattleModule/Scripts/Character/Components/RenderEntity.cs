@@ -2,9 +2,9 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    public struct RenderEntity : IComponentData
+    public struct RenderEntity : IBufferElementData
     {
         public Entity Entity;
-        public int Material;
+        public int MaterialIndex;
     }
 }
