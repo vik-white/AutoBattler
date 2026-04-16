@@ -240,9 +240,14 @@ public partial class SkinnedMeshBaker: Baker<SkinnedMeshRenderer>
 		var materialBaseIndex = math.select(0, materialIndex, materialIndex >= 0);
 		var materialsCount = math.select(a.sharedMaterials.Length, 1, materialIndex >= 0);
 		var mmi = MaterialMeshInfo.FromMaterialMeshIndexRange(materialBaseIndex, materialsCount);
+		//	If one material per render entity is enforced, use direct mesh and material indexing scheme. It is convenient for modification in editor via entity inspector,
+		//	and in user code
+		if (a.GetComponent<SkinnedMeshSplitOnSubmeshEntitiesAuthoring>())
+			mmi = MaterialMeshInfo.FromRenderMeshArrayIndices(materialIndex, 0, (ushort)materialIndex);
 		var materialList = new ReadOnlySpan<Material>(rma.GetMaterials(mmi).ToArray());
 		
 		var componentFlags = RenderMeshUtility.EntitiesGraphicsComponentFlags.UseRenderMeshArray;
+
 		componentFlags.AppendMotionAndProbeFlags(rmd, false);
 		componentFlags.AppendPerVertexMotionPassFlag(materialList);
 		componentFlags.AppendDepthSortedFlag(rma.GetMaterials(mmi));

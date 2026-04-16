@@ -908,6 +908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172805978646487691}
   - component: {fileID: 3398499995214032434}
+  - component: {fileID: 1902492835335442312}
   m_Layer: 0
   m_Name: LP2
   m_TagString: Untagged
@@ -955,6 +956,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: 2ad61f0dd3fc57949b47431ee9495baa, type: 2}
   - {fileID: 2100000, guid: 2ad61f0dd3fc57949b47431ee9495baa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -1018,6 +1020,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.019288942, y: 0.06968346, z: -0.0016197562}
     m_Extent: {x: 0.44956607, y: 0.63932073, z: 0.3014267}
   m_DirtyAABB: 0
+--- !u!114 &1902492835335442312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5578784612588188035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85397f545e9af0d46a662a904602b3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Rukhanka.Hybrid::Rukhanka.Hybrid.SkinnedMeshSplitOnSubmeshEntitiesAuthoring
 --- !u!1 &5606468725174619998
 GameObject:
   m_ObjectHideFlags: 0
