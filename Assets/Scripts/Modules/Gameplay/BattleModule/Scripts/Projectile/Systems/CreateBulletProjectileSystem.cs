@@ -1,3 +1,4 @@
+using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -12,10 +13,11 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateBulletProjectile>>()) {
                 var ability = request.ValueRO.Ability;
                 var projectile = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
+                var position = request.ValueRO.Position + new float3(0, 0.5f, 0);
                 ecb.AddComponent<SceneEntity>(projectile);
                 ecb.AddComponent<Projectile>(projectile);
                 ecb.SetComponent(projectile, new LocalTransform {
-                    Position = request.ValueRO.Position + new float3(0, 0.5f, 0),
+                    Position = position,
                     Rotation = request.ValueRO.Rotation,
                     Scale = ability.Projectile.Scale
                 });
@@ -29,6 +31,8 @@ namespace vikwhite.ECS
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
+
+                ecb.CreateFrameEntity(new CreateFollowPrefabEvent { ID = "VFX_Trail_Fire".CalculateHash32(), Position = position, Entity = projectile });
             }
             ecb.Playback(state.EntityManager);
         }

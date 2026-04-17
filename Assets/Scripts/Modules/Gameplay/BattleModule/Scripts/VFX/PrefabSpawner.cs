@@ -3,19 +3,31 @@ using Rukhanka.Toolbox;
 using UnityEngine;
 using vikwhite.ECS;
 
-public class PrefabSpawner : MonoBehaviour
+namespace vikwhite
 {
-    public List<GameObject> Prefabs;
-
-    private void Awake()
+    public class PrefabSpawner : MonoBehaviour
     {
-        CreatePrefabEventSystem.OnExecute += CreatePrefab;
-    }
+        public List<GameObject> Prefabs;
 
-    private void CreatePrefab(CreatePrefabEvent evnt)
-    {
-        var prefab = Prefabs.Find(e => e.name.CalculateHash32() == evnt.ID);
-        var go = Instantiate(prefab);
-        go.transform.position = evnt.Position;
+        private void Awake()
+        {
+            CreatePrefabEventSystem.OnExecute += CreatePrefab;
+            CreateFollowPrefabEventSystem.OnExecute += CreateFollowPrefab;
+        }
+
+        private void CreatePrefab(CreatePrefabEvent evnt)
+        {
+            var prefab = Prefabs.Find(e => e.name.CalculateHash32() == evnt.ID);
+            var go = Instantiate(prefab);
+            go.transform.position = evnt.Position;
+        }
+        
+        private void CreateFollowPrefab(CreateFollowPrefabEvent evnt)
+        {
+            var prefab = Prefabs.Find(e => e.name.CalculateHash32() == evnt.ID);
+            var go = Instantiate(prefab);
+            go.transform.position = evnt.Position;
+            go.GetComponent<FollowEntity>().Initialize(evnt.Entity);
+        }
     }
 }

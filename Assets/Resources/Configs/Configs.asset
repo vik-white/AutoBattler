@@ -574,8 +574,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 1753136415
+      VFXSpawn: 1
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -820,8 +820,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 134487697
-      VFXSpawn: 3
+      VFXPrefab: 924429854
+      VFXSpawn: 1
     - AbilityID: Assassin
       Level: 0
       Type: 3
