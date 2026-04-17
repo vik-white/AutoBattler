@@ -34,7 +34,6 @@ namespace vikwhite.ECS
         public float DeltaTime;
         public float Speed;
         public float RotationSpeed;
-        public float ColliderRadius;
         [ReadOnly] 
         [NativeDisableContainerSafetyRestriction] 
         public ComponentLookup<LocalTransform> TransformLookup;

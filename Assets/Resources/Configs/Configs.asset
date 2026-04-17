@@ -279,7 +279,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 1
-      Radius: 0.3
+      Radius: 0.5
       AOE: 0
       Prefab: 
       Targets: 
@@ -309,7 +309,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 1.2
-      Radius: 0.3
+      Radius: 0.5
       AOE: 0
       Prefab: 
       Targets: 
@@ -339,7 +339,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 2
-      Radius: 0.3
+      Radius: 0.5
       AOE: 0
       Prefab: 
       Targets: 
@@ -369,7 +369,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 2
-      Radius: 0.3
+      Radius: 0.5
       AOE: 0
       Prefab: 
       Targets: 
