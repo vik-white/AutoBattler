@@ -1,4 +1,5 @@
 using Unity.Entities;
+using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -40,8 +41,9 @@ namespace vikwhite.ECS
                             Data = stat, 
                         });
                     }
-                    
-                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack });
+
+                    var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
                 }
             }
             ecb.Playback(state.EntityManager);

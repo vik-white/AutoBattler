@@ -15,5 +15,6 @@ namespace vikwhite.ECS
     {
         public Entity Character;
         public AnimationID ID;
+        public float Speed;
     }
 }

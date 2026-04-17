@@ -15,6 +15,11 @@ namespace vikwhite.ECS
                 var param = animator[(int)animation.ValueRO.ID];
                 param.SetTrigger();
                 animator[(int)animation.ValueRO.ID] = param;
+
+                var animatorLayers = SystemAPI.GetBuffer<AnimatorControllerLayerComponent>(animation.ValueRO.Character);
+                var layer = animatorLayers[0];
+                layer.speed = animation.ValueRO.Speed;
+                animatorLayers[0] = layer;
             }
         }
     }
