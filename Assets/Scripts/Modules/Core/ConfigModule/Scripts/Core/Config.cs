@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Reflection;
 using System.Globalization;
+using Rukhanka.Toolbox;
 
 namespace vikwhite.Data
 {
@@ -188,11 +189,12 @@ namespace vikwhite.Data
                         field.SetValue(data, value != "" ? float.Parse(value, CultureInfo.InvariantCulture) : 0f);
                     } 
                     else if(field.FieldType == typeof(bool)) field.SetValue(data, row[field.Name] != "" ? row[field.Name] == "TRUE" : false);
+                    else if(field.FieldType == typeof(uint)) field.SetValue(data, row[field.Name] != "" ? row[field.Name].CalculateHash32() : 0);
                     //else if(field.FieldType == typeof(GameObject)) field.SetValue(data, ResourcesEx.Load<GameObject>(Constants.Directories.Prefabs.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Sprite)) field.SetValue(data, ResourcesEx.Load<Sprite>(Constants.Directories.Images.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Material)) field.SetValue(data, ResourcesEx.Load<Material>(Constants.Directories.Materials.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Color)) field.SetValue(data, row[field.Name] != "" ? ColorUtils.FromHex(row[field.Name]) : Color.white);
-                    else if(field.FieldType.IsEnum) field.SetValue(data, (int)Enum.Parse(field.FieldType, row[field.Name]));
+                    else if(field.FieldType.IsEnum) field.SetValue(data, row[field.Name] != "" ? (int)Enum.Parse(field.FieldType, row[field.Name]) : 0 );
                 }
             }
             if (data is ICustomJsonParser parser) parser.Parse(row);

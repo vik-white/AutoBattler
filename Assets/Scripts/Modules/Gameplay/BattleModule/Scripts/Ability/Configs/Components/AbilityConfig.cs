@@ -27,6 +27,8 @@ namespace vikwhite.ECS
         public FixedList64Bytes<AbilityLevelData> Abilities;
         public float ImpulseUp;
         public float ImpulseProvider;
+        public uint VFXPrefab;
+        public VFXSpawnType VFXSpawn;
         
         public uint GetRandomSpawnCharacter()
         {

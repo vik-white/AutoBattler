@@ -302,6 +302,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: MeleeAttack
       Level: 0
       Type: 1
@@ -330,6 +332,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -358,6 +362,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: MeleeAttack
       Level: 2
       Type: 1
@@ -386,6 +392,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -414,6 +422,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -442,6 +452,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: RangeAttack
       Level: 2
       Type: 0
@@ -470,6 +482,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: RangeAttack
       Level: 3
       Type: 0
@@ -498,6 +512,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: RangeAttackAOE
       Level: 0
       Type: 0
@@ -526,6 +542,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
@@ -556,6 +574,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -586,6 +606,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 3084515425
+      VFXSpawn: 1
     - AbilityID: ShieldBuff
       Level: 0
       Type: 3
@@ -614,6 +636,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
@@ -642,6 +666,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: AggroBuff
       Level: 0
       Type: 4
@@ -670,6 +696,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -698,6 +726,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -728,6 +758,8 @@ MonoBehaviour:
         Level: 1
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: Healer
       Level: 0
       Type: 5
@@ -758,6 +790,8 @@ MonoBehaviour:
         Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: Mage
       Level: 0
       Type: 3
@@ -786,6 +820,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: Assassin
       Level: 0
       Type: 3
@@ -815,6 +851,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: Support
       Level: 0
       Type: 3
@@ -844,6 +882,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5
@@ -874,3 +914,5 @@ MonoBehaviour:
         Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
+      VFXPrefab: 0
+      VFXSpawn: 0

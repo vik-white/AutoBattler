@@ -35,6 +35,8 @@ namespace vikwhite.Data
         List<AbilityLevelData> Abilities { get; }
         float ImpulseUp { get; }
         float ImpulseProvider { get; }
+        uint VFXPrefab { get; }
+        VFXSpawnType VFXSpawn { get; }
     }
     
     [Serializable]
@@ -66,6 +68,8 @@ namespace vikwhite.Data
         public List<AbilityLevelData> Abilities;
         public float ImpulseUp;
         public float ImpulseProvider;
+        public uint VFXPrefab;
+        public VFXSpawnType VFXSpawn;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -93,6 +97,8 @@ namespace vikwhite.Data
         List<AbilityLevelData> IAbilityData.Abilities => Abilities;
         float IAbilityData.ImpulseUp => ImpulseUp;
         float IAbilityData.ImpulseProvider => ImpulseProvider;
+        uint IAbilityData.VFXPrefab => VFXPrefab;
+        VFXSpawnType IAbilityData.VFXSpawn => VFXSpawn;
         
         public void Parse(Dictionary<string, string> row)
         {
