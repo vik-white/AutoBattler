@@ -636,8 +636,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 1260972034
+      VFXSpawn: 1
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
@@ -666,8 +666,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 1260972034
+      VFXSpawn: 1
     - AbilityID: AggroBuff
       Level: 0
       Type: 4
@@ -675,7 +675,7 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: Aura
+      Prefab: 
       Targets: 
       Stats: []
       Effects:
