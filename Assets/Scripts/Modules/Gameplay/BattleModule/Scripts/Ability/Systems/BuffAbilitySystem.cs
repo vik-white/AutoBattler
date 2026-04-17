@@ -49,6 +49,8 @@ namespace vikwhite.ECS
                         {
                             ecb.CreateFrameEntity(new CreateStatChange 
                             {
+                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                                Provider = entity,
                                 Target = target, 
                                 Data = stat, 
                             });

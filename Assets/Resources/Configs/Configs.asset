@@ -302,8 +302,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 2981183640
+      VFXSpawn: 3
     - AbilityID: MeleeAttack
       Level: 0
       Type: 1
@@ -332,8 +332,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 2981183640
+      VFXSpawn: 3
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -362,8 +362,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 2981183640
+      VFXSpawn: 3
     - AbilityID: MeleeAttack
       Level: 2
       Type: 1
@@ -392,8 +392,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 2981183640
+      VFXSpawn: 3
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -422,8 +422,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -452,8 +452,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: RangeAttack
       Level: 2
       Type: 0
@@ -482,8 +482,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: RangeAttack
       Level: 3
       Type: 0
@@ -512,8 +512,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 1
       ImpulseProvider: 1
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: RangeAttackAOE
       Level: 0
       Type: 0
@@ -542,8 +542,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
@@ -726,8 +726,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -820,8 +820,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 134487697
+      VFXSpawn: 3
     - AbilityID: Assassin
       Level: 0
       Type: 3
@@ -851,8 +851,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 1370670325
+      VFXSpawn: 1
     - AbilityID: Support
       Level: 0
       Type: 3
@@ -882,8 +882,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 1319076377
+      VFXSpawn: 1
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5

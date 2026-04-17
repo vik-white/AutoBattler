@@ -34,6 +34,8 @@ namespace vikwhite.ECS
                     foreach (var stat in ability.Config.Stats) {
                         ecb.CreateFrameEntity(new CreateStatChange 
                         {
+                            Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                            Provider = entity,
                             Target = target.ValueRO.Value, 
                             Data = stat, 
                         });

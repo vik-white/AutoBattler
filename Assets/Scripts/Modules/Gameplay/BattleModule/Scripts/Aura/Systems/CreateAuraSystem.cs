@@ -30,7 +30,7 @@ namespace vikwhite
                 ecb.AddComponent(aura, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(aura, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent(aura, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(aura, new Stats{ Array = ability.Stats });
+                ecb.AddComponent(aura, new Stats{ Array = ability.Stats, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent<FollowingProvider>(aura);
                 ecb.AddBuffer<CollisionTarget>(aura);
             }

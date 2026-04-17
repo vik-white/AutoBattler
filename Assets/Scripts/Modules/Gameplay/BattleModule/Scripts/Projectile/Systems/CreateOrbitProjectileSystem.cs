@@ -26,7 +26,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new OrbitMovement{ Radius = ability.Projectile.OrbitRadius, Phase = request.ValueRO.Phase });
                 ecb.AddComponent(projectile, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(projectile, new Stats{ Array = ability.Stats });
+                ecb.AddComponent(projectile, new Stats{ Array = ability.Stats, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
