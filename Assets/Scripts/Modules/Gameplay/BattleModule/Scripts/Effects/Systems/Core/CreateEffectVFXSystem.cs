@@ -22,6 +22,8 @@ namespace vikwhite.ECS
                 if(ability.VFXPrefab == 0) continue;
 
                 var characterPosition = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Target).Position;
+                var id = SystemAPI.GetComponent<Character>(request.ValueRO.Target).ID;
+                var config = characterConfig.Get(id);
                 var position = characterPosition;
                 if (ability.VFXSpawn == VFXSpawnType.Forward)
                 {
@@ -29,12 +31,12 @@ namespace vikwhite.ECS
                     if (request.ValueRO.Target != request.ValueRO.Provider)
                     {
                         var providerPosition = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Provider).Position;
-                        var id = SystemAPI.GetComponent<Character>(request.ValueRO.Target).ID;
-                        var config = characterConfig.Get(id);
                         var colliderRadius = config.ColliderRadius;
                         var direction = math.normalize(providerPosition - characterPosition) * colliderRadius;
                         position = characterPosition + new float3(direction.x, 0.5f, direction.z);
                     }
+                }else if(ability.VFXSpawn == VFXSpawnType.Top){
+                    position += new float3(0, config.Scale, 0);
                 }
 
                 ecb.CreateFrameEntity(new CreatePrefabEvent { ID = ability.VFXPrefab, Position = position });

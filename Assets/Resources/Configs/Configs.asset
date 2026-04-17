@@ -675,7 +675,7 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
+      Prefab: Aura
       Targets: 
       Stats: []
       Effects:
@@ -696,8 +696,8 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      VFXPrefab: 0
-      VFXSpawn: 0
+      VFXPrefab: 686645142
+      VFXSpawn: 2
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
