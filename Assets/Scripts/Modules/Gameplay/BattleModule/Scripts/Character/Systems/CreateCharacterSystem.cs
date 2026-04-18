@@ -50,7 +50,8 @@ namespace vikwhite.ECS
                             abilities.Add(new Ability { Config = abilityChildConfig, IsChild = true });
                         }    
                     }
-                    abilities.Add(new Ability { Config = abilityConfig });
+                    var cooldown = config.ActiveAbility != ability.ID ? abilityConfig.Cooldown : 0;
+                    abilities.Add(new Ability { Config = abilityConfig, Cooldown = cooldown });
                 }
                 if(config.ActiveAbility != 0) ecb.AddComponent(character, new ActiveAbility{ Value = config.ActiveAbility });
                 
