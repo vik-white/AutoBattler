@@ -32,7 +32,7 @@ MonoBehaviour:
     Data:
     - ID: Dummy
       Prefab: Sceleton
-      Scale: 1
+      Scale: 1.3
       Mass: 0.0001
       Health: 5000
       Shield: 100
@@ -41,7 +41,7 @@ MonoBehaviour:
       Abilities: []
     - ID: IronfistDwarf
       Prefab: IronfistDwarf
-      Scale: 1
+      Scale: 1.3
       Mass: 0.0001
       Health: 2500
       Shield: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
         Level: 0
     - ID: Tank
       Prefab: IronfistDwarfRed
-      Scale: 1.3
+      Scale: 1.69
       Mass: 0.0001
       Health: 1400
       Shield: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
         Level: 0
     - ID: Healer
       Prefab: IronfistDwarfGreen
-      Scale: 0.8
+      Scale: 1.04
       Mass: 0.0001
       Health: 700
       Shield: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
         Level: 0
     - ID: Mage
       Prefab: IronfistDwarfBlue
-      Scale: 0.8
+      Scale: 1.04
       Mass: 0.0001
       Health: 650
       Shield: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
         Level: 0
     - ID: Assassin
       Prefab: IronfistDwarfPurple
-      Scale: 1
+      Scale: 1.3
       Mass: 0.0001
       Health: 750
       Shield: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
         Level: 0
     - ID: Support
       Prefab: IronfistDwarf
-      Scale: 0.8
+      Scale: 1.04
       Mass: 0.0001
       Health: 650
       Shield: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
         Level: 0
     - ID: Enemy
       Prefab: Sceleton
-      Scale: 1
+      Scale: 1.3
       Mass: 1
       Health: 800
       Shield: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
         Level: 1
     - ID: Enemy1
       Prefab: Sceleton
-      Scale: 1
+      Scale: 1.3
       Mass: 1
       Health: 700
       Shield: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
         Level: 0
     - ID: EnemyRange
       Prefab: Sceleton
-      Scale: 0.7
+      Scale: 0.91
       Mass: 1
       Health: 500
       Shield: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
         Level: 3
     - ID: Sceleton
       Prefab: Sceleton
-      Scale: 0.7
+      Scale: 0.91
       Mass: 1
       Health: 5
       Shield: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
         Level: 0
     - ID: SceletonBoss
       Prefab: Sceleton
-      Scale: 2
+      Scale: 2.6
       Mass: 0.25
       Health: 3200
       Shield: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
         Level: 0
     - ID: Sceletonminiboss
       Prefab: Sceleton
-      Scale: 0.7
+      Scale: 0.91
       Mass: 1
       Health: 250
       Shield: 0
