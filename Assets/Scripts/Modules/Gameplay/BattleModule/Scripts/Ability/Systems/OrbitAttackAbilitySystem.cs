@@ -24,7 +24,7 @@ namespace vikwhite.ECS
                             Position = transform.ValueRO.Position,
                             Phase = phase,
                         });
-                        ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = 1});
+                        //ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = 1});
                     }
                 }
             }

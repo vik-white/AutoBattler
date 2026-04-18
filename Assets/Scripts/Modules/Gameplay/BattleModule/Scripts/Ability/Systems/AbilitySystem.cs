@@ -47,14 +47,21 @@ namespace vikwhite.ECS
                                 
                                 if (ability.Config.Type != AbilityType.Abilities)
                                 {
-                                    ability.IsActivate = true;
+                                    ability.IsAnimation = true;
+                                    var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
                                 }
                                 else
                                 {
                                     for (int j = 0; j < abilities.Length; j++)
                                     {
                                         ref var abilityChild = ref abilities.ElementAt(j);
-                                        if(abilityChild.IsChild) abilityChild.IsActivate = true;
+                                        if (abilityChild.IsChild)
+                                        {
+                                            abilityChild.IsAnimation = true;
+                                            var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                                            ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                        }
                                     }
                                 }
                             }
@@ -69,14 +76,21 @@ namespace vikwhite.ECS
 
                                 if (ability.Config.Type != AbilityType.Abilities)
                                 {
-                                    ability.IsActivate = true;
+                                    ability.IsAnimation = true;
+                                    var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
                                 }
                                 else
                                 {
                                     for (int j = 0; j < abilities.Length; j++)
                                     {
                                         ref var abilityChild = ref abilities.ElementAt(j);
-                                        if(abilityChild.IsChild) abilityChild.IsActivate = true;
+                                        if (abilityChild.IsChild)
+                                        {
+                                            abilityChild.IsAnimation = true;
+                                            var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
+                                            ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                        }
                                     }
                                 }
                             }
