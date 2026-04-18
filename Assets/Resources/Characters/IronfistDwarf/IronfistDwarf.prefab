@@ -627,7 +627,7 @@ MonoBehaviour:
   boneStrippingMask: {fileID: 0}
   hasAnimationEvents: 1
   hasAnimatorControllerEvents: 0
-  animationEngine: 1
+  animationEngine: 0
 --- !u!136 &6044030589866668699
 CapsuleCollider:
   m_ObjectHideFlags: 0

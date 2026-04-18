@@ -57,6 +57,7 @@ namespace vikwhite.ECS
             }
 
             ecb.CreateFrameEntity(new CreatePrefabEvent { ID = ability.VFXPrefab, Position = position });
+            ecb.CreateFrameEntity(new Animation { Character = targetEntity, Type = AnimationType.Reaction, Speed = 1 });
         }
     }
 }
