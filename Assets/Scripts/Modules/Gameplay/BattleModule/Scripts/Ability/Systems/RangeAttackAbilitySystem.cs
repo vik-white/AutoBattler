@@ -21,9 +21,6 @@ namespace vikwhite.ECS
                         Position = transform.ValueRO.Position + forward,
                         Rotation = transform.ValueRO.Rotation,
                     });
-                    
-                    //var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.DamageMultiply].Value;
-                    //ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
                 }
             }
             ecb.Playback(state.EntityManager);

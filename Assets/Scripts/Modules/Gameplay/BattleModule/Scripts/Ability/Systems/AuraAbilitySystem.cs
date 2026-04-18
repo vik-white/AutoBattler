@@ -18,7 +18,6 @@ namespace vikwhite.ECS
                         Provider = entity,
                         Ability = ability.Config,
                     });
-                    //ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = 1 });
                 }
             }
             ecb.Playback(state.EntityManager);

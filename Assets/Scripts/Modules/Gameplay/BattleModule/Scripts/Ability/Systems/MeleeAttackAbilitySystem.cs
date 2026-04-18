@@ -41,9 +41,6 @@ namespace vikwhite.ECS
                             Data = stat, 
                         });
                     }
-
-                    //var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                    //ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
                 }
             }
             ecb.Playback(state.EntityManager);

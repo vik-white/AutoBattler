@@ -1,7 +1,6 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -12,7 +11,7 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (abilities, transform, character, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>, RefRO<Target>>().WithEntityAccess()) 
+            foreach (var (abilities, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess()) 
             {
                 for (int i = 0; i < abilities.Length; i++)
                 {
@@ -20,6 +19,7 @@ namespace vikwhite.ECS
                     ability.IsActivate = false;
                     
                     if(ability.IsChild) continue;
+                    if(!SystemAPI.HasComponent<Target>(entity)) continue;
                     
                     var activeAbility = SystemAPI.HasComponent<ActiveAbility>(entity) ? SystemAPI.GetComponent<ActiveAbility>(entity).Value : 0;
                     var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
@@ -31,13 +31,14 @@ namespace vikwhite.ECS
                         if (ability.Config.ID != activeAbility)
                         {
                             var distance = float.MaxValue;
+                            var target = SystemAPI.GetComponent<Target>(entity).Value;
                             var characterConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
-                            var targetID = SystemAPI.GetComponent<Character>(target.ValueRO.Value).ID;
+                            var targetID = SystemAPI.GetComponent<Character>(target).ID;
                             var targetConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(targetID);
                             var baseDistance = ability.Config.Radius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
                             if (SystemAPI.HasComponent<Target>(entity))
                             {
-                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target.ValueRO.Value);
+                                var targetTransform = SystemAPI.GetComponent<LocalTransform>(target);
                                 var direction = targetTransform.Position - transform.ValueRO.Position;
                                 distance = math.length(direction);
                             }
@@ -58,6 +59,7 @@ namespace vikwhite.ECS
                                         ref var abilityChild = ref abilities.ElementAt(j);
                                         if (abilityChild.IsChild)
                                         {
+                                            abilityChild.IsActivate = false;
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
                                             ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
@@ -87,6 +89,7 @@ namespace vikwhite.ECS
                                         ref var abilityChild = ref abilities.ElementAt(j);
                                         if (abilityChild.IsChild)
                                         {
+                                            abilityChild.IsActivate = false;
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
                                             ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
