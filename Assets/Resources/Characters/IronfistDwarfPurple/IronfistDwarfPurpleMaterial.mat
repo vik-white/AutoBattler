@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AssassinMaterial
+  m_Name: IronfistDwarfPurpleMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 7263d5d6d5258e3409276edf77a1b0e8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

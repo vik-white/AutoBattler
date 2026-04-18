@@ -63,6 +63,7 @@ namespace vikwhite.ECS
                         Abilities = CreateAbilities(abilityData.Abilities),
                         ImpulseUp = abilityData.ImpulseUp,
                         ImpulseProvider = abilityData.ImpulseProvider,
+                        CastVFXPrefab =  abilityData.CastVFXPrefab,
                         VFXPrefab =  abilityData.VFXPrefab,
                         VFXSpawn =  abilityData.VFXSpawn,
                         Animation = abilityData.Animation,

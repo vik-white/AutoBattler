@@ -53,7 +53,7 @@ MonoBehaviour:
       - ID: 2496368978
         Level: 0
     - ID: Tank
-      Prefab: Tank
+      Prefab: IronfistDwarfBlue
       Scale: 1.3
       Mass: 0.0001
       Health: 1400
@@ -66,7 +66,7 @@ MonoBehaviour:
       - ID: 1605752999
         Level: 0
     - ID: Healer
-      Prefab: Healer
+      Prefab: IronfistDwarfBlue
       Scale: 0.8
       Mass: 0.0001
       Health: 700
@@ -79,7 +79,7 @@ MonoBehaviour:
       - ID: 370847456
         Level: 0
     - ID: Mage
-      Prefab: Mage
+      Prefab: IronfistDwarfRed
       Scale: 0.8
       Mass: 0.0001
       Health: 650
@@ -92,7 +92,7 @@ MonoBehaviour:
       - ID: 2475848034
         Level: 0
     - ID: Assassin
-      Prefab: Assassin
+      Prefab: IronfistDwarfPurple
       Scale: 1
       Mass: 0.0001
       Health: 750
@@ -105,7 +105,7 @@ MonoBehaviour:
       - ID: 703911167
         Level: 0
     - ID: Support
-      Prefab: Support
+      Prefab: IronfistDwarfGreen
       Scale: 0.8
       Mass: 0.0001
       Health: 650
@@ -302,6 +302,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
       Animation: 1
@@ -333,6 +334,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
       Animation: 1
@@ -364,6 +366,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
       Animation: 1
@@ -395,6 +398,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
       Animation: 1
@@ -426,6 +430,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 1
+      CastVFXPrefab: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -457,6 +462,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 1
+      CastVFXPrefab: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -488,6 +494,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 1
+      CastVFXPrefab: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -519,6 +526,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 1
+      CastVFXPrefab: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -550,6 +558,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 1
+      CastVFXPrefab: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -583,6 +592,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 1753136415
       VFXSpawn: 1
       Animation: 4
@@ -616,6 +626,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 3084515425
       VFXSpawn: 1
       Animation: 4
@@ -647,6 +658,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 1260972034
       VFXSpawn: 1
       Animation: 4
@@ -678,6 +690,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 0
       VFXPrefab: 1260972034
       VFXSpawn: 1
       Animation: 4
@@ -709,6 +722,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 2
       ImpulseProvider: 5
+      CastVFXPrefab: 0
       VFXPrefab: 686645142
       VFXSpawn: 2
       Animation: 4
@@ -740,6 +754,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 1059480427
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 4
@@ -773,6 +788,7 @@ MonoBehaviour:
         Level: 1
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 124269216
       VFXPrefab: 0
       VFXSpawn: 0
       Animation: 4
@@ -806,6 +822,7 @@ MonoBehaviour:
         Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 3276869000
       VFXPrefab: 0
       VFXSpawn: 0
       Animation: 4
@@ -837,6 +854,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 3
       ImpulseProvider: 0
+      CastVFXPrefab: 1059480427
       VFXPrefab: 924429854
       VFXSpawn: 1
       Animation: 4
@@ -869,6 +887,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 1059480427
       VFXPrefab: 1370670325
       VFXSpawn: 1
       Animation: 4
@@ -901,6 +920,7 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 1138347339
       VFXPrefab: 1319076377
       VFXSpawn: 1
       Animation: 4
@@ -934,6 +954,7 @@ MonoBehaviour:
         Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
+      CastVFXPrefab: 124269216
       VFXPrefab: 0
       VFXSpawn: 0
       Animation: 4

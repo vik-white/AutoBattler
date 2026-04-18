@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 6044030589866668699}
   - component: {fileID: 7473148864802303026}
   m_Layer: 0
-  m_Name: Support
+  m_Name: IronfistDwarfRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1102,7 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6020779730227072864}
   - component: {fileID: 4290205344487179932}
-  - component: {fileID: 2833231466965838310}
+  - component: {fileID: 3049503036497606544}
   m_Layer: 0
   m_Name: LP
   m_TagString: Untagged
@@ -1150,8 +1150,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9945d52e8184ba64ba3ce5b245ea455a, type: 2}
-  - {fileID: 2100000, guid: 9945d52e8184ba64ba3ce5b245ea455a, type: 2}
+  - {fileID: 2100000, guid: 8e1ad6e69bb5a6a47a602b17c68da61f, type: 2}
+  - {fileID: 2100000, guid: 8e1ad6e69bb5a6a47a602b17c68da61f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1214,7 +1214,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0077192485, y: -0.01051268, z: 0.065678656}
     m_Extent: {x: 0.52114105, y: 0.57844377, z: 0.369381}
   m_DirtyAABB: 0
---- !u!114 &2833231466965838310
+--- !u!114 &3049503036497606544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

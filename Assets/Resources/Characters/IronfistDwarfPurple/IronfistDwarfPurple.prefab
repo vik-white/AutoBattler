@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 6044030589866668699}
   - component: {fileID: 7473148864802303026}
   m_Layer: 0
-  m_Name: Healer
+  m_Name: IronfistDwarfPurple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1102,7 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6020779730227072864}
   - component: {fileID: 4290205344487179932}
-  - component: {fileID: 5092215553131139610}
+  - component: {fileID: 171376870535014699}
   m_Layer: 0
   m_Name: LP
   m_TagString: Untagged
@@ -1150,8 +1150,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 549003fb7e9e2de4ea21371e0374463e, type: 2}
-  - {fileID: 2100000, guid: 549003fb7e9e2de4ea21371e0374463e, type: 2}
+  - {fileID: 2100000, guid: a26656a5d93aaf843a6f7f05d3e3d028, type: 2}
+  - {fileID: 2100000, guid: a26656a5d93aaf843a6f7f05d3e3d028, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1214,7 +1214,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0077192485, y: -0.01051268, z: 0.065678656}
     m_Extent: {x: 0.52114105, y: 0.57844377, z: 0.369381}
   m_DirtyAABB: 0
---- !u!114 &5092215553131139610
+--- !u!114 &171376870535014699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

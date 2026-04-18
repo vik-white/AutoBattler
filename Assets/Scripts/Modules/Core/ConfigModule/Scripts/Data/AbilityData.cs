@@ -35,6 +35,7 @@ namespace vikwhite.Data
         List<AbilityLevelData> Abilities { get; }
         float ImpulseUp { get; }
         float ImpulseProvider { get; }
+        uint CastVFXPrefab { get; }
         uint VFXPrefab { get; }
         VFXSpawnType VFXSpawn { get; }
         AnimationType Animation { get; }
@@ -69,6 +70,7 @@ namespace vikwhite.Data
         public List<AbilityLevelData> Abilities;
         public float ImpulseUp;
         public float ImpulseProvider;
+        public uint CastVFXPrefab;
         public uint VFXPrefab;
         public VFXSpawnType VFXSpawn;
         public AnimationType Animation;
@@ -99,6 +101,7 @@ namespace vikwhite.Data
         List<AbilityLevelData> IAbilityData.Abilities => Abilities;
         float IAbilityData.ImpulseUp => ImpulseUp;
         float IAbilityData.ImpulseProvider => ImpulseProvider;
+        uint IAbilityData.CastVFXPrefab => CastVFXPrefab;
         uint IAbilityData.VFXPrefab => VFXPrefab;
         VFXSpawnType IAbilityData.VFXSpawn => VFXSpawn;
         AnimationType IAbilityData.Animation => Animation;

@@ -400,7 +400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VFXHandler
   Prefabs:
   - {fileID: 2701829308083733737, guid: 2a4ec162f75082e408e39868b98886ea, type: 3}
-  - {fileID: 2701829308083733737, guid: 46f6b251545fe1142af26c683deb4379, type: 3}
   - {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
   - {fileID: 9017484664307500583, guid: b84dabac66540d449af9374c755d78b8, type: 3}
   - {fileID: 9017484664307500583, guid: e02daf9145607ac40a3aca85154d0a85, type: 3}
@@ -413,6 +412,10 @@ MonoBehaviour:
   - {fileID: 5570919014459195046, guid: 71c6707e82b91fe4586f42e66b6049be, type: 3}
   - {fileID: 2613462060424995206, guid: 101a8868c1adc5b40bdaf7526f47b7b5, type: 3}
   - {fileID: 1811446165255543267, guid: 42c41a4385cd39047ba04c7eb775744f, type: 3}
+  - {fileID: 1811446165255543267, guid: 713bbe8683af2ba4188bf61e1e1a3357, type: 3}
+  - {fileID: 1811446165255543267, guid: d9d3e52881f8dec4cbed3dd363fba0fe, type: 3}
+  - {fileID: 1811446165255543267, guid: 9690bf9dc5943e14ba13e19479fc138b, type: 3}
+  - {fileID: 1811446165255543267, guid: 6f68628f96d30534bb9255ffc23c504e, type: 3}
 --- !u!1 &2031485601
 GameObject:
   m_ObjectHideFlags: 0

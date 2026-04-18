@@ -51,6 +51,7 @@ namespace vikwhite.ECS
                                     ability.IsAnimation = true;
                                     var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
                                     ecb.CreateFrameEntity(new Animation { Character = entity, Type = ability.Config.Animation, Speed = speedMultiply });
+                                    if(ability.Config.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = ability.Config.CastVFXPrefab, Position = transform.ValueRO.Position });
                                 }
                                 else
                                 {
@@ -63,6 +64,7 @@ namespace vikwhite.ECS
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
                                             ecb.CreateFrameEntity(new Animation { Character = entity, Type = abilityChild.Config.Animation, Speed = speedMultiply });
+                                            if(abilityChild.Config.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = abilityChild.Config.CastVFXPrefab, Position = transform.ValueRO.Position });
                                         }
                                     }
                                 }
@@ -76,6 +78,8 @@ namespace vikwhite.ECS
                                 ecb.RemoveComponent<UseAbility>(entity);
                                 ability.Cooldown = 0;
 
+                                if(ability.Config.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = ability.Config.CastVFXPrefab, Position = transform.ValueRO.Position });
+                                
                                 if (ability.Config.Type != AbilityType.Abilities)
                                 {
                                     ability.IsAnimation = true;
@@ -93,6 +97,7 @@ namespace vikwhite.ECS
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
                                             ecb.CreateFrameEntity(new Animation { Character = entity, Type = abilityChild.Config.Animation, Speed = speedMultiply });
+                                            if(abilityChild.Config.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = abilityChild.Config.CastVFXPrefab, Position = transform.ValueRO.Position });
                                         }
                                     }
                                 }
