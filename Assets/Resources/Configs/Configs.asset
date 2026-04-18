@@ -53,7 +53,7 @@ MonoBehaviour:
       - ID: 2496368978
         Level: 0
     - ID: Tank
-      Prefab: IronfistDwarfBlue
+      Prefab: IronfistDwarfRed
       Scale: 1.3
       Mass: 0.0001
       Health: 1400
@@ -66,7 +66,7 @@ MonoBehaviour:
       - ID: 1605752999
         Level: 0
     - ID: Healer
-      Prefab: IronfistDwarfBlue
+      Prefab: IronfistDwarfGreen
       Scale: 0.8
       Mass: 0.0001
       Health: 700
@@ -79,7 +79,7 @@ MonoBehaviour:
       - ID: 370847456
         Level: 0
     - ID: Mage
-      Prefab: IronfistDwarfRed
+      Prefab: IronfistDwarfBlue
       Scale: 0.8
       Mass: 0.0001
       Health: 650
@@ -105,7 +105,7 @@ MonoBehaviour:
       - ID: 703911167
         Level: 0
     - ID: Support
-      Prefab: IronfistDwarfGreen
+      Prefab: IronfistDwarf
       Scale: 0.8
       Mass: 0.0001
       Health: 650
@@ -729,7 +729,7 @@ MonoBehaviour:
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
-      Icon: Fire
+      Icon: 
       Cooldown: 3
       Radius: 3
       AOE: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
     - AbilityID: Tank
       Level: 0
       Type: 5
-      Icon: Shield
+      Icon: Berserk
       Cooldown: 12
       Radius: 0
       AOE: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
     - AbilityID: Healer
       Level: 0
       Type: 5
-      Icon: Buff
+      Icon: Heal
       Cooldown: 10
       Radius: 0
       AOE: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
     - AbilityID: Mage
       Level: 0
       Type: 3
-      Icon: Fire
+      Icon: Ice
       Cooldown: 10
       Radius: 0
       AOE: 5
@@ -861,7 +861,7 @@ MonoBehaviour:
     - AbilityID: Assassin
       Level: 0
       Type: 3
-      Icon: Sword
+      Icon: Blade
       Cooldown: 8
       Radius: 0
       AOE: 0
@@ -887,14 +887,14 @@ MonoBehaviour:
       Abilities: []
       ImpulseUp: 0
       ImpulseProvider: 0
-      CastVFXPrefab: 1059480427
+      CastVFXPrefab: 2502407724
       VFXPrefab: 1370670325
       VFXSpawn: 1
       Animation: 4
     - AbilityID: Support
       Level: 0
       Type: 3
-      Icon: Nature
+      Icon: Ability
       Cooldown: 12
       Radius: 0
       AOE: 0
