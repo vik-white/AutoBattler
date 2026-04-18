@@ -1,5 +1,7 @@
+using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Physics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace vikwhite.ECS
@@ -9,7 +11,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (health, abilities, entity) in SystemAPI.Query<RefRO<Health>, DynamicBuffer<Ability>>().WithNone<Dead>().WithEntityAccess()) {
+            foreach (var (health, transform, abilities, entity) in SystemAPI.Query<RefRO<Health>, RefRO<LocalTransform>, DynamicBuffer<Ability>>().WithNone<Dead>().WithEntityAccess()) {
                 if (health.ValueRO.Value <= 0)
                 {
                     abilities.Clear();
@@ -19,6 +21,8 @@ namespace vikwhite.ECS
                     ecb.RemoveComponent<PhysicsVelocity>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });
                     ecb.CreateFrameEntity(new Animation { Character = entity, Type = AnimationType.Dead, Speed = 1 });
+                    if (SystemAPI.HasComponent<Enemy>(entity))
+                        ecb.CreateFrameEntity(new CreatePrefabEvent { ID = "DeadVFX".CalculateHash32(), Position = transform.ValueRO.Position });
                 }
             }
             ecb.Playback(state.EntityManager);
