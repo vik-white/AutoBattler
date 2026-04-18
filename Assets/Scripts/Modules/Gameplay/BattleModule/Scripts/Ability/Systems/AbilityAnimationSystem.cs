@@ -21,6 +21,7 @@ namespace vikwhite.ECS
                         for (int i = 0; i < abilities.Length; i++)
                         {
                             ref var ability = ref abilities.ElementAt(i);
+                            ability.IsActivate = false;
                             if (ability.Config.Type != AbilityType.Abilities)
                             {
                                 if (ability.IsAnimation)
@@ -34,9 +35,10 @@ namespace vikwhite.ECS
                                 for (int j = 0; j < abilities.Length; j++)
                                 {
                                     ref var abilityChild = ref abilities.ElementAt(j);
+                                    abilityChild.IsActivate = false;
                                     if (abilityChild.IsChild)
                                     {
-                                        if (ability.IsAnimation)
+                                        if (abilityChild.IsAnimation)
                                         {
                                             abilityChild.IsActivate = true;
                                             abilityChild.IsAnimation = false;
