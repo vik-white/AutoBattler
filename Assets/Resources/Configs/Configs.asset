@@ -278,7 +278,7 @@ MonoBehaviour:
       Level: 0
       Type: 1
       Icon: 
-      Cooldown: 1
+      Cooldown: 5
       Radius: 0.5
       AOE: 0
       Prefab: 
@@ -424,7 +424,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 1
+      ImpulseUp: 0
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
@@ -455,7 +455,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 1
+      ImpulseUp: 0
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
@@ -486,7 +486,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 1
+      ImpulseUp: 0
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
@@ -517,7 +517,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 1
+      ImpulseUp: 0
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
@@ -549,7 +549,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 0
+      ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
       Animation: 1
@@ -707,8 +707,8 @@ MonoBehaviour:
       AuraRadius: 15
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
-      ImpulseProvider: 0
+      ImpulseUp: 2
+      ImpulseProvider: 5
       VFXPrefab: 686645142
       VFXSpawn: 2
       Animation: 4
@@ -835,7 +835,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities: []
-      ImpulseUp: 0
+      ImpulseUp: 3
       ImpulseProvider: 0
       VFXPrefab: 924429854
       VFXSpawn: 1

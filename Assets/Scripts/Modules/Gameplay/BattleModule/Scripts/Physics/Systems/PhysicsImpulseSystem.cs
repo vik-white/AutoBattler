@@ -10,7 +10,7 @@ namespace vikwhite.ECS
         {
             foreach (var (impulse, velocity) in SystemAPI.Query<RefRO<Impulse>, RefRW<ExternalVelocity>>()) 
             {
-                velocity.ValueRW.Value = impulse.ValueRO.Value;
+                velocity.ValueRW.Value += impulse.ValueRO.Value;
             } 
         }
     }
