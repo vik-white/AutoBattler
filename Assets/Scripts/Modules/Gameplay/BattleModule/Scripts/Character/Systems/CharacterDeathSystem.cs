@@ -18,7 +18,7 @@ namespace vikwhite.ECS
                     ecb.RemoveComponent<PhysicsCollider>(entity);
                     ecb.RemoveComponent<PhysicsVelocity>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });
-                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Dead, Speed = 1 });
+                    ecb.CreateFrameEntity(new Animation { Character = entity, Type = AnimationType.Dead, Speed = 1 });
                 }
             }
             ecb.Playback(state.EntityManager);

@@ -65,6 +65,7 @@ namespace vikwhite.ECS
                         ImpulseProvider = abilityData.ImpulseProvider,
                         VFXPrefab =  abilityData.VFXPrefab,
                         VFXSpawn =  abilityData.VFXSpawn,
+                        Animation = abilityData.Animation,
                     });
                 }
                 

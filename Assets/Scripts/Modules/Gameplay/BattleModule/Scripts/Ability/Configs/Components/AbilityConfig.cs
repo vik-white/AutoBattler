@@ -29,6 +29,7 @@ namespace vikwhite.ECS
         public float ImpulseProvider;
         public uint VFXPrefab;
         public VFXSpawnType VFXSpawn;
+        public AnimationType Animation;
         
         public uint GetRandomSpawnCharacter()
         {

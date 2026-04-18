@@ -12,9 +12,9 @@ namespace vikwhite.ECS
             foreach (var animation in SystemAPI.Query<RefRO<Animation>>())
             {
                 var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(animation.ValueRO.Character);
-                var param = animator[(int)animation.ValueRO.ID];
+                var param = animator[(int)animation.ValueRO.Type];
                 param.SetTrigger();
-                animator[(int)animation.ValueRO.ID] = param;
+                animator[(int)animation.ValueRO.Type] = param;
 
                 var animatorLayers = SystemAPI.GetBuffer<AnimatorControllerLayerComponent>(animation.ValueRO.Character);
                 var layer = animatorLayers[0];

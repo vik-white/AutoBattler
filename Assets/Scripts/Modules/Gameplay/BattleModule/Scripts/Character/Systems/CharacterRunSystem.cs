@@ -37,9 +37,9 @@ namespace vikwhite.ECS
                 var isGrounded = transform.ValueRO.Position.y < 0.001f;
                 
                 var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(entity);
-                var param = animator[(int)AnimationID.Running];
+                var param = animator[(int)AnimationType.Running];
                 param.BoolValue = !isNearTarget && isGrounded && moveDistance.ValueRO.Value > 0.01f;
-                animator[(int)AnimationID.Running] = param;
+                animator[(int)AnimationType.Running] = param;
             }
         }
     }

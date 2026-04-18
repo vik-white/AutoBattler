@@ -50,7 +50,7 @@ namespace vikwhite.ECS
                                 {
                                     ability.IsAnimation = true;
                                     var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                    ecb.CreateFrameEntity(new Animation { Character = entity, Type = ability.Config.Animation, Speed = speedMultiply });
                                 }
                                 else
                                 {
@@ -62,7 +62,7 @@ namespace vikwhite.ECS
                                             abilityChild.IsActivate = false;
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                                            ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                            ecb.CreateFrameEntity(new Animation { Character = entity, Type = abilityChild.Config.Animation, Speed = speedMultiply });
                                         }
                                     }
                                 }
@@ -80,7 +80,7 @@ namespace vikwhite.ECS
                                 {
                                     ability.IsAnimation = true;
                                     var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                                    ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                    ecb.CreateFrameEntity(new Animation { Character = entity, Type = ability.Config.Animation, Speed = speedMultiply });
                                 }
                                 else
                                 {
@@ -92,7 +92,7 @@ namespace vikwhite.ECS
                                             abilityChild.IsActivate = false;
                                             abilityChild.IsAnimation = true;
                                             var speedMultiply = SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.CooldownMultiply].Value;
-                                            ecb.CreateFrameEntity(new Animation { Character = entity, ID = AnimationID.Attack, Speed = speedMultiply });
+                                            ecb.CreateFrameEntity(new Animation { Character = entity, Type = abilityChild.Config.Animation, Speed = speedMultiply });
                                         }
                                     }
                                 }

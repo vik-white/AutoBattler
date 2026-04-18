@@ -304,6 +304,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: MeleeAttack
       Level: 0
       Type: 1
@@ -334,6 +335,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -364,6 +366,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: MeleeAttack
       Level: 2
       Type: 1
@@ -394,6 +397,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 2981183640
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -424,6 +428,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -454,6 +459,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: RangeAttack
       Level: 2
       Type: 0
@@ -484,6 +490,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: RangeAttack
       Level: 3
       Type: 0
@@ -514,6 +521,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: RangeAttackAOE
       Level: 0
       Type: 0
@@ -544,6 +552,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 1
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
@@ -576,6 +585,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 1753136415
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -608,6 +618,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 3084515425
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: ShieldBuff
       Level: 0
       Type: 3
@@ -638,6 +649,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 1260972034
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
@@ -668,6 +680,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 1260972034
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: AggroBuff
       Level: 0
       Type: 4
@@ -698,6 +711,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 686645142
       VFXSpawn: 2
+      Animation: 4
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -728,6 +742,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 134487697
       VFXSpawn: 3
+      Animation: 4
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -760,6 +775,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 0
       VFXSpawn: 0
+      Animation: 4
     - AbilityID: Healer
       Level: 0
       Type: 5
@@ -792,6 +808,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 0
       VFXSpawn: 0
+      Animation: 4
     - AbilityID: Mage
       Level: 0
       Type: 3
@@ -822,6 +839,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 924429854
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: Assassin
       Level: 0
       Type: 3
@@ -853,6 +871,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 1370670325
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: Support
       Level: 0
       Type: 3
@@ -884,6 +903,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 1319076377
       VFXSpawn: 1
+      Animation: 4
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5
@@ -916,3 +936,4 @@ MonoBehaviour:
       ImpulseProvider: 0
       VFXPrefab: 0
       VFXSpawn: 0
+      Animation: 4
