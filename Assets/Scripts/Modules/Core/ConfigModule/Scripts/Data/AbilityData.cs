@@ -37,6 +37,7 @@ namespace vikwhite.Data
         float ImpulseProvider { get; }
         uint CastVFXPrefab { get; }
         uint VFXPrefab { get; }
+        uint ProjectilePrefab { get; }
         VFXSpawnType VFXSpawn { get; }
         AnimationType Animation { get; }
     }
@@ -72,6 +73,7 @@ namespace vikwhite.Data
         public float ImpulseProvider;
         public uint CastVFXPrefab;
         public uint VFXPrefab;
+        public uint ProjectilePrefab;
         public VFXSpawnType VFXSpawn;
         public AnimationType Animation;
         
@@ -103,6 +105,7 @@ namespace vikwhite.Data
         float IAbilityData.ImpulseProvider => ImpulseProvider;
         uint IAbilityData.CastVFXPrefab => CastVFXPrefab;
         uint IAbilityData.VFXPrefab => VFXPrefab;
+        uint IAbilityData.ProjectilePrefab => ProjectilePrefab;
         VFXSpawnType IAbilityData.VFXSpawn => VFXSpawn;
         AnimationType IAbilityData.Animation => Animation;
         

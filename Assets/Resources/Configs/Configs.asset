@@ -304,6 +304,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 2981183640
+      ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
     - AbilityID: MeleeAttack
@@ -336,6 +337,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 2981183640
+      ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
     - AbilityID: MeleeAttack
@@ -368,6 +370,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 2981183640
+      ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
     - AbilityID: MeleeAttack
@@ -400,6 +403,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 2981183640
+      ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
     - AbilityID: RangeAttack
@@ -432,6 +436,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       CastVFXPrefab: 0
       VFXPrefab: 134487697
+      ProjectilePrefab: 1286680974
       VFXSpawn: 3
       Animation: 1
     - AbilityID: RangeAttack
@@ -464,6 +469,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       CastVFXPrefab: 0
       VFXPrefab: 134487697
+      ProjectilePrefab: 659951734
       VFXSpawn: 3
       Animation: 1
     - AbilityID: RangeAttack
@@ -496,6 +502,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       CastVFXPrefab: 0
       VFXPrefab: 134487697
+      ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
     - AbilityID: RangeAttack
@@ -528,6 +535,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       CastVFXPrefab: 0
       VFXPrefab: 134487697
+      ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
     - AbilityID: RangeAttackAOE
@@ -560,6 +568,7 @@ MonoBehaviour:
       ImpulseProvider: 1
       CastVFXPrefab: 0
       VFXPrefab: 134487697
+      ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
     - AbilityID: SpawnSkeletons
@@ -594,6 +603,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 1753136415
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: HealBuff
@@ -628,6 +638,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 3084515425
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: ShieldBuff
@@ -660,6 +671,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 1260972034
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: ShieldBuff
@@ -692,6 +704,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 1260972034
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: AggroBuff
@@ -724,6 +737,7 @@ MonoBehaviour:
       ImpulseProvider: 5
       CastVFXPrefab: 0
       VFXPrefab: 686645142
+      ProjectilePrefab: 0
       VFXSpawn: 2
       Animation: 4
     - AbilityID: OrbitingFireBoll
@@ -756,6 +770,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
       VFXPrefab: 134487697
+      ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 4
     - AbilityID: Tank
@@ -790,6 +805,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
       VFXPrefab: 0
+      ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
     - AbilityID: Healer
@@ -824,6 +840,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
       VFXPrefab: 0
+      ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
     - AbilityID: Mage
@@ -856,6 +873,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
       VFXPrefab: 924429854
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: Assassin
@@ -889,6 +907,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
       VFXPrefab: 1370670325
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: Support
@@ -922,6 +941,7 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
       VFXPrefab: 1319076377
+      ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
     - AbilityID: SceletonBoss
@@ -956,5 +976,6 @@ MonoBehaviour:
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
       VFXPrefab: 0
+      ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4

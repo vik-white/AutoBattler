@@ -67,6 +67,7 @@ namespace vikwhite.ECS
                         VFXPrefab =  abilityData.VFXPrefab,
                         VFXSpawn =  abilityData.VFXSpawn,
                         Animation = abilityData.Animation,
+                        ProjectilePrefab = abilityData.ProjectilePrefab,
                     });
                 }
                 

@@ -29,6 +29,7 @@ namespace vikwhite.ECS
         public float ImpulseProvider;
         public uint CastVFXPrefab;
         public uint VFXPrefab;
+        public uint ProjectilePrefab;
         public VFXSpawnType VFXSpawn;
         public AnimationType Animation;
         

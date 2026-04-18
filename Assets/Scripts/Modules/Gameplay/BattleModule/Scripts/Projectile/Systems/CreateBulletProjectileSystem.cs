@@ -32,7 +32,7 @@ namespace vikwhite.ECS
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
 
-                ecb.CreateFrameEntity(new CreateFollowPrefabEvent { ID = "VFX_Trail_Fire".CalculateHash32(), Position = position, Entity = projectile });
+                ecb.CreateFrameEntity(new CreateFollowPrefabEvent { ID = ability.ProjectilePrefab, Position = position, Entity = projectile });
             }
             ecb.Playback(state.EntityManager);
         }
