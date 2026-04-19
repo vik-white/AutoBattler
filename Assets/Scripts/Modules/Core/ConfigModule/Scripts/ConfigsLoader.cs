@@ -3,8 +3,10 @@ using Sirenix.OdinInspector;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
-using Unity.EditorCoroutines.Editor;
 using System.Linq;
+#if UNITY_EDITOR
+using Unity.EditorCoroutines.Editor;
+#endif
 
 namespace vikwhite.Data
 {
@@ -40,6 +42,7 @@ namespace vikwhite.Data
         public IConfig<ILocationFlowData> LocationFlow => locationFlow;
         public IConfig<IAbilityData> Abilities => abilities;
         
+        #if UNITY_EDITOR
         [Button("Load")][PropertyOrder(-1)]
         private void Load() {
             int configLoadedCount = 0;
@@ -57,5 +60,6 @@ namespace vikwhite.Data
             }
             EditorUtility.SetDirty(this);
         }
+        #endif
     }
 }
