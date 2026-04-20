@@ -132,6 +132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.CharacterConfigsAuthoring
   Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
+  Characters:
+  - {fileID: 5935935677353488325, guid: 27a24f1c79c50aa4c906ec8bf8809ee8, type: 3}
+  - {fileID: 5935935677353488325, guid: c51616194f40175428898f238af48e37, type: 3}
+  - {fileID: 5935935677353488325, guid: 38627c418ba0c0143b73fa73b319461a, type: 3}
+  - {fileID: 5935935677353488325, guid: ab1de846148514c4181293385557c8d8, type: 3}
+  - {fileID: 5935935677353488325, guid: 5abb2ed9353ca1d42aabb94771b2c9b6, type: 3}
+  - {fileID: 3276994403196460185, guid: dd976eb78010fa342ba1ee052431388a, type: 3}
 --- !u!1 &415856435792566308
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5b97f9cc764ba98c51d7a6f02358a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.VFXConfigsAuthoring
-  Flash: {fileID: 7399485676126892887, guid: d4e0c067f4fd9724ab2206c6662af450, type: 3}
   FlashMaterial: {fileID: 2100000, guid: 50a648589ded001408d1162828b08f5a, type: 2}
 --- !u!114 &4361579178198901678
 MonoBehaviour:

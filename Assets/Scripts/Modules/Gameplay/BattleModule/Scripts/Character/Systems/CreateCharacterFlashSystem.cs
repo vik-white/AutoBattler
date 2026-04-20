@@ -20,7 +20,7 @@ namespace vikwhite.ECS
                 foreach (var renderEntity in renderEntities)
                 {
                     var characterMaterialInfo = SystemAPI.GetComponent<MaterialMeshInfo>(renderEntity.Entity);
-                    characterMaterialInfo.Material = SystemAPI.GetSingleton<VFXConfig>().FlashMaterial;
+                    characterMaterialInfo.Material = SystemAPI.GetSingleton<VFXConfig>().FlashMaterialIndex;
                     ecb.SetComponent(renderEntity.Entity, characterMaterialInfo);
                 }
             }

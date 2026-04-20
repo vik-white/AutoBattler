@@ -12,10 +12,8 @@ namespace vikwhite.ECS
     public class VFXConfigsAuthoringBaker : Baker<VFXConfigsAuthoring>
     {
         public override void Bake(VFXConfigsAuthoring authoring) {
-            var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             var entity = GetEntity(TransformUsageFlags.None);
-            var newFlashMaterialInfo = new MaterialMeshInfo { MaterialID = entitiesGraphicsSystem.RegisterMaterial(authoring.FlashMaterial) };
-            AddComponent(entity, new VFXConfig { FlashMaterial = newFlashMaterialInfo.Material });
+            AddComponent(entity, new VFXConfig { FlashMaterial = authoring.FlashMaterial });
         }
     }
 }

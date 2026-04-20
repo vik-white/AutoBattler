@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Rukhanka.Toolbox;
 using Unity.Collections;
 using Unity.Entities;
@@ -13,6 +14,7 @@ namespace vikwhite.ECS
     public class CharacterConfigsAuthoring : MonoBehaviour
     {
         public ConfigsLoader Configs;
+        public List<GameObject> Characters;
     }
 
     public class CharacterConfigsAuthoringBaker : Baker<CharacterConfigsAuthoring>
@@ -23,14 +25,18 @@ namespace vikwhite.ECS
             var entities = AddBuffer<CharacterConfig>(entity);
             
             foreach (var characterData in authoring.Configs.Characters.GetAll())
-                entities.Add(CreateCharacterConfig(characterData));
+                entities.Add(CreateCharacterConfig(characterData, authoring.Characters));
         }
 
-        private CharacterConfig CreateCharacterConfig(ICharacterData data)
+        private CharacterConfig CreateCharacterConfig(ICharacterData data, List<GameObject> characters)
         {
-            var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
-            var prefab = Resources.Load<GameObject>($"Characters/{data.Prefab}/{data.Prefab}");
-            var skinnedMeshRenderer = prefab.GetComponentInChildren<SkinnedMeshRenderer>();
+            GameObject prefab = null;
+            foreach (var character in characters)
+            {
+                if(character.name != data.Prefab) continue;
+                prefab = character;
+                break;
+            }
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
             var entity = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
             
@@ -57,8 +63,7 @@ namespace vikwhite.ECS
                 ActiveAbility = data.ActiveAbility.CalculateHash32(),
                 Abilities = abilities,
                 ColliderRadius = prefabCollider.radius * data.Scale,
-                MaterialID = entitiesGraphicsSystem.RegisterMaterial(skinnedMeshRenderer.sharedMaterial),
-                MeshID = entitiesGraphicsSystem.RegisterMesh(skinnedMeshRenderer.sharedMesh)
+                GameObject = prefab,
             };
         }
     }

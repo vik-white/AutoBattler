@@ -1,7 +1,8 @@
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Physics;
+using UnityEngine;
 using UnityEngine.Rendering;
+using Collider = Unity.Physics.Collider;
 
 namespace vikwhite.ECS
 {
@@ -19,6 +20,7 @@ namespace vikwhite.ECS
         public FixedList128Bytes<AbilityLevelData> Abilities;
         public float ColliderRadius;
         
+        public UnityObjectRef<GameObject> GameObject;
         public BatchMaterialID MaterialID;
         public BatchMeshID MeshID;
     }
