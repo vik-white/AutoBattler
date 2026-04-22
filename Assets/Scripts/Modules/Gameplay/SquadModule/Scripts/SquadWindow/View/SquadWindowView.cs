@@ -25,7 +25,16 @@ namespace vikwhite
             }
         }
         
-        private void ClearCardsContainer() {
+        private void ClearCardsContainer() 
+        {
+            foreach (var container in _view.SquadContainers)
+            {
+                foreach (Transform child in container.Container)
+                {
+                    if(child.GetComponent<CardHierarchy>() != null) GameObject.Destroy(child.gameObject);
+                }
+            }
+            
             foreach (Transform child in _view.CharacterContainer.Container) 
                 GameObject.Destroy(child.gameObject);
         }

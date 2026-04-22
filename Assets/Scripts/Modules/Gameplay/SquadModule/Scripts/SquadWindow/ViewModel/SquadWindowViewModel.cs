@@ -25,7 +25,8 @@ namespace vikwhite
             
             foreach (var character in configs.Characters.GetAll())
             {
-                Cards.Add(CreateViewModel<CardViewModel, ICharacterData>(character));
+                if(!squad.GetCharacters().Contains(character.ID))
+                    Cards.Add(CreateViewModel<CardViewModel, ICharacterData>(character));
             }
 
             OnSetCharacter = squad.SetCharacter;
