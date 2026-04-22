@@ -4,6 +4,6 @@ namespace vikwhite
     
     public class MapItemViewFactory : PooledViewFactory<MapItemView, MapItemViewModel>, IMapItemViewFactory
     {
-    public override string AssetName => "UI/Prefabs/CheatWindow/MapItem";
+        public override string AssetName => "UI/Prefabs/CheatWindow/MapItem";
     }
 }

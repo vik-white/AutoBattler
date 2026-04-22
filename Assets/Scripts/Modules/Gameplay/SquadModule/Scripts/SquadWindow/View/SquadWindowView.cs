@@ -5,8 +5,11 @@ namespace vikwhite
 {
     public class SquadWindowView : WindowView<SquadWindowHierarchy, SquadWindowViewModel>
     {
-        public SquadWindowView(GameObject view) : base(view)
+        private readonly ICardViewFactory _cardViewFactory;
+        
+        public SquadWindowView(GameObject view, ICardViewFactory cardViewFactory) : base(view)
         {
+            _cardViewFactory = cardViewFactory;
         }
         
         protected override void UpdateViewModel(SquadWindowViewModel viewModel)
@@ -14,8 +17,8 @@ namespace vikwhite
             BindClick(_view.CloseButton, viewModel.Close);
             ClearCardsContainer();
             InitializeCardsContainer();
-            foreach (var container in _view.SquadContainers)
-                InitializeSquadContainer(container);
+            foreach (var container in _view.SquadContainers) InitializeSquadContainer(container);
+            foreach (var card in viewModel.Cards) _cardViewFactory.Get(card, _view.CharacterContainer.Container);
         }
         
         private void ClearCardsContainer() {
