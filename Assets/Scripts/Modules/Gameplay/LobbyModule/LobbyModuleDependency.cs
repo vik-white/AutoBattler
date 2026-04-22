@@ -8,6 +8,10 @@ namespace vikwhite
             Register<IStateFactory<ILobbyState>, StateFactory<ILobbyState>>();
             Register<ILobbyStartState, LobbyStartState>();
             Register<ILobbyEndState, LobbyEndState>();
+            
+            Register<ILobbyWindow, LobbyWindow>();
+            Register<LobbyWindowViewModel>();
+            Register<LobbyWindowView>();
         }
     }
 }

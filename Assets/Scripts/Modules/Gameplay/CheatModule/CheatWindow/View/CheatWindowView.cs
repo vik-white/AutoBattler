@@ -13,6 +13,7 @@ namespace vikwhite
         
         protected override void UpdateViewModel(CheatWindowViewModel viewModel)
         {
+            BindClick(_view.CloseButton, viewModel.Close);
             foreach (Transform child in _view.MapItemContainer) GameObject.Destroy(child.gameObject);
             foreach (var mapItem in viewModel.MapItems)
             {
