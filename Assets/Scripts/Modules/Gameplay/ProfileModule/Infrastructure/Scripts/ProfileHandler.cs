@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace vikwhite
 {
     public class ProfileHandler<T> : EventHandler<T>

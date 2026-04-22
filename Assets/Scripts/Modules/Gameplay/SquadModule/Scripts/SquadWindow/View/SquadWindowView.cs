@@ -19,6 +19,10 @@ namespace vikwhite
             InitializeCardsContainer();
             foreach (var container in _view.SquadContainers) InitializeSquadContainer(container);
             foreach (var card in viewModel.Cards) _cardViewFactory.Get(card, _view.CharacterContainer.Container);
+            for (int i = 0; i < viewModel.Squad.Length; i++)
+            {
+                if(viewModel.Squad[i] != null) _cardViewFactory.Get(viewModel.Squad[i], _view.SquadContainers[i].Container);
+            }
         }
         
         private void ClearCardsContainer() {
@@ -49,7 +53,7 @@ namespace vikwhite
                     cardView.transform.SetParent(_view.CharacterContainer.Container);
                     ((SquadWindowViewModel)ViewModel).OnRemoveCharacter?.Invoke(index);
                 }
-                ((SquadWindowViewModel)ViewModel).OnSetCharacter?.Invoke(index, ""); //(e as CardView).ID
+                ((SquadWindowViewModel)ViewModel).OnSetCharacter?.Invoke(index, e.ID);
                 e.transform.localPosition = Vector3.zero;
                 return true;
             };

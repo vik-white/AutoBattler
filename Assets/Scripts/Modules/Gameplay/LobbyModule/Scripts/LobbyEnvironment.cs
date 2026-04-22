@@ -14,6 +14,8 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
+            Resolve<IProfileService>().Load(); 
+            Resolve<ISquad>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
             yield return null;
         }

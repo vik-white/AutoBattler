@@ -7,6 +7,7 @@ namespace vikwhite
 {
     public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        public string ID;
         public static UIDrag DragElement;
         [HideInInspector] public UIDropContainer SourceContainer;
         [HideInInspector] public UIDropContainer TargetContainer;
@@ -16,7 +17,7 @@ namespace vikwhite
         private IUIRoot _uiRoot;
         private RectTransform _rectTransform;
         public RectTransform RectTransform => _rectTransform ?? (_rectTransform = GetComponent<RectTransform>());
-
+        
         private void Awake()
         {
             _canvasGroup = gameObject.AddComponent<CanvasGroup>();

@@ -5,6 +5,6 @@ namespace vikwhite
     [Serializable]
     public class ProfileData
     {
-        public int Level;
+        public string[] Squad = { "", "", "", "", "" };
     }
 }

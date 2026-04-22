@@ -10,6 +10,8 @@ namespace vikwhite
 
         protected override void UpdateViewModel(CardViewModel viewModel)
         {
+            _view.ID = viewModel.ID;
+            _view.Name.text = viewModel.ID;
         }
     }
 }

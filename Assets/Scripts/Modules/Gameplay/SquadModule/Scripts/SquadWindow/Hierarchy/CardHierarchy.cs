@@ -15,6 +15,7 @@ namespace vikwhite
         public Button Button;
         public TMP_Text Level;
         public TMP_Text Experience;
+        public TMP_Text Name;
         public ProgressBar LevelBar;
         public GameObject LevelBarContainer;
         public GameObject Lock;
