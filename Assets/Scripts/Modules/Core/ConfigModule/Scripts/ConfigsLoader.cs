@@ -13,7 +13,6 @@ namespace vikwhite.Data
     public interface IConfigs
     {
         IConfig<ICharacterData> Characters { get; }
-        IConfig<ISquadData> Squad { get; }
         IConfig<IMapData> Map { get; }
         IConfig<ILocationStaticData> LocationStatic { get; }
         IConfig<ILocationFlowData> LocationFlow { get; }
@@ -29,14 +28,12 @@ namespace vikwhite.Data
         [Space(30)]
         
         [SerializeField] private Config<CharacterData, ICharacterData> characters;
-        [SerializeField] private Config<SquadData, ISquadData> squad;
         [SerializeField] private Config<MapData, IMapData> map;
         [SerializeField] private Config<LocationStaticData, ILocationStaticData> locationStatic;
         [SerializeField] private Config<LocationFlowData, ILocationFlowData> locationFlow;
         [SerializeField] private Config<AbilityData, IAbilityData> abilities;
         
         public IConfig<ICharacterData> Characters => characters;
-        public IConfig<ISquadData> Squad => squad;
         public IConfig<IMapData> Map => map;
         public IConfig<ILocationStaticData> LocationStatic => locationStatic;
         public IConfig<ILocationFlowData> LocationFlow => locationFlow;
