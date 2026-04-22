@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 8722121363117952566}
   - component: {fileID: 7895722893381739243}
   m_Layer: 5
-  m_Name: MapWindow
+  m_Name: CheatWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

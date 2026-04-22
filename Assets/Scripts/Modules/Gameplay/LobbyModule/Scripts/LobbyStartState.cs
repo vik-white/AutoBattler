@@ -9,21 +9,21 @@ namespace vikwhite
 
     public class LobbyStartState : ILobbyStartState
     {
-        private readonly IMapWindow _mapWindow;
+        private readonly ICheatWindow _cheatWindow;
         
-        public LobbyStartState(IMapWindow mapWindow)
+        public LobbyStartState(ICheatWindow cheatWindow)
         {
-            _mapWindow = mapWindow;
+            _cheatWindow = cheatWindow;
         }
         
         public void Enter() 
         {
-            _mapWindow.ShowWindow();
+            _cheatWindow.ShowWindow();
         }
 
         public void Exit()
         {
-            _mapWindow.CloseWindow();
+            _cheatWindow.CloseWindow();
         }
     }
 }

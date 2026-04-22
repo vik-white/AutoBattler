@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class MapWindowHierarchy : MonoBehaviour
+    public class CheatWindowHierarchy : MonoBehaviour
     {
         public RectTransform MapItemContainer;
     }

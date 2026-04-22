@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class MapWindowView : WindowView<MapWindowHierarchy, MapWindowViewModel>
+    public class CheatWindowView : WindowView<CheatWindowHierarchy, CheatWindowViewModel>
     {
         private readonly IMapItemViewFactory _mapItemViewFactory;
         
-        public MapWindowView(GameObject view, IMapItemViewFactory mapItemViewFactory) : base(view)
+        public CheatWindowView(GameObject view, IMapItemViewFactory mapItemViewFactory) : base(view)
         {
             _mapItemViewFactory = mapItemViewFactory;
         }
         
-        protected override void UpdateViewModel(MapWindowViewModel viewModel)
+        protected override void UpdateViewModel(CheatWindowViewModel viewModel)
         {
             foreach (Transform child in _view.MapItemContainer) GameObject.Destroy(child.gameObject);
             foreach (var mapItem in viewModel.MapItems)

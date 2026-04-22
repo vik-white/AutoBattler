@@ -177,12 +177,12 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCameraH
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -314,12 +314,12 @@ GameObject:
   - component: {fileID: 881994784}
   - component: {fileID: 881994783}
   m_Layer: 0
-  m_Name: Main Camera2
+  m_Name: MainCameraV
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &881994783
 MonoBehaviour:
   m_ObjectHideFlags: 0

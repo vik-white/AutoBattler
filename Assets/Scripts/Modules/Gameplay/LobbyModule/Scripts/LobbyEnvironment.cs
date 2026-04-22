@@ -8,6 +8,7 @@ namespace vikwhite
         {
             Register<LobbyModuleDependency>();
             Register<ProfileModuleDependency>();
+            Register<CheatModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
