@@ -5,7 +5,6 @@ namespace vikwhite
 {
     public interface IWindowViewFactory
     {
-        void Initialize(Transform container);
         TView GetWindowView<TView>(string assetName) where TView : View, IWindowView;
     }
     
@@ -19,18 +18,14 @@ namespace vikwhite
     {
         private readonly IAssetLoader _assetLoader;
         private readonly IViewFactory _viewFactory;
+        private readonly IUIRoot _uiRoot;
         private readonly Dictionary<string, WindowViewData> _windowViews = new();
-        private Transform _container;
 
-        public WindowViewFactory(IAssetLoader assetLoader, IViewFactory viewFactory)
+        public WindowViewFactory(IAssetLoader assetLoader, IViewFactory viewFactory, IUIRoot uiRoot)
         {
             _assetLoader = assetLoader;
             _viewFactory = viewFactory;
-        }
-        
-        public void Initialize(Transform container)
-        {
-            _container = container;
+            _uiRoot = uiRoot;
         }
 
         public TView GetWindowView<TView>(string assetName) where TView : View, IWindowView
@@ -38,7 +33,7 @@ namespace vikwhite
             if (!_windowViews.TryGetValue(assetName, out WindowViewData viewData))
             {
                 GameObject windowAsset = _assetLoader.Load(assetName);
-                TView window = _viewFactory.CreateView<TView>(windowAsset, _container);
+                TView window = _viewFactory.CreateView<TView>(windowAsset, _uiRoot.GetLayer(UILayer.WINDOW));
                 viewData = new WindowViewData()
                 {
                     Asset = windowAsset,

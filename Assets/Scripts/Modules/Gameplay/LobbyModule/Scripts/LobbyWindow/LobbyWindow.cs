@@ -7,7 +7,7 @@ namespace vikwhite
     
     public class LobbyWindow : WindowPresenter<LobbyWindowView, LobbyWindowViewModel>, ILobbyWindow
     {
-        public override string AssetName => "UI/LobbyWindow/LobbyWindow";
+        public override string AssetName => "UI/Prefabs/LobbyWindow/LobbyWindow";
         
         public void ShowWindow()
         {

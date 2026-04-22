@@ -9,7 +9,7 @@ namespace vikwhite
     
     public class CheatWindow : WindowPresenter<CheatWindowView, CheatWindowViewModel>, ICheatWindow
     {
-        public override string AssetName => "UI/CheatWindow/CheatWindow";
+        public override string AssetName => "UI/Prefabs/CheatWindow/CheatWindow";
         public void ShowWindow()
         {
             var window = _viewModelFactory.CreateViewModel<CheatWindowViewModel>();

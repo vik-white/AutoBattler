@@ -6,19 +6,20 @@ namespace vikwhite
 {
     public class LobbyWindowViewModel: WindowViewModel<bool>
     {
-        private readonly ICheatWindow _cheatWindow;
         public UnityAction OnCheats;
+        public UnityAction OnSquad;
         
-        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow) : base(model)
+        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, ISquadWindow squadWindow) : base(model)
         {
-            _cheatWindow = cheatWindow;
-            OnCheats = _cheatWindow.ShowWindow;
+            OnCheats = cheatWindow.ShowWindow;
+            OnSquad = squadWindow.ShowWindow;
         }
         
         public override void Dispose()
         {
             base.Dispose();
             OnCheats = null;
+            OnSquad = null;
         }
     }
 }

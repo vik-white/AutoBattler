@@ -6,6 +6,7 @@ namespace vikwhite
         {
             Register<IWindowViewFactory, WindowViewFactory>();
             Register<IWindowManager, WindowManager>();
+            Register<IUIRoot, UIRoot>();
         }
     }
 }

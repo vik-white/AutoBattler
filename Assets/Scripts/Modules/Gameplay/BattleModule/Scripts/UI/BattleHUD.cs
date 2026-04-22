@@ -12,12 +12,12 @@ namespace vikwhite
         public Button LobbyButton;
         public RectTransform AbilityContainer;
         
-        private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        private EntityManager _entityManager;
 
         public static void Show()
         {
             var canvas = FindAnyObjectByType<Canvas>().transform;
-            var hud = Resources.Load<GameObject>("UI/BattleHUD");
+            var hud = Resources.Load<GameObject>("UI/Prefabs/BattleHUD/BattleHUD");
             Instantiate(hud, canvas).GetComponent<BattleHUD>().Initialize();
         }
 
@@ -25,6 +25,7 @@ namespace vikwhite
 
         private void Initialize()
         {
+            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             LobbyButton.onClick.AddListener(() => DI.Resolve<IEnvironmentStateMachine>().SwitchState(EnvironmentType.Lobby));
         }

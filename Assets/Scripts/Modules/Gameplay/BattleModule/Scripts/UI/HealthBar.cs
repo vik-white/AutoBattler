@@ -13,11 +13,11 @@ namespace vikwhite
         public GameObject ShieldBar;
         private Entity _character;
         private CharacterConfig _characterConfig;
-        private EntityManager _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        private EntityManager _entityManager;
 
         public static void Create(Entity character, CharacterConfig characterConfig)
         {
-            var prefab = Resources.Load<GameObject>("UI/HealthBar");
+            var prefab = Resources.Load<GameObject>("UI/Prefabs/BattleHUD/HealthBar");
             var parent = FindAnyObjectByType<BattleHUD>().transform;
             var healthBar = Instantiate(prefab, parent).GetComponent<HealthBar>();
             healthBar.Initialize(character, characterConfig);
@@ -25,6 +25,7 @@ namespace vikwhite
         
         public void Initialize(Entity character, CharacterConfig characterConfig)
         {
+            _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             _character = character;
             _characterConfig = characterConfig;
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;

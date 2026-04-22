@@ -18,7 +18,7 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
-            Resolve<IWindowViewFactory>().Initialize(GameObject.FindAnyObjectByType<Canvas>().transform);
+            Resolve<IUIRoot>().Initialize(GameObject.FindAnyObjectByType<Canvas>().GetComponent<RectTransform>());
             yield return null;
         }
     }

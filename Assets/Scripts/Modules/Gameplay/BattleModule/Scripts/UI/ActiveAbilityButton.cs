@@ -20,7 +20,7 @@ namespace vikwhite.ECS
         
         public static void Create(Entity character)
         {
-            var prefab = Resources.Load<GameObject>("UI/Ability");
+            var prefab = Resources.Load<GameObject>("UI/Prefabs/BattleHUD/Ability");
             var parent = FindAnyObjectByType<BattleHUD>().AbilityContainer;
             var ability = Instantiate(prefab, parent).GetComponent<ActiveAbilityButton>();
             ability.Initialize(character);
