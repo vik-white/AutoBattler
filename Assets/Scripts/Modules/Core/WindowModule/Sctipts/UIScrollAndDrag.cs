@@ -34,12 +34,12 @@ namespace vikwhite
                     _isDraggingObject = true;
                     base.OnBeginDrag(eventData);
                 }
-                else if (Mathf.Abs(delta.y) > _dragThreshold && Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && _isDraggable)
+                else if (Mathf.Abs(delta.x) > _dragThreshold && Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && _isDraggable)
                 {
                     _isDraggingObject = true;
                     base.OnBeginDrag(eventData);
                 }
-                else if (Mathf.Abs(delta.x) > _dragThreshold && Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+                else if (Mathf.Abs(delta.y) > _dragThreshold && Mathf.Abs(delta.y) > Mathf.Abs(delta.x))
                 {
                     _isScrolling = true;
                     _scrollRect?.OnBeginDrag(eventData);

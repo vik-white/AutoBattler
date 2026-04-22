@@ -9,10 +9,14 @@ namespace vikwhite
         protected override void Register()
         {
             Register<BattleModuleDependency>();
+            Register<ProfileModuleDependency>();
+            Register<SquadModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
         {
+            Resolve<IProfileService>().Load(); 
+            Resolve<ISquad>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);

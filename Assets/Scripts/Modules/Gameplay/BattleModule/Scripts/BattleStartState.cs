@@ -1,9 +1,6 @@
 using Rukhanka.Toolbox;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using vikwhite.Data;
 using vikwhite.ECS;
-using Time = UnityEngine.Time;
 
 namespace vikwhite
 {
@@ -18,10 +15,12 @@ namespace vikwhite
     public class BattleStartState : IBattleStartState
     {
         private readonly ILocationProvider _locationProvider;
+        private readonly ISquad _squad;
 
-        public BattleStartState(ILocationProvider locationProvider)
+        public BattleStartState(ILocationProvider locationProvider, ISquad squad)
         {
             _locationProvider = locationProvider;
+            _squad = squad;
         }
 
         public void Enter()
@@ -30,7 +29,7 @@ namespace vikwhite
             ECSWorld.Enable<InitializeTimeSystem>();
             ECSWorld.Enable<VFXConfigInitializeSystem>();
             ECSWorld.Enable<CharacterConfigInitializeSystem>();
-            ECSWorld.CreateEntity(new InitializeSquad());
+            ECSWorld.CreateEntity(new InitializeSquad{ Value = _squad.GetCharactersHash() });
             if(_locationProvider.Type == LocationType.Static) 
                 ECSWorld.CreateEntity(new InitializeStaticEnemies{ ID = _locationProvider.ID.CalculateHash32() });
             if(_locationProvider.Type == LocationType.Flow) 

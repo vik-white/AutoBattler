@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Rukhanka.Toolbox;
+using Unity.Collections;
 using UnityEngine;
 
 namespace vikwhite
@@ -9,6 +11,7 @@ namespace vikwhite
         void SetCharacter(int index);
         void SetCharacter(int index, string id);
         List<string> GetCharacters();
+        FixedList32Bytes<uint> GetCharactersHash();
     }
     
     public class Squad : ISquad
@@ -37,5 +40,15 @@ namespace vikwhite
         }
         
         public List<string> GetCharacters() => _characters;
+
+        public FixedList32Bytes<uint> GetCharactersHash()
+        {
+            var ids = new FixedList32Bytes<uint>();
+            foreach (var id in _characters)
+            {
+                ids.Add(id.CalculateHash32());
+            }
+            return ids;
+        }
     }
 }

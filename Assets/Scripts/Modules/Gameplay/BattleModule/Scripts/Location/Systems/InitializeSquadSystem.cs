@@ -12,16 +12,16 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (request, entity) in SystemAPI.Query<RefRO<InitializeSquad>>().WithEntityAccess())
             {
-                var squadConfig = SystemAPI.GetSingletonBuffer<SquadConfig>();
-                float spacing = 1.5f;
-                float offset = (squadConfig.Length - 1) * spacing / 2f;
-                for (int i = 0; i < squadConfig.Length; i++)
+                for (int i = 0; i < request.ValueRO.Value.Length; i++)
+                {
+                    var id = request.ValueRO.Value[i];
+                    if(id == 0) continue;
                     ecb.CreateFrameEntity(new CreateCharacter
                     {
-                        ID = squadConfig[i].ID, 
+                        ID = id, 
                         Position = GetPosition(i)
-                        //Position = new float3(-4, 0, i * spacing - offset)
                     });
+                }
                 ecb.DestroyEntity(entity);
             }
             ecb.Playback(state.EntityManager);
@@ -33,9 +33,9 @@ namespace vikwhite.ECS
             {
                 case 0: return new float3(-4, 0, 1f);
                 case 1: return new float3(-4, 0, -1f);
-                case 2: return new float3(-5, 0, -2);
+                case 2: return new float3(-5, 0, 2);
                 case 3: return new float3(-5, 0, 0);
-                case 4: return new float3(-5, 0, 2);
+                case 4: return new float3(-5, 0, -2);
                 default: return float3.zero;
             }
         }
