@@ -4,11 +4,11 @@ using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class DefeatWindowViewModel: WindowViewModel<bool>
+    public class DefeatWindowViewModel: WindowViewModel
     {
         public UnityAction OnEnd;
         
-        public DefeatWindowViewModel(bool model, IEnvironmentStateMachine stateMachine) : base(model)
+        public DefeatWindowViewModel(IEnvironmentStateMachine stateMachine)
         {
             OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }

@@ -4,13 +4,13 @@ using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class CheatWindowViewModel: WindowViewModel<bool>
+    public class CheatWindowViewModel: WindowViewModel
     {
         public List<MapItemViewModel> MapItems;
         public UnityAction OnAddGem;
         public UnityAction OnAddGold;
         
-        public CheatWindowViewModel(bool model, IConfigs configs, IResourceService resource) : base(model)
+        public CheatWindowViewModel(IConfigs configs, IResourceService resource)
         {
             MapItems = new();
             foreach (var location in configs.Map.GetAll())

@@ -5,7 +5,7 @@ using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class LobbyWindowViewModel: WindowViewModel<bool>
+    public class LobbyWindowViewModel: WindowViewModel
     {
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadWindow _squadWindow;
@@ -14,7 +14,7 @@ namespace vikwhite
         public UnityAction OnCheats;
         public UnityAction OnFight;
         
-        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IProfileService profile) : base(model)
+        public LobbyWindowViewModel(ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IProfileService profile)
         {
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;

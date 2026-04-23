@@ -4,7 +4,7 @@ using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class SquadWindowViewModel: WindowViewModel<bool>
+    public class SquadWindowViewModel: WindowViewModel
     {
         private readonly IEnvironmentStateMachine _environmentStateMachine;
         public CardViewModel[] Squad = new CardViewModel[5];
@@ -13,7 +13,7 @@ namespace vikwhite
         public UnityAction<int> OnRemoveCharacter;
         public UnityAction OnFight;
         
-        public SquadWindowViewModel(bool model, IConfigs configs, ISquadService squad, IEnvironmentStateMachine environmentStateMachine) : base(model)
+        public SquadWindowViewModel(IConfigs configs, ISquadService squad, IEnvironmentStateMachine environmentStateMachine)
         {
             _environmentStateMachine = environmentStateMachine;
             

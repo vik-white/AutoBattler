@@ -3,12 +3,12 @@ using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class VictoryWindowViewModel: WindowViewModel<bool>
+    public class VictoryWindowViewModel: WindowViewModel
     {
         public UnityAction OnEnd;
         public int Reward;
         
-        public VictoryWindowViewModel(bool model, IEnvironmentStateMachine stateMachine, IResourceService resource, IConfigs configs, ILocationProvider location) : base(model)
+        public VictoryWindowViewModel(IEnvironmentStateMachine stateMachine, IResourceService resource, IConfigs configs, ILocationProvider location)
         {
             Reward = configs.LocationStatic.Get(location.ID).Rewards;
             resource.Add(ResourceType.Soft, Reward);

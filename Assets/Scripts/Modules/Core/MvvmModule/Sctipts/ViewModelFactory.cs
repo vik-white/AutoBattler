@@ -23,7 +23,7 @@ namespace vikwhite
 
         public TViewModel CreateViewModel<TViewModel>() where TViewModel : IViewModel
         {
-            TViewModel viewModel = _container.Resolve<TViewModel, bool>(true);
+            TViewModel viewModel = _container.Resolve<TViewModel>();
             return viewModel;
         }
     }
