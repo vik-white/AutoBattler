@@ -7,5 +7,7 @@ namespace vikwhite
     {
         public RectTransform MapItemContainer;
         public Button CloseButton;
+        public Button AddGoldButton;
+        public Button AddGemButton;
     }
 }

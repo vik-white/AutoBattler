@@ -15,10 +15,9 @@ namespace vikwhite
         {
             BindClick(_view.CheatsButton, viewModel.OnCheats);
             BindClick(_view.SquadButton, viewModel.OnSquad);
+            _view.ResourcesContainer.ClearChildren();
             foreach (var resource in viewModel.Resources)
                 _resourceViewFactory.Get(resource, _view.ResourcesContainer);
-            BindClick(_view.AddGoldButton, viewModel.OnAddGold);
-            BindClick(_view.RemoveGoldButton, viewModel.OnRemoveGold);
         }
     }
 }
