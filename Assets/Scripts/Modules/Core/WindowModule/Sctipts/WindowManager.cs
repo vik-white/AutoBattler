@@ -29,7 +29,6 @@ namespace vikwhite
 
         public void CloseAllWindows()
         {
-            Debug.Log("CloseAllWindows");
             foreach (var view in _openedWindows.ToList())
             {
                 if (view.ViewModel != null)

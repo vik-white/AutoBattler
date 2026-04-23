@@ -7,12 +7,10 @@ namespace vikwhite
     {
         public List<ResourceViewModel> Resources = new ();
         public UnityAction OnCheats;
-        public UnityAction OnSquad;
         
-        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, ISquadWindow squadWindow, IResourceService resource) : base(model)
+        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, IResourceService resource) : base(model)
         {
             OnCheats = cheatWindow.ShowWindow;
-            OnSquad = squadWindow.ShowWindow;
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Soft)));
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Hard)));
         }
@@ -21,7 +19,6 @@ namespace vikwhite
         {
             base.Dispose();
             OnCheats = null;
-            OnSquad = null;
         }
     }
 }
