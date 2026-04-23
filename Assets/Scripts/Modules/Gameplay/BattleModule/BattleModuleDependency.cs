@@ -8,6 +8,14 @@ namespace vikwhite
             Register<IStateFactory<IBattleState>, StateFactory<IBattleState>>();
             Register<IBattleStartState, BattleStartState>();
             Register<IBattleEndState, BattleEndState>();
+            
+            Register<IVictoryWindow, VictoryWindow>();
+            Register<VictoryWindowViewModel>();
+            Register<VictoryWindowView>();
+            
+            Register<IDefeatWindow, DefeatWindow>();
+            Register<DefeatWindowViewModel>();
+            Register<DefeatWindowView>();
         }
     }
 }
