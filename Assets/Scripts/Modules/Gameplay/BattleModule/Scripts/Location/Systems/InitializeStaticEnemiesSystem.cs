@@ -4,6 +4,7 @@ using Unity.Mathematics;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(InitializeSystemGroup))]
+    [UpdateAfter(typeof(InitializeSquadSystem))]
     public partial struct InitializeStaticEnemiesSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -19,7 +20,6 @@ namespace vikwhite.ECS
                     {
                         ID = locationConfig.Enemies[i], 
                         Position = GetPosition(i),
-                        //Position = new float3(4, 0, i * spacing - offset), 
                         IsEnemy = true
                     });
                 ecb.DestroyEntity(entity);

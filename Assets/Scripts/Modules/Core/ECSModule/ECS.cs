@@ -1,28 +1,37 @@
+using System.Collections;
 using Unity.Entities;
+using UnityEngine;
 using vikwhite.ECS;
 
 namespace vikwhite
 {
     public static class ECSWorld
     {
-        private static World _world = World.DefaultGameObjectInjectionWorld;
-        
         public static void Enable<T>() where T : unmanaged, ISystem
         {
-            _world.Unmanaged.ResolveSystemStateRef(_world.GetExistingSystem<T>()).Enabled = true;
+            var world = World.DefaultGameObjectInjectionWorld;
+            world.Unmanaged.ResolveSystemStateRef(world.GetExistingSystem<T>()).Enabled = true;
         }
 
         public static void DestroyScene()
         {
-            Entity entity = _world.EntityManager.CreateEntity();
-            _world.EntityManager.AddComponentData(entity, new DestroyScene());
+            CoroutineRunner.Instance.StartCoroutine(DestroyNextFrame());
+        }
+        
+        private static IEnumerator DestroyNextFrame()
+        {
+            yield return null;
+            var world = World.DefaultGameObjectInjectionWorld;
+            Entity entity = world.EntityManager.CreateEntity();
+            world.EntityManager.AddComponentData(entity, new DestroyScene());
         }
         
         public static void CreateEntity<T>(T component) where T : unmanaged, IComponentData
         {
-            Entity entity = _world.EntityManager.CreateEntity();
-            _world.EntityManager.AddComponentData(entity, new SceneEntity());
-            _world.EntityManager.AddComponentData(entity, component);
+            var world = World.DefaultGameObjectInjectionWorld;
+            Entity entity = world.EntityManager.CreateEntity();
+            world.EntityManager.AddComponentData(entity, new SceneEntity());
+            world.EntityManager.AddComponentData(entity, component);
         }
     }
 }

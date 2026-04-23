@@ -8,14 +8,9 @@ namespace vikwhite
     {
         public UnityAction OnEnd;
         
-        public DefeatWindowViewModel(bool model, IConfigs configs) : base(model)
+        public DefeatWindowViewModel(bool model, IEnvironmentStateMachine stateMachine) : base(model)
         {
-            OnEnd = EndBattle;
-        }
-
-        private void EndBattle()
-        {
-            Close();
+            OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }
 
         public override void Dispose()
