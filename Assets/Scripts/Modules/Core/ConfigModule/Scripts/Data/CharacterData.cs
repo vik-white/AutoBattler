@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Rukhanka.Toolbox;
+using UnityEngine;
 using vikwhite.ECS;
 
 namespace vikwhite.Data
@@ -15,6 +16,8 @@ namespace vikwhite.Data
         float Shield { get; }
         bool HealthBar { get; }
         string ActiveAbility { get; }
+        bool Squad { get; }
+        Sprite Image { get; }
         List<AbilityLevelData> Abilities { get; }
     }
     
@@ -29,6 +32,8 @@ namespace vikwhite.Data
         public float Shield;
         public bool HealthBar;
         public string ActiveAbility;
+        public bool Squad;
+        public Sprite Image;
         public List<AbilityLevelData> Abilities;
         
         string ICharacterData.ID => ID;
@@ -39,6 +44,8 @@ namespace vikwhite.Data
         float ICharacterData.Shield => Shield;
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
+        bool ICharacterData.Squad => Squad;
+        Sprite ICharacterData.Image => Image;
         List<AbilityLevelData> ICharacterData.Abilities => Abilities;
         
         public void Parse(Dictionary<string, string> row)
@@ -55,6 +62,7 @@ namespace vikwhite.Data
                 
                 Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = level });
             }
+            if(row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
         }
     }
 }

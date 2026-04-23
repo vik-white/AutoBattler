@@ -7,7 +7,7 @@ namespace vikwhite
 {
     public class UIDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        public string ID;
+        [HideInInspector] public string ID;
         public static UIDrag DragElement;
         [HideInInspector] public UIDropContainer SourceContainer;
         [HideInInspector] public UIDropContainer TargetContainer;
