@@ -24,6 +24,7 @@ namespace vikwhite
         protected readonly DiAggregator _aggregator;
         protected readonly Dictionary<Type, List<Type>> _typeMap = new();
         protected readonly Dictionary<Type, object> _singletons = new();
+        protected readonly Dictionary<Type, object> _implementationSingletons = new();
         protected readonly HashSet<Type> _resolving = new();
 
         public DiContainer(DiAggregator aggregator)
@@ -88,7 +89,6 @@ namespace vikwhite
                 type.GetGenericTypeDefinition() == typeof(IEnumerable<>))
             {
                 var itemType = type.GetGenericArguments()[0];
-
                 var all = _aggregator.ResolveAll(itemType);
 
                 var array = Array.CreateInstance(itemType, all.Count);
@@ -117,6 +117,31 @@ namespace vikwhite
                 return _aggregator.ResolveExternal(type, this, externalArg);
 
             return CreateInstance(type, externalArg);
+        }
+
+        internal List<object> ResolveAllCurrent(Type type)
+        {
+            var result = new List<object>();
+
+            if (!_typeMap.TryGetValue(type, out var implList))
+                return result;
+
+            foreach (var implementationType in implList)
+            {
+                result.Add(ResolveImplementation(implementationType));
+            }
+
+            return result;
+        }
+
+        private object ResolveImplementation(Type implementationType)
+        {
+            if (_implementationSingletons.TryGetValue(implementationType, out var singleton))
+                return singleton;
+
+            singleton = CreateInstance(implementationType);
+            _implementationSingletons[implementationType] = singleton;
+            return singleton;
         }
 
         private object CreateInstance(Type type, object externalArg = null)
@@ -154,6 +179,7 @@ namespace vikwhite
         {
             _typeMap.Clear();
             _singletons.Clear();
+            _implementationSingletons.Clear();
             _resolving.Clear();
         }
     }

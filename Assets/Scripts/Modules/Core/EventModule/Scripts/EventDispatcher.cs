@@ -16,8 +16,8 @@ namespace vikwhite
 
         public EventDispatcher(IEnumerable<IEventHandler> handlers)
         {
-            Debug.Log(handlers.Count());
-            _handlers = handlers.ToDictionary(h => h.EventType);
+            var handlersList = handlers.ToList();
+            _handlers = handlersList.ToDictionary(h => h.EventType);
         }
         
         public void Dispatch(object eventData)

@@ -48,7 +48,7 @@ namespace vikwhite
             var result = new List<object>();
             foreach (var c in _containers) {
                 if (!c.CanResolve(type)) continue;
-                result.Add(c.ResolveCurrent(type));
+                result.AddRange(c.ResolveAllCurrent(type));
             }
             return result;
         }
