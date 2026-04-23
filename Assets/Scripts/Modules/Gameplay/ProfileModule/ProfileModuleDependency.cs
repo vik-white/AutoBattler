@@ -5,8 +5,8 @@ namespace vikwhite
         protected override void Register()
         {
             Register<IProfileService, ProfileService>();
-            Register<IEventHandler, SetSquadCharacterProfileHandler>();
             Register<IEventHandler, ChangeResourceProfileHandler>();
+            Register<IEventHandler, SetSquadCharacterProfileHandler>();
         }
     }
 }

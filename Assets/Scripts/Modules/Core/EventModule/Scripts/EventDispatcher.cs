@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace vikwhite
 {
@@ -15,6 +16,7 @@ namespace vikwhite
 
         public EventDispatcher(IEnumerable<IEventHandler> handlers)
         {
+            Debug.Log(handlers.Count());
             _handlers = handlers.ToDictionary(h => h.EventType);
         }
         

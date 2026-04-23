@@ -37,6 +37,7 @@ namespace vikwhite
         public void Add(ResourceType type, int amount) {
             if(amount <=0 ) return;
             _resources[type].Amount.Value += amount;
+            Debug.Log($"Added {amount} to {_resources[type].Amount.Value}");
             _dispatcher.Dispatch(new ChangeResourceEvent(type, _resources[type].Amount.Value));
         }
 
