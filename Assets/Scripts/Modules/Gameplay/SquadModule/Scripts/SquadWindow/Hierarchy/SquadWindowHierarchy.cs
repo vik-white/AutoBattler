@@ -7,6 +7,7 @@ namespace vikwhite
     public class SquadWindowHierarchy : MonoBehaviour
     {
         public Button CloseButton;
+        public Button FightButton;
         public UIDropContainer CharacterContainer;
         public List<UIDropContainer> SquadContainers;
     }

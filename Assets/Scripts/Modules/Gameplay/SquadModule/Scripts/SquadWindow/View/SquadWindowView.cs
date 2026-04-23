@@ -15,6 +15,7 @@ namespace vikwhite
         protected override void UpdateViewModel(SquadWindowViewModel viewModel)
         {
             BindClick(_view.CloseButton, viewModel.Close);
+            BindClick(_view.FightButton, viewModel.StartFight);
             ClearCardsContainer();
             InitializeCardsContainer();
             foreach (var container in _view.SquadContainers) InitializeSquadContainer(container);

@@ -5,27 +5,24 @@ namespace vikwhite
 {
     public class MapItemViewModel: WindowViewModel<IMapData>
     {
-        private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ILocationProvider _locationProvider;
-        private readonly ICheatWindow _cheatWindow;
+        private readonly ISquadWindow _squadWindow;
         public string Title;
         public UnityAction OnSelect { get; set; }
         
-        public MapItemViewModel(IMapData model, IEnvironmentStateMachine environmentStateMachine, ILocationProvider locationProvider, ICheatWindow cheatWindow) : base(model)
+        public MapItemViewModel(IMapData model, ILocationProvider locationProvider, ISquadWindow squadWindow) : base(model)
         {
-            _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
-            _cheatWindow = cheatWindow;
+            _squadWindow = squadWindow;
             Title = model.LocationID;
-            OnSelect = StartLocation;
+            OnSelect = SelectLocation;
         }
 
-        private void StartLocation()
+        private void SelectLocation()
         {
             _locationProvider.ID = Model.LocationID;
             _locationProvider.Type = Model.LocationType;
-            _cheatWindow.CloseWindow();
-            _environmentStateMachine.SwitchState(EnvironmentType.Battle);
+            _squadWindow.ShowWindow();
         }
         
         public override void Dispose()

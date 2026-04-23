@@ -6,13 +6,17 @@ namespace vikwhite
 {
     public class SquadWindowViewModel: WindowViewModel<bool>
     {
+        private readonly IEnvironmentStateMachine _environmentStateMachine;
         public CardViewModel[] Squad = new CardViewModel[5];
         public List<CardViewModel> Cards = new();
         public UnityAction<int, string> OnSetCharacter;
         public UnityAction<int> OnRemoveCharacter;
+        public UnityAction OnFight;
         
-        public SquadWindowViewModel(bool model, IConfigs configs, ISquadService squad) : base(model)
+        public SquadWindowViewModel(bool model, IConfigs configs, ISquadService squad, IEnvironmentStateMachine environmentStateMachine) : base(model)
         {
+            _environmentStateMachine = environmentStateMachine;
+            
             for (int i = 0; i < squad.GetCharacters().Count; i++)
             {
                 var character = squad.GetCharacters()[i];
@@ -31,6 +35,12 @@ namespace vikwhite
 
             OnSetCharacter = squad.SetCharacter;
             OnRemoveCharacter = squad.SetCharacter;
+            OnFight = StartFight;
+        }
+
+        public void StartFight()
+        {
+            _environmentStateMachine.SwitchState(EnvironmentType.Battle);
         }
         
         public override void Dispose()
@@ -38,6 +48,7 @@ namespace vikwhite
             base.Dispose();
             OnSetCharacter = null;
             OnRemoveCharacter = null;
+            OnFight = null;
         }
     }
 }
