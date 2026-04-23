@@ -6,6 +6,7 @@ namespace vikwhite.Data
     public interface ILocationStaticData
     {
         string ID { get; }
+        int Rewards { get; }
         List<string> Enemies { get; }
     }
     
@@ -13,9 +14,11 @@ namespace vikwhite.Data
     public class LocationStaticData : ILocationStaticData, ICustomJsonParser
     {
         public string ID;
+        public int Rewards;
         public List<string> Enemies;
         
         string ILocationStaticData.ID => ID;
+        int ILocationStaticData.Rewards => Rewards;
         List<string> ILocationStaticData.Enemies => Enemies;
         
         public void Parse(Dictionary<string, string> row)

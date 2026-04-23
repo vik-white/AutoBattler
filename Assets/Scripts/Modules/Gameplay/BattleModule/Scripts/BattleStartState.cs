@@ -49,4 +49,4 @@ namespace vikwhite
             BattleHUD.Hide();
         }
     }
-}    
+}

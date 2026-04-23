@@ -11,6 +11,7 @@ namespace vikwhite
         protected override void UpdateViewModel(VictoryWindowViewModel viewModel)
         {
             BindClick(_view.CloseButton, viewModel.OnEnd);
+            _view.Reward.text = viewModel.Reward.ToString();
         }
     }
 }

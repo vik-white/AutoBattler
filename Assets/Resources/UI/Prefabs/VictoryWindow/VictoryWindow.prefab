@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.VictoryWindowHierarchy
   CloseButton: {fileID: 8374479603631851245}
+  Reward: {fileID: 1819527823166741133}
 --- !u!1 &7170704314313795509
 GameObject:
   m_ObjectHideFlags: 0

@@ -246,9 +246,11 @@ MonoBehaviour:
     - walltest
     Data:
     - ID: Test
+      Rewards: 50
       Enemies:
       - Dummy
     - ID: Test5
+      Rewards: 50
       Enemies:
       - Dummy
       - Dummy
@@ -256,6 +258,7 @@ MonoBehaviour:
       - Dummy
       - Dummy
     - ID: Forest
+      Rewards: 50
       Enemies:
       - Sceleton
       - Sceleton
@@ -263,9 +266,11 @@ MonoBehaviour:
       - IronfistDwarf
       - IronfistDwarf
     - ID: ForestBoss
+      Rewards: 50
       Enemies:
       - SceletonBoss
     - ID: walltest
+      Rewards: 50
       Enemies:
       - Enemy
       - Enemy1
