@@ -35,6 +35,7 @@ namespace vikwhite
         public void ShowInternal()
         {
             IsClosed = false;
+            GameObject.transform.SetAsLastSibling();
             if (!IsShown)
             {
                 IsShown = true;
