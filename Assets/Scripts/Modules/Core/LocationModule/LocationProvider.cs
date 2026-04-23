@@ -1,3 +1,4 @@
+using UnityEngine;
 using vikwhite.Data;
 
 namespace vikwhite
@@ -6,7 +7,7 @@ namespace vikwhite
     {
         string ID { get; set; }
         LocationType Type { get; set; }
-        void SetNextRoadMapLocation();
+        void SetLocation(string id);
     }
     
     public class LocationProvider : ILocationProvider
@@ -20,11 +21,12 @@ namespace vikwhite
             _configs = configs;
         }
 
-        public void SetNextRoadMapLocation()
+        public void SetLocation(string id)
         {
+            if (id == null) id = "";
             foreach (var locationData in _configs.Map.GetAll())
             {
-                if (locationData.RoadMap)
+                if ((id == "" && locationData.RoadMap) || (id != "" && locationData.LocationID == id))
                 {
                     ID = locationData.LocationID;
                     Type = locationData.LocationType;

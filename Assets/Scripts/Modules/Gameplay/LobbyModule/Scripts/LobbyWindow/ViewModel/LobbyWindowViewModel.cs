@@ -9,14 +9,16 @@ namespace vikwhite
     {
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadWindow _squadWindow;
+        private readonly IProfileService _profile;
         public List<ResourceViewModel> Resources = new ();
         public UnityAction OnCheats;
         public UnityAction OnFight;
         
-        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow) : base(model)
+        public LobbyWindowViewModel(bool model, ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IProfileService profile) : base(model)
         {
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
+            _profile = profile;
             OnCheats = cheatWindow.ShowWindow;
             OnFight = SelectLocation;
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Soft)));
@@ -25,7 +27,7 @@ namespace vikwhite
         
         private void SelectLocation()
         {
-            _locationProvider.SetNextRoadMapLocation();
+            _locationProvider.SetLocation(_profile.Data.RoadMapLocation);
             _squadWindow.ShowWindow();
         }
         

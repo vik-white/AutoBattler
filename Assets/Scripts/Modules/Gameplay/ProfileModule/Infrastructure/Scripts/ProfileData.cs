@@ -8,5 +8,6 @@ namespace vikwhite
     {
         public List<ResourceData> Resources = new();
         public string[] Squad;
+        public string RoadMapLocation;
     }
 }
