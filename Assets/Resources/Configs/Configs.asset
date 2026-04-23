@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a58066f3dc044468c07b8c6ae1e09f, type: 3}
   m_Name: Configs
   m_EditorClassIdentifier: Config::vikwhite.Data.ConfigsLoader
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   ID: 1eCOO35SPl6bEN-KgbekOON9ZNVHmlrY0ofy_3Ylh2R8
   APIKey: AIzaSyBXrlvSuX9jHyVcEAfB2NBVM1QQJQ7rPBk
   characters:
@@ -185,19 +194,6 @@ MonoBehaviour:
       Abilities:
       - ID: 1528634012
         Level: 1
-  squad:
-    IDS:
-    - Tank
-    - Healer
-    - Mage
-    - Assassin
-    - Support
-    Data:
-    - ID: Tank
-    - ID: Healer
-    - ID: Mage
-    - ID: Assassin
-    - ID: Support
   map:
     IDS: []
     Data:
@@ -979,3 +975,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
+  resourceIcons:
+  - Type: 0
+    Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}
+  - Type: 1
+    Icon: {fileID: 21300000, guid: d533288d7c598614b8a634bd8bd42d6b, type: 3}

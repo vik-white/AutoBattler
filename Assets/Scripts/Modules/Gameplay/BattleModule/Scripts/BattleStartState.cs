@@ -15,9 +15,9 @@ namespace vikwhite
     public class BattleStartState : IBattleStartState
     {
         private readonly ILocationProvider _locationProvider;
-        private readonly ISquad _squad;
+        private readonly ISquadService _squad;
 
-        public BattleStartState(ILocationProvider locationProvider, ISquad squad)
+        public BattleStartState(ILocationProvider locationProvider, ISquadService squad)
         {
             _locationProvider = locationProvider;
             _squad = squad;

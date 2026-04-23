@@ -10,12 +10,14 @@ namespace vikwhite
             Register<CheatModuleDependency>();
             Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
+            Register<ResourceModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
         {
             Resolve<IProfileService>().Load(); 
-            Resolve<ISquad>().Initialize();
+            Resolve<ISquadService>().Initialize();
+            Resolve<IResourceService>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
             yield return null;
         }

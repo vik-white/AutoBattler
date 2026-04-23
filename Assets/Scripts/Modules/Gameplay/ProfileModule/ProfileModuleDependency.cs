@@ -6,6 +6,7 @@ namespace vikwhite
         {
             Register<IProfileService, ProfileService>();
             Register<IEventHandler, SetSquadCharacterProfileHandler>();
+            Register<IEventHandler, ChangeResourceProfileHandler>();
         }
     }
 }

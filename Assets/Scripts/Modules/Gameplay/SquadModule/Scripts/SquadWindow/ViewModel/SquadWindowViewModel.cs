@@ -11,7 +11,7 @@ namespace vikwhite
         public UnityAction<int, string> OnSetCharacter;
         public UnityAction<int> OnRemoveCharacter;
         
-        public SquadWindowViewModel(bool model, IConfigs configs, ISquad squad) : base(model)
+        public SquadWindowViewModel(bool model, IConfigs configs, ISquadService squad) : base(model)
         {
             for (int i = 0; i < squad.GetCharacters().Count; i++)
             {

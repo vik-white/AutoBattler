@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public interface ISquad
+    public interface ISquadService
     {
         void Initialize();
         void SetCharacter(int index);
@@ -14,13 +14,13 @@ namespace vikwhite
         FixedList32Bytes<uint> GetCharactersHash();
     }
     
-    public class Squad : ISquad
+    public class SquadServiceService : ISquadService
     {
         private readonly IProfileService _profile;
         private readonly IEventDispatcher _dispatcher;
         private List<string> _characters;
 
-        public Squad(IProfileService profile, IEventDispatcher dispatcher)
+        public SquadServiceService(IProfileService profile, IEventDispatcher dispatcher)
         {
             _profile = profile;
             _dispatcher = dispatcher;

@@ -3,13 +3,6 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public interface IProfileService
-    {
-        ProfileData Data { get; }
-        void Save();
-        void Load();
-    }
-
     public class ProfileService : IProfileService
     {
         public ProfileData Data { get; private set; } = new();
@@ -18,6 +11,11 @@ namespace vikwhite
         {
             Data = new ProfileData()
             {
+                Resources =
+                {
+                    new ResourceData{ Type = ResourceType.Hard, Amount = 100 },
+                    new ResourceData{ Type = ResourceType.Soft, Amount = 300 }, 
+                },
                 Squad = new [] {"","","","",""}
             };
         }
@@ -30,6 +28,7 @@ namespace vikwhite
         
         public void Load()
         {
+            Rest();
             string path = Application.persistentDataPath + "/Profile.json";
 
             if (File.Exists(path))
@@ -39,7 +38,6 @@ namespace vikwhite
             }
             else
             {
-                Rest();
                 Save();
             }
         }
