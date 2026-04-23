@@ -224,18 +224,25 @@ MonoBehaviour:
     IDS: []
     Data:
     - LocationID: Test
+      RoadMap: 0
       LocationType: 0
     - LocationID: Test5
+      RoadMap: 0
       LocationType: 0
     - LocationID: Forest
-      LocationType: 0
-    - LocationID: ForestBoss
+      RoadMap: 0
       LocationType: 0
     - LocationID: walltest
+      RoadMap: 1
+      LocationType: 0
+    - LocationID: ForestBoss
+      RoadMap: 1
       LocationType: 0
     - LocationID: Forest1
+      RoadMap: 0
       LocationType: 1
     - LocationID: Forest2
+      RoadMap: 0
       LocationType: 1
   locationStatic:
     IDS:

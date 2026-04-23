@@ -5,6 +5,7 @@ namespace vikwhite.Data
     public interface IMapData
     {
         string LocationID { get; }
+        bool RoadMap { get; }
         LocationType LocationType { get; }
     }
     
@@ -12,9 +13,11 @@ namespace vikwhite.Data
     public class MapData : IMapData
     {
         public string LocationID;
+        public bool RoadMap;
         public LocationType LocationType;
         
         string IMapData.LocationID => LocationID;
+        bool IMapData.RoadMap => RoadMap;
         LocationType IMapData.LocationType => LocationType;
     }
 }
