@@ -14,14 +14,13 @@ namespace vikwhite
         {
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
-            Title = model.LocationID;
+            Title = model.ID;
             OnSelect = SelectLocation;
         }
 
         private void SelectLocation()
         {
-            _locationProvider.ID = Model.LocationID;
-            _locationProvider.Type = Model.LocationType;
+            _locationProvider.ID = Model.ID;
             _squadWindow.ShowWindow();
         }
         

@@ -4,20 +4,20 @@ namespace vikwhite.Data
 {
     public interface IMapData
     {
-        string LocationID { get; }
+        string ID { get; }
+        LocationType Type { get; }
         bool RoadMap { get; }
-        LocationType LocationType { get; }
     }
     
     [Serializable]
     public class MapData : IMapData
     {
-        public string LocationID;
+        public string ID;
+        public LocationType Type;
         public bool RoadMap;
-        public LocationType LocationType;
         
-        string IMapData.LocationID => LocationID;
+        string IMapData.ID => ID;
+        LocationType IMapData.Type => Type;
         bool IMapData.RoadMap => RoadMap;
-        LocationType IMapData.LocationType => LocationType;
     }
 }

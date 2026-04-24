@@ -27,7 +27,7 @@ namespace vikwhite
         
         private void SelectLocation()
         {
-            _locationProvider.SetLocation(_profile.Data.RoadMapLocation);
+            //_locationProvider.SetLocation(_profile.Data.RoadMapLocation);
             _squadWindow.ShowWindow();
         }
         
