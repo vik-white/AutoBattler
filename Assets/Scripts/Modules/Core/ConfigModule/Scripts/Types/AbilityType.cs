@@ -9,5 +9,6 @@ namespace vikwhite
         Buff = 3,
         Aura = 4,
         Abilities = 5,
+        RearJump = 6,
     }
 }
