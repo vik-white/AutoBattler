@@ -10,7 +10,6 @@ namespace vikwhite.ECS
         public uint ID;
         public int Level;
         public AbilityType Type;
-        public int Prefab;
         public float Cooldown;
         public float Radius;
         public float AOE;

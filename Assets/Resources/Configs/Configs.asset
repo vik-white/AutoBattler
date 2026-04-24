@@ -322,7 +322,6 @@ MonoBehaviour:
       Cooldown: 5
       Radius: 0.5
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects:
@@ -355,7 +354,6 @@ MonoBehaviour:
       Cooldown: 1.2
       Radius: 0.5
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects:
@@ -388,7 +386,6 @@ MonoBehaviour:
       Cooldown: 2
       Radius: 0.5
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects:
@@ -421,7 +418,6 @@ MonoBehaviour:
       Cooldown: 2
       Radius: 0.5
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects:
@@ -454,7 +450,6 @@ MonoBehaviour:
       Cooldown: 2
       Radius: 10
       AOE: 0
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -487,7 +482,6 @@ MonoBehaviour:
       Cooldown: 1.5
       Radius: 10
       AOE: 0
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -520,7 +514,6 @@ MonoBehaviour:
       Cooldown: 1.8
       Radius: 10
       AOE: 0
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -553,7 +546,6 @@ MonoBehaviour:
       Cooldown: 1.3
       Radius: 10
       AOE: 0
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -586,7 +578,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 10
       AOE: 10
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -619,7 +610,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 01000000
       Stats: []
       Effects:
@@ -654,7 +644,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 0100000002000000
       Stats: []
       Effects: []
@@ -689,7 +678,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 0100000002000000
       Stats: []
       Effects:
@@ -722,7 +710,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 01000000
       Stats: []
       Effects:
@@ -755,7 +742,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: Aura
       Targets: 
       Stats: []
       Effects:
@@ -788,7 +774,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects: []
@@ -819,7 +804,6 @@ MonoBehaviour:
       Cooldown: 1
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 01000000
       Stats:
       - Type: 1
@@ -853,7 +837,6 @@ MonoBehaviour:
       Cooldown: 3
       Radius: 3
       AOE: 0
-      Prefab: Bullet
       Targets: 
       Stats: []
       Effects:
@@ -886,7 +869,6 @@ MonoBehaviour:
       Cooldown: 12
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects: []
@@ -921,7 +903,6 @@ MonoBehaviour:
       Cooldown: 10
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects: []
@@ -956,7 +937,6 @@ MonoBehaviour:
       Cooldown: 10
       Radius: 0
       AOE: 5
-      Prefab: 
       Targets: 03000000
       Stats: []
       Effects:
@@ -989,7 +969,6 @@ MonoBehaviour:
       Cooldown: 8
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects: []
@@ -1024,7 +1003,6 @@ MonoBehaviour:
       Cooldown: 12
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 02000000
       Stats:
       - Type: 2
@@ -1058,7 +1036,6 @@ MonoBehaviour:
       Cooldown: 9
       Radius: 0
       AOE: 0
-      Prefab: 
       Targets: 
       Stats: []
       Effects: []

@@ -16,7 +16,6 @@ namespace vikwhite.Data
         float Cooldown { get; }
         float Radius { get; }
         float AOE { get; }
-        string Prefab { get; }
         List<TargetType> Targets { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
@@ -52,7 +51,6 @@ namespace vikwhite.Data
         public float Cooldown;
         public float Radius;
         public float AOE;
-        public string Prefab;
         public List<TargetType> Targets;
         public List<StatData> Stats;
         public List<EffectData> Effects;
@@ -84,7 +82,6 @@ namespace vikwhite.Data
         float IAbilityData.Cooldown => Cooldown;
         float IAbilityData.Radius => Radius;
         float IAbilityData.AOE => AOE;
-        string IAbilityData.Prefab => Prefab;
         List<TargetType> IAbilityData.Targets => Targets;
         List<StatData> IAbilityData.Stats => Stats;
         List<EffectData> IAbilityData.Effects => Effects;
