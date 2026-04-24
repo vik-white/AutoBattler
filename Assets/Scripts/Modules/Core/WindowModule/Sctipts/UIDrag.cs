@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace vikwhite
 {
@@ -40,9 +39,14 @@ namespace vikwhite
 
         public virtual void OnDrag(PointerEventData eventData)
         {
-            var mousePosition = Mouse.current.position.ReadValue();
-            var mouseCanvasPosition = Camera.main.ScreenToViewportPoint(mousePosition) * _uiRoot.CanvasSize;
-            RectTransform.anchoredPosition = mouseCanvasPosition - _uiRoot.CanvasCenter;
+            var dragLayer = _uiRoot.GetLayer(UILayer.DRAG);
+            var canvas = dragLayer.GetComponentInParent<Canvas>();
+            var camera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
+
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, eventData.position, camera, out var localPoint))
+            {
+                RectTransform.anchoredPosition = localPoint;
+            }
         }
 
         public virtual void OnEndDrag(PointerEventData eventData)
