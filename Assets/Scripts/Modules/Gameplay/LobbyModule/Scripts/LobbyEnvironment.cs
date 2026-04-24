@@ -11,13 +11,15 @@ namespace vikwhite
             Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
+            Register<RoadMapModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
         {
             Resolve<IProfileService>().Load(); 
-            Resolve<ISquadService>().Initialize();
             Resolve<IResourceService>().Initialize();
+            Resolve<ISquadService>().Initialize();
+            Resolve<IRoadMapService>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
             yield return null;
         }

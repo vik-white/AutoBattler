@@ -1,14 +1,11 @@
 {
-    "name": "Profile",
+    "name": "RoadMap",
     "rootNamespace": "",
     "references": [
         "GUID:919905d7ca88d6641b1b90d8d6b5011b",
-        "GUID:ba597d3a1e504d34ebf16df981b91302",
-        "GUID:6dcf33b7bd4ecd840bbd3b06de685e52",
         "GUID:f5cc89d0bb0826d4cb3876c51bf003bd",
-        "GUID:3e29a41f2636c2a4bb888d069b2d3388",
-        "GUID:6e230cfcc306cd842aba4d3f965a7397",
-        "GUID:de434e70adcf2a642886fe24f218341c"
+        "GUID:084c70029ec1d1b4e850def7afc45aab",
+        "GUID:ba597d3a1e504d34ebf16df981b91302"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

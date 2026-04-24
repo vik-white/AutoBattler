@@ -221,29 +221,36 @@ MonoBehaviour:
       - ID: 1528634012
         Level: 1
   map:
-    IDS: []
+    IDS:
+    - Test
+    - Test5
+    - Forest
+    - Forest1
+    - Forest2
+    - walltest
+    - ForestBoss
     Data:
-    - LocationID: Test
+    - ID: Test
+      Type: 0
       RoadMap: 0
-      LocationType: 0
-    - LocationID: Test5
+    - ID: Test5
+      Type: 0
       RoadMap: 0
-      LocationType: 0
-    - LocationID: Forest
+    - ID: Forest
+      Type: 0
       RoadMap: 0
-      LocationType: 0
-    - LocationID: walltest
+    - ID: Forest1
+      Type: 1
+      RoadMap: 0
+    - ID: Forest2
+      Type: 1
+      RoadMap: 0
+    - ID: walltest
+      Type: 0
       RoadMap: 1
-      LocationType: 0
-    - LocationID: ForestBoss
+    - ID: ForestBoss
+      Type: 0
       RoadMap: 1
-      LocationType: 0
-    - LocationID: Forest1
-      RoadMap: 0
-      LocationType: 1
-    - LocationID: Forest2
-      RoadMap: 0
-      LocationType: 1
   locationStatic:
     IDS:
     - Test
