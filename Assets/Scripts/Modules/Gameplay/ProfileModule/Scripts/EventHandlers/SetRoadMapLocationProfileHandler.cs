@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace vikwhite
 {
     public class SetRoadMapLocationProfileHandler : ProfileHandler<SetRoadMapLocationEvent>

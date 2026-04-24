@@ -13,6 +13,7 @@ namespace vikwhite
         public List<ResourceViewModel> Resources = new ();
         public UnityAction OnCheats;
         public UnityAction OnFight;
+        public string CurrentLocation;
         
         public LobbyWindowViewModel(ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap)
         {
@@ -23,6 +24,7 @@ namespace vikwhite
             OnFight = SelectLocation;
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Soft)));
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Hard)));
+            CurrentLocation = roadMap.CurrentLocation;
         }
         
         private void SelectLocation()

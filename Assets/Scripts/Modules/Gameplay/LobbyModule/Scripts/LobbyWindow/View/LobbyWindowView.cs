@@ -16,6 +16,7 @@ namespace vikwhite
             BindClick(_view.CheatsButton, viewModel.OnCheats);
             BindClick(_view.FightButton, viewModel.OnFight);
             _view.ResourcesContainer.ClearChildren();
+            _view.Location.text = viewModel.CurrentLocation;
             foreach (var resource in viewModel.Resources)
                 _resourceViewFactory.Get(resource, _view.ResourcesContainer);
         }

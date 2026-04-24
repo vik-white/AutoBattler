@@ -1,3 +1,4 @@
+using UnityEngine;
 using vikwhite.Data;
 
 namespace vikwhite
@@ -6,6 +7,7 @@ namespace vikwhite
     {
         string CurrentLocation { get; }
         void Initialize();
+        void CompleteCurrentLocation();
     }
     
     public class RoadMapService : IRoadMapService
@@ -36,6 +38,26 @@ namespace vikwhite
                     break;
                 }
             }
+        }
+
+        public void CompleteCurrentLocation()
+        {
+            string nextLocation = _currentLocation;
+            bool currentLocationFound = false;
+
+            foreach (var locationData in _configs.Map.GetAll())
+            {
+                if (!locationData.RoadMap) continue;
+                if (currentLocationFound)
+                {
+                    nextLocation = locationData.ID;
+                    break;
+                }
+                if (locationData.ID == _currentLocation) currentLocationFound = true;
+            }
+
+            _currentLocation = nextLocation;
+            _dispatcher.Dispatch(new SetRoadMapLocationEvent(_currentLocation));
         }
     }
 }

@@ -12,13 +12,15 @@ namespace vikwhite
             Register<ProfileModuleDependency>();
             Register<SquadModuleDependency>();
             Register<ResourceModuleDependency>();
+            Register<RoadMapModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
         {
             Resolve<IProfileService>().Load(); 
-            Resolve<ISquadService>().Initialize();
             Resolve<IResourceService>().Initialize();
+            Resolve<IRoadMapService>().Initialize();
+            Resolve<ISquadService>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);
