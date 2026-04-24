@@ -9,11 +9,14 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+            if (!SystemAPI.HasSingleton<CharacterConfig>()) return;
+            
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             float deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
+            var configs = SystemAPI.GetSingletonBuffer<CharacterConfig>(true);
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var characters = SystemAPI.GetComponentLookup<Character>(true);
-            var configs = SystemAPI.GetSingletonBuffer<CharacterConfig>(true);
 
             foreach (var (transform, jump, character, entity) in SystemAPI.Query<RefRW<LocalTransform>, RefRW<Jump>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
             {
