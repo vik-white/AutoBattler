@@ -781,6 +781,71 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 2
       Animation: 4
+    - AbilityID: RearJump
+      Level: 0
+      Type: 6
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 4
+    - AbilityID: SpeedAttack
+      Level: 0
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Prefab: 
+      Targets: 01000000
+      Stats:
+      - Type: 1
+        Value: 3
+        Duration: 2
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 1370670325
+      ProjectilePrefab: 0
+      VFXSpawn: 1
+      Animation: 4
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -919,17 +984,14 @@ MonoBehaviour:
       Animation: 4
     - AbilityID: Assassin
       Level: 0
-      Type: 3
+      Type: 5
       Icon: Blade
       Cooldown: 8
       Radius: 0
       AOE: 0
       Prefab: 
-      Targets: 01000000
-      Stats:
-      - Type: 1
-        Value: 3
-        Duration: 2
+      Targets: 
+      Stats: []
       Effects: []
       Statuses: []
       Count: 0
@@ -943,13 +1005,17 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: []
+      Abilities:
+      - ID: 2425292117
+        Level: 0
+      - ID: 1495396533
+        Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
-      VFXPrefab: 1370670325
+      VFXPrefab: 0
       ProjectilePrefab: 0
-      VFXSpawn: 1
+      VFXSpawn: 0
       Animation: 4
     - AbilityID: Support
       Level: 0

@@ -1,7 +1,8 @@
-using Rukhanka.Toolbox;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
+using SphereCollider = Unity.Physics.SphereCollider;
 
 namespace vikwhite.ECS
 {
@@ -12,15 +13,29 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var request in SystemAPI.Query<RefRO<CreateBulletProjectile>>()) {
                 var ability = request.ValueRO.Ability;
-                var projectile = ecb.Instantiate(SystemAPI.GetSingletonBuffer<Prefab>()[ability.Prefab].Value);
                 var position = request.ValueRO.Position + new float3(0, 0.5f, 0);
+                var projectile = ecb.CreateEntity();
+
                 ecb.AddComponent<SceneEntity>(projectile);
                 ecb.AddComponent<Projectile>(projectile);
-                ecb.SetComponent(projectile, new LocalTransform {
+                ecb.AddComponent(projectile, new LocalTransform {
                     Position = position,
                     Rotation = request.ValueRO.Rotation,
-                    Scale = ability.Projectile.Scale
+                    Scale = 1f
                 });
+                var collider = SphereCollider.Create(
+                    new SphereGeometry
+                    {
+                        Center = float3.zero,
+                        Radius = ability.Projectile.Scale
+                    },
+                    CollisionFilter.Default,
+                    new Material
+                    {
+                        CollisionResponse = CollisionResponsePolicy.RaiseTriggerEvents
+                    });
+                ecb.AddComponent(projectile, new PhysicsCollider { Value = collider });
+                ecb.AddSharedComponentManaged(projectile, new PhysicsWorldIndex { Value = 0 });
                 ecb.AddComponent(projectile, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
@@ -31,7 +46,6 @@ namespace vikwhite.ECS
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);
-
                 ecb.CreateFrameEntity(new CreateFollowPrefabEvent { ID = ability.ProjectilePrefab, Position = position, Entity = projectile });
             }
             ecb.Playback(state.EntityManager);
