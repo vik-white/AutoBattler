@@ -33,7 +33,6 @@ namespace vikwhite
             BattleHUD.Show();
 
             ECSWorld.EnableManaged<BattleSystemGroup>();
-            ECSWorld.Enable<StartBattleSystem>();
             ECSWorld.Enable<InitializeTimeSystem>();
             ECSWorld.Enable<VFXConfigInitializeSystem>();
             ECSWorld.Enable<CharacterConfigInitializeSystem>();
