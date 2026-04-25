@@ -50,7 +50,7 @@ namespace vikwhite.ECS
             });
         }
 
-        private static BlobAssetReference<BlobArrayContainer<LocationFlowConfig>> CreateLocationFlowBlob(
+        private BlobAssetReference<BlobArrayContainer<LocationFlowConfig>> CreateLocationFlowBlob(
             List<(uint ID, List<LocationFlowStepData> Steps)> locationConfigs)
         {
             using var builder = new BlobBuilder(Allocator.Temp);
@@ -65,7 +65,9 @@ namespace vikwhite.ECS
                     stepsBuilder[j] = locationConfigs[i].Steps[j];
                 }
             }
-            return builder.CreateBlobAssetReference<BlobArrayContainer<LocationFlowConfig>>(Allocator.Persistent);
+            var blob = builder.CreateBlobAssetReference<BlobArrayContainer<LocationFlowConfig>>(Allocator.Persistent);
+            AddBlobAsset(ref blob, out _);
+            return blob;
         }
     }
 }

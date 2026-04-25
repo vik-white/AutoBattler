@@ -66,12 +66,14 @@ namespace vikwhite.ECS
             }
         }
 
-        private static BlobAssetReference<AbilityConfig> CreateAbilityConfigBlob(AbilityConfig config)
+        private BlobAssetReference<AbilityConfig> CreateAbilityConfigBlob(AbilityConfig config)
         {
             using var builder = new BlobBuilder(Allocator.Temp);
             ref var root = ref builder.ConstructRoot<AbilityConfig>();
             root = config;
-            return builder.CreateBlobAssetReference<AbilityConfig>(Allocator.Persistent);
+            var blob = builder.CreateBlobAssetReference<AbilityConfig>(Allocator.Persistent);
+            AddBlobAsset(ref blob, out _);
+            return blob;
         }
 
         private FixedList64Bytes<EffectData> CreateEffects(List<EffectData> effectConfig) {

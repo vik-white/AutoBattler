@@ -15,7 +15,10 @@ namespace vikwhite
                 if (aura.ValueRO.TimeLeft >= 0)
                     aura.ValueRW.TimeLeft -= dt;
                 else
+                {
+                    PhysicsDisposeHandler.Dispose(state.EntityManager, entity);
                     ecb.DestroyEntity(entity);
+                }
             }
             ecb.Playback(state.EntityManager);
         }

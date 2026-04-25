@@ -17,7 +17,6 @@ namespace vikwhite.ECS
     public class CharacterConfigsAuthoringBaker : Baker<CharacterConfigsAuthoring>
     {
         public override void Bake(CharacterConfigsAuthoring authoring) {
-            Debug.Log("ECS CONFIGS UPDATED!");
             var entity = GetEntity(TransformUsageFlags.None);
             var runtimeData = AddBuffer<CharacterRenderData>(entity);
 
@@ -57,12 +56,14 @@ namespace vikwhite.ECS
             };
         }
 
-        private static BlobAssetReference<CharacterConfigData> CreateConfigBlob(CharacterConfigData config)
+        private BlobAssetReference<CharacterConfigData> CreateConfigBlob(CharacterConfigData config)
         {
             using var builder = new BlobBuilder(Allocator.Temp);
             ref var root = ref builder.ConstructRoot<CharacterConfigData>();
             root = config;
-            return builder.CreateBlobAssetReference<CharacterConfigData>(Allocator.Persistent);
+            var blob = builder.CreateBlobAssetReference<CharacterConfigData>(Allocator.Persistent);
+            AddBlobAsset(ref blob, out _);
+            return blob;
         }
 
         private static GameObject GetCharacterPrefab(ICharacterData data, List<GameObject> characters)

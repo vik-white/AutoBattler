@@ -13,8 +13,11 @@ namespace vikwhite
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (transform, entity) in SystemAPI.Query<RefRO<LocalTransform>>().WithAny<DestroyOutsideScene>().WithEntityAccess()) {
                 var position = transform.ValueRO.Position;
-                if (position.x > 20 || position.x < -20 || position.y > 50 || position.y < -1 || position.z > 20 || position.z < -20) 
+                if (position.x > 20 || position.x < -20 || position.y > 50 || position.y < -1 || position.z > 20 || position.z < -20)
+                {
+                    PhysicsDisposeHandler.Dispose(state.EntityManager, entity);
                     ecb.DestroyEntity(entity);
+                }
             }
             ecb.Playback(state.EntityManager);
         }

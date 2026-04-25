@@ -43,7 +43,7 @@ namespace vikwhite
                 var createCharacter = character != null ? new CreateCharacter { ID = character.ID.CalculateHash32(), Level = character.Level.Value } : default;
                 initializeSquad.Value.Add(createCharacter);
             }
-            ECSWorld.CreateEntity(initializeSquad);
+            ECSWorld.CreateEntity(initializeSquad); 
 
             var locationType = _configs.Map.Get(_locationProvider.ID).Type;
             if (locationType == LocationType.Static) 

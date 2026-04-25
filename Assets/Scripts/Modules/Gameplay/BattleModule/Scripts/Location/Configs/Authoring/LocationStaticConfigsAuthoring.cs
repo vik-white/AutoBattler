@@ -32,8 +32,22 @@ namespace vikwhite.ECS
 
             AddComponent(entity, new LocationStaticConfigsBlob
             {
-                Value = ArrayHandler.CreateBlobArray(locations.Count, i => locations[i])
+                Value = CreateLocationStaticBlob(locations)
             });
+        }
+
+        private BlobAssetReference<BlobArrayContainer<LocationStaticConfig>> CreateLocationStaticBlob(
+            System.Collections.Generic.List<LocationStaticConfig> locations)
+        {
+            using var builder = new BlobBuilder(Allocator.Temp);
+            ref var root = ref builder.ConstructRoot<BlobArrayContainer<LocationStaticConfig>>();
+            var arrayBuilder = builder.Allocate(ref root.Array, locations.Count);
+            for (int i = 0; i < locations.Count; i++)
+                arrayBuilder[i] = locations[i];
+
+            var blob = builder.CreateBlobAssetReference<BlobArrayContainer<LocationStaticConfig>>(Allocator.Persistent);
+            AddBlobAsset(ref blob, out _);
+            return blob;
         }
     }
 }
