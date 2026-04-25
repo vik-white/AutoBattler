@@ -39,6 +39,8 @@ namespace vikwhite.Data
         uint ProjectilePrefab { get; }
         VFXSpawnType VFXSpawn { get; }
         AnimationType Animation { get; }
+        Sprite IconImage { get; }
+        string Description { get; }
     }
     
     [Serializable]
@@ -74,6 +76,8 @@ namespace vikwhite.Data
         public uint ProjectilePrefab;
         public VFXSpawnType VFXSpawn;
         public AnimationType Animation;
+        public Sprite IconImage;
+        public string Description;
         
         string IAbilityData.AbilityID => AbilityID;
         int IAbilityData.Level => Level;
@@ -105,9 +109,13 @@ namespace vikwhite.Data
         uint IAbilityData.ProjectilePrefab => ProjectilePrefab;
         VFXSpawnType IAbilityData.VFXSpawn => VFXSpawn;
         AnimationType IAbilityData.Animation => Animation;
+        Sprite IAbilityData.IconImage => IconImage;
+        string IAbilityData.Description => Description;
         
         public void Parse(Dictionary<string, string> row)
         {
+            IconImage = Resources.Load<Sprite>("Abilities/Icons/" + row["Icon"]);
+            
             Targets = new ();
             foreach (var abilityString in row["Targets"].Split(";"))
             {

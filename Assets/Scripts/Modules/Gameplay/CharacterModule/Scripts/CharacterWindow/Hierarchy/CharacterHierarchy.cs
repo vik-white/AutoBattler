@@ -13,4 +13,5 @@ public class CharacterHierarchy : MonoBehaviour
     public Button UpgradeButton;
     public Button CloseButton;
     public Image Image;
+    public RectTransform ResourcesContainer;
 }

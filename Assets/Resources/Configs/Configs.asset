@@ -347,6 +347,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: MeleeAttack
       Level: 0
       Type: 1
@@ -379,6 +381,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: MeleeAttack
       Level: 1
       Type: 1
@@ -411,6 +415,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: MeleeAttack
       Level: 2
       Type: 1
@@ -443,6 +449,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RangeAttack
       Level: 0
       Type: 0
@@ -475,6 +483,8 @@ MonoBehaviour:
       ProjectilePrefab: 1286680974
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RangeAttack
       Level: 1
       Type: 0
@@ -507,6 +517,8 @@ MonoBehaviour:
       ProjectilePrefab: 659951734
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RangeAttack
       Level: 2
       Type: 0
@@ -539,6 +551,8 @@ MonoBehaviour:
       ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RangeAttack
       Level: 3
       Type: 0
@@ -571,6 +585,8 @@ MonoBehaviour:
       ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RangeAttackAOE
       Level: 0
       Type: 0
@@ -603,6 +619,8 @@ MonoBehaviour:
       ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 1
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: SpawnSkeletons
       Level: 0
       Type: 3
@@ -637,6 +655,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: HealBuff
       Level: 0
       Type: 3
@@ -671,6 +691,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: ShieldBuff
       Level: 0
       Type: 3
@@ -703,6 +725,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: ShieldBuff
       Level: 1
       Type: 3
@@ -735,6 +759,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: AggroBuff
       Level: 0
       Type: 4
@@ -767,6 +793,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 2
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: RearJump
       Level: 0
       Type: 6
@@ -797,6 +825,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: SpeedAttack
       Level: 0
       Type: 3
@@ -830,6 +860,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 1
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
     - AbilityID: OrbitingFireBoll
       Level: 0
       Type: 2
@@ -862,6 +894,80 @@ MonoBehaviour:
       ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
+        3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
+    - AbilityID: Support
+      Level: 0
+      Type: 3
+      Icon: Ability
+      Cooldown: 12
+      Radius: 0
+      AOE: 0
+      Targets: 02000000
+      Stats:
+      - Type: 2
+        Value: 3
+        Duration: 1
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 1138347339
+      VFXPrefab: 1319076377
+      ProjectilePrefab: 0
+      VFXSpawn: 1
+      Animation: 4
+      IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
+      Description: "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0430\u0431\u0438\u043B\u043E\u043A"
+    - AbilityID: Mage
+      Level: 0
+      Type: 3
+      Icon: Ice
+      Cooldown: 10
+      Radius: 0
+      AOE: 5
+      Targets: 03000000
+      Stats: []
+      Effects:
+      - Type: 1
+        Value: 200
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Abilities: []
+      ImpulseUp: 3
+      ImpulseProvider: 0
+      CastVFXPrefab: 1059480427
+      VFXPrefab: 924429854
+      ProjectilePrefab: 0
+      VFXSpawn: 1
+      Animation: 4
+      IconImage: {fileID: 21300000, guid: 7deacee27c334b042b62bcf212c3a854, type: 3}
+      Description: "\u0423\u0434\u0430\u0440 \u043B\u044C\u0434\u043E\u043C \u043F\u043E
+        \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
     - AbilityID: Tank
       Level: 0
       Type: 5
@@ -896,6 +1002,10 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
+      IconImage: {fileID: 21300000, guid: 7df042df0ef85c6498e43d004d1f7cc3, type: 3}
+      Description: "\u0410\u0433\u0440\u0438\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432
+        \u043D\u0430 \u0441\u0435\u0431\u044F \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439
+        \u0449\u0438\u0442"
     - AbilityID: Healer
       Level: 0
       Type: 5
@@ -930,38 +1040,10 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
-    - AbilityID: Mage
-      Level: 0
-      Type: 3
-      Icon: Ice
-      Cooldown: 10
-      Radius: 0
-      AOE: 5
-      Targets: 03000000
-      Stats: []
-      Effects:
-      - Type: 1
-        Value: 200
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-      ImpulseUp: 3
-      ImpulseProvider: 0
-      CastVFXPrefab: 1059480427
-      VFXPrefab: 924429854
-      ProjectilePrefab: 0
-      VFXSpawn: 1
-      Animation: 4
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
+      Description: "\u041B\u0435\u0447\u0438\u0442 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432
+        \u0438 \u043D\u0430\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442
+        \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0449\u0438\u0442"
     - AbilityID: Assassin
       Level: 0
       Type: 5
@@ -996,39 +1078,10 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
-    - AbilityID: Support
-      Level: 0
-      Type: 3
-      Icon: Ability
-      Cooldown: 12
-      Radius: 0
-      AOE: 0
-      Targets: 02000000
-      Stats:
-      - Type: 2
-        Value: 3
-        Duration: 1
-      Effects: []
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Abilities: []
-      ImpulseUp: 0
-      ImpulseProvider: 0
-      CastVFXPrefab: 1138347339
-      VFXPrefab: 1319076377
-      ProjectilePrefab: 0
-      VFXSpawn: 1
-      Animation: 4
+      IconImage: {fileID: 21300000, guid: adf64fa77b52a89438e5095df941d9f9, type: 3}
+      Description: "\u041F\u0440\u044B\u0433\u0430\u0435\u0442 \u043A \u0434\u0430\u043B\u044C\u043D\u0435\u0439
+        \u0446\u0435\u043B\u0438 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
+        \u0431\u044B\u0441\u0442\u0440\u044B\u0435 \u0443\u0434\u0430\u0440\u044B"
     - AbilityID: SceletonBoss
       Level: 0
       Type: 5
@@ -1063,6 +1116,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

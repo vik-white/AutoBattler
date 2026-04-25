@@ -5,8 +5,11 @@ namespace vikwhite
 {
     public class CharacterWindowView : WindowView<CharacterHierarchy, CharacterWindowViewModel>
     {
-        public CharacterWindowView(GameObject view) : base(view)
+        private readonly IResourceViewFactory _resourceViewFactory;
+        
+        public CharacterWindowView(GameObject view, IResourceViewFactory resourceViewFactory) : base(view)
         {
+            _resourceViewFactory = resourceViewFactory;
         }
         
         protected override void UpdateViewModel(CharacterWindowViewModel viewModel)
@@ -17,6 +20,12 @@ namespace vikwhite
             Bind(viewModel.Health, health => _view.Health.text = ((int)health).ToString());
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
+            _view.Price.text = viewModel.Price.ToString();
+            _view.AbilityIcon.sprite = viewModel.AbilityImage;
+            _view.AbilityDescription.text = viewModel.AbilityDescription;
+            _view.ResourcesContainer.ClearChildren();
+            foreach (var resource in viewModel.Resources)
+                _resourceViewFactory.Get(resource, _view.ResourcesContainer);
         }
     }
 }

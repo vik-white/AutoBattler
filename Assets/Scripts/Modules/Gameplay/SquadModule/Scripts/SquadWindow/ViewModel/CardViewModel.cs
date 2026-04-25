@@ -1,3 +1,4 @@
+using UniRx;
 using UnityEngine.Events;
 
 namespace vikwhite
@@ -6,10 +7,12 @@ namespace vikwhite
     {
         public UnityAction OnSelect;
         public string ID { get; }
+        public IReadOnlyReactiveProperty<int> Level;
         
         public CardViewModel(Character model, ICharacterWindow characterWindow) : base(model)
         {
             ID = model.ID;
+            Level = model.Level;
             OnSelect = () => characterWindow.ShowWindow(model);
         }
         
