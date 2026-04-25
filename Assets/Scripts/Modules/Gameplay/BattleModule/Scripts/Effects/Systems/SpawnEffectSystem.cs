@@ -17,7 +17,7 @@ namespace vikwhite.ECS
                 var character = target.ValueRO.Value;
                 var isEnemy = SystemAPI.HasComponent<Enemy>(character);
                 var position = SystemAPI.GetComponent<LocalTransform>(character).Position;
-                var config = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>().Get(effect.ValueRO.Ability.ID).Levels.Value.Array[effect.ValueRO.Ability.Level];
+                var config = effect.ValueRO.Ability.Value;
                 for (int i = 0; i < effect.ValueRO.Value; i++)
                 {
                     ecb.CreateFrameEntity(new CreateCharacter

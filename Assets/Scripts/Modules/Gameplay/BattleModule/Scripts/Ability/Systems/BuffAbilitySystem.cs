@@ -11,19 +11,20 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, entity) in SystemAPI.Query<DynamicBuffer<Ability>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    if (ability.Config.Type != AbilityType.Buff || !ability.IsActivate) continue;
-                    if (ability.Config.Targets.Length == 0) continue;
+                    var config = ability.GetConfig();
+                    if (config.Type != AbilityType.Buff || !ability.IsActivate) continue;
+                    if (config.Targets.Length == 0) continue;
 
                     NativeArray<Entity> enemies = SystemAPI.QueryBuilder().WithAll<Character>().WithAny<Enemy>().Build().ToEntityArray(Allocator.Temp);
                     NativeArray<Entity> allies = SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Enemy>().Build().ToEntityArray(Allocator.Temp);
                     var targets = AbilityHandler.GetTargets(ability, entity, SystemAPI.HasComponent<Enemy>(entity), enemies, allies);
                     
-                    foreach (var status in ability.Config.Statuses) {
+                    foreach (var status in config.Statuses) {
                         foreach (var target in targets)
                         {
                             ecb.CreateFrameEntity(new CreateStatus
                             {
-                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                                Ability = ability.Config,
                                 Provider = entity,
                                 Target = target, 
                                 Data = status, 
@@ -31,12 +32,12 @@ namespace vikwhite.ECS
                         }
                     }
                     
-                    foreach (var effect in ability.Config.Effects) {
+                    foreach (var effect in config.Effects) {
                         foreach (var target in targets)
                         {
                             ecb.CreateFrameEntity(new CreateEffect 
                             {
-                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                                Ability = ability.Config,
                                 Provider = entity,
                                 Target = target, 
                                 Data = effect, 
@@ -44,12 +45,12 @@ namespace vikwhite.ECS
                         }
                     }
                     
-                    foreach (var stat in ability.Config.Stats) {
+                    foreach (var stat in config.Stats) {
                         foreach (var target in targets)
                         {
                             ecb.CreateFrameEntity(new CreateStatChange 
                             {
-                                Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                                Ability = ability.Config,
                                 Provider = entity,
                                 Target = target, 
                                 Data = stat, 

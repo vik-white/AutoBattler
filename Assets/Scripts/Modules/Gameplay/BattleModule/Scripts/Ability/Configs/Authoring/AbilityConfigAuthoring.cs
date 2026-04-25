@@ -16,68 +16,64 @@ namespace vikwhite.ECS
     {
         public override void Bake(AbilityConfigAuthoring authoring) {
             var entity = GetEntity(TransformUsageFlags.None);
-            var abilityBuffer = AddBuffer<AbilityLevelsConfig>(entity);
-            
-            
-            var abilities = new List<string>();
+            var runtimeData = AddBuffer<AbilityRuntimeData>(entity);
+
             foreach (var abilityData in authoring.Configs.Abilities.GetAll())
             {
-                if (!abilities.Contains(abilityData.AbilityID)) abilities.Add(abilityData.AbilityID);
-            }
-
-            foreach (var abilityID in abilities)
-            {
-                var steps = new List<AbilityConfig>();
-                foreach (var abilityData in authoring.Configs.Abilities.GetAll())
+                var abilityID = abilityData.AbilityID.CalculateHash32();
+                var config = new AbilityConfig
                 {
-                    if (abilityData.AbilityID != abilityID) continue;
-                    steps.Add(new AbilityConfig
+                    ID = abilityID,
+                    Level = abilityData.Level,
+                    Type = abilityData.Type,
+                    Targets = CreateTargets(abilityData.Targets),
+                    Cooldown = abilityData.Cooldown,
+                    Radius = abilityData.Radius,
+                    AOE = abilityData.AOE,
+                    Effects = CreateEffects(abilityData.Effects),
+                    Statuses = CreateStatuses(abilityData.Statuses),
+                    Stats = CreateStats(abilityData.Stats),
+                    Projectile = new ProjectileData
                     {
-                        ID = abilityID.CalculateHash32(),
-                        Level = abilityData.Level,
-                        Type = abilityData.Type,
-                        Targets = CreateTargets(abilityData.Targets),
-                        Cooldown = abilityData.Cooldown,
-                        Radius = abilityData.Radius,
-                        AOE = abilityData.AOE,
-                        Effects = CreateEffects(abilityData.Effects),
-                        Statuses = CreateStatuses(abilityData.Statuses),
-                        Stats = CreateStats(abilityData.Stats),
-                        Projectile = new ProjectileData
-                        {
-                            Count = abilityData.Count,
-                            Speed = abilityData.Speed,
-                            Pierce = abilityData.Pierce,
-                            Scale = abilityData.Scale,
-                            OrbitRadius = abilityData.OrbitRadius,
-                            Lifetime = abilityData.Lifetime,
-                        },
-                        SpawnCharacters = CreateSpawnCharacters(abilityData.SpawnCharacters),
-                        SpawnRadius = abilityData.SpawnRadius,
-                        AuraLifetime = abilityData.AuraLifetime,
-                        AuraRadius = abilityData.AuraRadius,
-                        AuraInterval = abilityData.AuraInterval,
-                        Abilities = CreateAbilities(abilityData.Abilities),
-                        ImpulseUp = abilityData.ImpulseUp,
-                        ImpulseProvider = abilityData.ImpulseProvider,
-                        CastVFXPrefab =  abilityData.CastVFXPrefab,
-                        VFXPrefab =  abilityData.VFXPrefab,
-                        VFXSpawn =  abilityData.VFXSpawn,
-                        Animation = abilityData.Animation,
-                        ProjectilePrefab = abilityData.ProjectilePrefab,
-                    });
-                }
-                
-                var abilityLevelsConfig = new AbilityLevelsConfig
-                {
-                    ID = abilityID.CalculateHash32(),
-                    Type = steps[0].Type,
-                    Levels = ArrayHandler.CreateBlobArray(steps.Count, e => steps[e]),
+                        Count = abilityData.Count,
+                        Speed = abilityData.Speed,
+                        Pierce = abilityData.Pierce,
+                        Scale = abilityData.Scale,
+                        OrbitRadius = abilityData.OrbitRadius,
+                        Lifetime = abilityData.Lifetime,
+                    },
+                    SpawnCharacters = CreateSpawnCharacters(abilityData.SpawnCharacters),
+                    SpawnRadius = abilityData.SpawnRadius,
+                    AuraLifetime = abilityData.AuraLifetime,
+                    AuraRadius = abilityData.AuraRadius,
+                    AuraInterval = abilityData.AuraInterval,
+                    Abilities = CreateAbilities(abilityData.Abilities),
+                    ImpulseUp = abilityData.ImpulseUp,
+                    ImpulseProvider = abilityData.ImpulseProvider,
+                    CastVFXPrefab =  abilityData.CastVFXPrefab,
+                    VFXPrefab =  abilityData.VFXPrefab,
+                    VFXSpawn =  abilityData.VFXSpawn,
+                    Animation = abilityData.Animation,
+                    ProjectilePrefab = abilityData.ProjectilePrefab,
                 };
-                abilityBuffer.Add(abilityLevelsConfig);
+
+                runtimeData.Add(new AbilityRuntimeData
+                {
+                    ID = abilityID,
+                    Level = abilityData.Level,
+                    Config = CreateAbilityConfigBlob(config)
+                });
             }
         }
-        
+
+        private static BlobAssetReference<AbilityConfig> CreateAbilityConfigBlob(AbilityConfig config)
+        {
+            using var builder = new BlobBuilder(Allocator.Temp);
+            ref var root = ref builder.ConstructRoot<AbilityConfig>();
+            root = config;
+            return builder.CreateBlobAssetReference<AbilityConfig>(Allocator.Persistent);
+        }
+
         private FixedList64Bytes<EffectData> CreateEffects(List<EffectData> effectConfig) {
             var effects = new FixedList64Bytes<EffectData>();
             foreach (var effect in effectConfig) effects.Add(effect);

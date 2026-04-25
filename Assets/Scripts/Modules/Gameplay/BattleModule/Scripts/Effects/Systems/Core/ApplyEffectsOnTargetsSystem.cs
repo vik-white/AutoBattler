@@ -13,9 +13,10 @@ namespace vikwhite
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (collisionTargets, effects, provider) in SystemAPI.Query<DynamicBuffer<CollisionTarget>, RefRO<Effects>, RefRO<Provider>>()) 
             {
+                var ability = effects.ValueRO.Ability.Value;
                 for (int i = 0; i < collisionTargets.Length; i++) 
                 {
-                    foreach (var effect in effects.ValueRO.Array) 
+                    foreach (var effect in ability.Effects) 
                     {
                         ecb.CreateFrameEntity(new CreateEffect {
                             Ability = effects.ValueRO.Ability,

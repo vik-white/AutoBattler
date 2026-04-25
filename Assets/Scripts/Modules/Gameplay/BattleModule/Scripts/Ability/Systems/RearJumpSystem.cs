@@ -21,7 +21,7 @@ namespace vikwhite.ECS
             {
                 foreach (var ability in abilities)
                 {
-                    if (ability.Config.Type != AbilityType.RearJump || !ability.IsActivate) continue;
+                    if (ability.GetConfig().Type != AbilityType.RearJump || !ability.IsActivate) continue;
                     if (SystemAPI.HasComponent<Jump>(entity)) continue;
 
                     var target = Entity.Null;

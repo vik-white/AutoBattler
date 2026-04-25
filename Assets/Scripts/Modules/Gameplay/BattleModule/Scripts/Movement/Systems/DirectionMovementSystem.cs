@@ -7,6 +7,8 @@ namespace vikwhite.ECS
     public partial struct DirectionMovementSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             foreach (var (transform, movement, speed) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<DirectionMovement>, RefRO<Speed>>()) {
                 transform.ValueRW.Position += movement.ValueRO.Direction * speed.ValueRO.Value * dt;

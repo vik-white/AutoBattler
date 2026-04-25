@@ -11,8 +11,7 @@ namespace vikwhite.ECS
             foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<HealEffect>())
             {
                 var character = target.ValueRO.Value;
-                var characterID = SystemAPI.GetComponent<Character>(character).ID;
-                var config = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(characterID);
+                var config = SystemAPI.GetComponent<Character>(character).GetConfig();
                 var health = healths[character].Value + effect.ValueRO.Value;
                 if (health > config.Health) health = config.Health;
                 healths[character] = new Health { Value = health };

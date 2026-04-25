@@ -14,19 +14,20 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
             var job = new CharacterMovementJob
             {
                 DeltaTime = SystemAPI.GetSingleton<Time>().DeltaTime,
                 Speed = 3f,
                 RotationSpeed = 5f,
                 TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true),
-                Characters = SystemAPI.GetComponentLookup<Character>(true),
-                CharacterConfigs = SystemAPI.GetSingletonBuffer<CharacterConfig>(true)
+                Characters = SystemAPI.GetComponentLookup<Character>(true)
             };
             state.Dependency = job.ScheduleParallel(state.Dependency);
         }
     }
-    
+
     [BurstCompile]
     [WithNone(typeof(Dead))]
     public partial struct CharacterMovementJob : IJobEntity
@@ -34,26 +35,25 @@ namespace vikwhite.ECS
         public float DeltaTime;
         public float Speed;
         public float RotationSpeed;
-        [ReadOnly] 
-        [NativeDisableContainerSafetyRestriction] 
+        [ReadOnly]
+        [NativeDisableContainerSafetyRestriction]
         public ComponentLookup<LocalTransform> TransformLookup;
         [ReadOnly] public ComponentLookup<Character> Characters;
-        [ReadOnly] public DynamicBuffer<CharacterConfig> CharacterConfigs;
 
         [BurstCompile]
         private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in ExternalVelocity externalVelocity, in Target target, in DynamicBuffer<Ability> abilities, in Character character)
         {
             var velocity = float3.zero;
             var targetCharacter = target.Value;
-            var targetConfig = CharacterConfigs.Get(Characters[targetCharacter].ID);
-            var characterConfig = CharacterConfigs.Get(character.ID);
-            var abilityRadius = abilities.Length > 0 ? abilities[0].Config.Radius : 0;
+            var targetConfig = Characters[targetCharacter].GetConfig();
+            var characterConfig = character.GetConfig();
+            var abilityRadius = abilities.Length > 0 ? abilities[0].GetConfig().Radius : 0;
             var baseDistance = abilityRadius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
             var stopDistance = abilities.Length > 0 && abilityRadius != 0 ? baseDistance : float.MaxValue;
             var targetTransform = TransformLookup[targetCharacter];
             var direction = targetTransform.Position - TransformLookup.GetRefRO(entity).ValueRO.Position;
-            
-            if (TransformLookup.HasComponent(targetCharacter)) 
+
+            if (TransformLookup.HasComponent(targetCharacter))
             {
                 float distance = math.length(direction);
                 if (distance > stopDistance)

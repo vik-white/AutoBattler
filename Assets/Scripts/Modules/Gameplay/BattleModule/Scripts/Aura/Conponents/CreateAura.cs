@@ -5,6 +5,6 @@ namespace vikwhite.ECS
     public struct CreateAura : IComponentData
     {
         public Entity Provider;
-        public AbilityConfig Ability;
+        public BlobAssetReference<AbilityConfig> Ability;
     }
 }

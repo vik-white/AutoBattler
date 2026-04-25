@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Rendering;
-using Unity.Transforms;
 using UnityEngine;
 
 namespace vikwhite.ECS
@@ -15,15 +14,18 @@ namespace vikwhite.ECS
 
         public void OnUpdate(ref SystemState state)
         {
+            var renderDataQuery = SystemAPI.QueryBuilder().WithAll<CharacterRenderData>().Build();
+            if (renderDataQuery.IsEmptyIgnoreFilter) return;
+
             var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
-            var configs = SystemAPI.GetSingletonBuffer<CharacterConfig>();
-            for (int i = 0; i < configs.Length; i++)
+            var runtimeData = SystemAPI.GetSingletonBuffer<CharacterRenderData>();
+            for (int i = 0; i < runtimeData.Length; i++)
             {
-                var config = configs[i];
-                var skinnedMeshRenderer = configs[i].GameObject.Value.GetComponentInChildren<SkinnedMeshRenderer>();
+                var config = runtimeData[i];
+                var skinnedMeshRenderer = config.GameObject.Value.GetComponentInChildren<SkinnedMeshRenderer>();
                 config.MaterialID = entitiesGraphicsSystem.RegisterMaterial(skinnedMeshRenderer.sharedMaterial);
                 config.MeshID = entitiesGraphicsSystem.RegisterMesh(skinnedMeshRenderer.sharedMesh);
-                configs[i] = config;
+                runtimeData[i] = config;
             }
             state.Enabled = false;
         }

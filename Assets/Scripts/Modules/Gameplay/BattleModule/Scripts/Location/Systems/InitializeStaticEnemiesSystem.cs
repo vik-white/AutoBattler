@@ -9,10 +9,13 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<LocationStaticConfigsBlob>()) return;
+
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+            var staticConfigs = SystemAPI.GetSingleton<LocationStaticConfigsBlob>().Value;
             foreach (var (request, entity) in SystemAPI.Query<RefRW<InitializeStaticEnemies>>().WithEntityAccess())
             {
-                var locationConfig = SystemAPI.GetSingletonBuffer<LocationStaticConfig>().Get(request.ValueRO.ID);
+                ref var locationConfig = ref staticConfigs.Get(request.ValueRO.ID);
                 float spacing = 1.5f;
                 float offset = (locationConfig.Enemies.Length - 1) * spacing / 2f;
                 for (int i = 0; i < locationConfig.Enemies.Length; i++)

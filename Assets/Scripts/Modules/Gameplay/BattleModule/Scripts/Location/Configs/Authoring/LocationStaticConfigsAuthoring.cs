@@ -15,7 +15,7 @@ namespace vikwhite.ECS
     {
         public override void Bake(LocationStaticConfigsAuthoring authoring) {  
             var entity = GetEntity(TransformUsageFlags.None);
-            var locations = AddBuffer<LocationStaticConfig>(entity);
+            var locations = new System.Collections.Generic.List<LocationStaticConfig>();
 
             foreach (var locationData in authoring.Configs.LocationStatic.GetAll())
             {
@@ -23,12 +23,17 @@ namespace vikwhite.ECS
                 foreach (var enemy in locationData.Enemies)
                     entities.Add(enemy.CalculateHash32());
                 
-                locations.Add(new  LocationStaticConfig
+                locations.Add(new LocationStaticConfig
                 {
                     ID = locationData.ID.CalculateHash32(),
                     Enemies = entities,
                 });
             }
+
+            AddComponent(entity, new LocationStaticConfigsBlob
+            {
+                Value = ArrayHandler.CreateBlobArray(locations.Count, i => locations[i])
+            });
         }
     }
 }

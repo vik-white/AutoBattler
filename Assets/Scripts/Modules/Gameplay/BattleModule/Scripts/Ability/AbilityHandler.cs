@@ -9,11 +9,12 @@ namespace vikwhite.ECS
         public static List<Entity> GetTargets(Ability ability, Entity entity, bool isEnemy, NativeArray<Entity> enemies, NativeArray<Entity> allies)
         {
             var targets = new List<Entity>();
+            var config = ability.GetConfig();
             
-            if (ability.Config.Targets.Contains(TargetType.Self)) 
+            if (config.Targets.Contains(TargetType.Self)) 
                 targets.Add(entity);
             
-            if (ability.Config.Targets.Contains(TargetType.Allies))
+            if (config.Targets.Contains(TargetType.Allies))
             {
                 if (!isEnemy)
                 {
@@ -31,7 +32,7 @@ namespace vikwhite.ECS
                 }
             }
             
-            if (ability.Config.Targets.Contains(TargetType.Enemies))
+            if (config.Targets.Contains(TargetType.Enemies))
             {
                 if (!isEnemy)
                 {

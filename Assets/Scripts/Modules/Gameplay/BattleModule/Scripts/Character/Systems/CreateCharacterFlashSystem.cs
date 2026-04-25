@@ -8,6 +8,9 @@ namespace vikwhite.ECS
     public partial struct CreateCharacterFlashSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<VFXConfig>()) return;
+
+            var flashMaterialIndex = SystemAPI.GetSingleton<VFXConfig>().FlashMaterialIndex;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var target in SystemAPI.Query<RefRO<Target>>().WithAny<DamageEffect>())
             {
@@ -20,7 +23,7 @@ namespace vikwhite.ECS
                 foreach (var renderEntity in renderEntities)
                 {
                     var characterMaterialInfo = SystemAPI.GetComponent<MaterialMeshInfo>(renderEntity.Entity);
-                    characterMaterialInfo.Material = SystemAPI.GetSingleton<VFXConfig>().FlashMaterialIndex;
+                    characterMaterialInfo.Material = flashMaterialIndex;
                     ecb.SetComponent(renderEntity.Entity, characterMaterialInfo);
                 }
             }

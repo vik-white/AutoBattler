@@ -17,6 +17,8 @@ namespace vikwhite.ECS
         }
         
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()) return;
+
             var characters = _characterQuery.ToEntityArray(Allocator.TempJob);
             var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
             var job = new CharacterTargetJob

@@ -9,6 +9,8 @@ namespace vikwhite
     public partial struct AuraCleanupSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (aura, entity) in SystemAPI.Query<RefRW<Aura>>().WithEntityAccess()) {

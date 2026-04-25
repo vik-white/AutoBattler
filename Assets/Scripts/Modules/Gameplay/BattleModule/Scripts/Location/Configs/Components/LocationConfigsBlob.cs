@@ -1,0 +1,15 @@
+using Unity.Collections;
+using Unity.Entities;
+
+namespace vikwhite.ECS
+{
+    public struct LocationStaticConfigsBlob : IComponentData
+    {
+        public BlobAssetReference<BlobArrayContainer<LocationStaticConfig>> Value;
+    }
+
+    public struct LocationFlowConfigsBlob : IComponentData
+    {
+        public BlobAssetReference<BlobArrayContainer<LocationFlowConfig>> Value;
+    }
+}

@@ -1,3 +1,4 @@
+using System;
 using Unity.Entities;
 
 namespace vikwhite
@@ -19,6 +20,22 @@ namespace vikwhite
                 }
             }
             return default;
+        }
+    }
+
+    public static class BlobArrayExtensions
+    {
+        public static ref T Get<T>(this BlobAssetReference<BlobArrayContainer<T>> buffer, uint id) where T : unmanaged, IID
+        {
+            for (int i = 0; i < buffer.Value.Array.Length; i++)
+            {
+                if (buffer.Value.Array[i].ID == id)
+                { 
+                    return ref buffer.Value.Array[i];
+                }
+            }
+
+            throw new InvalidOperationException($"Blob element with id {id} was not found.");
         }
     }
 }

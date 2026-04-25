@@ -32,12 +32,11 @@ namespace vikwhite.ECS
                     shields[character] = new Shield { Value = shield };
                     if (shield == 0)
                     {
-                        var characterID = SystemAPI.GetComponent<Character>(character).ID;
-                        var characterConfig = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(characterID);
+                        var characterConfig = SystemAPI.GetComponent<Character>(character).GetConfig();
                         shieldMaxes[character] = new ShieldMax { Value = characterConfig.Shield };
                     }
                 }
-                
+
                 healths[character] = new Health { Value = healths[character].Value - damage };
             }
             ecb.Playback(state.EntityManager);

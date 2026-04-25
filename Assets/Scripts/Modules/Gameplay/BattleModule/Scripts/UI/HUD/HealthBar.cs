@@ -12,10 +12,10 @@ namespace vikwhite
         public RectTransform ShieldProgressBar;
         public GameObject ShieldBar;
         private Entity _character;
-        private CharacterConfig _characterConfig;
+        private CharacterConfigData _characterConfig;
         private EntityManager _entityManager;
 
-        public static void Create(Entity character, CharacterConfig characterConfig)
+        public static void Create(Entity character, CharacterConfigData characterConfig)
         {
             var prefab = Resources.Load<GameObject>("UI/Prefabs/BattleHUD/HealthBar");
             var parent = FindAnyObjectByType<BattleHUD>().transform;
@@ -23,7 +23,7 @@ namespace vikwhite
             healthBar.Initialize(character, characterConfig);
         }
         
-        public void Initialize(Entity character, CharacterConfig characterConfig)
+        public void Initialize(Entity character, CharacterConfigData characterConfig)
         {
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             _character = character;

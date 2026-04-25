@@ -8,14 +8,18 @@ namespace vikwhite.ECS
     public partial struct RenderEntitySystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            var renderDataQuery = SystemAPI.QueryBuilder().WithAll<CharacterRenderData>().Build();
+            if (renderDataQuery.IsEmptyIgnoreFilter) return;
+
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
+            var runtimeData = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
             foreach (var (children, character, entity) in SystemAPI.Query<DynamicBuffer<Child>, RefRO<Character>>().WithNone<RenderEntity>().WithEntityAccess())
             {
                 var renderEntities = ecb.AddBuffer<RenderEntity>(entity);
-                var config = SystemAPI.GetSingletonBuffer<CharacterConfig>().Get(character.ValueRO.ID);
+                var runtime = runtimeData.GetByConfig(character.ValueRO.Config);
                 var materialInfo = new MaterialMeshInfo{
-                    MaterialID = config.MaterialID,
-                    MeshID  = config.MeshID,
+                    MaterialID = runtime.MaterialID,
+                    MeshID  = runtime.MeshID,
                     SubMesh = 0,
                 };
                 for (int i = 0; i < children.Length; i++)

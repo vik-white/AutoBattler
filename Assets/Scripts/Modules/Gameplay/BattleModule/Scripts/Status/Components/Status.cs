@@ -4,7 +4,7 @@ namespace vikwhite.ECS
 {
     public struct Status : IComponentData
     {
-        public AbilityLevelData Ability;
+        public BlobAssetReference<AbilityConfig> Ability;
         public EffectType Type;
         public float Value;
         public float Duration;

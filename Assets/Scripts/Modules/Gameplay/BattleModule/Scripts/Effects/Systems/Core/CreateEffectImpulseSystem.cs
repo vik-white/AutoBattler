@@ -12,10 +12,9 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            var abilityLevelConfig = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>();
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>())
             {
-                var abilityConfig = abilityLevelConfig.Get(request.ValueRO.Ability.ID).Levels.Value.Array[request.ValueRO.Ability.Level];
+                var abilityConfig = request.ValueRO.Ability.Value;
                 var impulse = float3.zero;
                 if (abilityConfig.ImpulseUp > 0) impulse += new float3(0, abilityConfig.ImpulseUp * 0.2f, 0);
                 if (abilityConfig.ImpulseProvider > 0)

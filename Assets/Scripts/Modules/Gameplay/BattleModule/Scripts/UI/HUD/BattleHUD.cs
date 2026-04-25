@@ -37,10 +37,9 @@ namespace vikwhite
 
         private void OnCreateCharacter(CreateCharacterEvent evnt)
         {
-            var id = _entityManager.GetComponentData<Character>(evnt.Character).ID;
+            var character = _entityManager.GetComponentData<Character>(evnt.Character);
             var isEnemy = _entityManager.HasComponent<Enemy>(evnt.Character);
-            var entityCharacterConfig = _entityManager.CreateEntityQuery(typeof(CharacterConfig)).GetSingletonEntity();
-            var config = _entityManager.GetBuffer<CharacterConfig>(entityCharacterConfig).Get(id);
+            var config = character.GetConfig();
             
             if(config.HealthBar) HealthBar.Create(evnt.Character, config);
             if(config.ActiveAbility != 0 && !isEnemy) ActiveAbilityButton.Create(evnt.Character);

@@ -16,10 +16,10 @@ namespace vikwhite
             if (cache.TryGetValue(prefab, out var existing))
                 return existing;
 
-            var registryAuthoring = Object.FindFirstObjectByType<PrefabRegistry>();
+            var registryAuthoring = Object.FindAnyObjectByType<PrefabRegistry>();
             if (registryAuthoring == null) return -1;
 
-            var registryEntity = baker.GetEntity(registryAuthoring);
+            var registryEntity = baker.GetEntity(registryAuthoring, TransformUsageFlags.None);
             var prefabEntity = baker.GetEntity(prefab, TransformUsageFlags.Dynamic);
 
             if (!initialized.Contains(registryEntity))

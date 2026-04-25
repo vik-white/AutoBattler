@@ -12,7 +12,7 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var request in SystemAPI.Query<RefRO<CreateOrbitProjectile>>()) {
-                var ability = request.ValueRO.Ability;
+                var ability = request.ValueRO.Ability.Value;
                 var projectile = ecb.CreateEntity();
                 
                 ecb.AddComponent<SceneEntity>(projectile);
@@ -40,9 +40,9 @@ namespace vikwhite.ECS
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DestroyTimer{ Time = ability.Projectile.Lifetime });
                 ecb.AddComponent(projectile, new OrbitMovement{ Radius = ability.Projectile.OrbitRadius, Phase = request.ValueRO.Phase });
-                ecb.AddComponent(projectile, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(projectile, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(projectile, new Stats{ Array = ability.Stats, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
+                ecb.AddComponent(projectile, new Effects{ Ability = request.ValueRO.Ability });
+                ecb.AddComponent(projectile, new Statuses{ Ability = request.ValueRO.Ability });
+                ecb.AddComponent(projectile, new Stats{ Ability = request.ValueRO.Ability });
                 ecb.AddBuffer<CollisionTarget>(projectile);
                 ecb.AddBuffer<CollisionBuffer>(projectile);
                 ecb.AddComponent<DestroyOutsideScene>(projectile);

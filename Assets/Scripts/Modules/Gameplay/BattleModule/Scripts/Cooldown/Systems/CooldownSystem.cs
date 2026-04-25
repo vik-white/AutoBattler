@@ -6,9 +6,12 @@ namespace vikwhite.ECS
     public partial struct CooldownSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
+            var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (cooldownLeft, cooldown, entity) in SystemAPI.Query<RefRW<CooldownLeft>, RefRO<Cooldown>>().WithNone<CooldownUp>().WithEntityAccess()) {
-                cooldownLeft.ValueRW.Value -= SystemAPI.GetSingleton<Time>().DeltaTime;
+                cooldownLeft.ValueRW.Value -= dt;
                 if (cooldownLeft.ValueRO.Value <= 0) {
                     ecb.AddComponent<CooldownUp>(entity);
                     cooldownLeft.ValueRW.Value = cooldown.ValueRO.Value;

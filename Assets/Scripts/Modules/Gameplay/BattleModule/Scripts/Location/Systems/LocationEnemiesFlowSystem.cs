@@ -8,19 +8,23 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<Time>() || !SystemAPI.HasSingleton<LocationFlowConfigsBlob>()) return;
+
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
+            var time = SystemAPI.GetSingleton<Time>();
+            var dt = time.DeltaTime;
+            var flowConfigs = SystemAPI.GetSingleton<LocationFlowConfigsBlob>().Value;
             foreach (var request in SystemAPI.Query<RefRW<LocationEnemiesFlow>>())
             {
                 request.ValueRW.Cooldown -= dt;
                 if(request.ValueRO.Cooldown > 0) continue;
                 
-                var locationConfig = SystemAPI.GetSingletonBuffer<LocationFlowConfig>().Get(request.ValueRO.ID);
+                ref var locationConfig = ref flowConfigs.Get(request.ValueRO.ID);
                 LocationFlowStepData step = default;
-                for (int i = 0; i < locationConfig.Steps.Value.Array.Length; i++)
+                for (int i = 0; i < locationConfig.Steps.Length; i++)
                 {
-                    if (locationConfig.Steps.Value.Array[i].Time > SystemAPI.GetSingleton<Time>().TotalTime) break;
-                    step = locationConfig.Steps.Value.Array[i];
+                    if (locationConfig.Steps[i].Time > time.TotalTime) break;
+                    step = locationConfig.Steps[i];
                 }
                 request.ValueRW.Cooldown = step.SpawnInterval;
                 

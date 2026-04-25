@@ -7,6 +7,6 @@ namespace vikwhite.ECS
         public Entity Provider;
         public Entity Target;
         public StatusData Data;
-        public AbilityLevelData Ability;
+        public BlobAssetReference<AbilityConfig> Ability;
     }
 }

@@ -14,7 +14,7 @@ namespace vikwhite
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var request in SystemAPI.Query<RefRO<CreateAura>>()) {
-                var ability = request.ValueRO.Ability;
+                var ability = request.ValueRO.Ability.Value;
                 var providerPosition = SystemAPI.GetComponent<LocalTransform>(request.ValueRO.Provider).Position;
                 var aura = ecb.CreateEntity();
 
@@ -43,9 +43,9 @@ namespace vikwhite
                 ecb.AddComponent(aura, new PhysicsCollider { Value = collider });
                 ecb.AddSharedComponentManaged(aura, new PhysicsWorldIndex { Value = 0 });
                 ecb.AddComponent(aura, new Provider{ Value = request.ValueRO.Provider });
-                ecb.AddComponent(aura, new Effects{ Array = ability.Effects, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(aura, new Statuses{ Array = ability.Statuses, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
-                ecb.AddComponent(aura, new Stats{ Array = ability.Stats, Ability = new AbilityLevelData{ ID = ability.ID, Level = ability.Level } });
+                ecb.AddComponent(aura, new Effects{ Ability = request.ValueRO.Ability });
+                ecb.AddComponent(aura, new Statuses{ Ability = request.ValueRO.Ability });
+                ecb.AddComponent(aura, new Stats{ Ability = request.ValueRO.Ability });
                 ecb.AddComponent<FollowingProvider>(aura);
                 ecb.AddBuffer<CollisionTarget>(aura);
             }

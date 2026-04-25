@@ -14,6 +14,8 @@ namespace vikwhite.ECS
 
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<VFXConfig>()) return;
+
             var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             var configs = SystemAPI.GetSingleton<VFXConfig>();
             var newFlashMaterialInfo = new MaterialMeshInfo { MaterialID = entitiesGraphicsSystem.RegisterMaterial(configs.FlashMaterial) };

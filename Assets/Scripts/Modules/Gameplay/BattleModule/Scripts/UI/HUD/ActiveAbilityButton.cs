@@ -65,8 +65,9 @@ namespace vikwhite.ECS
         {
             foreach (var ability in _entityManager.GetBuffer<Ability>(_character))
             {
-                if (ability.Config.ID == _abilityID)
-                    return ability.Cooldown >= ability.Config.Cooldown;
+                var config = ability.GetConfig();
+                if (config.ID == _abilityID)
+                    return ability.Cooldown >= config.Cooldown;
             }
             return false;
         }
@@ -75,10 +76,11 @@ namespace vikwhite.ECS
         {
             foreach (var ability in _entityManager.GetBuffer<Ability>(_character))
             {
-                if (ability.Config.ID == _abilityID)
+                var config = ability.GetConfig();
+                if (config.ID == _abilityID)
                 {
-                    if(ability.Cooldown >= ability.Config.Cooldown) return 0;
-                    return 1 - (ability.Cooldown / ability.Config.Cooldown);
+                    if(ability.Cooldown >= config.Cooldown) return 0;
+                    return 1 - (ability.Cooldown / config.Cooldown);
                 }
             }
             return 1;

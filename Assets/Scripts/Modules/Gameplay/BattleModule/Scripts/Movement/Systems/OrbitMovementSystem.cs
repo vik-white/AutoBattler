@@ -9,6 +9,8 @@ namespace vikwhite.ECS
     public partial struct OrbitMovementSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             foreach (var (transform, movement, speed, target) in SystemAPI.Query<RefRW<LocalTransform>, RefRW<OrbitMovement>, RefRO<Speed>, RefRO<Target>>())
             {

@@ -3,11 +3,8 @@ using Rukhanka.Toolbox;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
-using Unity.Rendering;
 using UnityEngine;
 using vikwhite.Data;
-using CapsuleCollider = Unity.Physics.CapsuleCollider;
 
 namespace vikwhite.ECS
 {
@@ -19,42 +16,35 @@ namespace vikwhite.ECS
 
     public class CharacterConfigsAuthoringBaker : Baker<CharacterConfigsAuthoring>
     {
-        public override void Bake(CharacterConfigsAuthoring authoring) {  
+        public override void Bake(CharacterConfigsAuthoring authoring) {
             Debug.Log("ECS CONFIGS UPDATED!");
             var entity = GetEntity(TransformUsageFlags.None);
-            var entities = AddBuffer<CharacterConfig>(entity);
-            
+            var runtimeData = AddBuffer<CharacterRenderData>(entity);
+
             foreach (var characterData in authoring.Configs.Characters.GetAll())
-                entities.Add(CreateCharacterConfig(characterData, authoring.Characters));
+            {
+                var prefab = GetCharacterPrefab(characterData, authoring.Characters);
+                var config = CreateCharacterConfig(characterData, prefab);
+                runtimeData.Add(new CharacterRenderData
+                {
+                    ID = config.ID,
+                    Prefab = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic),
+                    Config = CreateConfigBlob(config),
+                    GameObject = prefab,
+                });
+            }
         }
 
-        private CharacterConfig CreateCharacterConfig(ICharacterData data, List<GameObject> characters)
+        private CharacterConfigData CreateCharacterConfig(ICharacterData data, GameObject prefab)
         {
-            GameObject prefab = null;
-            foreach (var character in characters)
-            {
-                if(character.name != data.Prefab) continue;
-                prefab = character;
-                break;
-            }
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
-            var entity = GetEntity(prefab.ResetChildrenTransforms(), TransformUsageFlags.Dynamic);
-            
-            var collider = CapsuleCollider.Create(new CapsuleGeometry
-            {
-                Vertex0 = new float3(0, 0, 0), 
-                Vertex1 = new float3(0, prefabCollider.height * data.Scale, 0), 
-                Radius = prefabCollider.radius * data.Scale
-            });
 
             var abilities = new FixedList128Bytes<AbilityLevelData>();
-            foreach(var ability in data.Abilities)
+            foreach (var ability in data.Abilities)
                 abilities.Add(ability);
-            
-            return new CharacterConfig {
+
+            return new CharacterConfigData {
                 ID = data.ID.CalculateHash32(),
-                Prefab = entity,
-                Collider = collider,
                 Scale = data.Scale,
                 Mass = data.Mass,
                 Health = data.Health,
@@ -63,8 +53,26 @@ namespace vikwhite.ECS
                 ActiveAbility = data.ActiveAbility.CalculateHash32(),
                 Abilities = abilities,
                 ColliderRadius = prefabCollider.radius * data.Scale,
-                GameObject = prefab,
+                ColliderHeight = prefabCollider.height * data.Scale,
             };
+        }
+
+        private static BlobAssetReference<CharacterConfigData> CreateConfigBlob(CharacterConfigData config)
+        {
+            using var builder = new BlobBuilder(Allocator.Temp);
+            ref var root = ref builder.ConstructRoot<CharacterConfigData>();
+            root = config;
+            return builder.CreateBlobAssetReference<CharacterConfigData>(Allocator.Persistent);
+        }
+
+        private static GameObject GetCharacterPrefab(ICharacterData data, List<GameObject> characters)
+        {
+            foreach (var character in characters)
+            {
+                if (character.name != data.Prefab) continue;
+                return character;
+            }
+            return null;
         }
     }
 }

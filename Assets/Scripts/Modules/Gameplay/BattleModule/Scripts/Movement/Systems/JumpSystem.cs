@@ -10,11 +10,9 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             if (!SystemAPI.HasSingleton<Time>()) return;
-            if (!SystemAPI.HasSingleton<CharacterConfig>()) return;
-            
+
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             float deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
-            var configs = SystemAPI.GetSingletonBuffer<CharacterConfig>(true);
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var characters = SystemAPI.GetComponentLookup<Character>(true);
 
@@ -31,8 +29,8 @@ namespace vikwhite.ECS
                 float3 targetPosition = transforms[target].Position;
                 float distanceToTarget = math.distance(currentPosition, targetPosition);
 
-                var characterConfig = configs.Get(character.ValueRO.ID);
-                var targetConfig = configs.Get(characters[target].ID);
+                var characterConfig = character.ValueRO.GetConfig();
+                var targetConfig = characters[target].GetConfig();
                 float finishDistance = characterConfig.ColliderRadius + targetConfig.ColliderRadius + 0.5f;
 
                 if (distanceToTarget <= finishDistance)

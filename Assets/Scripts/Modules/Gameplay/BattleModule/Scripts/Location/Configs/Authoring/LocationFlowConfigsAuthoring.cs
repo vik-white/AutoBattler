@@ -16,7 +16,7 @@ namespace vikwhite.ECS
     {
         public override void Bake(LocationFlowConfigsAuthoring authoring) {  
             var entity = GetEntity(TransformUsageFlags.None);
-            var locationBuffer = AddBuffer<LocationFlowConfig>(entity);
+            var locationConfigs = new List<(uint ID, List<LocationFlowStepData> Steps)>();
 
             var locations = new List<string>();
             foreach (var locationData in authoring.Configs.LocationFlow.GetAll())
@@ -41,12 +41,31 @@ namespace vikwhite.ECS
                     });
                 }
 
-                locationBuffer.Add(new LocationFlowConfig
-                {
-                    ID = locationID.CalculateHash32(),
-                    Steps = ArrayHandler.CreateBlobArray(steps.Count, e => steps[e]),
-                });
+                locationConfigs.Add((locationID.CalculateHash32(), steps));
             }
+
+            AddComponent(entity, new LocationFlowConfigsBlob
+            {
+                Value = CreateLocationFlowBlob(locationConfigs)
+            });
+        }
+
+        private static BlobAssetReference<BlobArrayContainer<LocationFlowConfig>> CreateLocationFlowBlob(
+            List<(uint ID, List<LocationFlowStepData> Steps)> locationConfigs)
+        {
+            using var builder = new BlobBuilder(Allocator.Temp);
+            ref var root = ref builder.ConstructRoot<BlobArrayContainer<LocationFlowConfig>>();
+            var arrayBuilder = builder.Allocate(ref root.Array, locationConfigs.Count);
+            for (int i = 0; i < locationConfigs.Count; i++)
+            {
+                arrayBuilder[i].ID = locationConfigs[i].ID;
+                var stepsBuilder = builder.Allocate(ref arrayBuilder[i].Steps, locationConfigs[i].Steps.Count);
+                for (int j = 0; j < locationConfigs[i].Steps.Count; j++)
+                {
+                    stepsBuilder[j] = locationConfigs[i].Steps[j];
+                }
+            }
+            return builder.CreateBlobAssetReference<BlobArrayContainer<LocationFlowConfig>>(Allocator.Persistent);
         }
     }
 }

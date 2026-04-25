@@ -2,9 +2,9 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    public struct LocationFlowConfig : IBufferElementData, IID
+    public struct LocationFlowConfig : IID
     {
         public uint ID { get; set; }
-        public BlobAssetReference<BlobArrayContainer<LocationFlowStepData>> Steps;
+        public BlobArray<LocationFlowStepData> Steps;
     }
 }

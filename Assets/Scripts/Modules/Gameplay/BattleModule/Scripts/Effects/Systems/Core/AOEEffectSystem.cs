@@ -12,12 +12,11 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            var abilityLevelConfig = SystemAPI.GetSingletonBuffer<AbilityLevelsConfig>();
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>())
             {
                 var target = request.ValueRO.Target;
                 var position = SystemAPI.GetComponent<LocalTransform>(target).Position;
-                var abilityConfig = abilityLevelConfig.Get(request.ValueRO.Ability.ID).Levels.Value.Array[request.ValueRO.Ability.Level];
+                var abilityConfig = request.ValueRO.Ability.Value;
                 if(abilityConfig.AOE == 0) continue;
 
                 var isEnemy = SystemAPI.HasComponent<Enemy>(target);

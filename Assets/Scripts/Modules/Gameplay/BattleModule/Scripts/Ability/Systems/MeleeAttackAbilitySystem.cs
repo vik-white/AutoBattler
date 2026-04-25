@@ -10,32 +10,33 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    if (ability.Config.Type != AbilityType.MeleeAttack || !ability.IsActivate) continue;
+                    var config = ability.GetConfig();
+                    if (config.Type != AbilityType.MeleeAttack || !ability.IsActivate) continue;
                     
-                    foreach (var status in ability.Config.Statuses) {
+                    foreach (var status in config.Statuses) {
                         ecb.CreateFrameEntity(new CreateStatus
                         {
-                            Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                            Ability = ability.Config,
                             Provider = entity,
                             Target = target.ValueRO.Value, 
                             Data = status, 
                         });
                     }
                     
-                    foreach (var effect in ability.Config.Effects) {
+                    foreach (var effect in config.Effects) {
                         ecb.CreateFrameEntity(new CreateEffect 
                         {
-                            Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                            Ability = ability.Config,
                             Provider = entity,
                             Target = target.ValueRO.Value, 
                             Data = effect, 
                         });
                     }
                     
-                    foreach (var stat in ability.Config.Stats) {
+                    foreach (var stat in config.Stats) {
                         ecb.CreateFrameEntity(new CreateStatChange 
                         {
-                            Ability = new AbilityLevelData{ ID = ability.Config.ID, Level = ability.Config.Level },
+                            Ability = ability.Config,
                             Provider = entity,
                             Target = target.ValueRO.Value, 
                             Data = stat, 

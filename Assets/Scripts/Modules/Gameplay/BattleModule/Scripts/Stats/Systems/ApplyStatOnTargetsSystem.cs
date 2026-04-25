@@ -13,9 +13,10 @@ namespace vikwhite
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (collisionTargets, stats, provider) in SystemAPI.Query<DynamicBuffer<CollisionTarget>, RefRO<Stats>, RefRO<Provider>>()) 
             {
+                var ability = stats.ValueRO.Ability.Value;
                 for (int i = 0; i < collisionTargets.Length; i++) 
                 {
-                    foreach (var stat in stats.ValueRO.Array) 
+                    foreach (var stat in ability.Stats) 
                     {
                         ecb.CreateFrameEntity(new CreateStatChange {
                             Ability = stats.ValueRO.Ability,
