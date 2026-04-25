@@ -1,5 +1,4 @@
 using Rukhanka.Toolbox;
-using UnityEngine;
 using vikwhite.Data;
 using vikwhite.ECS;
 
@@ -32,10 +31,10 @@ namespace vikwhite
         {
             BattleHUD.Show();
 
-            ECSWorld.EnableManaged<BattleSystemGroup>();
-            ECSWorld.Enable<InitializeTimeSystem>();
-            ECSWorld.Enable<VFXConfigInitializeSystem>();
-            ECSWorld.Enable<CharacterConfigInitializeSystem>();
+            ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
+            ECSWorld.SetEnabled<InitializeTimeSystem>(true);
+            ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true);
+            ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
             
             ECSWorld.CreateEntity(new InitializeSquad{ Value = _squad.GetCharactersHash() });
 
@@ -51,7 +50,7 @@ namespace vikwhite
 
         public void Exit()
         {
-            ECSWorld.DisableManaged<BattleSystemGroup>();
+            ECSWorld.SetManagedEnabled<BattleSystemGroup>(false);
             ECSWorld.DestroyScene();
             BattleHUD.Hide();
         }

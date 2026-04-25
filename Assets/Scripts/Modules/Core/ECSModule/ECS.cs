@@ -7,22 +7,16 @@ namespace vikwhite
 {
     public static class ECSWorld
     {
-        public static void Enable<T>() where T : unmanaged, ISystem
+        public static void SetEnabled<T>(bool enabled) where T : unmanaged, ISystem
         {
             var world = World.DefaultGameObjectInjectionWorld;
-            world.Unmanaged.ResolveSystemStateRef(world.GetExistingSystem<T>()).Enabled = true;
+            world.Unmanaged.ResolveSystemStateRef(world.GetExistingSystem<T>()).Enabled = enabled;
         }
 
-        public static void EnableManaged<T>() where T : ComponentSystemBase
+        public static void SetManagedEnabled<T>(bool enabled) where T : ComponentSystemBase
         {
             var world = World.DefaultGameObjectInjectionWorld;
-            world.GetExistingSystemManaged<T>().Enabled = true;
-        }
-
-        public static void DisableManaged<T>() where T : ComponentSystemBase
-        {
-            var world = World.DefaultGameObjectInjectionWorld;
-            world.GetExistingSystemManaged<T>().Enabled = false;
+            world.GetExistingSystemManaged<T>().Enabled = enabled;
         }
 
         public static void DestroyScene()
