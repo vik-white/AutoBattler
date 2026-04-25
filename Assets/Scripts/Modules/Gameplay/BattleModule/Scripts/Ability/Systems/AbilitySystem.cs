@@ -9,8 +9,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())

@@ -8,8 +8,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>() || !SystemAPI.HasSingleton<LocationFlowConfigsBlob>()) return;
-
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var time = SystemAPI.GetSingleton<Time>();
             var dt = time.DeltaTime;

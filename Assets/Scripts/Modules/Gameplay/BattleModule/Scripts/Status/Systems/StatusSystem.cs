@@ -8,8 +8,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (status, target, provider) in SystemAPI.Query<RefRW<Status>, RefRO<Target>, RefRO<Provider>>())

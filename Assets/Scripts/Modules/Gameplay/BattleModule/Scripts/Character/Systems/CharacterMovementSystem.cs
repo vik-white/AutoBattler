@@ -14,8 +14,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var job = new CharacterMovementJob
             {
                 DeltaTime = SystemAPI.GetSingleton<Time>().DeltaTime,

@@ -13,6 +13,18 @@ namespace vikwhite
             world.Unmanaged.ResolveSystemStateRef(world.GetExistingSystem<T>()).Enabled = true;
         }
 
+        public static void EnableManaged<T>() where T : ComponentSystemBase
+        {
+            var world = World.DefaultGameObjectInjectionWorld;
+            world.GetExistingSystemManaged<T>().Enabled = true;
+        }
+
+        public static void DisableManaged<T>() where T : ComponentSystemBase
+        {
+            var world = World.DefaultGameObjectInjectionWorld;
+            world.GetExistingSystemManaged<T>().Enabled = false;
+        }
+
         public static void DestroyScene()
         {
             CoroutineRunner.Instance.StartCoroutine(DestroyNextFrame());

@@ -8,9 +8,6 @@ namespace vikwhite.ECS
     public partial struct RenderEntitySystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            var renderDataQuery = SystemAPI.QueryBuilder().WithAll<CharacterRenderData>().Build();
-            if (renderDataQuery.IsEmptyIgnoreFilter) return;
-
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var runtimeData = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
             foreach (var (children, character, entity) in SystemAPI.Query<DynamicBuffer<Child>, RefRO<Character>>().WithNone<RenderEntity>().WithEntityAccess())

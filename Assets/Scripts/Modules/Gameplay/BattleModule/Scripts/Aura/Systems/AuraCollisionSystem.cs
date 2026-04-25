@@ -11,8 +11,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>() || !SystemAPI.HasSingleton<SimulationSingleton>()) return;
-
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             foreach (var aura in SystemAPI.Query<RefRW<Aura>>())
             {

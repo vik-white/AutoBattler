@@ -8,8 +8,6 @@ namespace vikwhite.ECS
     public partial struct MagnetMovementSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             foreach (var (transform, movement, speed) in SystemAPI.Query<RefRW<LocalTransform>, RefRO<MagnetMovement>, RefRO<Speed>>()) {

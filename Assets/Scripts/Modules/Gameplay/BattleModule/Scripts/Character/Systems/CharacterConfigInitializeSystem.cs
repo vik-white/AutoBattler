@@ -14,9 +14,6 @@ namespace vikwhite.ECS
 
         public void OnUpdate(ref SystemState state)
         {
-            var renderDataQuery = SystemAPI.QueryBuilder().WithAll<CharacterRenderData>().Build();
-            if (renderDataQuery.IsEmptyIgnoreFilter) return;
-
             var entitiesGraphicsSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<EntitiesGraphicsSystem>();
             var runtimeData = SystemAPI.GetSingletonBuffer<CharacterRenderData>();
             for (int i = 0; i < runtimeData.Length; i++)

@@ -9,8 +9,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             float deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);

@@ -9,8 +9,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<LocationStaticConfigsBlob>()) return;
-
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var staticConfigs = SystemAPI.GetSingleton<LocationStaticConfigsBlob>().Value;
             foreach (var (request, entity) in SystemAPI.Query<RefRW<InitializeStaticEnemies>>().WithEntityAccess())

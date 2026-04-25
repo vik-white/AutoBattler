@@ -12,8 +12,6 @@ namespace vikwhite.ECS
     public partial struct CreateCharacterSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            if (!SystemAPI.HasSingleton<CharacterRenderData>()) return;
-            
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var abilityRuntimeData = SystemAPI.GetSingletonBuffer<AbilityRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);

@@ -7,8 +7,6 @@ namespace vikwhite.ECS
     public partial struct CharacterFlashSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            if (!SystemAPI.HasSingleton<Time>()) return;
-
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (flash, renderEntities, entity) in SystemAPI.Query<RefRW<Flash>, DynamicBuffer<RenderEntity>>().WithEntityAccess())

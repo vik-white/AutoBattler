@@ -11,8 +11,6 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            if (!SystemAPI.HasSingleton<SimulationSingleton>()) return;
-
             var job = new ProjectileCollisionJob
             {
                 Characters = SystemAPI.GetComponentLookup<Character>(true),
