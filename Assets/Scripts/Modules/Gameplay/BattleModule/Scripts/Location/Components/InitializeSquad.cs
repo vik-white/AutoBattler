@@ -5,6 +5,6 @@ namespace vikwhite.ECS
 {
     public struct InitializeSquad : IComponentData
     {
-        public FixedList32Bytes<uint> Value;
+        public FixedList128Bytes<CreateCharacter> Value;
     }
 }

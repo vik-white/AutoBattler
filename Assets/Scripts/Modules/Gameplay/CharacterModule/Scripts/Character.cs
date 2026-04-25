@@ -35,10 +35,6 @@ namespace vikwhite
             _dispatcher.Dispatch(new LevelUpCharacterEvent(_id, _level.Value));
         }
 
-        private float GetHealth()
-        {
-            var multiply = _level.Value * 0.1f + 1;
-            return _configs.Characters.Get(_id).Health * multiply;
-        }
+        private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value);
     }
 }

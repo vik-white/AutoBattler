@@ -262,35 +262,52 @@ MonoBehaviour:
     - ID: Test
       Rewards: 50
       Enemies:
-      - Dummy
+      - ID: 3219797119
+        Level: 0
     - ID: Test5
       Rewards: 50
       Enemies:
-      - Dummy
-      - Dummy
-      - Dummy
-      - Dummy
-      - Dummy
+      - ID: 3219797119
+        Level: 0
+      - ID: 3219797119
+        Level: 0
+      - ID: 3219797119
+        Level: 0
+      - ID: 3219797119
+        Level: 0
+      - ID: 3219797119
+        Level: 0
     - ID: Forest
       Rewards: 50
       Enemies:
-      - Sceleton
-      - Sceleton
-      - IronfistDwarf
-      - IronfistDwarf
-      - IronfistDwarf
+      - ID: 769574570
+        Level: 0
+      - ID: 769574570
+        Level: 0
+      - ID: 3718793775
+        Level: 0
+      - ID: 3718793775
+        Level: 0
+      - ID: 3718793775
+        Level: 0
     - ID: ForestBoss
       Rewards: 50
       Enemies:
-      - SceletonBoss
+      - ID: 1107468141
+        Level: 0
     - ID: walltest
       Rewards: 50
       Enemies:
-      - Enemy
-      - Enemy1
-      - Enemy
-      - EnemyRange
-      - EnemyRange
+      - ID: 4258313009
+        Level: 0
+      - ID: 2415114301
+        Level: 0
+      - ID: 4258313009
+        Level: 0
+      - ID: 895110272
+        Level: 0
+      - ID: 895110272
+        Level: 0
   locationFlow:
     IDS: []
     Data:

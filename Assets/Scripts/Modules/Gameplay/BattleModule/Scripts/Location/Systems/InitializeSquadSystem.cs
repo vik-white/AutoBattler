@@ -14,11 +14,12 @@ namespace vikwhite.ECS
             {
                 for (int i = 0; i < request.ValueRO.Value.Length; i++)
                 {
-                    var id = request.ValueRO.Value[i];
-                    if(id == 0) continue;
+                    var character = request.ValueRO.Value[i];
+                    if(character.ID == 0) continue;
                     ecb.CreateFrameEntity(new CreateCharacter
                     {
-                        ID = id, 
+                        ID = character.ID, 
+                        Level = character.Level,
                         Position = GetPosition(i)
                     });
                 }

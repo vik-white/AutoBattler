@@ -20,7 +20,7 @@ namespace vikwhite.Data
         Sprite Image { get; }
         List<AbilityLevelData> Abilities { get; }
     }
-    
+
     [Serializable]
     public class CharacterData : ICharacterData, ICustomJsonParser
     {

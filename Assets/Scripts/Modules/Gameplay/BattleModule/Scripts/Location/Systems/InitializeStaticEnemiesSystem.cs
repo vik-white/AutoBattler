@@ -14,12 +14,11 @@ namespace vikwhite.ECS
             foreach (var (request, entity) in SystemAPI.Query<RefRW<InitializeStaticEnemies>>().WithEntityAccess())
             {
                 ref var locationConfig = ref staticConfigs.Get(request.ValueRO.ID);
-                float spacing = 1.5f;
-                float offset = (locationConfig.Enemies.Length - 1) * spacing / 2f;
                 for (int i = 0; i < locationConfig.Enemies.Length; i++)
                     ecb.CreateFrameEntity(new CreateCharacter
                     {
-                        ID = locationConfig.Enemies[i], 
+                        ID = locationConfig.Enemies[i].ID, 
+                        Level = locationConfig.Enemies[i].Level, 
                         Position = GetPosition(i),
                         IsEnemy = true
                     });

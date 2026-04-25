@@ -19,9 +19,9 @@ namespace vikwhite.ECS
 
             foreach (var locationData in authoring.Configs.LocationStatic.GetAll())
             {
-                var entities = new FixedList128Bytes<uint>();
+                var entities = new FixedList128Bytes<CharacterLevelData>();
                 foreach (var enemy in locationData.Enemies)
-                    entities.Add(enemy.CalculateHash32());
+                    entities.Add(enemy);
                 
                 locations.Add(new LocationStaticConfig
                 {

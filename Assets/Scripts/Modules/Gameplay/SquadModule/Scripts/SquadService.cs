@@ -11,7 +11,6 @@ namespace vikwhite
         void SetCharacter(int index);
         void SetCharacter(int index, string id);
         List<Character> GetCharacters();
-        FixedList32Bytes<uint> GetCharactersHash();
     }
     
     public class SquadServiceService : ISquadService
@@ -49,15 +48,5 @@ namespace vikwhite
         }
         
         public List<Character> GetCharacters() => _characters;
-
-        public FixedList32Bytes<uint> GetCharactersHash()
-        {
-            var ids = new FixedList32Bytes<uint>();
-            foreach (var character in _characters)
-            {
-                ids.Add(character != null ? character.ID.CalculateHash32() : 0);
-            }
-            return ids;
-        }
     }
 }

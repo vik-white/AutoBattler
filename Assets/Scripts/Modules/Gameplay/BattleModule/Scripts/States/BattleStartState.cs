@@ -1,4 +1,5 @@
 using Rukhanka.Toolbox;
+using Unity.Collections;
 using vikwhite.Data;
 using vikwhite.ECS;
 
@@ -35,8 +36,14 @@ namespace vikwhite
             ECSWorld.SetEnabled<InitializeTimeSystem>(true);
             ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true); 
             ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
-            
-            ECSWorld.CreateEntity(new InitializeSquad{ Value = _squad.GetCharactersHash() });
+
+            var initializeSquad = new InitializeSquad { Value = new FixedList128Bytes<CreateCharacter>() };
+            foreach (var character in _squad.GetCharacters())
+            {
+                var createCharacter = character != null ? new CreateCharacter { ID = character.ID.CalculateHash32(), Level = character.Level.Value } : default;
+                initializeSquad.Value.Add(createCharacter);
+            }
+            ECSWorld.CreateEntity(initializeSquad);
 
             var locationType = _configs.Map.Get(_locationProvider.ID).Type;
             if (locationType == LocationType.Static) 
