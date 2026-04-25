@@ -12,21 +12,20 @@ namespace vikwhite
     
     public class CharactersService : ICharactersService
     {
-        private readonly IConfigs _configs;
+        private readonly IProfileService _profile;
+        private readonly ICharacterFactory _factory;
         private readonly Dictionary<string, Character> _characters = new ();
 
-        public CharactersService(IConfigs configs)
+        public CharactersService(IProfileService profile, ICharacterFactory factory)
         {
-            _configs = configs;
+            _profile = profile;
+            _factory = factory;
         }
 
         public void Initialize()
         {
-            foreach (var characterData in _configs.Characters.GetAll())
-            {
-                if(characterData.Squad)
-                    _characters.Add(characterData.ID, new Character(characterData.ID, 1));
-            }
+            foreach (var characterData in _profile.Data.Characters)
+                _characters.Add(characterData.ID, _factory.Create(characterData.ID, characterData.Level));
         }
 
         public Character GetCharacter(string id) => _characters[id];

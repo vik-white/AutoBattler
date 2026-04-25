@@ -12,4 +12,5 @@ public class CharacterHierarchy : MonoBehaviour
     public TMP_Text Price;
     public Button UpgradeButton;
     public Button CloseButton;
+    public Image Image;
 }

@@ -1,17 +1,44 @@
+using UniRx;
+using vikwhite.Data;
+
 namespace vikwhite
 {
     public class Character
     {
+        private readonly IConfigs _configs;
+        private readonly IEventDispatcher _dispatcher;
         private string _id;
-        private int _level;
-        
-        public string ID => _id;
-        public int Level => _level;
+        private ReactiveProperty<int> _level;
+        private ReactiveProperty<float> _health;
 
-        public Character(string id, int level)
+        public string ID => _id;
+        public IReadOnlyReactiveProperty<int> Level => _level;
+        public IReadOnlyReactiveProperty<float> Health => _health;
+
+        public Character(IConfigs configs, IEventDispatcher dispatcher)
+        {
+            _configs = configs;
+            _dispatcher = dispatcher;
+        }
+        
+        public void Initialize(string id, int level)
         {
             _id = id;
-            _level = level;
+            _level = new ReactiveProperty<int>(level);
+            _health = new ReactiveProperty<float>(GetHealth());
+        }
+
+        public void Upgrade()
+        {
+            _level.Value++;
+            _health.Value = GetHealth();
+            _dispatcher.Dispatch(new LevelUpCharacterEvent(_id, _level.Value));
+        }
+
+        private float GetHealth()
+        {
+            var multiply = _level.Value * 0.1f + 1;
+            return _configs.Characters.Get(_id).Health * multiply;
         }
     }
 }

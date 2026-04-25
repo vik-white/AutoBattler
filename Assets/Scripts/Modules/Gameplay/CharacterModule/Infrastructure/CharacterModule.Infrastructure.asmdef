@@ -1,12 +1,7 @@
 {
-    "name": "Profile.Infrastructure",
+    "name": "Character.Infrastructure",
     "rootNamespace": "",
-    "references": [
-        "GUID:919905d7ca88d6641b1b90d8d6b5011b",
-        "GUID:ba597d3a1e504d34ebf16df981b91302",
-        "GUID:6e230cfcc306cd842aba4d3f965a7397",
-        "GUID:3f170c91c81486c448c00a8fed52f5f1"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

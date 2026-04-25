@@ -1,16 +1,24 @@
 using System.IO;
 using UnityEngine;
+using vikwhite.Data;
 
 namespace vikwhite
 {
     public class ProfileService : IProfileService
     {
+        private readonly IConfigs _configs;
         public ProfileData Data { get; private set; } = new();
+        
+        public ProfileService(IConfigs configs)
+        {
+            _configs = configs;
+        }
 
         public void Rest()
         {
             Data = new ProfileData()
             {
+                Characters = new (),
                 Resources =
                 {
                     new ResourceData{ Type = ResourceType.Hard, Amount = 100 },
@@ -18,6 +26,12 @@ namespace vikwhite
                 },
                 Squad = new [] {"","","","",""}
             };
+
+            foreach (var characterData in _configs.Characters.GetAll())
+            {
+                if (characterData.Squad)
+                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 0 } );
+            }
         }
         
         public void Save()

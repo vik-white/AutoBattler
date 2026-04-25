@@ -2318,6 +2318,7 @@ MonoBehaviour:
   Price: {fileID: 5433792351384123530}
   UpgradeButton: {fileID: 213130742137129572}
   CloseButton: {fileID: 5794625118828108313}
+  Image: {fileID: 450560384686737895}
 --- !u!1 &7078183917463063677
 GameObject:
   m_ObjectHideFlags: 0
