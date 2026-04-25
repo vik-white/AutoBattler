@@ -12,6 +12,7 @@ namespace vikwhite
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
             Register<RoadMapModuleDependency>();
+            Register<CharacterModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
