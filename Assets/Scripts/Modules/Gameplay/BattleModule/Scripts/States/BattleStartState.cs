@@ -33,7 +33,7 @@ namespace vikwhite
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
             ECSWorld.SetEnabled<InitializeTimeSystem>(true);
-            ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true);
+            ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true); 
             ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
             
             ECSWorld.CreateEntity(new InitializeSquad{ Value = _squad.GetCharactersHash() });
