@@ -11,8 +11,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, entity) in SystemAPI.Query<DynamicBuffer<Ability>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    var config = ability.GetConfig();
-                    if (config.Type != AbilityType.Buff || !ability.IsActivate) continue;
+                    if (!ability.TryGetActivatedConfig(AbilityType.Buff, out var config)) continue;
                     if (config.Targets.Length == 0) continue;
 
                     NativeArray<Entity> enemies = SystemAPI.QueryBuilder().WithAll<Character>().WithAny<Enemy>().Build().ToEntityArray(Allocator.Temp);

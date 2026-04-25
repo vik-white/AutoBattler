@@ -18,5 +18,11 @@ namespace vikwhite
         {
             return ability.Config.Value;
         }
+
+        public static bool TryGetActivatedConfig(this in Ability ability, AbilityType type, out AbilityConfig config)
+        {
+            config = ability.Config.Value;
+            return ability.IsActivate && config.Type == type;
+        }
     }
 }

@@ -11,8 +11,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, transform, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    var config = ability.GetConfig();
-                    if (config.Type != AbilityType.OrbitAttack || !ability.IsActivate) continue;
+                    if (!ability.TryGetActivatedConfig(AbilityType.OrbitAttack, out var config)) continue;
                     
                     var count = config.Projectile.Count;
                     for (int i = 0; i < count; i++)

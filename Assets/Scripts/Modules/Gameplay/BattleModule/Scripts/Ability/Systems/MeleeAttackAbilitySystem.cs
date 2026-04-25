@@ -10,8 +10,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (abilities, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    var config = ability.GetConfig();
-                    if (config.Type != AbilityType.MeleeAttack || !ability.IsActivate) continue;
+                    if (!ability.TryGetActivatedConfig(AbilityType.MeleeAttack, out var config)) continue;
                     
                     foreach (var status in config.Statuses) {
                         ecb.CreateFrameEntity(new CreateStatus
