@@ -7,16 +7,16 @@ namespace vikwhite
     
     public class CharacterFactory : ICharacterFactory
     {
-        /*private readonly IDiContainer _container;
+        private readonly DiContainer _container;
         
-        public CharacterFactory(IDiContainer container)
+        public CharacterFactory(DiContainer container)
         {
             _container = container;
-        }*/
+        }
 
         public Character Create(string id, int level)
         {
-            var character = DI.Resolve<Character>();
+            var character = _container.Resolve<Character>();
             character.Initialize(id, level);
             return character;
         }

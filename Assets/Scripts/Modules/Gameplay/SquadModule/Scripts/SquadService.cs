@@ -55,7 +55,7 @@ namespace vikwhite
             var ids = new FixedList32Bytes<uint>();
             foreach (var character in _characters)
             {
-                ids.Add(character.ID.CalculateHash32());
+                ids.Add(character != null ? character.ID.CalculateHash32() : 0);
             }
             return ids;
         }
