@@ -1,14 +1,22 @@
-using vikwhite.Data;
+using UnityEngine.Events;
 
 namespace vikwhite
 {
-    public class CardViewModel: WindowViewModel<ICharacterData>
+    public class CardViewModel: WindowViewModel<Character>
     {
+        public UnityAction OnSelect;
         public string ID { get; }
         
-        public CardViewModel(ICharacterData model) : base(model)
+        public CardViewModel(Character model, ICharacterWindow characterWindow) : base(model)
         {
             ID = model.ID;
+            OnSelect = () => characterWindow.ShowWindow(model);
+        }
+        
+        public override void Dispose()
+        {
+            base.Dispose();
+            OnSelect = null;
         }
     }
 }

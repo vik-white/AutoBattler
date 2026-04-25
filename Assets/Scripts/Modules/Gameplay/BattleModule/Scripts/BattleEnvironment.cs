@@ -12,6 +12,7 @@ namespace vikwhite
             Register<ProfileModuleDependency>();
             Register<SquadModuleDependency>();
             Register<ResourceModuleDependency>();
+            Register<CharacterModuleDependency>();
             Register<RoadMapModuleDependency>();
         }
 
@@ -20,6 +21,7 @@ namespace vikwhite
             Resolve<IProfileService>().Load(); 
             Resolve<IResourceService>().Initialize();
             Resolve<IRoadMapService>().Initialize();
+            Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;

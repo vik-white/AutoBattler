@@ -37,7 +37,7 @@ namespace vikwhite
 
         private void OnCreateCharacter(CreateCharacterEvent evnt)
         {
-            var character = _entityManager.GetComponentData<Character>(evnt.Character);
+            var character = _entityManager.GetComponentData<ECS.Character>(evnt.Character);
             var isEnemy = _entityManager.HasComponent<Enemy>(evnt.Character);
             var config = character.GetConfig();
             

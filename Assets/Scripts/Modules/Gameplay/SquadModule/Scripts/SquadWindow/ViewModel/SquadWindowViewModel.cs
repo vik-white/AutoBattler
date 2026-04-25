@@ -13,24 +13,20 @@ namespace vikwhite
         public UnityAction<int> OnRemoveCharacter;
         public UnityAction OnFight;
         
-        public SquadWindowViewModel(IConfigs configs, ISquadService squad, IEnvironmentStateMachine environmentStateMachine)
+        public SquadWindowViewModel(ISquadService squad, IEnvironmentStateMachine environmentStateMachine, ICharactersService characters)
         {
             _environmentStateMachine = environmentStateMachine;
             
             for (int i = 0; i < squad.GetCharacters().Count; i++)
             {
                 var character = squad.GetCharacters()[i];
-                if (character != "")
-                {
-                    var config = configs.Characters.Get(character);
-                    Squad[i] = CreateViewModel<CardViewModel, ICharacterData>(config);
-                }
+                if (character != null) Squad[i] = CreateViewModel<CardViewModel, Character>(character);
             }
             
-            foreach (var character in configs.Characters.GetAll())
+            foreach (var character in characters.GetCharacters())
             {
-                if(!squad.GetCharacters().Contains(character.ID) && character.Squad )
-                    Cards.Add(CreateViewModel<CardViewModel, ICharacterData>(character));
+                if(!squad.GetCharacters().Contains(character))
+                    Cards.Add(CreateViewModel<CardViewModel, Character>(character));
             }
 
             OnSetCharacter = squad.SetCharacter;

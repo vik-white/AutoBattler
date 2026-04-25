@@ -17,6 +17,7 @@ namespace vikwhite
             _view.ID = viewModel.ID;
             _view.Name.text = viewModel.ID;
             _view.Character.sprite = _configs.Characters.Get(viewModel.ID).Image;
+            BindClick(_view.Button, viewModel.OnSelect);
         }
     }
 }

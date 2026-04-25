@@ -10,7 +10,7 @@ namespace vikwhite
         void Initialize();
         void SetCharacter(int index);
         void SetCharacter(int index, string id);
-        List<string> GetCharacters();
+        List<Character> GetCharacters();
         FixedList32Bytes<uint> GetCharactersHash();
     }
     
@@ -18,35 +18,44 @@ namespace vikwhite
     {
         private readonly IProfileService _profile;
         private readonly IEventDispatcher _dispatcher;
-        private List<string> _characters;
+        private readonly ICharactersService _charactersService;
+        private List<Character> _characters;
 
-        public SquadServiceService(IProfileService profile, IEventDispatcher dispatcher)
+        public SquadServiceService(IProfileService profile, IEventDispatcher dispatcher, ICharactersService charactersService)
         {
             _profile = profile;
             _dispatcher = dispatcher;
+            _charactersService = charactersService;
         }
 
         public void Initialize()
         {
-            _characters = new (_profile.Data.Squad);
+            _characters = new ();
+            foreach (var characterID in _profile.Data.Squad)
+            {
+                if (characterID == null || characterID == "")
+                    _characters.Add(null);
+                else
+                    _characters.Add(_charactersService.GetCharacter(characterID));
+            }
         }
 
         public void SetCharacter(int index) => SetCharacter(index, "");
 
         public void SetCharacter(int index, string id)
         {
-            _characters[index] = id;
+            _characters[index] = id != "" ? _charactersService.GetCharacter(id) : null;
             _dispatcher.Dispatch(new SetSquadCharacterEvent(index, id));
         }
         
-        public List<string> GetCharacters() => _characters;
+        public List<Character> GetCharacters() => _characters;
 
         public FixedList32Bytes<uint> GetCharactersHash()
         {
             var ids = new FixedList32Bytes<uint>();
-            foreach (var id in _characters)
+            foreach (var character in _characters)
             {
-                ids.Add(id.CalculateHash32());
+                ids.Add(character.ID.CalculateHash32());
             }
             return ids;
         }
