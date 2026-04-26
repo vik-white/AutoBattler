@@ -7,6 +7,7 @@ namespace vikwhite.Data
     public interface ILocationStaticData
     {
         string ID { get; }
+        string HexPositions { get; }
         int Rewards { get; }
         List<CharacterLevelData> Enemies { get; }
     }
@@ -15,10 +16,12 @@ namespace vikwhite.Data
     public class LocationStaticData : ILocationStaticData, ICustomJsonParser
     {
         public string ID;
+        public string HexPositions;
         public int Rewards;
         public List<CharacterLevelData> Enemies;
         
         string ILocationStaticData.ID => ID;
+        string ILocationStaticData.HexPositions => HexPositions;
         int ILocationStaticData.Rewards => Rewards;
         List<CharacterLevelData> ILocationStaticData.Enemies => Enemies;
         

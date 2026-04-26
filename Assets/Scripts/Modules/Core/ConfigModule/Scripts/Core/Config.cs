@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using System.Reflection;
 using System.Globalization;
 using Rukhanka.Toolbox;
+using Unity.Mathematics;
 
 namespace vikwhite.Data
 {
@@ -190,6 +191,17 @@ namespace vikwhite.Data
                     } 
                     else if(field.FieldType == typeof(bool)) field.SetValue(data, row[field.Name] != "" ? row[field.Name] == "TRUE" : false);
                     else if(field.FieldType == typeof(uint)) field.SetValue(data, row[field.Name] != "" ? row[field.Name].CalculateHash32() : 0);
+                    else if (field.FieldType == typeof(int2))
+                    {
+                        if (row[field.Name] == "") field.SetValue(data, int2.zero);
+                        else
+                        {
+                            var parts = row[field.Name].Split(':');
+                            var xString = parts[0];
+                            var yString = parts[1];
+                            field.SetValue(data, new int2(int.Parse(xString), int.Parse(yString)));
+                        }
+                    }
                     //else if(field.FieldType == typeof(GameObject)) field.SetValue(data, ResourcesEx.Load<GameObject>(Constants.Directories.Prefabs.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Sprite)) field.SetValue(data, ResourcesEx.Load<Sprite>(Constants.Directories.Images.Paths, row[field.Name]));
                     //else if(field.FieldType == typeof(Material)) field.SetValue(data, ResourcesEx.Load<Material>(Constants.Directories.Materials.Paths, row[field.Name]));
