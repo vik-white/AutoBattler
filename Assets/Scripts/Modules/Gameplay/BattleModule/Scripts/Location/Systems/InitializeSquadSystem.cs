@@ -34,7 +34,7 @@ namespace vikwhite.ECS
             switch (index)
             {
                 case 0: return HexCoordinatesHandler.AxialToWorld(new int2(-3,1));
-                case 1: return HexCoordinatesHandler.AxialToWorld(new int2(-3,-1));
+                case 1: return HexCoordinatesHandler.AxialToWorld(new int2(-2,-1));
                 case 2: return HexCoordinatesHandler.AxialToWorld(new int2(-4,1));
                 case 3: return HexCoordinatesHandler.AxialToWorld(new int2(-3,0));
                 case 4: return HexCoordinatesHandler.AxialToWorld(new int2(-3,-1));
