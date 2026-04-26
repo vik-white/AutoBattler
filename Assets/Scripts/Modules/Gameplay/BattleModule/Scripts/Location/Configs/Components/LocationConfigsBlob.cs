@@ -12,4 +12,9 @@ namespace vikwhite.ECS
     {
         public BlobAssetReference<BlobArrayContainer<LocationFlowConfig>> Value;
     }
+
+    public struct HexPositionsConfigsBlob : IComponentData
+    {
+        public BlobAssetReference<BlobArrayContainer<HexPositionsConfig>> Value;
+    }
 }

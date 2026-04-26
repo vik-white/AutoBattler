@@ -260,11 +260,13 @@ MonoBehaviour:
     - walltest
     Data:
     - ID: Test
+      HexPositions: BossPosition
       Rewards: 50
       Enemies:
       - ID: 3219797119
         Level: 0
     - ID: Test5
+      HexPositions: BasePosition
       Rewards: 50
       Enemies:
       - ID: 3219797119
@@ -278,6 +280,7 @@ MonoBehaviour:
       - ID: 3219797119
         Level: 0
     - ID: Forest
+      HexPositions: BasePosition
       Rewards: 50
       Enemies:
       - ID: 769574570
@@ -291,11 +294,13 @@ MonoBehaviour:
       - ID: 3718793775
         Level: 0
     - ID: ForestBoss
+      HexPositions: BossPosition
       Rewards: 50
       Enemies:
       - ID: 1107468141
         Level: 0
     - ID: walltest
+      HexPositions: BasePosition
       Rewards: 50
       Enemies:
       - ID: 4258313009
@@ -1135,6 +1140,43 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+  hexPositions:
+    IDS:
+    - BasePosition
+    - BossPosition
+    Data:
+    - ID: BasePosition
+      C1:
+        x: 2
+        y: 2
+      C2:
+        x: 3
+        y: 1
+      C3:
+        x: 3
+        y: 0
+      C4:
+        x: 4
+        y: -1
+      C5:
+        x: 4
+        y: -2
+    - ID: BossPosition
+      C1:
+        x: 3
+        y: 0
+      C2:
+        x: 0
+        y: 0
+      C3:
+        x: 0
+        y: 0
+      C4:
+        x: 0
+        y: 0
+      C5:
+        x: 0
+        y: 0
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

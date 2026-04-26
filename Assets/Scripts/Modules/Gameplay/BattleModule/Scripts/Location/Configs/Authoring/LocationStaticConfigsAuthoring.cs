@@ -26,6 +26,7 @@ namespace vikwhite.ECS
                 locations.Add(new LocationStaticConfig
                 {
                     ID = locationData.ID.CalculateHash32(),
+                    HexPositions = locationData.HexPositions.CalculateHash32(),
                     Enemies = entities,
                 });
             }
