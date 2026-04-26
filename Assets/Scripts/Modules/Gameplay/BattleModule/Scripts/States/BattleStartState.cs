@@ -33,6 +33,7 @@ namespace vikwhite
             BattleHUD.Show();
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
+            ECSWorld.SetEnabled<EndBattleSystem>(true);
             ECSWorld.SetEnabled<InitializeTimeSystem>(true);
             ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true); 
             ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
@@ -57,8 +58,6 @@ namespace vikwhite
 
         public void Exit()
         {
-            ECSWorld.SetManagedEnabled<BattleSystemGroup>(false);
-            ECSWorld.DestroyScene();
             BattleHUD.Hide();
         }
     }

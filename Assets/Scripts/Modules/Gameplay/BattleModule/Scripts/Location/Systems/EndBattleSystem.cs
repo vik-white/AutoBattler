@@ -27,10 +27,12 @@ namespace vikwhite.ECS
 
             if (!hasAliveEnemies)
             {
+                state.Enabled = false;
                 ecb.CreateFrameEntity(new VictoryBattleEvent());
             }
             else if (!hasAliveCharacters)
             {
+                state.Enabled = false;
                 ecb.CreateFrameEntity(new DefeatBattleEvent());
             }
             ecb.Playback(state.EntityManager);
