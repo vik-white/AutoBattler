@@ -10,10 +10,7 @@ namespace vikwhite
             var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
             foreach (var (limit, projectile) in SystemAPI.Query<RefRO<CollisionTargetLimit>>().WithEntityAccess()) {
                 if(limit.ValueRO.Value <= 0)
-                {
-                    PhysicsDisposeHandler.Dispose(state.EntityManager, projectile);
-                    ecb.DestroyEntity(projectile);
-                }
+                    ecb.DestroyEntityAndPhysics(state.EntityManager, projectile);
             }
         }
     }

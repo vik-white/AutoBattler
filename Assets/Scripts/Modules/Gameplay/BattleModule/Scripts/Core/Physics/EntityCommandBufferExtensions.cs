@@ -3,9 +3,9 @@ using Unity.Physics;
 
 namespace vikwhite.ECS
 {
-    public static class PhysicsDisposeHandler
+    public static class EntityCommandBufferExtensions
     {
-        public static void Dispose(EntityManager entityManager, Entity entity)
+        public static void DestroyEntityAndPhysics(this EntityCommandBuffer ecb, EntityManager entityManager, Entity entity)
         {
             if (entityManager.HasComponent<PhysicsCollider>(entity))
             {
@@ -20,6 +20,8 @@ namespace vikwhite.ECS
                 if (jumpPhysicsState.Collider.Value.IsCreated)
                     jumpPhysicsState.Collider.Value.Dispose();
             }
+
+            ecb.DestroyEntity(entity);
         }
     }
 }

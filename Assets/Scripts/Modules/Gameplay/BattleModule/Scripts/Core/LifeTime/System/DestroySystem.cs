@@ -9,10 +9,7 @@ namespace vikwhite.ECS
         {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             foreach (var (_, entity) in SystemAPI.Query<Destroy>().WithEntityAccess())
-            {
-                PhysicsDisposeHandler.Dispose(state.EntityManager, entity);
-                ecb.DestroyEntity(entity);
-            }
+                ecb.DestroyEntityAndPhysics(state.EntityManager, entity);
             ecb.Playback(state.EntityManager);
         }
     }
