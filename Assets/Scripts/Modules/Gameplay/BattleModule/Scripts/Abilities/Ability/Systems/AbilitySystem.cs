@@ -11,6 +11,8 @@ namespace vikwhite.ECS
         {
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
+            var characters = SystemAPI.GetComponentLookup<Character>(true);
             foreach (var (abilities, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
             {
                 bool hasTarget = SystemAPI.HasComponent<Target>(entity);
@@ -21,8 +23,20 @@ namespace vikwhite.ECS
                 float cooldownMultiply = statBuffer[(int)StatType.CooldownMultiply].Value;
                 var characterConfig = character.ValueRO.GetConfig();
                 Entity target = hasTarget ? SystemAPI.GetComponent<Target>(entity).Value : Entity.Null;
-                var targetTransform = hasTarget ? SystemAPI.GetComponent<LocalTransform>(target) : default;
-                var targetConfig = hasTarget ? SystemAPI.GetComponent<Character>(target).GetConfig() : default;
+                bool targetIsValid = hasTarget
+                    && target != Entity.Null
+                    && transforms.HasComponent(target)
+                    && characters.HasComponent(target);
+
+                if (hasTarget && !targetIsValid)
+                {
+                    ecb.RemoveComponent<Target>(entity);
+                    hasTarget = false;
+                    target = Entity.Null;
+                }
+
+                var targetTransform = targetIsValid ? transforms[target] : default;
+                var targetConfig = targetIsValid ? characters[target].GetConfig() : default;
 
                 for (int i = 0; i < abilities.Length; i++)
                 {
