@@ -5,10 +5,10 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
         _Color ("Base Color", Color) = (1, 0, 0, 1)
         _ShadowColor ("Shadow Color", Color) = (0, 0, 0, 1)
         _ShadowOpacity ("Shadow Opacity", Range(0,1)) = 0.5
-
         _MainTex ("Color Texture", 2D) = "white" {}
         _SSUVScale ("UV Scale", Range(0,10)) = 1
     }
+
     SubShader
     {
         Tags
@@ -18,8 +18,8 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
             "RenderType" = "Opaque"
             "IgnoreProjector" = "True"
         }
-        LOD 100
 
+        LOD 100
         ZWrite On
         ZTest LEqual
         Blend SrcAlpha OneMinusSrcAlpha
@@ -36,11 +36,8 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
-            #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
-            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
             #pragma multi_compile_instancing
-
+            #pragma multi_compile _ _FORWARD_PLUS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
@@ -58,6 +55,9 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float _SSUVScale;
+            float4 _Color;
+            float4 _ShadowColor;
+            float _ShadowOpacity;
 
             struct Attributes
             {
@@ -75,30 +75,53 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                 float4 shadowCoord : TEXCOORD2;
             };
 
-            float4 _Color;
-            float4 _ShadowColor;
-            float _ShadowOpacity;
-
-            float2 GetScreenUV(float2 clipPos, float UVscaleFactor)
+            float2 GetScreenUV(float2 clipPos, float uvScaleFactor)
             {
-                // Используем URP-функцию вместо UnityObjectToClipPos
-                float4 SSobjectPosition = TransformObjectToHClip(float3(0, 0, 0));
+                float4 objectPositionCS = TransformObjectToHClip(float3(0, 0, 0));
                 float2 screenUV = float2(clipPos.x / _ScreenParams.x, clipPos.y / _ScreenParams.y);
                 float screenRatio = _ScreenParams.y / _ScreenParams.x;
 
-                screenUV.y -= 0.5;
-                screenUV.x -= 0.5;
-
-                screenUV.x -= SSobjectPosition.x / (2 * SSobjectPosition.w);
-                screenUV.y += SSobjectPosition.y / (2 * SSobjectPosition.w);
+                screenUV -= 0.5;
+                screenUV.x -= objectPositionCS.x / (2 * objectPositionCS.w);
+                screenUV.y += objectPositionCS.y / (2 * objectPositionCS.w);
                 screenUV.y *= screenRatio;
 
-                screenUV *= 1.0 / UVscaleFactor;
-                screenUV *= SSobjectPosition.w;
-
+                screenUV *= (1.0 / uvScaleFactor) * objectPositionCS.w;
                 screenUV = screenUV * _MainTex_ST.xy + _MainTex_ST.zw;
 
                 return screenUV;
+            }
+
+            float3 GetAdditionalLighting(float3 positionWS, float3 normalWS, float4 positionCS, float4 shadowCoord)
+            {
+                float3 lighting = 0;
+
+                InputData inputData = (InputData)0;
+                inputData.positionWS = positionWS;
+                inputData.normalWS = normalWS;
+                inputData.viewDirectionWS = GetWorldSpaceNormalizeViewDir(positionWS);
+                inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(positionCS);
+                inputData.shadowCoord = shadowCoord;
+
+                #if USE_FORWARD_PLUS
+                UNITY_LOOP for (uint lightIndex = 0; lightIndex < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); lightIndex++)
+                {
+                    Light light = GetAdditionalLight(lightIndex, positionWS, half4(1, 1, 1, 1));
+                    float NdotL = saturate(dot(normalWS, light.direction));
+                    lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                }
+                #endif
+
+                #if defined(_ADDITIONAL_LIGHTS)
+                uint lightCount = GetAdditionalLightsCount();
+                LIGHT_LOOP_BEGIN(lightCount)
+                    Light light = GetAdditionalLight(lightIndex, positionWS, half4(1, 1, 1, 1));
+                    float NdotL = saturate(dot(normalWS, light.direction));
+                    lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                LIGHT_LOOP_END
+                #endif
+
+                return lighting;
             }
 
             Varyings vert(Attributes IN)
@@ -130,19 +153,10 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                     shadow = MainLightRealtimeShadow(IN.shadowCoord);
                 #endif
 
-                Light mainLight = GetMainLight();
+                Light mainLight = GetMainLight(IN.shadowCoord);
                 float NdotL = saturate(dot(normal, mainLight.direction));
                 float3 lighting = mainLight.color * NdotL;
-
-                // Добавляем освещение от дополнительных источников (point/spot light)
-                uint lightCount = GetAdditionalLightsCount();
-                for (uint i = 0; i < lightCount; ++i)
-                {
-                    Light light = GetAdditionalLight(i, IN.positionWS);
-                    float3 lightDir = light.direction;
-                    float NdotL_add = saturate(dot(normal, lightDir));
-                    lighting += light.color * NdotL_add * light.distanceAttenuation * light.shadowAttenuation;
-                }
+                lighting += GetAdditionalLighting(IN.positionWS, normal, IN.positionCS, IN.shadowCoord);
 
                 float shadowStrength = _ShadowOpacity * (1.0 - shadow);
                 float3 colorWithShadow = lerp(lighting, lighting * _ShadowColor.rgb, shadowStrength);
@@ -151,11 +165,9 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                 finalColor.rgb *= colorWithShadow;
                 finalColor.a = _Color.a;
 
-                // Проекция текстуры:
                 float2 screenUV = GetScreenUV(IN.positionCS.xy, _SSUVScale);
                 float4 projectedTex = tex2D(_MainTex, screenUV);
 
-                // Смешиваем проекционную текстуру с итоговым цветом (умножаем цвета, сохраняем alpha)
                 finalColor.rgb *= projectedTex.rgb;
                 finalColor.a *= projectedTex.a;
 
