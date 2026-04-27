@@ -7,6 +7,8 @@ namespace vikwhite
     {
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
+        private ICharacterData _characterData;
+        private ILevelUpData _levelUpData;
         private string _id;
         private ReactiveProperty<int> _level;
         private ReactiveProperty<float> _health;
@@ -26,6 +28,8 @@ namespace vikwhite
             _id = id;
             _level = new ReactiveProperty<int>(level);
             _health = new ReactiveProperty<float>(GetHealth());
+            _characterData = _configs.Characters.Get(id);
+            _levelUpData = _configs.LevelUp.Get(_characterData.LevelUp);
         }
 
         public void Upgrade()
@@ -35,6 +39,6 @@ namespace vikwhite
             _dispatcher.Dispatch(new LevelUpCharacterEvent(_id, _level.Value));
         }
 
-        private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value);
+        private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
     }
 }

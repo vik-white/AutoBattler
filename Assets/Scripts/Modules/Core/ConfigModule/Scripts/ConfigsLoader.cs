@@ -19,6 +19,8 @@ namespace vikwhite.Data
         IConfig<ILocationFlowData> LocationFlow { get; }
         IConfig<IAbilityData> Abilities { get; }
         IConfig<IHexPositionsData> HexPositions { get; }
+        IConfig<ILevelUpData> LevelUp { get; }
+        
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
     }
     
@@ -36,6 +38,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<LocationFlowData, ILocationFlowData> locationFlow;
         [SerializeField] private Config<AbilityData, IAbilityData> abilities;
         [SerializeField] private Config<HexPositionsData, IHexPositionsData> hexPositions;
+        [SerializeField] private Config<LevelUpData, ILevelUpData> levelUp;
         
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
@@ -46,6 +49,8 @@ namespace vikwhite.Data
         public IConfig<ILocationFlowData> LocationFlow => locationFlow;
         public IConfig<IAbilityData> Abilities => abilities;
         public IConfig<IHexPositionsData> HexPositions => hexPositions;
+        public IConfig<ILevelUpData> LevelUp => levelUp;
+        
         public IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons
         {
             get

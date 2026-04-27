@@ -48,8 +48,8 @@ namespace vikwhite.ECS
                 ecb.SetComponent(characterEntity, new PhysicsCollider { Value = collider });
                 ecb.AddComponent<ExternalVelocity>(characterEntity);
 
-                ecb.AddComponent(characterEntity, new Health{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level) });
-                ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level) });
+                ecb.AddComponent(characterEntity, new Health{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, 0.1f) });
+                ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, 0.1f) });
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
 

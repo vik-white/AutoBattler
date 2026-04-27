@@ -16,6 +16,7 @@ namespace vikwhite.Data
         float Shield { get; }
         bool HealthBar { get; }
         string ActiveAbility { get; }
+        string LevelUp { get; }
         bool Squad { get; }
         Sprite Image { get; }
         List<AbilityLevelData> Abilities { get; }
@@ -32,6 +33,7 @@ namespace vikwhite.Data
         public float Shield;
         public bool HealthBar;
         public string ActiveAbility;
+        public string LevelUp;
         public bool Squad;
         public Sprite Image;
         public List<AbilityLevelData> Abilities;
@@ -44,6 +46,7 @@ namespace vikwhite.Data
         float ICharacterData.Shield => Shield;
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
+        string ICharacterData.LevelUp => LevelUp;
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         List<AbilityLevelData> ICharacterData.Abilities => Abilities;
