@@ -36,6 +36,7 @@ namespace vikwhite.ECS
                 });
                 ecb.AddComponent(characterEntity, new PreviousPosition { Value = request.ValueRO.Position });
                 ecb.AddComponent<MoveDistance>(characterEntity);
+                ecb.AddComponent<PathAvoidanceState>(characterEntity);
                 ecb.AddComponent<ExternalVelocity>(characterEntity);
 
                 var colliderRadius = config.Scale > 0 ? config.ColliderRadius / config.Scale : config.ColliderRadius;
