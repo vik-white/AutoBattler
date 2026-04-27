@@ -5,6 +5,7 @@ namespace vikwhite.ECS
     public struct Character : IComponentData
     {
         public BlobAssetReference<CharacterConfigData> Config;
+        public int Level;
     }
 
     public static class CharacterExtensions

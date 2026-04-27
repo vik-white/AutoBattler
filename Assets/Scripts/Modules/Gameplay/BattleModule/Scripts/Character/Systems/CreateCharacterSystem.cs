@@ -15,14 +15,17 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var abilityRuntimeData = SystemAPI.GetSingletonBuffer<AbilityRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
+            var levelUpConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);
                 var config = renderData.Config.Value;
+                var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
+                var healthMultiplier = CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpConfig.Health);
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 
-                ecb.AddComponent(characterEntity, new Character { Config = renderData.Config });
+                ecb.AddComponent(characterEntity, new Character { Config = renderData.Config, Level = request.ValueRO.Level });
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(characterEntity);
 
                 ecb.SetComponent(characterEntity, new LocalTransform
@@ -48,8 +51,8 @@ namespace vikwhite.ECS
                 ecb.SetComponent(characterEntity, new PhysicsCollider { Value = collider });
                 ecb.AddComponent<ExternalVelocity>(characterEntity);
 
-                ecb.AddComponent(characterEntity, new Health{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, 0.1f) });
-                ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, 0.1f) });
+                ecb.AddComponent(characterEntity, new Health{ Value = config.Health * healthMultiplier });
+                ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * healthMultiplier });
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
 
