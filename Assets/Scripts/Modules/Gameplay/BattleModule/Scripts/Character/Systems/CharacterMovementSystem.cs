@@ -1,9 +1,5 @@
-using Unity.Burst;
-using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
 
 namespace vikwhite.ECS
@@ -14,62 +10,50 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            var job = new CharacterMovementJob
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
+            var deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
+            var speed = 3f;
+            var rotationSpeed = 5f;
+            var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
+            var characters = SystemAPI.GetComponentLookup<Character>(true);
+
+            foreach (var (transform, externalVelocity, target, abilities, character) in SystemAPI
+                         .Query<RefRW<LocalTransform>, RefRO<ExternalVelocity>, RefRO<Target>, DynamicBuffer<Ability>, RefRO<Character>>()
+                         .WithNone<Dead>())
             {
-                DeltaTime = SystemAPI.GetSingleton<Time>().DeltaTime,
-                Speed = 3f,
-                RotationSpeed = 5f,
-                TransformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true),
-                Characters = SystemAPI.GetComponentLookup<Character>(true)
-            };
-            state.Dependency = job.ScheduleParallel(state.Dependency);
-        }
-    }
+                var moveVelocity = float3.zero;
+                var direction = float3.zero;
+                var targetEntity = target.ValueRO.Value;
 
-    [BurstCompile]
-    [WithNone(typeof(Dead))]
-    public partial struct CharacterMovementJob : IJobEntity
-    {
-        public float DeltaTime;
-        public float Speed;
-        public float RotationSpeed;
-        [ReadOnly]
-        [NativeDisableContainerSafetyRestriction]
-        public ComponentLookup<LocalTransform> TransformLookup;
-        [ReadOnly] public ComponentLookup<Character> Characters;
-
-        [BurstCompile]
-        private void Execute(Entity entity, ref PhysicsVelocity physicsVelocity, in ExternalVelocity externalVelocity, in Target target, in DynamicBuffer<Ability> abilities, in Character character)
-        {
-            var velocity = float3.zero;
-            var targetCharacter = target.Value;
-            var targetConfig = Characters[targetCharacter].GetConfig();
-            var characterConfig = character.GetConfig();
-            var abilityRadius = abilities.Length > 0 ? abilities[0].GetConfig().Radius : 0;
-            var baseDistance = abilityRadius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
-            var stopDistance = abilities.Length > 0 && abilityRadius != 0 ? baseDistance : float.MaxValue;
-            var targetTransform = TransformLookup[targetCharacter];
-            var direction = targetTransform.Position - TransformLookup.GetRefRO(entity).ValueRO.Position;
-
-            if (TransformLookup.HasComponent(targetCharacter))
-            {
-                float distance = math.length(direction);
-                if (distance > stopDistance)
+                if (transforms.HasComponent(targetEntity) && characters.HasComponent(targetEntity))
                 {
-                    float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
-                    velocity = moveDir * Speed;
+                    var targetConfig = characters[targetEntity].GetConfig();
+                    var characterConfig = character.ValueRO.GetConfig();
+                    var abilityRadius = abilities.Length > 0 ? abilities[0].GetConfig().Radius : 0;
+                    var baseDistance = abilityRadius + characterConfig.ColliderRadius + targetConfig.ColliderRadius;
+                    var stopDistance = abilities.Length > 0 && abilityRadius != 0 ? baseDistance : float.MaxValue;
+                    var targetTransform = transforms[targetEntity];
+                    direction = targetTransform.Position - transform.ValueRO.Position;
+                    float distance = math.length(direction);
+                    if (distance > stopDistance)
+                    {
+                        float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                        moveVelocity = moveDir * speed;
+                    }
+                }
+
+                var nextPosition = transform.ValueRO.Position + (moveVelocity + externalVelocity.ValueRO.Value) * deltaTime;
+                if (nextPosition.y < 0f) nextPosition.y = 0f;
+                transform.ValueRW.Position = nextPosition;
+
+                var targetDir = new float3(direction.x, 0f, direction.z);
+                if (math.lengthsq(targetDir) > 0.0001f)
+                {
+                    var targetRot = quaternion.LookRotationSafe(math.normalize(targetDir), math.up());
+                    transform.ValueRW.Rotation = math.slerp(transform.ValueRO.Rotation, targetRot, rotationSpeed * deltaTime);
                 }
             }
-            float3 currentVelocity = physicsVelocity.Linear;
-            physicsVelocity.Linear = new float3(
-                velocity.x + externalVelocity.Value.x,
-                currentVelocity.y + externalVelocity.Value.y,
-                velocity.z + externalVelocity.Value.z);
-
-            var targetDir = math.normalize(new float3(direction.x, 0f, direction.z));
-            var targetRot = quaternion.LookRotationSafe(targetDir, math.up());
-            TransformLookup.GetRefRW(entity).ValueRW.Rotation = math.slerp(TransformLookup.GetRefRO(entity).ValueRO.Rotation, targetRot, RotationSpeed * DeltaTime);
-            physicsVelocity.Angular = float3.zero;
         }
     }
 }

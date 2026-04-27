@@ -36,6 +36,7 @@ namespace vikwhite.ECS
                 });
                 ecb.AddComponent(characterEntity, new PreviousPosition { Value = request.ValueRO.Position });
                 ecb.AddComponent<MoveDistance>(characterEntity);
+                ecb.AddComponent<ExternalVelocity>(characterEntity);
 
                 var colliderRadius = config.Scale > 0 ? config.ColliderRadius / config.Scale : config.ColliderRadius;
                 var colliderHeight = config.Scale > 0 ? config.ColliderHeight / config.Scale : config.ColliderHeight;
@@ -45,11 +46,7 @@ namespace vikwhite.ECS
                     Vertex1 = new float3(0, math.max(colliderRadius, colliderHeight - colliderRadius), 0),
                     Radius = colliderRadius
                 });
-                var mass = PhysicsHandler.CreateFreezeRotationMass(collider.Value.MassProperties);
-                mass.InverseMass = config.Mass;
-                ecb.SetComponent(characterEntity, mass);
                 ecb.SetComponent(characterEntity, new PhysicsCollider { Value = collider });
-                ecb.AddComponent<ExternalVelocity>(characterEntity);
 
                 ecb.AddComponent(characterEntity, new Health{ Value = config.Health * healthMultiplier });
                 ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * healthMultiplier });

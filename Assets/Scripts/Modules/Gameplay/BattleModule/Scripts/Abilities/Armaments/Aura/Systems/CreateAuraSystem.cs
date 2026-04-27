@@ -41,8 +41,10 @@ namespace vikwhite
                         CollisionResponse = CollisionResponsePolicy.RaiseTriggerEvents
                     });
                 ecb.AddComponent(aura, new PhysicsCollider { Value = collider });
+                ecb.AddComponent(aura, PhysicsMass.CreateKinematic(collider.Value.MassProperties));
                 ecb.AddSharedComponentManaged(aura, new PhysicsWorldIndex { Value = 0 });
                 ecb.AddComponent(aura, new Provider{ Value = request.ValueRO.Provider });
+                ecb.AddComponent(aura, new CollisionRadius { Value = ability.AuraRadius });
                 ecb.AddComponent(aura, new Effects{ Ability = request.ValueRO.Ability });
                 ecb.AddComponent(aura, new Statuses{ Ability = request.ValueRO.Ability });
                 ecb.AddComponent(aura, new Stats{ Ability = request.ValueRO.Ability });

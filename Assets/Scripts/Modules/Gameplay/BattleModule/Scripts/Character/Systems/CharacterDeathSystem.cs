@@ -16,9 +16,7 @@ namespace vikwhite.ECS
                 {
                     abilities.Clear();
                     ecb.AddComponent<Dead>(entity);
-                    ecb.RemoveComponent<PhysicsMass>(entity);
                     ecb.RemoveComponent<PhysicsCollider>(entity);
-                    ecb.RemoveComponent<PhysicsVelocity>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });
                     ecb.CreateFrameEntity(new Animation { Character = entity, Type = AnimationType.Dead, Speed = 1 });
                     if (SystemAPI.HasComponent<Enemy>(entity))

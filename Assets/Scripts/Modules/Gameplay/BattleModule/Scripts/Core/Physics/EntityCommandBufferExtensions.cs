@@ -14,13 +14,6 @@ namespace vikwhite.ECS
                     physicsCollider.Value.Dispose();
             }
 
-            if (entityManager.HasComponent<JumpPhysicsState>(entity))
-            {
-                var jumpPhysicsState = entityManager.GetComponentData<JumpPhysicsState>(entity);
-                if (jumpPhysicsState.Collider.Value.IsCreated)
-                    jumpPhysicsState.Collider.Value.Dispose();
-            }
-
             ecb.DestroyEntity(entity);
         }
     }

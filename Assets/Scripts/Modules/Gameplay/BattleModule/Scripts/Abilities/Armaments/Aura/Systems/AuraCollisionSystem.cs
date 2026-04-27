@@ -1,77 +1,55 @@
-using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Physics;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
-    [BurstCompile]
     [UpdateInGroup(typeof(CollisionSystemGroup))]
     public partial struct AuraCollisionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
+            if (!SystemAPI.HasSingleton<Time>()) return;
+
+            var entityManager = state.EntityManager;
             var dt = SystemAPI.GetSingleton<Time>().DeltaTime;
-            foreach (var aura in SystemAPI.Query<RefRW<Aura>>())
+            var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
+            var dead = SystemAPI.GetComponentLookup<Dead>(true);
+
+            foreach (var (aura, auraTransform, radius, provider, collisionTargets) in SystemAPI
+                         .Query<RefRW<Aura>, RefRO<LocalTransform>, RefRO<CollisionRadius>, RefRO<Provider>, DynamicBuffer<CollisionTarget>>())
             {
                 if (aura.ValueRO.IntervalTimeLeft >= 0)
+                {
                     aura.ValueRW.IntervalTimeLeft -= dt;
-                else
-                {
-                    aura.ValueRW.IntervalTimeLeft = aura.ValueRO.Interval;
-                    var job = new AuraCollisionJob
-                    {
-                        Characters = SystemAPI.GetComponentLookup<Character>(true),
-                        Enemies = SystemAPI.GetComponentLookup<Enemy>(true),
-                        Deads = SystemAPI.GetComponentLookup<Dead>(true),
-                        Auras = SystemAPI.GetComponentLookup<Aura>(true),
-                        Providers = SystemAPI.GetComponentLookup<Provider>(true),
-                        CollisionTargets = SystemAPI.GetBufferLookup<CollisionTarget>(),
-                        CollisionTargetLimits = SystemAPI.GetComponentLookup<CollisionTargetLimit>(),
-                    };
-                    state.Dependency = job.Schedule(SystemAPI.GetSingleton<SimulationSingleton>(), state.Dependency);
+                    continue;
                 }
-            }
-        }
-    }
 
-    [BurstCompile]
-    struct AuraCollisionJob : ITriggerEventsJob
-    {
-        [ReadOnly] public ComponentLookup<Character> Characters;
-        [ReadOnly] public ComponentLookup<Enemy> Enemies;
-        [ReadOnly] public ComponentLookup<Dead> Deads;
-        [ReadOnly] public ComponentLookup<Aura> Auras;
-        [ReadOnly] public ComponentLookup<Provider> Providers;
-        public BufferLookup<CollisionTarget> CollisionTargets;
-        public ComponentLookup<CollisionTargetLimit> CollisionTargetLimits;
+                aura.ValueRW.IntervalTimeLeft = aura.ValueRO.Interval;
+                if (!entityManager.Exists(provider.ValueRO.Value) || dead.HasComponent(provider.ValueRO.Value)) continue;
 
-        public void Execute(TriggerEvent triggerEvent)
-        {
-            if (Deads.HasComponent(triggerEvent.EntityA) || Deads.HasComponent(triggerEvent.EntityB)) return;
-            
-            var a = triggerEvent.EntityA;
-            var b = triggerEvent.EntityB;
-            
-            bool aIsProjectile = Auras.HasComponent(a);
-            bool bIsProjectile = Auras.HasComponent(b);
+                var providerIsEnemy = enemies.HasComponent(provider.ValueRO.Value);
+                var auraPosition = auraTransform.ValueRO.Position;
+                var auraRadius = radius.ValueRO.Value;
 
-            bool aIsCharacter = Characters.HasComponent(a);
-            bool bIsCharacter = Characters.HasComponent(b);
-
-            if ((aIsProjectile && bIsCharacter) || (bIsProjectile && aIsCharacter))
-            {
-                var character = aIsCharacter ? a : b;
-                var projectile = aIsProjectile ? a : b;
-            
-                // не столкновение с источником ауры
-                if (Providers.TryGetComponent(projectile, out var provider) && provider.Value != character)
+                foreach (var (characterTransform, character, characterEntity) in SystemAPI
+                             .Query<RefRO<LocalTransform>, RefRO<Character>>()
+                             .WithNone<Dead>()
+                             .WithEntityAccess())
                 {
-                    // столкновение с противником
-                    if (Enemies.HasComponent(provider.Value) != Enemies.HasComponent(character))
-                    {
-                        CollisionTargets[projectile].Add(new CollisionTarget { Value = character });
-                    }
+                    if (characterEntity == provider.ValueRO.Value) continue;
+                    if (providerIsEnemy == enemies.HasComponent(characterEntity)) continue;
+
+                    var characterConfig = character.ValueRO.GetConfig();
+                    var characterCenter = characterTransform.ValueRO.Position + new float3(0f, characterConfig.ColliderHeight * 0.5f, 0f);
+                    var horizontalDistance = math.distance(auraPosition.xz, characterCenter.xz);
+                    var verticalDistance = math.abs(auraPosition.y - characterCenter.y);
+                    var horizontalHitDistance = auraRadius + characterConfig.ColliderRadius;
+                    var verticalHitDistance = auraRadius + characterConfig.ColliderHeight * 0.5f;
+
+                    if (horizontalDistance > horizontalHitDistance || verticalDistance > verticalHitDistance) continue;
+
+                    collisionTargets.Add(new CollisionTarget { Value = characterEntity });
                 }
             }
         }

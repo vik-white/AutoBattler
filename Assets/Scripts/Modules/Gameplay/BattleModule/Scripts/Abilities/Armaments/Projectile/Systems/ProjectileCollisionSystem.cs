@@ -1,87 +1,68 @@
-using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using Unity.Physics;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
-    [BurstCompile]
     [UpdateInGroup(typeof(CollisionSystemGroup))]
     public partial struct ProjectileCollisionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            var job = new ProjectileCollisionJob
+            var entityManager = state.EntityManager;
+            var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
+            var dead = SystemAPI.GetComponentLookup<Dead>(true);
+            var limits = SystemAPI.GetComponentLookup<CollisionTargetLimit>();
+
+            foreach (var (projectileTransform, radius, provider, collisionTargets, collisionBuffer, projectile) in SystemAPI
+                         .Query<RefRO<LocalTransform>, RefRO<CollisionRadius>, RefRO<Provider>, DynamicBuffer<CollisionTarget>, DynamicBuffer<CollisionBuffer>>()
+                         .WithAll<Projectile>()
+                         .WithEntityAccess())
             {
-                Characters = SystemAPI.GetComponentLookup<Character>(true),
-                Enemies = SystemAPI.GetComponentLookup<Enemy>(true),
-                Deads = SystemAPI.GetComponentLookup<Dead>(true),
-                Projectiles = SystemAPI.GetComponentLookup<Projectile>(true),
-                Providers = SystemAPI.GetComponentLookup<Provider>(true),
-                CollisionTargets = SystemAPI.GetBufferLookup<CollisionTarget>(),
-                CollisionBuffers = SystemAPI.GetBufferLookup<CollisionBuffer>(),
-                CollisionTargetLimits = SystemAPI.GetComponentLookup<CollisionTargetLimit>(),
-            };
-            state.Dependency = job.Schedule(SystemAPI.GetSingleton<SimulationSingleton>(), state.Dependency);
-        }
-    }
+                if (!entityManager.Exists(provider.ValueRO.Value) || dead.HasComponent(provider.ValueRO.Value)) continue;
 
-    [BurstCompile]
-    struct ProjectileCollisionJob : ITriggerEventsJob
-    {
-        [ReadOnly] public ComponentLookup<Character> Characters;
-        [ReadOnly] public ComponentLookup<Enemy> Enemies;
-        [ReadOnly] public ComponentLookup<Dead> Deads;
-        [ReadOnly] public ComponentLookup<Projectile> Projectiles;
-        [ReadOnly] public ComponentLookup<Provider> Providers;
-        public BufferLookup<CollisionTarget> CollisionTargets;
-        public BufferLookup<CollisionBuffer> CollisionBuffers;
-        public ComponentLookup<CollisionTargetLimit> CollisionTargetLimits;
+                var hasTargetLimit = limits.HasComponent(projectile);
+                if (hasTargetLimit && limits[projectile].Value <= 0) continue;
 
-        public void Execute(TriggerEvent triggerEvent)
-        {
-            if (Deads.HasComponent(triggerEvent.EntityA) || Deads.HasComponent(triggerEvent.EntityB)) return;
-            
-            var a = triggerEvent.EntityA;
-            var b = triggerEvent.EntityB;
-            
-            bool aIsProjectile = Projectiles.HasComponent(a);
-            bool bIsProjectile = Projectiles.HasComponent(b);
+                var providerIsEnemy = enemies.HasComponent(provider.ValueRO.Value);
+                var projectilePosition = projectileTransform.ValueRO.Position;
+                var projectileRadius = radius.ValueRO.Value;
 
-            bool aIsCharacter = Characters.HasComponent(a);
-            bool bIsCharacter = Characters.HasComponent(b);
-
-            if ((aIsProjectile && bIsCharacter) || (bIsProjectile && aIsCharacter))
-            {
-                var character = aIsCharacter ? a : b;
-                var projectile = aIsProjectile ? a : b;
-            
-                var isHaveTargetLimit = CollisionTargetLimits.HasComponent(projectile);
-                // доступный лимит столкновений для проджектайла
-                if (!isHaveTargetLimit || CollisionTargetLimits[projectile].Value > 0)
+                foreach (var (characterTransform, character, characterEntity) in SystemAPI
+                             .Query<RefRO<LocalTransform>, RefRO<Character>>()
+                             .WithNone<Dead>()
+                             .WithEntityAccess())
                 {
-                    // не столкновение с источником проджектайла
-                    if (Providers.TryGetComponent(projectile, out var provider) && provider.Value != character)
+                    if (characterEntity == provider.ValueRO.Value) continue;
+                    if (providerIsEnemy == enemies.HasComponent(characterEntity)) continue;
+
+                    var characterConfig = character.ValueRO.GetConfig();
+                    var characterCenter = characterTransform.ValueRO.Position + new float3(0f, characterConfig.ColliderHeight * 0.5f, 0f);
+                    var horizontalDistance = math.distance(projectilePosition.xz, characterCenter.xz);
+                    var verticalDistance = math.abs(projectilePosition.y - characterCenter.y);
+                    var horizontalHitDistance = projectileRadius + characterConfig.ColliderRadius;
+                    var verticalHitDistance = projectileRadius + characterConfig.ColliderHeight * 0.5f;
+
+                    if (horizontalDistance > horizontalHitDistance || verticalDistance > verticalHitDistance) continue;
+
+                    var isContains = false;
+                    foreach (var collision in collisionBuffer)
                     {
-                        // столкновение с противником
-                        if (Enemies.HasComponent(provider.Value) != Enemies.HasComponent(character))
+                        if (collision.Value == characterEntity)
                         {
-                            var collisionBuffer = CollisionBuffers[projectile];
-                            var isContains = false;
-                            foreach (var collision in collisionBuffer) {
-                                if (collision.Value == character) {
-                                    isContains =  true;
-                                    break;
-                                }
-                            }
-                            if (!isContains) {
-                                collisionBuffer.Clear();
-                                collisionBuffer.Add(new CollisionBuffer { Value = character });
-                                CollisionTargets[projectile].Add(new CollisionTarget { Value = character });
-                                if(isHaveTargetLimit) CollisionTargetLimits.GetRefRW(projectile).ValueRW.Value--;
-                            }
+                            isContains = true;
+                            break;
                         }
                     }
+
+                    if (isContains) break;
+
+                    collisionBuffer.Clear();
+                    collisionBuffer.Add(new CollisionBuffer { Value = characterEntity });
+                    collisionTargets.Add(new CollisionTarget { Value = characterEntity });
+                    if (hasTargetLimit)
+                        limits.GetRefRW(projectile).ValueRW.Value--;
+                    break;
                 }
             }
         }

@@ -35,10 +35,12 @@ namespace vikwhite.ECS
                         CollisionResponse = CollisionResponsePolicy.RaiseTriggerEvents
                     });
                 ecb.AddComponent(projectile, new PhysicsCollider { Value = collider });
+                ecb.AddComponent(projectile, PhysicsMass.CreateKinematic(collider.Value.MassProperties));
                 ecb.AddSharedComponentManaged(projectile, new PhysicsWorldIndex { Value = 0 });
                 ecb.AddComponent(projectile, new Provider{ Value = request.ValueRO.Provider });
                 ecb.AddComponent(projectile, new Speed{ Value = ability.Projectile.Speed });
                 ecb.AddComponent(projectile, new DirectionMovement{ Direction = math.forward(request.ValueRO.Rotation) });
+                ecb.AddComponent(projectile, new CollisionRadius { Value = ability.Projectile.Scale });
                 ecb.AddComponent(projectile, new CollisionTargetLimit{ Value = ability.Projectile.Pierce });
                 ecb.AddComponent(projectile, new Effects{ Ability = request.ValueRO.Ability });
                 ecb.AddComponent(projectile, new Statuses{ Ability = request.ValueRO.Ability });

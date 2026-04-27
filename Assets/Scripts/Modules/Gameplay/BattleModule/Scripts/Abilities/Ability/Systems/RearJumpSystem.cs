@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Physics;
 using Unity.Transforms;
 
 namespace vikwhite.ECS
@@ -13,9 +12,6 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
             var dead = SystemAPI.GetComponentLookup<Dead>(true);
-            var masses = SystemAPI.GetComponentLookup<PhysicsMass>(true);
-            var velocities = SystemAPI.GetComponentLookup<PhysicsVelocity>(true);
-            var colliders = SystemAPI.GetComponentLookup<PhysicsCollider>(true);
 
             foreach (var (abilities, transform, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>>().WithAll<Character>().WithNone<Dead>().WithEntityAccess())
             {
@@ -52,17 +48,6 @@ namespace vikwhite.ECS
                         Duration = math.max(distance / 8f, 0.2f),
                         Height = math.max(1.5f, distance * 0.2f)
                     });
-
-                    ecb.AddComponent(entity, new JumpPhysicsState
-                    {
-                        Mass = masses[entity],
-                        Velocity = velocities[entity],
-                        Collider = colliders[entity]
-                    });
-
-                    ecb.RemoveComponent<PhysicsMass>(entity);
-                    ecb.RemoveComponent<PhysicsCollider>(entity);
-                    ecb.RemoveComponent<PhysicsVelocity>(entity);
                 }
             }
 
