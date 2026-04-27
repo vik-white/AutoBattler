@@ -38,6 +38,8 @@ namespace vikwhite.ECS
                          .WithNone<Dead>()
                          .WithEntityAccess())
             {
+                if (SystemAPI.HasComponent<MovementLock>(entity)) continue;
+
                 var moveVelocity = float3.zero;
                 var direction = float3.zero;
                 var targetEntity = target.ValueRO.Value;

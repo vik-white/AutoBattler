@@ -12,7 +12,7 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (events, abilities) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Ability>>())
+            foreach (var (events, abilities, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Ability>>().WithEntityAccess())
             {
                 foreach (var evnt in events)
                 {
@@ -28,6 +28,11 @@ namespace vikwhite.ECS
                                 ability.IsAnimation = false;
                             }
                         }
+                    }
+                    else if (evnt.nameHash == "End".CalculateHash32())
+                    {
+                        if (state.EntityManager.HasComponent<MovementLock>(entity))
+                            ecb.RemoveComponent<MovementLock>(entity);
                     }
                 }
             }

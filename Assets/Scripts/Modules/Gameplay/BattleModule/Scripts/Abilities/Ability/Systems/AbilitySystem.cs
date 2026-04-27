@@ -58,7 +58,7 @@ namespace vikwhite.ECS
                     else if (!CanUseOnTarget(transform.ValueRO, targetTransform, abilityConfig, characterConfig, targetConfig)) continue;
 
                     ability.Cooldown = 0;
-                    TriggerAbility(ecb, abilities, entity, transform.ValueRO.Position, abilityConfig, cooldownMultiply, ref ability);
+                    TriggerAbility(ref state, ecb, abilities, entity, transform.ValueRO.Position, abilityConfig, cooldownMultiply, ref ability);
                 }
             }
             ecb.Playback(state.EntityManager);
@@ -73,12 +73,12 @@ namespace vikwhite.ECS
             return distance <= maxDistance;
         }
 
-        private static void TriggerAbility(EntityCommandBuffer ecb, DynamicBuffer<Ability> abilities, Entity entity, float3 position, in AbilityConfig abilityConfig, float speedMultiply, ref Ability ability)
+        private static void TriggerAbility(ref SystemState state, EntityCommandBuffer ecb, DynamicBuffer<Ability> abilities, Entity entity, float3 position, in AbilityConfig abilityConfig, float speedMultiply, ref Ability ability)
         {
             if (abilityConfig.Type != AbilityType.Abilities)
             {
                 ability.IsAnimation = true;
-                PlayAbility(ecb, entity, position, abilityConfig, speedMultiply);
+                PlayAbility(ref state, ecb, entity, position, abilityConfig, speedMultiply);
                 return;
             }
 
@@ -90,12 +90,18 @@ namespace vikwhite.ECS
                 var childConfig = childAbility.GetConfig();
                 childAbility.IsActivate = false;
                 childAbility.IsAnimation = true;
-                PlayAbility(ecb, entity, position, childConfig, speedMultiply);
+                PlayAbility(ref state, ecb, entity, position, childConfig, speedMultiply);
             }
         }
 
-        private static void PlayAbility(EntityCommandBuffer ecb, Entity entity, float3 position, in AbilityConfig abilityConfig, float speedMultiply)
+        private static void PlayAbility(ref SystemState state, EntityCommandBuffer ecb, Entity entity, float3 position, in AbilityConfig abilityConfig, float speedMultiply)
         {
+            if (abilityConfig.Animation == AnimationType.Attack || abilityConfig.Animation == AnimationType.Ability)
+            {
+                if (!state.EntityManager.HasComponent<MovementLock>(entity))
+                    ecb.AddComponent<MovementLock>(entity);
+            }
+
             ecb.CreateFrameEntity(new Animation { Character = entity, Type = abilityConfig.Animation, Speed = speedMultiply });
             if (abilityConfig.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = abilityConfig.CastVFXPrefab, Position = position });
         }

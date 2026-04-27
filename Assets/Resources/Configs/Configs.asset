@@ -512,7 +512,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 1
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 134487697
       ProjectilePrefab: 1286680974
@@ -546,7 +546,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 1
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 134487697
       ProjectilePrefab: 659951734
@@ -580,7 +580,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 1
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 134487697
       ProjectilePrefab: 594811487
@@ -614,7 +614,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 1
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 134487697
       ProjectilePrefab: 594811487
@@ -648,7 +648,7 @@ MonoBehaviour:
       AuraInterval: 0
       Abilities: []
       ImpulseUp: 0
-      ImpulseProvider: 1
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 134487697
       ProjectilePrefab: 594811487
