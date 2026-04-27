@@ -12,15 +12,31 @@ namespace vikwhite.ECS
         {
             if (!SystemAPI.HasSingleton<Time>()) return;
 
+            var characterQuery = SystemAPI.QueryBuilder().WithAll<Character, LocalTransform>().WithNone<Dead>().Build();
+            var entities = characterQuery.ToEntityArray(Unity.Collections.Allocator.Temp);
+            var transformsSnapshot = characterQuery.ToComponentDataArray<LocalTransform>(Unity.Collections.Allocator.Temp);
+            var charactersSnapshot = characterQuery.ToComponentDataArray<Character>(Unity.Collections.Allocator.Temp);
+            var agents = new Unity.Collections.NativeArray<CharacterAgentData>(entities.Length, Unity.Collections.Allocator.Temp);
+            for (int i = 0; i < entities.Length; i++)
+            {
+                agents[i] = new CharacterAgentData
+                {
+                    Entity = entities[i],
+                    Position = transformsSnapshot[i].Position,
+                    Radius = charactersSnapshot[i].GetConfig().ColliderRadius
+                };
+            }
+
             var deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
             var speed = 3f;
             var rotationSpeed = 5f;
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var characters = SystemAPI.GetComponentLookup<Character>(true);
 
-            foreach (var (transform, externalVelocity, target, abilities, character) in SystemAPI
+            foreach (var (transform, externalVelocity, target, abilities, character, entity) in SystemAPI
                          .Query<RefRW<LocalTransform>, RefRO<ExternalVelocity>, RefRO<Target>, DynamicBuffer<Ability>, RefRO<Character>>()
-                         .WithNone<Dead>())
+                         .WithNone<Dead>()
+                         .WithEntityAccess())
             {
                 var moveVelocity = float3.zero;
                 var direction = float3.zero;
@@ -35,10 +51,19 @@ namespace vikwhite.ECS
                     var stopDistance = abilities.Length > 0 && abilityRadius != 0 ? baseDistance : float.MaxValue;
                     var targetTransform = transforms[targetEntity];
                     direction = targetTransform.Position - transform.ValueRO.Position;
-                    float distance = math.length(direction);
+                    float distance = math.length(new float2(direction.x, direction.z));
                     if (distance > stopDistance)
                     {
-                        float3 moveDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                        float3 desiredDir = math.normalize(new float3(direction.x, 0f, direction.z));
+                        float3 moveDir = CalculatePathDirection(
+                            entity,
+                            targetEntity,
+                            transform.ValueRO.Position,
+                            desiredDir,
+                            characterConfig.ColliderRadius,
+                            speed,
+                            deltaTime,
+                            agents);
                         moveVelocity = moveDir * speed;
                     }
                 }
@@ -54,6 +79,140 @@ namespace vikwhite.ECS
                     transform.ValueRW.Rotation = math.slerp(transform.ValueRO.Rotation, targetRot, rotationSpeed * deltaTime);
                 }
             }
+
+            agents.Dispose();
+            charactersSnapshot.Dispose();
+            transformsSnapshot.Dispose();
+            entities.Dispose();
+        }
+
+        private static float3 CalculatePathDirection(
+            Entity entity,
+            Entity targetEntity,
+            float3 position,
+            float3 desiredDirection,
+            float radius,
+            float speed,
+            float deltaTime,
+            Unity.Collections.NativeArray<CharacterAgentData> agents)
+        {
+            if (math.lengthsq(desiredDirection) < 0.0001f) return float3.zero;
+
+            const float separationBuffer = 0.15f;
+            const float sideBuffer = 0.25f;
+            const float goalWeight = 1.25f;
+            const float separationWeight = 2.1f;
+            const float lateralWeight = 1.6f;
+
+            var desiredXZ = math.normalize(new float2(desiredDirection.x, desiredDirection.z));
+            var separation = float2.zero;
+            var lateral = float2.zero;
+            var positionXZ = position.xz;
+            var lookAhead = math.max(radius * 4f, speed * math.max(deltaTime, 0.1f) * 4f);
+
+            for (int i = 0; i < agents.Length; i++)
+            {
+                var other = agents[i];
+                if (other.Entity == entity || other.Entity == targetEntity) continue;
+
+                var toOther = other.Position.xz - positionXZ;
+                var distanceSq = math.lengthsq(toOther);
+                if (distanceSq < 0.0001f)
+                {
+                    var emergencySide = new float2(-desiredXZ.y, desiredXZ.x);
+                    separation -= emergencySide;
+                    continue;
+                }
+
+                var distance = math.sqrt(distanceSq);
+                var minDistance = radius + other.Radius;
+                var avoidanceDistance = minDistance + separationBuffer;
+
+                if (distance < avoidanceDistance)
+                {
+                    var pushDir = (positionXZ - other.Position.xz) / distance;
+                    separation += pushDir * ((avoidanceDistance - distance) / math.max(avoidanceDistance, 0.001f));
+                }
+
+                var forwardDistance = math.dot(toOther, desiredXZ);
+                if (forwardDistance <= 0f || forwardDistance > lookAhead) continue;
+
+                var sideDistanceAbs = math.abs(Cross(desiredXZ, toOther));
+                var corridor = minDistance + sideBuffer;
+                if (sideDistanceAbs > corridor) continue;
+
+                var sideSign = math.sign(Cross(desiredXZ, toOther));
+                if (sideSign == 0f)
+                    sideSign = entity.Index < other.Entity.Index ? 1f : -1f;
+                if (sideSign == 0f)
+                    sideSign = 1f;
+
+                var tangent = new float2(-desiredXZ.y, desiredXZ.x) * -sideSign;
+                var weight = 1f - math.saturate(forwardDistance / lookAhead);
+                lateral += tangent * weight;
+            }
+
+            var steering = desiredXZ * goalWeight + separation * separationWeight + lateral * lateralWeight;
+            if (math.lengthsq(steering) < 0.0001f)
+                steering = desiredXZ;
+            else
+                steering = math.normalize(steering);
+
+            var nextXZ = positionXZ + steering * speed * deltaTime;
+            nextXZ = ResolvePenetration(entity, nextXZ, radius, desiredXZ, agents);
+            var finalDir = nextXZ - positionXZ;
+            if (math.lengthsq(finalDir) < 0.0001f) return float3.zero;
+
+            finalDir = math.normalize(finalDir);
+            return new float3(finalDir.x, 0f, finalDir.y);
+        }
+
+        private static float2 ResolvePenetration(
+            Entity entity,
+            float2 nextPosition,
+            float radius,
+            float2 desiredDirection,
+            Unity.Collections.NativeArray<CharacterAgentData> agents)
+        {
+            const float skin = 0.02f;
+
+            for (int i = 0; i < agents.Length; i++)
+            {
+                var other = agents[i];
+                if (other.Entity == entity) continue;
+
+                var delta = nextPosition - other.Position.xz;
+                var distanceSq = math.lengthsq(delta);
+                var minDistance = radius + other.Radius + skin;
+
+                if (distanceSq >= minDistance * minDistance) continue;
+
+                if (distanceSq < 0.0001f)
+                {
+                    var side = new float2(-desiredDirection.y, desiredDirection.x);
+                    if (math.lengthsq(side) < 0.0001f)
+                        side = new float2(1f, 0f);
+                    nextPosition = other.Position.xz + math.normalize(side) * minDistance;
+                    continue;
+                }
+
+                var distance = math.sqrt(distanceSq);
+                nextPosition = other.Position.xz + (delta / distance) * minDistance;
+            }
+
+            return nextPosition;
+        }
+
+        private static float Cross(float2 a, float2 b)
+        {
+            return a.x * b.y - a.y * b.x;
+        }
+
+        private struct CharacterAgentData
+        {
+            public Entity Entity;
+            public float3 Position;
+            public float Radius;
         }
     }
 }
