@@ -44,6 +44,7 @@ namespace vikwhite.ECS
 
             return new CharacterConfigData {
                 ID = data.ID.CalculateHash32(),
+                LevelUp = data.LevelUp.CalculateHash32(),
                 Scale = data.Scale,
                 Mass = data.Mass,
                 Health = data.Health,

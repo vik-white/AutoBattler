@@ -26,10 +26,10 @@ namespace vikwhite
         public void Initialize(string id, int level)
         {
             _id = id;
-            _level = new ReactiveProperty<int>(level);
-            _health = new ReactiveProperty<float>(GetHealth());
             _characterData = _configs.Characters.Get(id);
             _levelUpData = _configs.LevelUp.Get(_characterData.LevelUp);
+            _level = new ReactiveProperty<int>(level);
+            _health = new ReactiveProperty<float>(GetHealth());
         }
 
         public void Upgrade()

@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 5491737666832125162}
   - component: {fileID: 5491737666832125163}
   - component: {fileID: 5491737666832125164}
+  - component: {fileID: 5491737666832125165}
   m_Layer: 0
   m_Name: Configs
   m_TagString: Untagged
@@ -253,6 +254,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b0072a07821e8429f54f2040d1e7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.ECS.HexPositionsConfigsAuthoring
+  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
+--- !u!114 &5491737666832125165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415856435792566308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eac6af7637ba274081c8c103a648a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Battle::vikwhite.ECS.LevelUpConfigsAuthoring
   Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

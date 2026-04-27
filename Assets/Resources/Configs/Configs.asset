@@ -47,6 +47,7 @@ MonoBehaviour:
       Shield: 100
       HealthBar: 1
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities: []
@@ -58,6 +59,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: OrbitingFireBoll
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       Abilities:
@@ -73,6 +75,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: Tank
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       Abilities:
@@ -88,6 +91,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: Healer
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
       Abilities:
@@ -103,6 +107,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: Mage
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
       Abilities:
@@ -118,6 +123,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: Assassin
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
       Abilities:
@@ -133,6 +139,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: Support
+      LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       Abilities:
@@ -148,6 +155,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -161,6 +169,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -174,6 +183,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -187,6 +197,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 0
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -200,6 +211,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -215,6 +227,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 0
       ActiveAbility: 
+      LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
       Abilities:
@@ -1177,6 +1190,15 @@ MonoBehaviour:
       C5:
         x: 0
         y: 0
+  levelUp:
+    IDS:
+    - BaseLevelUp
+    Data:
+    - ID: BaseLevelUp
+      Damage: 0.1
+      Health: 0.1
+      Shield: 0.1
+      Heal: 0.1
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

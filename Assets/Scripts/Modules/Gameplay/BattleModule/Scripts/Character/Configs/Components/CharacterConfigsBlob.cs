@@ -5,9 +5,15 @@ using UnityEngine.Rendering;
 
 namespace vikwhite.ECS
 {
+    public struct LevelUpConfigsBlob : IComponentData
+    {
+        public BlobAssetReference<BlobArrayContainer<LevelUpConfig>> Value;
+    }
+
     public struct CharacterConfigData : IID
     {
         public uint ID { get; set; }
+        public uint LevelUp;
         public float Scale;
         public float Mass;
         public float Health;
