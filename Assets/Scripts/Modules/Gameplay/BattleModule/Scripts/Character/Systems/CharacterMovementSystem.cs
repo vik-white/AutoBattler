@@ -100,9 +100,9 @@ namespace vikwhite.ECS
 
             const float separationBuffer = 0.15f;
             const float sideBuffer = 0.25f;
-            const float goalWeight = 1.25f;
-            const float separationWeight = 2.1f;
-            const float lateralWeight = 1.6f;
+            const float goalWeight = 1.15f;
+            const float separationWeight = 2.2f;
+            const float lateralWeight = 1.4f;
 
             var desiredXZ = math.normalize(new float2(desiredDirection.x, desiredDirection.z));
             var separation = float2.zero;
@@ -152,14 +152,15 @@ namespace vikwhite.ECS
                 lateral += tangent * weight;
             }
 
-            var steering = desiredXZ * goalWeight + separation * separationWeight + lateral * lateralWeight;
-            if (math.lengthsq(steering) < 0.0001f)
-                steering = desiredXZ;
+            var preferredDirection = desiredXZ * goalWeight + separation * separationWeight + lateral * lateralWeight;
+            if (math.lengthsq(preferredDirection) < 0.0001f)
+                preferredDirection = desiredXZ;
             else
-                steering = math.normalize(steering);
+                preferredDirection = math.normalize(preferredDirection);
 
+            var steering = ChooseBestDirection(entity, targetEntity, positionXZ, radius, desiredXZ, preferredDirection, speed, deltaTime, agents);
             var nextXZ = positionXZ + steering * speed * deltaTime;
-            nextXZ = ResolvePenetration(entity, nextXZ, radius, desiredXZ, agents);
+            nextXZ = ResolvePenetration(entity, targetEntity, nextXZ, radius, desiredXZ, agents);
             var finalDir = nextXZ - positionXZ;
             if (math.lengthsq(finalDir) < 0.0001f) return float3.zero;
 
@@ -167,8 +168,101 @@ namespace vikwhite.ECS
             return new float3(finalDir.x, 0f, finalDir.y);
         }
 
+        private static float2 ChooseBestDirection(
+            Entity entity,
+            Entity targetEntity,
+            float2 position,
+            float radius,
+            float2 desiredDirection,
+            float2 preferredDirection,
+            float speed,
+            float deltaTime,
+            Unity.Collections.NativeArray<CharacterAgentData> agents)
+        {
+            float2 bestDirection = desiredDirection;
+            float bestScore = float.MinValue;
+
+            float2[] directions =
+            {
+                preferredDirection,
+                desiredDirection,
+                Rotate(preferredDirection, math.radians(20f)),
+                Rotate(preferredDirection, math.radians(-20f)),
+                Rotate(preferredDirection, math.radians(40f)),
+                Rotate(preferredDirection, math.radians(-40f)),
+                Rotate(preferredDirection, math.radians(65f)),
+                Rotate(preferredDirection, math.radians(-65f)),
+                Rotate(preferredDirection, math.radians(90f)),
+                Rotate(preferredDirection, math.radians(-90f))
+            };
+
+            for (int i = 0; i < directions.Length; i++)
+            {
+                var candidate = directions[i];
+                if (math.lengthsq(candidate) < 0.0001f) continue;
+
+                candidate = math.normalize(candidate);
+                var score = ScoreDirection(entity, targetEntity, position, radius, desiredDirection, candidate, speed, deltaTime, agents);
+                if (score <= bestScore) continue;
+
+                bestScore = score;
+                bestDirection = candidate;
+            }
+
+            return bestDirection;
+        }
+
+        private static float ScoreDirection(
+            Entity entity,
+            Entity targetEntity,
+            float2 position,
+            float radius,
+            float2 desiredDirection,
+            float2 candidate,
+            float speed,
+            float deltaTime,
+            Unity.Collections.NativeArray<CharacterAgentData> agents)
+        {
+            const float skin = 0.05f;
+
+            var lookAhead = math.max(radius * 4f, speed * math.max(deltaTime, 0.1f) * 5f);
+            var nextPosition = position + candidate * speed * deltaTime;
+            var score = math.dot(candidate, desiredDirection) * 4f;
+
+            for (int i = 0; i < agents.Length; i++)
+            {
+                var other = agents[i];
+                if (other.Entity == entity || other.Entity == targetEntity) continue;
+
+                var toOther = other.Position.xz - position;
+                var forwardDistance = math.dot(toOther, candidate);
+                var corridorRadius = radius + other.Radius + skin;
+
+                if (forwardDistance >= 0f && forwardDistance <= lookAhead)
+                {
+                    var sideDistance = math.abs(Cross(candidate, toOther));
+                    if (sideDistance < corridorRadius)
+                    {
+                        var closeness = 1f - math.saturate(sideDistance / math.max(corridorRadius, 0.001f));
+                        var forwardWeight = 1f - math.saturate(forwardDistance / math.max(lookAhead, 0.001f));
+                        score -= 12f * closeness * forwardWeight;
+                    }
+                }
+
+                var distanceToNext = math.distance(nextPosition, other.Position.xz);
+                if (distanceToNext < corridorRadius)
+                {
+                    var penetration = 1f - math.saturate(distanceToNext / math.max(corridorRadius, 0.001f));
+                    score -= 20f * penetration;
+                }
+            }
+
+            return score;
+        }
+
         private static float2 ResolvePenetration(
             Entity entity,
+            Entity targetEntity,
             float2 nextPosition,
             float radius,
             float2 desiredDirection,
@@ -179,7 +273,7 @@ namespace vikwhite.ECS
             for (int i = 0; i < agents.Length; i++)
             {
                 var other = agents[i];
-                if (other.Entity == entity) continue;
+                if (other.Entity == entity || other.Entity == targetEntity) continue;
 
                 var delta = nextPosition - other.Position.xz;
                 var distanceSq = math.lengthsq(delta);
@@ -206,6 +300,15 @@ namespace vikwhite.ECS
         private static float Cross(float2 a, float2 b)
         {
             return a.x * b.y - a.y * b.x;
+        }
+
+        private static float2 Rotate(float2 direction, float angle)
+        {
+            var sin = math.sin(angle);
+            var cos = math.cos(angle);
+            return new float2(
+                direction.x * cos - direction.y * sin,
+                direction.x * sin + direction.y * cos);
         }
 
         private struct CharacterAgentData
