@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 8d3a9840faf927c419e7136df87ac9f7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2bafbcc3c3acbe3449340c38e6045d8e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -62,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normalmap:
-        m_Texture: {fileID: 2800000, guid: d281b2eb80a0f794884b74f071a28f69, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7566d0e850f94ba4bb091b00d5e00b87, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -128,7 +128,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.6509804, g: 1, b: 0.6523882, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeformationParamsForMotionVectors: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
