@@ -39,13 +39,13 @@ namespace vikwhite.ECS
             var position = characterPosition;
             if (config.VFXSpawn == VFXSpawnType.Forward)
             {
-                position = new float3(0, 0.5f, 0);
+                position = new float3(0, 0.8f, 0);
                 if (targetEntity != providerEntity)
                 {
                     var providerPosition = SystemAPI.GetComponent<LocalTransform>(providerEntity).Position;
                     var colliderRadius = characterConfig.ColliderRadius;
                     var direction = math.normalize(providerPosition - characterPosition) * colliderRadius;
-                    position = characterPosition + new float3(direction.x, 0.5f, direction.z);
+                    position = characterPosition + new float3(direction.x, 0.8f, direction.z);
                 }
             }else if(config.VFXSpawn == VFXSpawnType.Top){
                 position += new float3(0, characterConfig.Scale, 0);
