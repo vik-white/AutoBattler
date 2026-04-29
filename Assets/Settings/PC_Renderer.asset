@@ -74,13 +74,13 @@ MonoBehaviour:
     m_Bits: 119
   renderLayerMask: 1
   outlineSettings:
-    outlineColor: {r: 0, g: 0, b: 0, a: 1}
-    outlineScale: 1.56
-    depthThreshold: 1.1
-    robertsCrossMultiplier: 210
+    outlineColor: {r: 0, g: 0.024572175, b: 0.1509434, a: 0.75686276}
+    outlineScale: 2.18
+    depthThreshold: 0.8
+    robertsCrossMultiplier: 39
     normalThreshold: 1
-    steepAngleThreshold: 0.353
-    steepAngleMultiplier: 12
+    steepAngleThreshold: 2
+    steepAngleMultiplier: 0
     colorFormat: 0
     depthBufferBits: 0
     filterMode: 1
