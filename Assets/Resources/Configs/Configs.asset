@@ -84,7 +84,7 @@ MonoBehaviour:
       - ID: 1605752999
         Level: 0
     - ID: Healer
-      Prefab: IronfistDwarfGreen
+      Prefab: Healer
       Scale: 1.4
       Mass: 0.0001
       Health: 700
