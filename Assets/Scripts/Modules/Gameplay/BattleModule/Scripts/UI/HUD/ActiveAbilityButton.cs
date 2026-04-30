@@ -1,5 +1,6 @@
 using System;
 using Rukhanka.Toolbox;
+using TMPro;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +12,17 @@ namespace vikwhite.ECS
     {
         public ConfigsLoader Configs;
         public Button Button;
-        public RectTransform Bar;
+        public RectTransform HealthBar;
+        public RectTransform AbilityBar;
+        public Image Fade;
         public Image Icon;
+        public TMP_Text Title;
         
         private EntityManager _entityManager;
         private Entity _character;
+        private ICharacterData _characterData;
         private uint _abilityID;
+        private bool _isDead;
         
         public static void Create(Entity character)
         {
@@ -30,29 +36,28 @@ namespace vikwhite.ECS
         {
             _character = character;
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var _characterID = _entityManager.GetComponentData<Character>(_character).Config.Value.ID;
+            foreach (var characterData in Configs.Characters.GetAll())
+            {
+                if (characterData.ID.CalculateHash32() == _characterID)
+                {
+                    _characterData = characterData;
+                    break;
+                }
+            }
             _abilityID = _entityManager.GetComponentData<ActiveAbility>(_character).Value;
             Button.onClick.AddListener(OnActivateAbility);
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
-            Icon.sprite = GetIcon();
+            Icon.sprite = _characterData.PortraitImage;
+            Fade.sprite = _characterData.PortraitImage;
+            Title.text = _characterData.Name;
         }
         
         private void Update()
         {
-            Bar.localScale = new Vector3(1, GetCooldownProgress(), 1);
-        }
-
-        private Sprite GetIcon()
-        {
-            var iconName = "Fire";
-            foreach (var ability in Configs.Abilities.GetAll())
-            {
-                if (ability.AbilityID.CalculateHash32() == _abilityID)
-                {
-                    iconName = ability.Icon;
-                    break;
-                }
-            }
-            return Resources.Load<Sprite>($"Abilities/Icons/{iconName}");
+            if(_isDead) return;
+            HealthBar.localScale = new Vector3(GetHealthProgress(), 1, 1);
+            AbilityBar.localScale = new Vector3(GetCooldownProgress(), 1, 1);
         }
 
         private void OnActivateAbility()
@@ -72,6 +77,13 @@ namespace vikwhite.ECS
             return false;
         }
         
+        private float GetHealthProgress()
+        {
+            var health = _entityManager.GetComponentData<Health>(_character).Value;
+            var healthMax = _entityManager.GetComponentData<HealthMax>(_character).Value;
+            return health / healthMax;
+        }
+        
         private float GetCooldownProgress()
         {
             foreach (var ability in _entityManager.GetBuffer<Ability>(_character))
@@ -79,16 +91,23 @@ namespace vikwhite.ECS
                 var config = ability.GetConfig();
                 if (config.ID == _abilityID)
                 {
-                    if(ability.Cooldown >= config.Cooldown) return 0;
-                    return 1 - (ability.Cooldown / config.Cooldown);
+                    if(ability.Cooldown >= config.Cooldown) return 1;
+                    return (ability.Cooldown / config.Cooldown);
                 }
             }
-            return 1;
+            return 0;
         }
         
         private void OnDeadCharacter(DeadCharacterEvent evnt)
         {
-            if (evnt.Character == _character) Destroy(gameObject);
+            if (evnt.Character == _character)
+            {
+                Fade.gameObject.SetActive(true);
+                HealthBar.gameObject.SetActive(false);
+                AbilityBar.gameObject.SetActive(false);
+                Button.onClick.RemoveListener(OnActivateAbility);
+                _isDead = true;
+            }
         }
         
         private void OnDestroy()

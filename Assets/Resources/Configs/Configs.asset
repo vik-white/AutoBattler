@@ -40,6 +40,7 @@ MonoBehaviour:
     - Sceletonminiboss
     Data:
     - ID: Dummy
+      Name: 
       Prefab: Sceleton
       Scale: 1.3
       Mass: 0.0001
@@ -50,8 +51,10 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities: []
     - ID: IronfistDwarf
+      Name: Dwarf
       Prefab: IronfistDwarf
       Scale: 1.3
       Mass: 0.0001
@@ -62,12 +65,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
+      PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
       Abilities:
       - ID: 826252179
         Level: 0
       - ID: 2496368978
         Level: 0
     - ID: Tank
+      Name: Dwarf
       Prefab: IronfistDwarfRed
       Scale: 1.4
       Mass: 0.0001
@@ -78,12 +83,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
+      PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
       Abilities:
       - ID: 1528634012
         Level: 2
       - ID: 1605752999
         Level: 0
     - ID: Healer
+      Name: Celen
       Prefab: Healer
       Scale: 1.4
       Mass: 0.0001
@@ -94,12 +101,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
+      PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
       Abilities:
       - ID: 826252179
         Level: 0
       - ID: 370847456
         Level: 0
     - ID: Mage
+      Name: Karter
       Prefab: IronfistDwarfBlue
       Scale: 1.2
       Mass: 0.0001
@@ -110,12 +119,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
+      PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
       Abilities:
       - ID: 826252179
         Level: 1
       - ID: 2475848034
         Level: 0
     - ID: Assassin
+      Name: Nory
       Prefab: IronfistDwarfPurple
       Scale: 1.3
       Mass: 0.0001
@@ -126,12 +137,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
+      PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
       Abilities:
       - ID: 1528634012
         Level: 0
       - ID: 703911167
         Level: 0
     - ID: Support
+      Name: Duku
       Prefab: IronfistDwarf
       Scale: 1.2
       Mass: 0.0001
@@ -142,12 +155,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
+      PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
       Abilities:
       - ID: 826252179
         Level: 0
       - ID: 1516922681
         Level: 0
     - ID: Enemy
+      Name: 
       Prefab: Sceleton
       Scale: 1.3
       Mass: 1
@@ -158,10 +173,12 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 1528634012
         Level: 1
     - ID: Enemy1
+      Name: 
       Prefab: Sceleton
       Scale: 1.3
       Mass: 1
@@ -172,10 +189,12 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 1528634012
         Level: 0
     - ID: EnemyRange
+      Name: 
       Prefab: Sceleton
       Scale: 0.91
       Mass: 1
@@ -186,10 +205,12 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 826252179
         Level: 3
     - ID: Sceleton
+      Name: 
       Prefab: Sceleton
       Scale: 0.91
       Mass: 1
@@ -200,10 +221,12 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 4243707639
         Level: 0
     - ID: SceletonBoss
+      Name: 
       Prefab: Sceleton
       Scale: 2.6
       Mass: 0.25
@@ -214,12 +237,14 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 826252179
         Level: 2
       - ID: 1107468141
         Level: 0
     - ID: Sceletonminiboss
+      Name: 
       Prefab: Sceleton
       Scale: 0.91
       Mass: 1
@@ -230,6 +255,7 @@ MonoBehaviour:
       LevelUp: BaseLevelUp
       Squad: 0
       Image: {fileID: 0}
+      PortraitImage: {fileID: 0}
       Abilities:
       - ID: 1528634012
         Level: 1

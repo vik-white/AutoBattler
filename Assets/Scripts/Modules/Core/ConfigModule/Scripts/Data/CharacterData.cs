@@ -9,6 +9,7 @@ namespace vikwhite.Data
     public interface ICharacterData
     {
         string ID { get; }
+        string Name { get; }
         string Prefab { get; }
         float Scale { get; }
         float Mass { get; }
@@ -19,6 +20,7 @@ namespace vikwhite.Data
         string LevelUp { get; }
         bool Squad { get; }
         Sprite Image { get; }
+        Sprite PortraitImage { get; }
         List<AbilityLevelData> Abilities { get; }
     }
 
@@ -26,6 +28,7 @@ namespace vikwhite.Data
     public class CharacterData : ICharacterData, ICustomJsonParser
     {
         public string ID;
+        public string Name;
         public string Prefab;
         public float Scale;
         public float Mass;
@@ -36,9 +39,11 @@ namespace vikwhite.Data
         public string LevelUp;
         public bool Squad;
         public Sprite Image;
+        public Sprite PortraitImage;
         public List<AbilityLevelData> Abilities;
         
         string ICharacterData.ID => ID;
+        string ICharacterData.Name => Name;
         string ICharacterData.Prefab => Prefab;
         float ICharacterData.Scale => Scale;
         float ICharacterData.Mass => Mass;
@@ -49,6 +54,7 @@ namespace vikwhite.Data
         string ICharacterData.LevelUp => LevelUp;
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
+        Sprite ICharacterData.PortraitImage => PortraitImage;
         List<AbilityLevelData> ICharacterData.Abilities => Abilities;
         
         public void Parse(Dictionary<string, string> row)
@@ -66,6 +72,7 @@ namespace vikwhite.Data
                 Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = level });
             }
             if(row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
+            if(row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");
         }
     }
 }
