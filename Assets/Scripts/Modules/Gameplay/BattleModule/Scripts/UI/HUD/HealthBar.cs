@@ -8,6 +8,8 @@ namespace vikwhite
 {
     public class HealthBar : MonoBehaviour
     {
+        private const float HeadPadding = 0.15f;
+
         public RectTransform HealthProgressBar;
         public RectTransform ShieldProgressBar;
         public GameObject ShieldBar;
@@ -34,7 +36,8 @@ namespace vikwhite
         private void Update()
         {
             if(!_entityManager.Exists(_character)) return;
-            var position = _entityManager.GetComponentData<LocalTransform>(_character).Position + new float3(0, 1.3f, 0);
+            var characterTransform = _entityManager.GetComponentData<LocalTransform>(_character);
+            var position = characterTransform.Position + new float3(0, GetHeadOffset(characterTransform.Scale), 0);
             transform.position = Camera.main.WorldToScreenPoint(position);
             var health = _entityManager.GetComponentData<Health>(_character).Value;
             var healthMax = _entityManager.GetComponentData<HealthMax>(_character).Value;
@@ -50,6 +53,13 @@ namespace vikwhite
         private void OnDeadCharacter(DeadCharacterEvent evnt)
         {
             if (evnt.Character == _character) Destroy(gameObject);
+        }
+
+        private float GetHeadOffset(float scale)
+        {
+            var currentScale = math.max(scale, 0);
+            var characterHeight = _characterConfig.ColliderHeight * currentScale / _characterConfig.Scale;
+            return characterHeight + HeadPadding * currentScale;
         }
         
         private void OnDestroy()
