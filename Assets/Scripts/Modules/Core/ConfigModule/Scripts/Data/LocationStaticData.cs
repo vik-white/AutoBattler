@@ -8,7 +8,6 @@ namespace vikwhite.Data
     {
         string ID { get; }
         string HexPositions { get; }
-        int Rewards { get; }
         List<CharacterLevelData> Enemies { get; }
     }
     
@@ -17,12 +16,10 @@ namespace vikwhite.Data
     {
         public string ID;
         public string HexPositions;
-        public int Rewards;
         public List<CharacterLevelData> Enemies;
         
         string ILocationStaticData.ID => ID;
         string ILocationStaticData.HexPositions => HexPositions;
-        int ILocationStaticData.Rewards => Rewards;
         List<CharacterLevelData> ILocationStaticData.Enemies => Enemies;
         
         public void Parse(Dictionary<string, string> row)
