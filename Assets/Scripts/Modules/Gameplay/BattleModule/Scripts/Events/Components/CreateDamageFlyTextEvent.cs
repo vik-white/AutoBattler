@@ -7,5 +7,6 @@ namespace vikwhite.ECS
     {
         public float3 Position;
         public float Damage;
+        public bool IsEnemyTarget;
     }
 }

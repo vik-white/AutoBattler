@@ -5,6 +5,8 @@ public class DamageFlyText : MonoBehaviour
 {
     private const float Lifetime = 0.8f;
     private const float FlyHeight = 0.8f;
+    private static readonly Color EnemyDamageColor = new(1f, 0.2f, 0.2f, 1f);
+    private static readonly Color SquadDamageColor = new(0.25f, 1f, 0.35f, 1f);
 
     public TMP_Text Text;
 
@@ -12,12 +14,16 @@ public class DamageFlyText : MonoBehaviour
     private Vector3 _startPosition;
     private float _elapsed;
 
-    public void Initialize(Vector3 position, float damage)
+    public void Initialize(Vector3 position, float damage, bool isEnemyTarget)
     {
         _camera = Camera.main;
         _startPosition = position + new Vector3(0, 0.5f, 0);
         _elapsed = 0;
-        if (Text != null) Text.text = Mathf.CeilToInt(damage).ToString();
+        if (Text != null)
+        {
+            Text.text = Mathf.CeilToInt(damage).ToString();
+            Text.color = isEnemyTarget ? EnemyDamageColor : SquadDamageColor;
+        }
         UpdatePosition(0);
     }
 

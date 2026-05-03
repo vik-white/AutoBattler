@@ -22,7 +22,12 @@ namespace vikwhite.ECS
                 if (damage > 0)
                 {
                     var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], characters[character].GetConfig());
-                    ecb.CreateFrameEntity(new CreateDamageFlyTextEvent { Position = damageFlyTextPosition, Damage = damage });
+                    ecb.CreateFrameEntity(new CreateDamageFlyTextEvent
+                    {
+                        Position = damageFlyTextPosition,
+                        Damage = damage,
+                        IsEnemyTarget = SystemAPI.HasComponent<Enemy>(character)
+                    });
                 }
 
                 var shield = shields[character].Value;

@@ -65,7 +65,7 @@ namespace vikwhite
                 return;
             }
 
-            damageFlyText.Initialize(new Vector3(evnt.Position.x, evnt.Position.y, evnt.Position.z), evnt.Damage);
+            damageFlyText.Initialize(new Vector3(evnt.Position.x, evnt.Position.y, evnt.Position.z), evnt.Damage, evnt.IsEnemyTarget);
         }
     }
 }
