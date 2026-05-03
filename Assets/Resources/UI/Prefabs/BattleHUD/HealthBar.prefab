@@ -200,7 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870ff76adc76479a8edb3da46d337364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Battle::vikwhite.HealthBar
-  HealthProgressBar: {fileID: 4581456361671965767}
+  HealthProgressBar: {fileID: 1841596816883003729}
+  HealthWhiteProgressBar: {fileID: 4581456361671965767}
   ShieldProgressBar: {fileID: 1900955386422872947}
   ShieldBar: {fileID: 7873215423618411212}
 --- !u!1 &6165803238271007902
@@ -233,6 +234,7 @@ RectTransform:
   m_Children:
   - {fileID: 1137481082322154195}
   - {fileID: 4581456361671965767}
+  - {fileID: 1841596816883003729}
   m_Father: {fileID: 3017855077490885798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -240,6 +242,81 @@ RectTransform:
   m_AnchoredPosition: {x: -48.152424, y: 3.429}
   m_SizeDelta: {x: 96.30485, y: 5.9953995}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6289813765394698244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841596816883003729}
+  - component: {fileID: 2404514915183828748}
+  - component: {fileID: 873420560834034740}
+  m_Layer: 5
+  m_Name: bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1841596816883003729
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289813765394698244}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8224092583545421511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 48.09481, y: 0.000044822693}
+  m_SizeDelta: {x: 96.1897, y: 5.9954}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!222 &2404514915183828748
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289813765394698244}
+  m_CullTransparentMesh: 1
+--- !u!114 &873420560834034740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6289813765394698244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3276584, g: 0.70440245, b: 0.042086802, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6689701065378315693
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +329,7 @@ GameObject:
   - component: {fileID: 7451964183851333860}
   - component: {fileID: 8230857543622352983}
   m_Layer: 5
-  m_Name: bar
+  m_Name: barWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3276584, g: 0.70440245, b: 0.042086802, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
