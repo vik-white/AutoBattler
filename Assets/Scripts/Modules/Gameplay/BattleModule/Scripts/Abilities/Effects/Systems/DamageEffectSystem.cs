@@ -1,4 +1,6 @@
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
@@ -10,11 +12,19 @@ namespace vikwhite.ECS
             var healths = SystemAPI.GetComponentLookup<Health>();
             var shields = SystemAPI.GetComponentLookup<Shield>();
             var shieldMaxes = SystemAPI.GetComponentLookup<ShieldMax>();
+            var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
+            var characters = SystemAPI.GetComponentLookup<Character>(true);
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<DamageEffect>())
             {
                 var character = target.ValueRO.Value;
                 var damage = effect.ValueRO.Value;
+                if (damage > 0)
+                {
+                    var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], characters[character].GetConfig());
+                    ecb.CreateFrameEntity(new CreateDamageFlyTextEvent { Position = damageFlyTextPosition, Damage = damage });
+                }
+
                 var shield = shields[character].Value;
                 if (shield > 0)
                 {
@@ -40,6 +50,16 @@ namespace vikwhite.ECS
                 healths[character] = new Health { Value = healths[character].Value - damage };
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private static float3 GetDamageFlyTextPosition(LocalTransform transform, CharacterConfigData config)
+        {
+            var currentScale = math.max(transform.Scale, 0);
+            var characterHeight = config.Scale > 0
+                ? config.ColliderHeight * currentScale / config.Scale
+                : config.ColliderHeight;
+
+            return transform.Position + new float3(0, characterHeight, 0);
         }
     }
 }
