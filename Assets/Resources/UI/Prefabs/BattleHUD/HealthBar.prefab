@@ -204,6 +204,9 @@ MonoBehaviour:
   HealthWhiteProgressBar: {fileID: 4581456361671965767}
   ShieldProgressBar: {fileID: 1900955386422872947}
   ShieldBar: {fileID: 7873215423618411212}
+  HealthProgressBarImage: {fileID: 873420560834034740}
+  SquadColor: {r: 0.32156864, g: 0.62352943, b: 0.04705883, a: 1}
+  EnemyColor: {r: 1, g: 0.20440245, b: 0.20440245, a: 1}
 --- !u!1 &6165803238271007902
 GameObject:
   m_ObjectHideFlags: 0

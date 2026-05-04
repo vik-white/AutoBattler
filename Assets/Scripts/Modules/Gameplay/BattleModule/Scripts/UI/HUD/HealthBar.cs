@@ -2,6 +2,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using UnityEngine.UI;
 using vikwhite.ECS;
 
 namespace vikwhite
@@ -16,6 +17,10 @@ namespace vikwhite
         public RectTransform HealthWhiteProgressBar;
         public RectTransform ShieldProgressBar;
         public GameObject ShieldBar;
+        public Image HealthProgressBarImage;
+        public Color SquadColor;
+        public Color EnemyColor;
+        
         private Entity _character;
         private CharacterConfigData _characterConfig;
         private EntityManager _entityManager;
@@ -39,6 +44,7 @@ namespace vikwhite
             _character = character;
             _characterConfig = characterConfig;
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
+            HealthProgressBarImage.color = _entityManager.HasComponent<Enemy>(character) ? EnemyColor : SquadColor;
         }
 
         private void Update()
