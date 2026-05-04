@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace vikwhite
 {
@@ -11,12 +12,12 @@ namespace vikwhite
     public class RewardService : IRewardService
     {
         private readonly IResourceService _resources;
-        private readonly IEventDispatcher _dispatcher;
+        private readonly ICharactersService _characters;
 
-        public RewardService(IResourceService resources, IEventDispatcher dispatcher)
+        public RewardService(IResourceService resources, ICharactersService characters)
         {
             _resources = resources;
-            _dispatcher = dispatcher;
+            _characters = characters;
         }
 
         public void Add(IEnumerable<Reward> rewards)
@@ -35,7 +36,7 @@ namespace vikwhite
                     _resources.Add(res.ResourceType, res.Value);
                     break;
                 case ShardReward shard:
-                    _dispatcher.Dispatch(new AddShardEvent(shard.ID, shard.Value));
+                    _characters.GetCharacter(shard.ID).AddShards(shard.Value);
                     break;
             }
         }

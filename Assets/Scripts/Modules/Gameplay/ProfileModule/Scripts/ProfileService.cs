@@ -29,14 +29,13 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.Book, Amount = 0 },
                     new ResourceData{ Type = ResourceType.KeyCommon, Amount = 0 },
                 },
-                Shards = new (),
                 Squad = new [] {"","","","",""}
             };
 
             foreach (var characterData in _configs.Characters.GetAll())
             {
                 if (characterData.Squad)
-                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 0 } );
+                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 0, Shards = 0 } );
             }
         }
         
@@ -66,7 +65,7 @@ namespace vikwhite
         private void Migrate()
         {
             Data.Resources ??= new List<ResourceData>();
-            Data.Shards ??= new List<ShardData>();
+            Data.Characters ??= new List<CharacterData>();
 
             foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
             {

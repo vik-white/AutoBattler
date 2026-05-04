@@ -7,5 +7,6 @@ namespace vikwhite
     {
         public string ID;
         public int Level;
+        public int Shards;
     }
 }

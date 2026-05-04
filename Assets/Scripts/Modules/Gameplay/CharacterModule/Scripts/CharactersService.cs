@@ -25,10 +25,10 @@ namespace vikwhite
         public void Initialize()
         {
             foreach (var characterData in _profile.Data.Characters)
-                _characters.Add(characterData.ID, _factory.Create(characterData.ID, characterData.Level));
+                _characters.Add(characterData.ID, _factory.Create(characterData.ID, characterData.Level, characterData.Shards));
         }
 
-        public Character GetCharacter(string id) => _characters[id];
+        public Character GetCharacter(string id) => _characters.TryGetValue(id, out var character) ? character : null;
         
         public IReadOnlyCollection<Character> GetCharacters() => _characters.Values;
     }
