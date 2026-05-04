@@ -1,53 +1,42 @@
 using System.Collections.Generic;
-using UnityEngine;
-using vikwhite.Data;
 
 namespace vikwhite
 {
     public interface IRewardService
     {
-        List<Reward> Create(string id);
+        void Add(Reward reward);
+        void Add(IEnumerable<Reward> rewards);
     }
 
     public class RewardService : IRewardService
     {
-        private readonly IConfigs _configs;
+        private readonly IResourceService _resources;
+        private readonly IEventDispatcher _dispatcher;
 
-        public RewardService(IConfigs configs)
+        public RewardService(IResourceService resources, IEventDispatcher dispatcher)
         {
-            _configs = configs;
+            _resources = resources;
+            _dispatcher = dispatcher;
         }
 
-        public List<Reward> Create(string id)
+        public void Add(IEnumerable<Reward> rewards)
         {
-            var result = new List<Reward>();
-            var data = _configs.Rewards.Get(id);
-
-            foreach (var rewardData in data.Rewards)
-            {
-                if (rewardData.Probability < 1f && Random.value > rewardData.Probability) continue;
-
-                var reward = CreateReward(rewardData);
-                if (reward == null) continue;
-
-                reward.Value = Random.Range(rewardData.MinValue, rewardData.MaxValue + 1);
-                result.Add(reward);
-            }
-            return result;
+            if (rewards == null) return;
+            foreach (var reward in rewards) Add(reward);
         }
 
-        private static Reward CreateReward(RewardData data)
+        public void Add(Reward reward)
         {
-            switch (data.Type)
+            if (reward == null || reward.Value <= 0) return;
+
+            switch (reward)
             {
-                case RewardType.Res:
-                    return new ResourceReward { ResourceType = data.ResourceType };
-                case RewardType.Shard:
-                    return new ShardReward { ID = data.ID };
-                case RewardType.ShardGroup:
-                    return new ShardGroupReward { ShardGroupType = data.ShardGroupType };
-                default:
-                    return null;
+                case ResourceReward res:
+                    _resources.Add(res.ResourceType, res.Value);
+                    break;
+                case ShardReward shard:
+                    _dispatcher.Dispatch(new AddShardEvent(shard.ID, shard.Value));
+                    break;
             }
         }
     }

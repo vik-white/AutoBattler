@@ -9,6 +9,7 @@ namespace vikwhite
             Register<IEventHandler, SetRoadMapLocationProfileHandler>();
             Register<IEventHandler, ChangeResourceProfileHandler>();
             Register<IEventHandler, LevelUpCharacterProfileHandler>();
+            Register<IEventHandler, AddShardProfileHandler>();
         }
     }
 }

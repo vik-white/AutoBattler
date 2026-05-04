@@ -4,6 +4,7 @@ namespace vikwhite
     {
         protected override void Register()
         {
+            Register<IRewardFactory, RewardFactory>();
             Register<IRewardService, RewardService>();
         }
     }

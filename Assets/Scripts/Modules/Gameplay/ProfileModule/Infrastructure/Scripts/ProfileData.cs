@@ -8,6 +8,7 @@ namespace vikwhite
     {
         public List<CharacterData> Characters = new();
         public List<ResourceData> Resources = new();
+        public List<ShardData> Shards = new();
         public string[] Squad;
         public string RoadMapLocation;
     }
