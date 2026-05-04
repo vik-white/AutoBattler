@@ -20,6 +20,7 @@ namespace vikwhite.Data
         IConfig<IAbilityData> Abilities { get; }
         IConfig<IHexPositionsData> HexPositions { get; }
         IConfig<ILevelUpData> LevelUp { get; }
+        IConfig<IRewardsData> Rewards { get; }
         
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
     }
@@ -39,6 +40,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<AbilityData, IAbilityData> abilities;
         [SerializeField] private Config<HexPositionsData, IHexPositionsData> hexPositions;
         [SerializeField] private Config<LevelUpData, ILevelUpData> levelUp;
+        [SerializeField] private Config<RewardsData, IRewardsData> rewards;
         
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
@@ -50,6 +52,7 @@ namespace vikwhite.Data
         public IConfig<IAbilityData> Abilities => abilities;
         public IConfig<IHexPositionsData> HexPositions => hexPositions;
         public IConfig<ILevelUpData> LevelUp => levelUp;
+        public IConfig<IRewardsData> Rewards => rewards;
         
         public IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons
         {

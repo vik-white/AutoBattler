@@ -39,15 +39,15 @@ namespace vikwhite
                 }
             }
             
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Soft)));
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Hard)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
             OnUpgrade = Upgrade;
         }
 
         private void Upgrade()
         {
-            if (_resource.GetAmount(ResourceType.Soft).Value < Price) return; 
-            _resource.Spend(ResourceType.Soft, Price);
+            if (_resource.GetAmount(ResourceType.Gold).Value < Price) return; 
+            _resource.Spend(ResourceType.Gold, Price);
             Model.Upgrade();
         }
         

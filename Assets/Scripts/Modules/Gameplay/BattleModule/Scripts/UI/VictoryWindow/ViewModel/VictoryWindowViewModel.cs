@@ -11,7 +11,7 @@ namespace vikwhite
         public VictoryWindowViewModel(IEnvironmentStateMachine stateMachine, IResourceService resource, IConfigs configs, ILocationProvider location, IRoadMapService roadMap)
         {
             Reward = 50;
-            resource.Add(ResourceType.Soft, Reward);
+            resource.Add(ResourceType.Gold, Reward);
             roadMap.CompleteCurrentLocation();
             OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }

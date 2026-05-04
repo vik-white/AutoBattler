@@ -300,13 +300,11 @@ MonoBehaviour:
     Data:
     - ID: Test
       HexPositions: BossPosition
-      Rewards: 50
       Enemies:
       - ID: 3219797119
         Level: 0
     - ID: Test5
       HexPositions: BasePosition
-      Rewards: 50
       Enemies:
       - ID: 3219797119
         Level: 0
@@ -320,7 +318,6 @@ MonoBehaviour:
         Level: 0
     - ID: Forest
       HexPositions: BasePosition
-      Rewards: 50
       Enemies:
       - ID: 769574570
         Level: 0
@@ -334,13 +331,11 @@ MonoBehaviour:
         Level: 0
     - ID: ForestBoss
       HexPositions: BossPosition
-      Rewards: 50
       Enemies:
       - ID: 1107468141
         Level: 0
     - ID: walltest
       HexPositions: BasePosition
-      Rewards: 50
       Enemies:
       - ID: 4258313009
         Level: 0
@@ -1219,12 +1214,54 @@ MonoBehaviour:
   levelUp:
     IDS:
     - BaseLevelUp
+    - StarLevelUp
+    - SkillLevelUp
     Data:
     - ID: BaseLevelUp
       Damage: 0.1
       Health: 0.1
       Shield: 0.1
       Heal: 0.1
+    - ID: StarLevelUp
+      Damage: 1
+      Health: 1
+      Shield: 1
+      Heal: 1
+    - ID: SkillLevelUp
+      Damage: 1
+      Health: 1
+      Shield: 1
+      Heal: 1
+  rewards:
+    IDS:
+    - LevelReward
+    - SummonReward
+    Data:
+    - ID: LevelReward
+      Rewards:
+      - Type: 0
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 30
+        MaxValue: 50
+        Probability: 1
+    - ID: SummonReward
+      Rewards:
+      - Type: 2
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 1
+        MaxValue: 4
+        Probability: 1
+      - Type: 1
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: Assassin
+        MinValue: 1
+        MaxValue: 4
+        Probability: 0.3
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

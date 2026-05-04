@@ -22,8 +22,8 @@ namespace vikwhite
             _roadMap = roadMap;
             OnCheats = cheatWindow.ShowWindow;
             OnFight = SelectLocation;
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Soft)));
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Hard)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
             CurrentLocation = roadMap.CurrentLocation;
         }
         

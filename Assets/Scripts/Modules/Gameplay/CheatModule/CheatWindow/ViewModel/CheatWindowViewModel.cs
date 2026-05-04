@@ -17,8 +17,8 @@ namespace vikwhite
             {
                 MapItems.Add(CreateViewModel<MapItemViewModel, IMapData>(location));
             }
-            OnAddGem = () => resource.Add(ResourceType.Hard, 100);
-            OnAddGold = () => resource.Add(ResourceType.Soft, 100);
+            OnAddGem = () => resource.Add(ResourceType.Gem, 100);
+            OnAddGold = () => resource.Add(ResourceType.Gold, 100);
         }
 
         public override void Dispose()

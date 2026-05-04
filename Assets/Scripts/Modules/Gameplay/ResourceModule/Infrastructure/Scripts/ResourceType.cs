@@ -1,4 +1,4 @@
 namespace vikwhite
 {
-    public enum ResourceType { Soft, Hard }
+    public enum ResourceType { Gold, Gem }
 }
