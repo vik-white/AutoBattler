@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine.Events;
 using vikwhite.Data;
 
@@ -8,10 +9,18 @@ namespace vikwhite
         public UnityAction OnEnd;
         public int Reward;
         
-        public VictoryWindowViewModel(IEnvironmentStateMachine stateMachine, IResourceService resource, IConfigs configs, ILocationProvider location, IRoadMapService roadMap)
+        public VictoryWindowViewModel(
+            IEnvironmentStateMachine stateMachine,
+            IRewardFactory rewardFactory,
+            IRewardService rewardService,
+            IConfigs configs,
+            ILocationProvider location,
+            IRoadMapService roadMap)
         {
-            Reward = 50;
-            resource.Add(ResourceType.Gold, Reward);
+            var rewardId = configs.LocationStatic.Get(location.ID).Reward;
+            var rewards = rewardFactory.Create(rewardId);
+            rewardService.Add(rewards);
+            
             roadMap.CompleteCurrentLocation();
             OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }
