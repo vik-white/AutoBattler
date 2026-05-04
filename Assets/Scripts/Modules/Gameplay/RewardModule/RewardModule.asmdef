@@ -1,0 +1,20 @@
+{
+    "name": "Reward",
+    "rootNamespace": "",
+    "references": [
+        "GUID:919905d7ca88d6641b1b90d8d6b5011b",
+        "GUID:084c70029ec1d1b4e850def7afc45aab",
+        "GUID:6e230cfcc306cd842aba4d3f965a7397",
+        "GUID:60f28d51f061ad745910ab80110d195b",
+        "GUID:ba597d3a1e504d34ebf16df981b91302"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
