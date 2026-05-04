@@ -22,14 +22,11 @@ namespace vikwhite
 
         public void Add(IEnumerable<Reward> rewards)
         {
-            if (rewards == null) return;
             foreach (var reward in rewards) Add(reward);
         }
 
         public void Add(Reward reward)
         {
-            if (reward == null || reward.Value <= 0) return;
-
             switch (reward)
             {
                 case ResourceReward res:

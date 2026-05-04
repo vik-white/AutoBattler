@@ -1,8 +1,8 @@
 namespace vikwhite
 {
-    public class ChangeShardProfileHandler : ProfileHandler<ChangeShardEvent>
+    public class ChangeCharacterShardProfileHandler : ProfileHandler<ChangeCharacterShardEvent>
     {
-        protected override void Handle(ChangeShardEvent evnt)
+        protected override void Handle(ChangeCharacterShardEvent evnt)
         {
             for (int i = 0; i < _profile.Data.Characters.Count; i++)
             {

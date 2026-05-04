@@ -1,11 +1,11 @@
 namespace vikwhite
 {
-    public class ChangeShardEvent
+    public class ChangeCharacterShardEvent
     {
         public string ID;
         public int Count;
 
-        public ChangeShardEvent(string id, int count)
+        public ChangeCharacterShardEvent(string id, int count)
         {
             ID = id;
             Count = count;

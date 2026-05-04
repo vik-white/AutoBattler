@@ -1,8 +1,8 @@
 namespace vikwhite
 {
-    public class LevelUpCharacterProfileHandler : ProfileHandler<LevelUpCharacterEvent>
+    public class ChangeCharacterLevelProfileHandler : ProfileHandler<ChangeCharacterLevelEvent>
     {
-        protected override void Handle(LevelUpCharacterEvent evnt)
+        protected override void Handle(ChangeCharacterLevelEvent evnt)
         {
             for (int i = 0; i < _profile.Data.Characters.Count; i++)
             {

@@ -33,8 +33,8 @@ namespace vikwhite
             _level = new ReactiveProperty<int>(level);
             _health = new ReactiveProperty<float>(GetHealth());
             _shards = new ReactiveProperty<int>(shards);
-            _shards.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeShardEvent(_id, value)));
-            _level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new LevelUpCharacterEvent(_id, value)));
+            _level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)));
+            _shards.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)));
         }
 
         public void Upgrade()

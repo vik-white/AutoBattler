@@ -1,11 +1,11 @@
 namespace vikwhite
 {
-    public class LevelUpCharacterEvent
+    public class ChangeCharacterLevelEvent
     {
         public string ID;
         public int Level;
 
-        public LevelUpCharacterEvent(string id, int level)
+        public ChangeCharacterLevelEvent(string id, int level)
         {
             ID = id;
             Level = level;
