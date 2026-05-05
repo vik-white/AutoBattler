@@ -7,6 +7,6 @@ namespace vikwhite
     public class VictoryWindowHierarchy : MonoBehaviour
     {
         public Button CloseButton;
-        public TMP_Text Reward;
+        public RectTransform RewardContainer;
     }
 }

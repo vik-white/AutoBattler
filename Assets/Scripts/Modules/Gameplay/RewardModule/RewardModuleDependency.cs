@@ -6,6 +6,10 @@ namespace vikwhite
         {
             Register<IRewardFactory, RewardFactory>();
             Register<IRewardService, RewardService>();
+
+            Register<IRewardItemViewFactory, RewardItemViewFactory>();
+            Register<RewardItemViewModel>();
+            Register<RewardItemView>();
         }
     }
 }
