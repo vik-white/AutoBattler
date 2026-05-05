@@ -7,7 +7,7 @@ namespace vikwhite
     public class VictoryWindowViewModel: WindowViewModel
     {
         public UnityAction OnEnd;
-        public int Reward;
+        public List<RewardItemViewModel> Rewards = new();
         
         public VictoryWindowViewModel(
             IEnvironmentStateMachine stateMachine,
@@ -17,10 +17,14 @@ namespace vikwhite
             ILocationProvider location,
             IRoadMapService roadMap)
         {
-            var rewardId = configs.LocationStatic.Get(location.ID).Reward;
+            var rewardId = configs.LocationStatic.Get(location.ID)?.Reward;
             var rewards = rewardFactory.Create(rewardId);
+
             rewardService.Add(rewards);
             
+            foreach (var reward in rewards)
+                Rewards.Add(CreateViewModel<RewardItemViewModel, Reward>(reward));
+
             roadMap.CompleteCurrentLocation();
             OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }
