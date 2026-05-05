@@ -300,11 +300,13 @@ MonoBehaviour:
     Data:
     - ID: Test
       HexPositions: BossPosition
+      Reward: LevelReward
       Enemies:
       - ID: 3219797119
         Level: 0
     - ID: Test5
       HexPositions: BasePosition
+      Reward: LevelReward
       Enemies:
       - ID: 3219797119
         Level: 0
@@ -318,6 +320,7 @@ MonoBehaviour:
         Level: 0
     - ID: Forest
       HexPositions: BasePosition
+      Reward: LevelReward
       Enemies:
       - ID: 769574570
         Level: 0
@@ -331,11 +334,13 @@ MonoBehaviour:
         Level: 0
     - ID: ForestBoss
       HexPositions: BossPosition
+      Reward: LevelReward
       Enemies:
       - ID: 1107468141
         Level: 0
     - ID: walltest
       HexPositions: BasePosition
+      Reward: LevelReward
       Enemies:
       - ID: 4258313009
         Level: 0
@@ -1246,6 +1251,21 @@ MonoBehaviour:
         MinValue: 30
         MaxValue: 50
         Probability: 1
+      - Type: 0
+        ResourceType: 3
+        ShardGroupType: 0
+        ID: 
+        MinValue: 1
+        MaxValue: 1
+        Probability: 0.3
+      - Type: 0
+        ResourceType: 2
+        ShardGroupType: 0
+        ID: 
+        MinValue: 1
+        MaxValue: 1
+        Probability: 0.1
+      RewardBasket: []
     - ID: SummonReward
       Rewards:
       - Type: 2
@@ -1262,6 +1282,21 @@ MonoBehaviour:
         MinValue: 1
         MaxValue: 4
         Probability: 0.3
+      RewardBasket:
+      - Type: 1
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: Assassin
+        MinValue: 1
+        MaxValue: 4
+        Probability: 1
+      - Type: 1
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: Tank
+        MinValue: 1
+        MaxValue: 4
+        Probability: 3
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}
