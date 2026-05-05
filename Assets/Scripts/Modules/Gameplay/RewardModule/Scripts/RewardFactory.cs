@@ -34,7 +34,54 @@ namespace vikwhite
                 reward.Value = Random.Range(rewardData.MinValue, rewardData.MaxValue + 1);
                 result.Add(reward);
             }
+
+            if (TryPickFromBasket(data.RewardBasket, out var basketReward))
+                result.Add(basketReward);
+
             return result;
+        }
+
+        private bool TryPickFromBasket(IReadOnlyCollection<RewardData> basket, out Reward picked)
+        {
+            picked = null;
+            if (basket == null || basket.Count == 0) return false;
+
+            var chosen = PickWeighted(basket);
+            picked = CreateReward(chosen);
+            if (picked == null) return false;
+
+            picked.Value = Random.Range(chosen.MinValue, chosen.MaxValue + 1);
+            return true;
+        }
+
+        private static RewardData PickWeighted(IReadOnlyCollection<RewardData> basket)
+        {
+            float totalWeight = 0f;
+            foreach (var item in basket) totalWeight += Mathf.Max(0f, item.Probability);
+
+            if (totalWeight <= 0f)
+            {
+                int targetIndex = Random.Range(0, basket.Count);
+                int i = 0;
+                RewardData fallback = default;
+                foreach (var item in basket)
+                {
+                    fallback = item;
+                    if (i++ == targetIndex) return item;
+                }
+                return fallback;
+            }
+
+            var roll = Random.value * totalWeight;
+            float accum = 0f;
+            RewardData last = default;
+            foreach (var item in basket)
+            {
+                last = item;
+                accum += Mathf.Max(0f, item.Probability);
+                if (roll < accum) return item;
+            }
+            return last;
         }
 
         private Reward CreateReward(RewardData data)
