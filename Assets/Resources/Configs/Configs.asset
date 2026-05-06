@@ -1265,7 +1265,21 @@ MonoBehaviour:
         MinValue: 1
         MaxValue: 1
         Probability: 0.1
-      RewardBasket: []
+      RewardBasket:
+      - Type: 1
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: Assassin
+        MinValue: 1
+        MaxValue: 4
+        Probability: 1
+      - Type: 1
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: Tank
+        MinValue: 1
+        MaxValue: 4
+        Probability: 3
     - ID: SummonReward
       Rewards:
       - Type: 2
