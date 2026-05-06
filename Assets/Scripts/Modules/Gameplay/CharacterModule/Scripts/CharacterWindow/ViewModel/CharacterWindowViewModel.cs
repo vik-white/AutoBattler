@@ -22,8 +22,8 @@ namespace vikwhite
         public UnityAction OnUpgradeLevel;
         public UnityAction OnSkillUpgrade;
         public UnityAction OnStarsUpgrade;
-        public int Price = 30;
-        public int SkillPrice = 30;
+        public int LevelUpPrice = 30;
+        public int SkillUpPrice = 5;
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
@@ -58,20 +58,22 @@ namespace vikwhite
 
         private void LevelUpgrade()
         {
-            if (_resource.GetAmount(ResourceType.Gold).Value < Price) return; 
-            _resource.Spend(ResourceType.Gold, Price);
+            if (_resource.GetAmount(ResourceType.Gold).Value < LevelUpPrice) return; 
+            _resource.Spend(ResourceType.Gold, LevelUpPrice);
             Model.UpgradeLevel();
         }
 
         private void SkillUpgrade()
         {
-            if (_resource.GetAmount(ResourceType.Book).Value < SkillPrice) return;
-            _resource.Spend(ResourceType.Book, SkillPrice);
+            if (_resource.GetAmount(ResourceType.Book).Value < SkillUpPrice) return;
+            _resource.Spend(ResourceType.Book, SkillUpPrice);
             Model.UpgradeSkill();
         }
         
         private void StarsUpgrade()
         {
+            if(Model.Shards.Value < 5) return;
+            Model.RemoveShards(5);
             Model.UpgradeStars();
         }
         

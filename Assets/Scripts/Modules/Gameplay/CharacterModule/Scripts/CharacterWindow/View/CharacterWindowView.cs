@@ -25,8 +25,8 @@ namespace vikwhite
             Bind(viewModel.Shards, shards => _view.Shards.text = $"{shards}/5");
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
-            _view.LevelUpPrice.text = viewModel.Price.ToString();
-            _view.SkillUpPrice.text = viewModel.SkillPrice.ToString();
+            _view.LevelUpPrice.text = $"{viewModel.LevelUpPrice} Gold";
+            _view.SkillUpPrice.text = $"{viewModel.SkillUpPrice} Book";
             _view.AbilityIcon.sprite = viewModel.AbilityImage;
             _view.AbilityDescription.text = viewModel.AbilityDescription;
             _view.ResourcesContainer.ClearChildren();

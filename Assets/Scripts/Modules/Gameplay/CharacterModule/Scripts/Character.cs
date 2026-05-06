@@ -64,8 +64,12 @@ namespace vikwhite
 
         public void AddShards(int amount)
         {
-            if (amount <= 0) return;
             _shards.Value += amount;
+        }
+        
+        public void RemoveShards(int amount)
+        {
+            _shards.Value -= amount;
         }
 
         private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
