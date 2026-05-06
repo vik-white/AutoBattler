@@ -6,6 +6,8 @@ namespace vikwhite.ECS
     {
         public BlobAssetReference<CharacterConfigData> Config;
         public int Level;
+        public int Stars;
+        public int SkillLevel;
     }
 
     public static class CharacterExtensions

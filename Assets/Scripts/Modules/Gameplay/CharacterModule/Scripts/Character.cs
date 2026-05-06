@@ -10,6 +10,7 @@ namespace vikwhite
         
         private ICharacterData _characterData;
         private ILevelUpData _levelUpData;
+        private ILevelUpData _starLevelUpData;
         
         private string _id;
         private ReactiveProperty<float> _health;
@@ -36,11 +37,12 @@ namespace vikwhite
             _id = id;
             _characterData = _configs.Characters.Get(id);
             _levelUpData = _configs.LevelUp.Get(_characterData.LevelUp);
+            _starLevelUpData = _configs.LevelUp.Get(_characterData.StarLevelUp);
             _level = new ReactiveProperty<int>(level);
-            _health = new ReactiveProperty<float>(GetHealth());
             _shards = new ReactiveProperty<int>(shards);
             _stars = new ReactiveProperty<int>(stars);
             _skillLevel = new ReactiveProperty<int>(skillLevel);
+            _health = new ReactiveProperty<float>(GetHealth());
             _level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)));
             _shards.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)));
             _stars.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)));
@@ -68,8 +70,13 @@ namespace vikwhite
 
         public void RemoveShards(int amount) => _shards.Value -= amount;
 
-        private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
-        
+        private float GetHealth()
+        {
+            var multiply = CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
+            multiply *= CharacterHandler.GetLevelMultiplier(_stars.Value, _starLevelUpData.Health);
+            return _configs.Characters.Get(_id).Health * multiply;
+        }
+
         public int GetMaxLevel()
         {
             var locks = _configs.StarLock.GetAll();

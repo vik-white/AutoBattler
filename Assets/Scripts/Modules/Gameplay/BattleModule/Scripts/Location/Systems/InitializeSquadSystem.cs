@@ -21,6 +21,8 @@ namespace vikwhite.ECS
                     {
                         ID = character.ID, 
                         Level = character.Level,
+                        Stars = character.Stars,
+                        SkillLevel = character.SkillLevel,
                         Position = GetPosition(i)
                     });
                 }

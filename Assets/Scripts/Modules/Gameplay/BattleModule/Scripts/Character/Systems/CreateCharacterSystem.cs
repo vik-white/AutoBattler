@@ -21,11 +21,19 @@ namespace vikwhite.ECS
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);
                 var config = renderData.Config.Value;
                 var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
+                var starLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
                 var healthMultiplier = CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpConfig.Health);
+                healthMultiplier *= CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starLevelUpConfig.Health);
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 
-                ecb.AddComponent(characterEntity, new Character { Config = renderData.Config, Level = request.ValueRO.Level });
+                ecb.AddComponent(characterEntity, new Character
+                {
+                    Config = renderData.Config, 
+                    Level = request.ValueRO.Level,
+                    Stars = request.ValueRO.Stars,
+                    SkillLevel = request.ValueRO.SkillLevel,
+                });
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(characterEntity);
 
                 ecb.SetComponent(characterEntity, new LocalTransform

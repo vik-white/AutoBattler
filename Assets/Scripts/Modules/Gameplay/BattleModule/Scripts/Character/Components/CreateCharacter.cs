@@ -7,6 +7,8 @@ namespace vikwhite.ECS
     {
         public uint ID;
         public int Level;
+        public int Stars;
+        public int SkillLevel;
         public bool IsEnemy;
         public float3 Position;
     }

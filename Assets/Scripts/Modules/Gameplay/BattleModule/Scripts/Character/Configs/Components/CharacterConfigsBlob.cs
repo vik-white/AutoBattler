@@ -14,6 +14,8 @@ namespace vikwhite.ECS
     {
         public uint ID { get; set; }
         public uint LevelUp;
+        public uint StarLevelUp;
+        public uint SkillLevelUp;
         public float Scale;
         public float Mass;
         public float Health;

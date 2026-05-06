@@ -32,6 +32,9 @@ namespace vikwhite.ECS
                 ecb.CreateFrameEntity(new CreateCharacter
                 {
                     ID = step.Enemies[UnityEngine.Random.Range(0, step.Enemies.Length)], 
+                    Level = 1,
+                    Stars = 0,
+                    SkillLevel = 1,
                     Position = new float3(8, 0, UnityEngine.Random.Range(-4f, 4f)), 
                     IsEnemy = true
                 });

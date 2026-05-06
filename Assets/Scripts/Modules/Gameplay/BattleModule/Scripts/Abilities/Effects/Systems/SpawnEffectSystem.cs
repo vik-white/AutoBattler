@@ -23,6 +23,9 @@ namespace vikwhite.ECS
                     ecb.CreateFrameEntity(new CreateCharacter
                     {
                         ID = config.GetRandomSpawnCharacter(), 
+                        Level = 1,
+                        Stars = 0,
+                        SkillLevel = 1,
                         Position = MathHandler.GetRandomPointInRadius(position.xz, config.SpawnRadius).xoy(),
                         IsEnemy = isEnemy
                     });

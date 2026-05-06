@@ -15,7 +15,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(effect, new Effect
                 {
                     Ability = request.ValueRO.Ability,
-                    Value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, request.ValueRO.Provider)
+                    Value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, request.ValueRO.Provider, request.ValueRO.Ability.Value.Skill)
                 });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent(effect, new Provider{ Value = request.ValueRO.Provider });
@@ -28,26 +28,42 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, EffectData effect, Entity entity) {
-            var value = effect.Value;
+        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, EffectData effect, Entity entity, bool isSkill)
+        {
             var character = SystemAPI.GetComponent<Character>(entity);
-            var level = character.Level;
-            var levelUpConfig = levelUpConfigs.Get(character.GetConfig().LevelUp);
+            var config = character.GetConfig();
+            var value = effect.Value;
+
+            value *= isSkill
+                ? GetSkillScale(character.SkillLevel - 1, effect.Type, levelUpConfigs.Get(config.SkillLevelUp))
+                : GetLevelStarsScale(character.Level - 1, character.Stars, effect.Type, levelUpConfigs.Get(config.LevelUp), levelUpConfigs.Get(config.StarLevelUp));
 
             if (effect.Type == EffectType.Damage)
-            {
-                value *= CharacterHandler.GetLevelMultiplier(level, levelUpConfig.Damage);
                 value *= SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.DamageMultiply].Value;
-                return value;
-            }
-
-            if (effect.Type == EffectType.Heal)
-                return value * CharacterHandler.GetLevelMultiplier(level, levelUpConfig.Heal);
-
-            if (effect.Type == EffectType.Shield)
-                return value * CharacterHandler.GetLevelMultiplier(level, levelUpConfig.Shield);
 
             return value;
+        }
+
+        private static float GetSkillScale(int skillIndex, EffectType type, LevelUpConfig skill)
+        {
+            switch (type)
+            {
+                case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Damage);
+                case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Heal);
+                case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Shield);
+                default: return 1f;
+            }
+        }
+
+        private static float GetLevelStarsScale(int levelIndex, int starsIndex, EffectType type, LevelUpConfig level, LevelUpConfig stars)
+        {
+            switch (type)
+            {
+                case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Damage) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Damage);
+                case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(levelIndex, level.Heal)   * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Heal);
+                case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Shield) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Shield);
+                default: return 1f;
+            }
         }
     }
 }

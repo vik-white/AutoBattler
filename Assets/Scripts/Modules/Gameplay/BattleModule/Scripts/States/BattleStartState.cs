@@ -38,10 +38,16 @@ namespace vikwhite
             ECSWorld.SetEnabled<VFXConfigInitializeSystem>(true); 
             ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
 
-            var initializeSquad = new InitializeSquad { Value = new FixedList128Bytes<CreateCharacter>() };
+            var initializeSquad = new InitializeSquad { Value = new FixedList512Bytes<CreateCharacter>() };
             foreach (var character in _squad.GetCharacters())
             {
-                var createCharacter = character != null ? new CreateCharacter { ID = character.ID.CalculateHash32(), Level = character.Level.Value } : default;
+                var createCharacter = character != null ? new CreateCharacter
+                {
+                    ID = character.ID.CalculateHash32(), 
+                    Level = character.Level.Value,
+                    Stars = character.Stars.Value,
+                    SkillLevel = character.SkillLevel.Value,
+                } : default;
                 initializeSquad.Value.Add(createCharacter);
             }
             ECSWorld.CreateEntity(initializeSquad); 

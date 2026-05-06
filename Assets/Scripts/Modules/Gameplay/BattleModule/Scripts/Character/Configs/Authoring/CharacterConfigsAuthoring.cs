@@ -45,6 +45,8 @@ namespace vikwhite.ECS
             return new CharacterConfigData {
                 ID = data.ID.CalculateHash32(),
                 LevelUp = data.LevelUp.CalculateHash32(),
+                StarLevelUp = data.StarLevelUp.CalculateHash32(),
+                SkillLevelUp = data.SkillLevelUp.CalculateHash32(),
                 Scale = data.Scale,
                 Mass = data.Mass,
                 Health = data.Health,

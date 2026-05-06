@@ -22,6 +22,8 @@ namespace vikwhite.ECS
                     {
                         ID = locationConfig.Enemies[i].ID, 
                         Level = locationConfig.Enemies[i].Level, 
+                        Stars = 0,
+                        SkillLevel = 1,
                         Position = GetPosition(i, hexPositionsConfig),
                         IsEnemy = true
                     });

@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                 {
                     ID = abilityID,
                     Level = abilityData.Level,
+                    Skill = abilityData.Skill,
                     Type = abilityData.Type,
                     Targets = CreateTargets(abilityData.Targets),
                     Cooldown = abilityData.Cooldown,

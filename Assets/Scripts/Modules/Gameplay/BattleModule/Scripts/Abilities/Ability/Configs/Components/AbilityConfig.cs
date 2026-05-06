@@ -9,6 +9,7 @@ namespace vikwhite.ECS
     {
         public uint ID;
         public int Level;
+        public bool Skill;
         public AbilityType Type;
         public float Cooldown;
         public float Radius;
