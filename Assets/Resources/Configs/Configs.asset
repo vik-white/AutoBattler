@@ -1311,6 +1311,17 @@ MonoBehaviour:
         MinValue: 1
         MaxValue: 4
         Probability: 3
+  summons:
+    IDS:
+    - Summon1
+    - Summon2
+    Data:
+    - ID: Summon1
+      Resource: 3
+      Reward: Summon
+    - ID: Summon2
+      Resource: 4
+      Reward: Summon
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

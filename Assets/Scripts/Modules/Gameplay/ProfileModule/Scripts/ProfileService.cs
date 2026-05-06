@@ -28,6 +28,7 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.Gold, Amount = 300 },
                     new ResourceData{ Type = ResourceType.Book, Amount = 0 },
                     new ResourceData{ Type = ResourceType.KeyCommon, Amount = 0 },
+                    new ResourceData{ Type = ResourceType.KeyEpic, Amount = 0 },
                 },
                 Squad = new [] {"","","","",""}
             };
