@@ -25,7 +25,7 @@ namespace vikwhite
         public void Initialize()
         {
             foreach (var characterData in _profile.Data.Characters)
-                _characters.Add(characterData.ID, _factory.Create(characterData.ID, characterData.Level, characterData.Shards));
+                _characters.Add(characterData.ID, _factory.Create(characterData.ID, characterData.Level, characterData.Shards, characterData.Stars));
         }
 
         public Character GetCharacter(string id) => _characters.TryGetValue(id, out var character) ? character : null;

@@ -13,11 +13,13 @@ namespace vikwhite
         private ReactiveProperty<int> _level;
         private ReactiveProperty<float> _health;
         private ReactiveProperty<int> _shards;
+        private ReactiveProperty<int> _stars;
 
         public string ID => _id;
         public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<float> Health => _health;
         public IReadOnlyReactiveProperty<int> Shards => _shards;
+        public IReadOnlyReactiveProperty<int> Stars => _stars;
 
         public Character(IConfigs configs, IEventDispatcher dispatcher)
         {
@@ -25,7 +27,7 @@ namespace vikwhite
             _dispatcher = dispatcher;
         }
         
-        public void Initialize(string id, int level, int shards)
+        public void Initialize(string id, int level, int shards, int stars)
         {
             _id = id;
             _characterData = _configs.Characters.Get(id);
@@ -33,8 +35,10 @@ namespace vikwhite
             _level = new ReactiveProperty<int>(level);
             _health = new ReactiveProperty<float>(GetHealth());
             _shards = new ReactiveProperty<int>(shards);
+            _stars = new ReactiveProperty<int>(stars);
             _level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)));
             _shards.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)));
+            _stars.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)));
         }
 
         public void Upgrade()
@@ -47,6 +51,12 @@ namespace vikwhite
         {
             if (amount <= 0) return;
             _shards.Value += amount;
+        }
+
+        public void AddStars(int amount)
+        {
+            if (amount <= 0) return;
+            _stars.Value += amount;
         }
 
         private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);

@@ -2,7 +2,7 @@ namespace vikwhite
 {
     public interface ICharacterFactory
     {
-        Character Create(string id, int level, int shards);
+        Character Create(string id, int level, int shards, int stars);
     }
     
     public class CharacterFactory : ICharacterFactory
@@ -14,10 +14,10 @@ namespace vikwhite
             _container = container;
         }
 
-        public Character Create(string id, int level, int shards)
+        public Character Create(string id, int level, int shards, int stars)
         {
             var character = _container.Resolve<Character>();
-            character.Initialize(id, level, shards);
+            character.Initialize(id, level, shards, stars);
             return character;
         }
     }
