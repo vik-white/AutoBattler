@@ -1326,6 +1326,60 @@ MonoBehaviour:
       Resource: 4
       Price: 1
       Reward: SummonReward
+  starLock:
+    IDS:
+    - 0
+    - 6
+    - 12
+    - 18
+    - 24
+    - 30
+    - 36
+    Data:
+    - ID: 0
+      Level: 20
+    - ID: 6
+      Level: 60
+    - ID: 12
+      Level: 100
+    - ID: 18
+      Level: 150
+    - ID: 24
+      Level: 200
+    - ID: 30
+      Level: 300
+    - ID: 36
+      Level: 400
+  levelLock:
+    IDS:
+    - 1
+    - 10
+    - 25
+    - 50
+    - 80
+    - 100
+    - 150
+    - 200
+    - 250
+    Data:
+    - ID: 1
+      Skill: 2
+    - ID: 10
+      Skill: 3
+    - ID: 25
+      Skill: 4
+    - ID: 50
+      Skill: 5
+    - ID: 80
+      Skill: 6
+    - ID: 100
+      Skill: 7
+    - ID: 150
+      Skill: 8
+    - ID: 200
+      Skill: 9
+    - ID: 250
+      Skill: 10
   resourceIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: 85b5784825a5ce84b82aab13dacd07cf, type: 3}

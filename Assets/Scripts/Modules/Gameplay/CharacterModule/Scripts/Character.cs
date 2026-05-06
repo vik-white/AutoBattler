@@ -7,18 +7,20 @@ namespace vikwhite
     {
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
+        
         private ICharacterData _characterData;
         private ILevelUpData _levelUpData;
+        
         private string _id;
-        private ReactiveProperty<int> _level;
         private ReactiveProperty<float> _health;
+        private ReactiveProperty<int> _level;
         private ReactiveProperty<int> _shards;
         private ReactiveProperty<int> _stars;
         private ReactiveProperty<int> _skillLevel;
 
         public string ID => _id;
-        public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<float> Health => _health;
+        public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<int> Shards => _shards;
         public IReadOnlyReactiveProperty<int> Stars => _stars;
         public IReadOnlyReactiveProperty<int> SkillLevel => _skillLevel;
@@ -62,16 +64,30 @@ namespace vikwhite
             _health.Value = GetHealth();
         }
 
-        public void AddShards(int amount)
-        {
-            _shards.Value += amount;
-        }
-        
-        public void RemoveShards(int amount)
-        {
-            _shards.Value -= amount;
-        }
+        public void AddShards(int amount) => _shards.Value += amount;
+
+        public void RemoveShards(int amount) => _shards.Value -= amount;
 
         private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
+        
+        private int GetMaxLevel()
+        {
+            var locks = _configs.StarLock.GetAll();
+            for (int i = 0; i < locks.Count; i++)
+            {
+                if (locks[i].ID > _stars.Value) return locks[i-1].ID;
+            }
+            return 0;
+        }
+        
+        private int GetMaxSkill()
+        {
+            var locks = _configs.LevelLock.GetAll();
+            for (int i = 0; i < locks.Count; i++)
+            {
+                if (locks[i].ID > _level.Value) return locks[i-1].ID;
+            }
+            return 0;
+        }
     }
 }
