@@ -22,6 +22,8 @@ namespace vikwhite.Data
         IConfig<ILevelUpData> LevelUp { get; }
         IConfig<IRewardsData> Rewards { get; }
         IConfig<ISummonData> Summons { get; }
+        IConfig<IStarLockData> StarLock { get; }
+        IConfig<ILevelLockData> LevelLock { get; }
         
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
     }
@@ -43,6 +45,8 @@ namespace vikwhite.Data
         [SerializeField] private Config<LevelUpData, ILevelUpData> levelUp;
         [SerializeField] private Config<RewardsData, IRewardsData> rewards;
         [SerializeField] private Config<SummonData, ISummonData> summons;
+        [SerializeField] private Config<StarLockData, IStarLockData> starLock;
+        [SerializeField] private Config<LevelLockData, ILevelLockData> levelLock;
         
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
@@ -56,6 +60,8 @@ namespace vikwhite.Data
         public IConfig<ILevelUpData> LevelUp => levelUp;
         public IConfig<IRewardsData> Rewards => rewards;
         public IConfig<ISummonData> Summons => summons;
+        public IConfig<IStarLockData> StarLock => starLock;
+        public IConfig<ILevelLockData> LevelLock => levelLock;
         
         public IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons
         {
