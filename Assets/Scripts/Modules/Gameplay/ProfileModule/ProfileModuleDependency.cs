@@ -11,6 +11,7 @@ namespace vikwhite
             Register<IEventHandler, ChangeCharacterLevelProfileHandler>();
             Register<IEventHandler, ChangeCharacterShardProfileHandler>();
             Register<IEventHandler, ChangeCharacterStarsProfileHandler>();
+            Register<IEventHandler, ChangeCharacterSkillLevelProfileHandler>();
         }
     }
 }

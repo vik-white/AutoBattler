@@ -15,12 +15,18 @@ namespace vikwhite
         protected override void UpdateViewModel(CharacterWindowViewModel viewModel)
         {
             BindClick(_view.CloseButton, viewModel.Close);
-            BindClick(_view.UpgradeButton, viewModel.OnUpgrade);
+            BindClick(_view.LevelUpButton, viewModel.OnUpgradeLevel);
+            BindClick(_view.StarsUpButton, viewModel.OnStarsUpgrade);
+            BindClick(_view.SkillUpButton, viewModel.OnSkillUpgrade);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
+            Bind(viewModel.Stars, stars => _view.Stars.text = stars.ToString());
+            Bind(viewModel.SkillLevel, skill => _view.Skill.text = skill.ToString());
             Bind(viewModel.Health, health => _view.Health.text = ((int)health).ToString());
+            Bind(viewModel.Shards, shards => _view.Shards.text = $"{shards}/5");
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
-            _view.Price.text = viewModel.Price.ToString();
+            _view.LevelUpPrice.text = viewModel.Price.ToString();
+            _view.SkillUpPrice.text = viewModel.SkillPrice.ToString();
             _view.AbilityIcon.sprite = viewModel.AbilityImage;
             _view.AbilityDescription.text = viewModel.AbilityDescription;
             _view.ResourcesContainer.ClearChildren();

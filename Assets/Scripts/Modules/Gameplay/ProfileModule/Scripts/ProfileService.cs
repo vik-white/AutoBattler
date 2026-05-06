@@ -36,7 +36,7 @@ namespace vikwhite
             foreach (var characterData in _configs.Characters.GetAll())
             {
                 if (characterData.Squad)
-                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 0, Shards = 0, Stars = 0 } );
+                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 0, Shards = 0, Stars = 0, SkillLevel = 0 } );
             }
         }
         

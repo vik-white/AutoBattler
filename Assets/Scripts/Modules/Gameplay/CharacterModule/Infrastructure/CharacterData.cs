@@ -9,5 +9,6 @@ namespace vikwhite
         public int Level;
         public int Shards;
         public int Stars;
+        public int SkillLevel;
     }
 }
