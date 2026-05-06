@@ -146,6 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3854415387849940528}
+  - component: {fileID: 7959689885341655045}
   m_Layer: 5
   m_Name: SummonItem
   m_TagString: Untagged
@@ -179,6 +180,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 997.83, y: 381.834}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7959689885341655045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711951831595094417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e106522d60a8773488d4dd6d90cbba18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Bank::vikwhite.SummonItemHierarchy
+  Title: {fileID: 3321571955918716042}
+  PriceX1: {fileID: 7114799772988529786}
+  PriceX10: {fileID: 0}
+  ResourceContainer: {fileID: 488088759504923040}
+  BuyX1Button: {fileID: 5895537306782848566}
+  BuyX10Button: {fileID: 222072645717958406}
 --- !u!1 &5270735237114208233
 GameObject:
   m_ObjectHideFlags: 0
