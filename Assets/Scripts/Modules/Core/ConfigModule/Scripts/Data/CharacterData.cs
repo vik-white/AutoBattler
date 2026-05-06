@@ -18,6 +18,8 @@ namespace vikwhite.Data
         bool HealthBar { get; }
         string ActiveAbility { get; }
         string LevelUp { get; }
+        string StarLevelUp { get; }
+        string SkillLevelUp { get; }
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
@@ -37,6 +39,8 @@ namespace vikwhite.Data
         public bool HealthBar;
         public string ActiveAbility;
         public string LevelUp;
+        public string StarLevelUp;
+        public string SkillLevelUp;
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
@@ -52,6 +56,8 @@ namespace vikwhite.Data
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
         string ICharacterData.LevelUp => LevelUp;
+        string ICharacterData.StarLevelUp => StarLevelUp;
+        string ICharacterData.SkillLevelUp => SkillLevelUp;
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
