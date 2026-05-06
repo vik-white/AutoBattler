@@ -5,6 +5,7 @@ namespace vikwhite
         Gold = 0,
         Gem = 1,
         Book = 2,
-        KeyCommon = 3
+        KeyCommon = 3,
+        KeyEpic = 4,
     }
 }
