@@ -10,6 +10,10 @@ namespace vikwhite
             Register<IRewardItemViewFactory, RewardItemViewFactory>();
             Register<RewardItemViewModel>();
             Register<RewardItemView>();
+
+            Register<IRewardsWindow, RewardsWindow>();
+            Register<RewardsWindowViewModel>();
+            Register<RewardsWindowView>();
         }
     }
 }
