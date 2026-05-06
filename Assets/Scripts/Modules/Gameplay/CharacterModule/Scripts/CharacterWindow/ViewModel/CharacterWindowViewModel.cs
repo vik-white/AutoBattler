@@ -41,6 +41,7 @@ namespace vikwhite
             
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Book)));
             OnUpgrade = Upgrade;
         }
 
