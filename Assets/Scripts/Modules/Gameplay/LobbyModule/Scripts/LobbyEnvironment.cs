@@ -13,6 +13,7 @@ namespace vikwhite
             Register<ResourceModuleDependency>();
             Register<RoadMapModuleDependency>();
             Register<CharacterModuleDependency>();
+            Register<RewardModuleDependency>();
             Register<BankModuleDependency>();
         }
 

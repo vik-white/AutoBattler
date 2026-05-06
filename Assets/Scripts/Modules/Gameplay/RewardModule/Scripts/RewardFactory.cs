@@ -7,6 +7,7 @@ namespace vikwhite
     public interface IRewardFactory
     {
         List<Reward> Create(string id);
+        List<Reward> Create(string id, int count);
     }
 
     public class RewardFactory : IRewardFactory
@@ -32,13 +33,40 @@ namespace vikwhite
                 if (reward == null) continue;
 
                 reward.Value = Random.Range(rewardData.MinValue, rewardData.MaxValue + 1);
-                result.Add(reward);
+                AddOrMerge(result, reward);
             }
 
             if (TryPickFromBasket(data.RewardBasket, out var basketReward))
-                result.Add(basketReward);
+                AddOrMerge(result, basketReward);
 
             return result;
+        }
+
+        public List<Reward> Create(string id, int count)
+        {
+            var result = new List<Reward>();
+            for (int i = 0; i < count; i++)
+            {
+                foreach (var reward in Create(id))
+                    AddOrMerge(result, reward);
+            }
+            return result;
+        }
+
+        private static void AddOrMerge(List<Reward> list, Reward reward)
+        {
+            if (reward == null) return;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].IsSameAs(reward))
+                {
+                    list[i].Value += reward.Value;
+                    return;
+                }
+            }
+
+            list.Add(reward);
         }
 
         private bool TryPickFromBasket(IReadOnlyCollection<RewardData> basket, out Reward picked)

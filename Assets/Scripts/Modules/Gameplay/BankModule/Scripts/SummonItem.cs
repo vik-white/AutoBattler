@@ -4,7 +4,7 @@ namespace vikwhite
     {
         public string Name;
         public ResourceType Currency;
-        public int PriceX1;
-        public int PriceX10;
+        public int Price;
+        public string Reward;
     }
 }

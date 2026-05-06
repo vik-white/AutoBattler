@@ -9,5 +9,8 @@ namespace vikwhite
         public Button CloseButton;
         public Button AddGoldButton;
         public Button AddGemButton;
+        public Button AddBookButton;
+        public Button AddKeyCommonButton;
+        public Button AddKeyEpicButton;
     }
 }

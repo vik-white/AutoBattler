@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using vikwhite.Data;
 
 namespace vikwhite
 {
@@ -15,22 +16,28 @@ namespace vikwhite
 
         public IReadOnlyList<SummonItem> SummonItems => _summonItems;
 
-        public BankService(IResourceService resources)
+        public BankService(IConfigs configs, IResourceService resources)
         {
             _resources = resources;
-            // TODO: move to Configs when summon table is ready
-            _summonItems = new List<SummonItem>
+            _summonItems = new List<SummonItem>();
+
+            foreach (var data in configs.Summons.GetAll())
             {
-                new SummonItem { Name = "Common Summon",  Currency = ResourceType.Gold, PriceX1 = 100, PriceX10 = 900 },
-                new SummonItem { Name = "Premium Summon", Currency = ResourceType.Gem,  PriceX1 = 10,  PriceX10 = 90  },
-            };
+                _summonItems.Add(new SummonItem
+                {
+                    Name = data.Name,
+                    Currency = data.Resource,
+                    Price = data.Price,
+                    Reward = data.Reward,
+                });
+            }
         }
 
         public bool TryBuy(SummonItem item, int count)
         {
             if (item == null || count <= 0) return false;
 
-            var price = count >= 10 ? item.PriceX10 : item.PriceX1;
+            var price = count >= 10 ? item.Price * 10 : item.Price;
             if (_resources.GetAmount(item.Currency).Value < price) return false;
 
             _resources.Spend(item.Currency, price);

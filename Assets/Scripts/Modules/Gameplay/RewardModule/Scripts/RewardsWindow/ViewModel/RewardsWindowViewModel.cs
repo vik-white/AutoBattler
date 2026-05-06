@@ -1,15 +1,13 @@
 using System.Collections.Generic;
-using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class RewardsWindowViewModel : WindowViewModel<string>
+    public class RewardsWindowViewModel : WindowViewModel<List<Reward>>
     {
         public List<RewardItemViewModel> Rewards = new();
 
-        public RewardsWindowViewModel(string rewardId, IRewardFactory rewardFactory, IRewardService rewardService) : base(rewardId)
+        public RewardsWindowViewModel(List<Reward> rewards, IRewardService rewardService) : base(rewards)
         {
-            var rewards = rewardFactory.Create(rewardId);
             rewardService.Add(rewards);
 
             foreach (var reward in rewards)
