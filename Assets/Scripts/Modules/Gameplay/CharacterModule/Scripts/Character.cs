@@ -70,22 +70,22 @@ namespace vikwhite
 
         private float GetHealth() => _configs.Characters.Get(_id).Health * CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
         
-        private int GetMaxLevel()
+        public int GetMaxLevel()
         {
             var locks = _configs.StarLock.GetAll();
             for (int i = 0; i < locks.Count; i++)
             {
-                if (locks[i].ID > _stars.Value) return locks[i-1].ID;
+                if (locks[i].ID > _stars.Value) return locks[i-1].Level;
             }
             return 0;
         }
         
-        private int GetMaxSkill()
+        public int GetMaxSkill()
         {
             var locks = _configs.LevelLock.GetAll();
             for (int i = 0; i < locks.Count; i++)
             {
-                if (locks[i].ID > _level.Value) return locks[i-1].ID;
+                if (locks[i].ID > _level.Value) return locks[i-1].Skill;
             }
             return 0;
         }
