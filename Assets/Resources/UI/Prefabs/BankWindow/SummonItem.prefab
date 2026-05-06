@@ -194,8 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Bank::vikwhite.SummonItemHierarchy
   Title: {fileID: 3321571955918716042}
   PriceX1: {fileID: 7114799772988529786}
-  PriceX10: {fileID: 0}
-  ResourceContainer: {fileID: 488088759504923040}
+  PriceX10: {fileID: 2370215369675715591}
+  ResourceContainer: {fileID: 4508126013959168813}
   BuyX1Button: {fileID: 5895537306782848566}
   BuyX10Button: {fileID: 222072645717958406}
 --- !u!1 &5270735237114208233

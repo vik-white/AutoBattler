@@ -13,14 +13,16 @@ namespace vikwhite
         public List<ResourceViewModel> Resources = new ();
         public UnityAction OnCheats;
         public UnityAction OnFight;
+        public UnityAction OnBank;
         public string CurrentLocation;
         
-        public LobbyWindowViewModel(ICheatWindow cheatWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap)
+        public LobbyWindowViewModel(ICheatWindow cheatWindow, ISummonWindow summonWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap)
         {
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
             _roadMap = roadMap;
             OnCheats = cheatWindow.ShowWindow;
+            OnBank = summonWindow.ShowWindow;
             OnFight = SelectLocation;
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
@@ -38,6 +40,7 @@ namespace vikwhite
             base.Dispose();
             OnCheats = null;
             OnFight = null;
+            OnBank = null;
         }
     }
 }

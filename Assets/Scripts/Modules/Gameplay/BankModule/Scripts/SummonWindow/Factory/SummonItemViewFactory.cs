@@ -4,6 +4,6 @@ namespace vikwhite
 
     public class SummonItemViewFactory : PooledViewFactory<SummonItemView, SummonItemViewModel>, ISummonItemViewFactory
     {
-        public override string AssetName => "UI/Prefabs/SummonWindow/SummonItem";
+        public override string AssetName => "UI/Prefabs/BankWindow/SummonItem";
     }
 }

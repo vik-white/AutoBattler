@@ -7,7 +7,7 @@ namespace vikwhite
 
     public class SummonWindow : WindowPresenter<SummonWindowView, SummonWindowViewModel>, ISummonWindow
     {
-        public override string AssetName => "UI/Prefabs/SummonWindow/SummonWindow";
+        public override string AssetName => "UI/Prefabs/BankWindow/SummonWindow";
 
         public void ShowWindow()
         {
