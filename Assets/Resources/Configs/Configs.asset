@@ -184,7 +184,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
-      LevelUp: BaseLevelUp
+      LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
-      LevelUp: BaseLevelUp
+      LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
-      LevelUp: BaseLevelUp
+      LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
-      LevelUp: BaseLevelUp
+      LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
       Shield: 0
       HealthBar: 0
       ActiveAbility: 
-      LevelUp: BaseLevelUp
+      LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -292,6 +292,36 @@ MonoBehaviour:
     - Forest
     - Forest1
     - Forest2
+    - level_1
+    - level_2
+    - level_3
+    - level_4
+    - level_5
+    - level_6
+    - level_7
+    - level_8
+    - level_9
+    - level_10
+    - level_11
+    - level_12
+    - level_13
+    - level_14
+    - level_15
+    - level_16
+    - level_17
+    - level_18
+    - level_19
+    - level_20
+    - level_21
+    - level_22
+    - level_23
+    - level_24
+    - level_25
+    - level_26
+    - level_27
+    - level_28
+    - level_29
+    - level_30
     - walltest
     - ForestBoss
     Data:
@@ -310,12 +340,102 @@ MonoBehaviour:
     - ID: Forest2
       Type: 1
       RoadMap: 0
+    - ID: level_1
+      Type: 0
+      RoadMap: 1
+    - ID: level_2
+      Type: 0
+      RoadMap: 1
+    - ID: level_3
+      Type: 0
+      RoadMap: 1
+    - ID: level_4
+      Type: 0
+      RoadMap: 1
+    - ID: level_5
+      Type: 0
+      RoadMap: 1
+    - ID: level_6
+      Type: 0
+      RoadMap: 1
+    - ID: level_7
+      Type: 0
+      RoadMap: 1
+    - ID: level_8
+      Type: 0
+      RoadMap: 1
+    - ID: level_9
+      Type: 0
+      RoadMap: 1
+    - ID: level_10
+      Type: 0
+      RoadMap: 1
+    - ID: level_11
+      Type: 0
+      RoadMap: 1
+    - ID: level_12
+      Type: 0
+      RoadMap: 1
+    - ID: level_13
+      Type: 0
+      RoadMap: 1
+    - ID: level_14
+      Type: 0
+      RoadMap: 1
+    - ID: level_15
+      Type: 0
+      RoadMap: 1
+    - ID: level_16
+      Type: 0
+      RoadMap: 1
+    - ID: level_17
+      Type: 0
+      RoadMap: 1
+    - ID: level_18
+      Type: 0
+      RoadMap: 1
+    - ID: level_19
+      Type: 0
+      RoadMap: 1
+    - ID: level_20
+      Type: 0
+      RoadMap: 1
+    - ID: level_21
+      Type: 0
+      RoadMap: 1
+    - ID: level_22
+      Type: 0
+      RoadMap: 1
+    - ID: level_23
+      Type: 0
+      RoadMap: 1
+    - ID: level_24
+      Type: 0
+      RoadMap: 1
+    - ID: level_25
+      Type: 0
+      RoadMap: 1
+    - ID: level_26
+      Type: 0
+      RoadMap: 1
+    - ID: level_27
+      Type: 0
+      RoadMap: 1
+    - ID: level_28
+      Type: 0
+      RoadMap: 1
+    - ID: level_29
+      Type: 0
+      RoadMap: 1
+    - ID: level_30
+      Type: 0
+      RoadMap: 1
     - ID: walltest
       Type: 0
-      RoadMap: 1
+      RoadMap: 0
     - ID: ForestBoss
       Type: 0
-      RoadMap: 1
+      RoadMap: 0
   locationStatic:
     IDS:
     - Test
@@ -323,6 +443,36 @@ MonoBehaviour:
     - Forest
     - ForestBoss
     - walltest
+    - level_1
+    - level_2
+    - level_3
+    - level_4
+    - level_5
+    - level_6
+    - level_7
+    - level_8
+    - level_9
+    - level_10
+    - level_11
+    - level_12
+    - level_13
+    - level_14
+    - level_15
+    - level_16
+    - level_17
+    - level_18
+    - level_19
+    - level_20
+    - level_21
+    - level_22
+    - level_23
+    - level_24
+    - level_25
+    - level_26
+    - level_27
+    - level_28
+    - level_29
+    - level_30
     Data:
     - ID: Test
       HexPositions: BossPosition
@@ -378,6 +528,386 @@ MonoBehaviour:
         Level: 0
       - ID: 895110272
         Level: 0
+    - ID: level_1
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 0
+      - ID: 2415114301
+        Level: 0
+      - ID: 895110272
+        Level: 0
+    - ID: level_2
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 1
+      - ID: 2415114301
+        Level: 1
+      - ID: 895110272
+        Level: 1
+      - ID: 895110272
+        Level: 1
+    - ID: level_3
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 2
+      - ID: 2415114301
+        Level: 2
+      - ID: 895110272
+        Level: 2
+      - ID: 895110272
+        Level: 2
+      - ID: 895110272
+        Level: 2
+    - ID: level_4
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 3
+      - ID: 2415114301
+        Level: 3
+      - ID: 4258313009
+        Level: 3
+      - ID: 895110272
+        Level: 3
+      - ID: 895110272
+        Level: 3
+    - ID: level_5
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 5
+    - ID: level_6
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 895110272
+        Level: 5
+      - ID: 895110272
+        Level: 5
+      - ID: 895110272
+        Level: 5
+      - ID: 895110272
+        Level: 5
+      - ID: 895110272
+        Level: 5
+    - ID: level_7
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 2415114301
+        Level: 6
+      - ID: 2415114301
+        Level: 6
+      - ID: 2415114301
+        Level: 6
+      - ID: 2415114301
+        Level: 6
+      - ID: 895110272
+        Level: 6
+    - ID: level_8
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 7
+      - ID: 895110272
+        Level: 7
+      - ID: 895110272
+        Level: 7
+      - ID: 895110272
+        Level: 7
+      - ID: 895110272
+        Level: 7
+    - ID: level_9
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 8
+      - ID: 2415114301
+        Level: 8
+      - ID: 4258313009
+        Level: 8
+      - ID: 895110272
+        Level: 8
+      - ID: 895110272
+        Level: 8
+    - ID: level_10
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 10
+    - ID: level_11
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 10
+      - ID: 2415114301
+        Level: 10
+      - ID: 4258313009
+        Level: 10
+      - ID: 895110272
+        Level: 10
+      - ID: 895110272
+        Level: 10
+    - ID: level_12
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 11
+      - ID: 2415114301
+        Level: 11
+      - ID: 4258313009
+        Level: 11
+      - ID: 895110272
+        Level: 11
+      - ID: 895110272
+        Level: 11
+    - ID: level_13
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 12
+      - ID: 2415114301
+        Level: 12
+      - ID: 4258313009
+        Level: 12
+      - ID: 895110272
+        Level: 12
+      - ID: 895110272
+        Level: 12
+    - ID: level_14
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 13
+      - ID: 2415114301
+        Level: 13
+      - ID: 4258313009
+        Level: 13
+      - ID: 895110272
+        Level: 13
+      - ID: 895110272
+        Level: 13
+    - ID: level_15
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 15
+      - ID: 895110272
+        Level: 15
+    - ID: level_16
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 15
+      - ID: 2415114301
+        Level: 15
+      - ID: 4258313009
+        Level: 15
+      - ID: 895110272
+        Level: 15
+      - ID: 895110272
+        Level: 15
+    - ID: level_17
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 16
+      - ID: 2415114301
+        Level: 16
+      - ID: 4258313009
+        Level: 16
+      - ID: 895110272
+        Level: 16
+      - ID: 895110272
+        Level: 16
+    - ID: level_18
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 17
+      - ID: 2415114301
+        Level: 17
+      - ID: 4258313009
+        Level: 17
+      - ID: 895110272
+        Level: 17
+      - ID: 895110272
+        Level: 17
+    - ID: level_19
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 18
+      - ID: 2415114301
+        Level: 18
+      - ID: 4258313009
+        Level: 18
+      - ID: 895110272
+        Level: 18
+      - ID: 895110272
+        Level: 18
+    - ID: level_20
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 20
+      - ID: 895110272
+        Level: 20
+      - ID: 895110272
+        Level: 20
+    - ID: level_21
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 20
+      - ID: 2415114301
+        Level: 20
+      - ID: 4258313009
+        Level: 20
+      - ID: 895110272
+        Level: 20
+      - ID: 895110272
+        Level: 20
+    - ID: level_22
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 21
+      - ID: 2415114301
+        Level: 21
+      - ID: 4258313009
+        Level: 21
+      - ID: 895110272
+        Level: 21
+      - ID: 895110272
+        Level: 21
+    - ID: level_23
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 22
+      - ID: 2415114301
+        Level: 22
+      - ID: 4258313009
+        Level: 22
+      - ID: 895110272
+        Level: 22
+      - ID: 895110272
+        Level: 22
+    - ID: level_24
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 23
+      - ID: 2415114301
+        Level: 23
+      - ID: 4258313009
+        Level: 23
+      - ID: 895110272
+        Level: 23
+      - ID: 895110272
+        Level: 23
+    - ID: level_25
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 25
+      - ID: 2415114301
+        Level: 25
+      - ID: 895110272
+        Level: 20
+    - ID: level_26
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 25
+      - ID: 2415114301
+        Level: 25
+      - ID: 4258313009
+        Level: 25
+      - ID: 895110272
+        Level: 25
+      - ID: 895110272
+        Level: 25
+    - ID: level_27
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 26
+      - ID: 2415114301
+        Level: 26
+      - ID: 4258313009
+        Level: 26
+      - ID: 895110272
+        Level: 26
+      - ID: 895110272
+        Level: 26
+    - ID: level_28
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 27
+      - ID: 2415114301
+        Level: 27
+      - ID: 4258313009
+        Level: 27
+      - ID: 895110272
+        Level: 27
+      - ID: 895110272
+        Level: 27
+    - ID: level_29
+      HexPositions: BasePosition
+      Reward: LevelReward
+      Enemies:
+      - ID: 4258313009
+        Level: 28
+      - ID: 2415114301
+        Level: 28
+      - ID: 4258313009
+        Level: 28
+      - ID: 895110272
+        Level: 28
+      - ID: 895110272
+        Level: 28
+    - ID: level_30
+      HexPositions: BasePosition
+      Reward: BossLevelReward
+      Enemies:
+      - ID: 1107468141
+        Level: 30
+      - ID: 2415114301
+        Level: 30
+      - ID: 895110272
+        Level: 30
   locationFlow:
     IDS: []
     Data:
@@ -1270,26 +1800,34 @@ MonoBehaviour:
     - BaseLevelUp
     - StarLevelUp
     - SkillLevelUp
+    - EnemyLevelUp
     Data:
     - ID: BaseLevelUp
-      Damage: 0.1
-      Health: 0.1
-      Shield: 0.1
-      Heal: 0.1
+      Damage: 0.01
+      Health: 0.01
+      Shield: 0
+      Heal: 0
     - ID: StarLevelUp
-      Damage: 1
-      Health: 1
-      Shield: 1
-      Heal: 1
+      Damage: 0.03
+      Health: 0.03
+      Shield: 0
+      Heal: 0
     - ID: SkillLevelUp
-      Damage: 1
-      Health: 1
-      Shield: 1
-      Heal: 1
+      Damage: 0.5
+      Health: 0
+      Shield: 0.5
+      Heal: 0.5
+    - ID: EnemyLevelUp
+      Damage: 0.01
+      Health: 0.01
+      Shield: 0.01
+      Heal: 0.01
   rewards:
     IDS:
     - LevelReward
-    - SummonReward
+    - BossLevelReward
+    - SummonRewardCommon
+    - SummonRewardEpic
     Data:
     - ID: LevelReward
       Rewards:
@@ -1297,8 +1835,8 @@ MonoBehaviour:
         ResourceType: 0
         ShardGroupType: 0
         ID: 
-        MinValue: 30
-        MaxValue: 50
+        MinValue: 40
+        MaxValue: 60
         Probability: 1
       - Type: 0
         ResourceType: 3
@@ -1306,60 +1844,101 @@ MonoBehaviour:
         ID: 
         MinValue: 1
         MaxValue: 1
-        Probability: 0.3
+        Probability: 1
       - Type: 0
         ResourceType: 2
         ShardGroupType: 0
         ID: 
         MinValue: 1
-        MaxValue: 1
-        Probability: 0.1
-      RewardBasket:
-      - Type: 1
-        ResourceType: 0
-        ShardGroupType: 0
-        ID: Assassin
-        MinValue: 1
-        MaxValue: 4
+        MaxValue: 3
         Probability: 1
-      - Type: 1
-        ResourceType: 0
-        ShardGroupType: 0
-        ID: Tank
-        MinValue: 1
-        MaxValue: 4
-        Probability: 3
-    - ID: SummonReward
-      Rewards:
       - Type: 2
         ResourceType: 0
         ShardGroupType: 0
         ID: 
         MinValue: 1
-        MaxValue: 4
+        MaxValue: 2
         Probability: 1
-      - Type: 1
+      RewardBasket: []
+    - ID: BossLevelReward
+      Rewards:
+      - Type: 0
         ResourceType: 0
         ShardGroupType: 0
-        ID: Assassin
+        ID: 
+        MinValue: 90
+        MaxValue: 110
+        Probability: 1
+      - Type: 0
+        ResourceType: 4
+        ShardGroupType: 0
+        ID: 
         MinValue: 1
-        MaxValue: 4
-        Probability: 0.3
+        MaxValue: 1
+        Probability: 1
+      - Type: 0
+        ResourceType: 2
+        ShardGroupType: 0
+        ID: 
+        MinValue: 4
+        MaxValue: 6
+        Probability: 1
+      - Type: 2
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 4
+        MaxValue: 6
+        Probability: 1
+      RewardBasket: []
+    - ID: SummonRewardCommon
+      Rewards: []
       RewardBasket:
-      - Type: 1
+      - Type: 2
         ResourceType: 0
         ShardGroupType: 0
-        ID: Assassin
+        ID: 
         MinValue: 1
-        MaxValue: 4
-        Probability: 1
-      - Type: 1
-        ResourceType: 0
-        ShardGroupType: 0
-        ID: Tank
-        MinValue: 1
-        MaxValue: 4
+        MaxValue: 2
         Probability: 3
+      - Type: 0
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 40
+        MaxValue: 60
+        Probability: 2
+      - Type: 0
+        ResourceType: 2
+        ShardGroupType: 0
+        ID: 
+        MinValue: 1
+        MaxValue: 3
+        Probability: 5
+    - ID: SummonRewardEpic
+      Rewards: []
+      RewardBasket:
+      - Type: 2
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 4
+        MaxValue: 6
+        Probability: 4
+      - Type: 0
+        ResourceType: 0
+        ShardGroupType: 0
+        ID: 
+        MinValue: 90
+        MaxValue: 110
+        Probability: 2
+      - Type: 0
+        ResourceType: 2
+        ShardGroupType: 0
+        ID: 
+        MinValue: 4
+        MaxValue: 6
+        Probability: 4
   summons:
     IDS:
     - Summon1
@@ -1369,12 +1948,12 @@ MonoBehaviour:
       Name: Summon1
       Resource: 3
       Price: 1
-      Reward: SummonReward
+      Reward: SummonRewardCommon
     - ID: Summon2
       Name: Summon2
       Resource: 4
       Price: 1
-      Reward: SummonReward
+      Reward: SummonRewardEpic
   starLock:
     IDS:
     - 0
@@ -1401,33 +1980,36 @@ MonoBehaviour:
       Level: 400
   levelLock:
     IDS:
-    - 1
+    - 0
     - 10
     - 25
     - 50
-    - 80
     - 100
     - 150
     - 200
     - 250
+    - 300
+    - 400
     Data:
-    - ID: 1
-      Skill: 2
+    - ID: 0
+      Skill: 1
     - ID: 10
-      Skill: 3
+      Skill: 2
     - ID: 25
-      Skill: 4
+      Skill: 3
     - ID: 50
-      Skill: 5
-    - ID: 80
-      Skill: 6
+      Skill: 4
     - ID: 100
-      Skill: 7
+      Skill: 5
     - ID: 150
-      Skill: 8
+      Skill: 6
     - ID: 200
-      Skill: 9
+      Skill: 7
     - ID: 250
+      Skill: 8
+    - ID: 300
+      Skill: 9
+    - ID: 400
       Skill: 10
   resourceIcons:
   - Type: 0

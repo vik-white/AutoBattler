@@ -22,7 +22,7 @@ namespace vikwhite
         public UnityAction OnUpgradeLevel;
         public UnityAction OnSkillUpgrade;
         public UnityAction OnStarsUpgrade;
-        public int LevelUpPrice = 30;
+        public int LevelUpPrice = 10;
         public int SkillUpPrice = 5;
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)

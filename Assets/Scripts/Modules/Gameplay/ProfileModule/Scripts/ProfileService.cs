@@ -24,8 +24,8 @@ namespace vikwhite
                 Characters = new (),
                 Resources =
                 {
-                    new ResourceData{ Type = ResourceType.Gem, Amount = 100 },
-                    new ResourceData{ Type = ResourceType.Gold, Amount = 300 },
+                    new ResourceData{ Type = ResourceType.Gem, Amount = 0 },
+                    new ResourceData{ Type = ResourceType.Gold, Amount = 0 },
                     new ResourceData{ Type = ResourceType.Book, Amount = 0 },
                     new ResourceData{ Type = ResourceType.KeyCommon, Amount = 0 },
                     new ResourceData{ Type = ResourceType.KeyEpic, Amount = 0 },
