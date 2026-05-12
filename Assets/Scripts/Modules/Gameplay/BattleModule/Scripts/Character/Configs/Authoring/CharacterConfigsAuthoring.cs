@@ -37,11 +37,7 @@ namespace vikwhite.ECS
         private CharacterConfigData CreateCharacterConfig(ICharacterData data, GameObject prefab)
         {
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
-
-            var abilities = new FixedList128Bytes<uint>();
-            foreach (var ability in data.Abilities)
-                abilities.Add(ability);
-
+            
             return new CharacterConfigData {
                 ID = data.ID.CalculateHash32(),
                 LevelUp = data.LevelUp.CalculateHash32(),
@@ -55,10 +51,15 @@ namespace vikwhite.ECS
                 CritChance = data.CritChance,
                 CritValue = data.CritValue,
                 HealthBar = data.HealthBar,
-                ActiveAbility = data.ActiveAbility.CalculateHash32(),
-                Abilities = abilities,
                 ColliderRadius = prefabCollider.radius * data.Scale,
                 ColliderHeight = prefabCollider.height * data.Scale,
+                Ability = data.Ability,
+                SkillActive = data.SkillActive,
+                SkillPassive1 = data.SkillPassive1,
+                SkillPassive2 = data.SkillPassive2,
+                SkillMeta1 = data.SkillMeta1,
+                SkillMeta2 = data.SkillMeta2,
+                SkillMeta3 = data.SkillMeta3,
             };
         }
 

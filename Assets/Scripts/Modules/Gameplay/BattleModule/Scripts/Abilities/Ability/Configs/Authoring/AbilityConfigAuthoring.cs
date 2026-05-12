@@ -20,10 +20,9 @@ namespace vikwhite.ECS
 
             foreach (var abilityData in authoring.Configs.Abilities.GetAll())
             {
-                var abilityID = abilityData.AbilityID.CalculateHash32();
                 var config = new AbilityConfig
                 {
-                    ID = abilityID,
+                    ID = abilityData.AbilityID,
                     Skill = abilityData.Skill,
                     Type = abilityData.Type,
                     Targets = CreateTargets(abilityData.Targets),

@@ -1782,30 +1782,65 @@ MonoBehaviour:
     - EnemyBossLevelUp
     Data:
     - ID: BaseLevelUp
-      Damage: 0.01
       Health: 0.01
-      Shield: 0
-      Heal: 0
+      Attack: 0.01
+      Defense: 0
+      CritChance: 0
+      CritValue: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: StarLevelUp
-      Damage: 0.03
       Health: 0.03
-      Shield: 0
-      Heal: 0
+      Attack: 0.03
+      Defense: 0
+      CritChance: 0
+      CritValue: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: SkillLevelUp
-      Damage: 0.3
       Health: 0
-      Shield: 0.3
-      Heal: 0.3
+      Attack: 0.3
+      Defense: 0
+      CritChance: 0
+      CritValue: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: EnemyLevelUp
-      Damage: 0.02
       Health: 0.02
-      Shield: 0.02
-      Heal: 0.02
+      Attack: 0.02
+      Defense: 0
+      CritChance: 0
+      CritValue: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: EnemyBossLevelUp
-      Damage: 0.01
       Health: 0.01
-      Shield: 0.01
-      Heal: 0.01
+      Attack: 0.01
+      Defense: 0
+      CritChance: 0
+      CritValue: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
   rewards:
     IDS:
     - LevelReward

@@ -42,7 +42,7 @@ namespace vikwhite
             
             foreach (var abilityData in configs.Abilities.GetAll())
             {
-                if (abilityData.AbilityID == config.ActiveAbility)
+                if (abilityData.AbilityID == config.SkillActive)
                 {
                     AbilityImage = abilityData.IconImage;
                     AbilityDescription = abilityData.Description;

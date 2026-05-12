@@ -24,10 +24,15 @@ namespace vikwhite.ECS
         public float CritChance;
         public float CritValue;
         public bool HealthBar;
-        public uint ActiveAbility;
-        public FixedList128Bytes<uint> Abilities;
         public float ColliderRadius;
         public float ColliderHeight;
+        public uint Ability;
+        public uint SkillActive;
+        public uint SkillPassive1;
+        public uint SkillPassive2;
+        public uint SkillMeta1;
+        public uint SkillMeta2;
+        public uint SkillMeta3;
     }
 
     public struct CharacterRenderData : IBufferElementData, IID

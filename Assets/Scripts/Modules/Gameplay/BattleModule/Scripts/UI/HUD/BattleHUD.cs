@@ -42,7 +42,7 @@ namespace vikwhite
             var config = character.GetConfig();
             
             if(config.HealthBar) HealthBar.Create(evnt.Character, config);
-            if(config.ActiveAbility != 0 && !isEnemy) ActiveAbilityButton.Create(evnt.Character);
+            if(config.SkillActive != 0 && !isEnemy) ActiveAbilityButton.Create(evnt.Character);
         }
 
         private void OnDestroy()

@@ -19,7 +19,7 @@ namespace vikwhite.ECS
             {
                 var character = target.ValueRO.Value;
                 var targetConfig = characters[character].GetConfig();
-                var damage = CalculateMitigatedDamage(effect.ValueRO.Value, targetConfig.Defense);
+                var damage = CalculateDamage(effect.ValueRO.Value, targetConfig.Defense);
                 if (damage > 0)
                 {
                     var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], targetConfig);
@@ -58,7 +58,7 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private static float CalculateMitigatedDamage(float rawAttack, float defense)
+        private static float CalculateDamage(float rawAttack, float defense)
         {
             return rawAttack * rawAttack / (rawAttack + 5f * defense);
         }

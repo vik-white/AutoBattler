@@ -9,7 +9,7 @@ namespace vikwhite.Data
 {
     public interface IAbilityData
     {
-        string AbilityID { get; }
+        uint AbilityID { get; }
         bool Skill { get; }
         AbilityType Type { get; }
         string Icon { get; }
@@ -46,7 +46,7 @@ namespace vikwhite.Data
     [Serializable]
     public class AbilityData : IAbilityData, ICustomJsonParser
     {
-        public string AbilityID;
+        public uint AbilityID;
         public bool Skill;
         public AbilityType Type;
         public string Icon;
@@ -79,7 +79,7 @@ namespace vikwhite.Data
         public Sprite IconImage;
         public string Description;
         
-        string IAbilityData.AbilityID => AbilityID;
+        uint IAbilityData.AbilityID => AbilityID;
         bool IAbilityData.Skill => Skill;
         AbilityType IAbilityData.Type => Type;
         string IAbilityData.Icon => Icon;

@@ -18,14 +18,19 @@ namespace vikwhite.Data
         float CritChance { get; }
         float CritValue { get; }
         bool HealthBar { get; }
-        string ActiveAbility { get; }
         string LevelUp { get; }
         string StarLevelUp { get; }
         string SkillLevelUp { get; }
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
-        List<uint> Abilities { get; }
+        uint Ability { get; }
+        uint SkillActive { get; }
+        uint SkillPassive1 { get; }
+        uint SkillPassive2 { get; }
+        uint SkillMeta1 { get; }
+        uint SkillMeta2 { get; }
+        uint SkillMeta3 { get; }
     }
 
     [Serializable]
@@ -42,14 +47,19 @@ namespace vikwhite.Data
         public float CritChance;
         public float CritValue;
         public bool HealthBar;
-        public string ActiveAbility;
         public string LevelUp;
         public string StarLevelUp;
         public string SkillLevelUp;
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
-        public List<uint> Abilities;
+        public uint Ability;
+        public uint SkillActive;
+        public uint SkillPassive1;
+        public uint SkillPassive2;
+        public uint SkillMeta1;
+        public uint SkillMeta2;
+        public uint SkillMeta3;
         
         string ICharacterData.ID => ID;
         string ICharacterData.Name => Name;
@@ -62,23 +72,22 @@ namespace vikwhite.Data
         float ICharacterData.CritChance => CritChance;
         float ICharacterData.CritValue => CritValue;
         bool ICharacterData.HealthBar => HealthBar;
-        string ICharacterData.ActiveAbility => ActiveAbility;
         string ICharacterData.LevelUp => LevelUp;
         string ICharacterData.StarLevelUp => StarLevelUp;
         string ICharacterData.SkillLevelUp => SkillLevelUp;
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
-        List<uint> ICharacterData.Abilities => Abilities;
+        uint ICharacterData.Ability => Ability;
+        uint ICharacterData.SkillActive => SkillActive;
+        uint ICharacterData.SkillPassive1 => SkillPassive1;
+        uint ICharacterData.SkillPassive2 => SkillPassive2;
+        uint ICharacterData.SkillMeta1 => SkillMeta1;
+        uint ICharacterData.SkillMeta2 => SkillMeta2;
+        uint ICharacterData.SkillMeta3 => SkillMeta3;
         
         public void Parse(Dictionary<string, string> row)
         {
-            Abilities = new ();
-            foreach (var abilityString in row["Abilities"].Split(";"))
-            {
-                if(abilityString == "") continue;
-                Abilities.Add(abilityString.CalculateHash32());
-            }
             if(row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
             if(row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");
         }

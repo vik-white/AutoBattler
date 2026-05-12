@@ -64,21 +64,14 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
 
                 var abilities = ecb.AddBuffer<Ability>(characterEntity);
-                foreach (var abilityID in config.Abilities)
-                {
-                    var abilityConfigBlob = abilityRuntimeData.Get(abilityID);
-                    var abilityConfig = abilityConfigBlob.Value;
-                    if (abilityConfig.Type == AbilityType.Abilities)
-                    {
-                        foreach (var abilityChildID in abilityConfig.Abilities)
-                        {
-                            abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
-                        }
-                    }
-                    var cooldown = abilityConfig.Skill ? abilityConfig.Cooldown * 0.5f : abilityConfig.Cooldown;
-                    abilities.Add(new Ability { Config = abilityConfigBlob, Cooldown = cooldown });
-                }
-                if(config.ActiveAbility != 0) ecb.AddComponent(characterEntity, new ActiveAbility{ Value = config.ActiveAbility });
+                CreateAbility(abilityRuntimeData, abilities, config.Ability);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillActive);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillPassive1);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillPassive2);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta1);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta2);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta3);
+                if(config.SkillActive != 0) ecb.AddComponent(characterEntity, new ActiveAbility{ Value = config.SkillActive });
 
                 int statCount = Enum.GetValues(typeof(StatType)).Length;
                 var statsBase = ecb.AddBuffer<StatBase>(characterEntity);
@@ -90,6 +83,22 @@ namespace vikwhite.ECS
                 ecb.CreateFrameEntity(new CreateCharacterEvent { Character = characterEntity });
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private void CreateAbility(DynamicBuffer<AbilityRuntimeData> abilityRuntimeData, DynamicBuffer<Ability> abilities, uint id)
+        {
+            if(id == 0) return;
+            var abilityConfigBlob = abilityRuntimeData.Get(id);
+            var abilityConfig = abilityConfigBlob.Value;
+            if (abilityConfig.Type == AbilityType.Abilities)
+            {
+                foreach (var abilityChildID in abilityConfig.Abilities)
+                {
+                    abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
+                }
+            }
+            var cooldown = abilityConfig.Skill ? abilityConfig.Cooldown * 0.5f : abilityConfig.Cooldown;
+            abilities.Add(new Ability { Config = abilityConfigBlob, Cooldown = cooldown });
         }
     }
 }
