@@ -10,6 +10,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var healths = SystemAPI.GetComponentLookup<Health>();
+            var defenses = SystemAPI.GetComponentLookup<Defense>();
             var shields = SystemAPI.GetComponentLookup<Shield>();
             var shieldMaxes = SystemAPI.GetComponentLookup<ShieldMax>();
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
@@ -19,7 +20,8 @@ namespace vikwhite.ECS
             {
                 var character = target.ValueRO.Value;
                 var targetConfig = characters[character].GetConfig();
-                var damage = CalculateDamage(effect.ValueRO.Value, targetConfig.Defense);
+                var defense = defenses[character].Value;
+                var damage = CalculateDamage(effect.ValueRO.Value, defense);
                 if (damage > 0)
                 {
                     var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], targetConfig);
