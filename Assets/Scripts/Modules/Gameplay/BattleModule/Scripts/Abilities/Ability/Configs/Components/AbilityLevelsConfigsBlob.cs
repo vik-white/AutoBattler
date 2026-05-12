@@ -4,18 +4,16 @@ namespace vikwhite.ECS
 {
     public struct AbilityRuntimeData : IBufferElementData
     {
-        public uint ID;
-        public int Level;
         public BlobAssetReference<AbilityConfig> Config;
     }
 
     public static class AbilityRuntimeDataExtensions
     {
-        public static BlobAssetReference<AbilityConfig> Get(this DynamicBuffer<AbilityRuntimeData> buffer, uint id, int level)
+        public static BlobAssetReference<AbilityConfig> Get(this DynamicBuffer<AbilityRuntimeData> buffer, uint id)
         {
             for (int i = 0; i < buffer.Length; i++)
             {
-                if (buffer[i].ID == id && buffer[i].Level == level)
+                if (buffer[i].Config.Value.ID == id)
                 {
                     return buffer[i].Config;
                 }

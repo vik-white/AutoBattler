@@ -8,7 +8,6 @@ namespace vikwhite.ECS
     public struct AbilityConfig
     {
         public uint ID;
-        public int Level;
         public bool Skill;
         public AbilityType Type;
         public float Cooldown;
@@ -24,7 +23,7 @@ namespace vikwhite.ECS
         public float AuraLifetime;
         public float AuraRadius;
         public float AuraInterval;
-        public FixedList64Bytes<AbilityLevelData> Abilities;
+        public FixedList64Bytes<uint> Abilities;
         public float ImpulseUp;
         public float ImpulseProvider;
         public uint CastVFXPrefab;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Rukhanka.Toolbox;
 using UnityEngine;
-using vikwhite.ECS;
 
 namespace vikwhite.Data
 {
@@ -22,7 +21,7 @@ namespace vikwhite.Data
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
-        List<AbilityLevelData> Abilities { get; }
+        List<uint> Abilities { get; }
     }
 
     [Serializable]
@@ -42,7 +41,7 @@ namespace vikwhite.Data
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
-        public List<AbilityLevelData> Abilities;
+        public List<uint> Abilities;
         
         string ICharacterData.ID => ID;
         string ICharacterData.Name => Name;
@@ -58,7 +57,7 @@ namespace vikwhite.Data
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
-        List<AbilityLevelData> ICharacterData.Abilities => Abilities;
+        List<uint> ICharacterData.Abilities => Abilities;
         
         public void Parse(Dictionary<string, string> row)
         {
@@ -66,13 +65,7 @@ namespace vikwhite.Data
             foreach (var abilityString in row["Abilities"].Split(";"))
             {
                 if(abilityString == "") continue;
-                var parts = abilityString.Split(':');
-                var idString = parts[0];
-                var levelString = parts[1];
-                
-                if (!int.TryParse(levelString, out var level)) continue;
-                
-                Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = level });
+                Abilities.Add(abilityString.CalculateHash32());
             }
             if(row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
             if(row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");

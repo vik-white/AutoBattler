@@ -63,18 +63,18 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
 
                 var abilities = ecb.AddBuffer<Ability>(characterEntity);
-                foreach (var ability in config.Abilities)
+                foreach (var abilityID in config.Abilities)
                 {
-                    var abilityConfigBlob = abilityRuntimeData.Get(ability.ID, ability.Level);
+                    var abilityConfigBlob = abilityRuntimeData.Get(abilityID);
                     var abilityConfig = abilityConfigBlob.Value;
                     if (abilityConfig.Type == AbilityType.Abilities)
                     {
-                        foreach (var abilityChild in abilityConfig.Abilities)
+                        foreach (var abilityChildID in abilityConfig.Abilities)
                         {
-                            abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChild.ID, abilityChild.Level), IsChild = true });
+                            abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
                         }
                     }
-                    var cooldown = config.ActiveAbility != ability.ID ? abilityConfig.Cooldown : 0;
+                    var cooldown = config.ActiveAbility != abilityID ? abilityConfig.Cooldown : 0;
                     abilities.Add(new Ability { Config = abilityConfigBlob, Cooldown = cooldown });
                 }
                 if(config.ActiveAbility != 0) ecb.AddComponent(characterEntity, new ActiveAbility{ Value = config.ActiveAbility });

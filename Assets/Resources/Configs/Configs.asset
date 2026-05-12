@@ -69,10 +69,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
       Abilities:
-      - ID: 3795814207
-        Level: 0
-      - ID: 2496368978
-        Level: 0
+      - 3795814207
+      - 2496368978
     - ID: Tank
       Name: Dwarf
       Prefab: IronfistDwarfRed
@@ -88,10 +86,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
       Abilities:
-      - ID: 2213220330
-        Level: 0
-      - ID: 1605752999
-        Level: 0
+      - 2213220330
+      - 1605752999
     - ID: Healer
       Name: Celen
       Prefab: Healer
@@ -107,10 +103,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
       PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
       Abilities:
-      - ID: 1578047653
-        Level: 0
-      - ID: 370847456
-        Level: 0
+      - 1578047653
+      - 370847456
     - ID: Mage
       Name: Karter
       Prefab: IronfistDwarfBlue
@@ -126,10 +120,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
       PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
       Abilities:
-      - ID: 616699424
-        Level: 0
-      - ID: 2475848034
-        Level: 0
+      - 616699424
+      - 2475848034
     - ID: Assassin
       Name: Nory
       Prefab: IronfistDwarfPurple
@@ -145,10 +137,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
       PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
       Abilities:
-      - ID: 3548031329
-        Level: 0
-      - ID: 703911167
-        Level: 0
+      - 3548031329
+      - 703911167
     - ID: Support
       Name: Duku
       Prefab: IronfistDwarf
@@ -164,10 +154,8 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
       Abilities:
-      - ID: 1578047653
-        Level: 0
-      - ID: 1516922681
-        Level: 0
+      - 1578047653
+      - 1516922681
     - ID: Enemy
       Name: 
       Prefab: Sceleton
@@ -183,8 +171,7 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 3795814207
-        Level: 0
+      - 3795814207
     - ID: Enemy1
       Name: 
       Prefab: Sceleton
@@ -200,8 +187,7 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 3548031329
-        Level: 0
+      - 3548031329
     - ID: EnemyRange
       Name: 
       Prefab: Sceleton
@@ -217,8 +203,7 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 2201965509
-        Level: 0
+      - 2201965509
     - ID: Sceleton
       Name: 
       Prefab: Sceleton
@@ -234,8 +219,7 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 4243707639
-        Level: 0
+      - 4243707639
     - ID: SceletonBoss
       Name: 
       Prefab: Sceleton
@@ -251,10 +235,8 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 4070441441
-        Level: 0
-      - ID: 1107468141
-        Level: 0
+      - 4070441441
+      - 1107468141
     - ID: Sceletonminiboss
       Name: 
       Prefab: Sceleton
@@ -270,8 +252,7 @@ MonoBehaviour:
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       Abilities:
-      - ID: 3795814207
-        Level: 0
+      - 3795814207
   map:
     IDS:
     - Test
@@ -916,7 +897,6 @@ MonoBehaviour:
     IDS: []
     Data:
     - AbilityID: FlowMeleeAttack
-      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -951,7 +931,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: MeleeAttack_1
-      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -986,7 +965,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: MeleeAttack_2
-      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -1021,7 +999,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: MeleeAttack_3
-      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -1056,7 +1033,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_1
-      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1091,7 +1067,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_2
-      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1126,7 +1101,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_3
-      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1161,7 +1135,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_4
-      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1196,7 +1169,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttackAOE
-      Level: 0
       Skill: 1
       Type: 0
       Icon: 
@@ -1231,7 +1203,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: SpawnSkeletons
-      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1268,7 +1239,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: HealBuff
-      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1305,7 +1275,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: ShieldBuff
-      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1340,7 +1309,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: ShieldBuffBig
-      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1375,7 +1343,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: AggroBuff
-      Level: 0
       Skill: 1
       Type: 4
       Icon: 
@@ -1410,7 +1377,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RearJump
-      Level: 0
       Skill: 1
       Type: 6
       Icon: 
@@ -1443,7 +1409,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: SpeedAttack
-      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1479,7 +1444,6 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: OrbitingFireBoll
-      Level: 0
       Skill: 1
       Type: 2
       Icon: Ability
@@ -1515,7 +1479,6 @@ MonoBehaviour:
       Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
         3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
     - AbilityID: Support
-      Level: 0
       Skill: 1
       Type: 3
       Icon: Ability
@@ -1552,7 +1515,6 @@ MonoBehaviour:
       Description: "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
         \u0430\u0431\u0438\u043B\u043E\u043A"
     - AbilityID: Mage
-      Level: 0
       Skill: 1
       Type: 3
       Icon: Ice
@@ -1588,7 +1550,6 @@ MonoBehaviour:
       Description: "\u0423\u0434\u0430\u0440 \u043B\u044C\u0434\u043E\u043C \u043F\u043E
         \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
     - AbilityID: Tank
-      Level: 0
       Skill: 1
       Type: 5
       Icon: Berserk
@@ -1611,10 +1572,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities:
-      - ID: 1376285117
-        Level: 0
-      - ID: 858787147
-        Level: 0
+      - 1376285117
+      - 858787147
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -1627,7 +1586,6 @@ MonoBehaviour:
         \u043D\u0430 \u0441\u0435\u0431\u044F \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439
         \u0449\u0438\u0442"
     - AbilityID: Healer
-      Level: 0
       Skill: 1
       Type: 5
       Icon: Heal
@@ -1650,10 +1608,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities:
-      - ID: 3693692732
-        Level: 0
-      - ID: 3503821397
-        Level: 0
+      - 3693692732
+      - 3503821397
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -1666,7 +1622,6 @@ MonoBehaviour:
         \u0438 \u043D\u0430\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442
         \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0449\u0438\u0442"
     - AbilityID: Assassin
-      Level: 0
       Skill: 1
       Type: 5
       Icon: Blade
@@ -1689,10 +1644,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities:
-      - ID: 2425292117
-        Level: 0
-      - ID: 1495396533
-        Level: 0
+      - 2425292117
+      - 1495396533
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -1705,7 +1658,6 @@ MonoBehaviour:
         \u0446\u0435\u043B\u0438 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
         \u0431\u044B\u0441\u0442\u0440\u044B\u0435 \u0443\u0434\u0430\u0440\u044B"
     - AbilityID: SceletonBoss
-      Level: 0
       Skill: 1
       Type: 5
       Icon: 
@@ -1728,10 +1680,8 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Abilities:
-      - ID: 232099915
-        Level: 0
-      - ID: 3753657975
-        Level: 0
+      - 232099915
+      - 3753657975
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216

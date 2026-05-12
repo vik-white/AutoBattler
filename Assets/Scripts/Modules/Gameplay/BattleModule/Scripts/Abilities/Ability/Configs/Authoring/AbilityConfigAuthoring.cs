@@ -24,7 +24,6 @@ namespace vikwhite.ECS
                 var config = new AbilityConfig
                 {
                     ID = abilityID,
-                    Level = abilityData.Level,
                     Skill = abilityData.Skill,
                     Type = abilityData.Type,
                     Targets = CreateTargets(abilityData.Targets),
@@ -60,8 +59,6 @@ namespace vikwhite.ECS
 
                 runtimeData.Add(new AbilityRuntimeData
                 {
-                    ID = abilityID,
-                    Level = abilityData.Level,
                     Config = CreateAbilityConfigBlob(config)
                 });
             }
@@ -107,8 +104,8 @@ namespace vikwhite.ECS
             return spawnCharacters;
         }
         
-        private FixedList64Bytes<AbilityLevelData> CreateAbilities(List<AbilityLevelData> abilitiesConfig) {
-            var abilities = new FixedList64Bytes<AbilityLevelData>();
+        private FixedList64Bytes<uint> CreateAbilities(List<uint> abilitiesConfig) {
+            var abilities = new FixedList64Bytes<uint>();
             foreach (var ability in abilitiesConfig) abilities.Add(ability);
             return abilities;
         }

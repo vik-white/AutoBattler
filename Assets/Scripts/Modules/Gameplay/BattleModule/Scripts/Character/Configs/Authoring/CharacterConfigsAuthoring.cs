@@ -38,7 +38,7 @@ namespace vikwhite.ECS
         {
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
 
-            var abilities = new FixedList128Bytes<AbilityLevelData>();
+            var abilities = new FixedList128Bytes<uint>();
             foreach (var ability in data.Abilities)
                 abilities.Add(ability);
 

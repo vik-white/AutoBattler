@@ -10,7 +10,6 @@ namespace vikwhite.Data
     public interface IAbilityData
     {
         string AbilityID { get; }
-        int Level { get; }
         bool Skill { get; }
         AbilityType Type { get; }
         string Icon { get; }
@@ -32,7 +31,7 @@ namespace vikwhite.Data
         float AuraLifetime { get; }
         float AuraRadius { get; }
         float AuraInterval { get; }
-        List<AbilityLevelData> Abilities { get; }
+        List<uint> Abilities { get; }
         float ImpulseUp { get; }
         float ImpulseProvider { get; }
         uint CastVFXPrefab { get; }
@@ -48,7 +47,6 @@ namespace vikwhite.Data
     public class AbilityData : IAbilityData, ICustomJsonParser
     {
         public string AbilityID;
-        public int Level;
         public bool Skill;
         public AbilityType Type;
         public string Icon;
@@ -70,7 +68,7 @@ namespace vikwhite.Data
         public float AuraLifetime;
         public float AuraRadius;
         public float AuraInterval;
-        public List<AbilityLevelData> Abilities;
+        public List<uint> Abilities;
         public float ImpulseUp;
         public float ImpulseProvider;
         public uint CastVFXPrefab;
@@ -82,7 +80,6 @@ namespace vikwhite.Data
         public string Description;
         
         string IAbilityData.AbilityID => AbilityID;
-        int IAbilityData.Level => Level;
         bool IAbilityData.Skill => Skill;
         AbilityType IAbilityData.Type => Type;
         string IAbilityData.Icon => Icon;
@@ -104,7 +101,7 @@ namespace vikwhite.Data
         float IAbilityData.AuraLifetime => AuraLifetime;
         float IAbilityData.AuraRadius => AuraRadius;
         float IAbilityData.AuraInterval => AuraInterval;
-        List<AbilityLevelData> IAbilityData.Abilities => Abilities;
+        List<uint> IAbilityData.Abilities => Abilities;
         float IAbilityData.ImpulseUp => ImpulseUp;
         float IAbilityData.ImpulseProvider => ImpulseProvider;
         uint IAbilityData.CastVFXPrefab => CastVFXPrefab;
@@ -194,13 +191,7 @@ namespace vikwhite.Data
             foreach (var abilityString in row["Abilities"].Split(";"))
             {
                 if(abilityString == "") continue;
-                var parts = abilityString.Split(':');
-                var idString = parts[0];
-                var valueString = parts[1];
-                
-                if (!int.TryParse(valueString, out var value)) continue;
-                
-                Abilities.Add(new AbilityLevelData { ID = idString.CalculateHash32(), Level = value });
+                Abilities.Add(abilityString.CalculateHash32());
             }
         }
     }
