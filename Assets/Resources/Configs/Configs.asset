@@ -55,14 +55,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: 
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: 
+      Ability: 0
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Brawler
       Name: Bob
       Prefab: IronfistDwarf
@@ -74,14 +79,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: OrbitingFireBoll
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
-      Abilities: 3f873fe25291cb94
+      Ability: 3795814207
+      SkillActive: 2496368978
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Tank
       Name: Dwarf
       Prefab: IronfistDwarfRed
@@ -93,14 +103,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: Tank
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
-      Abilities: ea0feb83a7d8b55f
+      Ability: 2213220330
+      SkillActive: 1605752999
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Healer
       Name: Celen
       Prefab: Healer
@@ -112,14 +127,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: Healer
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
       PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
-      Abilities: a5180f5ee0ae1a16
+      Ability: 1578047653
+      SkillActive: 370847456
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Mage
       Name: Karter
       Prefab: IronfistDwarfBlue
@@ -131,14 +151,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: Mage
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
       PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
-      Abilities: 2016c22462719293
+      Ability: 616699424
+      SkillActive: 2475848034
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Assassin
       Name: Nory
       Prefab: IronfistDwarfPurple
@@ -150,14 +175,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: Assassin
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
       PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
-      Abilities: 61a97ad3ffd4f429
+      Ability: 3548031329
+      SkillActive: 703911167
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Support
       Name: Duku
       Prefab: IronfistDwarf
@@ -169,14 +199,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: Support
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
-      Abilities: a5180f5e39676a5a
+      Ability: 1578047653
+      SkillActive: 1516922681
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Enemy
       Name: 
       Prefab: Sceleton
@@ -188,14 +223,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: 
       LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: 3f873fe2
+      Ability: 3795814207
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Enemy1
       Name: 
       Prefab: Sceleton
@@ -207,14 +247,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: 
       LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: 61a97ad3
+      Ability: 3548031329
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: EnemyRange
       Name: 
       Prefab: Sceleton
@@ -226,14 +271,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: 
       LevelUp: EnemyLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: c5533f83
+      Ability: 2201965509
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Sceleton
       Name: 
       Prefab: Sceleton
@@ -245,14 +295,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 0
-      ActiveAbility: 
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: f7d6f1fc
+      Ability: 4243707639
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: SceletonBoss
       Name: 
       Prefab: Sceleton
@@ -264,14 +319,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      ActiveAbility: 
       LevelUp: EnemyBossLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: e1019ef26d9f0242
+      Ability: 4070441441
+      SkillActive: 0
+      SkillPassive1: 1107468141
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: Sceletonminiboss
       Name: 
       Prefab: Sceleton
@@ -283,14 +343,19 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 0
-      ActiveAbility: 
       LevelUp: EnemyBossLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Abilities: 3f873fe2
+      Ability: 3795814207
+      SkillActive: 0
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
   map:
     IDS:
     - Test
@@ -934,8 +999,7 @@ MonoBehaviour:
   abilities:
     IDS: []
     Data:
-    - AbilityID: FlowMeleeAttack
-      Skill: 0
+    - AbilityID: 4243707639
       Type: 1
       Icon: 
       Cooldown: 5
@@ -969,8 +1033,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: MeleeAttack_1
-      Skill: 0
+    - AbilityID: 3548031329
       Type: 1
       Icon: 
       Cooldown: 1.2
@@ -1004,8 +1067,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: MeleeAttack_2
-      Skill: 0
+    - AbilityID: 3795814207
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1039,8 +1101,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: MeleeAttack_3
-      Skill: 0
+    - AbilityID: 2213220330
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1074,8 +1135,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RangeAttack_1
-      Skill: 0
+    - AbilityID: 1578047653
       Type: 0
       Icon: 
       Cooldown: 2
@@ -1109,8 +1169,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RangeAttack_2
-      Skill: 0
+    - AbilityID: 616699424
       Type: 0
       Icon: 
       Cooldown: 1.5
@@ -1144,8 +1203,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RangeAttack_3
-      Skill: 0
+    - AbilityID: 4070441441
       Type: 0
       Icon: 
       Cooldown: 1.8
@@ -1179,8 +1237,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RangeAttack_4
-      Skill: 0
+    - AbilityID: 2201965509
       Type: 0
       Icon: 
       Cooldown: 1.3
@@ -1214,8 +1271,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RangeAttackAOE
-      Skill: 1
+    - AbilityID: 3753657975
       Type: 0
       Icon: 
       Cooldown: 3
@@ -1249,8 +1305,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: SpawnSkeletons
-      Skill: 1
+    - AbilityID: 232099915
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1286,8 +1341,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: HealBuff
-      Skill: 1
+    - AbilityID: 3693692732
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1322,8 +1376,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: ShieldBuff
-      Skill: 1
+    - AbilityID: 3503821397
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1357,8 +1410,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: ShieldBuffBig
-      Skill: 1
+    - AbilityID: 858787147
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1392,8 +1444,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: AggroBuff
-      Skill: 1
+    - AbilityID: 1376285117
       Type: 4
       Icon: 
       Cooldown: 1
@@ -1427,8 +1478,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: RearJump
-      Skill: 1
+    - AbilityID: 2425292117
       Type: 6
       Icon: 
       Cooldown: 1
@@ -1459,8 +1509,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: SpeedAttack
-      Skill: 1
+    - AbilityID: 1495396533
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1494,8 +1543,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: OrbitingFireBoll
-      Skill: 1
+    - AbilityID: 2496368978
       Type: 2
       Icon: Ability
       Cooldown: 7
@@ -1530,8 +1578,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
       Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
         3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
-    - AbilityID: Support
-      Skill: 1
+    - AbilityID: 1516922681
       Type: 3
       Icon: Ability
       Cooldown: 12
@@ -1566,8 +1613,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
       Description: "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
         \u0430\u0431\u0438\u043B\u043E\u043A"
-    - AbilityID: Mage
-      Skill: 1
+    - AbilityID: 2475848034
       Type: 3
       Icon: Ice
       Cooldown: 10
@@ -1602,8 +1648,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: 7deacee27c334b042b62bcf212c3a854, type: 3}
       Description: "\u0423\u0434\u0430\u0440 \u043B\u044C\u0434\u043E\u043C \u043F\u043E
         \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
-    - AbilityID: Tank
-      Skill: 1
+    - AbilityID: 1605752999
       Type: 5
       Icon: Berserk
       Cooldown: 11
@@ -1636,8 +1681,7 @@ MonoBehaviour:
       Description: "\u0410\u0433\u0440\u0438\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432
         \u043D\u0430 \u0441\u0435\u0431\u044F \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439
         \u0449\u0438\u0442"
-    - AbilityID: Healer
-      Skill: 1
+    - AbilityID: 370847456
       Type: 5
       Icon: Heal
       Cooldown: 10
@@ -1670,8 +1714,7 @@ MonoBehaviour:
       Description: "\u041B\u0435\u0447\u0438\u0442 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432
         \u0438 \u043D\u0430\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442
         \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0449\u0438\u0442"
-    - AbilityID: Assassin
-      Skill: 1
+    - AbilityID: 703911167
       Type: 5
       Icon: Blade
       Cooldown: 7
@@ -1704,8 +1747,7 @@ MonoBehaviour:
       Description: "\u041F\u0440\u044B\u0433\u0430\u0435\u0442 \u043A \u0434\u0430\u043B\u044C\u043D\u0435\u0439
         \u0446\u0435\u043B\u0438 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
         \u0431\u044B\u0441\u0442\u0440\u044B\u0435 \u0443\u0434\u0430\u0440\u044B"
-    - AbilityID: SceletonBoss
-      Skill: 1
+    - AbilityID: 1107468141
       Type: 5
       Icon: 
       Cooldown: 9
