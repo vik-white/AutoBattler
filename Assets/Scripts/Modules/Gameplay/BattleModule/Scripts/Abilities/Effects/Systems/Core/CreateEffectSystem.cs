@@ -32,7 +32,12 @@ namespace vikwhite.ECS
         {
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();
-            var value = effect.Value;
+            var value = effect.Dependence switch
+            {
+                EffectDependenceType.Attack => config.Attack * effect.Value,
+                EffectDependenceType.Defense => config.Defense * effect.Value,
+                _ => effect.Value,
+            };
 
             value *= isSkill
                 ? GetSkillScale(character.SkillLevel - 1, effect.Type, levelUpConfigs.Get(config.SkillLevelUp))
