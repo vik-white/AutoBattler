@@ -17,7 +17,6 @@ namespace vikwhite.ECS
         public uint StarLevelUp;
         public uint SkillLevelUp;
         public float Scale;
-        public float Mass;
         public float Health;
         public float Shield;
         public bool HealthBar;

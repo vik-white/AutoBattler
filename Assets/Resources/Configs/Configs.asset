@@ -43,7 +43,6 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 1.3
-      Mass: 0.0001
       Health: 5000
       Shield: 100
       HealthBar: 1
@@ -59,11 +58,10 @@ MonoBehaviour:
       Name: Bob
       Prefab: IronfistDwarf
       Scale: 1.3
-      Mass: 0.0001
       Health: 1100
       Shield: 0
       HealthBar: 1
-      ActiveAbility: Brawler
+      ActiveAbility: OrbitingFireBoll
       LevelUp: BaseLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
@@ -79,7 +77,6 @@ MonoBehaviour:
       Name: Dwarf
       Prefab: IronfistDwarfRed
       Scale: 1.4
-      Mass: 0.0001
       Health: 1400
       Shield: 0
       HealthBar: 1
@@ -99,7 +96,6 @@ MonoBehaviour:
       Name: Celen
       Prefab: Healer
       Scale: 1.4
-      Mass: 0.0001
       Health: 700
       Shield: 0
       HealthBar: 1
@@ -119,7 +115,6 @@ MonoBehaviour:
       Name: Karter
       Prefab: IronfistDwarfBlue
       Scale: 1.2
-      Mass: 0.0001
       Health: 650
       Shield: 0
       HealthBar: 1
@@ -139,7 +134,6 @@ MonoBehaviour:
       Name: Nory
       Prefab: IronfistDwarfPurple
       Scale: 1.3
-      Mass: 0.0001
       Health: 750
       Shield: 0
       HealthBar: 1
@@ -159,7 +153,6 @@ MonoBehaviour:
       Name: Duku
       Prefab: IronfistDwarf
       Scale: 1.2
-      Mass: 0.0001
       Health: 650
       Shield: 0
       HealthBar: 1
@@ -179,7 +172,6 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 1.3
-      Mass: 1
       Health: 800
       Shield: 0
       HealthBar: 1
@@ -197,7 +189,6 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 1.3
-      Mass: 1
       Health: 700
       Shield: 0
       HealthBar: 1
@@ -215,7 +206,6 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 0.91
-      Mass: 1
       Health: 500
       Shield: 0
       HealthBar: 1
@@ -233,7 +223,6 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 0.91
-      Mass: 1
       Health: 5
       Shield: 0
       HealthBar: 0
@@ -251,12 +240,11 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 2.6
-      Mass: 0.25
       Health: 3200
       Shield: 0
       HealthBar: 1
       ActiveAbility: 
-      LevelUp: EnemyLevelUp
+      LevelUp: EnemyBossLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -271,12 +259,11 @@ MonoBehaviour:
       Name: 
       Prefab: Sceleton
       Scale: 0.91
-      Mass: 1
       Health: 250
       Shield: 0
       HealthBar: 0
       ActiveAbility: 
-      LevelUp: EnemyLevelUp
+      LevelUp: EnemyBossLevelUp
       StarLevelUp: StarLevelUp
       SkillLevelUp: SkillLevelUp
       Squad: 0
@@ -533,51 +520,51 @@ MonoBehaviour:
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 0
+        Level: 1
       - ID: 2415114301
-        Level: 0
+        Level: 1
       - ID: 895110272
-        Level: 0
+        Level: 1
     - ID: level_2
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 1
+        Level: 2
       - ID: 2415114301
-        Level: 1
+        Level: 2
       - ID: 895110272
-        Level: 1
+        Level: 2
       - ID: 895110272
-        Level: 1
+        Level: 2
     - ID: level_3
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 2
+        Level: 3
       - ID: 2415114301
-        Level: 2
+        Level: 3
       - ID: 895110272
-        Level: 2
+        Level: 3
       - ID: 895110272
-        Level: 2
+        Level: 3
       - ID: 895110272
-        Level: 2
+        Level: 3
     - ID: level_4
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 3
+        Level: 4
       - ID: 2415114301
-        Level: 3
+        Level: 4
       - ID: 4258313009
-        Level: 3
+        Level: 4
       - ID: 895110272
-        Level: 3
+        Level: 4
       - ID: 895110272
-        Level: 3
+        Level: 4
     - ID: level_5
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -589,57 +576,57 @@ MonoBehaviour:
       Reward: LevelReward
       Enemies:
       - ID: 895110272
-        Level: 5
+        Level: 6
       - ID: 895110272
-        Level: 5
+        Level: 6
       - ID: 895110272
-        Level: 5
+        Level: 6
       - ID: 895110272
-        Level: 5
+        Level: 6
       - ID: 895110272
-        Level: 5
+        Level: 6
     - ID: level_7
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 2415114301
-        Level: 6
+        Level: 7
       - ID: 2415114301
-        Level: 6
+        Level: 7
       - ID: 2415114301
-        Level: 6
+        Level: 7
       - ID: 2415114301
-        Level: 6
+        Level: 7
       - ID: 895110272
-        Level: 6
+        Level: 7
     - ID: level_8
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 7
+        Level: 8
       - ID: 895110272
-        Level: 7
+        Level: 8
       - ID: 895110272
-        Level: 7
+        Level: 8
       - ID: 895110272
-        Level: 7
+        Level: 8
       - ID: 895110272
-        Level: 7
+        Level: 8
     - ID: level_9
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 8
+        Level: 9
       - ID: 2415114301
-        Level: 8
+        Level: 9
       - ID: 4258313009
-        Level: 8
+        Level: 9
       - ID: 895110272
-        Level: 8
+        Level: 9
       - ID: 895110272
-        Level: 8
+        Level: 9
     - ID: level_10
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -651,57 +638,57 @@ MonoBehaviour:
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 10
+        Level: 11
       - ID: 2415114301
-        Level: 10
+        Level: 11
       - ID: 4258313009
-        Level: 10
+        Level: 11
       - ID: 895110272
-        Level: 10
+        Level: 11
       - ID: 895110272
-        Level: 10
+        Level: 11
     - ID: level_12
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 11
+        Level: 12
       - ID: 2415114301
-        Level: 11
+        Level: 12
       - ID: 4258313009
-        Level: 11
+        Level: 12
       - ID: 895110272
-        Level: 11
+        Level: 12
       - ID: 895110272
-        Level: 11
+        Level: 12
     - ID: level_13
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 12
+        Level: 13
       - ID: 2415114301
-        Level: 12
+        Level: 13
       - ID: 4258313009
-        Level: 12
+        Level: 13
       - ID: 895110272
-        Level: 12
+        Level: 13
       - ID: 895110272
-        Level: 12
+        Level: 13
     - ID: level_14
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 13
+        Level: 14
       - ID: 2415114301
-        Level: 13
+        Level: 14
       - ID: 4258313009
-        Level: 13
+        Level: 14
       - ID: 895110272
-        Level: 13
+        Level: 14
       - ID: 895110272
-        Level: 13
+        Level: 14
     - ID: level_15
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -715,57 +702,57 @@ MonoBehaviour:
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 15
+        Level: 16
       - ID: 2415114301
-        Level: 15
+        Level: 16
       - ID: 4258313009
-        Level: 15
+        Level: 16
       - ID: 895110272
-        Level: 15
+        Level: 16
       - ID: 895110272
-        Level: 15
+        Level: 16
     - ID: level_17
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 16
+        Level: 17
       - ID: 2415114301
-        Level: 16
+        Level: 17
       - ID: 4258313009
-        Level: 16
+        Level: 17
       - ID: 895110272
-        Level: 16
+        Level: 17
       - ID: 895110272
-        Level: 16
+        Level: 17
     - ID: level_18
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 17
+        Level: 18
       - ID: 2415114301
-        Level: 17
+        Level: 18
       - ID: 4258313009
-        Level: 17
+        Level: 18
       - ID: 895110272
-        Level: 17
+        Level: 18
       - ID: 895110272
-        Level: 17
+        Level: 18
     - ID: level_19
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 18
+        Level: 19
       - ID: 2415114301
-        Level: 18
+        Level: 19
       - ID: 4258313009
-        Level: 18
+        Level: 19
       - ID: 895110272
-        Level: 18
+        Level: 19
       - ID: 895110272
-        Level: 18
+        Level: 19
     - ID: level_20
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -774,64 +761,62 @@ MonoBehaviour:
         Level: 20
       - ID: 895110272
         Level: 20
-      - ID: 895110272
-        Level: 20
     - ID: level_21
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 20
+        Level: 21
       - ID: 2415114301
-        Level: 20
+        Level: 21
       - ID: 4258313009
-        Level: 20
+        Level: 21
       - ID: 895110272
-        Level: 20
+        Level: 21
       - ID: 895110272
-        Level: 20
+        Level: 21
     - ID: level_22
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 21
+        Level: 22
       - ID: 2415114301
-        Level: 21
+        Level: 22
       - ID: 4258313009
-        Level: 21
+        Level: 22
       - ID: 895110272
-        Level: 21
+        Level: 22
       - ID: 895110272
-        Level: 21
+        Level: 22
     - ID: level_23
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 22
+        Level: 23
       - ID: 2415114301
-        Level: 22
+        Level: 23
       - ID: 4258313009
-        Level: 22
+        Level: 23
       - ID: 895110272
-        Level: 22
+        Level: 23
       - ID: 895110272
-        Level: 22
+        Level: 23
     - ID: level_24
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 23
+        Level: 24
       - ID: 2415114301
-        Level: 23
+        Level: 24
       - ID: 4258313009
-        Level: 23
+        Level: 24
       - ID: 895110272
-        Level: 23
+        Level: 24
       - ID: 895110272
-        Level: 23
+        Level: 24
     - ID: level_25
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -840,64 +825,62 @@ MonoBehaviour:
         Level: 25
       - ID: 2415114301
         Level: 25
-      - ID: 895110272
-        Level: 20
     - ID: level_26
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 25
+        Level: 26
       - ID: 2415114301
-        Level: 25
+        Level: 26
       - ID: 4258313009
-        Level: 25
+        Level: 26
       - ID: 895110272
-        Level: 25
+        Level: 26
       - ID: 895110272
-        Level: 25
+        Level: 26
     - ID: level_27
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 26
+        Level: 27
       - ID: 2415114301
-        Level: 26
+        Level: 27
       - ID: 4258313009
-        Level: 26
+        Level: 27
       - ID: 895110272
-        Level: 26
+        Level: 27
       - ID: 895110272
-        Level: 26
+        Level: 27
     - ID: level_28
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 27
+        Level: 28
       - ID: 2415114301
-        Level: 27
+        Level: 28
       - ID: 4258313009
-        Level: 27
+        Level: 28
       - ID: 895110272
-        Level: 27
+        Level: 28
       - ID: 895110272
-        Level: 27
+        Level: 28
     - ID: level_29
       HexPositions: BasePosition
       Reward: LevelReward
       Enemies:
       - ID: 4258313009
-        Level: 28
+        Level: 29
       - ID: 2415114301
-        Level: 28
+        Level: 29
       - ID: 4258313009
-        Level: 28
+        Level: 29
       - ID: 895110272
-        Level: 28
+        Level: 29
       - ID: 895110272
-        Level: 28
+        Level: 29
     - ID: level_30
       HexPositions: BasePosition
       Reward: BossLevelReward
@@ -1003,7 +986,7 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: MeleeAttack_2
-      Level: 1
+      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -1038,7 +1021,7 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: MeleeAttack_3
-      Level: 2
+      Level: 0
       Skill: 0
       Type: 1
       Icon: 
@@ -1108,7 +1091,7 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_2
-      Level: 1
+      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1143,7 +1126,7 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_3
-      Level: 2
+      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1178,7 +1161,7 @@ MonoBehaviour:
       IconImage: {fileID: 0}
       Description: 
     - AbilityID: RangeAttack_4
-      Level: 3
+      Level: 0
       Skill: 0
       Type: 0
       Icon: 
@@ -1333,7 +1316,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
-        Value: 180
+        Value: 50
       Statuses: []
       Count: 0
       Speed: 0
@@ -1356,8 +1339,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: ShieldBuff
-      Level: 1
+    - AbilityID: ShieldBuffBig
+      Level: 0
       Skill: 1
       Type: 3
       Icon: 
@@ -1499,7 +1482,7 @@ MonoBehaviour:
       Level: 0
       Skill: 1
       Type: 2
-      Icon: 
+      Icon: Ability
       Cooldown: 7
       Radius: 3
       AOE: 0
@@ -1528,7 +1511,7 @@ MonoBehaviour:
       ProjectilePrefab: 594811487
       VFXSpawn: 3
       Animation: 4
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
       Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
         3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
     - AbilityID: Support
@@ -1630,8 +1613,8 @@ MonoBehaviour:
       Abilities:
       - ID: 1376285117
         Level: 0
-      - ID: 3503821397
-        Level: 1
+      - ID: 858787147
+        Level: 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -1687,7 +1670,7 @@ MonoBehaviour:
       Skill: 1
       Type: 5
       Icon: Blade
-      Cooldown: 8
+      Cooldown: 7
       Radius: 0
       AOE: 0
       Targets: 
@@ -1801,6 +1784,7 @@ MonoBehaviour:
     - StarLevelUp
     - SkillLevelUp
     - EnemyLevelUp
+    - EnemyBossLevelUp
     Data:
     - ID: BaseLevelUp
       Damage: 0.01
@@ -1813,11 +1797,16 @@ MonoBehaviour:
       Shield: 0
       Heal: 0
     - ID: SkillLevelUp
-      Damage: 0.5
+      Damage: 0.3
       Health: 0
-      Shield: 0.5
-      Heal: 0.5
+      Shield: 0.3
+      Heal: 0.3
     - ID: EnemyLevelUp
+      Damage: 0.02
+      Health: 0.02
+      Shield: 0.02
+      Heal: 0.02
+    - ID: EnemyBossLevelUp
       Damage: 0.01
       Health: 0.01
       Shield: 0.01
@@ -1835,8 +1824,8 @@ MonoBehaviour:
         ResourceType: 0
         ShardGroupType: 0
         ID: 
-        MinValue: 30
-        MaxValue: 50
+        MinValue: 35
+        MaxValue: 45
         Probability: 1
       - Type: 0
         ResourceType: 3
@@ -1850,14 +1839,14 @@ MonoBehaviour:
         ShardGroupType: 0
         ID: 
         MinValue: 1
-        MaxValue: 2
+        MaxValue: 1
         Probability: 1
       - Type: 2
         ResourceType: 0
         ShardGroupType: 0
         ID: 
         MinValue: 4
-        MaxValue: 6
+        MaxValue: 5
         Probability: 1
       RewardBasket: []
     - ID: BossLevelReward
@@ -1866,8 +1855,8 @@ MonoBehaviour:
         ResourceType: 0
         ShardGroupType: 0
         ID: 
-        MinValue: 80
-        MaxValue: 100
+        MinValue: 60
+        MaxValue: 80
         Probability: 1
       - Type: 0
         ResourceType: 4
@@ -1880,15 +1869,15 @@ MonoBehaviour:
         ResourceType: 2
         ShardGroupType: 0
         ID: 
-        MinValue: 3
-        MaxValue: 4
+        MinValue: 2
+        MaxValue: 3
         Probability: 1
       - Type: 2
         ResourceType: 0
         ShardGroupType: 0
         ID: 
         MinValue: 8
-        MaxValue: 12
+        MaxValue: 10
         Probability: 1
       RewardBasket: []
     - ID: SummonRewardCommon
@@ -1899,14 +1888,14 @@ MonoBehaviour:
         ShardGroupType: 0
         ID: 
         MinValue: 4
-        MaxValue: 6
+        MaxValue: 5
         Probability: 3
       - Type: 0
         ResourceType: 0
         ShardGroupType: 0
         ID: 
-        MinValue: 30
-        MaxValue: 50
+        MinValue: 35
+        MaxValue: 45
         Probability: 2
       - Type: 0
         ResourceType: 2
@@ -1923,7 +1912,7 @@ MonoBehaviour:
         ShardGroupType: 0
         ID: 
         MinValue: 8
-        MaxValue: 12
+        MaxValue: 10
         Probability: 4
       - Type: 0
         ResourceType: 0
@@ -1936,9 +1925,9 @@ MonoBehaviour:
         ResourceType: 2
         ShardGroupType: 0
         ID: 
-        MinValue: 3
-        MaxValue: 4
-        Probability: 3
+        MinValue: 2
+        MaxValue: 3
+        Probability: 2
   summons:
     IDS:
     - Summon1
@@ -1995,77 +1984,77 @@ MonoBehaviour:
     - 36
     Data:
     - ID: 0
-      Level: 20
+      Level: 10
     - ID: 1
-      Level: 30
+      Level: 20
     - ID: 2
-      Level: 40
+      Level: 30
     - ID: 3
-      Level: 50
+      Level: 40
     - ID: 4
-      Level: 60
+      Level: 50
     - ID: 5
-      Level: 70
+      Level: 60
     - ID: 6
-      Level: 90
+      Level: 70
     - ID: 7
-      Level: 100
+      Level: 90
     - ID: 8
-      Level: 110
+      Level: 100
     - ID: 9
-      Level: 120
+      Level: 110
     - ID: 10
-      Level: 130
+      Level: 120
     - ID: 11
-      Level: 140
+      Level: 130
     - ID: 12
-      Level: 160
+      Level: 140
     - ID: 13
-      Level: 170
+      Level: 160
     - ID: 14
-      Level: 180
+      Level: 170
     - ID: 15
-      Level: 190
+      Level: 180
     - ID: 16
-      Level: 200
+      Level: 190
     - ID: 17
-      Level: 210
+      Level: 200
     - ID: 18
-      Level: 220
+      Level: 210
     - ID: 19
-      Level: 230
+      Level: 220
     - ID: 20
-      Level: 240
+      Level: 230
     - ID: 21
-      Level: 250
+      Level: 240
     - ID: 22
-      Level: 260
+      Level: 250
     - ID: 23
-      Level: 270
+      Level: 260
     - ID: 24
-      Level: 280
+      Level: 270
     - ID: 25
-      Level: 290
+      Level: 280
     - ID: 26
-      Level: 300
+      Level: 290
     - ID: 27
-      Level: 310
+      Level: 300
     - ID: 28
-      Level: 320
+      Level: 310
     - ID: 29
-      Level: 330
+      Level: 320
     - ID: 30
-      Level: 340
+      Level: 330
     - ID: 31
-      Level: 350
+      Level: 340
     - ID: 32
-      Level: 360
+      Level: 350
     - ID: 33
-      Level: 370
+      Level: 360
     - ID: 34
-      Level: 380
+      Level: 370
     - ID: 35
-      Level: 390
+      Level: 380
     - ID: 36
       Level: 400
   levelLock:

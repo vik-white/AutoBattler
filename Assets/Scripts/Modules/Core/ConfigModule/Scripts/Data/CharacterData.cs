@@ -12,7 +12,6 @@ namespace vikwhite.Data
         string Name { get; }
         string Prefab { get; }
         float Scale { get; }
-        float Mass { get; }
         float Health { get; }
         float Shield { get; }
         bool HealthBar { get; }
@@ -33,7 +32,6 @@ namespace vikwhite.Data
         public string Name;
         public string Prefab;
         public float Scale;
-        public float Mass;
         public float Health;
         public float Shield;
         public bool HealthBar;
@@ -50,7 +48,6 @@ namespace vikwhite.Data
         string ICharacterData.Name => Name;
         string ICharacterData.Prefab => Prefab;
         float ICharacterData.Scale => Scale;
-        float ICharacterData.Mass => Mass;
         float ICharacterData.Health => Health;
         float ICharacterData.Shield => Shield;
         bool ICharacterData.HealthBar => HealthBar;
