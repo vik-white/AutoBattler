@@ -61,6 +61,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * healthMultiplier });
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
+                ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
 
                 var abilities = ecb.AddBuffer<Ability>(characterEntity);
                 foreach (var abilityID in config.Abilities)

@@ -1,4 +1,5 @@
 using Unity.Entities;
+using UnityEngine;
 
 namespace vikwhite.ECS
 {
@@ -9,13 +10,22 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var levelUpConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
+            var critCounters = SystemAPI.GetComponentLookup<CritCounter>();
+            var characters = SystemAPI.GetComponentLookup<Character>(true);
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
+                var provider = request.ValueRO.Provider;
+                var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider, request.ValueRO.Ability.Value.Skill);
+                var isCrit = false;
+                if (type == EffectType.Damage)
+                    value = TryApplyCrit(ref characters, ref critCounters, provider, value, out isCrit);
+
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent(effect, new Effect
                 {
                     Ability = request.ValueRO.Ability,
-                    Value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, request.ValueRO.Provider, request.ValueRO.Ability.Value.Skill)
+                    Value = value,
+                    IsCrit = isCrit
                 });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent(effect, new Provider{ Value = request.ValueRO.Provider });
@@ -45,6 +55,38 @@ namespace vikwhite.ECS
 
             if (effect.Type == EffectType.Damage)
                 value *= SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.DamageMultiply].Value;
+
+            return value;
+        }
+
+        // Pseudorandom crit: chance increases with each non-crit attack so that on average a crit
+        // is guaranteed every ceil(1 / chance) attacks. Counter resets when a crit fires.
+        private static float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
+        {
+            isCrit = false;
+            if (provider == Entity.Null) return value;
+            if (!characters.HasComponent(provider)) return value;
+
+            var config = characters[provider].GetConfig();
+            var chance = config.CritChance;
+            if (chance <= 0f) return value;
+
+            var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
+            counter += 1;
+
+            // Guaranteed crit on the ceil(1/chance)-th attack, otherwise standard roll.
+            // Small epsilon avoids float drift (e.g. 20 * 0.05 < 1f after rounding).
+            var guaranteed = counter * chance + 1e-4f >= 1f;
+            isCrit = guaranteed || Random.value < chance;
+
+            if (critCounters.HasComponent(provider))
+                critCounters[provider] = new CritCounter { Value = isCrit ? 0 : counter };
+
+            if (isCrit)
+            {
+                var multiplier = config.CritValue > 0f ? config.CritValue : 1f;
+                value *= multiplier;
+            }
 
             return value;
         }

@@ -6,5 +6,6 @@ namespace vikwhite.ECS
     {
         public BlobAssetReference<AbilityConfig> Ability;
         public float Value;
+        public bool IsCrit;
     }
 }

@@ -27,7 +27,8 @@ namespace vikwhite.ECS
                     {
                         Position = damageFlyTextPosition,
                         Damage = damage,
-                        IsEnemyTarget = SystemAPI.HasComponent<Enemy>(character)
+                        IsEnemyTarget = SystemAPI.HasComponent<Enemy>(character),
+                        IsCrit = effect.ValueRO.IsCrit
                     });
                 }
 
