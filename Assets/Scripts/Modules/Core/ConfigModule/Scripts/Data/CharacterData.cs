@@ -13,6 +13,8 @@ namespace vikwhite.Data
         float Scale { get; }
         float Health { get; }
         float Shield { get; }
+        float Attack { get; }
+        float Defense { get; }
         bool HealthBar { get; }
         string ActiveAbility { get; }
         string LevelUp { get; }
@@ -33,6 +35,8 @@ namespace vikwhite.Data
         public float Scale;
         public float Health;
         public float Shield;
+        public float Attack;
+        public float Defense;
         public bool HealthBar;
         public string ActiveAbility;
         public string LevelUp;
@@ -49,6 +53,8 @@ namespace vikwhite.Data
         float ICharacterData.Scale => Scale;
         float ICharacterData.Health => Health;
         float ICharacterData.Shield => Shield;
+        float ICharacterData.Attack => Attack;
+        float ICharacterData.Defense => Defense;
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
         string ICharacterData.LevelUp => LevelUp;
