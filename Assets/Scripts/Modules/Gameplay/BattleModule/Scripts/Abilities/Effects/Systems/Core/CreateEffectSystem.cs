@@ -15,7 +15,7 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
                 var provider = request.ValueRO.Provider;
-                var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider, request.ValueRO.Ability.Value.Skill);
+                var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider);
                 var isCrit = false;
                 if (type == EffectType.Damage)
                     value = TryApplyCrit(ref characters, ref critCounters, provider, value, out isCrit);
@@ -39,7 +39,7 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, EffectData effect, Entity entity, bool isSkill)
+        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, EffectData effect, Entity entity)
         {
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();

@@ -23,7 +23,6 @@ namespace vikwhite.ECS
                 var config = new AbilityConfig
                 {
                     ID = abilityData.AbilityID,
-                    Skill = abilityData.Skill,
                     Type = abilityData.Type,
                     Targets = CreateTargets(abilityData.Targets),
                     Cooldown = abilityData.Cooldown,

@@ -10,7 +10,6 @@ namespace vikwhite.Data
     public interface IAbilityData
     {
         uint AbilityID { get; }
-        bool Skill { get; }
         AbilityType Type { get; }
         string Icon { get; }
         float Cooldown { get; }
@@ -47,7 +46,6 @@ namespace vikwhite.Data
     public class AbilityData : IAbilityData, ICustomJsonParser
     {
         public uint AbilityID;
-        public bool Skill;
         public AbilityType Type;
         public string Icon;
         public float Cooldown;
@@ -80,7 +78,6 @@ namespace vikwhite.Data
         public string Description;
         
         uint IAbilityData.AbilityID => AbilityID;
-        bool IAbilityData.Skill => Skill;
         AbilityType IAbilityData.Type => Type;
         string IAbilityData.Icon => Icon;
         float IAbilityData.Cooldown => Cooldown;
