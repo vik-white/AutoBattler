@@ -23,6 +23,11 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 1eCOO35SPl6bEN-KgbekOON9ZNVHmlrY0ofy_3Ylh2R8
   APIKey: AIzaSyBXrlvSuX9jHyVcEAfB2NBVM1QQJQ7rPBk
+  settings:
+    IDS: []
+    Data:
+    - LevelUpPrice: 10
+      SkillUpPrice: 0
   characters:
     IDS:
     - Dummy

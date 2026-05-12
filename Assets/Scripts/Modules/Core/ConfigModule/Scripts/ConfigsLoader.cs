@@ -13,6 +13,7 @@ namespace vikwhite.Data
 {
     public interface IConfigs
     {
+        ISettingData Settings { get; }
         IConfig<ICharacterData> Characters { get; }
         IConfig<IMapData> Map { get; }
         IConfig<ILocationStaticData> LocationStatic { get; }
@@ -36,6 +37,7 @@ namespace vikwhite.Data
         public string APIKey = "AIzaSyBXrlvSuX9jHyVcEAfB2NBVM1QQJQ7rPBk";
         [Space(30)] 
         
+        [SerializeField] private Config<SettingData, ISettingData> settings;
         [SerializeField] private Config<CharacterData, ICharacterData> characters;
         [SerializeField] private Config<MapData, IMapData> map;
         [SerializeField] private Config<LocationStaticData, ILocationStaticData> locationStatic;
@@ -51,6 +53,7 @@ namespace vikwhite.Data
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
         
+        public ISettingData Settings => settings.Get();
         public IConfig<ICharacterData> Characters => characters;
         public IConfig<IMapData> Map => map;
         public IConfig<ILocationStaticData> LocationStatic => locationStatic; 

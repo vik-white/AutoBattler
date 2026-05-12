@@ -22,8 +22,8 @@ namespace vikwhite
         public UnityAction OnUpgradeLevel;
         public UnityAction OnSkillUpgrade;
         public UnityAction OnStarsUpgrade;
-        public int LevelUpPrice = 10;
-        public int SkillUpPrice = 5;
+        public int LevelUpPrice;
+        public int SkillUpPrice;
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
@@ -34,7 +34,9 @@ namespace vikwhite
             SkillLevel = character.SkillLevel;
             Shards = character.Shards;
             Health = character.Health;
-
+            LevelUpPrice = configs.Settings.LevelUpPrice;
+            SkillUpPrice = configs.Settings.SkillUpPrice;
+            
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
             
