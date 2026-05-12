@@ -18,10 +18,11 @@ namespace vikwhite.ECS
             foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<DamageEffect>())
             {
                 var character = target.ValueRO.Value;
-                var damage = effect.ValueRO.Value;
+                var targetConfig = characters[character].GetConfig();
+                var damage = CalculateMitigatedDamage(effect.ValueRO.Value, targetConfig.Defense);
                 if (damage > 0)
                 {
-                    var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], characters[character].GetConfig());
+                    var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], targetConfig);
                     ecb.CreateFrameEntity(new CreateDamageFlyTextEvent
                     {
                         Position = damageFlyTextPosition,
@@ -55,6 +56,11 @@ namespace vikwhite.ECS
                 healths[character] = new Health { Value = healths[character].Value - damage };
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private static float CalculateMitigatedDamage(float rawAttack, float defense)
+        {
+            return rawAttack * rawAttack / (rawAttack + 5f * defense);
         }
 
         private static float3 GetDamageFlyTextPosition(LocalTransform transform, CharacterConfigData config)

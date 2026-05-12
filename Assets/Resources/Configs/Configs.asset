@@ -27,7 +27,7 @@ MonoBehaviour:
     IDS: []
     Data:
     - LevelUpPrice: 10
-      SkillUpPrice: 0
+      SkillUpPrice: 5
   characters:
     IDS:
     - Dummy
@@ -50,6 +50,8 @@ MonoBehaviour:
       Scale: 1.3
       Health: 5000
       Shield: 100
+      Attack: 0
+      Defense: 1
       HealthBar: 1
       ActiveAbility: 
       LevelUp: BaseLevelUp
@@ -65,6 +67,8 @@ MonoBehaviour:
       Scale: 1.3
       Health: 1100
       Shield: 0
+      Attack: 50
+      Defense: 1
       HealthBar: 1
       ActiveAbility: OrbitingFireBoll
       LevelUp: BaseLevelUp
@@ -80,6 +84,8 @@ MonoBehaviour:
       Scale: 1.4
       Health: 1400
       Shield: 0
+      Attack: 20
+      Defense: 1
       HealthBar: 1
       ActiveAbility: Tank
       LevelUp: BaseLevelUp
@@ -95,6 +101,8 @@ MonoBehaviour:
       Scale: 1.4
       Health: 700
       Shield: 0
+      Attack: 30
+      Defense: 1
       HealthBar: 1
       ActiveAbility: Healer
       LevelUp: BaseLevelUp
@@ -110,6 +118,8 @@ MonoBehaviour:
       Scale: 1.2
       Health: 650
       Shield: 0
+      Attack: 60
+      Defense: 1
       HealthBar: 1
       ActiveAbility: Mage
       LevelUp: BaseLevelUp
@@ -125,6 +135,8 @@ MonoBehaviour:
       Scale: 1.3
       Health: 750
       Shield: 0
+      Attack: 80
+      Defense: 1
       HealthBar: 1
       ActiveAbility: Assassin
       LevelUp: BaseLevelUp
@@ -140,6 +152,8 @@ MonoBehaviour:
       Scale: 1.2
       Health: 650
       Shield: 0
+      Attack: 30
+      Defense: 1
       HealthBar: 1
       ActiveAbility: Support
       LevelUp: BaseLevelUp
@@ -155,6 +169,8 @@ MonoBehaviour:
       Scale: 1.3
       Health: 800
       Shield: 0
+      Attack: 50
+      Defense: 1
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -170,6 +186,8 @@ MonoBehaviour:
       Scale: 1.3
       Health: 700
       Shield: 0
+      Attack: 80
+      Defense: 1
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -185,6 +203,8 @@ MonoBehaviour:
       Scale: 0.91
       Health: 500
       Shield: 0
+      Attack: 65
+      Defense: 1
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -200,6 +220,8 @@ MonoBehaviour:
       Scale: 0.91
       Health: 5
       Shield: 0
+      Attack: 5
+      Defense: 1
       HealthBar: 0
       ActiveAbility: 
       LevelUp: BaseLevelUp
@@ -215,6 +237,8 @@ MonoBehaviour:
       Scale: 2.6
       Health: 3200
       Shield: 0
+      Attack: 95
+      Defense: 1
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyBossLevelUp
@@ -230,6 +254,8 @@ MonoBehaviour:
       Scale: 0.91
       Health: 250
       Shield: 0
+      Attack: 50
+      Defense: 1
       HealthBar: 0
       ActiveAbility: 
       LevelUp: EnemyBossLevelUp
@@ -893,7 +919,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 5
+        Dependence: 1
+        Value: 0.5
       Statuses: []
       Count: 0
       Speed: 0
@@ -927,7 +954,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 80
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0
@@ -961,7 +989,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 50
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0
@@ -995,7 +1024,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 20
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0
@@ -1029,7 +1059,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 30
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 10
@@ -1063,7 +1094,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 60
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 10
@@ -1097,7 +1129,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 95
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 10
@@ -1131,7 +1164,8 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Value: 65
+        Dependence: 1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 10
@@ -1165,6 +1199,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
+        Dependence: 0
         Value: 220
       Statuses: []
       Count: 0
@@ -1199,6 +1234,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 4
+        Dependence: 0
         Value: 4
       Statuses: []
       Count: 0
@@ -1271,6 +1307,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
+        Dependence: 0
         Value: 50
       Statuses: []
       Count: 0
@@ -1305,6 +1342,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
+        Dependence: 0
         Value: 450
       Statuses: []
       Count: 0
@@ -1339,6 +1377,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 5
+        Dependence: 0
         Value: 3
       Statuses: []
       Count: 0
@@ -1440,6 +1479,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
+        Dependence: 0
         Value: 40
       Statuses: []
       Count: 3
@@ -1511,6 +1551,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
+        Dependence: 0
         Value: 200
       Statuses: []
       Count: 0
