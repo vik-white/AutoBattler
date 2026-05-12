@@ -42,19 +42,23 @@ namespace vikwhite.ECS
         {
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();
+
+            var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
+            var starsLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
+            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillLevelUp);
+            var level = character.Level - 1;
+            var stars = character.Stars;
+            var skillLevel = character.SkillLevel - 1;
+            
             var value = effect.Dependence switch
             {
-                EffectDependenceType.Attack => config.Attack * effect.Value,
-                EffectDependenceType.Defense => config.Defense * effect.Value,
-                EffectDependenceType.Health => config.Health * effect.Value,
-                EffectDependenceType.CritChance => config.CritChance * effect.Value,
-                EffectDependenceType.CritValue => config.CritValue * effect.Value,
+                EffectDependenceType.Attack => (config.Attack * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Attack, starsLevelUpConfig.Attack, skillLevelUpConfig.Attack)) * effect.Value,
+                EffectDependenceType.Defense => (config.Defense * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Defense, starsLevelUpConfig.Defense, skillLevelUpConfig.Defense)) * effect.Value,
+                EffectDependenceType.Health => (config.Health * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Health, starsLevelUpConfig.Health, skillLevelUpConfig.Health)) * effect.Value,
+                EffectDependenceType.CritChance => (config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritChance, starsLevelUpConfig.CritChance, skillLevelUpConfig.CritChance)) * effect.Value,
+                EffectDependenceType.CritValue => (config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritValue, starsLevelUpConfig.CritValue, skillLevelUpConfig.CritValue)) * effect.Value,
                 _ => effect.Value,
             };
-
-            value *= isSkill
-                ? GetSkillScale(character.SkillLevel - 1, effect.Type, levelUpConfigs.Get(config.SkillLevelUp))
-                : GetLevelStarsScale(character.Level - 1, character.Stars, effect.Type, levelUpConfigs.Get(config.LevelUp), levelUpConfigs.Get(config.StarLevelUp));
 
             if (effect.Type == EffectType.Damage)
                 value *= SystemAPI.GetBuffer<StatMultiply>(entity)[(int)StatType.DamageMultiply].Value;
@@ -62,7 +66,15 @@ namespace vikwhite.ECS
             return value;
         }
 
-        private static float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
+        private float GetLevelUpMultiply(int levelIndex, int starsIndex, int skillIndex, float levelMultiply, float starsMultiply, float skillMultiply)
+        {
+            return 
+                CharacterHandler.GetLevelMultiplier(levelIndex, levelMultiply) *
+                CharacterHandler.GetLevelMultiplier(starsIndex, starsMultiply) *
+                CharacterHandler.GetLevelMultiplier(skillIndex, skillMultiply);
+        }
+
+        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
         {
             isCrit = false;
             
@@ -84,28 +96,6 @@ namespace vikwhite.ECS
             }
 
             return value;
-        }
-
-        private static float GetSkillScale(int skillIndex, EffectType type, LevelUpConfig skill)
-        {
-            switch (type)
-            {
-                //case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Damage);
-                //case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Heal);
-                //case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Shield);
-                default: return 1f;
-            }
-        }
-
-        private static float GetLevelStarsScale(int levelIndex, int starsIndex, EffectType type, LevelUpConfig level, LevelUpConfig stars)
-        {
-            switch (type)
-            {
-                //case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Damage) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Damage);
-                //case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(levelIndex, level.Heal)   * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Heal);
-                //case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Shield) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Shield);
-                default: return 1f;
-            }
         }
     }
 }

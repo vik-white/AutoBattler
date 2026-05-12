@@ -40,7 +40,6 @@ namespace vikwhite.ECS
                     {
                         damage = -shield;
                         shield = 0;
-
                     }
                     else
                     {
