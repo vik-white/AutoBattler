@@ -19,7 +19,7 @@ namespace vikwhite.ECS
                 var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider, abilityID);
                 var isCrit = false;
                 if (type == EffectType.Damage)
-                    value = TryApplyCrit(ref characters, ref critCounters, provider, value, out isCrit);
+                    value = TryApplyCrit(ref characters, ref critCounters, levelUpConfigs, provider, value, out isCrit);
 
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent(effect, new Effect
@@ -91,12 +91,20 @@ namespace vikwhite.ECS
                 CharacterHandler.GetLevelMultiplier(skillIndex, skillMultiply);
         }
 
-        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
+        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, Entity provider, float value, out bool isCrit)
         {
             isCrit = false;
-            
-            var config = characters[provider].GetConfig();
-            var chance = config.CritChance;
+
+            var character = characters[provider];
+            var config = character.GetConfig();
+            var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
+            var starsLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
+            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillLevelUp);
+            var level = character.Level - 1;
+            var stars = character.Stars;
+            var skillLevel = character.SkillLevel - 1;
+
+            var chance = config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritChance, starsLevelUpConfig.CritChance, skillLevelUpConfig.CritChance);
             if (chance <= 0f) return value;
 
             var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
@@ -108,7 +116,8 @@ namespace vikwhite.ECS
 
             if (isCrit)
             {
-                var multiplier = config.CritValue > 0f ? config.CritValue : 1f;
+                var critValue = config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritValue, starsLevelUpConfig.CritValue, skillLevelUpConfig.CritValue);
+                var multiplier = critValue > 0f ? critValue : 1f;
                 value *= multiplier;
             }
 
