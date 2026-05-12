@@ -2,19 +2,19 @@ using System;
 
 namespace vikwhite
 {
-    public interface IStarLockData
+    public interface IStarLockLevelData
     {
         int ID { get; }
         int Level { get; }
     }
     
     [Serializable]
-    public class StarLockData : IStarLockData
+    public class StarLockLevelData : IStarLockLevelData
     {
         public int ID;
         public int Level;
         
-        int IStarLockData.ID => ID;
-        int IStarLockData.Level => Level;
+        int IStarLockLevelData.ID => ID;
+        int IStarLockLevelData.Level => Level;
     }
 }

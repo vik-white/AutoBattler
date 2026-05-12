@@ -68,7 +68,7 @@ namespace vikwhite
 
         private void SkillUpgrade()
         {
-            if (Model.GetMaxSkill() <= Model.SkillLevel.Value) return; 
+            if (Model.GetMaxSkillActive() <= Model.SkillLevel.Value) return; 
             if (_resource.GetAmount(ResourceType.Book).Value < SkillUpPrice) return;
             _resource.Spend(ResourceType.Book, SkillUpPrice);
             Model.UpgradeSkill();
