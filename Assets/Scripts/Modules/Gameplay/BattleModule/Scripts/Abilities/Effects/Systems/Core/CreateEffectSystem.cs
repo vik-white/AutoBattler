@@ -59,14 +59,10 @@ namespace vikwhite.ECS
             return value;
         }
 
-        // Pseudorandom crit: chance increases with each non-crit attack so that on average a crit
-        // is guaranteed every ceil(1 / chance) attacks. Counter resets when a crit fires.
         private static float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
         {
             isCrit = false;
-            if (provider == Entity.Null) return value;
-            if (!characters.HasComponent(provider)) return value;
-
+            
             var config = characters[provider].GetConfig();
             var chance = config.CritChance;
             if (chance <= 0f) return value;
@@ -74,13 +70,9 @@ namespace vikwhite.ECS
             var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
             counter += 1;
 
-            // Guaranteed crit on the ceil(1/chance)-th attack, otherwise standard roll.
-            // Small epsilon avoids float drift (e.g. 20 * 0.05 < 1f after rounding).
             var guaranteed = counter * chance + 1e-4f >= 1f;
             isCrit = guaranteed || Random.value < chance;
-
-            if (critCounters.HasComponent(provider))
-                critCounters[provider] = new CritCounter { Value = isCrit ? 0 : counter };
+            critCounters[provider] = new CritCounter { Value = isCrit ? 0 : counter };
 
             if (isCrit)
             {

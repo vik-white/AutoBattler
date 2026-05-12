@@ -52,6 +52,8 @@ MonoBehaviour:
       Shield: 100
       Attack: 0
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: 
       LevelUp: BaseLevelUp
@@ -69,6 +71,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: OrbitingFireBoll
       LevelUp: BaseLevelUp
@@ -86,6 +90,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 20
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: Tank
       LevelUp: BaseLevelUp
@@ -103,6 +109,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 30
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: Healer
       LevelUp: BaseLevelUp
@@ -120,6 +128,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 60
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: Mage
       LevelUp: BaseLevelUp
@@ -137,6 +147,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 80
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: Assassin
       LevelUp: BaseLevelUp
@@ -154,6 +166,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 30
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: Support
       LevelUp: BaseLevelUp
@@ -171,6 +185,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -188,6 +204,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 80
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -205,6 +223,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 65
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyLevelUp
@@ -222,6 +242,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 5
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 0
       ActiveAbility: 
       LevelUp: BaseLevelUp
@@ -239,6 +261,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 95
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 1
       ActiveAbility: 
       LevelUp: EnemyBossLevelUp
@@ -256,6 +280,8 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
       HealthBar: 0
       ActiveAbility: 
       LevelUp: EnemyBossLevelUp
