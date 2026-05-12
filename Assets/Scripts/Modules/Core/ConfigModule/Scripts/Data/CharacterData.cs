@@ -15,6 +15,8 @@ namespace vikwhite.Data
         float Shield { get; }
         float Attack { get; }
         float Defense { get; }
+        float CritChance { get; }
+        float CritValue { get; }
         bool HealthBar { get; }
         string ActiveAbility { get; }
         string LevelUp { get; }
@@ -37,6 +39,8 @@ namespace vikwhite.Data
         public float Shield;
         public float Attack;
         public float Defense;
+        public float CritChance;
+        public float CritValue;
         public bool HealthBar;
         public string ActiveAbility;
         public string LevelUp;
@@ -55,6 +59,8 @@ namespace vikwhite.Data
         float ICharacterData.Shield => Shield;
         float ICharacterData.Attack => Attack;
         float ICharacterData.Defense => Defense;
+        float ICharacterData.CritChance => CritChance;
+        float ICharacterData.CritValue => CritValue;
         bool ICharacterData.HealthBar => HealthBar;
         string ICharacterData.ActiveAbility => ActiveAbility;
         string ICharacterData.LevelUp => LevelUp;
