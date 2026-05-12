@@ -19,6 +19,8 @@ namespace vikwhite.ECS
         public float Scale;
         public float Health;
         public float Shield;
+        public float Attack;
+        public float Defense;
         public bool HealthBar;
         public uint ActiveAbility;
         public FixedList128Bytes<uint> Abilities;
