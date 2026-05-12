@@ -90,9 +90,9 @@ namespace vikwhite.ECS
         {
             switch (type)
             {
-                case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Damage);
-                case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Heal);
-                case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Shield);
+                //case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Damage);
+                //case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Heal);
+                //case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(skillIndex, skill.Shield);
                 default: return 1f;
             }
         }
@@ -101,9 +101,9 @@ namespace vikwhite.ECS
         {
             switch (type)
             {
-                case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Damage) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Damage);
-                case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(levelIndex, level.Heal)   * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Heal);
-                case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Shield) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Shield);
+                //case EffectType.Damage: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Damage) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Damage);
+                //case EffectType.Heal:   return CharacterHandler.GetLevelMultiplier(levelIndex, level.Heal)   * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Heal);
+                //case EffectType.Shield: return CharacterHandler.GetLevelMultiplier(levelIndex, level.Shield) * CharacterHandler.GetLevelMultiplier(starsIndex, stars.Shield);
                 default: return 1f;
             }
         }

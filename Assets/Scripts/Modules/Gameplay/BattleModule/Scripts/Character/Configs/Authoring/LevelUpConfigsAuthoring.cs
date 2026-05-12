@@ -24,10 +24,17 @@ namespace vikwhite.ECS
                 configs.Add(new LevelUpConfig
                 {
                     ID = levelUpData.ID.CalculateHash32(),
-                    Damage = levelUpData.Damage,
                     Health = levelUpData.Health,
-                    Shield = levelUpData.Shield,
-                    Heal = levelUpData.Heal,
+                    Attack = levelUpData.Attack,
+                    Defense = levelUpData.Defense,
+                    CritChance = levelUpData.CritChance,
+                    CritValue = levelUpData.CritValue,
+                    SkillActive = levelUpData.SkillActive,
+                    SkillPassive1 = levelUpData.SkillPassive1,
+                    SkillPassive2 = levelUpData.SkillPassive2,
+                    SkillMeta1 = levelUpData.SkillMeta1,
+                    SkillMeta2 = levelUpData.SkillMeta2,
+                    SkillMeta3 = levelUpData.SkillMeta3,
                 });
             }
 
