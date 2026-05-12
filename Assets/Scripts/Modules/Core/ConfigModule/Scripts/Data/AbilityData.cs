@@ -129,11 +129,15 @@ namespace vikwhite.Data
                 if(abilityString == "") continue;
                 var parts = abilityString.Split(':');
                 var typeString = parts[0];
-                var valueString = parts[1];
+                var subParts = parts[1].Split('-');
+                var valueString = subParts.Length == 1 ? subParts[0] : subParts[1];
+                var dependenceString = subParts.Length == 1 ? "" : subParts[0];
+                var dependence = EffectDependenceType.None;
+                if(Enum.TryParse<EffectDependenceType>(dependenceString, out var dependenceType)) dependence = dependenceType;
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
                 
-                Effects.Add(new EffectData { Type = type, Value = valueString.ToFloat() });
+                Effects.Add(new EffectData { Type = type, Dependence = dependence, Value = valueString.ToFloat() });
             }
             
             Statuses = new ();

@@ -1,0 +1,9 @@
+namespace vikwhite.ECS
+{
+    public enum EffectDependenceType
+    {
+        None = 0, 
+        Attack = 1,
+        Defense = 2,
+    }
+}

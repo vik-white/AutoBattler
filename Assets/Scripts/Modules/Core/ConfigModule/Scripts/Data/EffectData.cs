@@ -6,6 +6,7 @@ namespace vikwhite.ECS
     public struct EffectData
     {
         public EffectType Type;
+        public EffectDependenceType Dependence;
         public float Value;
     }
 }
