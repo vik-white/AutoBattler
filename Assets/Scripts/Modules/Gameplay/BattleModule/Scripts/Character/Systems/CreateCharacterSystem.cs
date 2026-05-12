@@ -74,7 +74,7 @@ namespace vikwhite.ECS
                             abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
                         }
                     }
-                    var cooldown = config.ActiveAbility != abilityID ? abilityConfig.Cooldown : 0;
+                    var cooldown = abilityConfig.Skill ? abilityConfig.Cooldown * 0.5f : abilityConfig.Cooldown;
                     abilities.Add(new Ability { Config = abilityConfigBlob, Cooldown = cooldown });
                 }
                 if(config.ActiveAbility != 0) ecb.AddComponent(characterEntity, new ActiveAbility{ Value = config.ActiveAbility });
