@@ -46,6 +46,9 @@ namespace vikwhite.ECS
             {
                 EffectDependenceType.Attack => config.Attack * effect.Value,
                 EffectDependenceType.Defense => config.Defense * effect.Value,
+                EffectDependenceType.Health => config.Health * effect.Value,
+                EffectDependenceType.CritChance => config.CritChance * effect.Value,
+                EffectDependenceType.CritValue => config.CritValue * effect.Value,
                 _ => effect.Value,
             };
 
