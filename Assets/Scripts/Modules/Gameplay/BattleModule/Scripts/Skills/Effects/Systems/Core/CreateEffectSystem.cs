@@ -11,7 +11,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var critCounters = SystemAPI.GetComponentLookup<CritCounter>();
             var characters = SystemAPI.GetComponentLookup<Character>(true);
-            var upgrades = SystemAPI.GetComponentLookup<CharacterUpgrade>(true);
+            var statBuffers = SystemAPI.GetBufferLookup<StatMultiply>(true);
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
                 var provider = request.ValueRO.Provider;
@@ -19,7 +19,7 @@ namespace vikwhite.ECS
                 var value = GetEffectValue(ref state, request.ValueRO.Data, provider, skillID);
                 var isCrit = false;
                 if (type == EffectType.Damage)
-                    value = TryApplyCrit(ref characters, ref upgrades, ref critCounters, provider, value, out isCrit);
+                    value = TryApplyCrit(ref characters, ref statBuffers, ref critCounters, provider, value, out isCrit);
 
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent(effect, new Effect
@@ -48,17 +48,18 @@ namespace vikwhite.ECS
             var effectValue = effect.Value * upgrade.GetSkillMultiplier(config, skillID);
 
             if (!config.TryGetStat(effect.Stat, out var baseStat)) return effectValue;
-            return baseStat * upgrade.GetStatMultiplier(effect.Stat) * effectValue;
+            var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
+            return baseStat * statBuffer[(int)effect.Stat].Value * effectValue;
         }
 
-        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CharacterUpgrade> upgrades, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
+        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref BufferLookup<StatMultiply> statBuffers, ref ComponentLookup<CritCounter> critCounters, Entity provider, float value, out bool isCrit)
         {
             isCrit = false;
 
             var config = characters[provider].GetConfig();
-            var upgrade = upgrades[provider];
+            var statBuffer = statBuffers[provider];
 
-            var chance = config.CritChance * upgrade.GetStatMultiplier(StatType.CritChance);
+            var chance = config.CritChance * statBuffer[(int)StatType.CritChance].Value;
             if (chance <= 0f) return value;
 
             var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
@@ -70,7 +71,7 @@ namespace vikwhite.ECS
 
             if (isCrit)
             {
-                var critValue = config.CritValue * upgrade.GetStatMultiplier(StatType.CritValue);
+                var critValue = config.CritValue * statBuffer[(int)StatType.CritValue].Value;
                 var multiplier = critValue > 0f ? critValue : 1f;
                 value *= multiplier;
             }
