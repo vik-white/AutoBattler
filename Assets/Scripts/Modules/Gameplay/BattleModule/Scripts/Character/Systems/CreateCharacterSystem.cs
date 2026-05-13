@@ -100,7 +100,7 @@ namespace vikwhite.ECS
             var abilityConfig = abilityConfigBlob.Value;
             if (abilityConfig.Type == SkillType.Abilities)
             {
-                foreach (var abilityChildID in abilityConfig.Abilities)
+                foreach (var abilityChildID in abilityConfig.Skills)
                 {
                     abilities.Add(new Skill { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
                 }

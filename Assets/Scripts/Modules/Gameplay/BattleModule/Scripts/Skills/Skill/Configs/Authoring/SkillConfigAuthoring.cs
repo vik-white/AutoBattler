@@ -44,7 +44,7 @@ namespace vikwhite.ECS
                     AuraLifetime = data.AuraLifetime,
                     AuraRadius = data.AuraRadius,
                     AuraInterval = data.AuraInterval,
-                    Abilities = CreateSkills(data.Abilities),
+                    Skills = CreateSkills(data.Skills),
                     ImpulseUp = data.ImpulseUp,
                     ImpulseProvider = data.ImpulseProvider,
                     CastVFXPrefab =  data.CastVFXPrefab,
@@ -101,10 +101,10 @@ namespace vikwhite.ECS
             return spawnCharacters;
         }
         
-        private FixedList64Bytes<uint> CreateSkills(List<uint> abilitiesConfig) {
-            var abilities = new FixedList64Bytes<uint>();
-            foreach (var ability in abilitiesConfig) abilities.Add(ability);
-            return abilities;
+        private FixedList64Bytes<uint> CreateSkills(List<uint> skillsConfig) {
+            var skills = new FixedList64Bytes<uint>();
+            foreach (var skill in skillsConfig) skills.Add(skill);
+            return skills;
         }
     }
 }

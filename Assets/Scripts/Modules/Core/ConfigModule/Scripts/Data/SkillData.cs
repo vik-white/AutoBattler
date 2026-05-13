@@ -30,7 +30,7 @@ namespace vikwhite.Data
         float AuraLifetime { get; }
         float AuraRadius { get; }
         float AuraInterval { get; }
-        List<uint> Abilities { get; }
+        List<uint> Skills { get; }
         float ImpulseUp { get; }
         float ImpulseProvider { get; }
         uint CastVFXPrefab { get; }
@@ -66,7 +66,7 @@ namespace vikwhite.Data
         public float AuraLifetime;
         public float AuraRadius;
         public float AuraInterval;
-        public List<uint> Abilities;
+        public List<uint> Skills;
         public float ImpulseUp;
         public float ImpulseProvider;
         public uint CastVFXPrefab;
@@ -98,7 +98,7 @@ namespace vikwhite.Data
         float ISkillData.AuraLifetime => AuraLifetime;
         float ISkillData.AuraRadius => AuraRadius;
         float ISkillData.AuraInterval => AuraInterval;
-        List<uint> ISkillData.Abilities => Abilities;
+        List<uint> ISkillData.Skills => Skills;
         float ISkillData.ImpulseUp => ImpulseUp;
         float ISkillData.ImpulseProvider => ImpulseProvider;
         uint ISkillData.CastVFXPrefab => CastVFXPrefab;
@@ -188,11 +188,11 @@ namespace vikwhite.Data
                 SpawnCharacters.Add(new SpawnCharacterData { ID = typeString.CalculateHash32(), Probability = valueString.ToFloat() });
             }
             
-            Abilities = new ();
-            foreach (var abilityString in row["Abilities"].Split(";"))
+            Skills = new ();
+            foreach (var abilityString in row["Skills"].Split(";"))
             {
                 if(abilityString == "") continue;
-                Abilities.Add(abilityString.CalculateHash32());
+                Skills.Add(abilityString.CalculateHash32());
             }
         }
     }
