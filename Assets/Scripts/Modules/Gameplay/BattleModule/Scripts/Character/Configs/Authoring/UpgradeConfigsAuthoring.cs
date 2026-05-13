@@ -7,21 +7,21 @@ using vikwhite.Data;
 
 namespace vikwhite.ECS
 {
-    public class LevelUpConfigsAuthoring : MonoBehaviour
+    public class UpgradeConfigsAuthoring : MonoBehaviour
     {
         public ConfigsLoader Configs;
     }
 
-    public class LevelUpConfigsAuthoringBaker : Baker<LevelUpConfigsAuthoring>
+    public class UpgradeConfigsAuthoringBaker : Baker<UpgradeConfigsAuthoring>
     {
-        public override void Bake(LevelUpConfigsAuthoring authoring)
+        public override void Bake(UpgradeConfigsAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.None);
-            var configs = new List<LevelUpConfig>();
+            var configs = new List<UpgradeConfig>();
 
-            foreach (var levelUpData in authoring.Configs.LevelUp.GetAll())
+            foreach (var levelUpData in authoring.Configs.Upgrades.GetAll())
             {
-                configs.Add(new LevelUpConfig
+                configs.Add(new UpgradeConfig
                 {
                     ID = levelUpData.ID.CalculateHash32(),
                     Health = levelUpData.Health,
@@ -44,15 +44,15 @@ namespace vikwhite.ECS
             });
         }
 
-        private BlobAssetReference<BlobArrayContainer<LevelUpConfig>> CreateConfigsBlob(List<LevelUpConfig> configs)
+        private BlobAssetReference<BlobArrayContainer<UpgradeConfig>> CreateConfigsBlob(List<UpgradeConfig> configs)
         {
             using var builder = new BlobBuilder(Allocator.Temp);
-            ref var root = ref builder.ConstructRoot<BlobArrayContainer<LevelUpConfig>>();
+            ref var root = ref builder.ConstructRoot<BlobArrayContainer<UpgradeConfig>>();
             var arrayBuilder = builder.Allocate(ref root.Array, configs.Count);
             for (int i = 0; i < configs.Count; i++)
                 arrayBuilder[i] = configs[i];
 
-            var blob = builder.CreateBlobAssetReference<BlobArrayContainer<LevelUpConfig>>(Allocator.Persistent);
+            var blob = builder.CreateBlobAssetReference<BlobArrayContainer<UpgradeConfig>>(Allocator.Persistent);
             AddBlobAsset(ref blob, out _);
             return blob;
         }

@@ -2,7 +2,7 @@ using System;
 
 namespace vikwhite.Data
 {
-    public interface ILevelUpData
+    public interface IUpgradeData
     {
         string ID { get; }
         float Health { get; }
@@ -19,7 +19,7 @@ namespace vikwhite.Data
     }
     
     [Serializable]
-    public class LevelUpData : ILevelUpData
+    public class UpgradeData : IUpgradeData
     {
         public string ID;
         public float Health;
@@ -34,17 +34,17 @@ namespace vikwhite.Data
         public float SkillMeta2;
         public float SkillMeta3;
         
-        string ILevelUpData.ID => ID;
-        float ILevelUpData.Attack => Attack;
-        float ILevelUpData.Health => Health;
-        float ILevelUpData.Defense => Defense;
-        float ILevelUpData.CritChance => CritChance;
-        float ILevelUpData.CritValue => CritValue;
-        float ILevelUpData.SkillActive => SkillActive;
-        float ILevelUpData.SkillPassive1 => SkillPassive1;
-        float ILevelUpData.SkillPassive2 => SkillPassive2;
-        float ILevelUpData.SkillMeta1 => SkillMeta1;
-        float ILevelUpData.SkillMeta2 => SkillMeta2;
-        float ILevelUpData.SkillMeta3 => SkillMeta3;
+        string IUpgradeData.ID => ID;
+        float IUpgradeData.Attack => Attack;
+        float IUpgradeData.Health => Health;
+        float IUpgradeData.Defense => Defense;
+        float IUpgradeData.CritChance => CritChance;
+        float IUpgradeData.CritValue => CritValue;
+        float IUpgradeData.SkillActive => SkillActive;
+        float IUpgradeData.SkillPassive1 => SkillPassive1;
+        float IUpgradeData.SkillPassive2 => SkillPassive2;
+        float IUpgradeData.SkillMeta1 => SkillMeta1;
+        float IUpgradeData.SkillMeta2 => SkillMeta2;
+        float IUpgradeData.SkillMeta3 => SkillMeta3;
     }
 }

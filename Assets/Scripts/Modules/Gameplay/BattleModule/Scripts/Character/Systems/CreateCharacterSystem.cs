@@ -15,22 +15,22 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var abilityRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
-            var levelUpConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
+            var upgradeConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);
                 var config = renderData.Config.Value;
-                var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
-                var starLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
-                var skillLevelUpConfig = levelUpConfigs.Get(config.SkillLevelUp);
+                var levelUpgradeConfig = upgradeConfigs.Get(config.LevelUpgrade);
+                var starUpgradeConfig = upgradeConfigs.Get(config.StarUpgrade);
+                var skillUpgradeConfig = upgradeConfigs.Get(config.SkillUpgrade);
                 var healthMultiplier = 
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpConfig.Health) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starLevelUpConfig.Health) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillLevelUpConfig.Health);
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Health) *
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Health) *
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Health);
                 var defenseMultiplier = 
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpConfig.Defense) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starLevelUpConfig.Defense) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillLevelUpConfig.Defense);
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Defense) *
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Defense) *
+                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Defense);
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 

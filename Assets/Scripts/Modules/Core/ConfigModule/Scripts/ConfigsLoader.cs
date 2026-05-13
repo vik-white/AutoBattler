@@ -20,7 +20,7 @@ namespace vikwhite.Data
         IConfig<ILocationFlowData> LocationFlow { get; }
         IConfig<ISkillData> Skills { get; }
         IConfig<IHexPositionsData> HexPositions { get; }
-        IConfig<ILevelUpData> LevelUp { get; }
+        IConfig<IUpgradeData> Upgrades { get; }
         IConfig<IRewardsData> Rewards { get; }
         IConfig<ISummonData> Summons { get; }
         IConfig<IStarData> Stars { get; }
@@ -43,7 +43,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<LocationFlowData, ILocationFlowData> locationFlow;
         [SerializeField] private Config<SkillData, ISkillData> skills;
         [SerializeField] private Config<HexPositionsData, IHexPositionsData> hexPositions;
-        [SerializeField] private Config<LevelUpData, ILevelUpData> levelUp;
+        [SerializeField] private Config<UpgradeData, IUpgradeData> upgrades;
         [SerializeField] private Config<RewardsData, IRewardsData> rewards;
         [SerializeField] private Config<SummonData, ISummonData> summons;
         [SerializeField] private Config<StarData, IStarData> stars;
@@ -58,7 +58,7 @@ namespace vikwhite.Data
         public IConfig<ILocationFlowData> LocationFlow => locationFlow;
         public IConfig<ISkillData> Skills => skills;
         public IConfig<IHexPositionsData> HexPositions => hexPositions;
-        public IConfig<ILevelUpData> LevelUp => levelUp;
+        public IConfig<IUpgradeData> Upgrades => upgrades;
         public IConfig<IRewardsData> Rewards => rewards;
         public IConfig<ISummonData> Summons => summons;
         public IConfig<IStarData> Stars => stars;

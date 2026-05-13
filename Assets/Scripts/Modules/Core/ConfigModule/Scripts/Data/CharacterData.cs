@@ -18,9 +18,9 @@ namespace vikwhite.Data
         float CritChance { get; }
         float CritValue { get; }
         bool HealthBar { get; }
-        string LevelUp { get; }
-        string StarLevelUp { get; }
-        string SkillLevelUp { get; }
+        string LevelUpgrade { get; }
+        string StarUpgrade { get; }
+        string SkillUpgrade { get; }
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
@@ -47,9 +47,9 @@ namespace vikwhite.Data
         public float CritChance;
         public float CritValue;
         public bool HealthBar;
-        public string LevelUp;
-        public string StarLevelUp;
-        public string SkillLevelUp;
+        public string LevelUpgrade;
+        public string StarUpgrade;
+        public string SkillUpgrade;
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
@@ -72,9 +72,9 @@ namespace vikwhite.Data
         float ICharacterData.CritChance => CritChance;
         float ICharacterData.CritValue => CritValue;
         bool ICharacterData.HealthBar => HealthBar;
-        string ICharacterData.LevelUp => LevelUp;
-        string ICharacterData.StarLevelUp => StarLevelUp;
-        string ICharacterData.SkillLevelUp => SkillLevelUp;
+        string ICharacterData.LevelUpgrade => LevelUpgrade;
+        string ICharacterData.StarUpgrade => StarUpgrade;
+        string ICharacterData.SkillUpgrade => SkillUpgrade;
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;

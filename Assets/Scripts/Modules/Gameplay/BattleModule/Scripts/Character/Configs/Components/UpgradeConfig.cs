@@ -2,7 +2,7 @@ using vikwhite.Data;
 
 namespace vikwhite.ECS
 {
-    public struct LevelUpConfig : IID
+    public struct UpgradeConfig : IID
     {
         public uint ID { get; set; }
         public float Health;

@@ -40,14 +40,14 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, EffectData effect, Entity entity, uint abilityID)
+        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<UpgradeConfig>> levelUpConfigs, EffectData effect, Entity entity, uint abilityID)
         {
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();
 
-            var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
-            var starsLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
-            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillLevelUp);
+            var levelUpConfig = levelUpConfigs.Get(config.LevelUpgrade);
+            var starsLevelUpConfig = levelUpConfigs.Get(config.StarUpgrade);
+            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillUpgrade);
             var level = character.Level - 1;
             var stars = character.Stars;
             var skillLevel = character.SkillLevel - 1;
@@ -71,15 +71,15 @@ namespace vikwhite.ECS
             return value;
         }
 
-        private float GetSkillMultiplier(in CharacterConfigData config, uint abilityID, int level, int stars, int skillLevel, in LevelUpConfig levelUpConfig, in LevelUpConfig starsLevelUpConfig, in LevelUpConfig skillLevelUpConfig)
+        private float GetSkillMultiplier(in CharacterConfigData config, uint abilityID, int level, int stars, int skillLevel, in UpgradeConfig upgradeConfig, in UpgradeConfig starsUpgradeConfig, in UpgradeConfig skillUpgradeConfig)
         {
             if (abilityID == 0) return 1f;
-            if (abilityID == config.SkillActive) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillActive, starsLevelUpConfig.SkillActive, skillLevelUpConfig.SkillActive);
-            if (abilityID == config.SkillPassive1) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillPassive1, starsLevelUpConfig.SkillPassive1, skillLevelUpConfig.SkillPassive1);
-            if (abilityID == config.SkillPassive2) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillPassive2, starsLevelUpConfig.SkillPassive2, skillLevelUpConfig.SkillPassive2);
-            if (abilityID == config.SkillMeta1) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillMeta1, starsLevelUpConfig.SkillMeta1, skillLevelUpConfig.SkillMeta1);
-            if (abilityID == config.SkillMeta2) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillMeta2, starsLevelUpConfig.SkillMeta2, skillLevelUpConfig.SkillMeta2);
-            if (abilityID == config.SkillMeta3) return GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.SkillMeta3, starsLevelUpConfig.SkillMeta3, skillLevelUpConfig.SkillMeta3);
+            if (abilityID == config.SkillActive) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillActive, starsUpgradeConfig.SkillActive, skillUpgradeConfig.SkillActive);
+            if (abilityID == config.SkillPassive1) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillPassive1, starsUpgradeConfig.SkillPassive1, skillUpgradeConfig.SkillPassive1);
+            if (abilityID == config.SkillPassive2) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillPassive2, starsUpgradeConfig.SkillPassive2, skillUpgradeConfig.SkillPassive2);
+            if (abilityID == config.SkillMeta1) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta1, starsUpgradeConfig.SkillMeta1, skillUpgradeConfig.SkillMeta1);
+            if (abilityID == config.SkillMeta2) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta2, starsUpgradeConfig.SkillMeta2, skillUpgradeConfig.SkillMeta2);
+            if (abilityID == config.SkillMeta3) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta3, starsUpgradeConfig.SkillMeta3, skillUpgradeConfig.SkillMeta3);
             return 1f;
         }
 
@@ -91,20 +91,20 @@ namespace vikwhite.ECS
                 CharacterHandler.GetLevelMultiplier(skillIndex, skillMultiply);
         }
 
-        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, BlobAssetReference<BlobArrayContainer<LevelUpConfig>> levelUpConfigs, Entity provider, float value, out bool isCrit)
+        private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, BlobAssetReference<BlobArrayContainer<UpgradeConfig>> levelUpConfigs, Entity provider, float value, out bool isCrit)
         {
             isCrit = false;
 
             var character = characters[provider];
             var config = character.GetConfig();
-            var levelUpConfig = levelUpConfigs.Get(config.LevelUp);
-            var starsLevelUpConfig = levelUpConfigs.Get(config.StarLevelUp);
-            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillLevelUp);
+            var levelUpgradeConfig = levelUpConfigs.Get(config.LevelUpgrade);
+            var starUpgradeConfig = levelUpConfigs.Get(config.StarUpgrade);
+            var skillUpgradeConfig = levelUpConfigs.Get(config.SkillUpgrade);
             var level = character.Level - 1;
             var stars = character.Stars;
             var skillLevel = character.SkillLevel - 1;
 
-            var chance = config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritChance, starsLevelUpConfig.CritChance, skillLevelUpConfig.CritChance);
+            var chance = config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpgradeConfig.CritChance, starUpgradeConfig.CritChance, skillUpgradeConfig.CritChance);
             if (chance <= 0f) return value;
 
             var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
@@ -116,7 +116,7 @@ namespace vikwhite.ECS
 
             if (isCrit)
             {
-                var critValue = config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritValue, starsLevelUpConfig.CritValue, skillLevelUpConfig.CritValue);
+                var critValue = config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpgradeConfig.CritValue, starUpgradeConfig.CritValue, skillUpgradeConfig.CritValue);
                 var multiplier = critValue > 0f ? critValue : 1f;
                 value *= multiplier;
             }

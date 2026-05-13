@@ -55,13 +55,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 0
+      SkillAttack: 0
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -79,13 +79,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
-      Ability: 3795814207
+      SkillAttack: 3795814207
       SkillActive: 2496368978
       SkillPassive1: 0
       SkillPassive2: 0
@@ -103,13 +103,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
-      Ability: 2213220330
+      SkillAttack: 2213220330
       SkillActive: 1605752999
       SkillPassive1: 0
       SkillPassive2: 0
@@ -127,13 +127,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
       PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
-      Ability: 1578047653
+      SkillAttack: 1578047653
       SkillActive: 370847456
       SkillPassive1: 0
       SkillPassive2: 0
@@ -151,13 +151,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
       PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
-      Ability: 616699424
+      SkillAttack: 616699424
       SkillActive: 2475848034
       SkillPassive1: 0
       SkillPassive2: 0
@@ -175,13 +175,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
       PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
-      Ability: 3548031329
+      SkillAttack: 3548031329
       SkillActive: 703911167
       SkillPassive1: 0
       SkillPassive2: 0
@@ -199,13 +199,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
-      Ability: 1578047653
+      SkillAttack: 1578047653
       SkillActive: 1516922681
       SkillPassive1: 0
       SkillPassive2: 0
@@ -223,13 +223,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: EnemyLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: EnemyLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 3795814207
+      SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -247,13 +247,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: EnemyLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: EnemyLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 3548031329
+      SkillAttack: 3548031329
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -271,13 +271,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: EnemyLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: EnemyLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 2201965509
+      SkillAttack: 2201965509
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -295,13 +295,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 0
-      LevelUp: BaseLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 4243707639
+      SkillAttack: 4243707639
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -319,13 +319,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 1
-      LevelUp: EnemyBossLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: EnemyBossLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 4070441441
+      SkillAttack: 4070441441
       SkillActive: 0
       SkillPassive1: 1107468141
       SkillPassive2: 0
@@ -343,13 +343,13 @@ MonoBehaviour:
       CritChance: 0.1
       CritValue: 1.5
       HealthBar: 0
-      LevelUp: EnemyBossLevelUp
-      StarLevelUp: StarLevelUp
-      SkillLevelUp: SkillLevelUp
+      LevelUpgrade: EnemyBossLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
       Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
-      Ability: 3795814207
+      SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
       SkillPassive2: 0
@@ -996,10 +996,33 @@ MonoBehaviour:
       - Sceleton
       Count: 100
       SpawnInterval: 0.01
-  abilities:
-    IDS: []
+  skills:
+    IDS:
+    - FlowMeleeAttack
+    - MeleeAttack_1
+    - MeleeAttack_2
+    - MeleeAttack_3
+    - RangeAttack_1
+    - RangeAttack_2
+    - RangeAttack_3
+    - RangeAttack_4
+    - RangeAttackAOE
+    - SpawnSkeletons
+    - HealBuff
+    - ShieldBuff
+    - ShieldBuffBig
+    - AggroBuff
+    - RearJump
+    - SpeedAttack
+    - OrbitingFireBoll
+    - Support
+    - Mage
+    - Tank
+    - Healer
+    - Assassin
+    - SceletonBoss
     Data:
-    - AbilityID: 4243707639
+    - ID: 4243707639
       Type: 1
       Icon: 
       Cooldown: 5
@@ -1023,7 +1046,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1033,7 +1056,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 3548031329
+    - ID: 3548031329
       Type: 1
       Icon: 
       Cooldown: 1.2
@@ -1057,7 +1080,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1067,7 +1090,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 3795814207
+    - ID: 3795814207
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1091,7 +1114,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1101,7 +1124,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 2213220330
+    - ID: 2213220330
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1125,7 +1148,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1135,7 +1158,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 1578047653
+    - ID: 1578047653
       Type: 0
       Icon: 
       Cooldown: 2
@@ -1159,7 +1182,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1169,7 +1192,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 616699424
+    - ID: 616699424
       Type: 0
       Icon: 
       Cooldown: 1.5
@@ -1193,7 +1216,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1203,7 +1226,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 4070441441
+    - ID: 4070441441
       Type: 0
       Icon: 
       Cooldown: 1.8
@@ -1227,7 +1250,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1237,7 +1260,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 2201965509
+    - ID: 2201965509
       Type: 0
       Icon: 
       Cooldown: 1.3
@@ -1261,7 +1284,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1271,7 +1294,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 3753657975
+    - ID: 3753657975
       Type: 0
       Icon: 
       Cooldown: 3
@@ -1295,7 +1318,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1305,7 +1328,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 232099915
+    - ID: 232099915
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1331,7 +1354,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1341,7 +1364,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 3693692732
+    - ID: 3693692732
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1365,7 +1388,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1375,7 +1398,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 3503821397
+    - ID: 3503821397
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1399,7 +1422,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1409,7 +1432,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 858787147
+    - ID: 858787147
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1433,7 +1456,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1443,7 +1466,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 1376285117
+    - ID: 1376285117
       Type: 4
       Icon: 
       Cooldown: 1
@@ -1467,7 +1490,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 15
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 2
       ImpulseProvider: 5
       CastVFXPrefab: 0
@@ -1477,7 +1500,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 2425292117
+    - ID: 2425292117
       Type: 6
       Icon: 
       Cooldown: 1
@@ -1498,7 +1521,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1508,7 +1531,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 1495396533
+    - ID: 1495396533
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1532,7 +1555,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -1542,7 +1565,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - AbilityID: 2496368978
+    - ID: 2496368978
       Type: 2
       Icon: Ability
       Cooldown: 7
@@ -1566,7 +1589,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -1577,7 +1600,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
       Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
         3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
-    - AbilityID: 1516922681
+    - ID: 1516922681
       Type: 3
       Icon: Ability
       Cooldown: 12
@@ -1601,7 +1624,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
@@ -1612,7 +1635,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: f6655db12cb389c4f9b30d056e6f87d3, type: 3}
       Description: "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
         \u0430\u0431\u0438\u043B\u043E\u043A"
-    - AbilityID: 2475848034
+    - ID: 2475848034
       Type: 3
       Icon: Ice
       Cooldown: 10
@@ -1636,7 +1659,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 
+      Skills: 
       ImpulseUp: 3
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -1647,7 +1670,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: 7deacee27c334b042b62bcf212c3a854, type: 3}
       Description: "\u0423\u0434\u0430\u0440 \u043B\u044C\u0434\u043E\u043C \u043F\u043E
         \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
-    - AbilityID: 1605752999
+    - ID: 1605752999
       Type: 5
       Icon: Berserk
       Cooldown: 11
@@ -1668,7 +1691,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: bd7108524b0d3033
+      Skills: bd7108524b0d3033
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -1680,7 +1703,7 @@ MonoBehaviour:
       Description: "\u0410\u0433\u0440\u0438\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432
         \u043D\u0430 \u0441\u0435\u0431\u044F \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439
         \u0449\u0438\u0442"
-    - AbilityID: 370847456
+    - ID: 370847456
       Type: 5
       Icon: Heal
       Cooldown: 10
@@ -1701,7 +1724,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 3c4729dc5512d8d0
+      Skills: 3c4729dc5512d8d0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -1713,7 +1736,7 @@ MonoBehaviour:
       Description: "\u041B\u0435\u0447\u0438\u0442 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432
         \u0438 \u043D\u0430\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442
         \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0449\u0438\u0442"
-    - AbilityID: 703911167
+    - ID: 703911167
       Type: 5
       Icon: Blade
       Cooldown: 7
@@ -1734,7 +1757,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 55058f90b5f02159
+      Skills: 55058f90b5f02159
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -1746,7 +1769,7 @@ MonoBehaviour:
       Description: "\u041F\u0440\u044B\u0433\u0430\u0435\u0442 \u043A \u0434\u0430\u043B\u044C\u043D\u0435\u0439
         \u0446\u0435\u043B\u0438 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
         \u0431\u044B\u0441\u0442\u0440\u044B\u0435 \u0443\u0434\u0430\u0440\u044B"
-    - AbilityID: 1107468141
+    - ID: 1107468141
       Type: 5
       Icon: 
       Cooldown: 9
@@ -1767,7 +1790,7 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Abilities: 4b90d50d7746bcdf
+      Skills: 4b90d50d7746bcdf
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -1814,7 +1837,7 @@ MonoBehaviour:
       C5:
         x: 0
         y: 0
-  levelUp:
+  upgrades:
     IDS:
     - BaseLevelUp
     - StarLevelUp
@@ -2014,7 +2037,7 @@ MonoBehaviour:
       Resource: 4
       Price: 1
       Reward: SummonRewardEpic
-  starLockLevel:
+  stars:
     IDS:
     - 0
     - 1
@@ -2056,364 +2079,286 @@ MonoBehaviour:
     Data:
     - ID: 0
       Level: 10
+      SkillActive: 1
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 1
       Level: 20
+      SkillActive: 1
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 2
       Level: 30
+      SkillActive: 1
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 3
       Level: 40
+      SkillActive: 1
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 4
       Level: 50
+      SkillActive: 2
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 5
       Level: 60
+      SkillActive: 2
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 6
       Level: 70
+      SkillActive: 2
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 7
       Level: 90
+      SkillActive: 2
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 8
       Level: 100
+      SkillActive: 3
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 9
       Level: 110
+      SkillActive: 3
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 10
       Level: 120
+      SkillActive: 3
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 11
       Level: 130
+      SkillActive: 3
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 12
       Level: 140
+      SkillActive: 4
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 13
       Level: 160
+      SkillActive: 4
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 14
       Level: 170
+      SkillActive: 4
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 15
       Level: 180
+      SkillActive: 4
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 16
       Level: 190
+      SkillActive: 5
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 17
       Level: 200
+      SkillActive: 5
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 18
       Level: 210
+      SkillActive: 5
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 19
       Level: 220
+      SkillActive: 5
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 20
       Level: 230
+      SkillActive: 6
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 21
       Level: 240
+      SkillActive: 6
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 22
       Level: 250
+      SkillActive: 6
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 23
       Level: 260
+      SkillActive: 6
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 24
       Level: 270
+      SkillActive: 7
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 25
       Level: 280
+      SkillActive: 7
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 26
       Level: 290
+      SkillActive: 7
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 27
       Level: 300
+      SkillActive: 7
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 28
       Level: 310
+      SkillActive: 8
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 29
       Level: 320
+      SkillActive: 8
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 30
       Level: 330
+      SkillActive: 8
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 31
       Level: 340
+      SkillActive: 8
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 32
       Level: 350
+      SkillActive: 9
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 33
       Level: 360
+      SkillActive: 9
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 34
       Level: 370
+      SkillActive: 9
+      SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
     - ID: 35
       Level: 380
-    - ID: 36
-      Level: 400
-  starLockSkill:
-    IDS:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    - 14
-    - 15
-    - 16
-    - 17
-    - 18
-    - 19
-    - 20
-    - 21
-    - 22
-    - 23
-    - 24
-    - 25
-    - 26
-    - 27
-    - 28
-    - 29
-    - 30
-    - 31
-    - 32
-    - 33
-    - 34
-    - 35
-    - 36
-    Data:
-    - ID: 0
-      SkillActive: 1
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 1
-      SkillActive: 1
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 2
-      SkillActive: 1
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 3
-      SkillActive: 1
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 4
-      SkillActive: 2
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 5
-      SkillActive: 2
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 6
-      SkillActive: 2
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 7
-      SkillActive: 2
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 8
-      SkillActive: 3
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 9
-      SkillActive: 3
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 10
-      SkillActive: 3
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 11
-      SkillActive: 3
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 12
-      SkillActive: 4
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 13
-      SkillActive: 4
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 14
-      SkillActive: 4
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 15
-      SkillActive: 4
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 16
-      SkillActive: 5
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 17
-      SkillActive: 5
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 18
-      SkillActive: 5
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 19
-      SkillActive: 5
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 20
-      SkillActive: 6
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 21
-      SkillActive: 6
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 22
-      SkillActive: 6
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 23
-      SkillActive: 6
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 24
-      SkillActive: 7
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 25
-      SkillActive: 7
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 26
-      SkillActive: 7
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 27
-      SkillActive: 7
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 28
-      SkillActive: 8
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 29
-      SkillActive: 8
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 30
-      SkillActive: 8
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 31
-      SkillActive: 8
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 32
-      SkillActive: 9
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 33
-      SkillActive: 9
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 34
-      SkillActive: 9
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: 35
       SkillActive: 10
       SkillPassive1: 0
       SkillPassive2: 0
@@ -2421,6 +2366,7 @@ MonoBehaviour:
       SkillMeta2: 0
       SkillMeta3: 0
     - ID: 36
+      Level: 400
       SkillActive: 10
       SkillPassive1: 0
       SkillPassive2: 0

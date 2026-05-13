@@ -7,15 +7,12 @@ namespace vikwhite.ECS
 {
     public struct LevelUpConfigsBlob : IComponentData
     {
-        public BlobAssetReference<BlobArrayContainer<LevelUpConfig>> Value;
+        public BlobAssetReference<BlobArrayContainer<UpgradeConfig>> Value;
     }
 
     public struct CharacterConfigData : IID
     {
         public uint ID { get; set; }
-        public uint LevelUp;
-        public uint StarLevelUp;
-        public uint SkillLevelUp;
         public float Scale;
         public float Health;
         public float Shield;
@@ -26,6 +23,9 @@ namespace vikwhite.ECS
         public bool HealthBar;
         public float ColliderRadius;
         public float ColliderHeight;
+        public uint LevelUpgrade;
+        public uint StarUpgrade;
+        public uint SkillUpgrade;
         public uint SkillAttack;
         public uint SkillActive;
         public uint SkillPassive1;

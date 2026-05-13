@@ -9,8 +9,8 @@ namespace vikwhite
         private readonly IEventDispatcher _dispatcher;
         
         private ICharacterData _characterData;
-        private ILevelUpData _levelUpData;
-        private ILevelUpData _starLevelUpData;
+        private IUpgradeData _upgradeData;
+        private IUpgradeData _starUpgradeData;
         
         private string _id;
         private ReactiveProperty<float> _health;
@@ -36,8 +36,8 @@ namespace vikwhite
         {
             _id = id;
             _characterData = _configs.Characters.Get(id);
-            _levelUpData = _configs.LevelUp.Get(_characterData.LevelUp);
-            _starLevelUpData = _configs.LevelUp.Get(_characterData.StarLevelUp);
+            _upgradeData = _configs.Upgrades.Get(_characterData.LevelUpgrade);
+            _starUpgradeData = _configs.Upgrades.Get(_characterData.StarUpgrade);
             _level = new ReactiveProperty<int>(level);
             _shards = new ReactiveProperty<int>(shards);
             _stars = new ReactiveProperty<int>(stars);
@@ -72,8 +72,8 @@ namespace vikwhite
 
         private float GetHealth()
         {
-            var multiply = CharacterHandler.GetLevelMultiplier(_level.Value, _levelUpData.Health);
-            multiply *= CharacterHandler.GetLevelMultiplier(_stars.Value, _starLevelUpData.Health);
+            var multiply = CharacterHandler.GetLevelMultiplier(_level.Value, _upgradeData.Health);
+            multiply *= CharacterHandler.GetLevelMultiplier(_stars.Value, _starUpgradeData.Health);
             return _configs.Characters.Get(_id).Health * multiply;
         }
 
