@@ -39,14 +39,14 @@ namespace vikwhite.ECS
             });
         }
 
-        private static FixedList64Bytes<SkillMultiplierData> CreateSkillMultipliers(IReadOnlyDictionary<SkillSlotType, float> source)
+        private static FixedList64Bytes<SkillSlotData<float>> CreateSkillMultipliers(IReadOnlyDictionary<SkillSlotType, float> source)
         {
-            var list = new FixedList64Bytes<SkillMultiplierData>();
+            var list = new FixedList64Bytes<SkillSlotData<float>>();
             if (source == null) return list;
             foreach (var slot in SkillSlotExtensions.UpgradableSlots)
             {
                 if (!source.TryGetValue(slot, out var value) || value == 0f) continue;
-                list.Add(new SkillMultiplierData { SlotType = slot, Value = value });
+                list.Add(new SkillSlotData<float> { Type = slot, Value = value });
             }
             return list;
         }

@@ -11,15 +11,8 @@ namespace vikwhite.ECS
         public float Defense;
         public float CritChance;
         public float CritValue;
-        public FixedList64Bytes<SkillMultiplierData> SkillMultipliers;
+        public FixedList64Bytes<SkillSlotData<float>> SkillMultipliers;
 
-        public float GetSkillMultiplier(SkillSlotType slotType)
-        {
-            for (int i = 0; i < SkillMultipliers.Length; i++)
-            {
-                if (SkillMultipliers[i].SlotType == slotType) return SkillMultipliers[i].Value;
-            }
-            return 0f;
-        }
+        public float GetSkillMultiplier(SkillSlotType slotType) => SkillMultipliers.Get(slotType);
     }
 }

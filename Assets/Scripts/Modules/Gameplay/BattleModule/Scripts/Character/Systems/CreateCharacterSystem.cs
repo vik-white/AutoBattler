@@ -73,10 +73,7 @@ namespace vikwhite.ECS
 
                 var skills = ecb.AddBuffer<Skill>(characterEntity);
                 for (int i = 0; i < config.Skills.Length; i++)
-                {
-                    var slot = config.Skills[i];
-                    CreateSkill(skillRuntimeData, skills, slot.ID, slot.SlotType == SkillSlotType.Attack);
-                }
+                    CreateSkill(skillRuntimeData, skills, config.Skills[i]);
                 var activeSkillID = config.GetSkill(SkillSlotType.Active);
                 if (activeSkillID != 0) ecb.AddComponent(characterEntity, new ActiveSkill{ Value = activeSkillID });
 
@@ -92,17 +89,17 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private void CreateSkill(DynamicBuffer<SkillRuntimeData> runtimeData, DynamicBuffer<Skill> skills, uint id, bool ready)
+        private void CreateSkill(DynamicBuffer<SkillRuntimeData> runtimeData, DynamicBuffer<Skill> skills, SkillSlotData<uint> slot)
         {
-            if (id == 0) return;
-            var configBlob = runtimeData.Get(id);
+            if (slot.Value == 0) return;
+            var configBlob = runtimeData.Get(slot.Value);
             var config = configBlob.Value;
             if (config.Type == SkillType.Abilities)
             {
                 foreach (var childID in config.Skills)
                     skills.Add(new Skill { Config = runtimeData.Get(childID), IsChild = true });
             }
-            var cooldown = ready ? config.Cooldown : config.Cooldown * 0.5f;
+            var cooldown = slot.Type == SkillSlotType.Attack ? config.Cooldown : config.Cooldown * 0.5f;
             skills.Add(new Skill { Config = configBlob, Cooldown = cooldown });
         }
     }
