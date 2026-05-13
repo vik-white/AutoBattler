@@ -10,10 +10,11 @@ namespace vikwhite
         {
             _view.Icon.sprite = viewModel.Icon;
             _view.Value.text = viewModel.Value.ToString();
-            _view.Icon.gameObject.SetActive(!viewModel.IsClassShard);
-            _view.Title.gameObject.SetActive(viewModel.IsClassShard);
+            _view.Icon.gameObject.SetActive(viewModel.ClassName == null);
+            _view.Title.gameObject.SetActive(viewModel.ClassName != null);
             _view.Title.text = viewModel.ClassName;
-            _view.Title.color = viewModel.RarityColor;
+            _view.Rarity.gameObject.SetActive(viewModel.RarityColor != default);
+            _view.Rarity.color = viewModel.RarityColor;
         }
     }
 }

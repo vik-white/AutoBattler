@@ -1,40 +1,9 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using vikwhite.Data;
 
 namespace vikwhite
 {
-    public enum RewardType
-    {
-        Res = 0,
-        Shard = 1,
-        ShardGroup = 2,
-        ClassShard = 3,
-        ClassShardGroup = 4,
-    }
-    
-    public enum ShardGroupType
-    {
-        Any = 0,
-        Class = 1,
-        Rarity = 2,
-    }
-    
-    [Serializable]
-    public struct RewardData
-    {
-        public RewardType Type;
-        public ResourceType ResourceType;
-        public ShardGroupType ShardGroupType;
-        public CharacterClassType Class;
-        public RarityType Rarity;
-        public string ID;
-        public int MinValue;
-        public int MaxValue;
-        public float Probability;
-    }
-
     public interface IRewardsData
     {
         string ID { get; }
