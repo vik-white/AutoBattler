@@ -6,6 +6,7 @@ public class DamageFlyText : MonoBehaviour
     private const float Lifetime = 0.8f;
     private const float FlyHeight = 0.8f;
     private const float CritScaleMultiplier = 1.5f;
+    private const float SpreadAngleDegrees = 25f;
     private static readonly Color EnemyDamageColor = new(1f, 0.2f, 0.2f, 1f);
     private static readonly Color SquadDamageColor = new(0.25f, 1f, 0.35f, 1f);
     private static readonly Color CritDamageColor = new(1f, 0.85f, 0.1f, 1f);
@@ -14,6 +15,7 @@ public class DamageFlyText : MonoBehaviour
 
     private Camera _camera;
     private Vector3 _startPosition;
+    private Vector3 _flyDirection;
     private float _elapsed;
     private Vector3 _baseScale;
 
@@ -21,6 +23,7 @@ public class DamageFlyText : MonoBehaviour
     {
         _camera = Camera.main;
         _startPosition = position + new Vector3(0, 0.5f, 0);
+        _flyDirection = ComputeFlyDirection();
         _elapsed = 0;
         _baseScale = transform.localScale;
         if (isCrit) transform.localScale = _baseScale * CritScaleMultiplier;
@@ -51,7 +54,15 @@ public class DamageFlyText : MonoBehaviour
         if (_camera == null) _camera = Camera.main;
         if (_camera == null) return;
 
-        transform.position = _camera.WorldToScreenPoint(_startPosition + Vector3.up * (FlyHeight * progress));
+        transform.position = _camera.WorldToScreenPoint(_startPosition + _flyDirection * (FlyHeight * progress));
+    }
+
+    private Vector3 ComputeFlyDirection()
+    {
+        var up = _camera != null ? _camera.transform.up : Vector3.up;
+        var right = _camera != null ? _camera.transform.right : Vector3.right;
+        var angleRad = Random.Range(-SpreadAngleDegrees, SpreadAngleDegrees) * Mathf.Deg2Rad;
+        return (up * Mathf.Cos(angleRad) + right * Mathf.Sin(angleRad)).normalized;
     }
 
     private void UpdateAlpha(float progress)
