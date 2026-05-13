@@ -23,7 +23,7 @@ namespace vikwhite.ECS
                 StarUp.GetSkillMultiplier(slot),
                 SkillUp.GetSkillMultiplier(slot));
 
-        public float GetEffectMultiplier(in CharacterConfigData config, uint skillID)
+        public float GetSkillMultiplier(in CharacterConfigData config, uint skillID)
         {
             if (skillID == 0) return 1f;
             if (!config.TryFindSlot(skillID, out var slot) || slot == SkillSlotType.Attack) return 1f;

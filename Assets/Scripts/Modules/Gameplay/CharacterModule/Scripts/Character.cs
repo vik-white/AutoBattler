@@ -80,7 +80,7 @@ namespace vikwhite
         }
 
         private float GetStatMultiplier(StatType stat) =>
-            CharacterHandler.GetLevelMultiplier(_level.Value, _upgradeData.GetStatMultiplier(stat)) *
+            CharacterHandler.GetLevelMultiplier(_level.Value - 1, _upgradeData.GetStatMultiplier(stat)) *
             CharacterHandler.GetLevelMultiplier(_stars.Value, _starUpgradeData.GetStatMultiplier(stat));
 
         public int GetMaxLevel()

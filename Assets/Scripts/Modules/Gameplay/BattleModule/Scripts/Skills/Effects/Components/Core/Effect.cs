@@ -4,7 +4,7 @@ namespace vikwhite.ECS
 {
     public struct Effect : IComponentData
     {
-        public BlobAssetReference<SkillConfig> Ability;
+        public BlobAssetReference<SkillConfig> Skill;
         public float Value;
         public bool IsCrit;
     }

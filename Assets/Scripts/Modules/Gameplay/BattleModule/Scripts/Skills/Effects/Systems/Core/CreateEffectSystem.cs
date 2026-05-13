@@ -24,7 +24,7 @@ namespace vikwhite.ECS
                 var effect = ecb.CreateEntity();
                 ecb.AddComponent(effect, new Effect
                 {
-                    Ability = request.ValueRO.Skill,
+                    Skill = request.ValueRO.Skill,
                     Value = value,
                     IsCrit = isCrit
                 });
@@ -45,7 +45,7 @@ namespace vikwhite.ECS
             var config = SystemAPI.GetComponent<Character>(entity).GetConfig();
             var upgrade = SystemAPI.GetComponent<CharacterUpgrade>(entity);
 
-            var effectValue = effect.Value * upgrade.GetEffectMultiplier(config, skillID);
+            var effectValue = effect.Value * upgrade.GetSkillMultiplier(config, skillID);
 
             if (!config.TryGetStat(effect.Stat, out var baseStat)) return effectValue;
             return baseStat * upgrade.GetStatMultiplier(effect.Stat) * effectValue;

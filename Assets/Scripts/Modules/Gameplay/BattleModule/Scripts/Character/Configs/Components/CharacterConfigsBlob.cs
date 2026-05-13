@@ -48,15 +48,6 @@ namespace vikwhite.ECS
         public float GetStat(StatType stat) => TryGetStat(stat, out var value) ? value : 0f;
     }
 
-    public static class CharacterUpgradeExtensions
-    {
-        public static float GetStatMultiplier(int level, int stars, int skillLevel, StatType stat, in UpgradeConfig levelUp, in UpgradeConfig starUp, in UpgradeConfig skillUp) =>
-            CharacterHandler.GetCompositeMultiplier(level, stars, skillLevel, levelUp.GetStatMultiplier(stat), starUp.GetStatMultiplier(stat), skillUp.GetStatMultiplier(stat));
-
-        public static float GetSkillMultiplier(int level, int stars, int skillLevel, SkillSlotType slot, in UpgradeConfig levelUp, in UpgradeConfig starUp, in UpgradeConfig skillUp) =>
-            CharacterHandler.GetCompositeMultiplier(level, stars, skillLevel, levelUp.GetSkillMultiplier(slot), starUp.GetSkillMultiplier(slot), skillUp.GetSkillMultiplier(slot));
-    }
-
     public struct CharacterRenderData : IBufferElementData, IID
     {
         public uint ID { get; set; }

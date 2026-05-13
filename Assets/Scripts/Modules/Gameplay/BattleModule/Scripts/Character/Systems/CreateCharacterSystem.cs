@@ -20,14 +20,15 @@ namespace vikwhite.ECS
             {
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);
                 var config = renderData.Config.Value;
-                var levelUpgradeConfig = upgradeConfigs.Get(config.LevelUpgrade);
-                var starUpgradeConfig = upgradeConfigs.Get(config.StarUpgrade);
-                var skillUpgradeConfig = upgradeConfigs.Get(config.SkillUpgrade);
-                var level = request.ValueRO.Level;
-                var stars = request.ValueRO.Stars;
-                var skillLevel = request.ValueRO.SkillLevel;
-                var healthMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Health, levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
-                var defenseMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Defense, levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
+                var upgrade = new CharacterUpgrade
+                {
+                    LevelRank = request.ValueRO.Level - 1,
+                    StarRank = request.ValueRO.Stars,
+                    SkillRank = request.ValueRO.SkillLevel - 1,
+                    LevelUp = upgradeConfigs.Get(config.LevelUpgrade),
+                    StarUp = upgradeConfigs.Get(config.StarUpgrade),
+                    SkillUp = upgradeConfigs.Get(config.SkillUpgrade),
+                };
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 
@@ -61,21 +62,14 @@ namespace vikwhite.ECS
                 });
                 ecb.SetComponent(characterEntity, new PhysicsCollider { Value = collider });
 
-                ecb.AddComponent(characterEntity, new Defense{ Value = config.Defense * defenseMultiplier });
-                ecb.AddComponent(characterEntity, new Health{ Value = config.Health * healthMultiplier });
-                ecb.AddComponent(characterEntity, new HealthMax{ Value = config.Health * healthMultiplier });
+                var health = config.Health * upgrade.GetStatMultiplier(StatType.Health);
+                ecb.AddComponent(characterEntity, new Defense{ Value = config.Defense * upgrade.GetStatMultiplier(StatType.Defense) });
+                ecb.AddComponent(characterEntity, new Health{ Value = health });
+                ecb.AddComponent(characterEntity, new HealthMax{ Value = health });
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
-                ecb.AddComponent(characterEntity, new CharacterUpgrade
-                {
-                    LevelRank = level - 1,
-                    StarRank = stars,
-                    SkillRank = skillLevel - 1,
-                    LevelUp = levelUpgradeConfig,
-                    StarUp = starUpgradeConfig,
-                    SkillUp = skillUpgradeConfig,
-                });
+                ecb.AddComponent(characterEntity, upgrade);
 
                 var skills = ecb.AddBuffer<Skill>(characterEntity);
                 for (int i = 0; i < config.Skills.Length; i++)
