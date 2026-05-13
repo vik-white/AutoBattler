@@ -12,6 +12,11 @@ namespace vikwhite
 
     public class RewardFactory : IRewardFactory
     {
+        private static readonly CharacterClassType[] AllCharacterClasses =
+            (CharacterClassType[])System.Enum.GetValues(typeof(CharacterClassType));
+        private static readonly RarityType[] AllRarities =
+            (RarityType[])System.Enum.GetValues(typeof(RarityType));
+
         private readonly IConfigs _configs;
 
         public RewardFactory(IConfigs configs)
@@ -124,6 +129,14 @@ namespace vikwhite
                     return new ShardReward { ID = ResolveShardGroup(data.ShardGroupType) };
                 case RewardType.ClassShard:
                     return new ClassShardReward { Class = data.Class, Rarity = data.Rarity };
+                case RewardType.ClassShardGroup:
+                    switch (data.ShardGroupType)
+                    {
+                        case ShardGroupType.Any: return new ClassShardReward { Class = GetRandomCharacterClass(), Rarity = GetRandomRarity() };
+                        case ShardGroupType.Class: return new ClassShardReward { Class = data.Class, Rarity = GetRandomRarity() };
+                        case ShardGroupType.Rarity: return new ClassShardReward { Class = GetRandomCharacterClass(), Rarity = data.Rarity };
+                        default: return null;
+                    }
                 default:
                     return null;
             }
@@ -154,6 +167,16 @@ namespace vikwhite
                 if (Random.Range(0, matches) == 0) picked = character.ID;
             }
             return picked;
+        }
+
+        private CharacterClassType GetRandomCharacterClass()
+        {
+            return AllCharacterClasses[Random.Range(0, AllCharacterClasses.Length)];
+        }
+
+        private RarityType GetRandomRarity()
+        {
+            return AllRarities[Random.Range(0, AllRarities.Length)];
         }
     }
 }

@@ -10,12 +10,15 @@ namespace vikwhite
         Res = 0,
         Shard = 1,
         ShardGroup = 2,
-        ClassShard = 3
+        ClassShard = 3,
+        ClassShardGroup = 4,
     }
     
     public enum ShardGroupType
     {
         Any = 0,
+        Class = 1,
+        Rarity = 2,
     }
     
     [Serializable]
@@ -107,6 +110,13 @@ namespace vikwhite
                     if (!Enum.TryParse<RarityType>(classRarity[1].Trim(), out var rarityType)) return false;
                     data.Class = classType;
                     data.Rarity = rarityType;
+                    break;
+                case RewardType.ClassShardGroup:
+                    var str = idString.Split('-');
+                    if (!Enum.TryParse<ShardGroupType>(str[0], out shardGroupType)) return false;
+                    data.ShardGroupType = shardGroupType;
+                    if(shardGroupType == ShardGroupType.Class) data.Class = Enum.Parse<CharacterClassType>(str[1].Trim());
+                    if(shardGroupType == ShardGroupType.Rarity) data.Rarity = Enum.Parse<RarityType>(str[1].Trim());
                     break;
             }
 
