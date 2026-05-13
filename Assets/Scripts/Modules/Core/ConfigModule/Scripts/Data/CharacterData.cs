@@ -50,8 +50,6 @@ namespace vikwhite.Data
         public Sprite Image;
         public Sprite PortraitImage;
 
-        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
-        // Code should access skills via the dictionary view below.
         public uint SkillAttack;
         public uint SkillActive;
         public uint SkillPassive1;

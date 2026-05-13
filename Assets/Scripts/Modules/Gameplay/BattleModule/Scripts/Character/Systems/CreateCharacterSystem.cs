@@ -15,7 +15,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
-            var upgradeConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
+            var upgradeConfigs = SystemAPI.GetSingleton<UpgradeConfigsBlob>().Value;
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);

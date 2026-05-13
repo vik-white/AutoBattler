@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 namespace vikwhite.ECS
 {
-    public struct LevelUpConfigsBlob : IComponentData
+    public struct UpgradeConfigsBlob : IComponentData
     {
         public BlobAssetReference<BlobArrayContainer<UpgradeConfig>> Value;
     }

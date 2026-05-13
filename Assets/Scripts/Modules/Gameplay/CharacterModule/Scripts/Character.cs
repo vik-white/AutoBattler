@@ -73,17 +73,9 @@ namespace vikwhite
 
         public void RemoveShards(int amount) => _shards.Value -= amount;
 
-        private float GetHealth() => GetStatValue(StatType.Health);
+        private float GetHealth() => _characterData.Health * BuildUpgrade().GetStatMultiplier(StatType.Health);
 
-        private float GetStatValue(StatType stat)
-        {
-            return _characterData.GetStat(stat) * GetStatMultiplier(stat);
-        }
-
-        private float GetStatMultiplier(StatType stat) =>
-            CharacterHandler.GetUpgradeMultiplier(_level.Value - 1, _levelUpgradeData.GetStatMultiplier(stat)) *
-            CharacterHandler.GetUpgradeMultiplier(_stars.Value, _starUpgradeData.GetStatMultiplier(stat)) *
-            CharacterHandler.GetUpgradeMultiplier(_skillLevel.Value - 1, _skillUpgradeData.GetStatMultiplier(stat));
+        private CharacterUpgrade BuildUpgrade() => new(_level.Value - 1, _stars.Value, _skillLevel.Value - 1, _levelUpgradeData, _starUpgradeData, _skillUpgradeData);
 
         public int GetMaxLevel()
         {

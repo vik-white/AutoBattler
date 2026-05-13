@@ -33,7 +33,7 @@ namespace vikwhite.ECS
                 });
             }
 
-            AddComponent(entity, new LevelUpConfigsBlob
+            AddComponent(entity, new UpgradeConfigsBlob
             {
                 Value = CreateConfigsBlob(configs)
             });
