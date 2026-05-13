@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Rukhanka.Toolbox;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 using vikwhite.Data;
 
@@ -37,7 +36,7 @@ namespace vikwhite.ECS
         private CharacterConfigData CreateCharacterConfig(ICharacterData data, GameObject prefab)
         {
             var prefabCollider = prefab.GetComponent<UnityEngine.CapsuleCollider>();
-            
+
             return new CharacterConfigData {
                 ID = data.ID.CalculateHash32(),
                 LevelUpgrade = data.LevelUpgrade.CalculateHash32(),
@@ -53,14 +52,20 @@ namespace vikwhite.ECS
                 HealthBar = data.HealthBar,
                 ColliderRadius = prefabCollider.radius * data.Scale,
                 ColliderHeight = prefabCollider.height * data.Scale,
-                SkillAttack = data.SkillAttack,
-                SkillActive = data.SkillActive,
-                SkillPassive1 = data.SkillPassive1,
-                SkillPassive2 = data.SkillPassive2,
-                SkillMeta1 = data.SkillMeta1,
-                SkillMeta2 = data.SkillMeta2,
-                SkillMeta3 = data.SkillMeta3,
+                Skills = CreateSkillSlots(data.Skills),
             };
+        }
+
+        private static FixedList64Bytes<SkillSlotData> CreateSkillSlots(IReadOnlyDictionary<SkillType, uint> skills)
+        {
+            var list = new FixedList64Bytes<SkillSlotData>();
+            if (skills == null) return list;
+            foreach (var slot in SkillTypeExtensions.CharacterSlots)
+            {
+                if (!skills.TryGetValue(slot, out var id) || id == 0) continue;
+                list.Add(new SkillSlotData { Type = slot, ID = id });
+            }
+            return list;
         }
 
         private BlobAssetReference<CharacterConfigData> CreateConfigBlob(CharacterConfigData config)

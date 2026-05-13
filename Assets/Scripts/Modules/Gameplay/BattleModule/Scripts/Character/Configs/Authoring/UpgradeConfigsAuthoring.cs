@@ -29,12 +29,7 @@ namespace vikwhite.ECS
                     Defense = levelUpData.Defense,
                     CritChance = levelUpData.CritChance,
                     CritValue = levelUpData.CritValue,
-                    SkillActive = levelUpData.SkillActive,
-                    SkillPassive1 = levelUpData.SkillPassive1,
-                    SkillPassive2 = levelUpData.SkillPassive2,
-                    SkillMeta1 = levelUpData.SkillMeta1,
-                    SkillMeta2 = levelUpData.SkillMeta2,
-                    SkillMeta3 = levelUpData.SkillMeta3,
+                    SkillMultipliers = CreateSkillMultipliers(levelUpData.SkillMultipliers),
                 });
             }
 
@@ -42,6 +37,18 @@ namespace vikwhite.ECS
             {
                 Value = CreateConfigsBlob(configs)
             });
+        }
+
+        private static FixedList64Bytes<SkillMultiplierData> CreateSkillMultipliers(IReadOnlyDictionary<SkillType, float> source)
+        {
+            var list = new FixedList64Bytes<SkillMultiplierData>();
+            if (source == null) return list;
+            foreach (var slot in SkillTypeExtensions.UpgradableSlots)
+            {
+                if (!source.TryGetValue(slot, out var value) || value == 0f) continue;
+                list.Add(new SkillMultiplierData { Type = slot, Value = value });
+            }
+            return list;
         }
 
         private BlobAssetReference<BlobArrayContainer<UpgradeConfig>> CreateConfigsBlob(List<UpgradeConfig> configs)

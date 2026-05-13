@@ -129,7 +129,9 @@ namespace vikwhite.Data
                 var subParts = parts[1].Split('-');
                 var valueString = subParts.Length == 1 ? subParts[0] : subParts[1];
                 var dependenceString = subParts.Length == 1 ? "" : subParts[0];
-                Enum.TryParse<StatType>(dependenceString, out var stat);
+                var stat = StatType.None;
+                if (!string.IsNullOrEmpty(dependenceString) && !Enum.TryParse(dependenceString, out stat))
+                    stat = StatType.None;
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
                 

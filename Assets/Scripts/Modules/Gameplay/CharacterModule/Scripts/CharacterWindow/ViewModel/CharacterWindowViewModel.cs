@@ -39,15 +39,14 @@ namespace vikwhite
             
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
-            
+
+            var activeSkillID = config.GetSkill(SkillType.Active);
             foreach (var abilityData in configs.Skills.GetAll())
             {
-                if (abilityData.ID == config.SkillActive)
-                {
-                    AbilityImage = abilityData.IconImage;
-                    AbilityDescription = abilityData.Description;
-                    break;
-                }
+                if (abilityData.ID != activeSkillID) continue;
+                AbilityImage = abilityData.IconImage;
+                AbilityDescription = abilityData.Description;
+                break;
             }
             
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));

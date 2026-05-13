@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace vikwhite.Data
 {
@@ -10,14 +11,10 @@ namespace vikwhite.Data
         float Defense { get; }
         float CritChance { get; }
         float CritValue { get; }
-        float SkillActive { get; }
-        float SkillPassive1 { get; }
-        float SkillPassive2 { get; }
-        float SkillMeta1 { get; }
-        float SkillMeta2 { get; }
-        float SkillMeta3 { get; }
+        IReadOnlyDictionary<SkillType, float> SkillMultipliers { get; }
+        float GetSkillMultiplier(SkillType slot);
     }
-    
+
     [Serializable]
     public class UpgradeData : IUpgradeData
     {
@@ -27,24 +24,38 @@ namespace vikwhite.Data
         public float Defense;
         public float CritChance;
         public float CritValue;
+
+        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
+        // Code should access multipliers via the dictionary view below.
         public float SkillActive;
         public float SkillPassive1;
         public float SkillPassive2;
         public float SkillMeta1;
         public float SkillMeta2;
         public float SkillMeta3;
-        
+
+        private Dictionary<SkillType, float> _skillMultipliers;
+
+        public IReadOnlyDictionary<SkillType, float> SkillMultipliers => _skillMultipliers ??= BuildSkillMultipliers();
+
         string IUpgradeData.ID => ID;
         float IUpgradeData.Attack => Attack;
         float IUpgradeData.Health => Health;
         float IUpgradeData.Defense => Defense;
         float IUpgradeData.CritChance => CritChance;
         float IUpgradeData.CritValue => CritValue;
-        float IUpgradeData.SkillActive => SkillActive;
-        float IUpgradeData.SkillPassive1 => SkillPassive1;
-        float IUpgradeData.SkillPassive2 => SkillPassive2;
-        float IUpgradeData.SkillMeta1 => SkillMeta1;
-        float IUpgradeData.SkillMeta2 => SkillMeta2;
-        float IUpgradeData.SkillMeta3 => SkillMeta3;
+        IReadOnlyDictionary<SkillType, float> IUpgradeData.SkillMultipliers => SkillMultipliers;
+
+        public float GetSkillMultiplier(SkillType slot) => SkillMultipliers.TryGetValue(slot, out var value) ? value : 0f;
+
+        private Dictionary<SkillType, float> BuildSkillMultipliers() => new()
+        {
+            { SkillType.Active, SkillActive },
+            { SkillType.Passive1, SkillPassive1 },
+            { SkillType.Passive2, SkillPassive2 },
+            { SkillType.Meta1, SkillMeta1 },
+            { SkillType.Meta2, SkillMeta2 },
+            { SkillType.Meta3, SkillMeta3 },
+        };
     }
 }

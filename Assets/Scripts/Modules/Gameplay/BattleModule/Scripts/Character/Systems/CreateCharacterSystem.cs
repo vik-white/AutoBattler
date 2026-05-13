@@ -13,7 +13,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            var abilityRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
+            var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
             var upgradeConfigs = SystemAPI.GetSingleton<LevelUpConfigsBlob>().Value;
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
@@ -23,11 +23,11 @@ namespace vikwhite.ECS
                 var levelUpgradeConfig = upgradeConfigs.Get(config.LevelUpgrade);
                 var starUpgradeConfig = upgradeConfigs.Get(config.StarUpgrade);
                 var skillUpgradeConfig = upgradeConfigs.Get(config.SkillUpgrade);
-                var healthMultiplier = 
+                var healthMultiplier =
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Health) *
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Health) *
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Health);
-                var defenseMultiplier = 
+                var defenseMultiplier =
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Defense) *
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Defense) *
                     CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Defense);
@@ -36,7 +36,7 @@ namespace vikwhite.ECS
 
                 ecb.AddComponent(characterEntity, new Character
                 {
-                    Config = renderData.Config, 
+                    Config = renderData.Config,
                     Level = request.ValueRO.Level,
                     Stars = request.ValueRO.Stars,
                     SkillLevel = request.ValueRO.SkillLevel,
@@ -71,15 +71,14 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
 
-                var abilities = ecb.AddBuffer<Skill>(characterEntity);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillAttack, true);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillActive);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillPassive1);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillPassive2);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta1);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta2);
-                CreateAbility(abilityRuntimeData, abilities, config.SkillMeta3);
-                if(config.SkillActive != 0) ecb.AddComponent(characterEntity, new ActiveSkill{ Value = config.SkillActive });
+                var skills = ecb.AddBuffer<Skill>(characterEntity);
+                for (int i = 0; i < config.Skills.Length; i++)
+                {
+                    var slot = config.Skills[i];
+                    CreateSkill(skillRuntimeData, skills, slot.ID, slot.Type == SkillType.Attack);
+                }
+                var activeSkillID = config.GetSkill(SkillType.Active);
+                if (activeSkillID != 0) ecb.AddComponent(characterEntity, new ActiveSkill{ Value = activeSkillID });
 
                 int statCount = Enum.GetValues(typeof(StatType)).Length;
                 var statsBase = ecb.AddBuffer<StatBase>(characterEntity);
@@ -93,20 +92,18 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private void CreateAbility(DynamicBuffer<SkillRuntimeData> abilityRuntimeData, DynamicBuffer<Skill> abilities, uint id, bool ready = false)
+        private void CreateSkill(DynamicBuffer<SkillRuntimeData> runtimeData, DynamicBuffer<Skill> skills, uint id, bool ready)
         {
-            if(id == 0) return;
-            var abilityConfigBlob = abilityRuntimeData.Get(id);
-            var abilityConfig = abilityConfigBlob.Value;
-            if (abilityConfig.Type == SkillType.Abilities)
+            if (id == 0) return;
+            var configBlob = runtimeData.Get(id);
+            var config = configBlob.Value;
+            if (config.Type == SkillType.Abilities)
             {
-                foreach (var abilityChildID in abilityConfig.Skills)
-                {
-                    abilities.Add(new Skill { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
-                }
+                foreach (var childID in config.Skills)
+                    skills.Add(new Skill { Config = runtimeData.Get(childID), IsChild = true });
             }
-            var cooldown = ready ? abilityConfig.Cooldown : abilityConfig.Cooldown * 0.5f;
-            abilities.Add(new Skill { Config = abilityConfigBlob, Cooldown = cooldown });
+            var cooldown = ready ? config.Cooldown : config.Cooldown * 0.5f;
+            skills.Add(new Skill { Config = configBlob, Cooldown = cooldown });
         }
     }
 }

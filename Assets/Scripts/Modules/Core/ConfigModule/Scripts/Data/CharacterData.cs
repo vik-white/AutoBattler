@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Rukhanka.Toolbox;
 using UnityEngine;
 
 namespace vikwhite.Data
@@ -24,13 +23,8 @@ namespace vikwhite.Data
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
-        uint SkillAttack { get; }
-        uint SkillActive { get; }
-        uint SkillPassive1 { get; }
-        uint SkillPassive2 { get; }
-        uint SkillMeta1 { get; }
-        uint SkillMeta2 { get; }
-        uint SkillMeta3 { get; }
+        IReadOnlyDictionary<SkillType, uint> Skills { get; }
+        uint GetSkill(SkillType slot);
     }
 
     [Serializable]
@@ -53,6 +47,9 @@ namespace vikwhite.Data
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
+
+        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
+        // Code should access skills via the dictionary view below.
         public uint SkillAttack;
         public uint SkillActive;
         public uint SkillPassive1;
@@ -60,7 +57,11 @@ namespace vikwhite.Data
         public uint SkillMeta1;
         public uint SkillMeta2;
         public uint SkillMeta3;
-        
+
+        private Dictionary<SkillType, uint> _skills;
+
+        public IReadOnlyDictionary<SkillType, uint> Skills => _skills ??= BuildSkills();
+
         string ICharacterData.ID => ID;
         string ICharacterData.Name => Name;
         string ICharacterData.Prefab => Prefab;
@@ -78,18 +79,26 @@ namespace vikwhite.Data
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
-        uint ICharacterData.SkillAttack => SkillAttack;
-        uint ICharacterData.SkillActive => SkillActive;
-        uint ICharacterData.SkillPassive1 => SkillPassive1;
-        uint ICharacterData.SkillPassive2 => SkillPassive2;
-        uint ICharacterData.SkillMeta1 => SkillMeta1;
-        uint ICharacterData.SkillMeta2 => SkillMeta2;
-        uint ICharacterData.SkillMeta3 => SkillMeta3;
-        
+        IReadOnlyDictionary<SkillType, uint> ICharacterData.Skills => Skills;
+
+        public uint GetSkill(SkillType slot) => Skills.TryGetValue(slot, out var id) ? id : 0;
+
+        private Dictionary<SkillType, uint> BuildSkills() => new()
+        {
+            { SkillType.Attack, SkillAttack },
+            { SkillType.Active, SkillActive },
+            { SkillType.Passive1, SkillPassive1 },
+            { SkillType.Passive2, SkillPassive2 },
+            { SkillType.Meta1, SkillMeta1 },
+            { SkillType.Meta2, SkillMeta2 },
+            { SkillType.Meta3, SkillMeta3 },
+        };
+
         public void Parse(Dictionary<string, string> row)
         {
-            if(row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
-            if(row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");
+            if (row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
+            if (row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");
+            _skills = null;
         }
     }
 }

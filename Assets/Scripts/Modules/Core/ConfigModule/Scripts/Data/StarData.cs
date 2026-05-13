@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace vikwhite
 {
@@ -6,12 +7,8 @@ namespace vikwhite
     {
         int ID { get; }
         int Level { get; }
-        int SkillActive { get; }
-        int SkillPassive1 { get; }
-        int SkillPassive2 { get; }
-        int SkillMeta1 { get; }
-        int SkillMeta2 { get; }
-        int SkillMeta3 { get; }
+        IReadOnlyDictionary<SkillType, int> SkillUnlocks { get; }
+        int GetSkillUnlock(SkillType slot);
     }
 
     [Serializable]
@@ -19,20 +16,34 @@ namespace vikwhite
     {
         public int ID;
         public int Level;
+
+        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
+        // Code should access unlocks via the dictionary view below.
         public int SkillActive;
         public int SkillPassive1;
         public int SkillPassive2;
         public int SkillMeta1;
         public int SkillMeta2;
         public int SkillMeta3;
-        
+
+        private Dictionary<SkillType, int> _skillUnlocks;
+
+        public IReadOnlyDictionary<SkillType, int> SkillUnlocks => _skillUnlocks ??= BuildSkillUnlocks();
+
         int IStarData.ID => ID;
         int IStarData.Level => Level;
-        int IStarData.SkillActive => SkillActive;
-        int IStarData.SkillPassive1 => SkillPassive1;
-        int IStarData.SkillPassive2 => SkillPassive2;
-        int IStarData.SkillMeta1 => SkillMeta1;
-        int IStarData.SkillMeta2 => SkillMeta2;
-        int IStarData.SkillMeta3 => SkillMeta3;
+        IReadOnlyDictionary<SkillType, int> IStarData.SkillUnlocks => SkillUnlocks;
+
+        public int GetSkillUnlock(SkillType slot) => SkillUnlocks.TryGetValue(slot, out var value) ? value : 0;
+
+        private Dictionary<SkillType, int> BuildSkillUnlocks() => new()
+        {
+            { SkillType.Active, SkillActive },
+            { SkillType.Passive1, SkillPassive1 },
+            { SkillType.Passive2, SkillPassive2 },
+            { SkillType.Meta1, SkillMeta1 },
+            { SkillType.Meta2, SkillMeta2 },
+            { SkillType.Meta3, SkillMeta3 },
+        };
     }
 }

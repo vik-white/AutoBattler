@@ -15,8 +15,8 @@ namespace vikwhite.ECS
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
                 var provider = request.ValueRO.Provider;
-                var abilityID = request.ValueRO.Skill.IsCreated ? request.ValueRO.Skill.Value.ID : 0;
-                var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider, abilityID);
+                var skillID = request.ValueRO.Skill.IsCreated ? request.ValueRO.Skill.Value.ID : 0;
+                var value = GetEffectValue(ref state, levelUpConfigs, request.ValueRO.Data, provider, skillID);
                 var isCrit = false;
                 if (type == EffectType.Damage)
                     value = TryApplyCrit(ref characters, ref critCounters, levelUpConfigs, provider, value, out isCrit);
@@ -30,7 +30,7 @@ namespace vikwhite.ECS
                 });
                 ecb.AddComponent(effect, new Target{ Value = request.ValueRO.Target });
                 ecb.AddComponent(effect, new Provider{ Value = request.ValueRO.Provider });
-                
+
                 if (type == EffectType.Damage) ecb.AddComponent<DamageEffect>(effect);
                 if (type == EffectType.Heal) ecb.AddComponent<HealEffect>(effect);
                 if (type == EffectType.Shield) ecb.AddComponent<ShieldEffect>(effect);
@@ -40,7 +40,7 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<UpgradeConfig>> levelUpConfigs, EffectData effect, Entity entity, uint abilityID)
+        public float GetEffectValue(ref SystemState state, BlobAssetReference<BlobArrayContainer<UpgradeConfig>> levelUpConfigs, EffectData effect, Entity entity, uint skillID)
         {
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();
@@ -52,7 +52,7 @@ namespace vikwhite.ECS
             var stars = character.Stars;
             var skillLevel = character.SkillLevel - 1;
 
-            var skillMultiplier = GetSkillMultiplier(config, abilityID, level, stars, skillLevel, levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
+            var skillMultiplier = GetSkillMultiplier(config, skillID, level, stars, skillLevel, levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
             var effectValue = effect.Value * skillMultiplier;
 
             var value = effect.Stat switch
@@ -68,21 +68,19 @@ namespace vikwhite.ECS
             return value;
         }
 
-        private float GetSkillMultiplier(in CharacterConfigData config, uint abilityID, int level, int stars, int skillLevel, in UpgradeConfig upgradeConfig, in UpgradeConfig starsUpgradeConfig, in UpgradeConfig skillUpgradeConfig)
+        private float GetSkillMultiplier(in CharacterConfigData config, uint skillID, int level, int stars, int skillLevel, in UpgradeConfig upgradeConfig, in UpgradeConfig starsUpgradeConfig, in UpgradeConfig skillUpgradeConfig)
         {
-            if (abilityID == 0) return 1f;
-            if (abilityID == config.SkillActive) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillActive, starsUpgradeConfig.SkillActive, skillUpgradeConfig.SkillActive);
-            if (abilityID == config.SkillPassive1) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillPassive1, starsUpgradeConfig.SkillPassive1, skillUpgradeConfig.SkillPassive1);
-            if (abilityID == config.SkillPassive2) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillPassive2, starsUpgradeConfig.SkillPassive2, skillUpgradeConfig.SkillPassive2);
-            if (abilityID == config.SkillMeta1) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta1, starsUpgradeConfig.SkillMeta1, skillUpgradeConfig.SkillMeta1);
-            if (abilityID == config.SkillMeta2) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta2, starsUpgradeConfig.SkillMeta2, skillUpgradeConfig.SkillMeta2);
-            if (abilityID == config.SkillMeta3) return GetLevelUpMultiply(level, stars, skillLevel, upgradeConfig.SkillMeta3, starsUpgradeConfig.SkillMeta3, skillUpgradeConfig.SkillMeta3);
-            return 1f;
+            if (skillID == 0) return 1f;
+            if (!config.TryFindSlot(skillID, out var slot) || slot == SkillType.Attack) return 1f;
+            return GetLevelUpMultiply(level, stars, skillLevel,
+                upgradeConfig.GetSkillMultiplier(slot),
+                starsUpgradeConfig.GetSkillMultiplier(slot),
+                skillUpgradeConfig.GetSkillMultiplier(slot));
         }
 
         private float GetLevelUpMultiply(int levelIndex, int starsIndex, int skillIndex, float levelMultiply, float starsMultiply, float skillMultiply)
         {
-            return 
+            return
                 CharacterHandler.GetLevelMultiplier(levelIndex, levelMultiply) *
                 CharacterHandler.GetLevelMultiplier(starsIndex, starsMultiply) *
                 CharacterHandler.GetLevelMultiplier(skillIndex, skillMultiply);

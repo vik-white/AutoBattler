@@ -26,13 +26,30 @@ namespace vikwhite.ECS
         public uint LevelUpgrade;
         public uint StarUpgrade;
         public uint SkillUpgrade;
-        public uint SkillAttack;
-        public uint SkillActive;
-        public uint SkillPassive1;
-        public uint SkillPassive2;
-        public uint SkillMeta1;
-        public uint SkillMeta2;
-        public uint SkillMeta3;
+        public FixedList64Bytes<SkillSlotData> Skills;
+
+        public uint GetSkill(SkillType slot)
+        {
+            for (int i = 0; i < Skills.Length; i++)
+            {
+                if (Skills[i].Type == slot) return Skills[i].ID;
+            }
+            return 0;
+        }
+
+        public bool TryFindSlot(uint skillID, out SkillType slot)
+        {
+            for (int i = 0; i < Skills.Length; i++)
+            {
+                if (Skills[i].ID == skillID)
+                {
+                    slot = Skills[i].Type;
+                    return true;
+                }
+            }
+            slot = SkillType.None;
+            return false;
+        }
     }
 
     public struct CharacterRenderData : IBufferElementData, IID

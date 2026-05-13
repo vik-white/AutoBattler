@@ -1,3 +1,4 @@
+using Unity.Collections;
 using vikwhite.Data;
 
 namespace vikwhite.ECS
@@ -8,13 +9,17 @@ namespace vikwhite.ECS
         public float Health;
         public float Attack;
         public float Defense;
-        public float CritChance;    
-        public float CritValue;    
-        public float SkillActive;    
-        public float SkillPassive1;    
-        public float SkillPassive2;    
-        public float SkillMeta1;    
-        public float SkillMeta2;    
-        public float SkillMeta3;    
+        public float CritChance;
+        public float CritValue;
+        public FixedList64Bytes<SkillMultiplierData> SkillMultipliers;
+
+        public float GetSkillMultiplier(SkillType slot)
+        {
+            for (int i = 0; i < SkillMultipliers.Length; i++)
+            {
+                if (SkillMultipliers[i].Type == slot) return SkillMultipliers[i].Value;
+            }
+            return 0f;
+        }
     }
 }

@@ -87,12 +87,14 @@ namespace vikwhite
             return 0;
         }
         
-        public int GetMaxSkillActive()
+        public int GetMaxSkillActive() => GetMaxSkillUnlock(SkillType.Active);
+
+        public int GetMaxSkillUnlock(SkillType slot)
         {
             var locks = _configs.Stars.GetAll();
             for (int i = 0; i < locks.Count; i++)
             {
-                if (locks[i].ID > _stars.Value) return locks[i-1].SkillActive;
+                if (locks[i].ID > _stars.Value) return locks[i - 1].GetSkillUnlock(slot);
             }
             return 0;
         }
