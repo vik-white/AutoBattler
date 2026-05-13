@@ -31,6 +31,30 @@ namespace vikwhite.ECS
         public uint GetSkill(SkillSlotType slotType) => Skills.Get(slotType);
 
         public bool TryFindSlot(uint skillID, out SkillSlotType slotType) => Skills.TryFindSlot(skillID, out slotType);
+
+        public bool TryGetStat(StatType stat, out float value)
+        {
+            switch (stat)
+            {
+                case StatType.Attack:     value = Attack;     return true;
+                case StatType.Defense:    value = Defense;    return true;
+                case StatType.Health:     value = Health;     return true;
+                case StatType.CritChance: value = CritChance; return true;
+                case StatType.CritValue:  value = CritValue;  return true;
+                default:                  value = 0f;         return false;
+            }
+        }
+
+        public float GetStat(StatType stat) => TryGetStat(stat, out var value) ? value : 0f;
+    }
+
+    public static class CharacterUpgradeExtensions
+    {
+        public static float GetStatMultiplier(int level, int stars, int skillLevel, StatType stat, in UpgradeConfig levelUp, in UpgradeConfig starUp, in UpgradeConfig skillUp) =>
+            CharacterHandler.GetCompositeMultiplier(level, stars, skillLevel, levelUp.GetStatMultiplier(stat), starUp.GetStatMultiplier(stat), skillUp.GetStatMultiplier(stat));
+
+        public static float GetSkillMultiplier(int level, int stars, int skillLevel, SkillSlotType slot, in UpgradeConfig levelUp, in UpgradeConfig starUp, in UpgradeConfig skillUp) =>
+            CharacterHandler.GetCompositeMultiplier(level, stars, skillLevel, levelUp.GetSkillMultiplier(slot), starUp.GetSkillMultiplier(slot), skillUp.GetSkillMultiplier(slot));
     }
 
     public struct CharacterRenderData : IBufferElementData, IID

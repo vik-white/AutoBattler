@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using vikwhite.ECS;
 
 namespace vikwhite.Data
 {
@@ -25,6 +26,7 @@ namespace vikwhite.Data
         Sprite PortraitImage { get; }
         IReadOnlyDictionary<SkillSlotType, uint> Skills { get; }
         uint GetSkill(SkillSlotType slotType);
+        float GetStat(StatType stat);
     }
 
     [Serializable]
@@ -82,6 +84,16 @@ namespace vikwhite.Data
         IReadOnlyDictionary<SkillSlotType, uint> ICharacterData.Skills => Skills;
 
         public uint GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : 0;
+
+        public float GetStat(StatType stat) => stat switch
+        {
+            StatType.Attack => Attack,
+            StatType.Defense => Defense,
+            StatType.Health => Health,
+            StatType.CritChance => CritChance,
+            StatType.CritValue => CritValue,
+            _ => 0f,
+        };
 
         private Dictionary<SkillSlotType, uint> BuildSkills() => new()
         {

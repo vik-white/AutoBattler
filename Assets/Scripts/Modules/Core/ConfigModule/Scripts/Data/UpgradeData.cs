@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using vikwhite.ECS;
 
 namespace vikwhite.Data
 {
@@ -13,6 +14,7 @@ namespace vikwhite.Data
         float CritValue { get; }
         IReadOnlyDictionary<SkillSlotType, float> SkillMultipliers { get; }
         float GetSkillMultiplier(SkillSlotType slotType);
+        float GetStatMultiplier(StatType stat);
     }
 
     [Serializable]
@@ -47,6 +49,16 @@ namespace vikwhite.Data
         IReadOnlyDictionary<SkillSlotType, float> IUpgradeData.SkillMultipliers => SkillMultipliers;
 
         public float GetSkillMultiplier(SkillSlotType slotType) => SkillMultipliers.TryGetValue(slotType, out var value) ? value : 0f;
+
+        public float GetStatMultiplier(StatType stat) => stat switch
+        {
+            StatType.Attack => Attack,
+            StatType.Defense => Defense,
+            StatType.Health => Health,
+            StatType.CritChance => CritChance,
+            StatType.CritValue => CritValue,
+            _ => 0f,
+        };
 
         private Dictionary<SkillSlotType, float> BuildSkillMultipliers() => new()
         {

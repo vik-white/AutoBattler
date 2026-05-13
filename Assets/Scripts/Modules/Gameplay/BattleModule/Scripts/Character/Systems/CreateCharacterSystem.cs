@@ -23,14 +23,13 @@ namespace vikwhite.ECS
                 var levelUpgradeConfig = upgradeConfigs.Get(config.LevelUpgrade);
                 var starUpgradeConfig = upgradeConfigs.Get(config.StarUpgrade);
                 var skillUpgradeConfig = upgradeConfigs.Get(config.SkillUpgrade);
-                var healthMultiplier =
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Health) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Health) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Health);
-                var defenseMultiplier =
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Level, levelUpgradeConfig.Defense) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.Stars, starUpgradeConfig.Defense) *
-                    CharacterHandler.GetLevelMultiplier(request.ValueRO.SkillLevel, skillUpgradeConfig.Defense);
+                var level = request.ValueRO.Level;
+                var stars = request.ValueRO.Stars;
+                var skillLevel = request.ValueRO.SkillLevel;
+                var healthMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Health,
+                    levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
+                var defenseMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Defense,
+                    levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 

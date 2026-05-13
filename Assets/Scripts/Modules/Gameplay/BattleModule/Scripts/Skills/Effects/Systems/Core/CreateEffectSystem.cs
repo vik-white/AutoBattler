@@ -55,35 +55,18 @@ namespace vikwhite.ECS
             var skillMultiplier = GetSkillMultiplier(config, skillID, level, stars, skillLevel, levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
             var effectValue = effect.Value * skillMultiplier;
 
-            var value = effect.Stat switch
-            {
-                StatType.Attack => (config.Attack * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Attack, starsLevelUpConfig.Attack, skillLevelUpConfig.Attack)) * effectValue,
-                StatType.Defense => (config.Defense * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Defense, starsLevelUpConfig.Defense, skillLevelUpConfig.Defense)) * effectValue,
-                StatType.Health => (config.Health * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.Health, starsLevelUpConfig.Health, skillLevelUpConfig.Health)) * effectValue,
-                StatType.CritChance => (config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritChance, starsLevelUpConfig.CritChance, skillLevelUpConfig.CritChance)) * effectValue,
-                StatType.CritValue => (config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpConfig.CritValue, starsLevelUpConfig.CritValue, skillLevelUpConfig.CritValue)) * effectValue,
-                _ => effectValue,
-            };
+            if (!config.TryGetStat(effect.Stat, out var baseStat)) return effectValue;
 
-            return value;
+            var statMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, effect.Stat,
+                levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
+            return baseStat * statMultiplier * effectValue;
         }
 
-        private float GetSkillMultiplier(in CharacterConfigData config, uint skillID, int level, int stars, int skillLevel, in UpgradeConfig upgradeConfig, in UpgradeConfig starsUpgradeConfig, in UpgradeConfig skillUpgradeConfig)
+        private float GetSkillMultiplier(in CharacterConfigData config, uint skillID, int level, int stars, int skillLevel, in UpgradeConfig levelUp, in UpgradeConfig starUp, in UpgradeConfig skillUp)
         {
             if (skillID == 0) return 1f;
             if (!config.TryFindSlot(skillID, out var slot) || slot == SkillSlotType.Attack) return 1f;
-            return GetLevelUpMultiply(level, stars, skillLevel,
-                upgradeConfig.GetSkillMultiplier(slot),
-                starsUpgradeConfig.GetSkillMultiplier(slot),
-                skillUpgradeConfig.GetSkillMultiplier(slot));
-        }
-
-        private float GetLevelUpMultiply(int levelIndex, int starsIndex, int skillIndex, float levelMultiply, float starsMultiply, float skillMultiply)
-        {
-            return
-                CharacterHandler.GetLevelMultiplier(levelIndex, levelMultiply) *
-                CharacterHandler.GetLevelMultiplier(starsIndex, starsMultiply) *
-                CharacterHandler.GetLevelMultiplier(skillIndex, skillMultiply);
+            return CharacterUpgradeExtensions.GetSkillMultiplier(level, stars, skillLevel, slot, levelUp, starUp, skillUp);
         }
 
         private float TryApplyCrit(ref ComponentLookup<Character> characters, ref ComponentLookup<CritCounter> critCounters, BlobAssetReference<BlobArrayContainer<UpgradeConfig>> levelUpConfigs, Entity provider, float value, out bool isCrit)
@@ -92,14 +75,15 @@ namespace vikwhite.ECS
 
             var character = characters[provider];
             var config = character.GetConfig();
-            var levelUpgradeConfig = levelUpConfigs.Get(config.LevelUpgrade);
-            var starUpgradeConfig = levelUpConfigs.Get(config.StarUpgrade);
-            var skillUpgradeConfig = levelUpConfigs.Get(config.SkillUpgrade);
+            var levelUpConfig = levelUpConfigs.Get(config.LevelUpgrade);
+            var starsLevelUpConfig = levelUpConfigs.Get(config.StarUpgrade);
+            var skillLevelUpConfig = levelUpConfigs.Get(config.SkillUpgrade);
             var level = character.Level - 1;
             var stars = character.Stars;
             var skillLevel = character.SkillLevel - 1;
 
-            var chance = config.CritChance * GetLevelUpMultiply(level, stars, skillLevel, levelUpgradeConfig.CritChance, starUpgradeConfig.CritChance, skillUpgradeConfig.CritChance);
+            var chance = config.CritChance * CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.CritChance,
+                levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
             if (chance <= 0f) return value;
 
             var counter = critCounters.HasComponent(provider) ? critCounters[provider].Value : 0;
@@ -111,7 +95,8 @@ namespace vikwhite.ECS
 
             if (isCrit)
             {
-                var critValue = config.CritValue * GetLevelUpMultiply(level, stars, skillLevel, levelUpgradeConfig.CritValue, starUpgradeConfig.CritValue, skillUpgradeConfig.CritValue);
+                var critValue = config.CritValue * CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.CritValue,
+                    levelUpConfig, starsLevelUpConfig, skillLevelUpConfig);
                 var multiplier = critValue > 0f ? critValue : 1f;
                 value *= multiplier;
             }

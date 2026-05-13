@@ -1,5 +1,6 @@
 using UniRx;
 using vikwhite.Data;
+using vikwhite.ECS;
 
 namespace vikwhite
 {
@@ -70,12 +71,17 @@ namespace vikwhite
 
         public void RemoveShards(int amount) => _shards.Value -= amount;
 
-        private float GetHealth()
+        private float GetHealth() => GetStatValue(StatType.Health);
+
+        private float GetStatValue(StatType stat)
         {
-            var multiply = CharacterHandler.GetLevelMultiplier(_level.Value, _upgradeData.Health);
-            multiply *= CharacterHandler.GetLevelMultiplier(_stars.Value, _starUpgradeData.Health);
-            return _configs.Characters.Get(_id).Health * multiply;
+            var characterData = _configs.Characters.Get(_id);
+            return characterData.GetStat(stat) * GetStatMultiplier(stat);
         }
+
+        private float GetStatMultiplier(StatType stat) =>
+            CharacterHandler.GetLevelMultiplier(_level.Value, _upgradeData.GetStatMultiplier(stat)) *
+            CharacterHandler.GetLevelMultiplier(_stars.Value, _starUpgradeData.GetStatMultiplier(stat));
 
         public int GetMaxLevel()
         {

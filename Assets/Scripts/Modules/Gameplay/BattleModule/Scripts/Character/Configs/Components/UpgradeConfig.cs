@@ -14,5 +14,15 @@ namespace vikwhite.ECS
         public FixedList64Bytes<SkillSlotData<float>> SkillMultipliers;
 
         public float GetSkillMultiplier(SkillSlotType slotType) => SkillMultipliers.Get(slotType);
+
+        public float GetStatMultiplier(StatType stat) => stat switch
+        {
+            StatType.Attack => Attack,
+            StatType.Defense => Defense,
+            StatType.Health => Health,
+            StatType.CritChance => CritChance,
+            StatType.CritValue => CritValue,
+            _ => 0f,
+        };
     }
 }
