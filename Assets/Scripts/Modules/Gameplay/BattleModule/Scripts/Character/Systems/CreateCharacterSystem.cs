@@ -92,7 +92,7 @@ namespace vikwhite.ECS
             if (slot.Value == 0) return;
             var configBlob = runtimeData.Get(slot.Value);
             var config = configBlob.Value;
-            if (config.Type == SkillType.Abilities)
+            if (config.Type == SkillType.Skills)
             {
                 foreach (var childID in config.Skills)
                     skills.Add(new Skill { Config = runtimeData.Get(childID), IsChild = true });
