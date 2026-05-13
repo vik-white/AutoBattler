@@ -26,6 +26,7 @@ namespace vikwhite.Data
         IConfig<IStarData> Stars { get; }
         
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
+        IReadOnlyDictionary<RarityType, Color> RarityColors { get; }
     }
     
     [Serializable]
@@ -50,6 +51,9 @@ namespace vikwhite.Data
         
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
+
+        [TableList][SerializeField] List<RarityColorData> rarityColors;
+        private Dictionary<RarityType, Color> rarityColorsDictionary;
         
         public ISettingData Settings => settings.Get();
         public IConfig<ICharacterData> Characters => characters;
@@ -74,6 +78,20 @@ namespace vikwhite.Data
                         resourceIconsDictionary.Add(resource.Type, resource.Icon);
                 }
                 return resourceIconsDictionary;
+            }
+        }
+
+        public IReadOnlyDictionary<RarityType, Color> RarityColors
+        {
+            get
+            {
+                if (rarityColorsDictionary == null)
+                {
+                    rarityColorsDictionary = new Dictionary<RarityType, Color>();
+                    foreach (var rarity in rarityColors)
+                        rarityColorsDictionary.Add(rarity.Type, rarity.Color);
+                }
+                return rarityColorsDictionary;
             }
         }
 

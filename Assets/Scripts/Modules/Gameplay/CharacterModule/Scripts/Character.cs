@@ -20,6 +20,7 @@ namespace vikwhite
         private ReactiveProperty<int> _skillLevel;
 
         public string ID => _id;
+        public ICharacterData Config => _characterData;
         public IReadOnlyReactiveProperty<float> Health => _health;
         public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<int> Shards => _shards;

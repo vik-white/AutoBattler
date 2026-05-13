@@ -1,5 +1,7 @@
 using UniRx;
+using UnityEngine;
 using UnityEngine.Events;
+using vikwhite.Data;
 
 namespace vikwhite
 {
@@ -7,13 +9,15 @@ namespace vikwhite
     {
         public UnityAction OnSelect;
         public string ID { get; }
+        public Color RarityColor { get; }
         public IReadOnlyReactiveProperty<int> Level;
         
-        public CardViewModel(Character model, ICharacterWindow characterWindow) : base(model)
+        public CardViewModel(Character model, ICharacterWindow characterWindow, IConfigs configs) : base(model)
         {
             ID = model.ID;
             Level = model.Level;
             OnSelect = () => characterWindow.ShowWindow(model);
+            RarityColor = configs.RarityColors[model.Config.Rarity];
         }
         
         public override void Dispose()
