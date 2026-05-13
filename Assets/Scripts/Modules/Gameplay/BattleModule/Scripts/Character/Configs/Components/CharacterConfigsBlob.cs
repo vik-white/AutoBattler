@@ -28,26 +28,26 @@ namespace vikwhite.ECS
         public uint SkillUpgrade;
         public FixedList64Bytes<SkillSlotData> Skills;
 
-        public uint GetSkill(SkillType slot)
+        public uint GetSkill(SkillSlotType slotType)
         {
             for (int i = 0; i < Skills.Length; i++)
             {
-                if (Skills[i].Type == slot) return Skills[i].ID;
+                if (Skills[i].SlotType == slotType) return Skills[i].ID;
             }
             return 0;
         }
 
-        public bool TryFindSlot(uint skillID, out SkillType slot)
+        public bool TryFindSlot(uint skillID, out SkillSlotType slotType)
         {
             for (int i = 0; i < Skills.Length; i++)
             {
                 if (Skills[i].ID == skillID)
                 {
-                    slot = Skills[i].Type;
+                    slotType = Skills[i].SlotType;
                     return true;
                 }
             }
-            slot = SkillType.None;
+            slotType = SkillSlotType.None;
             return false;
         }
     }

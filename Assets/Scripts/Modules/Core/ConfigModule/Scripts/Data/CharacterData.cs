@@ -23,8 +23,8 @@ namespace vikwhite.Data
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
-        IReadOnlyDictionary<SkillType, uint> Skills { get; }
-        uint GetSkill(SkillType slot);
+        IReadOnlyDictionary<SkillSlotType, uint> Skills { get; }
+        uint GetSkill(SkillSlotType slotType);
     }
 
     [Serializable]
@@ -58,9 +58,9 @@ namespace vikwhite.Data
         public uint SkillMeta2;
         public uint SkillMeta3;
 
-        private Dictionary<SkillType, uint> _skills;
+        private Dictionary<SkillSlotType, uint> _skills;
 
-        public IReadOnlyDictionary<SkillType, uint> Skills => _skills ??= BuildSkills();
+        public IReadOnlyDictionary<SkillSlotType, uint> Skills => _skills ??= BuildSkills();
 
         string ICharacterData.ID => ID;
         string ICharacterData.Name => Name;
@@ -79,19 +79,19 @@ namespace vikwhite.Data
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
-        IReadOnlyDictionary<SkillType, uint> ICharacterData.Skills => Skills;
+        IReadOnlyDictionary<SkillSlotType, uint> ICharacterData.Skills => Skills;
 
-        public uint GetSkill(SkillType slot) => Skills.TryGetValue(slot, out var id) ? id : 0;
+        public uint GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : 0;
 
-        private Dictionary<SkillType, uint> BuildSkills() => new()
+        private Dictionary<SkillSlotType, uint> BuildSkills() => new()
         {
-            { SkillType.Attack, SkillAttack },
-            { SkillType.Active, SkillActive },
-            { SkillType.Passive1, SkillPassive1 },
-            { SkillType.Passive2, SkillPassive2 },
-            { SkillType.Meta1, SkillMeta1 },
-            { SkillType.Meta2, SkillMeta2 },
-            { SkillType.Meta3, SkillMeta3 },
+            { SkillSlotType.Attack, SkillAttack },
+            { SkillSlotType.Active, SkillActive },
+            { SkillSlotType.Passive1, SkillPassive1 },
+            { SkillSlotType.Passive2, SkillPassive2 },
+            { SkillSlotType.Meta1, SkillMeta1 },
+            { SkillSlotType.Meta2, SkillMeta2 },
+            { SkillSlotType.Meta3, SkillMeta3 },
         };
 
         public void Parse(Dictionary<string, string> row)

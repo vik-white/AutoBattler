@@ -71,7 +71,7 @@ namespace vikwhite.ECS
         private float GetSkillMultiplier(in CharacterConfigData config, uint skillID, int level, int stars, int skillLevel, in UpgradeConfig upgradeConfig, in UpgradeConfig starsUpgradeConfig, in UpgradeConfig skillUpgradeConfig)
         {
             if (skillID == 0) return 1f;
-            if (!config.TryFindSlot(skillID, out var slot) || slot == SkillType.Attack) return 1f;
+            if (!config.TryFindSlot(skillID, out var slot) || slot == SkillSlotType.Attack) return 1f;
             return GetLevelUpMultiply(level, stars, skillLevel,
                 upgradeConfig.GetSkillMultiplier(slot),
                 starsUpgradeConfig.GetSkillMultiplier(slot),

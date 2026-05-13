@@ -11,8 +11,8 @@ namespace vikwhite.Data
         float Defense { get; }
         float CritChance { get; }
         float CritValue { get; }
-        IReadOnlyDictionary<SkillType, float> SkillMultipliers { get; }
-        float GetSkillMultiplier(SkillType slot);
+        IReadOnlyDictionary<SkillSlotType, float> SkillMultipliers { get; }
+        float GetSkillMultiplier(SkillSlotType slotType);
     }
 
     [Serializable]
@@ -34,9 +34,9 @@ namespace vikwhite.Data
         public float SkillMeta2;
         public float SkillMeta3;
 
-        private Dictionary<SkillType, float> _skillMultipliers;
+        private Dictionary<SkillSlotType, float> _skillMultipliers;
 
-        public IReadOnlyDictionary<SkillType, float> SkillMultipliers => _skillMultipliers ??= BuildSkillMultipliers();
+        public IReadOnlyDictionary<SkillSlotType, float> SkillMultipliers => _skillMultipliers ??= BuildSkillMultipliers();
 
         string IUpgradeData.ID => ID;
         float IUpgradeData.Attack => Attack;
@@ -44,18 +44,18 @@ namespace vikwhite.Data
         float IUpgradeData.Defense => Defense;
         float IUpgradeData.CritChance => CritChance;
         float IUpgradeData.CritValue => CritValue;
-        IReadOnlyDictionary<SkillType, float> IUpgradeData.SkillMultipliers => SkillMultipliers;
+        IReadOnlyDictionary<SkillSlotType, float> IUpgradeData.SkillMultipliers => SkillMultipliers;
 
-        public float GetSkillMultiplier(SkillType slot) => SkillMultipliers.TryGetValue(slot, out var value) ? value : 0f;
+        public float GetSkillMultiplier(SkillSlotType slotType) => SkillMultipliers.TryGetValue(slotType, out var value) ? value : 0f;
 
-        private Dictionary<SkillType, float> BuildSkillMultipliers() => new()
+        private Dictionary<SkillSlotType, float> BuildSkillMultipliers() => new()
         {
-            { SkillType.Active, SkillActive },
-            { SkillType.Passive1, SkillPassive1 },
-            { SkillType.Passive2, SkillPassive2 },
-            { SkillType.Meta1, SkillMeta1 },
-            { SkillType.Meta2, SkillMeta2 },
-            { SkillType.Meta3, SkillMeta3 },
+            { SkillSlotType.Active, SkillActive },
+            { SkillSlotType.Passive1, SkillPassive1 },
+            { SkillSlotType.Passive2, SkillPassive2 },
+            { SkillSlotType.Meta1, SkillMeta1 },
+            { SkillSlotType.Meta2, SkillMeta2 },
+            { SkillSlotType.Meta3, SkillMeta3 },
         };
     }
 }

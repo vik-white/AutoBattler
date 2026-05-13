@@ -40,7 +40,7 @@ namespace vikwhite
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
 
-            var activeSkillID = config.GetSkill(SkillType.Active);
+            var activeSkillID = config.GetSkill(SkillSlotType.Active);
             foreach (var abilityData in configs.Skills.GetAll())
             {
                 if (abilityData.ID != activeSkillID) continue;

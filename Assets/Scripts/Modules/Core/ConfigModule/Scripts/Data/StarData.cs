@@ -7,8 +7,8 @@ namespace vikwhite
     {
         int ID { get; }
         int Level { get; }
-        IReadOnlyDictionary<SkillType, int> SkillUnlocks { get; }
-        int GetSkillUnlock(SkillType slot);
+        IReadOnlyDictionary<SkillSlotType, int> SkillUnlocks { get; }
+        int GetSkillUnlock(SkillSlotType slotType);
     }
 
     [Serializable]
@@ -26,24 +26,24 @@ namespace vikwhite
         public int SkillMeta2;
         public int SkillMeta3;
 
-        private Dictionary<SkillType, int> _skillUnlocks;
+        private Dictionary<SkillSlotType, int> _skillUnlocks;
 
-        public IReadOnlyDictionary<SkillType, int> SkillUnlocks => _skillUnlocks ??= BuildSkillUnlocks();
+        public IReadOnlyDictionary<SkillSlotType, int> SkillUnlocks => _skillUnlocks ??= BuildSkillUnlocks();
 
         int IStarData.ID => ID;
         int IStarData.Level => Level;
-        IReadOnlyDictionary<SkillType, int> IStarData.SkillUnlocks => SkillUnlocks;
+        IReadOnlyDictionary<SkillSlotType, int> IStarData.SkillUnlocks => SkillUnlocks;
 
-        public int GetSkillUnlock(SkillType slot) => SkillUnlocks.TryGetValue(slot, out var value) ? value : 0;
+        public int GetSkillUnlock(SkillSlotType slotType) => SkillUnlocks.TryGetValue(slotType, out var value) ? value : 0;
 
-        private Dictionary<SkillType, int> BuildSkillUnlocks() => new()
+        private Dictionary<SkillSlotType, int> BuildSkillUnlocks() => new()
         {
-            { SkillType.Active, SkillActive },
-            { SkillType.Passive1, SkillPassive1 },
-            { SkillType.Passive2, SkillPassive2 },
-            { SkillType.Meta1, SkillMeta1 },
-            { SkillType.Meta2, SkillMeta2 },
-            { SkillType.Meta3, SkillMeta3 },
+            { SkillSlotType.Active, SkillActive },
+            { SkillSlotType.Passive1, SkillPassive1 },
+            { SkillSlotType.Passive2, SkillPassive2 },
+            { SkillSlotType.Meta1, SkillMeta1 },
+            { SkillSlotType.Meta2, SkillMeta2 },
+            { SkillSlotType.Meta3, SkillMeta3 },
         };
     }
 }
