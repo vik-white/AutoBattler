@@ -10,8 +10,9 @@ namespace vikwhite
         private readonly IEventDispatcher _dispatcher;
         
         private ICharacterData _characterData;
-        private IUpgradeData _upgradeData;
+        private IUpgradeData _levelUpgradeData;
         private IUpgradeData _starUpgradeData;
+        private IUpgradeData _skillUpgradeData;
         
         private string _id;
         private ReactiveProperty<float> _health;
@@ -37,8 +38,9 @@ namespace vikwhite
         {
             _id = id;
             _characterData = _configs.Characters.Get(id);
-            _upgradeData = _configs.Upgrades.Get(_characterData.LevelUpgrade);
+            _levelUpgradeData = _configs.Upgrades.Get(_characterData.LevelUpgrade);
             _starUpgradeData = _configs.Upgrades.Get(_characterData.StarUpgrade);
+            _skillUpgradeData = _configs.Upgrades.Get(_characterData.SkillUpgrade);
             _level = new ReactiveProperty<int>(level);
             _shards = new ReactiveProperty<int>(shards);
             _stars = new ReactiveProperty<int>(stars);
@@ -75,13 +77,13 @@ namespace vikwhite
 
         private float GetStatValue(StatType stat)
         {
-            var characterData = _configs.Characters.Get(_id);
-            return characterData.GetStat(stat) * GetStatMultiplier(stat);
+            return _characterData.GetStat(stat) * GetStatMultiplier(stat);
         }
 
         private float GetStatMultiplier(StatType stat) =>
-            CharacterHandler.GetLevelMultiplier(_level.Value - 1, _upgradeData.GetStatMultiplier(stat)) *
-            CharacterHandler.GetLevelMultiplier(_stars.Value, _starUpgradeData.GetStatMultiplier(stat));
+            CharacterHandler.GetUpgradeMultiplier(_level.Value - 1, _levelUpgradeData.GetStatMultiplier(stat)) *
+            CharacterHandler.GetUpgradeMultiplier(_stars.Value, _starUpgradeData.GetStatMultiplier(stat)) *
+            CharacterHandler.GetUpgradeMultiplier(_skillLevel.Value - 1, _skillUpgradeData.GetStatMultiplier(stat));
 
         public int GetMaxLevel()
         {

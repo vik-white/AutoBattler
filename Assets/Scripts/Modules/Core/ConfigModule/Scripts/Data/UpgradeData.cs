@@ -27,8 +27,6 @@ namespace vikwhite.Data
         public float CritChance;
         public float CritValue;
 
-        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
-        // Code should access multipliers via the dictionary view below.
         public float SkillActive;
         public float SkillPassive1;
         public float SkillPassive2;
