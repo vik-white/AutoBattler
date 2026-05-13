@@ -1,0 +1,33 @@
+using Unity.Entities;
+
+namespace vikwhite.ECS
+{
+    public struct CharacterUpgrade : IComponentData
+    {
+        public int LevelRank;
+        public int StarRank;
+        public int SkillRank;
+        public UpgradeConfig LevelUp;
+        public UpgradeConfig StarUp;
+        public UpgradeConfig SkillUp;
+
+        public float GetStatMultiplier(StatType stat) =>
+            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
+                LevelUp.GetStatMultiplier(stat),
+                StarUp.GetStatMultiplier(stat),
+                SkillUp.GetStatMultiplier(stat));
+
+        public float GetSkillMultiplier(SkillSlotType slot) =>
+            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
+                LevelUp.GetSkillMultiplier(slot),
+                StarUp.GetSkillMultiplier(slot),
+                SkillUp.GetSkillMultiplier(slot));
+
+        public float GetEffectMultiplier(in CharacterConfigData config, uint skillID)
+        {
+            if (skillID == 0) return 1f;
+            if (!config.TryFindSlot(skillID, out var slot) || slot == SkillSlotType.Attack) return 1f;
+            return GetSkillMultiplier(slot);
+        }
+    }
+}

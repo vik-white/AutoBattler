@@ -26,10 +26,8 @@ namespace vikwhite.ECS
                 var level = request.ValueRO.Level;
                 var stars = request.ValueRO.Stars;
                 var skillLevel = request.ValueRO.SkillLevel;
-                var healthMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Health,
-                    levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
-                var defenseMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Defense,
-                    levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
+                var healthMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Health, levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
+                var defenseMultiplier = CharacterUpgradeExtensions.GetStatMultiplier(level, stars, skillLevel, StatType.Defense, levelUpgradeConfig, starUpgradeConfig, skillUpgradeConfig);
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);
 
@@ -69,6 +67,15 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new ShieldMax{ Value = config.Shield });
                 ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
+                ecb.AddComponent(characterEntity, new CharacterUpgrade
+                {
+                    LevelRank = level - 1,
+                    StarRank = stars,
+                    SkillRank = skillLevel - 1,
+                    LevelUp = levelUpgradeConfig,
+                    StarUp = starUpgradeConfig,
+                    SkillUp = skillUpgradeConfig,
+                });
 
                 var skills = ecb.AddBuffer<Skill>(characterEntity);
                 for (int i = 0; i < config.Skills.Length; i++)
