@@ -46,7 +46,7 @@ namespace vikwhite.ECS
 
                     if (skill.IsChild || !hasTarget) continue;
 
-                    skill.Cooldown += dt * (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown);
+                    skill.Cooldown += dt / (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown);
                     if (skill.Cooldown <= skillConfig.Cooldown) continue;
 
                     bool isActiveAbility = skillConfig.ID == activeSkill;

@@ -22,7 +22,7 @@ namespace vikwhite.ECS
             StatType.Health => Health,
             StatType.CritChance => CritChance,
             StatType.CritValue => CritValue,
-            _ => 0f,
+            _ => 0,
         };
     }
 }
