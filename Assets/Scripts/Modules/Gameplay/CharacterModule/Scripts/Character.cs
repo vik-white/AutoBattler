@@ -79,7 +79,7 @@ namespace vikwhite
 
         public int GetMaxLevel()
         {
-            var locks = _configs.StarLockLevel.GetAll();
+            var locks = _configs.Stars.GetAll();
             for (int i = 0; i < locks.Count; i++)
             {
                 if (locks[i].ID > _stars.Value) return locks[i-1].Level;
@@ -89,7 +89,7 @@ namespace vikwhite
         
         public int GetMaxSkillActive()
         {
-            var locks = _configs.StarLockSkill.GetAll();
+            var locks = _configs.Stars.GetAll();
             for (int i = 0; i < locks.Count; i++)
             {
                 if (locks[i].ID > _stars.Value) return locks[i-1].SkillActive;
