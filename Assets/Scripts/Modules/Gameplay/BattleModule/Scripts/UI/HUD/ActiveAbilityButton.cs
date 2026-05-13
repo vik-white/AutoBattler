@@ -45,7 +45,7 @@ namespace vikwhite.ECS
                     break;
                 }
             }
-            _abilityID = _entityManager.GetComponentData<ActiveAbility>(_character).Value;
+            _abilityID = _entityManager.GetComponentData<ActiveSkill>(_character).Value;
             Button.onClick.AddListener(OnActivateAbility);
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
             Icon.sprite = _characterData.PortraitImage;
@@ -63,12 +63,12 @@ namespace vikwhite.ECS
         private void OnActivateAbility()
         {
             if(IsAvailable())
-                _entityManager.AddComponent<UseAbility>(_character);
+                _entityManager.AddComponent<UseSkill>(_character);
         }
 
         private bool IsAvailable()
         {
-            foreach (var ability in _entityManager.GetBuffer<Ability>(_character))
+            foreach (var ability in _entityManager.GetBuffer<Skill>(_character))
             {
                 var config = ability.GetConfig();
                 if (config.ID == _abilityID)
@@ -86,7 +86,7 @@ namespace vikwhite.ECS
         
         private float GetCooldownProgress()
         {
-            foreach (var ability in _entityManager.GetBuffer<Ability>(_character))
+            foreach (var ability in _entityManager.GetBuffer<Skill>(_character))
             {
                 var config = ability.GetConfig();
                 if (config.ID == _abilityID)

@@ -14,11 +14,11 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>())
             {
-                CreateVFX(ref state, ecb, request.ValueRO.Ability, request.ValueRO.Target, request.ValueRO.Provider);
+                CreateVFX(ref state, ecb, request.ValueRO.Skill, request.ValueRO.Target, request.ValueRO.Provider);
             }
             foreach (var request in SystemAPI.Query<RefRO<CreateStatChange>>())
             {
-                CreateVFX(ref state, ecb, request.ValueRO.Ability, request.ValueRO.Target, request.ValueRO.Provider);
+                CreateVFX(ref state, ecb, request.ValueRO.Skill, request.ValueRO.Target, request.ValueRO.Provider);
             }
             ecb.Playback(state.EntityManager);
         }
@@ -26,7 +26,7 @@ namespace vikwhite.ECS
         private void CreateVFX(
             ref SystemState state,
             EntityCommandBuffer ecb,
-            BlobAssetReference<AbilityConfig> ability,
+            BlobAssetReference<SkillConfig> ability,
             Entity targetEntity,
             Entity providerEntity
             )

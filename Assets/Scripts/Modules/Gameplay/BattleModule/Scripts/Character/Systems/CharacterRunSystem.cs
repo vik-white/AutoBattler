@@ -11,7 +11,7 @@ namespace vikwhite.ECS
     public partial struct CharacterRunSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
-            foreach (var (transform, moveDistance, character, abilities, entity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<MoveDistance>, RefRO<Character>, DynamicBuffer<Ability>>().WithEntityAccess())
+            foreach (var (transform, moveDistance, character, abilities, entity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<MoveDistance>, RefRO<Character>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
                 var isNearTarget = true;
                 var characterConfig = character.ValueRO.GetConfig();

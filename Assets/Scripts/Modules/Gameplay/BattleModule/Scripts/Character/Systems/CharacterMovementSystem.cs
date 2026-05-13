@@ -34,7 +34,7 @@ namespace vikwhite.ECS
             var characters = SystemAPI.GetComponentLookup<Character>(true);
 
             foreach (var (transform, externalVelocity, target, abilities, character, moveDistance, avoidance, entity) in SystemAPI
-                         .Query<RefRW<LocalTransform>, RefRO<ExternalVelocity>, RefRO<Target>, DynamicBuffer<Ability>, RefRO<Character>, RefRO<MoveDistance>, RefRW<PathAvoidanceState>>()
+                         .Query<RefRW<LocalTransform>, RefRO<ExternalVelocity>, RefRO<Target>, DynamicBuffer<Skill>, RefRO<Character>, RefRO<MoveDistance>, RefRW<PathAvoidanceState>>()
                          .WithNone<Dead>()
                          .WithEntityAccess())
             {

@@ -1,0 +1,46 @@
+using Unity.Collections;
+using Unity.Entities;
+using UnityEngine;
+using vikwhite.Data;
+
+namespace vikwhite.ECS
+{
+    public struct SkillConfig
+    {
+        public uint ID;
+        public SkillType Type;
+        public float Cooldown;
+        public float Radius;
+        public float AOE;
+        public FixedList64Bytes<TargetType> Targets;
+        public FixedList64Bytes<EffectData> Effects;
+        public FixedList128Bytes<StatusData> Statuses;
+        public FixedList128Bytes<StatData> Stats;
+        public ProjectileData Projectile;
+        public FixedList64Bytes<SpawnCharacterData> SpawnCharacters;
+        public float SpawnRadius;
+        public float AuraLifetime;
+        public float AuraRadius;
+        public float AuraInterval;
+        public FixedList64Bytes<uint> Abilities;
+        public float ImpulseUp;
+        public float ImpulseProvider;
+        public uint CastVFXPrefab;
+        public uint VFXPrefab;
+        public uint ProjectilePrefab;
+        public VFXSpawnType VFXSpawn;
+        public AnimationType Animation;
+        
+        public uint GetRandomSpawnCharacter()
+        {
+            float r = Random.value;
+            float cumulative = 0f;
+            foreach (var character in SpawnCharacters)
+            {
+                cumulative += character.Probability;
+                if (r <= cumulative) return character.ID;
+            }
+            return 0;
+        }
+    }
+}
