@@ -16,12 +16,12 @@ namespace vikwhite.ECS
             foreach (var (skills, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Skill>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
             {
                 bool hasTarget = SystemAPI.HasComponent<Target>(entity);
-                bool useActiveSkill = SystemAPI.HasComponent<UseSkill>(entity);
-                var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
-                float skillActiveCooldown = statBuffer[(int)StatType.SkillActiveCooldown].Value;
-                float skillAttackCooldown = statBuffer[(int)StatType.SkillAttackCooldown].Value;
+                bool useActiveSkillRequested = SystemAPI.HasComponent<UseSkill>(entity);
+                var statMultipliers = SystemAPI.GetBuffer<StatMultiply>(entity);
+                float skillActiveCooldown = statMultipliers[(int)StatType.SkillActiveCooldown].Value;
+                float skillAttackCooldown = statMultipliers[(int)StatType.SkillAttackCooldown].Value;
                 var characterConfig = character.ValueRO.GetConfig();
-                uint activeSkill = characterConfig.GetSkill(SkillSlotType.Active);
+                uint activeSkillId = characterConfig.GetSkill(SkillSlotType.Active);
                 Entity target = hasTarget ? SystemAPI.GetComponent<Target>(entity).Value : Entity.Null;
                 bool targetIsValid = hasTarget
                     && target != Entity.Null
@@ -42,23 +42,23 @@ namespace vikwhite.ECS
                 {
                     ref var skill = ref skills.ElementAt(i);
                     var skillConfig = skill.GetConfig();
-                    skill.IsActivate = false;
+                    skill.IsActivated = false;
 
                     if (skill.IsChild || !hasTarget) continue;
 
-                    skill.Cooldown += dt * (1f / (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown));
+                    skill.Cooldown += dt * (1f / (activeSkillId == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown));
                     if (skill.Cooldown <= skillConfig.Cooldown) continue;
 
-                    bool isActiveAbility = skillConfig.ID == activeSkill;
-                    if (isActiveAbility)
+                    bool isActiveSkill = skillConfig.ID == activeSkillId;
+                    if (isActiveSkill)
                     {
-                        if (!useActiveSkill) continue;
+                        if (!useActiveSkillRequested) continue;
                         ecb.RemoveComponent<UseSkill>(entity);
                     }
                     else if (!CanUseOnTarget(transform.ValueRO, targetTransform, skillConfig, characterConfig, targetConfig)) continue;
 
                     skill.Cooldown = 0;
-                    TriggerAbility(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, 1f / skillAttackCooldown, ref skill);
+                    TriggerSkill(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, 1f / skillAttackCooldown, ref skill);
                 }
             }
             ecb.Playback(state.EntityManager);
@@ -73,28 +73,28 @@ namespace vikwhite.ECS
             return distance <= maxDistance;
         }
 
-        private static void TriggerAbility(ref SystemState state, EntityCommandBuffer ecb, DynamicBuffer<Skill> abilities, Entity entity, float3 position, in SkillConfig skillConfig, float speedMultiply, ref Skill skill)
+        private static void TriggerSkill(ref SystemState state, EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, in SkillConfig skillConfig, float speedMultiplier, ref Skill skill)
         {
             if (skillConfig.Type != SkillType.Skills)
             {
-                skill.IsAnimation = true;
-                PlayAbility(ref state, ecb, entity, position, skillConfig, speedMultiply);
+                skill.IsAnimating = true;
+                PlaySkill(ref state, ecb, entity, position, skillConfig, speedMultiplier);
                 return;
             }
 
-            for (int i = 0; i < abilities.Length; i++)
+            for (int i = 0; i < skills.Length; i++)
             {
-                ref var childAbility = ref abilities.ElementAt(i);
-                if (!childAbility.IsChild) continue;
+                ref var childSkill = ref skills.ElementAt(i);
+                if (!childSkill.IsChild) continue;
 
-                var childConfig = childAbility.GetConfig();
-                childAbility.IsActivate = false;
-                childAbility.IsAnimation = true;
-                PlayAbility(ref state, ecb, entity, position, childConfig, speedMultiply);
+                var childConfig = childSkill.GetConfig();
+                childSkill.IsActivated = false;
+                childSkill.IsAnimating = true;
+                PlaySkill(ref state, ecb, entity, position, childConfig, speedMultiplier);
             }
         }
 
-        private static void PlayAbility(ref SystemState state, EntityCommandBuffer ecb, Entity entity, float3 position, in SkillConfig skillConfig, float speedMultiply)
+        private static void PlaySkill(ref SystemState state, EntityCommandBuffer ecb, Entity entity, float3 position, in SkillConfig skillConfig, float speedMultiplier)
         {
             if (skillConfig.Animation == AnimationType.Attack || skillConfig.Animation == AnimationType.Ability)
             {
@@ -102,7 +102,7 @@ namespace vikwhite.ECS
                     ecb.AddComponent<MovementLock>(entity);
             }
 
-            ecb.CreateFrameEntity(new Animation { Character = entity, Type = skillConfig.Animation, Speed = speedMultiply });
+            ecb.CreateFrameEntity(new Animation { Character = entity, Type = skillConfig.Animation, Speed = speedMultiplier });
             if (skillConfig.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = skillConfig.CastVFXPrefab, Position = position });
         }
     }

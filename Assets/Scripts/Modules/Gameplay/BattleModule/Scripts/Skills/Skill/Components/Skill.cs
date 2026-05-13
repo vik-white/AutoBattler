@@ -7,12 +7,12 @@ namespace vikwhite
     {
         public BlobAssetReference<SkillConfig> Config;
         public float Cooldown;
-        public bool IsActivate;
-        public bool IsAnimation;
+        public bool IsActivated;
+        public bool IsAnimating;
         public bool IsChild;
     }
 
-    public static class AbilityExtensions
+    public static class SkillExtensions
     {
         public static SkillConfig GetConfig(this in Skill skill)
         {
@@ -22,7 +22,7 @@ namespace vikwhite
         public static bool TryGetActivatedConfig(this in Skill skill, SkillType type, out SkillConfig config)
         {
             config = skill.Config.Value;
-            return skill.IsActivate && config.Type == type;
+            return skill.IsActivated && config.Type == type;
         }
     }
 }

@@ -12,20 +12,20 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (events, abilities, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
+            foreach (var (events, skills, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
                 foreach (var evnt in events)
                 {
                     if (evnt.nameHash == "Attack".CalculateHash32())
                     {
-                        for (int i = 0; i < abilities.Length; i++)
+                        for (int i = 0; i < skills.Length; i++)
                         {
-                            ref var ability = ref abilities.ElementAt(i);
-                            ability.IsActivate = false;
-                            if (ability.IsAnimation)
+                            ref var skill = ref skills.ElementAt(i);
+                            skill.IsActivated = false;
+                            if (skill.IsAnimating)
                             {
-                                ability.IsActivate = true;
-                                ability.IsAnimation = false;
+                                skill.IsActivated = true;
+                                skill.IsAnimating = false;
                             }
                         }
                     }
