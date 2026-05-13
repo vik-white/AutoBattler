@@ -8,7 +8,7 @@ namespace vikwhite.ECS
     public struct AbilityConfig
     {
         public uint ID;
-        public AbilityType Type;
+        public SkillType Type;
         public float Cooldown;
         public float Radius;
         public float AOE;

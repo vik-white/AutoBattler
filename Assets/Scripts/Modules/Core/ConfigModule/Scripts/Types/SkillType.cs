@@ -1,6 +1,6 @@
 namespace vikwhite
 {
-    public enum AbilityType
+    public enum SkillType
     {
         None = -1,
         RangeAttack = 0,

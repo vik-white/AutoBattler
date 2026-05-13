@@ -53,7 +53,7 @@ namespace vikwhite.ECS
                 HealthBar = data.HealthBar,
                 ColliderRadius = prefabCollider.radius * data.Scale,
                 ColliderHeight = prefabCollider.height * data.Scale,
-                Ability = data.Ability,
+                SkillAttack = data.SkillAttack,
                 SkillActive = data.SkillActive,
                 SkillPassive1 = data.SkillPassive1,
                 SkillPassive2 = data.SkillPassive2,

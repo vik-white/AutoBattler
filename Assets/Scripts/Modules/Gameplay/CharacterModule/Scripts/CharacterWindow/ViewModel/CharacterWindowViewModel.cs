@@ -40,9 +40,9 @@ namespace vikwhite
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
             
-            foreach (var abilityData in configs.Abilities.GetAll())
+            foreach (var abilityData in configs.Skills.GetAll())
             {
-                if (abilityData.AbilityID == config.SkillActive)
+                if (abilityData.ID == config.SkillActive)
                 {
                     AbilityImage = abilityData.IconImage;
                     AbilityDescription = abilityData.Description;

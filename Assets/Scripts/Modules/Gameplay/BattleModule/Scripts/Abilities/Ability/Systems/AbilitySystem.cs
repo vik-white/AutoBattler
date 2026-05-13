@@ -75,7 +75,7 @@ namespace vikwhite.ECS
 
         private static void TriggerAbility(ref SystemState state, EntityCommandBuffer ecb, DynamicBuffer<Ability> abilities, Entity entity, float3 position, in AbilityConfig abilityConfig, float speedMultiply, ref Ability ability)
         {
-            if (abilityConfig.Type != AbilityType.Abilities)
+            if (abilityConfig.Type != SkillType.Abilities)
             {
                 ability.IsAnimation = true;
                 PlayAbility(ref state, ecb, entity, position, abilityConfig, speedMultiply);

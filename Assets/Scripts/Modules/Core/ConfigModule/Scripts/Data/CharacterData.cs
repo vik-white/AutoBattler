@@ -24,7 +24,7 @@ namespace vikwhite.Data
         bool Squad { get; }
         Sprite Image { get; }
         Sprite PortraitImage { get; }
-        uint Ability { get; }
+        uint SkillAttack { get; }
         uint SkillActive { get; }
         uint SkillPassive1 { get; }
         uint SkillPassive2 { get; }
@@ -53,7 +53,7 @@ namespace vikwhite.Data
         public bool Squad;
         public Sprite Image;
         public Sprite PortraitImage;
-        public uint Ability;
+        public uint SkillAttack;
         public uint SkillActive;
         public uint SkillPassive1;
         public uint SkillPassive2;
@@ -78,7 +78,7 @@ namespace vikwhite.Data
         bool ICharacterData.Squad => Squad;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.PortraitImage => PortraitImage;
-        uint ICharacterData.Ability => Ability;
+        uint ICharacterData.SkillAttack => SkillAttack;
         uint ICharacterData.SkillActive => SkillActive;
         uint ICharacterData.SkillPassive1 => SkillPassive1;
         uint ICharacterData.SkillPassive2 => SkillPassive2;

@@ -18,7 +18,7 @@ namespace vikwhite.Data
         IConfig<IMapData> Map { get; }
         IConfig<ILocationStaticData> LocationStatic { get; }
         IConfig<ILocationFlowData> LocationFlow { get; }
-        IConfig<IAbilityData> Abilities { get; }
+        IConfig<ISkillData> Skills { get; }
         IConfig<IHexPositionsData> HexPositions { get; }
         IConfig<ILevelUpData> LevelUp { get; }
         IConfig<IRewardsData> Rewards { get; }
@@ -41,7 +41,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<MapData, IMapData> map;
         [SerializeField] private Config<LocationStaticData, ILocationStaticData> locationStatic;
         [SerializeField] private Config<LocationFlowData, ILocationFlowData> locationFlow;
-        [SerializeField] private Config<AbilityData, IAbilityData> abilities;
+        [SerializeField] private Config<SkillData, ISkillData> skills;
         [SerializeField] private Config<HexPositionsData, IHexPositionsData> hexPositions;
         [SerializeField] private Config<LevelUpData, ILevelUpData> levelUp;
         [SerializeField] private Config<RewardsData, IRewardsData> rewards;
@@ -56,7 +56,7 @@ namespace vikwhite.Data
         public IConfig<IMapData> Map => map;
         public IConfig<ILocationStaticData> LocationStatic => locationStatic; 
         public IConfig<ILocationFlowData> LocationFlow => locationFlow;
-        public IConfig<IAbilityData> Abilities => abilities;
+        public IConfig<ISkillData> Skills => skills;
         public IConfig<IHexPositionsData> HexPositions => hexPositions;
         public IConfig<ILevelUpData> LevelUp => levelUp;
         public IConfig<IRewardsData> Rewards => rewards;

@@ -72,7 +72,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, new CritCounter{ Value = 0 });
 
                 var abilities = ecb.AddBuffer<Ability>(characterEntity);
-                CreateAbility(abilityRuntimeData, abilities, config.Ability, false);
+                CreateAbility(abilityRuntimeData, abilities, config.SkillAttack, true);
                 CreateAbility(abilityRuntimeData, abilities, config.SkillActive);
                 CreateAbility(abilityRuntimeData, abilities, config.SkillPassive1);
                 CreateAbility(abilityRuntimeData, abilities, config.SkillPassive2);
@@ -93,19 +93,19 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private void CreateAbility(DynamicBuffer<AbilityRuntimeData> abilityRuntimeData, DynamicBuffer<Ability> abilities, uint id, bool skill = true)
+        private void CreateAbility(DynamicBuffer<AbilityRuntimeData> abilityRuntimeData, DynamicBuffer<Ability> abilities, uint id, bool ready = false)
         {
             if(id == 0) return;
             var abilityConfigBlob = abilityRuntimeData.Get(id);
             var abilityConfig = abilityConfigBlob.Value;
-            if (abilityConfig.Type == AbilityType.Abilities)
+            if (abilityConfig.Type == SkillType.Abilities)
             {
                 foreach (var abilityChildID in abilityConfig.Abilities)
                 {
                     abilities.Add(new Ability { Config = abilityRuntimeData.Get(abilityChildID), IsChild = true });
                 }
             }
-            var cooldown = skill ? abilityConfig.Cooldown * 0.5f : abilityConfig.Cooldown;
+            var cooldown = ready ? abilityConfig.Cooldown : abilityConfig.Cooldown * 0.5f;
             abilities.Add(new Ability { Config = abilityConfigBlob, Cooldown = cooldown });
         }
     }

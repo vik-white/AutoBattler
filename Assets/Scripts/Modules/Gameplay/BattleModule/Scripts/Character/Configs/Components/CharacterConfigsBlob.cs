@@ -26,7 +26,7 @@ namespace vikwhite.ECS
         public bool HealthBar;
         public float ColliderRadius;
         public float ColliderHeight;
-        public uint Ability;
+        public uint SkillAttack;
         public uint SkillActive;
         public uint SkillPassive1;
         public uint SkillPassive2;

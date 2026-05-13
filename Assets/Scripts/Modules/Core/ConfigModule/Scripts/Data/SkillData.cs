@@ -7,10 +7,10 @@ using vikwhite.ECS;
 
 namespace vikwhite.Data
 {
-    public interface IAbilityData
+    public interface ISkillData
     {
-        uint AbilityID { get; }
-        AbilityType Type { get; }
+        uint ID { get; }
+        SkillType Type { get; }
         string Icon { get; }
         float Cooldown { get; }
         float Radius { get; }
@@ -43,10 +43,10 @@ namespace vikwhite.Data
     }
     
     [Serializable]
-    public class AbilityData : IAbilityData, ICustomJsonParser
+    public class SkillData : ISkillData, ICustomJsonParser
     {
-        public uint AbilityID;
-        public AbilityType Type;
+        public uint ID;
+        public SkillType Type;
         public string Icon;
         public float Cooldown;
         public float Radius;
@@ -77,37 +77,37 @@ namespace vikwhite.Data
         public Sprite IconImage;
         public string Description;
         
-        uint IAbilityData.AbilityID => AbilityID;
-        AbilityType IAbilityData.Type => Type;
-        string IAbilityData.Icon => Icon;
-        float IAbilityData.Cooldown => Cooldown;
-        float IAbilityData.Radius => Radius;
-        float IAbilityData.AOE => AOE;
-        List<TargetType> IAbilityData.Targets => Targets;
-        List<StatData> IAbilityData.Stats => Stats;
-        List<EffectData> IAbilityData.Effects => Effects;
-        List<StatusData> IAbilityData.Statuses => Statuses;
-        int IAbilityData.Count => Count;
-        float IAbilityData.Speed => Speed;
-        int IAbilityData.Pierce => Pierce;
-        float IAbilityData.Scale => Scale;
-        float IAbilityData.OrbitRadius => OrbitRadius;
-        float IAbilityData.Lifetime => Lifetime;
-        List<SpawnCharacterData> IAbilityData.SpawnCharacters => SpawnCharacters;
-        float IAbilityData.SpawnRadius => SpawnRadius;
-        float IAbilityData.AuraLifetime => AuraLifetime;
-        float IAbilityData.AuraRadius => AuraRadius;
-        float IAbilityData.AuraInterval => AuraInterval;
-        List<uint> IAbilityData.Abilities => Abilities;
-        float IAbilityData.ImpulseUp => ImpulseUp;
-        float IAbilityData.ImpulseProvider => ImpulseProvider;
-        uint IAbilityData.CastVFXPrefab => CastVFXPrefab;
-        uint IAbilityData.VFXPrefab => VFXPrefab;
-        uint IAbilityData.ProjectilePrefab => ProjectilePrefab;
-        VFXSpawnType IAbilityData.VFXSpawn => VFXSpawn;
-        AnimationType IAbilityData.Animation => Animation;
-        Sprite IAbilityData.IconImage => IconImage;
-        string IAbilityData.Description => Description;
+        uint ISkillData.ID => ID;
+        SkillType ISkillData.Type => Type;
+        string ISkillData.Icon => Icon;
+        float ISkillData.Cooldown => Cooldown;
+        float ISkillData.Radius => Radius;
+        float ISkillData.AOE => AOE;
+        List<TargetType> ISkillData.Targets => Targets;
+        List<StatData> ISkillData.Stats => Stats;
+        List<EffectData> ISkillData.Effects => Effects;
+        List<StatusData> ISkillData.Statuses => Statuses;
+        int ISkillData.Count => Count;
+        float ISkillData.Speed => Speed;
+        int ISkillData.Pierce => Pierce;
+        float ISkillData.Scale => Scale;
+        float ISkillData.OrbitRadius => OrbitRadius;
+        float ISkillData.Lifetime => Lifetime;
+        List<SpawnCharacterData> ISkillData.SpawnCharacters => SpawnCharacters;
+        float ISkillData.SpawnRadius => SpawnRadius;
+        float ISkillData.AuraLifetime => AuraLifetime;
+        float ISkillData.AuraRadius => AuraRadius;
+        float ISkillData.AuraInterval => AuraInterval;
+        List<uint> ISkillData.Abilities => Abilities;
+        float ISkillData.ImpulseUp => ImpulseUp;
+        float ISkillData.ImpulseProvider => ImpulseProvider;
+        uint ISkillData.CastVFXPrefab => CastVFXPrefab;
+        uint ISkillData.VFXPrefab => VFXPrefab;
+        uint ISkillData.ProjectilePrefab => ProjectilePrefab;
+        VFXSpawnType ISkillData.VFXSpawn => VFXSpawn;
+        AnimationType ISkillData.Animation => Animation;
+        Sprite ISkillData.IconImage => IconImage;
+        string ISkillData.Description => Description;
         
         public void Parse(Dictionary<string, string> row)
         {

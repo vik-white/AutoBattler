@@ -13,7 +13,7 @@ namespace vikwhite.ECS
             var characters = SystemAPI.GetComponentLookup<Character>(true);
             foreach (var (abilities, transform, target, entity) in SystemAPI.Query<DynamicBuffer<Ability>, RefRO<LocalTransform>, RefRO<Target>>().WithAll<Character>().WithEntityAccess()) {
                 foreach (var ability in abilities) {
-                    if (!ability.TryGetActivatedConfig(AbilityType.RangeAttack, out var config)) continue;
+                    if (!ability.TryGetActivatedConfig(SkillType.RangeAttack, out var config)) continue;
 
                     var forward = math.mul(transform.ValueRO.Rotation, new float3(0, 0, 0.3f));
                     var spawnPosition = transform.ValueRO.Position + forward;

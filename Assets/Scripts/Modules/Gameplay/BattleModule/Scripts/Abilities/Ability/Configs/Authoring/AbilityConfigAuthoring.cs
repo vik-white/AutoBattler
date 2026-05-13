@@ -18,11 +18,11 @@ namespace vikwhite.ECS
             var entity = GetEntity(TransformUsageFlags.None);
             var runtimeData = AddBuffer<AbilityRuntimeData>(entity);
 
-            foreach (var abilityData in authoring.Configs.Abilities.GetAll())
+            foreach (var abilityData in authoring.Configs.Skills.GetAll())
             {
                 var config = new AbilityConfig
                 {
-                    ID = abilityData.AbilityID,
+                    ID = abilityData.ID,
                     Type = abilityData.Type,
                     Targets = CreateTargets(abilityData.Targets),
                     Cooldown = abilityData.Cooldown,
