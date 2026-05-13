@@ -11,6 +11,7 @@ namespace vikwhite.Data
         string Name { get; }
         string Prefab { get; }
         RarityType Rarity { get; }
+        CharacterClassType Class { get; }
         float Scale { get; }
         float Health { get; }
         float Shield { get; }
@@ -37,6 +38,7 @@ namespace vikwhite.Data
         public string Name;
         public string Prefab;
         public RarityType Rarity;
+        public CharacterClassType Class;
         public float Scale;
         public float Health;
         public float Shield;
@@ -68,6 +70,7 @@ namespace vikwhite.Data
         string ICharacterData.Name => Name;
         string ICharacterData.Prefab => Prefab;
         RarityType ICharacterData.Rarity => Rarity;
+        CharacterClassType ICharacterData.Class => Class;
         float ICharacterData.Scale => Scale;
         float ICharacterData.Health => Health;
         float ICharacterData.Shield => Shield;
