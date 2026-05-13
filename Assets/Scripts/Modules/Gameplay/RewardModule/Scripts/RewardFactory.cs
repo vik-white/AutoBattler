@@ -122,6 +122,8 @@ namespace vikwhite
                     return new ShardReward { ID = data.ID };
                 case RewardType.ShardGroup:
                     return new ShardReward { ID = ResolveShardGroup(data.ShardGroupType) };
+                case RewardType.ClassShard:
+                    return new ClassShardReward { Class = data.Class, Rarity = data.Rarity };
                 default:
                     return null;
             }

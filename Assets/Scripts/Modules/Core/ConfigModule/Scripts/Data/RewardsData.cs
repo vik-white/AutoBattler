@@ -9,7 +9,8 @@ namespace vikwhite
     {
         Res = 0,
         Shard = 1,
-        ShardGroup = 2
+        ShardGroup = 2,
+        ClassShard = 3
     }
     
     public enum ShardGroupType
@@ -23,6 +24,8 @@ namespace vikwhite
         public RewardType Type;
         public ResourceType ResourceType;
         public ShardGroupType ShardGroupType;
+        public CharacterClassType Class;
+        public RarityType Rarity;
         public string ID;
         public int MinValue;
         public int MaxValue;
@@ -96,6 +99,14 @@ namespace vikwhite
                 case RewardType.ShardGroup:
                     if (!Enum.TryParse<ShardGroupType>(idString, out var shardGroupType)) return false;
                     data.ShardGroupType = shardGroupType;
+                    break;
+                case RewardType.ClassShard:
+                    var classRarity = idString.Split('-');
+                    if (classRarity.Length != 2) return false;
+                    if (!Enum.TryParse<CharacterClassType>(classRarity[0].Trim(), out var classType)) return false;
+                    if (!Enum.TryParse<RarityType>(classRarity[1].Trim(), out var rarityType)) return false;
+                    data.Class = classType;
+                    data.Rarity = rarityType;
                     break;
             }
 

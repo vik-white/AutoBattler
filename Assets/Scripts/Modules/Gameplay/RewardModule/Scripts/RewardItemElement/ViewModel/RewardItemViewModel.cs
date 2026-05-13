@@ -8,12 +8,20 @@ namespace vikwhite
         private readonly IConfigs _configs;
         public int Value;
         public Sprite Icon;
+        public bool IsClassShard;
+        public Color RarityColor;
+        public string ClassName;
 
         public RewardItemViewModel(Reward model, IConfigs configs) : base(model)
         {
             _configs = configs;
             Value = model.Value;
             Icon = GetIcon(model);
+            if (model is ClassShardReward) {
+                IsClassShard = true;
+                RarityColor = configs.RarityColors[(model as ClassShardReward).Rarity];
+                ClassName = (model as ClassShardReward).Class.ToString();
+            }
         }
 
         private Sprite GetIcon(Reward reward)
