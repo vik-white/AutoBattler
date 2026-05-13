@@ -18,7 +18,7 @@ namespace vikwhite.ECS
                     if (change.ValueRO.Target == entity)
                     {
                         var id = (int)change.ValueRO.Type;
-                        stats[id] = new StatMultiply{ Value = stats[id].Value + change.ValueRO.Value };
+                        stats[id] = new StatMultiply{ Value = stats[id].Value * change.ValueRO.Value };
                     }
                 }
             }
