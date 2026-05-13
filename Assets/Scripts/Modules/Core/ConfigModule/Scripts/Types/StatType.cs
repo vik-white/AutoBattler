@@ -2,9 +2,13 @@ namespace vikwhite.ECS
 {
     public enum StatType
     {
-        None = -1,
-        DamageMultiply = 0,
-        CooldownMultiply = 1,
-        ActiveAbilityCooldownMultiply = 2,
+        None = -1, 
+        Attack = 0,
+        Defense = 1,
+        Health = 2,
+        CritChance = 3,
+        CritValue = 4,
+        SkillAttackCooldown = 5,
+        SkillActiveCooldown = 6,
     }
 }

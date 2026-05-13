@@ -19,8 +19,8 @@ namespace vikwhite.ECS
                 uint activeSkill = SystemAPI.HasComponent<ActiveSkill>(entity) ? SystemAPI.GetComponent<ActiveSkill>(entity).Value : 0;
                 bool useActiveSkill = SystemAPI.HasComponent<UseSkill>(entity);
                 var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
-                float activeCooldownMultiply = statBuffer[(int)StatType.ActiveAbilityCooldownMultiply].Value;
-                float cooldownMultiply = statBuffer[(int)StatType.CooldownMultiply].Value;
+                float skillActiveCooldown = statBuffer[(int)StatType.SkillActiveCooldown].Value;
+                float skillAttackCooldown = statBuffer[(int)StatType.SkillAttackCooldown].Value;
                 var characterConfig = character.ValueRO.GetConfig();
                 Entity target = hasTarget ? SystemAPI.GetComponent<Target>(entity).Value : Entity.Null;
                 bool targetIsValid = hasTarget
@@ -46,7 +46,7 @@ namespace vikwhite.ECS
 
                     if (skill.IsChild || !hasTarget) continue;
 
-                    skill.Cooldown += dt * (activeSkill == skillConfig.ID ? activeCooldownMultiply : cooldownMultiply);
+                    skill.Cooldown += dt * (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown);
                     if (skill.Cooldown <= skillConfig.Cooldown) continue;
 
                     bool isActiveAbility = skillConfig.ID == activeSkill;
@@ -58,7 +58,7 @@ namespace vikwhite.ECS
                     else if (!CanUseOnTarget(transform.ValueRO, targetTransform, skillConfig, characterConfig, targetConfig)) continue;
 
                     skill.Cooldown = 0;
-                    TriggerAbility(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, cooldownMultiply, ref skill);
+                    TriggerAbility(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, skillAttackCooldown, ref skill);
                 }
             }
             ecb.Playback(state.EntityManager);
