@@ -84,6 +84,6 @@ namespace vikwhite
 
         public int GetMaxLevel() => _configs.Stars.Get(_stars.Value - 1).Level;
 
-        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(_stars.Value - 1).GetSkillUnlock(slotType);
+        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(_stars.Value - 1).GetMaxSkillLevel(slotType);
     }
 }

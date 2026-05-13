@@ -7,8 +7,7 @@ namespace vikwhite
     {
         int ID { get; }
         int Level { get; }
-        IReadOnlyDictionary<SkillSlotType, int> SkillUnlocks { get; }
-        int GetSkillUnlock(SkillSlotType slotType);
+        int GetMaxSkillLevel(SkillSlotType slotType);
     }
 
     [Serializable]
@@ -24,17 +23,16 @@ namespace vikwhite
         public int SkillMeta2;
         public int SkillMeta3;
 
-        private Dictionary<SkillSlotType, int> _skillUnlocks;
+        private Dictionary<SkillSlotType, int> _maxSkillLevels;
 
-        public IReadOnlyDictionary<SkillSlotType, int> SkillUnlocks => _skillUnlocks ??= BuildSkillUnlocks();
+        public IReadOnlyDictionary<SkillSlotType, int> MaxSkillLevels => _maxSkillLevels ??= BuildMaxSkillLevels();
 
         int IStarData.ID => ID;
         int IStarData.Level => Level;
-        IReadOnlyDictionary<SkillSlotType, int> IStarData.SkillUnlocks => SkillUnlocks;
 
-        public int GetSkillUnlock(SkillSlotType slotType) => SkillUnlocks.TryGetValue(slotType, out var value) ? value : 0;
+        public int GetMaxSkillLevel(SkillSlotType slotType) => MaxSkillLevels.TryGetValue(slotType, out var value) ? value : 0;
 
-        private Dictionary<SkillSlotType, int> BuildSkillUnlocks() => new()
+        private Dictionary<SkillSlotType, int> BuildMaxSkillLevels() => new()
         {
             { SkillSlotType.Active, SkillActive },
             { SkillSlotType.Passive1, SkillPassive1 },
