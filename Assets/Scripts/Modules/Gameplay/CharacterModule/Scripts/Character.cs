@@ -9,15 +9,14 @@ namespace vikwhite
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
         
-        private ICharacterData _characterData;
-        
         private string _id;
-        private CharacterUpgrade _upgrade;
+        private ICharacterData _characterData;
         private ReactiveProperty<float> _health;
         private ReactiveProperty<int> _level;
         private ReactiveProperty<int> _shards;
         private ReactiveProperty<int> _stars;
         private ReactiveProperty<int> _skillLevel;
+        private CharacterUpgrade _upgrade;
 
         public string ID => _id;
         public ICharacterData Config => _characterData;
@@ -83,24 +82,8 @@ namespace vikwhite
 
         private float GetHealth() => _characterData.Health * _upgrade.GetStatMultiplier(StatType.Health);
 
-        public int GetMaxLevel()
-        {
-            var locks = _configs.Stars.GetAll();
-            for (int i = 0; i < locks.Count; i++)
-            {
-                if (locks[i].ID > _stars.Value) return locks[i-1].Level;
-            }
-            return 0;
-        }
-        
-        public int GetMaxSkillLevel(SkillSlotType slotType)
-        {
-            var locks = _configs.Stars.GetAll();
-            for (int i = 0; i < locks.Count; i++)
-            {
-                if (locks[i].ID > _stars.Value) return locks[i - 1].GetSkillUnlock(slotType);
-            }
-            return 0;
-        }
+        public int GetMaxLevel() => _configs.Stars.Get(_stars.Value - 1).Level;
+
+        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(_stars.Value - 1).GetSkillUnlock(slotType);
     }
 }

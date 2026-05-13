@@ -17,8 +17,6 @@ namespace vikwhite
         public int ID;
         public int Level;
 
-        // Stored per-slot for backwards compatibility with the existing asset and Google Sheet columns.
-        // Code should access unlocks via the dictionary view below.
         public int SkillActive;
         public int SkillPassive1;
         public int SkillPassive2;
