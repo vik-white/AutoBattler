@@ -36,7 +36,8 @@ namespace vikwhite.ECS
         {
             _character = character;
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            var _characterID = _entityManager.GetComponentData<Character>(_character).Config.Value.ID;
+            var characterConfig = _entityManager.GetComponentData<Character>(_character).GetConfig();
+            var _characterID = characterConfig.ID;
             foreach (var characterData in Configs.Characters.GetAll())
             {
                 if (characterData.ID.CalculateHash32() == _characterID)
@@ -45,7 +46,7 @@ namespace vikwhite.ECS
                     break;
                 }
             }
-            _abilityID = _entityManager.GetComponentData<ActiveSkill>(_character).Value;
+            _abilityID = characterConfig.GetSkill(SkillSlotType.Active);
             Button.onClick.AddListener(OnActivateAbility);
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
             Icon.sprite = _characterData.PortraitImage;

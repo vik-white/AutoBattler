@@ -74,8 +74,6 @@ namespace vikwhite.ECS
                 var skills = ecb.AddBuffer<Skill>(characterEntity);
                 for (int i = 0; i < config.Skills.Length; i++)
                     CreateSkill(skillRuntimeData, skills, config.Skills[i]);
-                var activeSkillID = config.GetSkill(SkillSlotType.Active);
-                if (activeSkillID != 0) ecb.AddComponent(characterEntity, new ActiveSkill{ Value = activeSkillID });
 
                 int statCount = Enum.GetValues(typeof(StatType)).Length;
                 var statsBase = ecb.AddBuffer<StatBase>(characterEntity);

@@ -16,12 +16,12 @@ namespace vikwhite.ECS
             foreach (var (skills, transform, character, entity) in SystemAPI.Query<DynamicBuffer<Skill>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
             {
                 bool hasTarget = SystemAPI.HasComponent<Target>(entity);
-                uint activeSkill = SystemAPI.HasComponent<ActiveSkill>(entity) ? SystemAPI.GetComponent<ActiveSkill>(entity).Value : 0;
                 bool useActiveSkill = SystemAPI.HasComponent<UseSkill>(entity);
                 var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
                 float skillActiveCooldown = statBuffer[(int)StatType.SkillActiveCooldown].Value;
                 float skillAttackCooldown = statBuffer[(int)StatType.SkillAttackCooldown].Value;
                 var characterConfig = character.ValueRO.GetConfig();
+                uint activeSkill = characterConfig.GetSkill(SkillSlotType.Active);
                 Entity target = hasTarget ? SystemAPI.GetComponent<Target>(entity).Value : Entity.Null;
                 bool targetIsValid = hasTarget
                     && target != Entity.Null
