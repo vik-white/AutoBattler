@@ -1,9 +1,5 @@
 namespace vikwhite
 {
-    /// <summary>
-    /// Identifies a skill's role on a character (which slot it occupies).
-    /// Independent from <see cref="SkillType"/> which describes the skill's behavior.
-    /// </summary>
     public enum SkillSlotType
     {
         None = -1,
