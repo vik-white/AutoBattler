@@ -46,7 +46,7 @@ namespace vikwhite.ECS
 
                     if (skill.IsChild || !hasTarget) continue;
 
-                    skill.Cooldown += dt / (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown);
+                    skill.Cooldown += dt * (1f / (activeSkill == skillConfig.ID ? skillActiveCooldown : skillAttackCooldown));
                     if (skill.Cooldown <= skillConfig.Cooldown) continue;
 
                     bool isActiveAbility = skillConfig.ID == activeSkill;
@@ -58,7 +58,7 @@ namespace vikwhite.ECS
                     else if (!CanUseOnTarget(transform.ValueRO, targetTransform, skillConfig, characterConfig, targetConfig)) continue;
 
                     skill.Cooldown = 0;
-                    TriggerAbility(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, skillAttackCooldown, ref skill);
+                    TriggerAbility(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, 1f / skillAttackCooldown, ref skill);
                 }
             }
             ecb.Playback(state.EntityManager);

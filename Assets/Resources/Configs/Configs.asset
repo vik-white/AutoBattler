@@ -54,11 +54,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 0
@@ -78,11 +78,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
       SkillAttack: 3795814207
@@ -102,11 +102,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
       PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
       SkillAttack: 2213220330
@@ -126,11 +126,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
       PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
       SkillAttack: 1578047653
@@ -150,11 +150,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
       PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
       SkillAttack: 616699424
@@ -174,11 +174,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
       PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
       SkillAttack: 3548031329
@@ -198,11 +198,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 1
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 1
       Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
       PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
       SkillAttack: 1578047653
@@ -222,11 +222,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: EnemyLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 3795814207
@@ -246,11 +246,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: EnemyLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 3548031329
@@ -270,11 +270,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: EnemyLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 2201965509
@@ -294,11 +294,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 0
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 4243707639
@@ -318,11 +318,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: EnemyBossLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 4070441441
@@ -342,11 +342,11 @@ MonoBehaviour:
       Defense: 1
       CritChance: 0.1
       CritValue: 1.5
+      Squad: 0
       HealthBar: 0
       LevelUpgrade: EnemyBossLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Squad: 0
       Image: {fileID: 0}
       PortraitImage: {fileID: 0}
       SkillAttack: 3795814207
@@ -1032,7 +1032,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 0.5
       Statuses: []
       Count: 0
@@ -1066,7 +1066,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1100,7 +1100,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1134,7 +1134,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1168,7 +1168,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1202,7 +1202,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1236,7 +1236,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1270,7 +1270,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 1
+        Stat: 0
         Value: 1
       Statuses: []
       Count: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 0
+        Stat: -1
         Value: 220
       Statuses: []
       Count: 0
@@ -1338,7 +1338,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 4
-        Dependence: 0
+        Stat: -1
         Value: 4
       Statuses: []
       Count: 0
@@ -1374,7 +1374,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 2
-        Dependence: 0
+        Stat: -1
         Value: 200
       Statuses: []
       Count: 0
@@ -1408,7 +1408,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
-        Dependence: 0
+        Stat: -1
         Value: 50
       Statuses: []
       Count: 0
@@ -1442,7 +1442,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 3
-        Dependence: 0
+        Stat: -1
         Value: 450
       Statuses: []
       Count: 0
@@ -1476,7 +1476,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 5
-        Dependence: 0
+        Stat: -1
         Value: 3
       Statuses: []
       Count: 0
@@ -1539,8 +1539,8 @@ MonoBehaviour:
       AOE: 0
       Targets: 01000000
       Stats:
-      - Type: 1
-        Value: 3
+      - Type: 5
+        Value: 0.3
         Duration: 2
       Effects: []
       Statuses: []
@@ -1575,7 +1575,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 0
+        Stat: -1
         Value: 40
       Statuses: []
       Count: 3
@@ -1608,8 +1608,8 @@ MonoBehaviour:
       AOE: 0
       Targets: 02000000
       Stats:
-      - Type: 2
-        Value: 3
+      - Type: 6
+        Value: 0.3
         Duration: 1
       Effects: []
       Statuses: []
@@ -1645,7 +1645,7 @@ MonoBehaviour:
       Stats: []
       Effects:
       - Type: 1
-        Dependence: 0
+        Stat: -1
         Value: 200
       Statuses: []
       Count: 0
