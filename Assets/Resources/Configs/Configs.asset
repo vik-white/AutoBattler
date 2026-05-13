@@ -2017,16 +2017,7 @@ MonoBehaviour:
         Probability: 1
       RewardBasket: []
     - ID: SummonRewardCommon
-      Rewards:
-      - Type: 4
-        ResourceType: 0
-        ShardGroupType: 2
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 2
-        MaxValue: 4
-        Probability: 1
+      Rewards: []
       RewardBasket:
       - Type: 2
         ResourceType: 0
