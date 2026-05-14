@@ -1,6 +1,8 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace vikwhite.ECS
 {
@@ -56,6 +58,12 @@ namespace vikwhite.ECS
                         ecb.RemoveComponent<UseSkill>(entity);
                     }
                     else if (!CanUseOnTarget(transform.ValueRO, targetTransform, skillConfig, characterConfig, targetConfig)) continue;
+
+                    if (!isActiveSkill && Random.value > skillConfig.Chance)
+                    {
+                        skill.Cooldown = 0;
+                        continue;
+                    }
 
                     skill.Cooldown = 0;
                     TriggerSkill(ref state, ecb, skills, entity, transform.ValueRO.Position, skillConfig, 1f / skillAttackCooldown, ref skill);

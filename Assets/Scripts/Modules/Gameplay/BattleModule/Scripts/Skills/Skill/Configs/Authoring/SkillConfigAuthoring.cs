@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                     Type = data.Type,
                     Targets = CreateTargets(data.Targets),
                     Cooldown = data.Cooldown,
+                    Chance = data.Chance,
                     Radius = data.Radius,
                     AOE = data.AOE,
                     Effects = CreateEffects(data.Effects),

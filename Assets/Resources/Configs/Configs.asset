@@ -1059,6 +1059,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 5
+      Chance: 1
       Radius: 0.5
       AOE: 0
       Targets: 
@@ -1093,6 +1094,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 1.2
+      Chance: 1
       Radius: 0.5
       AOE: 0
       Targets: 
@@ -1127,6 +1129,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 2
+      Chance: 1
       Radius: 0.5
       AOE: 0
       Targets: 
@@ -1161,6 +1164,7 @@ MonoBehaviour:
       Type: 1
       Icon: 
       Cooldown: 2
+      Chance: 1
       Radius: 0.5
       AOE: 0
       Targets: 
@@ -1195,6 +1199,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 2
+      Chance: 1
       Radius: 10
       AOE: 0
       Targets: 
@@ -1229,6 +1234,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 1.5
+      Chance: 1
       Radius: 10
       AOE: 0
       Targets: 
@@ -1263,6 +1269,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 1.8
+      Chance: 1
       Radius: 10
       AOE: 0
       Targets: 
@@ -1297,6 +1304,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 1.3
+      Chance: 1
       Radius: 10
       AOE: 0
       Targets: 
@@ -1331,6 +1339,7 @@ MonoBehaviour:
       Type: 0
       Icon: 
       Cooldown: 3
+      Chance: 1
       Radius: 10
       AOE: 10
       Targets: 
@@ -1365,6 +1374,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 01000000
@@ -1401,6 +1411,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 0100000002000000
@@ -1435,6 +1446,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 0100000002000000
@@ -1469,6 +1481,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 01000000
@@ -1503,6 +1516,7 @@ MonoBehaviour:
       Type: 4
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1537,6 +1551,7 @@ MonoBehaviour:
       Type: 6
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1568,6 +1583,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 01000000
@@ -1602,6 +1618,7 @@ MonoBehaviour:
       Type: 2
       Icon: Ability
       Cooldown: 7
+      Chance: 1
       Radius: 3
       AOE: 0
       Targets: 
@@ -1637,6 +1654,7 @@ MonoBehaviour:
       Type: 3
       Icon: Ability
       Cooldown: 12
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 02000000
@@ -1672,6 +1690,7 @@ MonoBehaviour:
       Type: 3
       Icon: Ice
       Cooldown: 10
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 03000000
@@ -1707,6 +1726,7 @@ MonoBehaviour:
       Type: 5
       Icon: Berserk
       Cooldown: 11
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1740,6 +1760,7 @@ MonoBehaviour:
       Type: 5
       Icon: Heal
       Cooldown: 10
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1773,6 +1794,7 @@ MonoBehaviour:
       Type: 5
       Icon: Blade
       Cooldown: 7
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1806,6 +1828,7 @@ MonoBehaviour:
       Type: 5
       Icon: 
       Cooldown: 9
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1837,6 +1860,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1872,6 +1896,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 01000000
@@ -1906,6 +1931,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -1940,6 +1966,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 01000000
@@ -1974,6 +2001,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 
@@ -2008,6 +2036,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
+      Chance: 1
       Radius: 0
       AOE: 0
       Targets: 02000000

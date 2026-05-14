@@ -10,6 +10,7 @@ namespace vikwhite.ECS
         public uint ID;
         public SkillType Type;
         public float Cooldown;
+        public float Chance;
         public float Radius;
         public float AOE;
         public FixedList64Bytes<TargetType> Targets;

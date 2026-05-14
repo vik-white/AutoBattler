@@ -13,6 +13,7 @@ namespace vikwhite.Data
         SkillType Type { get; }
         string Icon { get; }
         float Cooldown { get; }
+        float Chance { get; }
         float Radius { get; }
         float AOE { get; }
         List<TargetType> Targets { get; }
@@ -49,6 +50,7 @@ namespace vikwhite.Data
         public SkillType Type;
         public string Icon;
         public float Cooldown;
+        public float Chance;
         public float Radius;
         public float AOE;
         public List<TargetType> Targets;
@@ -81,6 +83,7 @@ namespace vikwhite.Data
         SkillType ISkillData.Type => Type;
         string ISkillData.Icon => Icon;
         float ISkillData.Cooldown => Cooldown;
+        float ISkillData.Chance => Chance;
         float ISkillData.Radius => Radius;
         float ISkillData.AOE => AOE;
         List<TargetType> ISkillData.Targets => Targets;
