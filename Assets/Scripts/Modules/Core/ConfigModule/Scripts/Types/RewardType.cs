@@ -7,5 +7,7 @@ namespace vikwhite
         ShardGroup = 2,
         ClassShard = 3,
         ClassShardGroup = 4,
+        ClassBook = 5,
+        ClassBookGroup = 6,
     }
 }

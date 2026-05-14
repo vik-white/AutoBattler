@@ -13,12 +13,14 @@ namespace vikwhite
     {
         private readonly IResourceService _resources;
         private readonly IClassShardService _classShards;
+        private readonly IClassBookService _classBooks;
         private readonly ICharactersService _characters;
 
-        public RewardService(IResourceService resources, IClassShardService classShards, ICharactersService characters)
+        public RewardService(IResourceService resources, IClassShardService classShards, IClassBookService classBooks, ICharactersService characters)
         {
             _resources = resources;
             _classShards = classShards;
+            _classBooks = classBooks;
             _characters = characters;
         }
 
@@ -36,6 +38,9 @@ namespace vikwhite
                     break;
                 case ClassShardReward classShard:
                     _classShards.Add(classShard.Class, classShard.Rarity, classShard.Value);
+                    break;
+                case ClassBookReward classBook:
+                    _classBooks.Add(classBook.Class, classBook.Value);
                     break;
                 case ShardReward shard:
                     _characters.GetCharacter(shard.ID).AddShards(shard.Value);

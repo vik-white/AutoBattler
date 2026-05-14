@@ -137,6 +137,14 @@ namespace vikwhite
                         case ShardGroupType.Rarity: return new ClassShardReward { Class = GetRandomCharacterClass(), Rarity = data.Rarity };
                         default: return null;
                     }
+                case RewardType.ClassBook:
+                    return new ClassBookReward { Class = data.Class };
+                case RewardType.ClassBookGroup:
+                    switch (data.ShardGroupType)
+                    {
+                        case ShardGroupType.Any: return new ClassBookReward { Class = GetRandomCharacterClass() };
+                        default: return null;
+                    }
                 default:
                     return null;
             }

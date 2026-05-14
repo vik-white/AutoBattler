@@ -18,18 +18,17 @@ namespace vikwhite
             Icon = GetIcon(model);
             RarityColor = GetRarityColor(model);
             if (model is ClassShardReward) ClassName = (model as ClassShardReward).Class.ToString();
+            if (model is ClassBookReward) ClassName = (model as ClassBookReward).Class.ToString();
         }
 
         private Sprite GetIcon(Reward reward)
         {
             switch (reward)
             {
-                case ResourceReward res:
-                    return _configs.ResourceIcons.TryGetValue(res.ResourceType, out var sprite) ? sprite : null;
-                case ShardReward shard:
-                    return _configs.Characters.Get(shard.ID).Image;
-                default:
-                    return null;
+                case ResourceReward res: return _configs.ResourceIcons[res.ResourceType];
+                case ShardReward shard: return _configs.Characters.Get(shard.ID).Image;
+                case ClassBookReward book: return _configs.ResourceIcons[ResourceType.Book];
+                default: return null;
             }
         }
         
