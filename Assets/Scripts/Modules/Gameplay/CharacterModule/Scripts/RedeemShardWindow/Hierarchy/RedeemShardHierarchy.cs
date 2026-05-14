@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RedeemHierarchy : MonoBehaviour
+public class RedeemShardHierarchy : MonoBehaviour
 {
     public Image Image;
     public TMP_Text Name;

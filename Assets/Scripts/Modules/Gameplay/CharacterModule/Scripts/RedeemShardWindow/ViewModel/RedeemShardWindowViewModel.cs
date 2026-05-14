@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 namespace vikwhite
 {
-    public class RedeemWindowViewModel : WindowViewModel<Character>
+    public class RedeemShardWindowViewModel : WindowViewModel<Character>
     {
         private readonly IClassShardService _classShards;
         private readonly ClassShardKey _key;
-        private readonly ReactiveProperty<int> _selected = new (0);
-        
+        private readonly ReactiveProperty<int> _selected = new(0);
+
         public string Name;
         public Sprite Image;
         public IReadOnlyReactiveProperty<int> Selected;
@@ -18,8 +18,8 @@ namespace vikwhite
         public UnityAction OnAddMax;
         public UnityAction OnRemove;
         public UnityAction OnRedeem;
-        
-        public RedeemWindowViewModel(Character character, IClassShardService classShards) : base(character)
+
+        public RedeemShardWindowViewModel(Character character, IClassShardService classShards) : base(character)
         {
             _classShards = classShards;
             _key = new ClassShardKey(character.Config.Class, character.Config.Rarity);
@@ -33,24 +33,24 @@ namespace vikwhite
             OnRemove = Remove;
             OnRedeem = Redeem;
         }
-        
+
         private int GetAvailable() => ClassShardsAmount?.Value ?? 0;
-        
+
         private void Add()
         {
             if (_selected.Value < GetAvailable()) _selected.Value++;
         }
-        
+
         private void AddMax()
         {
             _selected.Value = GetAvailable();
         }
-        
+
         private void Remove()
         {
             if (_selected.Value > 0) _selected.Value--;
         }
-        
+
         private void Redeem()
         {
             if (_selected.Value <= 0) return;
@@ -60,7 +60,7 @@ namespace vikwhite
             Model.AddShards(amount);
             _selected.Value = 0;
         }
-        
+
         public override void Dispose()
         {
             base.Dispose();

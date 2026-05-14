@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 2005289594815546579}
   - component: {fileID: 3333333333333333333}
   m_Layer: 5
-  m_Name: RedeemWindow
+  m_Name: RedeemShardWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

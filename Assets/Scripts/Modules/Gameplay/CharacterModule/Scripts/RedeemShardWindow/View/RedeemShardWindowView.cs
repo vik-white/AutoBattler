@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class RedeemWindowView : WindowView<RedeemHierarchy, RedeemWindowViewModel>
+    public class RedeemShardWindowView : WindowView<RedeemShardHierarchy, RedeemShardWindowViewModel>
     {
-        public RedeemWindowView(GameObject view) : base(view) { }
-        
-        protected override void UpdateViewModel(RedeemWindowViewModel viewModel)
+        public RedeemShardWindowView(GameObject view) : base(view) { }
+
+        protected override void UpdateViewModel(RedeemShardWindowViewModel viewModel)
         {
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.AddButton, viewModel.OnAdd);
@@ -17,8 +17,8 @@ namespace vikwhite
             Bind(viewModel.Selected, _ => UpdateTexts(viewModel));
             Bind(viewModel.ClassShardsAmount, _ => UpdateTexts(viewModel));
         }
-        
-        private void UpdateTexts(RedeemWindowViewModel viewModel)
+
+        private void UpdateTexts(RedeemShardWindowViewModel viewModel)
         {
             _view.ClassShards.text = (viewModel.ClassShardsAmount.Value - viewModel.Selected.Value).ToString();
             _view.Shards.text = $"+{viewModel.Selected.Value}";

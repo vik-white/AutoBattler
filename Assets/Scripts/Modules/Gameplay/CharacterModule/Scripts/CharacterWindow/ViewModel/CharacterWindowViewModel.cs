@@ -10,7 +10,7 @@ namespace vikwhite
     {
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
-        private readonly IRedeemWindow _redeemWindow;
+        private readonly IRedeemShardWindow _redeemShardWindow;
         private readonly IRedeemBookWindow _redeemBookWindow;
         public string Name;
         public string Class;
@@ -37,11 +37,11 @@ namespace vikwhite
         public int SkillUpPrice;
         public int StarUpPrice;
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IClassBookService classBooks, IRedeemWindow redeemWindow, IRedeemBookWindow redeemBookWindow) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IClassBookService classBooks, IRedeemShardWindow redeemShardWindow, IRedeemBookWindow redeemBookWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
-            _redeemWindow = redeemWindow;
+            _redeemShardWindow = redeemShardWindow;
             _redeemBookWindow = redeemBookWindow;
             Name = character.Config.Name;
             Level = character.Level;
@@ -77,7 +77,7 @@ namespace vikwhite
             OnUpgradeLevel = LevelUpgrade;
             OnSkillUpgrade = SkillUpgrade;
             OnStarsUpgrade = StarsUpgrade;
-            OnRedeem = OpenRedeemWindow;
+            OnRedeem = OpenRedeemShardWindow;
             OnRedeemBook = OpenRedeemBookWindow;
         }
 
@@ -86,9 +86,9 @@ namespace vikwhite
             _redeemBookWindow.ShowWindow(Model);
         }
         
-        private void OpenRedeemWindow()
+        private void OpenRedeemShardWindow()
         {
-            _redeemWindow.ShowWindow(Model);
+            _redeemShardWindow.ShowWindow(Model);
         }
 
         private void LevelUpgrade()
