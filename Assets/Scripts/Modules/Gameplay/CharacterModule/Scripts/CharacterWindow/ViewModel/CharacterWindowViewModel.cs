@@ -10,6 +10,7 @@ namespace vikwhite
     {
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
+        private readonly IRedeemWindow _redeemWindow;
         public string Name;
         public string Class;
         public string Rarity;
@@ -28,14 +29,16 @@ namespace vikwhite
         public UnityAction OnUpgradeLevel;
         public UnityAction OnSkillUpgrade;
         public UnityAction OnStarsUpgrade;
+        public UnityAction OnRedeem;
         public int LevelUpPrice;
         public int SkillUpPrice;
         public int StarUpPrice;
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IRedeemWindow redeemWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
+            _redeemWindow = redeemWindow;
             Name = character.Config.Name;
             Level = character.Level;
             Stars = character.Stars;
@@ -69,6 +72,12 @@ namespace vikwhite
             OnUpgradeLevel = LevelUpgrade;
             OnSkillUpgrade = SkillUpgrade;
             OnStarsUpgrade = StarsUpgrade;
+            OnRedeem = OpenRedeemWindow;
+        }
+        
+        private void OpenRedeemWindow()
+        {
+            _redeemWindow.ShowWindow(Model);
         }
 
         private void LevelUpgrade()
@@ -100,6 +109,7 @@ namespace vikwhite
             OnUpgradeLevel = null;
             OnSkillUpgrade = null;
             OnStarsUpgrade = null;
+            OnRedeem = null;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace vikwhite
             BindClick(_view.LevelUpButton, viewModel.OnUpgradeLevel);
             BindClick(_view.StarsUpButton, viewModel.OnStarsUpgrade);
             BindClick(_view.SkillUpButton, viewModel.OnSkillUpgrade);
+            BindClick(_view.RedeemButton, viewModel.OnRedeem);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
             Bind(viewModel.Stars, stars => _view.Stars.text = stars.ToString());
             Bind(viewModel.SkillLevel, skill => _view.Skill.text = skill.ToString());

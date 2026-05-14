@@ -11,6 +11,10 @@ namespace vikwhite
             Register<ICharacterWindow, CharacterWindow>();
             Register<CharacterWindowViewModel>();
             Register<CharacterWindowView>();
+            
+            Register<IRedeemWindow, RedeemWindow>();
+            Register<RedeemWindowViewModel>();
+            Register<RedeemWindowView>();
         }
     }
 }
