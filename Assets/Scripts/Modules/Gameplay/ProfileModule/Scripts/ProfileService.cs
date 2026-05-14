@@ -31,12 +31,16 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.KeyEpic, Amount = 0 },
                 },
                 ClassShards = new (),
+                ClassBooks = new (),
                 Squad = new [] {"","","","",""}
             };
 
             foreach (CharacterClassType @class in Enum.GetValues(typeof(CharacterClassType)))
             foreach (RarityType rarity in Enum.GetValues(typeof(RarityType)))
                 Data.ClassShards.Add(new ClassShardData { Class = @class, Rarity = rarity, Amount = 0 });
+
+            foreach (CharacterClassType @class in Enum.GetValues(typeof(CharacterClassType)))
+                Data.ClassBooks.Add(new ClassBookData { Class = @class, Amount = 0 });
 
             foreach (var characterData in _configs.Characters.GetAll())
             {
@@ -73,6 +77,7 @@ namespace vikwhite
             Data.Resources ??= new List<ResourceData>();
             Data.Characters ??= new List<CharacterData>();
             Data.ClassShards ??= new List<ClassShardData>();
+            Data.ClassBooks ??= new List<ClassBookData>();
 
             foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
             {
@@ -85,6 +90,12 @@ namespace vikwhite
             {
                 if (Data.ClassShards.All(s => s.Class != @class || s.Rarity != rarity))
                     Data.ClassShards.Add(new ClassShardData { Class = @class, Rarity = rarity, Amount = 0 });
+            }
+
+            foreach (CharacterClassType @class in Enum.GetValues(typeof(CharacterClassType)))
+            {
+                if (Data.ClassBooks.All(b => b.Class != @class))
+                    Data.ClassBooks.Add(new ClassBookData { Class = @class, Amount = 0 });
             }
         }
     }

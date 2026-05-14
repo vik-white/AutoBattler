@@ -22,6 +22,7 @@ namespace vikwhite
             Resolve<IProfileService>().Load(); 
             Resolve<IResourceService>().Initialize();
             Resolve<IClassShardService>().Initialize();
+            Resolve<IClassBookService>().Initialize();
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
             Resolve<IRoadMapService>().Initialize();

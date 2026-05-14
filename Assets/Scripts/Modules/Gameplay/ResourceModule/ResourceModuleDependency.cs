@@ -6,6 +6,7 @@ namespace vikwhite
         {
             Register<IResourceService, ResourceService>();
             Register<IClassShardService, ClassShardService>();
+            Register<IClassBookService, ClassBookService>();
             
             Register<IResourceViewFactory, ResourceViewFactory>();
             Register<ResourceViewModel>();
