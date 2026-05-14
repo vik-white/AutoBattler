@@ -10,6 +10,9 @@ public class CharacterHierarchy : MonoBehaviour
     public TMP_Text Skill;
     public TMP_Text Level;
     public TMP_Text Health;
+    public TMP_Text Class;
+    public TMP_Text Rarity;
+    public TMP_Text Attack;
     public Image AbilityIcon;
     public TMP_Text AbilityDescription;
     public TMP_Text LevelUpPrice;

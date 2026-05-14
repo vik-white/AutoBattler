@@ -1047,6 +1047,12 @@ MonoBehaviour:
     - Healer
     - Assassin
     - SceletonBoss
+    - Passive1
+    - Passive2
+    - Passive3
+    - Passive4
+    - Passive5
+    - Passive6
     Data:
     - ID: 4243707639
       Type: 1
@@ -1824,6 +1830,211 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 4
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 1849116823
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 
+      Stats: []
+      Effects: []
+      Statuses:
+      - Type: 1
+        Value: 10
+        Duration: 4
+        Period: 1
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 3112843777
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 01000000
+      Stats:
+      - Type: 1
+        Value: 2
+        Duration: 4
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 2895788845
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Stat: -1
+        Value: 10
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 2914914361
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 01000000
+      Stats:
+      - Type: 0
+        Value: 2
+        Duration: 0
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 414909054
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 
+      Stats: []
+      Effects:
+      - Type: 1
+        Stat: -1
+        Value: 0.2
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+    - ID: 528522508
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      Radius: 0
+      AOE: 0
+      Targets: 02000000
+      Stats:
+      - Type: 1
+        Value: 2
+        Duration: 4
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
       IconImage: {fileID: 0}
       Description: 
   hexPositions:

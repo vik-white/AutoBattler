@@ -12,6 +12,7 @@ namespace vikwhite
         private string _id;
         private ICharacterData _characterData;
         private ReactiveProperty<float> _health;
+        private ReactiveProperty<float> _attack;
         private ReactiveProperty<int> _level;
         private ReactiveProperty<int> _shards;
         private ReactiveProperty<int> _stars;
@@ -21,6 +22,7 @@ namespace vikwhite
         public string ID => _id;
         public ICharacterData Config => _characterData;
         public IReadOnlyReactiveProperty<float> Health => _health;
+        public IReadOnlyReactiveProperty<float> Attack => _attack;
         public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<int> Shards => _shards;
         public IReadOnlyReactiveProperty<int> Stars => _stars;
@@ -42,9 +44,10 @@ namespace vikwhite
             _skillLevel = new ReactiveProperty<int>(skillLevel);
             _upgrade = CreateUpgrade();
             _health = new ReactiveProperty<float>(GetHealth());
-            _level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)));
-            _shards.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)));
-            _stars.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)));
+            _attack = new ReactiveProperty<float>(GetAttack());
+            _level.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)); CalculateStats(); });
+            _shards.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)); CalculateStats(); });
+            _stars.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)); CalculateStats(); });
             _skillLevel.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, value)));
         }
 
@@ -56,24 +59,17 @@ namespace vikwhite
             _configs.Upgrades.Get(_characterData.StarUpgrade), 
             _configs.Upgrades.Get(_characterData.SkillUpgrade));
 
-        public void UpgradeLevel()
+        public void UpgradeLevel() => _level.Value++;
+
+        public void UpgradeSkill() => _skillLevel.Value++;
+
+        public void UpgradeStars() => _stars.Value++;
+
+        private void CalculateStats()
         {
-            _level.Value++;
             _upgrade = CreateUpgrade();
             _health.Value = GetHealth();
-        }
-
-        public void UpgradeSkill()
-        {
-            _skillLevel.Value++;
-            _upgrade = CreateUpgrade();
-        }
-
-        public void UpgradeStars()
-        {
-            _stars.Value++;
-            _upgrade = CreateUpgrade();
-            _health.Value = GetHealth();
+            _attack.Value = GetAttack();
         }
 
         public void AddShards(int amount) => _shards.Value += amount;
@@ -81,6 +77,8 @@ namespace vikwhite
         public void RemoveShards(int amount) => _shards.Value -= amount;
 
         private float GetHealth() => _characterData.Health * _upgrade.GetStatMultiplier(StatType.Health);
+        
+        private float GetAttack() => _characterData.Attack * _upgrade.GetStatMultiplier(StatType.Attack);
 
         public int GetMaxLevel() => _configs.Stars.Get(_stars.Value - 1).Level;
 

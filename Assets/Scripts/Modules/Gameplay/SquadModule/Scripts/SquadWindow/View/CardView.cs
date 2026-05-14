@@ -15,7 +15,7 @@ namespace vikwhite
         protected override void UpdateViewModel(CardViewModel viewModel)
         {
             _view.ID = viewModel.ID;
-            _view.Name.text = viewModel.ID;
+            _view.Name.text = viewModel.Name;
             _view.Character.sprite = _configs.Characters.Get(viewModel.ID).Image;
             _view.Rarity.color = viewModel.RarityColor;
             BindClick(_view.Button, viewModel.OnSelect);
