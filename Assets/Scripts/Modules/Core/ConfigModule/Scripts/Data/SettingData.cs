@@ -6,6 +6,7 @@ namespace vikwhite
     {
         int LevelUpPrice { get; }
         int SkillUpPrice { get; }
+        int StarUpPrice { get; }
     }
     
     [OneRowConfig][Serializable]
@@ -13,8 +14,10 @@ namespace vikwhite
     {
         public int LevelUpPrice;
         public int SkillUpPrice;
+        public int StarUpPrice;
         
         int ISettingData.LevelUpPrice => LevelUpPrice;
         int ISettingData.SkillUpPrice => SkillUpPrice;
+        int ISettingData.StarUpPrice => StarUpPrice;
     }
 }

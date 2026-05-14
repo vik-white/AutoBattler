@@ -9,6 +9,7 @@ namespace vikwhite
     public class CharacterWindowViewModel: WindowViewModel<Character>
     {
         private readonly IResourceService _resource;
+        private readonly IConfigs _configs;
         public string Name;
         public string Class;
         public string Rarity;
@@ -29,10 +30,12 @@ namespace vikwhite
         public UnityAction OnStarsUpgrade;
         public int LevelUpPrice;
         public int SkillUpPrice;
+        public int StarUpPrice;
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards) : base(character)
         {
             _resource = resource;
+            _configs = configs;
             Name = character.Config.Name;
             Level = character.Level;
             Stars = character.Stars;
@@ -42,6 +45,7 @@ namespace vikwhite
             Attack = character.Attack;
             LevelUpPrice = configs.Settings.LevelUpPrice;
             SkillUpPrice = configs.Settings.SkillUpPrice;
+            StarUpPrice = configs.Settings.StarUpPrice;
             
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
@@ -85,8 +89,8 @@ namespace vikwhite
         
         private void StarsUpgrade()
         {
-            if(Model.Shards.Value < 5) return;
-            Model.RemoveShards(5);
+            if(Model.Shards.Value < StarUpPrice) return;
+            Model.RemoveShards(StarUpPrice);
             Model.UpgradeStars();
         }
         
