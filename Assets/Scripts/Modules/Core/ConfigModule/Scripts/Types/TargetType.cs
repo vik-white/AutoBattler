@@ -2,8 +2,8 @@ namespace vikwhite.ECS
 {
     public enum TargetType
     {
-        Self = 1,
-        Allies = 2,
-        Enemies = 3,
+        Self = 0,
+        Allies = 1,
+        Enemies = 2,
     }
 }

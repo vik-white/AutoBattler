@@ -2,8 +2,8 @@ namespace vikwhite.ECS
 {
     public enum TriggerType
     {
-        Cooldown = 1,
-        GetDamage = 2,
-        Dead = 3,
+        Cooldown = 0,
+        GetDamage = 1,
+        Dead = 2,
     }
 }
