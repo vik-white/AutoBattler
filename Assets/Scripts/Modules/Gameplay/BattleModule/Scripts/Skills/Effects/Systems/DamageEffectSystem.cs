@@ -21,13 +21,12 @@ namespace vikwhite.ECS
                 var character = target.ValueRO.Value;
                 var targetConfig = characters[character].GetConfig();
                 var defense = defenses[character].Value;
-                var damage = CalculateDamage(effect.ValueRO.Value, defense);
+                var damage = DamageHandler.CalculateDamage(effect.ValueRO.Value, defense);
                 if (damage > 0)
                 {
-                    var damageFlyTextPosition = GetDamageFlyTextPosition(transforms[character], targetConfig);
                     ecb.CreateFrameEntity(new CreateDamageFlyTextEvent
                     {
-                        Position = damageFlyTextPosition,
+                        Position = transforms[character].Position + new float3(0, targetConfig.ColliderHeight, 0),
                         Damage = damage,
                         IsEnemyTarget = SystemAPI.HasComponent<Enemy>(character),
                         IsCrit = effect.ValueRO.IsCrit
@@ -58,21 +57,6 @@ namespace vikwhite.ECS
                 healths[character] = new Health { Value = healths[character].Value - damage };
             }
             ecb.Playback(state.EntityManager);
-        }
-
-        private static float CalculateDamage(float rawAttack, float defense)
-        {
-            return rawAttack * rawAttack / (rawAttack + 5f * defense);
-        }
-
-        private static float3 GetDamageFlyTextPosition(LocalTransform transform, CharacterConfigData config)
-        {
-            var currentScale = math.max(transform.Scale, 0);
-            var characterHeight = config.Scale > 0
-                ? config.ColliderHeight * currentScale / config.Scale
-                : config.ColliderHeight;
-
-            return transform.Position + new float3(0, characterHeight, 0);
         }
     }
 }
