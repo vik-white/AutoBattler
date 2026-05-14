@@ -28,6 +28,7 @@ MonoBehaviour:
     Data:
     - LevelUpPrice: 10
       SkillUpPrice: 5
+      StarUpPrice: 5
   characters:
     IDS:
     - Dummy
