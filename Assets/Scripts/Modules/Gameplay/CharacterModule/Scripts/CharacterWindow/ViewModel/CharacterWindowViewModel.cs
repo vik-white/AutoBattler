@@ -11,6 +11,7 @@ namespace vikwhite
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
         private readonly IRedeemWindow _redeemWindow;
+        private readonly IRedeemBookWindow _redeemBookWindow;
         public string Name;
         public string Class;
         public string Rarity;
@@ -20,6 +21,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> SkillLevel;
         public IReadOnlyReactiveProperty<int> Shards;
         public IReadOnlyReactiveProperty<int> ClassShards;
+        public IReadOnlyReactiveProperty<int> ClassBooks;
         public IReadOnlyReactiveProperty<float> Health;
         public IReadOnlyReactiveProperty<float> Attack;
         public List<ResourceViewModel> Resources = new ();
@@ -30,15 +32,17 @@ namespace vikwhite
         public UnityAction OnSkillUpgrade;
         public UnityAction OnStarsUpgrade;
         public UnityAction OnRedeem;
+        public UnityAction OnRedeemBook;
         public int LevelUpPrice;
         public int SkillUpPrice;
         public int StarUpPrice;
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IRedeemWindow redeemWindow) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IClassBookService classBooks, IRedeemWindow redeemWindow, IRedeemBookWindow redeemBookWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
             _redeemWindow = redeemWindow;
+            _redeemBookWindow = redeemBookWindow;
             Name = character.Config.Name;
             Level = character.Level;
             Stars = character.Stars;
@@ -53,6 +57,7 @@ namespace vikwhite
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
             ClassShards = classShards.GetAmount(config.Class, config.Rarity);
+            ClassBooks = classBooks.GetAmount(config.Class);
             Class = config.Class.ToString();
             Rarity = config.Rarity.ToString();
             RarityColor = configs.RarityColors[config.Rarity];
@@ -73,6 +78,12 @@ namespace vikwhite
             OnSkillUpgrade = SkillUpgrade;
             OnStarsUpgrade = StarsUpgrade;
             OnRedeem = OpenRedeemWindow;
+            OnRedeemBook = OpenRedeemBookWindow;
+        }
+
+        private void OpenRedeemBookWindow()
+        {
+            _redeemBookWindow.ShowWindow(Model);
         }
         
         private void OpenRedeemWindow()
@@ -110,6 +121,7 @@ namespace vikwhite
             OnSkillUpgrade = null;
             OnStarsUpgrade = null;
             OnRedeem = null;
+            OnRedeemBook = null;
         }
     }
 }

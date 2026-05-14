@@ -222,7 +222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Book
+  m_text: ClassBook
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ede041781bce2f4c806bd69fd6be94e, type: 2}
   m_sharedMaterial: {fileID: -6196021754952110025, guid: 6ede041781bce2f4c806bd69fd6be94e, type: 2}
@@ -978,7 +978,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321, y: 245}
+  m_AnchoredPosition: {x: -316, y: 245}
   m_SizeDelta: {x: 427.4411, y: 427.4411}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6045961518056227891
@@ -1240,6 +1240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005289594815546579}
+  - component: {fileID: 3333333333333333333}
   m_Layer: 5
   m_Name: RedeemBookWindow
   m_TagString: Untagged
@@ -1277,6 +1278,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3333333333333333333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015827576262481715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e8f9a0b1c2d4e4f5a678901234abcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Image: {fileID: 450560384686737895}
+  Name: {fileID: 6196243976808835415}
+  ClassBooks: {fileID: 3149762750276690550}
+  Books: {fileID: 221761041116507770}
+  AddButton: {fileID: 6012576628465979065}
+  AddMaxButton: {fileID: 4493723348967020106}
+  RemoveButton: {fileID: 6932665798778815504}
+  RedeemButton: {fileID: 3984633002324935129}
+  CloseButton: {fileID: 6359752121664468881}
 --- !u!1 &7500251476539816833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,7 +1439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ClassBook
+  m_text: Book
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ede041781bce2f4c806bd69fd6be94e, type: 2}
   m_sharedMaterial: {fileID: -6196021754952110025, guid: 6ede041781bce2f4c806bd69fd6be94e, type: 2}
@@ -2017,6 +2039,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd48f258b0f9e6e4fae143b6e904994c, type: 3}
+--- !u!114 &6359752121664468881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4927190660073691438, guid: bd48f258b0f9e6e4fae143b6e904994c, type: 3}
+  m_PrefabInstance: {fileID: 2027329117124849343}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6420165571244360721 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4988730019359419054, guid: bd48f258b0f9e6e4fae143b6e904994c, type: 3}

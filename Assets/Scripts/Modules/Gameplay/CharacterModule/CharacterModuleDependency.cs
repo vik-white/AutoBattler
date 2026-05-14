@@ -15,6 +15,10 @@ namespace vikwhite
             Register<IRedeemWindow, RedeemWindow>();
             Register<RedeemWindowViewModel>();
             Register<RedeemWindowView>();
+
+            Register<IRedeemBookWindow, RedeemBookWindow>();
+            Register<RedeemBookWindowViewModel>();
+            Register<RedeemBookWindowView>();
         }
     }
 }

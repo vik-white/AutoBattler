@@ -3730,6 +3730,8 @@ MonoBehaviour:
   StarsUpButton: {fileID: 6012576628465979065}
   ClassShards: {fileID: 227599124945770398}
   RedeemButton: {fileID: 5905312675081841733}
+  ClassBooks: {fileID: 8347598058940613375}
+  RedeemBookButton: {fileID: 4634792666292050501}
   SkillUpPrice: {fileID: 3426552092418348825}
   SkillUpButton: {fileID: 3667463056802711346}
   CloseButton: {fileID: 5794625118828108313}
