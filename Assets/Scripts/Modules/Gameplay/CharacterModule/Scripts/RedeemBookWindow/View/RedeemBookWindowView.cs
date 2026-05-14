@@ -14,13 +14,14 @@ namespace vikwhite
             BindClick(_view.RemoveButton, viewModel.OnRemove);
             BindClick(_view.RedeemButton, viewModel.OnRedeem);
             Bind(viewModel.Selected, _ => UpdateTexts(viewModel));
+            Bind(viewModel.BooksAmount, _ => UpdateTexts(viewModel));
             Bind(viewModel.ClassBooksAmount, _ => UpdateTexts(viewModel));
         }
 
         private void UpdateTexts(RedeemBookWindowViewModel viewModel)
         {
-            _view.ClassBooks.text = (viewModel.ClassBooksAmount.Value - viewModel.Selected.Value).ToString();
-            _view.Books.text = $"+{viewModel.Selected.Value}";
+            _view.Books.text = (viewModel.BooksAmount.Value - viewModel.Selected.Value).ToString();
+            _view.ClassBooks.text = $"+{viewModel.Selected.Value}";
         }
     }
 }

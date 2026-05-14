@@ -1,5 +1,4 @@
 using UniRx;
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace vikwhite
@@ -9,9 +8,10 @@ namespace vikwhite
         private readonly IClassBookService _classBooks;
         private readonly IResourceService _resources;
         private readonly CharacterClassType _class;
-        private readonly ReactiveProperty<int> _selected = new (0);
+        private readonly ReactiveProperty<int> _selected = new(0);
 
         public IReadOnlyReactiveProperty<int> Selected;
+        public IReadOnlyReactiveProperty<int> BooksAmount;
         public IReadOnlyReactiveProperty<int> ClassBooksAmount;
         public UnityAction OnAdd;
         public UnityAction OnAddMax;
@@ -25,6 +25,7 @@ namespace vikwhite
             _class = character.Config.Class;
             AddDisposable(_selected);
             Selected = _selected;
+            BooksAmount = resources.GetAmount(ResourceType.Book);
             ClassBooksAmount = _classBooks.GetAmount(_class);
             OnAdd = Add;
             OnAddMax = AddMax;
@@ -32,7 +33,7 @@ namespace vikwhite
             OnRedeem = Redeem;
         }
 
-        private int GetAvailable() => ClassBooksAmount?.Value ?? 0;
+        private int GetAvailable() => BooksAmount?.Value ?? 0;
 
         private void Add()
         {
@@ -52,10 +53,10 @@ namespace vikwhite
         private void Redeem()
         {
             if (_selected.Value <= 0) return;
-            if (!_classBooks.CanSpend(_class, _selected.Value)) return;
+            if (_resources.GetAmount(ResourceType.Book).Value < _selected.Value) return;
             int amount = _selected.Value;
-            _classBooks.Spend(_class, amount);
-            _resources.Add(ResourceType.Book, amount);
+            _resources.Spend(ResourceType.Book, amount);
+            _classBooks.Add(_class, amount);
             _selected.Value = 0;
         }
 

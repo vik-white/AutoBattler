@@ -17,11 +17,11 @@ public class CharacterHierarchy : MonoBehaviour
     public TMP_Text AbilityDescription;
     public TMP_Text LevelUpPrice;
     public Button LevelUpButton;
-    public TMP_Text StarsUpPrice;
     public Button StarsUpButton;
     public TMP_Text ClassShards;
     public Button RedeemButton;
     public TMP_Text ClassBooks;
+    public TMP_Text Books;
     public Button RedeemBookButton;
     public TMP_Text SkillUpPrice;
     public Button SkillUpButton;

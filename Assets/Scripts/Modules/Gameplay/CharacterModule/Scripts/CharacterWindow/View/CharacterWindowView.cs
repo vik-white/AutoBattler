@@ -28,6 +28,7 @@ namespace vikwhite
             Bind(viewModel.Shards, shards => _view.StarsBar.localScale = new Vector3(Mathf.Clamp01(shards / (float)viewModel.StarUpPrice), 1f, 1f));
             Bind(viewModel.ClassShards, classShards => _view.ClassShards.text = classShards.ToString());
             Bind(viewModel.ClassBooks, books => _view.ClassBooks.text = books.ToString());
+            Bind(viewModel.Books, books => _view.Books.text = books.ToString());
             BindClick(_view.RedeemBookButton, viewModel.OnRedeemBook);
             _view.Name.text = viewModel.Name;
             _view.Class.text = viewModel.Class;
@@ -35,7 +36,7 @@ namespace vikwhite
             _view.Rarity.color = viewModel.RarityColor;
             _view.Image.sprite = viewModel.Image;
             _view.LevelUpPrice.text = $"{viewModel.LevelUpPrice} Gold";
-            _view.SkillUpPrice.text = $"{viewModel.SkillUpPrice} Book";
+            _view.SkillUpPrice.text = $"{viewModel.SkillUpPrice} class book";
             _view.AbilityIcon.sprite = viewModel.AbilityImage;
             _view.AbilityDescription.text = viewModel.AbilityDescription;
             _view.ResourcesContainer.ClearChildren();

@@ -9,6 +9,7 @@ namespace vikwhite
     public class CharacterWindowViewModel: WindowViewModel<Character>
     {
         private readonly IResourceService _resource;
+        private readonly IClassBookService _classBooks;
         private readonly IConfigs _configs;
         private readonly IRedeemShardWindow _redeemShardWindow;
         private readonly IRedeemBookWindow _redeemBookWindow;
@@ -22,6 +23,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> Shards;
         public IReadOnlyReactiveProperty<int> ClassShards;
         public IReadOnlyReactiveProperty<int> ClassBooks;
+        public IReadOnlyReactiveProperty<int> Books;
         public IReadOnlyReactiveProperty<float> Health;
         public IReadOnlyReactiveProperty<float> Attack;
         public List<ResourceViewModel> Resources = new ();
@@ -40,6 +42,7 @@ namespace vikwhite
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IClassBookService classBooks, IRedeemShardWindow redeemShardWindow, IRedeemBookWindow redeemBookWindow) : base(character)
         {
             _resource = resource;
+            _classBooks = classBooks;
             _configs = configs;
             _redeemShardWindow = redeemShardWindow;
             _redeemBookWindow = redeemBookWindow;
@@ -58,6 +61,7 @@ namespace vikwhite
             Image = config.Image;
             ClassShards = classShards.GetAmount(config.Class, config.Rarity);
             ClassBooks = classBooks.GetAmount(config.Class);
+            Books = resource.GetAmount(ResourceType.Book);
             Class = config.Class.ToString();
             Rarity = config.Rarity.ToString();
             RarityColor = configs.RarityColors[config.Rarity];
@@ -72,8 +76,6 @@ namespace vikwhite
             }
             
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Book)));
             OnUpgradeLevel = LevelUpgrade;
             OnSkillUpgrade = SkillUpgrade;
             OnStarsUpgrade = StarsUpgrade;
@@ -101,9 +103,10 @@ namespace vikwhite
 
         private void SkillUpgrade()
         {
-            if (Model.GetMaxSkillLevel(SkillSlotType.Active) <= Model.SkillLevel.Value) return; 
-            if (_resource.GetAmount(ResourceType.Book).Value < SkillUpPrice) return;
-            _resource.Spend(ResourceType.Book, SkillUpPrice);
+            if (Model.GetMaxSkillLevel(SkillSlotType.Active) <= Model.SkillLevel.Value) return;
+            var config = _configs.Characters.Get(Model.ID);
+            if (_classBooks.GetAmount(config.Class).Value < SkillUpPrice) return;
+            _classBooks.Spend(config.Class, SkillUpPrice);
             Model.UpgradeSkill();
         }
         
