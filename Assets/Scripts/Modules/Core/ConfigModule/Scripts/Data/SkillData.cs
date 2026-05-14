@@ -16,6 +16,8 @@ namespace vikwhite.Data
         float Chance { get; }
         float Radius { get; }
         float AOE { get; }
+        TriggerType Trigger { get; }
+        TargetType TriggerSource { get; }
         List<TargetType> Targets { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
@@ -53,6 +55,8 @@ namespace vikwhite.Data
         public float Chance;
         public float Radius;
         public float AOE;
+        public TriggerType Trigger;
+        public TargetType TriggerSource;
         public List<TargetType> Targets;
         public List<StatData> Stats;
         public List<EffectData> Effects;
@@ -86,6 +90,8 @@ namespace vikwhite.Data
         float ISkillData.Chance => Chance;
         float ISkillData.Radius => Radius;
         float ISkillData.AOE => AOE;
+        TriggerType ISkillData.Trigger => Trigger;
+        TargetType ISkillData.TriggerSource => TriggerSource;
         List<TargetType> ISkillData.Targets => Targets;
         List<StatData> ISkillData.Stats => Stats;
         List<EffectData> ISkillData.Effects => Effects;

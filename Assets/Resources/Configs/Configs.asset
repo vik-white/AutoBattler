@@ -1062,6 +1062,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0.5
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1097,6 +1099,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0.5
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1132,6 +1136,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0.5
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1167,6 +1173,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0.5
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1202,6 +1210,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 10
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1237,6 +1247,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 10
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1272,6 +1284,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 10
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1307,6 +1321,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 10
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1342,6 +1358,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 10
       AOE: 10
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1377,6 +1395,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 01000000
       Stats: []
       Effects:
@@ -1414,6 +1434,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 0100000002000000
       Stats: []
       Effects:
@@ -1449,6 +1471,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 0100000002000000
       Stats: []
       Effects:
@@ -1484,6 +1508,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 01000000
       Stats: []
       Effects:
@@ -1519,6 +1545,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1554,6 +1582,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1586,6 +1616,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 01000000
       Stats:
       - Type: 5
@@ -1621,6 +1653,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 3
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects:
@@ -1657,6 +1691,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 02000000
       Stats:
       - Type: 6
@@ -1693,6 +1729,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 03000000
       Stats: []
       Effects:
@@ -1729,6 +1767,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1763,6 +1803,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1797,6 +1839,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1831,6 +1875,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 1
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1860,9 +1906,11 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
-      Chance: 1
+      Chance: 0.1
       Radius: 0
       AOE: 0
+      Trigger: 2
+      TriggerSource: 1
       Targets: 
       Stats: []
       Effects: []
@@ -1896,9 +1944,11 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
-      Chance: 1
+      Chance: 0.1
       Radius: 0
       AOE: 0
+      Trigger: 2
+      TriggerSource: 1
       Targets: 01000000
       Stats:
       - Type: 1
@@ -1934,6 +1984,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 2
+      TriggerSource: 2
       Targets: 
       Stats: []
       Effects:
@@ -1969,6 +2021,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 2
+      TriggerSource: 3
       Targets: 01000000
       Stats:
       - Type: 0
@@ -2004,6 +2058,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 3
+      TriggerSource: 2
       Targets: 
       Stats: []
       Effects:
@@ -2039,6 +2095,8 @@ MonoBehaviour:
       Chance: 1
       Radius: 0
       AOE: 0
+      Trigger: 3
+      TriggerSource: 2
       Targets: 02000000
       Stats:
       - Type: 1
