@@ -14,6 +14,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> Stars;
         public IReadOnlyReactiveProperty<int> SkillLevel;
         public IReadOnlyReactiveProperty<int> Shards;
+        public IReadOnlyReactiveProperty<int> ClassShards;
         public IReadOnlyReactiveProperty<float> Health;
         public List<ResourceViewModel> Resources = new ();
         public Sprite Image;
@@ -25,7 +26,7 @@ namespace vikwhite
         public int LevelUpPrice;
         public int SkillUpPrice;
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards) : base(character)
         {
             _resource = resource;
             Name = character.ID;
@@ -39,6 +40,7 @@ namespace vikwhite
             
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
+            ClassShards = classShards.GetAmount(config.Class, config.Rarity);
 
             var activeSkillID = config.GetSkill(SkillSlotType.Active);
             foreach (var abilityData in configs.Skills.GetAll())

@@ -24,6 +24,7 @@ namespace vikwhite
             Bind(viewModel.Health, health => _view.Health.text = ((int)health).ToString());
             Bind(viewModel.Shards, shards => _view.Shards.text = $"{shards}/5");
             Bind(viewModel.Shards, shards => _view.StarsBar.localScale = new Vector3(Mathf.Clamp01(shards / 5f), 1f, 1f));
+            Bind(viewModel.ClassShards, classShards => _view.ClassShards.text = classShards.ToString());
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
             _view.LevelUpPrice.text = $"{viewModel.LevelUpPrice} Gold";
