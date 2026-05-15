@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Rukhanka;
 using Rukhanka.Toolbox;
 using Unity.Entities;
@@ -17,7 +18,7 @@ namespace vikwhite.ECS
             foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
             {
                 var character = pendingSkill.ValueRO.Character;
-                if (character == Entity.Null || dead.HasComponent(character))
+                if (character == Entity.Null || dead.HasComponent(character) || !pendingSkill.ValueRO.Skill.IsCreated)
                     ecb.DestroyEntity(pendingEntity);
             }
 
@@ -26,15 +27,25 @@ namespace vikwhite.ECS
                 if (dead.HasComponent(character)) continue;
                 if (!HasAttackEvent(events, attackHash)) continue;
 
+                var activatedSkillIds = new HashSet<uint>();
                 foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
                 {
                     if (pendingSkill.ValueRO.Character != character) continue;
-
-                    ecb.CreateFrameEntity(new SkillActivatedEvent
+                    if (!pendingSkill.ValueRO.Skill.IsCreated)
                     {
-                        Character = character,
-                        Skill = pendingSkill.ValueRO.Skill
-                    });
+                        ecb.DestroyEntity(pendingEntity);
+                        continue;
+                    }
+
+                    if (activatedSkillIds.Add(pendingSkill.ValueRO.Skill.Value.ID))
+                    {
+                        ecb.CreateFrameEntity(new SkillActivatedEvent
+                        {
+                            Character = character,
+                            Skill = pendingSkill.ValueRO.Skill
+                        });
+                    }
+
                     ecb.DestroyEntity(pendingEntity);
                 }
             }

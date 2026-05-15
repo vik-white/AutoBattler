@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -18,13 +16,6 @@ namespace vikwhite.ECS
             var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
             var dead = SystemAPI.GetComponentLookup<Dead>(true);
             var targets = SystemAPI.GetComponentLookup<Target>(true);
-            var pendingSkills = new HashSet<PendingSkillKey>();
-
-            foreach (var pendingSkill in SystemAPI.Query<RefRO<PendingSkillActivation>>())
-            {
-                if (!pendingSkill.ValueRO.Skill.IsCreated) continue;
-                pendingSkills.Add(new PendingSkillKey(pendingSkill.ValueRO.Character, pendingSkill.ValueRO.Skill.Value.ID));
-            }
 
             foreach (var cooldownEvent in SystemAPI.Query<RefRO<SkillCooldownEvent>>())
             {
@@ -33,7 +24,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Cooldown, owner == source ? cooldownEvent.ValueRO.SkillID : 0, false, transforms, characters, enemies, dead, targets, pendingSkills);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Cooldown, owner == source ? cooldownEvent.ValueRO.SkillID : 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -48,7 +39,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Activate, owner == source ? activateEvent.ValueRO.SkillID : 0, owner == source, transforms, characters, enemies, dead, targets, pendingSkills);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Activate, owner == source ? activateEvent.ValueRO.SkillID : 0, owner == source, transforms, characters, enemies, dead, targets);
                 }
 
                 ecb.DestroyEntity(eventEntity);
@@ -61,7 +52,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.GetDamage, 0, false, transforms, characters, enemies, dead, targets, pendingSkills);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.GetDamage, 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -74,7 +65,7 @@ namespace vikwhite.ECS
                 {
                     if (dead.HasComponent(owner) && owner != source) continue;
 
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Dead, 0, false, transforms, characters, enemies, dead, targets, pendingSkills);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Dead, 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -96,8 +87,7 @@ namespace vikwhite.ECS
             in ComponentLookup<Character> characters,
             in ComponentLookup<Enemy> enemies,
             in ComponentLookup<Dead> dead,
-            in ComponentLookup<Target> targets,
-            HashSet<PendingSkillKey> pendingSkills)
+            in ComponentLookup<Target> targets)
         {
             var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
 
@@ -121,7 +111,7 @@ namespace vikwhite.ECS
 
                 skill.Cooldown = 0f;
                 var speed = SkillCooldownSystem.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                TriggerSkill(ecb, skills, owner, ownerTransform.Position, skill.Config, skillConfig, speed, pendingSkills);
+                TriggerSkill(ecb, skills, owner, ownerTransform.Position, skill.Config, skillConfig, speed);
             }
         }
 
@@ -188,12 +178,11 @@ namespace vikwhite.ECS
             float3 position,
             BlobAssetReference<SkillConfig> skill,
             in SkillConfig skillConfig,
-            float speed,
-            HashSet<PendingSkillKey> pendingSkills)
+            float speed)
         {
             if (skillConfig.Type != SkillType.Skills)
             {
-                StartSkill(ecb, entity, position, skill, skillConfig, speed, pendingSkills);
+                StartSkill(ecb, entity, position, skill, speed);
                 return;
             }
 
@@ -202,8 +191,7 @@ namespace vikwhite.ECS
                 ref var childSkill = ref skills.ElementAt(i);
                 if (!childSkill.IsChild) continue;
 
-                var childSkillConfig = childSkill.GetConfig();
-                StartSkill(ecb, entity, position, childSkill.Config, childSkillConfig, speed, pendingSkills);
+                StartSkill(ecb, entity, position, childSkill.Config, speed);
             }
         }
 
@@ -212,46 +200,10 @@ namespace vikwhite.ECS
             Entity entity,
             float3 position,
             BlobAssetReference<SkillConfig> skill,
-            in SkillConfig skillConfig,
-            float speed,
-            HashSet<PendingSkillKey> pendingSkills)
+            float speed)
         {
             ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill, Position = position, Speed = speed });
-
-            if (pendingSkills.Add(new PendingSkillKey(entity, skillConfig.ID)))
-                ecb.CreateSceneEntity(new PendingSkillActivation { Character = entity, Skill = skill });
-        }
-
-        private readonly struct PendingSkillKey : IEquatable<PendingSkillKey>
-        {
-            private readonly Entity _character;
-            private readonly uint _skillID;
-
-            public PendingSkillKey(Entity character, uint skillID)
-            {
-                _character = character;
-                _skillID = skillID;
-            }
-
-            public bool Equals(PendingSkillKey other)
-            {
-                return _character == other._character && _skillID == other._skillID;
-            }
-
-            public override bool Equals(object obj)
-            {
-                return obj is PendingSkillKey other && Equals(other);
-            }
-
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    var hashCode = _character.GetHashCode();
-                    hashCode = (hashCode * 397) ^ (int)_skillID;
-                    return hashCode;
-                }
-            }
+            ecb.CreateSceneEntity(new PendingSkillActivation { Character = entity, Skill = skill });
         }
     }
 }
