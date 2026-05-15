@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
+using Utilities.Extensions;
 using vikwhite.Data;
 
 namespace vikwhite.ECS
@@ -65,8 +66,7 @@ namespace vikwhite.ECS
         {
             if (!IsAvailable()) return;
 
-            var eventEntity = _entityManager.CreateEntity();
-            _entityManager.AddComponentData(eventEntity, new ActivateSkillEvent
+            _entityManager.CreateFrameEntity(new ActivateSkillEvent
             {
                 Character = _character,
                 SkillID = _abilityID

@@ -62,4 +62,8 @@ namespace vikwhite.ECS
     [UpdateInGroup(typeof(BattleSystemGroup))]
     [UpdateAfter(typeof(AnimationSystemGroup))]
     public partial class EventSystemGroup : ComponentSystemGroup { }
+
+    [UpdateInGroup(typeof(BattleSystemGroup))]
+    [UpdateAfter(typeof(EventSystemGroup))]
+    public partial class FrameCleanupSystemGroup : ComponentSystemGroup { }
 }

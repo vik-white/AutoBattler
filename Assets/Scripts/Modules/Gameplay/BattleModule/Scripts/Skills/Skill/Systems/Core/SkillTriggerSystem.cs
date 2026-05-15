@@ -28,12 +28,11 @@ namespace vikwhite.ECS
                 requests.Add(new SkillTriggerRequest(source, TriggerType.Cooldown, cooldownEvent.ValueRO.SkillID));
             }
 
-            foreach (var (activateEvent, eventEntity) in SystemAPI.Query<RefRO<ActivateSkillEvent>>().WithEntityAccess())
+            foreach (var activateEvent in SystemAPI.Query<RefRO<ActivateSkillEvent>>())
             {
                 var source = activateEvent.ValueRO.Character;
-                if (context.IsAliveCharacter(source)) 
-                    requests.Add(new SkillTriggerRequest(source, TriggerType.Activate, activateEvent.ValueRO.SkillID, true));
-                ecb.DestroyEntity(eventEntity);
+                if (!context.IsAliveCharacter(source)) continue;
+                requests.Add(new SkillTriggerRequest(source, TriggerType.Activate, activateEvent.ValueRO.SkillID, true));
             }
 
             foreach (var damageEvent in SystemAPI.Query<RefRO<GetDamageEvent>>())
