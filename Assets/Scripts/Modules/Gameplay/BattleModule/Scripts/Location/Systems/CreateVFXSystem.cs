@@ -8,7 +8,7 @@ namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(EventSystemGroup))]
     [UpdateBefore(typeof(CreatePrefabEventSystem))]
-    public partial struct CreateVFXEventSystem : ISystem
+    public partial struct CreateVFXSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
@@ -33,13 +33,13 @@ namespace vikwhite.ECS
                 CreatePrefab(ecb, "DeadVFX".CalculateHash32(), transforms[character].Position);
             }
 
-            foreach (var visualEvent in SystemAPI.Query<RefRO<SkillEffectVisualEvent>>())
+            foreach (var createEffectEvent in SystemAPI.Query<RefRO<CreateEffectEvent>>())
             {
-                var target = visualEvent.ValueRO.Target;
-                var provider = visualEvent.ValueRO.Provider;
+                var target = createEffectEvent.ValueRO.Target;
+                var provider = createEffectEvent.ValueRO.Provider;
                 if (!transforms.HasComponent(target) || !characters.HasComponent(target)) continue;
 
-                var skillConfig = visualEvent.ValueRO.Skill.Value;
+                var skillConfig = createEffectEvent.ValueRO.Skill.Value;
                 if (skillConfig.VFXPrefab == 0) continue;
 
                 CreatePrefab(ecb, skillConfig.VFXPrefab, GetEffectPosition(skillConfig, target, provider, transforms, characters));
