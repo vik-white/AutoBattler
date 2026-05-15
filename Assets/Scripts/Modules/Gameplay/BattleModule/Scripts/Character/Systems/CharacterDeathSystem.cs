@@ -11,10 +11,9 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (health, transform, abilities, entity) in SystemAPI.Query<RefRO<Health>, RefRO<LocalTransform>, DynamicBuffer<Skill>>().WithNone<Dead>().WithEntityAccess()) {
+            foreach (var (health, transform, entity) in SystemAPI.Query<RefRO<Health>, RefRO<LocalTransform>>().WithAll<Character>().WithNone<Dead>().WithEntityAccess()) {
                 if (health.ValueRO.Value <= 0)
                 {
-                    abilities.Clear();
                     ecb.AddComponent<Dead>(entity);
                     ecb.RemoveComponent<PhysicsCollider>(entity);
                     ecb.CreateFrameEntity(new DeadCharacterEvent { Character = entity });

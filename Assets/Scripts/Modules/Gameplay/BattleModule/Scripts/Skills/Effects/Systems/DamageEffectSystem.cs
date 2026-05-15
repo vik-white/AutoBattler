@@ -16,12 +16,13 @@ namespace vikwhite.ECS
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var characters = SystemAPI.GetComponentLookup<Character>(true);
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<DamageEffect>())
+            foreach (var (effect, target, provider) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>, RefRO<Provider>>().WithAny<DamageEffect>())
             {
                 var character = target.ValueRO.Value;
                 var targetConfig = characters[character].GetConfig();
                 var defense = defenses[character].Value;
                 var damage = DamageHandler.CalculateDamage(effect.ValueRO.Value, defense);
+                var eventDamage = damage;
                 if (damage > 0)
                 {
                     ecb.CreateFrameEntity(new CreateDamageFlyTextEvent
@@ -29,6 +30,14 @@ namespace vikwhite.ECS
                         Position = transforms[character].Position + new float3(0, targetConfig.ColliderHeight, 0),
                         Damage = damage,
                         IsEnemyTarget = SystemAPI.HasComponent<Enemy>(character),
+                        IsCrit = effect.ValueRO.IsCrit
+                    });
+
+                    ecb.CreateFrameEntity(new GetDamageEvent
+                    {
+                        Character = character,
+                        Provider = provider.ValueRO.Value,
+                        Damage = eventDamage,
                         IsCrit = effect.ValueRO.IsCrit
                     });
                 }

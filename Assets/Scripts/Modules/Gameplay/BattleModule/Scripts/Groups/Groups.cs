@@ -49,6 +49,10 @@ namespace vikwhite.ECS
     
     [UpdateInGroup(typeof(BattleSystemGroup))]
     [UpdateAfter(typeof(EffectsSystemGroup))]
+    public partial class SkillTriggerSystemGroup : ComponentSystemGroup { }
+    
+    [UpdateInGroup(typeof(BattleSystemGroup))]
+    [UpdateAfter(typeof(SkillTriggerSystemGroup))]
     public partial class CreateSystemGroup : ComponentSystemGroup { }
     
     [UpdateInGroup(typeof(BattleSystemGroup))]

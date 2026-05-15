@@ -63,8 +63,14 @@ namespace vikwhite.ECS
 
         private void OnActivateAbility()
         {
-            if(IsAvailable())
-                _entityManager.AddComponent<UseSkill>(_character);
+            if (!IsAvailable()) return;
+
+            var eventEntity = _entityManager.CreateEntity();
+            _entityManager.AddComponentData(eventEntity, new ActivateSkillEvent
+            {
+                Character = _character,
+                SkillID = _abilityID
+            });
         }
 
         private bool IsAvailable()

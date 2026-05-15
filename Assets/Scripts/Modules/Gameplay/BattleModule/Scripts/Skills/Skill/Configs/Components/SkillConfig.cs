@@ -13,6 +13,8 @@ namespace vikwhite.ECS
         public float Chance;
         public float Radius;
         public float AOE;
+        public TriggerType Trigger;
+        public TargetType TriggerSource;
         public FixedList64Bytes<TargetType> Targets;
         public FixedList64Bytes<EffectData> Effects;
         public FixedList128Bytes<StatusData> Statuses;

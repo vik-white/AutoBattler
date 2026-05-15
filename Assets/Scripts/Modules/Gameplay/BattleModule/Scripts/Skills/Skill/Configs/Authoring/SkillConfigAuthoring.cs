@@ -28,6 +28,8 @@ namespace vikwhite.ECS
                     Chance = data.Chance,
                     Radius = data.Radius,
                     AOE = data.AOE,
+                    Trigger = data.Trigger,
+                    TriggerSource = data.TriggerSource,
                     Effects = CreateEffects(data.Effects),
                     Statuses = CreateStatuses(data.Statuses),
                     Stats = CreateStats(data.Stats),

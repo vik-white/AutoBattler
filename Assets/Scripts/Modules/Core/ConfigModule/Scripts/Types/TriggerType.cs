@@ -5,5 +5,6 @@ namespace vikwhite.ECS
         Cooldown = 0,
         GetDamage = 1,
         Dead = 2,
+        Activate = 3,
     }
 }

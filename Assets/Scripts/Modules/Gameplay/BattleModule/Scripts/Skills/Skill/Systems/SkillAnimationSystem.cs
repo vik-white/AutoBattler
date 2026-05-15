@@ -6,7 +6,7 @@ using Unity.Transforms;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SetupSystemGroup))]
-    [UpdateAfter(typeof(SkillSystem))]
+    [UpdateAfter(typeof(SkillCooldownSystem))]
     public partial struct SkillAnimationSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
