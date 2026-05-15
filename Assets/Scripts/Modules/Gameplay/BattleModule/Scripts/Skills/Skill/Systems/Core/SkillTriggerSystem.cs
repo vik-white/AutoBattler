@@ -109,8 +109,7 @@ namespace vikwhite.ECS
         {
             skill.IsPending = true;
             skill.PendingTrigger = trigger;
-            if (skill.Config.IsCreated && SkillHandler.HasActivationAnimation(skill.Config.Value))
-                ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
+            ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
         }
     }
 }

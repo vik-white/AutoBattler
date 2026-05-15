@@ -3,6 +3,7 @@ using Unity.Entities;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SetupSystemGroup))]
+    [UpdateBefore(typeof(ActivateInstantSkillSystem))]
     [UpdateBefore(typeof(ActivateAnimatedSkillSystem))]
     public partial struct ClearPendingSkillsSystem : ISystem
     {
