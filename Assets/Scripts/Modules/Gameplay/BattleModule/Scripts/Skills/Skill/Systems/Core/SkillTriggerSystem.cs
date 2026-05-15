@@ -40,7 +40,7 @@ namespace vikwhite.ECS
             {
                 var source = damageEvent.ValueRO.Character;
                 if (!context.Characters.HasComponent(source)) continue; 
-                requests.Add(new SkillTriggerRequest(source, TriggerType.GetDamage));
+                requests.Add(new SkillTriggerRequest(source, TriggerType.GetDamage, triggerEntity: damageEvent.ValueRO.Provider));
             }
 
             foreach (var deadEvent in SystemAPI.Query<RefRO<DeadCharacterEvent>>())
@@ -79,7 +79,7 @@ namespace vikwhite.ECS
                 if (Random.value > skillConfig.Chance) continue;
 
                 var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                StartSkill(ecb, skills, owner, request.Source, ownerTransform.Position, ref skill, skillConfig, speed);
+                StartSkill(ecb, skills, owner, request.TriggerEntity, ownerTransform.Position, ref skill, skillConfig, speed);
             }
         }
 
@@ -109,7 +109,8 @@ namespace vikwhite.ECS
         {
             skill.IsPending = true;
             skill.PendingTrigger = trigger;
-            ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
+            if (skill.Config.IsCreated && SkillHandler.HasActivationAnimation(skill.Config.Value))
+                ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
         }
     }
 }

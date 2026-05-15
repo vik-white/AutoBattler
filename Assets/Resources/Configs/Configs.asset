@@ -32,6 +32,7 @@ MonoBehaviour:
   characters:
     IDS:
     - Dummy
+    - Test
     - Brawler
     - Tank
     - Healer
@@ -67,6 +68,32 @@ MonoBehaviour:
       SkillAttack: 0
       SkillActive: 0
       SkillPassive1: 0
+      SkillPassive2: 0
+      SkillMeta1: 0
+      SkillMeta2: 0
+      SkillMeta3: 0
+    - ID: Test
+      Name: Test
+      Prefab: IronfistDwarf
+      Rarity: 0
+      Class: 0
+      Scale: 1.4
+      Health: 14000
+      Shield: 0
+      Attack: 20
+      Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
+      Squad: 1
+      HealthBar: 1
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
+      Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
+      PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
+      SkillAttack: 2213220330
+      SkillActive: 1605752999
+      SkillPassive1: 1849116823
       SkillPassive2: 0
       SkillMeta1: 0
       SkillMeta2: 0
@@ -1064,7 +1091,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1101,7 +1128,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1138,7 +1165,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1175,7 +1202,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1212,7 +1239,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1249,7 +1276,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1286,7 +1313,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1323,7 +1350,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1360,7 +1387,7 @@ MonoBehaviour:
       AOE: 10
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1547,7 +1574,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 5
@@ -1584,7 +1611,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects: []
       Statuses: []
@@ -1655,7 +1682,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 3
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects:
       - Type: 1
@@ -1769,7 +1796,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 3
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects: []
       Statuses: []
@@ -1805,7 +1832,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 3
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects: []
       Statuses: []
@@ -1841,7 +1868,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 3
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects: []
       Statuses: []
@@ -1877,7 +1904,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 04000000
       Stats: []
       Effects: []
       Statuses: []
@@ -1906,19 +1933,22 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
-      Chance: 0.1
+      Chance: 1
       Radius: 0
       AOE: 0
       Trigger: 1
       TriggerSource: 0
-      Targets: 
+      Targets: 03000000
       Stats: []
-      Effects: []
+      Effects:
+      - Type: 1
+        Stat: -1
+        Value: 99
       Statuses:
       - Type: 1
         Value: 10
         Duration: 4
-        Period: 1
+        Period: 0.3
       Count: 0
       Speed: 0
       Pierce: 0
@@ -1944,7 +1974,7 @@ MonoBehaviour:
       Type: 3
       Icon: 
       Cooldown: 1
-      Chance: 0.1
+      Chance: 1
       Radius: 0
       AOE: 0
       Trigger: 1
@@ -1986,7 +2016,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 1
       TriggerSource: 1
-      Targets: 
+      Targets: 03000000
       Stats: []
       Effects:
       - Type: 1
@@ -2060,7 +2090,7 @@ MonoBehaviour:
       AOE: 0
       Trigger: 2
       TriggerSource: 1
-      Targets: 
+      Targets: 03000000
       Stats: []
       Effects:
       - Type: 1

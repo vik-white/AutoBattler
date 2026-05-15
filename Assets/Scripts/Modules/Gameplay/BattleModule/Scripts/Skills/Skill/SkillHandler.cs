@@ -89,6 +89,11 @@ namespace vikwhite.ECS
             var multiplier = statMultipliers[index].Value;
             return multiplier <= 0f ? 1f : 1f / multiplier;
         }
+
+        public static bool HasActivationAnimation(in SkillConfig skillConfig)
+        {
+            return skillConfig.Animation == AnimationType.Attack || skillConfig.Animation == AnimationType.Ability;
+        }
         
         public static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
@@ -135,7 +140,7 @@ namespace vikwhite.ECS
         private static bool CanUseSkill(Entity owner, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             if (skillConfig.Targets.Contains(TargetType.Trigger))
-                return CanUseTarget(request.Source, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), request.Trigger == TriggerType.Dead, context);
+                return CanUseTarget(request.TriggerEntity, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), request.Trigger == TriggerType.Dead, context);
 
             if (skillConfig.Targets.Contains(TargetType.Target))
             {

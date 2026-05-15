@@ -5,6 +5,7 @@ namespace vikwhite.ECS
     public struct SkillTriggerRequest
     {
         public readonly Entity Source;
+        public readonly Entity TriggerEntity;
         public readonly TriggerType Trigger;
         public readonly uint SkillID;
         public readonly bool IgnoreRadiusForSource;
@@ -15,9 +16,11 @@ namespace vikwhite.ECS
             TriggerType trigger,
             uint skillID = 0,
             bool ignoreRadiusForSource = false,
-            bool allowDeadSourceOwner = false)
+            bool allowDeadSourceOwner = false,
+            Entity triggerEntity = default)
         {
             Source = source;
+            TriggerEntity = triggerEntity == Entity.Null ? source : triggerEntity;
             Trigger = trigger;
             SkillID = skillID;
             IgnoreRadiusForSource = ignoreRadiusForSource;
