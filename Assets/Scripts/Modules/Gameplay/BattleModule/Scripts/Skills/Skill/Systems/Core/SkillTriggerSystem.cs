@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -10,100 +11,68 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
-            var characters = SystemAPI.GetComponentLookup<Character>(true);
-            var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
-            var dead = SystemAPI.GetComponentLookup<Dead>(true);
-            var targets = SystemAPI.GetComponentLookup<Target>(true);
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            var context = new SkillTriggerContext(
+                SystemAPI.GetComponentLookup<LocalTransform>(true),
+                SystemAPI.GetComponentLookup<Character>(true),
+                SystemAPI.GetComponentLookup<Enemy>(true),
+                SystemAPI.GetComponentLookup<Dead>(true),
+                SystemAPI.GetComponentLookup<Target>(true));
+
+            var requests = new NativeList<SkillTriggerRequest>(Allocator.Temp);
 
             foreach (var cooldownEvent in SystemAPI.Query<RefRO<SkillCooldownEvent>>())
             {
                 var source = cooldownEvent.ValueRO.Character;
-                if (!characters.HasComponent(source) || dead.HasComponent(source)) continue;
-
-                foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
-                {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Cooldown, owner == source ? cooldownEvent.ValueRO.SkillID : 0, false, transforms, characters, enemies, dead, targets);
-                }
+                if (!context.IsAliveCharacter(source)) continue;
+                requests.Add(new SkillTriggerRequest(source, TriggerType.Cooldown, cooldownEvent.ValueRO.SkillID));
             }
 
             foreach (var (activateEvent, eventEntity) in SystemAPI.Query<RefRO<ActivateSkillEvent>>().WithEntityAccess())
             {
                 var source = activateEvent.ValueRO.Character;
-                if (!characters.HasComponent(source) || dead.HasComponent(source))
-                {
-                    ecb.DestroyEntity(eventEntity);
-                    continue;
-                }
-
-                foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
-                {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Activate, owner == source ? activateEvent.ValueRO.SkillID : 0, owner == source, transforms, characters, enemies, dead, targets);
-                }
-
+                if (context.IsAliveCharacter(source)) 
+                    requests.Add(new SkillTriggerRequest(source, TriggerType.Activate, activateEvent.ValueRO.SkillID, true));
                 ecb.DestroyEntity(eventEntity);
             }
 
             foreach (var damageEvent in SystemAPI.Query<RefRO<GetDamageEvent>>())
             {
                 var source = damageEvent.ValueRO.Character;
-                if (!characters.HasComponent(source)) continue;
-
-                foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
-                {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.GetDamage, 0, false, transforms, characters, enemies, dead, targets);
-                }
+                if (!context.Characters.HasComponent(source)) continue; 
+                requests.Add(new SkillTriggerRequest(source, TriggerType.GetDamage));
             }
 
             foreach (var deadEvent in SystemAPI.Query<RefRO<DeadCharacterEvent>>())
             {
                 var source = deadEvent.ValueRO.Character;
-                if (!characters.HasComponent(source)) continue;
+                if (!context.Characters.HasComponent(source)) continue; 
+                requests.Add(new SkillTriggerRequest(source, TriggerType.Dead, allowDeadSourceOwner: true));
+            }
 
+            foreach (var request in requests)
+            {
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
                 {
-                    if (dead.HasComponent(owner) && owner != source) continue;
-
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Dead, 0, false, transforms, characters, enemies, dead, targets);
+                    if (!SkillHandler.CanProcessOwner(owner, request, context)) continue;
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), request, context);
                 }
             }
 
+            requests.Dispose();
             ecb.Playback(state.EntityManager);
         }
 
-        private static void TryTriggerSkills(
-            EntityCommandBuffer ecb,
-            DynamicBuffer<Skill> skills,
-            DynamicBuffer<StatMultiply> statMultipliers,
-            Entity owner,
-            in LocalTransform ownerTransform,
-            in CharacterConfigData ownerConfig,
-            Entity eventSource,
-            TriggerType trigger,
-            uint requestedSkillId,
-            bool ignoreRadius,
-            in ComponentLookup<LocalTransform> transforms,
-            in ComponentLookup<Character> characters,
-            in ComponentLookup<Enemy> enemies,
-            in ComponentLookup<Dead> dead,
-            in ComponentLookup<Target> targets)
+        private static void TryTriggerSkills(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, DynamicBuffer<StatMultiply> statMultipliers, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
 
             for (int i = 0; i < skills.Length; i++)
             {
                 ref var skill = ref skills.ElementAt(i);
-                if (skill.IsChild) continue;
-
                 var skillConfig = skill.GetConfig();
-                if (skill.IsPending) continue;
-                if (skillConfig.Type == SkillType.Skills && HasPendingChildSkill(skills)) continue;
-                if (requestedSkillId != 0 && skillConfig.ID != requestedSkillId) continue;
-                if (skillConfig.Trigger != trigger) continue;
-                if (!MatchesTriggerSource(owner, eventSource, skillConfig.TriggerSource, enemies, characters)) continue;
-                if (skill.Cooldown < skillConfig.Cooldown) continue;
-                if (!CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, ignoreRadius, transforms, characters, dead, targets)) continue;
+
+                if (!SkillHandler.CanTriggerSkill(skill, skills, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
 
                 if (Random.value > skillConfig.Chance)
                 {
@@ -112,113 +81,37 @@ namespace vikwhite.ECS
                 }
 
                 skill.Cooldown = 0f;
-                var speed = SkillCooldownSystem.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                TriggerSkill(ecb, skills, owner, ownerTransform.Position, ref skill, skillConfig, speed);
+                var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
+                StartSkill(ecb, skills, owner, ownerTransform.Position, ref skill, skillConfig, speed);
             }
         }
 
-        private static bool MatchesTriggerSource(Entity owner, Entity source, TargetType triggerSource, in ComponentLookup<Enemy> enemies, in ComponentLookup<Character> characters)
+        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, ref Skill skill, in SkillConfig skillConfig, float speed)
         {
-            if (source == Entity.Null || !characters.HasComponent(source)) return false;
-
-            if (triggerSource == TargetType.Self) return source == owner;
-            if (source == owner) return false;
-
-            var ownerIsEnemy = enemies.HasComponent(owner);
-            var sourceIsEnemy = enemies.HasComponent(source);
-
-            return triggerSource switch
+            if (skillConfig.Type == SkillType.Skills)
             {
-                TargetType.Allies => ownerIsEnemy == sourceIsEnemy,
-                TargetType.Enemies => ownerIsEnemy != sourceIsEnemy,
-                _ => false
-            };
-        }
-
-        private static bool CanUseSkill(
-            Entity owner,
-            in LocalTransform ownerTransform,
-            in SkillConfig skillConfig,
-            in CharacterConfigData ownerConfig,
-            bool ignoreRadius,
-            in ComponentLookup<LocalTransform> transforms,
-            in ComponentLookup<Character> characters,
-            in ComponentLookup<Dead> dead,
-            in ComponentLookup<Target> targets)
-        {
-            if (!NeedsTarget(skillConfig)) return true;
-            if (!targets.HasComponent(owner)) return false;
-
-            var target = targets[owner].Value;
-            if (target == Entity.Null) return false;
-            if (dead.HasComponent(target)) return false;
-            if (!transforms.HasComponent(target) || !characters.HasComponent(target)) return false;
-            if (ignoreRadius || skillConfig.Radius == 0f) return true;
-
-            var targetConfig = characters[target].GetConfig();
-            var distance = math.distance(ownerTransform.Position, transforms[target].Position);
-            var maxDistance = skillConfig.Radius + ownerConfig.ColliderRadius + targetConfig.ColliderRadius;
-            return distance <= maxDistance;
-        }
-
-        private static bool NeedsTarget(in SkillConfig skillConfig)
-        {
-            if (skillConfig.Type is SkillType.MeleeAttack or SkillType.RangeAttack) return true;
-            if (skillConfig.Type != SkillType.Skills) return false;
-
-            foreach (var target in skillConfig.Targets)
-                if (target == TargetType.Enemies)
-                    return true;
-
-            return false;
-        }
-
-        private static void TriggerSkill(
-            EntityCommandBuffer ecb,
-            DynamicBuffer<Skill> skills,
-            Entity entity,
-            float3 position,
-            ref Skill skill,
-            in SkillConfig skillConfig,
-            float speed)
-        {
-            if (skillConfig.Type != SkillType.Skills)
-            {
-                StartSkill(ecb, entity, position, ref skill, speed);
+                StartSkills(ecb, skills, entity, position, speed);
                 return;
             }
 
+            StartSkill(ecb, entity, position, ref skill, speed);
+        }
+
+        private static void StartSkills(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, float speed)
+        {
             for (int i = 0; i < skills.Length; i++)
             {
                 ref var childSkill = ref skills.ElementAt(i);
-                if (!childSkill.IsChild) continue;
-                if (childSkill.IsPending) continue;
+                if (!childSkill.IsChild || childSkill.IsPending) continue;
 
                 StartSkill(ecb, entity, position, ref childSkill, speed);
             }
         }
 
-        private static void StartSkill(
-            EntityCommandBuffer ecb,
-            Entity entity,
-            float3 position,
-            ref Skill skill,
-            float speed)
+        private static void StartSkill(EntityCommandBuffer ecb, Entity entity, float3 position, ref Skill skill, float speed)
         {
             skill.IsPending = true;
             ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
-        }
-
-        private static bool HasPendingChildSkill(DynamicBuffer<Skill> skills)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                var skill = skills[i];
-                if (skill.IsChild && skill.IsPending)
-                    return true;
-            }
-
-            return false;
         }
     }
 }

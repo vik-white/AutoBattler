@@ -25,7 +25,8 @@ namespace vikwhite.ECS
                     if (skill.IsChild) continue;
 
                     var skillConfig = skill.GetConfig();
-                    skill.Cooldown = math.min(skillConfig.Cooldown, skill.Cooldown + dt * GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers));
+        
+                    skill.Cooldown = math.min(skillConfig.Cooldown, skill.Cooldown + dt * SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers));
 
                     if (skillConfig.Trigger != TriggerType.Cooldown) continue;
                     if (skillConfig.ID == activeSkillId) continue;
@@ -40,17 +41,6 @@ namespace vikwhite.ECS
             }
 
             ecb.Playback(state.EntityManager);
-        }
-
-        public static float GetCooldownRate(uint activeSkillId, uint skillId, DynamicBuffer<StatMultiply> statMultipliers)
-        {
-            var statType = skillId == activeSkillId ? StatType.SkillActiveCooldown : StatType.SkillAttackCooldown;
-
-            var index = (int)statType;
-            if (index < 0 || index >= statMultipliers.Length) return 1f;
-
-            var multiplier = statMultipliers[index].Value;
-            return multiplier <= 0f ? 1f : 1f / multiplier;
         }
     }
 }

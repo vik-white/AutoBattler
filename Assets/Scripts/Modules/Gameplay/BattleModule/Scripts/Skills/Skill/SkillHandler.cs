@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
@@ -50,6 +52,97 @@ namespace vikwhite.ECS
                 }
             }
             return targets;
+        }
+        
+        public static float GetCooldownRate(uint activeSkillId, uint skillId, DynamicBuffer<StatMultiply> statMultipliers)
+        {
+            var statType = skillId == activeSkillId ? StatType.SkillActiveCooldown : StatType.SkillAttackCooldown;
+
+            var index = (int)statType;
+            if (index < 0 || index >= statMultipliers.Length) return 1f;
+
+            var multiplier = statMultipliers[index].Value;
+            return multiplier <= 0f ? 1f : 1f / multiplier;
+        }
+        
+        public static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)
+        {
+            if (!context.Dead.HasComponent(owner)) return true;
+            return request.AllowDeadSourceOwner && owner == request.Source;
+        }
+
+        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<Skill> skills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        {
+            if (skill.IsChild) return false;
+            if (skill.IsPending) return false;
+            if (skillConfig.Type == SkillType.Skills && HasPendingChildSkill(skills)) return false;
+
+            var requestedSkillId = request.GetRequestedSkillID(owner);
+            if (requestedSkillId != 0 && skillConfig.ID != requestedSkillId) return false;
+            if (skillConfig.Trigger != request.Trigger) return false;
+            if (!MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)) return false;
+            if (skill.Cooldown < skillConfig.Cooldown) return false;
+
+            return CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), context);
+        }
+
+        private static bool MatchesTriggerSource(Entity owner, Entity source, TargetType triggerSource, in SkillTriggerContext context)
+        {
+            if (source == Entity.Null || !context.Characters.HasComponent(source)) return false;
+
+            if (triggerSource == TargetType.Self) return source == owner;
+            if (source == owner) return false;
+
+            var ownerIsEnemy = context.Enemies.HasComponent(owner);
+            var sourceIsEnemy = context.Enemies.HasComponent(source);
+
+            return triggerSource switch
+            {
+                TargetType.Allies => ownerIsEnemy == sourceIsEnemy,
+                TargetType.Enemies => ownerIsEnemy != sourceIsEnemy,
+                _ => false
+            };
+        }
+
+        private static bool CanUseSkill(Entity owner, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, bool ignoreRadius, in SkillTriggerContext context)
+        {
+            if (!NeedsTarget(skillConfig)) return true;
+            if (!context.Targets.HasComponent(owner)) return false;
+
+            var target = context.Targets[owner].Value;
+            if (target == Entity.Null) return false;
+            if (context.Dead.HasComponent(target)) return false;
+            if (!context.Transforms.HasComponent(target) || !context.Characters.HasComponent(target)) return false;
+            if (ignoreRadius || skillConfig.Radius == 0f) return true;
+
+            var targetConfig = context.Characters[target].GetConfig();
+            var distance = math.distance(ownerTransform.Position, context.Transforms[target].Position);
+            var maxDistance = skillConfig.Radius + ownerConfig.ColliderRadius + targetConfig.ColliderRadius;
+            return distance <= maxDistance;
+        }
+
+        private static bool NeedsTarget(in SkillConfig skillConfig)
+        {
+            if (skillConfig.Type is SkillType.MeleeAttack or SkillType.RangeAttack) return true;
+            if (skillConfig.Type != SkillType.Skills) return false;
+
+            foreach (var target in skillConfig.Targets)
+                if (target == TargetType.Enemies)
+                    return true;
+
+            return false;
+        }
+
+        private static bool HasPendingChildSkill(DynamicBuffer<Skill> skills)
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                var skill = skills[i];
+                if (skill.IsChild && skill.IsPending)
+                    return true;
+            }
+
+            return false;
         }
     }
 }
