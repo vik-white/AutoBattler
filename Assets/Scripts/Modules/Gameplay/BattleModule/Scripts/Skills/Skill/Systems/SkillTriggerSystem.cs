@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -17,8 +16,6 @@ namespace vikwhite.ECS
             var enemies = SystemAPI.GetComponentLookup<Enemy>(true);
             var dead = SystemAPI.GetComponentLookup<Dead>(true);
             var targets = SystemAPI.GetComponentLookup<Target>(true);
-            var movementLocks = SystemAPI.GetComponentLookup<MovementLock>(true);
-            var movementLockRequests = new HashSet<Entity>();
 
             foreach (var cooldownEvent in SystemAPI.Query<RefRO<SkillCooldownEvent>>())
             {
@@ -27,7 +24,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Cooldown, owner == source ? cooldownEvent.ValueRO.SkillID : 0, false, transforms, characters, enemies, dead, targets, movementLocks, movementLockRequests);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Cooldown, owner == source ? cooldownEvent.ValueRO.SkillID : 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -42,7 +39,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Activate, owner == source ? activateEvent.ValueRO.SkillID : 0, owner == source, transforms, characters, enemies, dead, targets, movementLocks, movementLockRequests);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Activate, owner == source ? activateEvent.ValueRO.SkillID : 0, owner == source, transforms, characters, enemies, dead, targets);
                 }
 
                 ecb.DestroyEntity(eventEntity);
@@ -55,7 +52,7 @@ namespace vikwhite.ECS
 
                 foreach (var (skills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Dead>().WithEntityAccess())
                 {
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.GetDamage, 0, false, transforms, characters, enemies, dead, targets, movementLocks, movementLockRequests);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.GetDamage, 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -68,7 +65,7 @@ namespace vikwhite.ECS
                 {
                     if (dead.HasComponent(owner) && owner != source) continue;
 
-                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Dead, 0, false, transforms, characters, enemies, dead, targets, movementLocks, movementLockRequests);
+                    TryTriggerSkills(ecb, skills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), source, TriggerType.Dead, 0, false, transforms, characters, enemies, dead, targets);
                 }
             }
 
@@ -90,9 +87,7 @@ namespace vikwhite.ECS
             in ComponentLookup<Character> characters,
             in ComponentLookup<Enemy> enemies,
             in ComponentLookup<Dead> dead,
-            in ComponentLookup<Target> targets,
-            in ComponentLookup<MovementLock> movementLocks,
-            HashSet<Entity> movementLockRequests)
+            in ComponentLookup<Target> targets)
         {
             var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
 
@@ -116,7 +111,7 @@ namespace vikwhite.ECS
 
                 skill.Cooldown = 0f;
                 var speed = SkillCooldownSystem.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                TriggerSkill(ecb, skills, owner, ownerTransform.Position, skillConfig, speed, ref skill, movementLocks, movementLockRequests);
+                TriggerSkill(ecb, skills, owner, ownerTransform.Position, skillConfig, speed, ref skill);
             }
         }
 
@@ -176,13 +171,13 @@ namespace vikwhite.ECS
             return false;
         }
 
-        private static void TriggerSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, in SkillConfig skillConfig, float speed, ref Skill skill, in ComponentLookup<MovementLock> movementLocks, HashSet<Entity> movementLockRequests)
+        private static void TriggerSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, in SkillConfig skillConfig, float speed, ref Skill skill)
         {
             if (skillConfig.Type != SkillType.Skills)
             {
                 skill.IsActivated = false;
                 skill.IsAnimating = true;
-                PlaySkillAnimation(ecb, entity, position, skillConfig, speed, movementLocks, movementLockRequests);
+                ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
                 return;
             }
 
@@ -191,22 +186,10 @@ namespace vikwhite.ECS
                 ref var childSkill = ref skills.ElementAt(i);
                 if (!childSkill.IsChild) continue;
 
-                var childConfig = childSkill.GetConfig();
                 childSkill.IsActivated = false;
                 childSkill.IsAnimating = true;
-                PlaySkillAnimation(ecb, entity, position, childConfig, speed, movementLocks, movementLockRequests);
+                ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = childSkill.Config, Position = position, Speed = speed });
             }
-        }
-
-        private static void PlaySkillAnimation(EntityCommandBuffer ecb, Entity entity, float3 position, in SkillConfig skillConfig, float speed, in ComponentLookup<MovementLock> movementLocks, HashSet<Entity> movementLockRequests)
-        {
-            if (skillConfig.Animation == AnimationType.Attack || skillConfig.Animation == AnimationType.Ability)
-            {
-                if (!movementLocks.HasComponent(entity) && movementLockRequests.Add(entity)) ecb.AddComponent<MovementLock>(entity);
-            }
-
-            ecb.CreateFrameEntity(new Animation { Character = entity, Type = skillConfig.Animation, Speed = speed });
-            if (skillConfig.CastVFXPrefab != 0) ecb.CreateFrameEntity(new CreatePrefabEvent { ID = skillConfig.CastVFXPrefab, Position = position });
         }
     }
 }
