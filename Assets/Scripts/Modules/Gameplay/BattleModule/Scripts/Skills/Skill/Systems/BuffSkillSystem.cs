@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 
@@ -9,54 +8,58 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (skills, entity) in SystemAPI.Query<DynamicBuffer<Skill>>().WithAll<Character>().WithEntityAccess()) {
-                foreach (var skill in skills) {
-                    if (!skill.TryGetActivatedConfig(SkillType.Buff, out var config)) continue;
-                    if (config.Targets.Length == 0) continue;
+            foreach (var skillActivatedEvent in SystemAPI.Query<RefRO<SkillActivatedEvent>>()) {
+                var skill = skillActivatedEvent.ValueRO.Skill;
+                var config = skill.Value;
+                var entity = skillActivatedEvent.ValueRO.Character;
+                if (config.Type != SkillType.Buff) continue;
+                if (config.Targets.Length == 0) continue;
 
-                    NativeArray<Entity> enemies = SystemAPI.QueryBuilder().WithAll<Character>().WithAny<Enemy>().Build().ToEntityArray(Allocator.Temp);
-                    NativeArray<Entity> allies = SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Enemy>().Build().ToEntityArray(Allocator.Temp);
-                    var targets = SkillHandler.GetTargets(skill, entity, SystemAPI.HasComponent<Enemy>(entity), enemies, allies);
-                    
-                    foreach (var status in config.Statuses) {
-                        foreach (var target in targets)
+                NativeArray<Entity> enemies = SystemAPI.QueryBuilder().WithAll<Character>().WithAny<Enemy>().Build().ToEntityArray(Allocator.Temp);
+                NativeArray<Entity> allies = SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Enemy>().Build().ToEntityArray(Allocator.Temp);
+                var targets = SkillHandler.GetTargets(skill, entity, SystemAPI.HasComponent<Enemy>(entity), enemies, allies);
+
+                foreach (var status in config.Statuses) {
+                    foreach (var target in targets)
+                    {
+                        ecb.CreateFrameEntity(new CreateStatus
                         {
-                            ecb.CreateFrameEntity(new CreateStatus
-                            {
-                                Skill = skill.Config,
-                                Provider = entity,
-                                Target = target, 
-                                Data = status, 
-                            });
-                        }
-                    }
-                    
-                    foreach (var effect in config.Effects) {
-                        foreach (var target in targets)
-                        {
-                            ecb.CreateFrameEntity(new CreateEffect 
-                            {
-                                Skill = skill.Config,
-                                Provider = entity,
-                                Target = target, 
-                                Data = effect, 
-                            });
-                        }
-                    }
-                    
-                    foreach (var stat in config.Stats) {
-                        foreach (var target in targets)
-                        {
-                            ecb.CreateFrameEntity(new CreateStatChange 
-                            {
-                                Skill = skill.Config,
-                                Provider = entity,
-                                Target = target, 
-                                Data = stat, 
-                            });
-                        }
+                            Skill = skill,
+                            Provider = entity,
+                            Target = target,
+                            Data = status,
+                        });
                     }
                 }
+
+                foreach (var effect in config.Effects) {
+                    foreach (var target in targets)
+                    {
+                        ecb.CreateFrameEntity(new CreateEffect
+                        {
+                            Skill = skill,
+                            Provider = entity,
+                            Target = target,
+                            Data = effect,
+                        });
+                    }
+                }
+
+                foreach (var stat in config.Stats) {
+                    foreach (var target in targets)
+                    {
+                        ecb.CreateFrameEntity(new CreateStatChange
+                        {
+                            Skill = skill,
+                            Provider = entity,
+                            Target = target,
+                            Data = stat,
+                        });
+                    }
+                }
+
+                enemies.Dispose();
+                allies.Dispose();
             }
             ecb.Playback(state.EntityManager);
         }

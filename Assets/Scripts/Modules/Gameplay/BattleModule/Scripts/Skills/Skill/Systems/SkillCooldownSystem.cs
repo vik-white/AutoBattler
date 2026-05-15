@@ -20,7 +20,6 @@ namespace vikwhite.ECS
                 for (int i = 0; i < skills.Length; i++)
                 {
                     ref var skill = ref skills.ElementAt(i);
-                    skill.IsActivated = false;
 
                     if (isDead) continue;
                     if (skill.IsChild) continue;

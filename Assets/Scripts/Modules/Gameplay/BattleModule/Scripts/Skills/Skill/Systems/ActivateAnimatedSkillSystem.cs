@@ -10,25 +10,47 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var (events, skills) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>())
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var dead = SystemAPI.GetComponentLookup<Dead>(true);
+            var attackHash = "Attack".CalculateHash32();
+
+            foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
             {
-                foreach (var evnt in events)
+                var character = pendingSkill.ValueRO.Character;
+                if (character == Entity.Null || dead.HasComponent(character))
+                    ecb.DestroyEntity(pendingEntity);
+            }
+
+            foreach (var (events, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>>().WithEntityAccess())
+            {
+                if (dead.HasComponent(character)) continue;
+                if (!HasAttackEvent(events, attackHash)) continue;
+
+                foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
                 {
-                    if (evnt.nameHash == "Attack".CalculateHash32())
+                    if (pendingSkill.ValueRO.Character != character) continue;
+
+                    ecb.CreateFrameEntity(new SkillActivatedEvent
                     {
-                        for (int i = 0; i < skills.Length; i++)
-                        {
-                            ref var skill = ref skills.ElementAt(i);
-                            skill.IsActivated = false;
-                            if (skill.IsAnimating)
-                            {
-                                skill.IsActivated = true;
-                                skill.IsAnimating = false;
-                            }
-                        }
-                    }
+                        Character = character,
+                        Skill = pendingSkill.ValueRO.Skill
+                    });
+                    ecb.DestroyEntity(pendingEntity);
                 }
             }
+
+            ecb.Playback(state.EntityManager);
+        }
+
+        private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events, uint attackHash)
+        {
+            foreach (var evnt in events)
+            {
+                if (evnt.nameHash == attackHash)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

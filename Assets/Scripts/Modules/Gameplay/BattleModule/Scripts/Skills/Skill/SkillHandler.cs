@@ -6,10 +6,10 @@ namespace vikwhite.ECS
 {
     public static class SkillHandler
     {
-        public static List<Entity> GetTargets(Skill skill, Entity entity, bool isEnemy, NativeArray<Entity> enemies, NativeArray<Entity> allies)
+        public static List<Entity> GetTargets(BlobAssetReference<SkillConfig> skill, Entity entity, bool isEnemy, NativeArray<Entity> enemies, NativeArray<Entity> allies)
         {
             var targets = new List<Entity>();
-            var config = skill.GetConfig();
+            var config = skill.Value;
             
             if (config.Targets.Contains(TargetType.Self)) 
                 targets.Add(entity);

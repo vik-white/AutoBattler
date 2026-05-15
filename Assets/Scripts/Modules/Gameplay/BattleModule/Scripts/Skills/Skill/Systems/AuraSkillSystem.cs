@@ -7,15 +7,15 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (skills, entity) in SystemAPI.Query<DynamicBuffer<Skill>>().WithAll<Character>().WithEntityAccess()) {
-                foreach (var skill in skills) {
-                    if (!skill.TryGetActivatedConfig(SkillType.Aura, out var config)) continue;
-                    ecb.CreateFrameEntity(new CreateAura()
-                    {
-                        Provider = entity,
-                        Skill = skill.Config,
-                    });
-                }
+            foreach (var skillActivatedEvent in SystemAPI.Query<RefRO<SkillActivatedEvent>>()) {
+                var skill = skillActivatedEvent.ValueRO.Skill;
+                if (skill.Value.Type != SkillType.Aura) continue;
+
+                ecb.CreateFrameEntity(new CreateAura()
+                {
+                    Provider = skillActivatedEvent.ValueRO.Character,
+                    Skill = skill,
+                });
             }
             ecb.Playback(state.EntityManager);
         }
