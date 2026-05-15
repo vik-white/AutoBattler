@@ -78,11 +78,11 @@ namespace vikwhite.ECS
                 if (Random.value > skillConfig.Chance) continue;
 
                 var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                StartSkill(ecb, skills, owner, request.TriggerEntity, ownerTransform.Position, ref skill, skillConfig, speed);
+                TriggerSkill(ecb, skills, owner, request.TriggerEntity, ownerTransform.Position, ref skill, skillConfig, speed);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, Entity trigger, float3 position, ref Skill skill, in SkillConfig skillConfig, float speed)
+        private static void TriggerSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, Entity trigger, float3 position, ref Skill skill, in SkillConfig skillConfig, float speed)
         {
             if (skillConfig.Type == SkillType.Skills)
             {
