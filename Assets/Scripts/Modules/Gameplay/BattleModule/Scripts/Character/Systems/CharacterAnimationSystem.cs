@@ -26,8 +26,8 @@ namespace vikwhite.ECS
             foreach (var deadEvent in SystemAPI.Query<RefRO<DeadCharacterEvent>>())
                 PlayAnimation(ref state, deadEvent.ValueRO.Character, AnimationType.Dead, 1f);
 
-            foreach (var visualEvent in SystemAPI.Query<RefRO<CreateEffectEvent>>())
-                PlayAnimation(ref state, visualEvent.ValueRO.Target, AnimationType.Reaction, 1f);
+            foreach (var createEffectEvent in SystemAPI.Query<RefRO<CreateEffectEvent>>())
+                PlayAnimation(ref state, createEffectEvent.ValueRO.Target, AnimationType.Reaction, 1f);
 
             ecb.Playback(state.EntityManager);
         }
