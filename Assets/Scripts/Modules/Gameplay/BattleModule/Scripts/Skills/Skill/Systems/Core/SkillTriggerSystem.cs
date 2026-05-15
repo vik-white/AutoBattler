@@ -74,13 +74,10 @@ namespace vikwhite.ECS
 
                 if (!SkillHandler.CanTriggerSkill(skill, skills, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
 
-                if (Random.value > skillConfig.Chance)
-                {
-                    skill.Cooldown = 0f;
-                    continue;
-                }
-
                 skill.Cooldown = 0f;
+                
+                if (Random.value > skillConfig.Chance) continue;
+
                 var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
                 StartSkill(ecb, skills, owner, ownerTransform.Position, ref skill, skillConfig, speed);
             }
