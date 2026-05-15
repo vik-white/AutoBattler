@@ -7,6 +7,7 @@ namespace vikwhite
     {
         public BlobAssetReference<SkillConfig> Config;
         public float Cooldown;
+        public bool IsPending;
         public bool IsChild;
     }
 

@@ -97,6 +97,8 @@ namespace vikwhite.ECS
                 if (skill.IsChild) continue;
 
                 var skillConfig = skill.GetConfig();
+                if (skill.IsPending) continue;
+                if (skillConfig.Type == SkillType.Skills && HasPendingChildSkill(skills)) continue;
                 if (requestedSkillId != 0 && skillConfig.ID != requestedSkillId) continue;
                 if (skillConfig.Trigger != trigger) continue;
                 if (!MatchesTriggerSource(owner, eventSource, skillConfig.TriggerSource, enemies, characters)) continue;
@@ -111,7 +113,7 @@ namespace vikwhite.ECS
 
                 skill.Cooldown = 0f;
                 var speed = SkillCooldownSystem.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                TriggerSkill(ecb, skills, owner, ownerTransform.Position, skill.Config, skillConfig, speed);
+                TriggerSkill(ecb, skills, owner, ownerTransform.Position, ref skill, skillConfig, speed);
             }
         }
 
@@ -176,13 +178,13 @@ namespace vikwhite.ECS
             DynamicBuffer<Skill> skills,
             Entity entity,
             float3 position,
-            BlobAssetReference<SkillConfig> skill,
+            ref Skill skill,
             in SkillConfig skillConfig,
             float speed)
         {
             if (skillConfig.Type != SkillType.Skills)
             {
-                StartSkill(ecb, entity, position, skill, speed);
+                StartSkill(ecb, entity, position, ref skill, speed);
                 return;
             }
 
@@ -190,8 +192,9 @@ namespace vikwhite.ECS
             {
                 ref var childSkill = ref skills.ElementAt(i);
                 if (!childSkill.IsChild) continue;
+                if (childSkill.IsPending) continue;
 
-                StartSkill(ecb, entity, position, childSkill.Config, speed);
+                StartSkill(ecb, entity, position, ref childSkill, speed);
             }
         }
 
@@ -199,11 +202,23 @@ namespace vikwhite.ECS
             EntityCommandBuffer ecb,
             Entity entity,
             float3 position,
-            BlobAssetReference<SkillConfig> skill,
+            ref Skill skill,
             float speed)
         {
-            ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill, Position = position, Speed = speed });
-            ecb.CreateSceneEntity(new PendingSkillActivation { Character = entity, Skill = skill });
+            skill.IsPending = true;
+            ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
+        }
+
+        private static bool HasPendingChildSkill(DynamicBuffer<Skill> skills)
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                var skill = skills[i];
+                if (skill.IsChild && skill.IsPending)
+                    return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Rukhanka;
 using Rukhanka.Toolbox;
 using Unity.Entities;
@@ -15,38 +14,29 @@ namespace vikwhite.ECS
             var dead = SystemAPI.GetComponentLookup<Dead>(true);
             var attackHash = "Attack".CalculateHash32();
 
-            foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
+            foreach (var (events, skills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
-                var character = pendingSkill.ValueRO.Character;
-                if (character == Entity.Null || dead.HasComponent(character) || !pendingSkill.ValueRO.Skill.IsCreated)
-                    ecb.DestroyEntity(pendingEntity);
-            }
+                if (dead.HasComponent(character))
+                {
+                    ClearPendingSkills(skills);
+                    continue;
+                }
 
-            foreach (var (events, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>>().WithEntityAccess())
-            {
-                if (dead.HasComponent(character)) continue;
                 if (!HasAttackEvent(events, attackHash)) continue;
 
-                var activatedSkillIds = new HashSet<uint>();
-                foreach (var (pendingSkill, pendingEntity) in SystemAPI.Query<RefRO<PendingSkillActivation>>().WithEntityAccess())
+                for (int i = 0; i < skills.Length; i++)
                 {
-                    if (pendingSkill.ValueRO.Character != character) continue;
-                    if (!pendingSkill.ValueRO.Skill.IsCreated)
-                    {
-                        ecb.DestroyEntity(pendingEntity);
-                        continue;
-                    }
+                    ref var skill = ref skills.ElementAt(i);
+                    if (!skill.IsPending) continue;
 
-                    if (activatedSkillIds.Add(pendingSkill.ValueRO.Skill.Value.ID))
-                    {
-                        ecb.CreateFrameEntity(new SkillActivatedEvent
-                        {
-                            Character = character,
-                            Skill = pendingSkill.ValueRO.Skill
-                        });
-                    }
+                    skill.IsPending = false;
+                    if (!skill.Config.IsCreated) continue;
 
-                    ecb.DestroyEntity(pendingEntity);
+                    ecb.CreateFrameEntity(new SkillActivatedEvent
+                    {
+                        Character = character,
+                        Skill = skill.Config
+                    });
                 }
             }
 
@@ -62,6 +52,15 @@ namespace vikwhite.ECS
             }
 
             return false;
+        }
+
+        private static void ClearPendingSkills(DynamicBuffer<Skill> skills)
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                ref var skill = ref skills.ElementAt(i);
+                skill.IsPending = false;
+            }
         }
     }
 }
