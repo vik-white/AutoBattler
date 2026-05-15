@@ -11,18 +11,9 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            var dead = SystemAPI.GetComponentLookup<Dead>(true);
-            var attackHash = "Attack".CalculateHash32();
-
             foreach (var (events, skills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
-                if (dead.HasComponent(character))
-                {
-                    ClearPendingSkills(skills);
-                    continue;
-                }
-
-                if (!HasAttackEvent(events, attackHash)) continue;
+                if (!HasAttackEvent(events)) continue;
 
                 for (int i = 0; i < skills.Length; i++)
                 {
@@ -39,28 +30,16 @@ namespace vikwhite.ECS
                     });
                 }
             }
-
             ecb.Playback(state.EntityManager);
         }
 
-        private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events, uint attackHash)
+        private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events)
         {
             foreach (var evnt in events)
             {
-                if (evnt.nameHash == attackHash)
-                    return true;
+                if (evnt.nameHash == "Attack".CalculateHash32()) return true;
             }
-
             return false;
-        }
-
-        private static void ClearPendingSkills(DynamicBuffer<Skill> skills)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                ref var skill = ref skills.ElementAt(i);
-                skill.IsPending = false;
-            }
         }
     }
 }
