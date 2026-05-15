@@ -17,13 +17,13 @@ namespace vikwhite.ECS
                 var config = skill.Value;
                 var entity = skillActivatedEvent.ValueRO.Character;
                 if (config.Type != SkillType.RangeAttack) continue;
-                if (!transforms.HasComponent(entity) || !targets.HasComponent(entity)) continue;
+                if (!transforms.HasComponent(entity)) continue;
+                if (!SkillHandler.TryGetTarget(skill, entity, skillActivatedEvent.ValueRO.Trigger, targets, out var targetEntity)) continue;
 
                 var transform = transforms[entity];
                 var forward = math.mul(transform.Rotation, new float3(0, 0, 0.3f));
                 var spawnPosition = transform.Position + forward;
                 var rotation = transform.Rotation;
-                var targetEntity = targets[entity].Value;
 
                 if (transforms.HasComponent(targetEntity))
                 {

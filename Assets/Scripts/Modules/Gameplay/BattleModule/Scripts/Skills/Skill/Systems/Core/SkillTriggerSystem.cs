@@ -79,35 +79,36 @@ namespace vikwhite.ECS
                 if (Random.value > skillConfig.Chance) continue;
 
                 var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                StartSkill(ecb, skills, owner, ownerTransform.Position, ref skill, skillConfig, speed);
+                StartSkill(ecb, skills, owner, request.Source, ownerTransform.Position, ref skill, skillConfig, speed);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, ref Skill skill, in SkillConfig skillConfig, float speed)
+        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, Entity trigger, float3 position, ref Skill skill, in SkillConfig skillConfig, float speed)
         {
             if (skillConfig.Type == SkillType.Skills)
             {
-                StartSkills(ecb, skills, entity, position, speed);
+                StartSkills(ecb, skills, entity, trigger, position, speed);
                 return;
             }
 
-            StartSkill(ecb, entity, position, ref skill, speed);
+            StartSkill(ecb, entity, trigger, position, ref skill, speed);
         }
 
-        private static void StartSkills(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, float3 position, float speed)
+        private static void StartSkills(EntityCommandBuffer ecb, DynamicBuffer<Skill> skills, Entity entity, Entity trigger, float3 position, float speed)
         {
             for (int i = 0; i < skills.Length; i++)
             {
                 ref var childSkill = ref skills.ElementAt(i);
                 if (!childSkill.IsChild || childSkill.IsPending) continue;
 
-                StartSkill(ecb, entity, position, ref childSkill, speed);
+                StartSkill(ecb, entity, trigger, position, ref childSkill, speed);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, Entity entity, float3 position, ref Skill skill, float speed)
+        private static void StartSkill(EntityCommandBuffer ecb, Entity entity, Entity trigger, float3 position, ref Skill skill, float speed)
         {
             skill.IsPending = true;
+            skill.PendingTrigger = trigger;
             ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
         }
     }

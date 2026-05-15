@@ -5,5 +5,7 @@ namespace vikwhite.ECS
         Self = 0,
         Allies = 1,
         Enemies = 2,
+        Trigger = 3,
+        Target = 4,
     }
 }

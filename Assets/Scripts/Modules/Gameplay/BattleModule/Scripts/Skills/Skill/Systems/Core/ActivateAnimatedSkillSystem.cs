@@ -26,8 +26,11 @@ namespace vikwhite.ECS
                     ecb.CreateFrameEntity(new SkillActivatedEvent
                     {
                         Character = character,
+                        Trigger = skill.PendingTrigger,
                         Skill = skill.Config
                     });
+
+                    skill.PendingTrigger = Entity.Null;
                 }
             }
             ecb.Playback(state.EntityManager);

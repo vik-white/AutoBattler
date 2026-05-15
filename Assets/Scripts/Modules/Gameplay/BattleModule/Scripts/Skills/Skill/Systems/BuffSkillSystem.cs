@@ -8,6 +8,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var selectedTargets = SystemAPI.GetComponentLookup<Target>(true);
             foreach (var skillActivatedEvent in SystemAPI.Query<RefRO<SkillActivatedEvent>>()) {
                 var skill = skillActivatedEvent.ValueRO.Skill;
                 var config = skill.Value;
@@ -17,7 +18,7 @@ namespace vikwhite.ECS
 
                 NativeArray<Entity> enemies = SystemAPI.QueryBuilder().WithAll<Character>().WithAny<Enemy>().Build().ToEntityArray(Allocator.Temp);
                 NativeArray<Entity> allies = SystemAPI.QueryBuilder().WithAll<Character>().WithNone<Enemy>().Build().ToEntityArray(Allocator.Temp);
-                var targets = SkillHandler.GetTargets(skill, entity, SystemAPI.HasComponent<Enemy>(entity), enemies, allies);
+                var targets = SkillHandler.GetTargets(skill, entity, skillActivatedEvent.ValueRO.Trigger, selectedTargets, SystemAPI.HasComponent<Enemy>(entity), enemies, allies);
 
                 foreach (var status in config.Statuses) {
                     foreach (var target in targets)

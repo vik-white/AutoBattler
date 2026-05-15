@@ -18,6 +18,7 @@ namespace vikwhite.ECS
             {
                 ref var skill = ref skills.ElementAt(i);
                 skill.IsPending = false;
+                skill.PendingTrigger = Entity.Null;
             }
         }
     }

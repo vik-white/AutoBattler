@@ -8,13 +8,19 @@ namespace vikwhite.ECS
 {
     public static class SkillHandler
     {
-        public static List<Entity> GetTargets(BlobAssetReference<SkillConfig> skill, Entity entity, bool isEnemy, NativeArray<Entity> enemies, NativeArray<Entity> allies)
+        public static List<Entity> GetTargets(BlobAssetReference<SkillConfig> skill, Entity entity, Entity trigger, ComponentLookup<Target> selectedTargets, bool isEnemy, NativeArray<Entity> enemies, NativeArray<Entity> allies)
         {
             var targets = new List<Entity>();
             var config = skill.Value;
             
             if (config.Targets.Contains(TargetType.Self)) 
-                targets.Add(entity);
+                AddTarget(targets, entity);
+
+            if (config.Targets.Contains(TargetType.Trigger))
+                AddTarget(targets, trigger);
+
+            if (config.Targets.Contains(TargetType.Target) && TryGetSelectedTarget(entity, selectedTargets, out var selectedTarget))
+                AddTarget(targets, selectedTarget);
             
             if (config.Targets.Contains(TargetType.Allies))
             {
@@ -22,14 +28,14 @@ namespace vikwhite.ECS
                 {
                     foreach (var ally in allies)
                     {
-                        if(ally != entity) targets.Add(ally);
+                        if(ally != entity) AddTarget(targets, ally);
                     }
                 }
                 else
                 {
                     foreach (var ally in enemies)
                     {
-                        if(ally != entity) targets.Add(ally);
+                        if(ally != entity) AddTarget(targets, ally);
                     }
                 }
             }
@@ -40,18 +46,37 @@ namespace vikwhite.ECS
                 {
                     foreach (var enemy in enemies)
                     {
-                        if(enemy != entity) targets.Add(enemy);
+                        if(enemy != entity) AddTarget(targets, enemy);
                     }
                 }
                 else
                 {
                     foreach (var enemy in allies)
                     {
-                        if(enemy != entity) targets.Add(enemy);
+                        if(enemy != entity) AddTarget(targets, enemy);
                     }
                 }
             }
             return targets;
+        }
+
+        public static bool TryGetTarget(BlobAssetReference<SkillConfig> skill, Entity entity, Entity trigger, ComponentLookup<Target> targets, out Entity target)
+        {
+            var config = skill.Value;
+            if (config.Targets.Contains(TargetType.Trigger) && trigger != Entity.Null)
+            {
+                target = trigger;
+                return true;
+            }
+
+            if (config.Targets.Contains(TargetType.Target) && TryGetSelectedTarget(entity, targets, out target))
+                return true;
+
+            if (TryGetSelectedTarget(entity, targets, out target))
+                return true;
+
+            target = Entity.Null;
+            return false;
         }
         
         public static float GetCooldownRate(uint activeSkillId, uint skillId, DynamicBuffer<StatMultiply> statMultipliers)
@@ -83,7 +108,7 @@ namespace vikwhite.ECS
             if (!MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)) return false;
             if (skill.Cooldown < skillConfig.Cooldown) return false;
 
-            return CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), context);
+            return CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
         }
 
         private static bool MatchesTriggerSource(Entity owner, Entity source, TargetType triggerSource, in SkillTriggerContext context)
@@ -91,6 +116,9 @@ namespace vikwhite.ECS
             if (source == Entity.Null || !context.Characters.HasComponent(source)) return false;
 
             if (triggerSource == TargetType.Self) return source == owner;
+            if (triggerSource == TargetType.Target)
+                return TryGetSelectedTarget(owner, context.Targets, out var selectedTarget) && source == selectedTarget;
+
             if (source == owner) return false;
 
             var ownerIsEnemy = context.Enemies.HasComponent(owner);
@@ -104,14 +132,27 @@ namespace vikwhite.ECS
             };
         }
 
-        private static bool CanUseSkill(Entity owner, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, bool ignoreRadius, in SkillTriggerContext context)
+        private static bool CanUseSkill(Entity owner, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            if (!NeedsTarget(skillConfig)) return true;
-            if (!context.Targets.HasComponent(owner)) return false;
+            if (skillConfig.Targets.Contains(TargetType.Trigger))
+                return CanUseTarget(request.Source, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), request.Trigger == TriggerType.Dead, context);
 
-            var target = context.Targets[owner].Value;
+            if (skillConfig.Targets.Contains(TargetType.Target))
+            {
+                if (!TryGetSelectedTarget(owner, context.Targets, out var selectedTarget)) return false;
+                return CanUseTarget(selectedTarget, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), false, context);
+            }
+
+            if (!NeedsTarget(skillConfig)) return true;
+            if (!TryGetSelectedTarget(owner, context.Targets, out var target)) return false;
+
+            return CanUseTarget(target, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), false, context);
+        }
+
+        private static bool CanUseTarget(Entity target, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, bool ignoreRadius, bool allowDeadTarget, in SkillTriggerContext context)
+        {
             if (target == Entity.Null) return false;
-            if (context.Dead.HasComponent(target)) return false;
+            if (!allowDeadTarget && context.Dead.HasComponent(target)) return false;
             if (!context.Transforms.HasComponent(target) || !context.Characters.HasComponent(target)) return false;
             if (ignoreRadius || skillConfig.Radius == 0f) return true;
 
@@ -127,10 +168,28 @@ namespace vikwhite.ECS
             if (skillConfig.Type != SkillType.Skills) return false;
 
             foreach (var target in skillConfig.Targets)
-                if (target == TargetType.Enemies)
+                if (target == TargetType.Enemies || target == TargetType.Trigger || target == TargetType.Target)
                     return true;
 
             return false;
+        }
+
+        private static bool TryGetSelectedTarget(Entity entity, ComponentLookup<Target> targets, out Entity target)
+        {
+            if (targets.HasComponent(entity))
+            {
+                target = targets[entity].Value;
+                return target != Entity.Null;
+            }
+
+            target = Entity.Null;
+            return false;
+        }
+
+        private static void AddTarget(List<Entity> targets, Entity target)
+        {
+            if (target == Entity.Null || targets.Contains(target)) return;
+            targets.Add(target);
         }
 
         private static bool HasPendingChildSkill(DynamicBuffer<Skill> skills)

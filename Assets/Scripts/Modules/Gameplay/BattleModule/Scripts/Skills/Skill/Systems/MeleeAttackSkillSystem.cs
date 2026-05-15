@@ -13,10 +13,8 @@ namespace vikwhite.ECS
                 var config = skill.Value;
                 var entity = skillActivatedEvent.ValueRO.Character;
                 if (config.Type != SkillType.MeleeAttack) continue;
-                if (!targets.HasComponent(entity)) continue;
 
-                var target = targets[entity].Value;
-                if (target == Entity.Null) continue;
+                if (!SkillHandler.TryGetTarget(skill, entity, skillActivatedEvent.ValueRO.Trigger, targets, out var target)) continue;
 
                 foreach (var status in config.Statuses) {
                     ecb.CreateFrameEntity(new CreateStatus
