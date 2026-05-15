@@ -11,7 +11,6 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-
             foreach (var (events, skills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
                 if (!HasAttackEvent(events)) continue;
@@ -20,7 +19,6 @@ namespace vikwhite.ECS
                 {
                     ref var skill = ref skills.ElementAt(i);
                     if (!skill.IsPending) continue;
-                    if (!skill.Config.IsCreated) continue;
                     if (!SkillHandler.HasActivationAnimation(skill.Config.Value)) continue;
 
                     ActivateSkill(ecb, character, ref skill);
