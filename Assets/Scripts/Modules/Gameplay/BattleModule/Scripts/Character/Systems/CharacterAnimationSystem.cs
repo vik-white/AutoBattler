@@ -5,8 +5,7 @@ using Unity.Entities;
 
 namespace vikwhite.ECS
 {
-    [UpdateInGroup(typeof(SkillTriggerSystemGroup))]
-    [UpdateAfter(typeof(SkillTriggerSystem))]
+    [UpdateInGroup(typeof(AnimationSystemGroup))]
     public partial struct CharacterAnimationSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)

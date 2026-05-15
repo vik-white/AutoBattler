@@ -17,6 +17,7 @@ namespace vikwhite.ECS
                     Value = request.ValueRO.Data.Value
                 });
                 ecb.AddComponent(statChange, new DestroyTimer{ Time = request.ValueRO.Data.Duration });
+                ecb.CreateSkillEffectVisualEvent(request.ValueRO.Skill, request.ValueRO.Target, request.ValueRO.Provider);
             }
             ecb.Playback(state.EntityManager);
         }

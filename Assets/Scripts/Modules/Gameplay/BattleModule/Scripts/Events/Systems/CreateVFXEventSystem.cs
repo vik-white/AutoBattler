@@ -6,8 +6,8 @@ using vikwhite.Data;
 
 namespace vikwhite.ECS
 {
-    [UpdateInGroup(typeof(SkillTriggerSystemGroup))]
-    [UpdateAfter(typeof(SkillTriggerSystem))]
+    [UpdateInGroup(typeof(EventSystemGroup))]
+    [UpdateBefore(typeof(CreatePrefabEventSystem))]
     public partial struct CreateVFXEventSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
