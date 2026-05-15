@@ -1,18 +1,16 @@
 using Rukhanka;
 using Rukhanka.Toolbox;
 using Unity.Entities;
-using Unity.Transforms;
 
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SetupSystemGroup))]
     [UpdateAfter(typeof(SkillCooldownSystem))]
-    public partial struct SkillAnimationSystem : ISystem
+    public partial struct ActivateAnimatedSkillSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (events, skills, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>().WithEntityAccess())
+            foreach (var (events, skills) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<Skill>>())
             {
                 foreach (var evnt in events)
                 {
@@ -29,14 +27,8 @@ namespace vikwhite.ECS
                             }
                         }
                     }
-                    else if (evnt.nameHash == "End".CalculateHash32())
-                    {
-                        if (state.EntityManager.HasComponent<MovementLock>(entity))
-                            ecb.RemoveComponent<MovementLock>(entity);
-                    }
                 }
             }
-            ecb.Playback(state.EntityManager);
         }
     }
 }
