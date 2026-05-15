@@ -31,7 +31,7 @@ namespace vikwhite.ECS
 
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, ref Skill skill)
         {
-            var trigger = skill.PendingTrigger;
+            var trigger = skill.Trigger;
             SkillHandler.ClearPending(ref skill);
 
             ecb.CreateFrameEntity(new SkillActivatedEvent

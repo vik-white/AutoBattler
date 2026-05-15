@@ -16,25 +16,17 @@ namespace vikwhite.ECS
                 {
                     ref var skill = ref skills.ElementAt(i);
                     if (!skill.IsPending) continue;
-
-                    if (!skill.Config.IsCreated)
-                    {
-                        SkillHandler.ClearPending(ref skill);
-                        continue;
-                    }
-
                     if (SkillHandler.HasActivationAnimation(skill.Config.Value)) continue;
 
                     ActivateSkill(ecb, character, ref skill);
                 }
             }
-
             ecb.Playback(state.EntityManager);
         }
 
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, ref Skill skill)
         {
-            var trigger = skill.PendingTrigger;
+            var trigger = skill.Trigger;
             SkillHandler.ClearPending(ref skill);
 
             ecb.CreateFrameEntity(new SkillActivatedEvent

@@ -98,7 +98,7 @@ namespace vikwhite.ECS
         public static void ClearPending(ref Skill skill)
         {
             skill.IsPending = false;
-            skill.PendingTrigger = Entity.Null;
+            skill.Trigger = Entity.Null;
         }
         
         public static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)

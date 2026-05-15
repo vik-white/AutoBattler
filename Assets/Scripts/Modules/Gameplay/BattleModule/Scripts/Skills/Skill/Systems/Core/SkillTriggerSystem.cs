@@ -107,8 +107,8 @@ namespace vikwhite.ECS
 
         private static void StartSkill(EntityCommandBuffer ecb, Entity entity, Entity trigger, float3 position, ref Skill skill, float speed)
         {
+            skill.Trigger = trigger;
             skill.IsPending = true;
-            skill.PendingTrigger = trigger;
             ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
         }
     }
