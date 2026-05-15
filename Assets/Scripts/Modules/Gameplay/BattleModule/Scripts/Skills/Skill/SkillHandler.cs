@@ -94,6 +94,12 @@ namespace vikwhite.ECS
         {
             return skillConfig.Animation == AnimationType.Attack || skillConfig.Animation == AnimationType.Ability;
         }
+
+        public static void ClearPending(ref Skill skill)
+        {
+            skill.IsPending = false;
+            skill.PendingTrigger = Entity.Null;
+        }
         
         public static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)
         {

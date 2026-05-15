@@ -32,7 +32,7 @@ namespace vikwhite.ECS
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, ref Skill skill)
         {
             var trigger = skill.PendingTrigger;
-            ClearPending(ref skill);
+            SkillHandler.ClearPending(ref skill);
 
             ecb.CreateFrameEntity(new SkillActivatedEvent
             {
@@ -40,12 +40,6 @@ namespace vikwhite.ECS
                 Trigger = trigger,
                 Skill = skill.Config
             });
-        }
-
-        private static void ClearPending(ref Skill skill)
-        {
-            skill.IsPending = false;
-            skill.PendingTrigger = Entity.Null;
         }
 
         private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events)
