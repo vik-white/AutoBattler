@@ -13,29 +13,31 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
 
-            foreach (var (instantSkills, character) in SystemAPI.Query<DynamicBuffer<SkillInstant>>().WithEntityAccess())
-                ActivateInstantSkills(ecb, character, instantSkills, skillRuntimeData);
+            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<PendingSkill>>().WithEntityAccess())
+                ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, false);
 
-            foreach (var (events, animatedSkill, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, RefRO<SkillAnimated>>().WithEntityAccess())
+            foreach (var (events, pendingSkills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<PendingSkill>>().WithEntityAccess())
             {
                 if (!HasAttackEvent(events)) continue;
-                ActivateSkill(ecb, character, animatedSkill.ValueRO, skillRuntimeData);
+                ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, true);
             }
             ecb.Playback(state.EntityManager);
         }
 
-        private static void ActivateInstantSkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<SkillInstant> skills, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
+        private static void ActivateReadySkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<PendingSkill> pendingSkills, DynamicBuffer<SkillRuntimeData> skillRuntimeData, bool waitForAnimation)
         {
-            foreach (var skill in skills)
-                ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skillRuntimeData);
+            for (int i = 0; i < pendingSkills.Length;)
+            {
+                var pendingSkill = pendingSkills[i];
+                if (pendingSkill.WaitForAnimation != waitForAnimation)
+                {
+                    i++;
+                    continue;
+                }
 
-            skills.Clear();
-        }
-
-        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, in SkillAnimated skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
-        {
-            ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skillRuntimeData);
-            ecb.RemoveComponent<SkillAnimated>(character);
+                ActivateSkill(ecb, character, pendingSkill.Trigger, pendingSkill.Skill, skillRuntimeData);
+                pendingSkills.RemoveAt(i);
+            }
         }
 
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, BlobAssetReference<SkillConfig> skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)

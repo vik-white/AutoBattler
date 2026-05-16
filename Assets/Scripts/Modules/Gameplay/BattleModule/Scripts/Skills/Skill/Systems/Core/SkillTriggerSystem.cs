@@ -12,9 +12,7 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            var animatedSkills = new NativeList<StartedSkill>(Allocator.Temp);
-            var startedSkills = new NativeList<StartedSkill>(Allocator.Temp);
-            var startedAnimatedSkills = new NativeList<StartedSkill>(Allocator.Temp);
+            var animatedCharacters = new NativeList<Entity>(Allocator.Temp);
             var context = new SkillTriggerContext(
                 SystemAPI.GetComponentLookup<LocalTransform>(true),
                 SystemAPI.GetComponentLookup<Character>(true),
@@ -22,8 +20,11 @@ namespace vikwhite.ECS
                 SystemAPI.GetComponentLookup<Dead>(true),
                 SystemAPI.GetComponentLookup<Target>(true));
 
-            foreach (var (animatedSkill, character) in SystemAPI.Query<RefRO<SkillAnimated>>().WithEntityAccess())
-                animatedSkills.Add(new StartedSkill { Character = character, SkillID = animatedSkill.ValueRO.Skill.Value.ID });
+            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<PendingSkill>>().WithEntityAccess())
+            {
+                if (HasPendingAnimatedSkill(pendingSkills))
+                    animatedCharacters.Add(character);
+            }
 
             var requests = new NativeList<SkillTriggerRequest>(Allocator.Temp);
 
@@ -57,98 +58,116 @@ namespace vikwhite.ECS
 
             foreach (var request in requests)
             {
-                foreach (var (skills, instantSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<SkillInstant>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
+                foreach (var (skills, pendingSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<PendingSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
                 {
-                    if (!SkillHandler.CanProcessOwner(owner, request, context)) continue;
-                    TryTriggerSkills(ecb, animatedSkills, startedSkills, startedAnimatedSkills, skills, instantSkills, statMultipliers, owner, transform.ValueRO, character.ValueRO.GetConfig(), request, context);
+                    var skillOwner = new SkillOwner
+                    {
+                        Entity = owner,
+                        Transform = transform.ValueRO,
+                        Config = character.ValueRO.GetConfig(),
+                        Skills = skills,
+                        PendingSkills = pendingSkills,
+                        StatMultipliers = statMultipliers,
+                    };
+
+                    TriggerReadySkills(ecb, animatedCharacters, skillOwner, request, context);
                 }
             }
 
             requests.Dispose();
-            startedAnimatedSkills.Dispose();
-            startedSkills.Dispose();
-            animatedSkills.Dispose();
+            animatedCharacters.Dispose();
             ecb.Playback(state.EntityManager);
         }
 
-        private static void TryTriggerSkills(EntityCommandBuffer ecb, NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedSkills, NativeList<StartedSkill> startedAnimatedSkills, DynamicBuffer<Skill> skills, DynamicBuffer<SkillInstant> instantSkills, DynamicBuffer<StatMultiply> statMultipliers, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        private static void TriggerReadySkills(EntityCommandBuffer ecb, NativeList<Entity> animatedCharacters, SkillOwner owner, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
+            if (!SkillHandler.CanProcessOwner(owner.Entity, request, context)) return;
 
-            for (int i = 0; i < skills.Length; i++)
+            var activeSkillId = owner.Config.GetSkill(SkillSlotType.Active);
+
+            for (int i = 0; i < owner.Skills.Length; i++)
             {
-                ref var skill = ref skills.ElementAt(i);
+                ref var skill = ref owner.Skills.ElementAt(i);
                 var skillConfig = skill.GetConfig();
 
-                if (HasStartedSkill(startedSkills, owner, skillConfig)) continue;
-                if (SkillHandler.HasActivationAnimation(skillConfig) && HasUnavailableAnimatedSkill(animatedSkills, startedAnimatedSkills, owner)) continue;
-                if (!SkillHandler.CanTriggerSkill(skill, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
+                if (SkillHandler.HasActivationAnimation(skillConfig) && HasAnimatedSkill(animatedCharacters, owner.Entity)) continue;
+                if (!SkillHandler.CanTriggerSkill(skill, owner.Entity, owner.Transform, owner.Config, skillConfig, request, context)) continue;
 
                 skill.Cooldown = 0f;
                 
                 if (Random.value > skillConfig.Chance) continue;
 
-                var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                StartSkill(ecb, startedSkills, startedAnimatedSkills, instantSkills, owner, request.TriggerEntity, ownerTransform.Position, skill, speed);
+                StartSkill(ecb, animatedCharacters, owner.PendingSkills, new SkillStart
+                {
+                    Character = owner.Entity,
+                    Trigger = request.TriggerEntity,
+                    Position = owner.Transform.Position,
+                    Skill = skill.Config,
+                    Speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, owner.StatMultipliers)
+                });
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, NativeList<StartedSkill> startedSkills, NativeList<StartedSkill> startedAnimatedSkills, DynamicBuffer<SkillInstant> instantSkills, Entity entity, Entity trigger, float3 position, in Skill skill, float speed)
+        private static void StartSkill(EntityCommandBuffer ecb, NativeList<Entity> animatedCharacters, DynamicBuffer<PendingSkill> pendingSkills, in SkillStart start)
         {
-            startedSkills.Add(new StartedSkill { Character = entity, SkillID = skill.Config.Value.ID });
-            ecb.CreateFrameEntity(new SkillStartedEvent { Character = entity, Skill = skill.Config, Position = position, Speed = speed });
-
-            if (SkillHandler.HasActivationAnimation(skill.Config.Value))
+            var waitForAnimation = SkillHandler.HasActivationAnimation(start.Skill.Value);
+            ecb.CreateFrameEntity(new SkillStartedEvent
             {
-                var animatedSkill = new SkillAnimated
-                {
-                    Trigger = trigger,
-                    Skill = skill.Config
-                };
+                Character = start.Character,
+                Skill = start.Skill,
+                Position = start.Position,
+                Speed = start.Speed
+            });
 
-                startedAnimatedSkills.Add(new StartedSkill { Character = entity, SkillID = skill.Config.Value.ID });
-                ecb.AddComponent(entity, animatedSkill);
-                return;
-            }
+            if (waitForAnimation) animatedCharacters.Add(start.Character);
 
-            instantSkills.Add(new SkillInstant
+            pendingSkills.Add(new PendingSkill
             {
-                Trigger = trigger,
-                Skill = skill.Config
+                Trigger = start.Trigger,
+                Skill = start.Skill,
+                WaitForAnimation = waitForAnimation
             });
         }
 
-        private static bool HasUnavailableAnimatedSkill(NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedAnimatedSkills, Entity character)
+        private static bool HasPendingAnimatedSkill(DynamicBuffer<PendingSkill> pendingSkills)
         {
-            return HasAnimatedSkill(animatedSkills, character) || HasAnimatedSkill(startedAnimatedSkills, character);
-        }
-
-        private static bool HasAnimatedSkill(NativeList<StartedSkill> skills, Entity character)
-        {
-            foreach (var skill in skills)
+            foreach (var pendingSkill in pendingSkills)
             {
-                if (skill.Character == character)
+                if (pendingSkill.WaitForAnimation)
                     return true;
             }
 
             return false;
         }
 
-        private static bool HasStartedSkill(NativeList<StartedSkill> startedSkills, Entity character, in SkillConfig skillConfig)
+        private static bool HasAnimatedSkill(NativeList<Entity> animatedCharacters, Entity character)
         {
-            foreach (var startedSkill in startedSkills)
+            foreach (var animatedCharacter in animatedCharacters)
             {
-                if (startedSkill.Character == character && startedSkill.SkillID == skillConfig.ID)
+                if (animatedCharacter == character)
                     return true;
             }
 
             return false;
         }
 
-        private struct StartedSkill
+        private struct SkillOwner
+        {
+            public Entity Entity;
+            public LocalTransform Transform;
+            public CharacterConfigData Config;
+            public DynamicBuffer<Skill> Skills;
+            public DynamicBuffer<PendingSkill> PendingSkills;
+            public DynamicBuffer<StatMultiply> StatMultipliers;
+        }
+
+        private struct SkillStart
         {
             public Entity Character;
-            public uint SkillID;
+            public Entity Trigger;
+            public float3 Position;
+            public BlobAssetReference<SkillConfig> Skill;
+            public float Speed;
         }
     }
 }
