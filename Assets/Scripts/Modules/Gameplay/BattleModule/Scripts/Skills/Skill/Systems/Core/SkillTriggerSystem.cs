@@ -12,19 +12,12 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            var animatedCharacters = new NativeList<Entity>(Allocator.Temp);
             var context = new SkillTriggerContext(
                 SystemAPI.GetComponentLookup<LocalTransform>(true),
                 SystemAPI.GetComponentLookup<Character>(true),
                 SystemAPI.GetComponentLookup<Enemy>(true),
                 SystemAPI.GetComponentLookup<Dead>(true),
                 SystemAPI.GetComponentLookup<Target>(true));
-
-            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<PendingSkill>>().WithEntityAccess())
-            {
-                if (HasPendingAnimatedSkill(pendingSkills))
-                    animatedCharacters.Add(character);
-            }
 
             var requests = new NativeList<SkillTriggerRequest>(Allocator.Temp);
 
@@ -70,16 +63,15 @@ namespace vikwhite.ECS
                         StatMultipliers = statMultipliers,
                     };
 
-                    TriggerReadySkills(ecb, animatedCharacters, skillOwner, request, context);
+                    TriggerReadySkills(ecb, skillOwner, request, context);
                 }
             }
 
             requests.Dispose();
-            animatedCharacters.Dispose();
             ecb.Playback(state.EntityManager);
         }
 
-        private static void TriggerReadySkills(EntityCommandBuffer ecb, NativeList<Entity> animatedCharacters, SkillOwner owner, in SkillTriggerRequest request, in SkillTriggerContext context)
+        private static void TriggerReadySkills(EntityCommandBuffer ecb, SkillOwner owner, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             if (!SkillHandler.CanProcessOwner(owner.Entity, request, context)) return;
 
@@ -90,14 +82,14 @@ namespace vikwhite.ECS
                 ref var skill = ref owner.Skills.ElementAt(i);
                 var skillConfig = skill.GetConfig();
 
-                if (SkillHandler.HasActivationAnimation(skillConfig) && HasAnimatedSkill(animatedCharacters, owner.Entity)) continue;
+                if (SkillHandler.HasActivationAnimation(skillConfig) && HasPendingAnimatedSkill(owner.PendingSkills)) continue;
                 if (!SkillHandler.CanTriggerSkill(skill, owner.Entity, owner.Transform, owner.Config, skillConfig, request, context)) continue;
 
                 skill.Cooldown = 0f;
                 
                 if (Random.value > skillConfig.Chance) continue;
 
-                StartSkill(ecb, animatedCharacters, owner.PendingSkills, new SkillStart
+                StartSkill(ecb, owner.PendingSkills, new SkillStart
                 {
                     Character = owner.Entity,
                     Trigger = request.TriggerEntity,
@@ -108,7 +100,7 @@ namespace vikwhite.ECS
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, NativeList<Entity> animatedCharacters, DynamicBuffer<PendingSkill> pendingSkills, in SkillStart start)
+        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<PendingSkill> pendingSkills, in SkillStart start)
         {
             var waitForAnimation = SkillHandler.HasActivationAnimation(start.Skill.Value);
             ecb.CreateFrameEntity(new SkillStartedEvent
@@ -118,8 +110,6 @@ namespace vikwhite.ECS
                 Position = start.Position,
                 Speed = start.Speed
             });
-
-            if (waitForAnimation) animatedCharacters.Add(start.Character);
 
             pendingSkills.Add(new PendingSkill
             {
@@ -134,17 +124,6 @@ namespace vikwhite.ECS
             foreach (var pendingSkill in pendingSkills)
             {
                 if (pendingSkill.WaitForAnimation)
-                    return true;
-            }
-
-            return false;
-        }
-
-        private static bool HasAnimatedSkill(NativeList<Entity> animatedCharacters, Entity character)
-        {
-            foreach (var animatedCharacter in animatedCharacters)
-            {
-                if (animatedCharacter == character)
                     return true;
             }
 
