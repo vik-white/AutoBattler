@@ -8,7 +8,7 @@ namespace vikwhite
 
         protected override void UpdateViewModel(SectorWindowViewModel viewModel)
         {
-            BindClick(_view.CloseButton, viewModel.OnClose);
+            BindClick(_view.CloseButton, viewModel.OnLobby);
             BindClick(_view.FightButton, viewModel.OnFight);
             _view.Location.text = viewModel.CurrentLocation;
         }

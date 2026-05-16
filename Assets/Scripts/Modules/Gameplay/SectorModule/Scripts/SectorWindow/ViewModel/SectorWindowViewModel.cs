@@ -10,7 +10,7 @@ namespace vikwhite
         private readonly IRoadMapService _roadMap;
         public string CurrentLocation;
         public UnityAction OnFight;
-        public UnityAction OnClose;
+        public UnityAction OnLobby;
 
         public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap, IEnvironmentStateMachine environmentStateMachine)
         {
@@ -19,7 +19,7 @@ namespace vikwhite
             _squadWindow = squadWindow;
             _roadMap = roadMap;
             OnFight = StartCurrentLocation;
-            OnClose = OpenLobby;
+            OnLobby = OpenLobby;
             CurrentLocation = roadMap.CurrentLocation;
         }
 
@@ -38,7 +38,7 @@ namespace vikwhite
         {
             base.Dispose();
             OnFight = null;
-            OnClose = null;
+            OnLobby = null;
         }
     }
 }

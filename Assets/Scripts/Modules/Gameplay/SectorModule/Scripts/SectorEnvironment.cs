@@ -1,4 +1,6 @@
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace vikwhite
 {
@@ -23,6 +25,9 @@ namespace vikwhite
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
             Resolve<IRoadMapService>().Initialize();
+            var loader = SceneManager.LoadSceneAsync("Sector1", LoadSceneMode.Additive);
+            while (!loader.isDone) yield return null;
+            yield return new WaitForSeconds(0.1f);
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorStartState>();
             yield return null;
         }
@@ -30,6 +35,7 @@ namespace vikwhite
         protected override void Release()
         {
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorEndState>();
+            SceneManager.UnloadSceneAsync("Sector1");
         }
     }
 }
