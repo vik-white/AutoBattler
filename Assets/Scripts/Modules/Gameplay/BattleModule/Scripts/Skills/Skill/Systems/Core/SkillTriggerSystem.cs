@@ -51,19 +51,9 @@ namespace vikwhite.ECS
 
             foreach (var request in requests)
             {
-                foreach (var (skills, pendingSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<PendingSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
+                foreach (var (skills, pendingSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StarterSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
                 {
-                    var skillOwner = new SkillOwner
-                    {
-                        Entity = owner,
-                        Transform = transform.ValueRO,
-                        Config = character.ValueRO.GetConfig(),
-                        Skills = skills,
-                        PendingSkills = pendingSkills,
-                        StatMultipliers = statMultipliers,
-                    };
-
-                    TriggerReadySkills(ecb, skillOwner, request, context);
+                    TriggerReadySkills(ecb, owner, transform.ValueRO, character.ValueRO.GetConfig(), skills, pendingSkills, statMultipliers, request, context);
                 }
             }
 
@@ -71,69 +61,43 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private static void TriggerReadySkills(EntityCommandBuffer ecb, SkillOwner owner, in SkillTriggerRequest request, in SkillTriggerContext context)
+        private static void TriggerReadySkills(EntityCommandBuffer ecb, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, DynamicBuffer<Skill> skills, DynamicBuffer<StarterSkill> pendingSkills, DynamicBuffer<StatMultiply> statMultipliers, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            if (!SkillHandler.CanProcessOwner(owner.Entity, request, context)) return;
+            if (!SkillHandler.CanProcessOwner(owner, request, context)) return;
 
-            var activeSkillId = owner.Config.GetSkill(SkillSlotType.Active);
+            var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
 
-            for (int i = 0; i < owner.Skills.Length; i++)
+            for (int i = 0; i < skills.Length; i++)
             {
-                ref var skill = ref owner.Skills.ElementAt(i);
+                ref var skill = ref skills.ElementAt(i);
                 var skillConfig = skill.GetConfig();
 
-                if (!SkillHandler.CanTriggerSkill(skill, owner.PendingSkills, owner.Entity, owner.Transform, owner.Config, skillConfig, request, context)) continue;
+                if (!SkillHandler.CanTriggerSkill(skill, pendingSkills, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
 
                 skill.Cooldown = 0f;
                 
                 if (Random.value > skillConfig.Chance) continue;
 
-                StartSkill(ecb, owner.PendingSkills, new SkillStart
-                {
-                    Character = owner.Entity,
-                    Trigger = request.TriggerEntity,
-                    Position = owner.Transform.Position,
-                    Skill = skill.Config,
-                    Speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, owner.StatMultipliers)
-                });
+                StartSkill(ecb, owner, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), pendingSkills, skill.Config);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<PendingSkill> pendingSkills, in SkillStart start)
+        private static void StartSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, float3 position, float speed, DynamicBuffer<StarterSkill> pendingSkills, BlobAssetReference<SkillConfig> skillConfig)
         {
-            ecb.CreateFrameEntity(new SkillStartedEvent
+            ecb.CreateFrameEntity(new StartedSkillEvent
             {
-                Character = start.Character,
-                Skill = start.Skill,
-                Position = start.Position,
-                Speed = start.Speed
+                Character = character,
+                Skill = skillConfig,
+                Position = position,
+                Speed = speed
             });
 
-            pendingSkills.Add(new PendingSkill
+            pendingSkills.Add(new StarterSkill
             {
-                Trigger = start.Trigger,
-                Skill = start.Skill,
-                WaitForAnimation = SkillHandler.HasActivationAnimation(start.Skill.Value)
+                Trigger = trigger,
+                Skill = skillConfig,
+                WaitForAnimation = SkillHandler.HasActivationAnimation(skillConfig.Value)
             });
-        }
-
-        private struct SkillOwner
-        {
-            public Entity Entity;
-            public LocalTransform Transform;
-            public CharacterConfigData Config;
-            public DynamicBuffer<Skill> Skills;
-            public DynamicBuffer<PendingSkill> PendingSkills;
-            public DynamicBuffer<StatMultiply> StatMultipliers;
-        }
-
-        private struct SkillStart
-        {
-            public Entity Character;
-            public Entity Trigger;
-            public float3 Position;
-            public BlobAssetReference<SkillConfig> Skill;
-            public float Speed;
         }
     }
 }

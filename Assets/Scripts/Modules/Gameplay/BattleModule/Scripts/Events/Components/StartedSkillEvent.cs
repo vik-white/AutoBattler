@@ -3,7 +3,7 @@ using Unity.Mathematics;
 
 namespace vikwhite.ECS
 {
-    public struct SkillStartedEvent : IComponentData
+    public struct StartedSkillEvent : IComponentData
     {
         public Entity Character;
         public BlobAssetReference<SkillConfig> Skill;

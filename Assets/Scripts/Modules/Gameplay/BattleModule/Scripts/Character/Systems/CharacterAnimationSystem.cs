@@ -9,7 +9,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<SkillStartedEvent>>())
+            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<StartedSkillEvent>>())
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (!SkillHandler.HasActivationAnimation(skillConfig)) continue;

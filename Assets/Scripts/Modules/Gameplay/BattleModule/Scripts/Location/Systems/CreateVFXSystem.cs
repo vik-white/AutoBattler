@@ -16,7 +16,7 @@ namespace vikwhite.ECS
             var transforms = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var characters = SystemAPI.GetComponentLookup<Character>(true);
 
-            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<SkillStartedEvent>>())
+            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<StartedSkillEvent>>())
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (skillConfig.CastVFXPrefab == 0) continue;

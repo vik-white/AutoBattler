@@ -29,7 +29,7 @@ namespace vikwhite.ECS
                 }
             }
 
-            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<SkillStartedEvent>>())
+            foreach (var skillStartedEvent in SystemAPI.Query<RefRO<StartedSkillEvent>>())
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (!ShouldLockMovement(skillConfig.Animation)) continue;

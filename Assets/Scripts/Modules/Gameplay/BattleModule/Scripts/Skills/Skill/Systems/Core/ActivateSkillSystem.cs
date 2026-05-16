@@ -13,10 +13,10 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
 
-            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<PendingSkill>>().WithEntityAccess())
+            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithEntityAccess())
                 ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, false);
 
-            foreach (var (events, pendingSkills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<PendingSkill>>().WithEntityAccess())
+            foreach (var (events, pendingSkills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<StarterSkill>>().WithEntityAccess())
             {
                 if (!HasAttackEvent(events)) continue;
                 ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, true);
@@ -24,7 +24,7 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private static void ActivateReadySkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<PendingSkill> pendingSkills, DynamicBuffer<SkillRuntimeData> skillRuntimeData, bool waitForAnimation)
+        private static void ActivateReadySkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<StarterSkill> pendingSkills, DynamicBuffer<SkillRuntimeData> skillRuntimeData, bool waitForAnimation)
         {
             for (int i = 0; i < pendingSkills.Length;)
             {

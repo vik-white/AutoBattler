@@ -11,7 +11,7 @@ namespace vikwhite.ECS
             return !context.Dead.HasComponent(owner) || request.AllowDeadSourceOwner && owner == request.Source;
         }
 
-        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<PendingSkill> pendingSkills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<StarterSkill> pendingSkills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             return CanStartActivation(skillConfig, pendingSkills)
                    && MatchesRequestedSkill(owner, skillConfig, request)
@@ -21,12 +21,12 @@ namespace vikwhite.ECS
                    && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
         }
 
-        private static bool CanStartActivation(in SkillConfig skillConfig, DynamicBuffer<PendingSkill> pendingSkills)
+        private static bool CanStartActivation(in SkillConfig skillConfig, DynamicBuffer<StarterSkill> pendingSkills)
         {
             return !HasActivationAnimation(skillConfig) || !HasPendingAnimatedSkill(pendingSkills);
         }
 
-        private static bool HasPendingAnimatedSkill(DynamicBuffer<PendingSkill> pendingSkills)
+        private static bool HasPendingAnimatedSkill(DynamicBuffer<StarterSkill> pendingSkills)
         {
             foreach (var pendingSkill in pendingSkills)
             {
