@@ -14,9 +14,8 @@ namespace vikwhite
         protected override void UpdateViewModel(LobbyWindowViewModel viewModel)
         {
             BindClick(_view.CheatsButton, viewModel.OnCheats);
-            BindClick(_view.FightButton, viewModel.OnFight);
+            BindClick(_view.MapButton, viewModel.OnMap);
             BindClick(_view.BankButton, viewModel.OnBank);
-            _view.Location.text = viewModel.CurrentLocation;
             _view.ResourcesContainer.ClearChildren();
             foreach (var resource in viewModel.Resources)
                 _resourceViewFactory.Get(resource, _view.ResourcesContainer);

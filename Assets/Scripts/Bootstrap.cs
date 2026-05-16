@@ -12,6 +12,7 @@ namespace vikwhite
             new Setup()
                 .Configs(Configs)
                 .Add<LobbyEnvironment>(EnvironmentType.Lobby)
+                .Add<SectorEnvironment>(EnvironmentType.Sector)
                 .Add<BattleEnvironment>(EnvironmentType.Battle)
                 .Start(EnvironmentType.Lobby);
         }

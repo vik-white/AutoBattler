@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class LobbyWindowHierarchy : MonoBehaviour
 {
     public Button CheatsButton;
-    public Button FightButton;
+    public Button MapButton;
     public Button BankButton;
     public RectTransform ResourcesContainer;
-    public TMP_Text Location;
 }

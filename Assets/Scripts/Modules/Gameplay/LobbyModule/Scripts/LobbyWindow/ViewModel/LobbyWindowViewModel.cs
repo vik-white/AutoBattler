@@ -7,39 +7,32 @@ namespace vikwhite
 {
     public class LobbyWindowViewModel: WindowViewModel
     {
-        private readonly ILocationProvider _locationProvider;
-        private readonly ISquadWindow _squadWindow;
-        private readonly IRoadMapService _roadMap;
+        private readonly IEnvironmentStateMachine _environmentStateMachine;
         public List<ResourceViewModel> Resources = new ();
         public UnityAction OnCheats;
-        public UnityAction OnFight;
+        public UnityAction OnMap;
         public UnityAction OnBank;
-        public string CurrentLocation;
         
-        public LobbyWindowViewModel(ICheatWindow cheatWindow, ISummonWindow summonWindow, IResourceService resource, ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap)
+        public LobbyWindowViewModel(ICheatWindow cheatWindow, ISummonWindow summonWindow, IResourceService resource, IEnvironmentStateMachine environmentStateMachine)
         {
-            _locationProvider = locationProvider;
-            _squadWindow = squadWindow;
-            _roadMap = roadMap;
+            _environmentStateMachine = environmentStateMachine;
             OnCheats = cheatWindow.ShowWindow;
             OnBank = summonWindow.ShowWindow;
-            OnFight = SelectLocation;
+            OnMap = OpenMap;
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
             Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gem)));
-            CurrentLocation = roadMap.CurrentLocation;
         }
         
-        private void SelectLocation()
+        public void OpenMap()
         {
-            _locationProvider.ID = _roadMap.CurrentLocation;
-            _squadWindow.ShowWindow();
+            _environmentStateMachine.SwitchState(EnvironmentType.Sector);
         }
         
         public override void Dispose()
         {
             base.Dispose();
             OnCheats = null;
-            OnFight = null;
+            OnMap = null;
             OnBank = null;
         }
     }
