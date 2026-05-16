@@ -8,8 +8,8 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var pendingSkills in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithAll<Dead>())
-                pendingSkills.Clear();
+            foreach (var starterSkills in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithAll<Dead>())
+                starterSkills.Clear();
         }
     }
 }
