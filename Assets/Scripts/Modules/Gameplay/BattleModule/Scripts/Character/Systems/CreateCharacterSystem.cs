@@ -1,5 +1,4 @@
 using System;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -97,18 +96,8 @@ namespace vikwhite.ECS
             skills.Add(new Skill
             {
                 Config = configBlob,
-                Cooldown = cooldown,
-                InheritedSkills = CreateInheritedSkills(runtimeData, config)
+                Cooldown = cooldown
             });
-        }
-
-        private FixedList128Bytes<BlobAssetReference<SkillConfig>> CreateInheritedSkills(DynamicBuffer<SkillRuntimeData> runtimeData, SkillConfig config)
-        {
-            var inheritedSkills = new FixedList128Bytes<BlobAssetReference<SkillConfig>>();
-            for (int i = 0; i < config.Skills.Length; i++)
-                inheritedSkills.Add(runtimeData.Get(config.Skills[i]));
-
-            return inheritedSkills;
         }
     }
 }

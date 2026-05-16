@@ -1,6 +1,5 @@
 using Rukhanka;
 using Rukhanka.Toolbox;
-using Unity.Collections;
 using Unity.Entities;
 
 namespace vikwhite.ECS
@@ -12,33 +11,34 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
 
             foreach (var (instantSkills, character) in SystemAPI.Query<DynamicBuffer<SkillInstant>>().WithEntityAccess())
-                ActivateInstantSkills(ecb, character, instantSkills);
+                ActivateInstantSkills(ecb, character, instantSkills, skillRuntimeData);
 
             foreach (var (events, animatedSkill, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, RefRO<SkillAnimated>>().WithEntityAccess())
             {
                 if (!HasAttackEvent(events)) continue;
-                ActivateSkill(ecb, character, animatedSkill.ValueRO);
+                ActivateSkill(ecb, character, animatedSkill.ValueRO, skillRuntimeData);
             }
             ecb.Playback(state.EntityManager);
         }
 
-        private static void ActivateInstantSkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<SkillInstant> skills)
+        private static void ActivateInstantSkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<SkillInstant> skills, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
         {
             foreach (var skill in skills)
-                ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skill.InheritedSkills);
+                ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skillRuntimeData);
 
             skills.Clear();
         }
 
-        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, in SkillAnimated skill)
+        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, in SkillAnimated skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
         {
-            ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skill.InheritedSkills);
+            ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skillRuntimeData);
             ecb.RemoveComponent<SkillAnimated>(character);
         }
 
-        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, BlobAssetReference<SkillConfig> skill, in FixedList128Bytes<BlobAssetReference<SkillConfig>> inheritedSkills)
+        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, BlobAssetReference<SkillConfig> skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
         {
             ecb.CreateFrameEntity(new SkillActivatedEvent
             {
@@ -47,13 +47,14 @@ namespace vikwhite.ECS
                 Skill = skill
             });
 
-            for (int i = 0; i < inheritedSkills.Length; i++)
+            var skillConfig = skill.Value;
+            for (int i = 0; i < skillConfig.Skills.Length; i++)
             {
                 ecb.CreateFrameEntity(new SkillActivatedEvent
                 {
                     Character = character,
                     Trigger = trigger,
-                    Skill = inheritedSkills[i]
+                    Skill = skillRuntimeData.Get(skillConfig.Skills[i])
                 });
             }
         }

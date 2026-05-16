@@ -103,8 +103,7 @@ namespace vikwhite.ECS
                 var animatedSkill = new SkillAnimated
                 {
                     Trigger = trigger,
-                    Skill = skill.Config,
-                    InheritedSkills = skill.InheritedSkills
+                    Skill = skill.Config
                 };
 
                 startedAnimatedSkills.Add(new StartedSkill { Character = entity, SkillID = skill.Config.Value.ID });
@@ -115,8 +114,7 @@ namespace vikwhite.ECS
             instantSkills.Add(new SkillInstant
             {
                 Trigger = trigger,
-                Skill = skill.Config,
-                InheritedSkills = skill.InheritedSkills
+                Skill = skill.Config
             });
         }
 
