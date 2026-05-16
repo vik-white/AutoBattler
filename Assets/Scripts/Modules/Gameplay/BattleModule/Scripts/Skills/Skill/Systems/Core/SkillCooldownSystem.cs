@@ -22,7 +22,6 @@ namespace vikwhite.ECS
                     ref var skill = ref skills.ElementAt(i);
 
                     if (isDead) continue;
-                    if (skill.IsChild) continue;
 
                     var skillConfig = skill.GetConfig();
         

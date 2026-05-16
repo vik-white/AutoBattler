@@ -13,8 +13,7 @@ namespace vikwhite.ECS
 
         public static bool CanTriggerSkill(in Skill skill, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            return CanStartSkill(skill)
-                   && MatchesRequestedSkill(owner, skillConfig, request)
+            return MatchesRequestedSkill(owner, skillConfig, request)
                    && skillConfig.Trigger == request.Trigger
                    && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
                    && skill.Cooldown >= skillConfig.Cooldown
@@ -62,11 +61,6 @@ namespace vikwhite.ECS
                     return true;
 
             return false;
-        }
-
-        private static bool CanStartSkill(in Skill skill)
-        {
-            return !skill.IsChild;
         }
 
         private static bool MatchesRequestedSkill(Entity owner, in SkillConfig skillConfig, in SkillTriggerRequest request)

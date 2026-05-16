@@ -1,5 +1,6 @@
 using Rukhanka;
 using Rukhanka.Toolbox;
+using Unity.Collections;
 using Unity.Entities;
 
 namespace vikwhite.ECS
@@ -26,27 +27,35 @@ namespace vikwhite.ECS
         private static void ActivateInstantSkills(EntityCommandBuffer ecb, Entity character, DynamicBuffer<SkillInstant> skills)
         {
             foreach (var skill in skills)
-            {
-                ecb.CreateFrameEntity(new SkillActivatedEvent
-                {
-                    Character = character,
-                    Trigger = skill.Trigger,
-                    Skill = skill.Skill
-                });
-            }
+                ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skill.InheritedSkills);
 
             skills.Clear();
         }
 
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, in SkillAnimated skill)
         {
+            ActivateSkill(ecb, character, skill.Trigger, skill.Skill, skill.InheritedSkills);
+            ecb.RemoveComponent<SkillAnimated>(character);
+        }
+
+        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, BlobAssetReference<SkillConfig> skill, in FixedList128Bytes<BlobAssetReference<SkillConfig>> inheritedSkills)
+        {
             ecb.CreateFrameEntity(new SkillActivatedEvent
             {
                 Character = character,
-                Trigger = skill.Trigger,
-                Skill = skill.Skill
+                Trigger = trigger,
+                Skill = skill
             });
-            ecb.RemoveComponent<SkillAnimated>(character);
+
+            for (int i = 0; i < inheritedSkills.Length; i++)
+            {
+                ecb.CreateFrameEntity(new SkillActivatedEvent
+                {
+                    Character = character,
+                    Trigger = trigger,
+                    Skill = inheritedSkills[i]
+                });
+            }
         }
 
         private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events)

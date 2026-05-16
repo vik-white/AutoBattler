@@ -93,13 +93,22 @@ namespace vikwhite.ECS
             if (slot.Value == 0) return;
             var configBlob = runtimeData.Get(slot.Value);
             var config = configBlob.Value;
-            if (config.Type == SkillType.Skills)
-            {
-                foreach (var childID in config.Skills)
-                    skills.Add(new Skill { Config = runtimeData.Get(childID), IsChild = true });
-            }
             var cooldown = slot.Type == SkillSlotType.Attack ? config.Cooldown : config.Cooldown * 0.5f;
-            skills.Add(new Skill { Config = configBlob, Cooldown = cooldown });
+            skills.Add(new Skill
+            {
+                Config = configBlob,
+                Cooldown = cooldown,
+                InheritedSkills = CreateInheritedSkills(runtimeData, config)
+            });
+        }
+
+        private FixedList128Bytes<BlobAssetReference<SkillConfig>> CreateInheritedSkills(DynamicBuffer<SkillRuntimeData> runtimeData, SkillConfig config)
+        {
+            var inheritedSkills = new FixedList128Bytes<BlobAssetReference<SkillConfig>>();
+            for (int i = 0; i < config.Skills.Length; i++)
+                inheritedSkills.Add(runtimeData.Get(config.Skills[i]));
+
+            return inheritedSkills;
         }
     }
 }

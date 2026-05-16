@@ -81,8 +81,7 @@ namespace vikwhite.ECS
                 var skillConfig = skill.GetConfig();
 
                 if (HasStartedSkill(startedSkills, owner, skillConfig)) continue;
-                if (skillConfig.Type == SkillType.Skills && HasUnavailableChildSkill(animatedSkills, startedSkills, skills, owner)) continue;
-                if (skillConfig.Type != SkillType.Skills && SkillHandler.HasActivationAnimation(skillConfig) && HasUnavailableAnimatedSkill(animatedSkills, startedAnimatedSkills, owner)) continue;
+                if (SkillHandler.HasActivationAnimation(skillConfig) && HasUnavailableAnimatedSkill(animatedSkills, startedAnimatedSkills, owner)) continue;
                 if (!SkillHandler.CanTriggerSkill(skill, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
 
                 skill.Cooldown = 0f;
@@ -90,34 +89,7 @@ namespace vikwhite.ECS
                 if (Random.value > skillConfig.Chance) continue;
 
                 var speed = SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers);
-                TriggerSkill(ecb, animatedSkills, startedSkills, startedAnimatedSkills, skills, instantSkills, owner, request.TriggerEntity, ownerTransform.Position, skill, skillConfig, speed);
-            }
-        }
-
-        private static void TriggerSkill(EntityCommandBuffer ecb, NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedSkills, NativeList<StartedSkill> startedAnimatedSkills, DynamicBuffer<Skill> skills, DynamicBuffer<SkillInstant> instantSkills, Entity entity, Entity trigger, float3 position, in Skill skill, in SkillConfig skillConfig, float speed)
-        {
-            if (skillConfig.Type == SkillType.Skills)
-            {
-                StartSkills(ecb, animatedSkills, startedSkills, startedAnimatedSkills, skills, instantSkills, entity, trigger, position, speed);
-                return;
-            }
-
-            StartSkill(ecb, startedSkills, startedAnimatedSkills, instantSkills, entity, trigger, position, skill, speed);
-        }
-
-        private static void StartSkills(EntityCommandBuffer ecb, NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedSkills, NativeList<StartedSkill> startedAnimatedSkills, DynamicBuffer<Skill> skills, DynamicBuffer<SkillInstant> instantSkills, Entity entity, Entity trigger, float3 position, float speed)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                var childSkill = skills[i];
-                if (!childSkill.IsChild) continue;
-
-                var childSkillConfig = childSkill.GetConfig();
-                if (HasStartedSkill(startedSkills, entity, childSkillConfig)) continue;
-                if (HasPendingAnimatedSkill(animatedSkills, entity, childSkillConfig)) continue;
-                if (SkillHandler.HasActivationAnimation(childSkillConfig) && HasUnavailableAnimatedSkill(animatedSkills, startedAnimatedSkills, entity)) continue;
-
-                StartSkill(ecb, startedSkills, startedAnimatedSkills, instantSkills, entity, trigger, position, childSkill, speed);
+                StartSkill(ecb, startedSkills, startedAnimatedSkills, instantSkills, owner, request.TriggerEntity, ownerTransform.Position, skill, speed);
             }
         }
 
@@ -131,7 +103,8 @@ namespace vikwhite.ECS
                 var animatedSkill = new SkillAnimated
                 {
                     Trigger = trigger,
-                    Skill = skill.Config
+                    Skill = skill.Config,
+                    InheritedSkills = skill.InheritedSkills
                 };
 
                 startedAnimatedSkills.Add(new StartedSkill { Character = entity, SkillID = skill.Config.Value.ID });
@@ -142,34 +115,9 @@ namespace vikwhite.ECS
             instantSkills.Add(new SkillInstant
             {
                 Trigger = trigger,
-                Skill = skill.Config
+                Skill = skill.Config,
+                InheritedSkills = skill.InheritedSkills
             });
-        }
-
-        private static bool HasUnavailableChildSkill(NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedSkills, DynamicBuffer<Skill> skills, Entity character)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                var skill = skills[i];
-                if (!skill.IsChild) continue;
-
-                var skillConfig = skill.GetConfig();
-                if (HasStartedSkill(startedSkills, character, skillConfig) || HasPendingAnimatedSkill(animatedSkills, character, skillConfig))
-                    return true;
-            }
-
-            return false;
-        }
-
-        private static bool HasPendingAnimatedSkill(NativeList<StartedSkill> animatedSkills, Entity character, in SkillConfig skillConfig)
-        {
-            foreach (var animatedSkill in animatedSkills)
-            {
-                if (animatedSkill.Character == character && animatedSkill.SkillID == skillConfig.ID)
-                    return true;
-            }
-
-            return false;
         }
 
         private static bool HasUnavailableAnimatedSkill(NativeList<StartedSkill> animatedSkills, NativeList<StartedSkill> startedAnimatedSkills, Entity character)

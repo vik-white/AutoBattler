@@ -1,3 +1,4 @@
+using Unity.Collections;
 using Unity.Entities;
 using vikwhite.ECS;
 
@@ -7,7 +8,7 @@ namespace vikwhite
     {
         public BlobAssetReference<SkillConfig> Config;
         public float Cooldown;
-        public bool IsChild;
+        public FixedList128Bytes<BlobAssetReference<SkillConfig>> InheritedSkills;
     }
 
     public static class SkillExtensions
