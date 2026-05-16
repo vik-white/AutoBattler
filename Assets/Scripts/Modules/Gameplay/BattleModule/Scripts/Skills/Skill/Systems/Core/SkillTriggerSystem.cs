@@ -82,8 +82,7 @@ namespace vikwhite.ECS
                 ref var skill = ref owner.Skills.ElementAt(i);
                 var skillConfig = skill.GetConfig();
 
-                if (SkillHandler.HasActivationAnimation(skillConfig) && HasPendingAnimatedSkill(owner.PendingSkills)) continue;
-                if (!SkillHandler.CanTriggerSkill(skill, owner.Entity, owner.Transform, owner.Config, skillConfig, request, context)) continue;
+                if (!SkillHandler.CanTriggerSkill(skill, owner.PendingSkills, owner.Entity, owner.Transform, owner.Config, skillConfig, request, context)) continue;
 
                 skill.Cooldown = 0f;
                 
@@ -102,7 +101,6 @@ namespace vikwhite.ECS
 
         private static void StartSkill(EntityCommandBuffer ecb, DynamicBuffer<PendingSkill> pendingSkills, in SkillStart start)
         {
-            var waitForAnimation = SkillHandler.HasActivationAnimation(start.Skill.Value);
             ecb.CreateFrameEntity(new SkillStartedEvent
             {
                 Character = start.Character,
@@ -115,19 +113,8 @@ namespace vikwhite.ECS
             {
                 Trigger = start.Trigger,
                 Skill = start.Skill,
-                WaitForAnimation = waitForAnimation
+                WaitForAnimation = SkillHandler.HasActivationAnimation(start.Skill.Value)
             });
-        }
-
-        private static bool HasPendingAnimatedSkill(DynamicBuffer<PendingSkill> pendingSkills)
-        {
-            foreach (var pendingSkill in pendingSkills)
-            {
-                if (pendingSkill.WaitForAnimation)
-                    return true;
-            }
-
-            return false;
         }
 
         private struct SkillOwner

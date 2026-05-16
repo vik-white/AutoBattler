@@ -11,13 +11,30 @@ namespace vikwhite.ECS
             return !context.Dead.HasComponent(owner) || request.AllowDeadSourceOwner && owner == request.Source;
         }
 
-        public static bool CanTriggerSkill(in Skill skill, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<PendingSkill> pendingSkills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            return MatchesRequestedSkill(owner, skillConfig, request)
+            return CanStartActivation(skillConfig, pendingSkills)
+                   && MatchesRequestedSkill(owner, skillConfig, request)
                    && skillConfig.Trigger == request.Trigger
                    && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
                    && skill.Cooldown >= skillConfig.Cooldown
                    && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
+        }
+
+        private static bool CanStartActivation(in SkillConfig skillConfig, DynamicBuffer<PendingSkill> pendingSkills)
+        {
+            return !HasActivationAnimation(skillConfig) || !HasPendingAnimatedSkill(pendingSkills);
+        }
+
+        private static bool HasPendingAnimatedSkill(DynamicBuffer<PendingSkill> pendingSkills)
+        {
+            foreach (var pendingSkill in pendingSkills)
+            {
+                if (pendingSkill.WaitForAnimation)
+                    return true;
+            }
+
+            return false;
         }
 
         private static bool MatchesTriggerSource(Entity owner, Entity source, TargetType triggerSource, in SkillTriggerContext context)
