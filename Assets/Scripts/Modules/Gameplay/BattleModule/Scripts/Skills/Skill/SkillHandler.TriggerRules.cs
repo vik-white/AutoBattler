@@ -6,35 +6,33 @@ namespace vikwhite.ECS
 {
     public static partial class SkillHandler
     {
-        public static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)
+        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<StarterSkill> starterSkills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        {
+            return CanProcessOwner(owner, request, context)
+                   && MatchesRequestedSkill(owner, skillConfig, request)
+                   && skillConfig.Trigger == request.Trigger
+                   && skill.Cooldown >= skillConfig.Cooldown
+                   && CanStartAnimation(skillConfig, starterSkills)
+                   && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
+                   && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
+        }
+
+        private static bool CanProcessOwner(Entity owner, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             return !context.Dead.HasComponent(owner) || request.AllowDeadSourceOwner && owner == request.Source;
         }
 
-        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<StarterSkill> pendingSkills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        private static bool CanStartAnimation(in SkillConfig skillConfig, DynamicBuffer<StarterSkill> starterSkills)
         {
-            return CanStartActivation(skillConfig, pendingSkills)
-                   && MatchesRequestedSkill(owner, skillConfig, request)
-                   && skillConfig.Trigger == request.Trigger
-                   && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
-                   && skill.Cooldown >= skillConfig.Cooldown
-                   && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
-        }
+            if (!HasActivationAnimation(skillConfig)) return true;
 
-        private static bool CanStartActivation(in SkillConfig skillConfig, DynamicBuffer<StarterSkill> pendingSkills)
-        {
-            return !HasActivationAnimation(skillConfig) || !HasPendingAnimatedSkill(pendingSkills);
-        }
-
-        private static bool HasPendingAnimatedSkill(DynamicBuffer<StarterSkill> pendingSkills)
-        {
-            foreach (var pendingSkill in pendingSkills)
+            foreach (var starterSkill in starterSkills)
             {
-                if (pendingSkill.WaitForAnimation)
-                    return true;
+                if (starterSkill.WaitForAnimation)
+                    return false;
             }
 
-            return false;
+            return true;
         }
 
         private static bool MatchesTriggerSource(Entity owner, Entity source, TargetType triggerSource, in SkillTriggerContext context)
@@ -57,9 +55,7 @@ namespace vikwhite.ECS
             if (HasTarget(skillConfig, TargetType.Target))
                 return CanUseSelectedTarget(owner, ownerTransform, skillConfig, ownerConfig, request, context);
 
-            if (!NeedsTarget(skillConfig)) return true;
-
-            return CanUseSelectedTarget(owner, ownerTransform, skillConfig, ownerConfig, request, context);
+            return !NeedsSelectedTarget(skillConfig) || CanUseSelectedTarget(owner, ownerTransform, skillConfig, ownerConfig, request, context);
         }
 
         private static bool CanUseTarget(Entity target, in LocalTransform ownerTransform, in SkillConfig skillConfig, in CharacterConfigData ownerConfig, bool ignoreRadius, bool allowDeadTarget, in SkillTriggerContext context)
@@ -68,16 +64,10 @@ namespace vikwhite.ECS
                    && (ignoreRadius || skillConfig.Radius == 0f || IsTargetInRadius(target, ownerTransform, skillConfig, ownerConfig, context));
         }
 
-        private static bool NeedsTarget(in SkillConfig skillConfig)
+        private static bool NeedsSelectedTarget(in SkillConfig skillConfig)
         {
             if (skillConfig.Type is SkillType.MeleeAttack or SkillType.RangeAttack) return true;
-            if (skillConfig.Type != SkillType.Skills) return false;
-
-            foreach (var target in skillConfig.Targets)
-                if (RequiresConcreteTarget(target))
-                    return true;
-
-            return false;
+            return skillConfig.Type == SkillType.Skills && HasTarget(skillConfig, TargetType.Enemies);
         }
 
         private static bool MatchesRequestedSkill(Entity owner, in SkillConfig skillConfig, in SkillTriggerRequest request)
@@ -126,11 +116,6 @@ namespace vikwhite.ECS
         private static bool IsValidTriggerSource(Entity source, in SkillTriggerContext context)
         {
             return source != Entity.Null && context.Characters.HasComponent(source);
-        }
-
-        private static bool RequiresConcreteTarget(TargetType target)
-        {
-            return target is TargetType.Enemies or TargetType.Trigger or TargetType.Target;
         }
     }
 }

@@ -63,10 +63,7 @@ namespace vikwhite.ECS
 
         private static void TriggerReadySkills(EntityCommandBuffer ecb, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, DynamicBuffer<Skill> skills, DynamicBuffer<StarterSkill> starterSkills, DynamicBuffer<StatMultiply> statMultipliers, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            if (!SkillHandler.CanProcessOwner(owner, request, context)) return;
-
             var activeSkillId = ownerConfig.GetSkill(SkillSlotType.Active);
-
             for (int i = 0; i < skills.Length; i++)
             {
                 ref var skill = ref skills.ElementAt(i);
