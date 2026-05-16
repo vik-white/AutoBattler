@@ -72,6 +72,7 @@ namespace vikwhite.ECS
                 ecb.AddComponent(characterEntity, upgrade);
 
                 var skills = ecb.AddBuffer<Skill>(characterEntity);
+                ecb.AddBuffer<SkillInstant>(characterEntity);
                 for (int i = 0; i < config.Skills.Length; i++)
                     CreateSkill(skillRuntimeData, skills, config.Skills[i]);
 

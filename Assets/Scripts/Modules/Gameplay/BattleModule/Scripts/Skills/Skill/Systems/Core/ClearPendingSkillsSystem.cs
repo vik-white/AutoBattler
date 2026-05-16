@@ -3,23 +3,20 @@ using Unity.Entities;
 namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SetupSystemGroup))]
-    [UpdateBefore(typeof(ActivateInstantSkillSystem))]
-    [UpdateBefore(typeof(ActivateAnimatedSkillSystem))]
+    [UpdateBefore(typeof(ActivateSkillSystem))]
     public partial struct ClearPendingSkillsSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
-            foreach (var skills in SystemAPI.Query<DynamicBuffer<Skill>>().WithAll<Dead>())
-                ClearPendingSkills(skills);
-        }
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
 
-        private static void ClearPendingSkills(DynamicBuffer<Skill> skills)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                ref var skill = ref skills.ElementAt(i);
-                SkillHandler.ClearPending(ref skill);
-            }
+            foreach (var instantSkills in SystemAPI.Query<DynamicBuffer<SkillInstant>>().WithAll<Dead>())
+                instantSkills.Clear();
+
+            foreach (var (_, character) in SystemAPI.Query<RefRO<SkillAnimated>>().WithAll<Dead>().WithEntityAccess())
+                ecb.RemoveComponent<SkillAnimated>(character);
+
+            ecb.Playback(state.EntityManager);
         }
     }
 }

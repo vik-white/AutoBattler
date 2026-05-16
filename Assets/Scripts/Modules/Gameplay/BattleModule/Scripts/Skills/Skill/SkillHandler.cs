@@ -19,11 +19,5 @@ namespace vikwhite.ECS
         {
             return skillConfig.Animation is AnimationType.Attack or AnimationType.Ability;
         }
-
-        public static void ClearPending(ref Skill skill)
-        {
-            skill.IsPending = false;
-            skill.Trigger = Entity.Null;
-        }
     }
 }

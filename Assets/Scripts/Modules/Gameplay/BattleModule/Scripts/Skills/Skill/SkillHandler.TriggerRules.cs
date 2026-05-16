@@ -11,9 +11,9 @@ namespace vikwhite.ECS
             return !context.Dead.HasComponent(owner) || request.AllowDeadSourceOwner && owner == request.Source;
         }
 
-        public static bool CanTriggerSkill(in Skill skill, DynamicBuffer<Skill> skills, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
+        public static bool CanTriggerSkill(in Skill skill, Entity owner, in LocalTransform ownerTransform, in CharacterConfigData ownerConfig, in SkillConfig skillConfig, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
-            return CanStartSkill(skill, skills, skillConfig)
+            return CanStartSkill(skill)
                    && MatchesRequestedSkill(owner, skillConfig, request)
                    && skillConfig.Trigger == request.Trigger
                    && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
@@ -64,10 +64,9 @@ namespace vikwhite.ECS
             return false;
         }
 
-        private static bool CanStartSkill(in Skill skill, DynamicBuffer<Skill> skills, in SkillConfig skillConfig)
+        private static bool CanStartSkill(in Skill skill)
         {
-            if (skill.IsChild || skill.IsPending) return false;
-            return skillConfig.Type != SkillType.Skills || !HasPendingChildSkill(skills);
+            return !skill.IsChild;
         }
 
         private static bool MatchesRequestedSkill(Entity owner, in SkillConfig skillConfig, in SkillTriggerRequest request)
@@ -121,18 +120,6 @@ namespace vikwhite.ECS
         private static bool RequiresConcreteTarget(TargetType target)
         {
             return target is TargetType.Enemies or TargetType.Trigger or TargetType.Target;
-        }
-
-        private static bool HasPendingChildSkill(DynamicBuffer<Skill> skills)
-        {
-            for (int i = 0; i < skills.Length; i++)
-            {
-                var skill = skills[i];
-                if (skill.IsChild && skill.IsPending)
-                    return true;
-            }
-
-            return false;
         }
     }
 }
