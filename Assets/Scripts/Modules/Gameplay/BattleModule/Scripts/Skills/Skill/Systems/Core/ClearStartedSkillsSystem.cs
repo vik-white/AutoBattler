@@ -4,7 +4,7 @@ namespace vikwhite.ECS
 {
     [UpdateInGroup(typeof(SetupSystemGroup))]
     [UpdateBefore(typeof(ActivateSkillSystem))]
-    public partial struct ClearPendingSkillsSystem : ISystem
+    public partial struct ClearStartedSkillsSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
         {
