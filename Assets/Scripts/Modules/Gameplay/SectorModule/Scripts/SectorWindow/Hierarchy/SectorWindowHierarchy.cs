@@ -8,6 +8,7 @@ namespace vikwhite
     {
         public Button CloseButton;
         public Button FightButton;
+        public Button GoToNextButton;
         public TMP_Text Location;
     }
 }

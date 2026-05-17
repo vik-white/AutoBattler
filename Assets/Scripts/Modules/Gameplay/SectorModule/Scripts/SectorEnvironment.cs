@@ -28,6 +28,12 @@ namespace vikwhite
             var sector = Resolve<ISectorService>();
             sector.Initialize();
             _sectorScene = sector.CurrentSector;
+            if (string.IsNullOrEmpty(_sectorScene))
+            {
+                Debug.LogError($"Sector scene was not found for location {sector.CurrentLocation}.");
+                yield break;
+            }
+
             var loader = SceneManager.LoadSceneAsync(_sectorScene, LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,8 +10,12 @@ namespace vikwhite
     {
         string CurrentLocation { get; }
         string CurrentSector { get; }
+        bool HasNextLocation { get; }
+        bool IsMoving { get; }
+        event Action Changed;
         void Initialize();
         void InitializePoints();
+        void MoveToNextLocation();
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
     }
@@ -20,10 +25,16 @@ namespace vikwhite
         private readonly IProfileService _profile;
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
+        private readonly List<string> _sectorLocationIDs = new();
+        private readonly Dictionary<string, SectorPoint> _pointsByLocation = new();
+        private global::PlayerPoint _playerPoint;
         private string _currentLocation;
 
         public string CurrentLocation => _currentLocation;
-        public string CurrentSector => _configs.Map.Get(_currentLocation).Sector;
+        public string CurrentSector => GetLocationSector(_currentLocation);
+        public bool HasNextLocation => !string.IsNullOrEmpty(GetNextLocationID(_currentLocation));
+        public bool IsMoving => _playerPoint != null && _playerPoint.IsMoving;
+        public event Action Changed;
 
         public SectorService(IProfileService profile, IConfigs configs, IEventDispatcher dispatcher)
         {
@@ -35,43 +46,116 @@ namespace vikwhite
         public void Initialize()
         {
             _currentLocation = _profile.Data.RoadMapLocation;
+            if (IsValidLocation(_currentLocation)) return;
+
+            var firstLocation = GetSectorLocations().FirstOrDefault();
+            if (firstLocation != null)
+                SetCurrentLocation(firstLocation.ID);
         }
 
         public void InitializePoints()
         {
-            var locationIDs = GetSectorLocationIDs(CurrentSector).ToList();
-            var points = Object.FindObjectsByType<SectorPoint>(FindObjectsInactive.Include).OrderBy(point => point.Index);
-            foreach (var point in points) point.Initialize(locationIDs[point.Index]);
+            _sectorLocationIDs.Clear();
+            _sectorLocationIDs.AddRange(GetSectorLocationIDs(CurrentSector));
+
+            _pointsByLocation.Clear();
+            var points = UnityEngine.Object.FindObjectsByType<SectorPoint>(FindObjectsInactive.Include).OrderBy(point => point.Index);
+            foreach (var point in points)
+            {
+                if (point.Index >= 0 && point.Index < _sectorLocationIDs.Count)
+                {
+                    var locationID = _sectorLocationIDs[point.Index];
+                    point.Initialize(locationID, locationID);
+                    _pointsByLocation[locationID] = point;
+                }
+                else
+                {
+                    point.Clear();
+                }
+            }
+
+            _playerPoint = UnityEngine.Object.FindAnyObjectByType<global::PlayerPoint>();
+            MovePlayerToCurrentLocation();
+            Changed?.Invoke();
         }
 
         private IReadOnlyList<string> GetSectorLocationIDs(string sector)
         {
-            return _configs.Map.GetAll().Where(locationData => locationData.Sector == sector).Select(locationData => locationData.ID).ToList();
+            if (string.IsNullOrEmpty(sector)) return new List<string>();
+
+            return GetSectorLocations()
+                .Where(locationData => locationData.Sector == sector)
+                .Select(locationData => locationData.ID)
+                .ToList();
+        }
+
+        public void MoveToNextLocation()
+        {
+            if (_playerPoint == null || _playerPoint.IsMoving) return;
+
+            var nextLocation = GetNextLocationID(_currentLocation);
+            if (string.IsNullOrEmpty(nextLocation)) return;
+            if (!_pointsByLocation.TryGetValue(nextLocation, out var nextPoint)) return;
+
+            _playerPoint.MoveTo(nextPoint.transform, () => SetCurrentLocation(nextLocation));
+            Changed?.Invoke();
         }
 
         public void SetCurrentLocation(string id)
         {
+            if (!IsValidLocation(id)) return;
+
             _currentLocation = id;
             _dispatcher.Dispatch(new SetSectorLocationEvent(_currentLocation));
+            Changed?.Invoke();
         }
 
         public void CompleteCurrentLocation()
         {
-            string nextLocation = _currentLocation;
-            bool currentLocationFound = false;
+            var nextLocation = GetNextLocationID(_currentLocation);
+            if (!string.IsNullOrEmpty(nextLocation))
+                SetCurrentLocation(nextLocation);
+        }
 
-            foreach (var locationData in _configs.Map.GetAll())
-            {
-                if (currentLocationFound)
-                {
-                    nextLocation = locationData.ID;
-                    break;
-                }
+        private void MovePlayerToCurrentLocation()
+        {
+            if (_playerPoint == null) return;
 
-                if (locationData.ID == _currentLocation) currentLocationFound = true;
-            }
+            if (_pointsByLocation.TryGetValue(_currentLocation, out var currentPoint))
+                _playerPoint.PlaceAt(currentPoint.transform);
+        }
 
-            SetCurrentLocation(nextLocation);
+        private string GetNextLocationID(string locationID)
+        {
+            if (_sectorLocationIDs.Count == 0)
+                _sectorLocationIDs.AddRange(GetSectorLocationIDs(CurrentSector));
+
+            var index = _sectorLocationIDs.IndexOf(locationID);
+            if (index < 0 || index >= _sectorLocationIDs.Count - 1) return string.Empty;
+
+            return _sectorLocationIDs[index + 1];
+        }
+
+        private IEnumerable<IMapData> GetSectorLocations()
+        {
+            return _configs.Map.GetAll()
+                .Where(locationData => !string.IsNullOrEmpty(locationData.Sector));
+        }
+
+        private bool IsValidLocation(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return false;
+
+            var locationData = _configs.Map.Get(id);
+            return locationData != null && !string.IsNullOrEmpty(locationData.Sector);
+        }
+
+        private string GetLocationSector(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return string.Empty;
+
+            var locationData = _configs.Map.Get(id);
+            return locationData?.Sector ?? string.Empty;
         }
     }
 }

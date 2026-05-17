@@ -1,5 +1,6 @@
 using Rukhanka.Toolbox;
 using Unity.Collections;
+using UnityEngine;
 using vikwhite.Data;
 using vikwhite.ECS;
 
@@ -15,6 +16,8 @@ namespace vikwhite
 
     public class BattleStartState : IBattleStartState
     {
+        private static readonly Vector3 BattleCameraPosition = new(-51.6f, 47.5f, -29.7f);
+
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadService _squad;
         private readonly IStateMachine<IBattleState> _stateMachine;
@@ -32,6 +35,7 @@ namespace vikwhite
 
         public void Enter()
         {
+            SetCameraPosition();
             _battleWindow.Show();
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
@@ -62,6 +66,13 @@ namespace vikwhite
 
             DefeatBattleEventSystem.OnExecute = _ =>_stateMachine.SwitchState<IBattleDefeatState>();
             VictoryBattleEventSystem.OnExecute = _ => _stateMachine.SwitchState<IBattleVictoryState>();
+        }
+
+        private static void SetCameraPosition()
+        {
+            var camera = Camera.main;
+            if (camera != null)
+                camera.transform.position = BattleCameraPosition;
         }
 
         public void Exit()

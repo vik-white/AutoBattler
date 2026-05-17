@@ -6,11 +6,28 @@ namespace vikwhite
     public class SectorPoint : MonoBehaviour
     {
         public int Index;
+        private string locationID;
         [SerializeField] private TMP_Text locationTitle;
 
-        public void Initialize(string title)
+        public string LocationID => locationID;
+        public bool HasLocation => !string.IsNullOrEmpty(locationID);
+
+        public void Initialize(string id, string title)
         {
-            locationTitle.text = title;
+            locationID = id;
+            if (locationTitle != null)
+                locationTitle.text = title;
+
+            gameObject.SetActive(true);
+        }
+
+        public void Clear()
+        {
+            locationID = string.Empty;
+            if (locationTitle != null)
+                locationTitle.text = string.Empty;
+
+            gameObject.SetActive(false);
         }
     }
 }
