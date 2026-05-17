@@ -7,26 +7,26 @@ namespace vikwhite
         private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadWindow _squadWindow;
-        private readonly IRoadMapService _roadMap;
+        private readonly ISectorService _sector;
         public string CurrentLocation;
         public UnityAction OnFight;
         public UnityAction OnLobby;
 
-        public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, IRoadMapService roadMap, IEnvironmentStateMachine environmentStateMachine)
+        public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, IEnvironmentStateMachine environmentStateMachine)
         {
             _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
-            _roadMap = roadMap;
+            _sector = sector;
             OnFight = StartCurrentLocation;
             OnLobby = OpenLobby;
-            CurrentLocation = roadMap.CurrentLocation;
+            CurrentLocation = sector.CurrentLocation;
         }
 
         private void StartCurrentLocation()
         {
-            _roadMap.SetCurrentLocation(_roadMap.CurrentLocation);
-            _locationProvider.ID = _roadMap.CurrentLocation;
+            _sector.SetCurrentLocation(_sector.CurrentLocation);
+            _locationProvider.ID = _sector.CurrentLocation;
             _squadWindow.ShowWindow();
         }
         

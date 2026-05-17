@@ -11,7 +11,7 @@ namespace vikwhite
             Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
-            Register<RoadMapModuleDependency>();
+            Register<SectorModuleDependency>();
             Register<CharacterModuleDependency>();
             Register<RewardModuleDependency>();
             Register<BankModuleDependency>();
@@ -25,7 +25,7 @@ namespace vikwhite
             Resolve<IClassBookService>().Initialize();
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
-            Resolve<IRoadMapService>().Initialize();
+            Resolve<ISectorService>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
             yield return null;
         }

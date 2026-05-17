@@ -15,7 +15,7 @@ namespace vikwhite
             IRewardService rewardService,
             IConfigs configs,
             ILocationProvider location,
-            IRoadMapService roadMap)
+            ISectorService sector)
         {
             var rewardId = configs.LocationStatic.Get(location.ID)?.Reward;
             var rewards = rewardFactory.Create(rewardId);
@@ -25,7 +25,7 @@ namespace vikwhite
             foreach (var reward in rewards)
                 Rewards.Add(CreateViewModel<RewardItemViewModel, Reward>(reward));
 
-            roadMap.CompleteCurrentLocation();
+            sector.CompleteCurrentLocation();
             OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
         }
 

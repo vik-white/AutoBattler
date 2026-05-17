@@ -1,10 +1,10 @@
 namespace vikwhite
 {
-    public class SetRoadMapLocationEvent
+    public class SetSectorLocationEvent
     {
         public string ID;
 
-        public SetRoadMapLocationEvent(string id)
+        public SetSectorLocationEvent(string id)
         {
             ID = id;
         }
