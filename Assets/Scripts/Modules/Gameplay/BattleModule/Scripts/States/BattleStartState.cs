@@ -19,18 +19,20 @@ namespace vikwhite
         private readonly ISquadService _squad;
         private readonly IStateMachine<IBattleState> _stateMachine;
         private readonly IConfigs _configs;
+        private readonly IBattleWindow _battleWindow;
 
-        public BattleStartState(ILocationProvider locationProvider, ISquadService squad, IStateMachine<IBattleState> stateMachine, IConfigs configs)
+        public BattleStartState(ILocationProvider locationProvider, ISquadService squad, IStateMachine<IBattleState> stateMachine, IConfigs configs, IBattleWindow battleWindow)
         {
             _locationProvider = locationProvider;
             _squad = squad;
             _stateMachine = stateMachine;
             _configs = configs;
+            _battleWindow = battleWindow;
         }
 
         public void Enter()
         {
-            BattleHUD.Show();
+            _battleWindow.Show();
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
             ECSWorld.SetEnabled<EndBattleSystem>(true);
@@ -64,7 +66,7 @@ namespace vikwhite
 
         public void Exit()
         {
-            BattleHUD.Hide();
+            _battleWindow.Hide();
         }
     }
 }

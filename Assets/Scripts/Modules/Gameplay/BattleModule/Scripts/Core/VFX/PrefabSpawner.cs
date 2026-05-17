@@ -9,20 +9,17 @@ namespace vikwhite
     public class PrefabSpawner : MonoBehaviour
     {
         public List<GameObject> Prefabs;
-        public GameObject DamageFlyTextPrefab;
 
         private void Awake()
         {
             CreatePrefabEventSystem.OnExecute += CreatePrefab;
             CreateFollowPrefabEventSystem.OnExecute += CreateFollowPrefab;
-            CreateDamageFlyTextEventSystem.OnExecute += CreateDamageFlyText;
         }
 
         private void OnDestroy()
         {
             CreatePrefabEventSystem.OnExecute -= CreatePrefab;
             CreateFollowPrefabEventSystem.OnExecute -= CreateFollowPrefab;
-            CreateDamageFlyTextEventSystem.OnExecute -= CreateDamageFlyText;
         }
 
         private void CreatePrefab(CreatePrefabEvent evnt)
@@ -47,25 +44,6 @@ namespace vikwhite
             }
 
             go.GetComponent<FollowEntity>().Initialize(evnt.Entity, world.EntityManager);
-        }
-
-        private void CreateDamageFlyText(CreateDamageFlyTextEvent evnt)
-        {
-            if (DamageFlyTextPrefab == null) return;
-
-            var canvas = FindAnyObjectByType<Canvas>();
-            var go = canvas != null
-                ? Instantiate(DamageFlyTextPrefab, canvas.transform, false)
-                : Instantiate(DamageFlyTextPrefab);
-
-            var damageFlyText = go.GetComponent<DamageFlyText>();
-            if (damageFlyText == null)
-            {
-                Destroy(go);
-                return;
-            }
-
-            damageFlyText.Initialize(new Vector3(evnt.Position.x, evnt.Position.y, evnt.Position.z), evnt.Damage, evnt.IsEnemyTarget, evnt.IsCrit);
         }
     }
 }

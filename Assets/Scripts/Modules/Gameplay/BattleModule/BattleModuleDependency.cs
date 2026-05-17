@@ -10,6 +10,19 @@ namespace vikwhite
             Register<IBattleDefeatState, BattleDefeatState>();
             Register<IBattleVictoryState, BattleVictoryState>();
             Register<IBattleEndState, BattleEndState>();
+
+            Register<IBattleWindow, BattleWindow>();
+            Register<BattleWindowViewModel>();
+            Register<BattleWindowView>();
+            Register<IBattleAbilityViewFactory, BattleAbilityViewFactory>();
+            Register<BattleAbilityViewModel>();
+            Register<BattleAbilityView>();
+            Register<IBattleHealthBarViewFactory, BattleHealthBarViewFactory>();
+            Register<BattleHealthBarViewModel>();
+            Register<BattleHealthBarView>();
+            Register<IBattleDamageFlyTextViewFactory, BattleDamageFlyTextViewFactory>();
+            Register<BattleDamageFlyTextViewModel>();
+            Register<BattleDamageFlyTextView>();
             
             Register<IVictoryWindow, VictoryWindow>();
             Register<VictoryWindowViewModel>();
