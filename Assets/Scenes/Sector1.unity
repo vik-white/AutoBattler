@@ -286,7 +286,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59611f74e8719b4fa1293ca87c03842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Sector::PlayerPoint
-  moveSpeed: 4
+  _animator: {fileID: 730146766}
+  _speed: 4
+--- !u!95 &730146766 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1372958145804039489, guid: 27a24f1c79c50aa4c906ec8bf8809ee8, type: 3}
+  m_PrefabInstance: {fileID: 730146763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1645127678
 GameObject:
   m_ObjectHideFlags: 0

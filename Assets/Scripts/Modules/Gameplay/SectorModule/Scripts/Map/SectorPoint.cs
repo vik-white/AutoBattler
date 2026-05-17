@@ -10,6 +10,7 @@ namespace vikwhite
         [SerializeField] private TMP_Text locationTitle;
 
         public string LocationID => locationID;
+        public Vector3 Position => transform.position;
         public bool HasLocation => !string.IsNullOrEmpty(locationID);
 
         public void Initialize(string id, string title)

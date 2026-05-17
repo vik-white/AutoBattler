@@ -10,6 +10,7 @@ namespace vikwhite
             Register<AssetLoaderModuleDependency>();
             Register<EntityModuleDependency>();
             Register<EventModuleDependency>();
+            Register<CameraModuleDependency>();
             Register<MvvmModuleDependency>();
             Register<WindowModuleDependency>();
             Register<EnvironmentModuleDependency>();

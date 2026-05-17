@@ -7,6 +7,7 @@ namespace vikwhite
     public class SectorEnvironment : Environment
     {
         private string _sectorScene;
+        private ISectorPlayerPresenter _playerPresenter;
 
         protected override void Register()
         {
@@ -37,6 +38,8 @@ namespace vikwhite
             var loader = SceneManager.LoadSceneAsync(_sectorScene, LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);
+            _playerPresenter = Resolve<ISectorPlayerPresenter>();
+            _playerPresenter.Initialize();
             sector.InitializePoints();
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorStartState>();
             yield return null;
@@ -44,6 +47,8 @@ namespace vikwhite
 
         protected override void Release()
         {
+            _playerPresenter?.Release();
+            _playerPresenter = null;
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorEndState>();
             if (!string.IsNullOrEmpty(_sectorScene)) SceneManager.UnloadSceneAsync(_sectorScene);
         }
