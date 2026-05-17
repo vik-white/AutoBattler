@@ -24,19 +24,22 @@ namespace vikwhite
             Resolve<IClassBookService>().Initialize();
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
-            Resolve<IRoadMapService>().Initialize();
-            var loader = SceneManager.LoadSceneAsync("Sector1", LoadSceneMode.Additive);
+            var roadMap = Resolve<IRoadMapService>();
+            roadMap.Initialize();
+
+            var loader = SceneManager.LoadSceneAsync(roadMap.CurrentSector, LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);
-            Resolve<ISectorMapService>().Initialize();
+            Resolve<ISectorService>().Initialize(roadMap.CurrentSector);
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorStartState>();
             yield return null;
         }
 
         protected override void Release()
         {
+            var roadMap = Resolve<IRoadMapService>();
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorEndState>();
-            SceneManager.UnloadSceneAsync("Sector1");
+            SceneManager.UnloadSceneAsync(roadMap.CurrentSector);
         }
     }
 }

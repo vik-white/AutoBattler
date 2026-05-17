@@ -12,7 +12,7 @@ namespace vikwhite
             Register<ISectorWindow, SectorWindow>();
             Register<SectorWindowViewModel>();
             Register<SectorWindowView>();
-            Register<ISectorMapService, SectorMapService>();
+            Register<ISectorService, SectorService>();
         }
     }
 }

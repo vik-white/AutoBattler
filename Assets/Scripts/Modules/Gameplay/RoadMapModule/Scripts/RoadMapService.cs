@@ -7,8 +7,8 @@ namespace vikwhite
     public interface IRoadMapService
     {
         string CurrentLocation { get; }
+        string CurrentSector { get; }
         void Initialize();
-        IReadOnlyList<string> GetSectorLocationIDs(string sector);
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
     }
@@ -20,6 +20,7 @@ namespace vikwhite
         private readonly IEventDispatcher _dispatcher;
         private string _currentLocation;
         public string CurrentLocation => _currentLocation;
+        public string CurrentSector => _configs.Map.Get(_currentLocation).Sector;
 
         public RoadMapService(IProfileService profile, IConfigs configs, IEventDispatcher dispatcher)
         {
@@ -31,29 +32,10 @@ namespace vikwhite
         public void Initialize()
         {
             _currentLocation = _profile.Data.RoadMapLocation;
-            if (!IsValidRoadMapLocation(_currentLocation))
-            {
-                var firstRoadMapLocation = GetRoadMapLocations().FirstOrDefault();
-                if (firstRoadMapLocation != null)
-                    SetCurrentLocation(firstRoadMapLocation.ID);
-            }
-        }
-
-        public IReadOnlyList<string> GetSectorLocationIDs(string sector)
-        {
-            if (string.IsNullOrEmpty(sector)) return new List<string>();
-
-            return _configs.Map.GetAll()
-                .Where(locationData => locationData.Sector == sector)
-                .Select(locationData => locationData.ID)
-                .ToList();
         }
 
         public void SetCurrentLocation(string id)
         {
-            if (string.IsNullOrEmpty(id)) return;
-            if (!_configs.Map.Contains(id)) return;
-
             _currentLocation = id;
             _dispatcher.Dispatch(new SetRoadMapLocationEvent(_currentLocation));
         }
@@ -62,12 +44,7 @@ namespace vikwhite
         {
             string nextLocation = _currentLocation;
             bool currentLocationFound = false;
-            var currentLocationData = _configs.Map.Get(_currentLocation);
-            var roadMapLocations = currentLocationData != null
-                ? GetRoadMapLocations().Where(locationData => locationData.Sector == currentLocationData.Sector)
-                : GetRoadMapLocations();
-
-            foreach (var locationData in roadMapLocations)
+            foreach (var locationData in _configs.Map.GetAll().Where(locationData => locationData.RoadMap))
             {
                 if (currentLocationFound)
                 {
@@ -79,19 +56,6 @@ namespace vikwhite
 
             _currentLocation = nextLocation;
             _dispatcher.Dispatch(new SetRoadMapLocationEvent(_currentLocation));
-        }
-
-        private IEnumerable<IMapData> GetRoadMapLocations()
-        {
-            return _configs.Map.GetAll()
-                .Where(locationData => locationData.RoadMap);
-        }
-
-        private bool IsValidRoadMapLocation(string id)
-        {
-            if (string.IsNullOrEmpty(id)) return false;
-            var locationData = _configs.Map.Get(id);
-            return locationData != null && locationData.RoadMap;
         }
     }
 }
