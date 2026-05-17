@@ -4,6 +4,7 @@ using UniRx;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities.Extensions;
 using vikwhite.ECS;
 using Time = UnityEngine.Time;
 
@@ -30,21 +31,13 @@ namespace vikwhite
 
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
-
-            AddDisposable(Disposable.Create(() => CreateCharacterEventSystem.OnExecute -= OnCreateCharacter));
-            AddDisposable(Disposable.Create(() => CreateDamageFlyTextEventSystem.OnExecute -= OnCreateDamageFlyText));
         }
 
-        private void OpenLobby()
-        {
-            _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
-        }
+        private void OpenLobby() => _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
 
         private void OnCreateCharacter(CreateCharacterEvent evnt)
         {
-            if (!TryGetEntityManager(out var entityManager)) return;
-            if (!entityManager.Exists(evnt.Character) || !entityManager.HasComponent<ECS.Character>(evnt.Character)) return;
-
+            if (!World.DefaultGameObjectInjectionWorld.TryGetEntityManager(out var entityManager)) return;
             var character = entityManager.GetComponentData<ECS.Character>(evnt.Character);
             var config = character.GetConfig();
             var args = new BattleWindowCharacterArgs(evnt.Character, config, entityManager.HasComponent<Enemy>(evnt.Character));
@@ -68,27 +61,9 @@ namespace vikwhite
 
         private void OnCreateDamageFlyText(CreateDamageFlyTextEvent evnt)
         {
-            var args = new BattleDamageFlyTextArgs(
-                new Vector3(evnt.Position.x, evnt.Position.y, evnt.Position.z),
-                evnt.Damage,
-                evnt.IsEnemyTarget,
-                evnt.IsCrit);
-
+            var args = new BattleDamageFlyTextArgs(evnt.Position, evnt.Damage, evnt.IsEnemyTarget, evnt.IsCrit);
             var flyText = CreateViewModel<BattleDamageFlyTextViewModel, BattleDamageFlyTextArgs>(args);
             DamageFlyTextCreated?.Invoke(flyText);
-        }
-
-        private static bool TryGetEntityManager(out EntityManager entityManager)
-        {
-            var world = World.DefaultGameObjectInjectionWorld;
-            if (world == null)
-            {
-                entityManager = default;
-                return false;
-            }
-
-            entityManager = world.EntityManager;
-            return true;
         }
 
         public override void Dispose()
@@ -98,6 +73,8 @@ namespace vikwhite
             HealthBarCreated = null;
             AbilityCreated = null;
             DamageFlyTextCreated = null;
+            CreateCharacterEventSystem.OnExecute -= OnCreateCharacter;
+            CreateDamageFlyTextEventSystem.OnExecute -= OnCreateDamageFlyText;
         }
     }
 }
