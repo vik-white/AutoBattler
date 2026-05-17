@@ -22,10 +22,9 @@ namespace vikwhite
                 _view.HealthProgressBarImage.color = viewModel.IsEnemy ? _view.EnemyColor : _view.SquadColor;
 
             viewModel.Died += OnDied;
-            _view.Updated += UpdateBar;
+            Register(Observable.EveryUpdate().Subscribe(_ => UpdateBar()));
 
             Register(Disposable.Create(() => viewModel.Died -= OnDied));
-            Register(Disposable.Create(() => _view.Updated -= UpdateBar));
 
             UpdateBar();
         }

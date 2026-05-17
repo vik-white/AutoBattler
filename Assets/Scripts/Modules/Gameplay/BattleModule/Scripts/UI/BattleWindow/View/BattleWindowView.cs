@@ -33,12 +33,11 @@ namespace vikwhite
             viewModel.HealthBarCreated += CreateHealthBar;
             viewModel.AbilityCreated += CreateAbility;
             viewModel.DamageFlyTextCreated += CreateDamageFlyText;
-            _view.Updated += UpdateHud;
+            Register(Observable.EveryUpdate().Subscribe(_ => UpdateHud()));
 
             Register(Disposable.Create(() => viewModel.HealthBarCreated -= CreateHealthBar));
             Register(Disposable.Create(() => viewModel.AbilityCreated -= CreateAbility));
             Register(Disposable.Create(() => viewModel.DamageFlyTextCreated -= CreateDamageFlyText));
-            Register(Disposable.Create(() => _view.Updated -= UpdateHud));
         }
 
         private void UpdateHud()

@@ -39,8 +39,7 @@ namespace vikwhite
                 _view.Text.fontStyle = viewModel.IsCrit ? FontStyles.Bold : FontStyles.Normal;
             }
 
-            _view.Updated += UpdateFlyText;
-            Register(Disposable.Create(() => _view.Updated -= UpdateFlyText));
+            Register(Observable.EveryUpdate().Subscribe(_ => UpdateFlyText()));
 
             UpdatePosition(0);
         }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +12,5 @@ namespace vikwhite
         public Image HealthProgressBarImage;
         public Color SquadColor;
         public Color EnemyColor;
-
-        public event Action Updated;
-
-        private void Update()
-        {
-            Updated?.Invoke();
-        }
     }
 }

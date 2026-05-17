@@ -15,10 +15,9 @@ namespace vikwhite
 
             BindClick(_view.Button, viewModel.Activate);
             viewModel.Died += OnDied;
-            _view.Updated += UpdateBars;
+            Register(Observable.EveryUpdate().Subscribe(_ => UpdateBars()));
 
             Register(Disposable.Create(() => viewModel.Died -= OnDied));
-            Register(Disposable.Create(() => _view.Updated -= UpdateBars));
 
             SetDeadState(viewModel.IsDead);
             UpdateBars();
