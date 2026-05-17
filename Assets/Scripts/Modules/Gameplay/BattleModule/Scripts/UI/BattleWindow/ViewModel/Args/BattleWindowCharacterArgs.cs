@@ -3,13 +3,13 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public class BattleWindowCharacterModel
+    public class BattleWindowCharacterArgs
     {
         public Entity Character { get; }
         public CharacterConfigData Config { get; }
         public bool IsEnemy { get; }
 
-        public BattleWindowCharacterModel(Entity character, CharacterConfigData config, bool isEnemy)
+        public BattleWindowCharacterArgs(Entity character, CharacterConfigData config, bool isEnemy)
         {
             Character = character;
             Config = config;

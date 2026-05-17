@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class BattleDamageFlyTextViewModel : ViewModel<BattleDamageFlyTextModel>
+    public class BattleDamageFlyTextViewModel : ViewModel<BattleDamageFlyTextArgs>
     {
         private const float Lifetime = 0.8f;
 
@@ -15,7 +15,7 @@ namespace vikwhite
         public float Progress { get; private set; }
         public bool IsComplete { get; private set; }
 
-        public BattleDamageFlyTextViewModel(BattleDamageFlyTextModel model) : base(model) { }
+        public BattleDamageFlyTextViewModel(BattleDamageFlyTextArgs args) : base(args) { }
 
         public void Tick(float deltaTime)
         {

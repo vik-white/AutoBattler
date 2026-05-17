@@ -8,7 +8,7 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public class BattleHealthBarViewModel : ViewModel<BattleWindowCharacterModel>
+    public class BattleHealthBarViewModel : ViewModel<BattleWindowCharacterArgs>
     {
         private const float HeadPadding = 0.15f;
 
@@ -19,7 +19,7 @@ namespace vikwhite
         public bool IsEnemy => Model.IsEnemy;
         public bool IsDead { get; private set; }
 
-        public BattleHealthBarViewModel(BattleWindowCharacterModel model) : base(model)
+        public BattleHealthBarViewModel(BattleWindowCharacterArgs args) : base(args)
         {
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;

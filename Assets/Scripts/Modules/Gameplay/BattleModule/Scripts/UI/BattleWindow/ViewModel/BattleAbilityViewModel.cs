@@ -10,7 +10,7 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public class BattleAbilityViewModel : ViewModel<BattleWindowCharacterModel>
+    public class BattleAbilityViewModel : ViewModel<BattleWindowCharacterArgs>
     {
         private readonly EntityManager _entityManager;
         private readonly uint _abilityID;
@@ -22,12 +22,12 @@ namespace vikwhite
         public string Title { get; }
         public bool IsDead { get; private set; }
 
-        public BattleAbilityViewModel(BattleWindowCharacterModel model, IConfigs configs) : base(model)
+        public BattleAbilityViewModel(BattleWindowCharacterArgs args, IConfigs configs) : base(args)
         {
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            _abilityID = model.Config.GetSkill(SkillSlotType.Active);
+            _abilityID = args.Config.GetSkill(SkillSlotType.Active);
 
-            var characterData = FindCharacterData(configs, model.Config.ID);
+            var characterData = FindCharacterData(configs, args.Config.ID);
             Icon = characterData?.PortraitImage;
             Title = characterData?.Name ?? string.Empty;
             Activate = OnActivateAbility;

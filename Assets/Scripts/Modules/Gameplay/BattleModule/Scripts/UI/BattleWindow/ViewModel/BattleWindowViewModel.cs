@@ -47,19 +47,19 @@ namespace vikwhite
 
             var character = entityManager.GetComponentData<ECS.Character>(evnt.Character);
             var config = character.GetConfig();
-            var model = new BattleWindowCharacterModel(evnt.Character, config, entityManager.HasComponent<Enemy>(evnt.Character));
+            var args = new BattleWindowCharacterArgs(evnt.Character, config, entityManager.HasComponent<Enemy>(evnt.Character));
 
             if (config.HealthBar)
             {
-                var healthBar = CreateViewModel<BattleHealthBarViewModel, BattleWindowCharacterModel>(model);
+                var healthBar = CreateViewModel<BattleHealthBarViewModel, BattleWindowCharacterArgs>(args);
                 HealthBars.Add(healthBar);
                 AddDisposable(healthBar);
                 HealthBarCreated?.Invoke(healthBar);
             }
 
-            if (config.GetSkill(SkillSlotType.Active) != 0 && !model.IsEnemy)
+            if (config.GetSkill(SkillSlotType.Active) != 0 && !args.IsEnemy)
             {
-                var ability = CreateViewModel<BattleAbilityViewModel, BattleWindowCharacterModel>(model);
+                var ability = CreateViewModel<BattleAbilityViewModel, BattleWindowCharacterArgs>(args);
                 Abilities.Add(ability);
                 AddDisposable(ability);
                 AbilityCreated?.Invoke(ability);
@@ -68,13 +68,13 @@ namespace vikwhite
 
         private void OnCreateDamageFlyText(CreateDamageFlyTextEvent evnt)
         {
-            var model = new BattleDamageFlyTextModel(
+            var args = new BattleDamageFlyTextArgs(
                 new Vector3(evnt.Position.x, evnt.Position.y, evnt.Position.z),
                 evnt.Damage,
                 evnt.IsEnemyTarget,
                 evnt.IsCrit);
 
-            var flyText = CreateViewModel<BattleDamageFlyTextViewModel, BattleDamageFlyTextModel>(model);
+            var flyText = CreateViewModel<BattleDamageFlyTextViewModel, BattleDamageFlyTextArgs>(args);
             DamageFlyTextCreated?.Invoke(flyText);
         }
 
