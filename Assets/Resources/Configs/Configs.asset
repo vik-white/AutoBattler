@@ -453,114 +453,151 @@ MonoBehaviour:
     - ID: Test
       Type: 0
       RoadMap: 0
+      Sector: 
     - ID: Test5
       Type: 0
       RoadMap: 0
+      Sector: 
     - ID: Forest
       Type: 0
       RoadMap: 0
+      Sector: 
     - ID: Forest1
       Type: 1
       RoadMap: 0
+      Sector: 
     - ID: Forest2
       Type: 1
       RoadMap: 0
+      Sector: 
     - ID: level_1
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_2
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_3
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_4
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_5
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_6
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_7
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_8
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_9
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_10
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_11
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_12
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_13
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_14
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_15
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_16
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_17
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_18
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_19
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_20
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_21
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_22
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_23
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_24
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_25
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_26
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_27
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_28
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_29
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: level_30
       Type: 0
       RoadMap: 1
+      Sector: Sector1
     - ID: walltest
       Type: 0
       RoadMap: 0
+      Sector: 
     - ID: ForestBoss
       Type: 0
       RoadMap: 0
+      Sector: 
   locationStatic:
     IDS:
     - Test
@@ -1940,10 +1977,7 @@ MonoBehaviour:
       TriggerSource: 0
       Targets: 03000000
       Stats: []
-      Effects:
-      - Type: 1
-        Stat: -1
-        Value: 99
+      Effects: []
       Statuses:
       - Type: 1
         Value: 10

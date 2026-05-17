@@ -28,6 +28,7 @@ namespace vikwhite
             var loader = SceneManager.LoadSceneAsync("Sector1", LoadSceneMode.Additive);
             while (!loader.isDone) yield return null;
             yield return new WaitForSeconds(0.1f);
+            Resolve<ISectorMapService>().Initialize();
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorStartState>();
             yield return null;
         }

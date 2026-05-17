@@ -7,6 +7,7 @@ namespace vikwhite.Data
         string ID { get; }
         LocationType Type { get; }
         bool RoadMap { get; }
+        string Sector { get; }
     }
     
     [Serializable]
@@ -15,9 +16,11 @@ namespace vikwhite.Data
         public string ID;
         public LocationType Type;
         public bool RoadMap;
+        public string Sector;
         
         string IMapData.ID => ID;
         LocationType IMapData.Type => Type;
         bool IMapData.RoadMap => RoadMap;
+        string IMapData.Sector => Sector;
     }
 }

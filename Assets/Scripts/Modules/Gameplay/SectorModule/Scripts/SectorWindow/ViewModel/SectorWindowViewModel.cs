@@ -25,6 +25,7 @@ namespace vikwhite
 
         private void StartCurrentLocation()
         {
+            _roadMap.SetCurrentLocation(_roadMap.CurrentLocation);
             _locationProvider.ID = _roadMap.CurrentLocation;
             _squadWindow.ShowWindow();
         }
