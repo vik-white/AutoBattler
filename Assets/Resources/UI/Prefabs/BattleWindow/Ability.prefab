@@ -201,8 +201,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dd3e9983e708c24190a65c28c001dac, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battle::ActiveAbilityButton
-  Configs: {fileID: 11400000, guid: 99dcf37329af55246a432a5c87bd3001, type: 2}
+  m_EditorClassIdentifier: Battle::vikwhite.BattleAbilityHierarchy
   Button: {fileID: 2697033519937234259}
   HealthBar: {fileID: 7734593369526949329}
   AbilityBar: {fileID: 3792951037941022178}
