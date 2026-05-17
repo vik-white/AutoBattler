@@ -9,24 +9,26 @@ namespace vikwhite
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadWindow _squadWindow;
         private readonly ISectorService _sector;
+        private readonly ISectorStartState _sectorStartState;
         public string CurrentLocation => _sector.CurrentLocation;
-        public bool CanGoToNext => _sector.HasNextLocation && !_sector.IsMoving;
-        public bool CanFight => !_sector.IsMoving;
+        public bool CanGoToNext => _sector.HasNextLocation && !_sectorStartState.IsMoving;
+        public bool CanFight => !_sectorStartState.IsMoving;
         public UnityAction OnFight;
         public UnityAction OnLobby;
         public UnityAction OnGoToNext;
         public event Action Changed;
 
-        public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, IEnvironmentStateMachine environmentStateMachine)
+        public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, ISectorStartState sectorStartState, IEnvironmentStateMachine environmentStateMachine)
         {
             _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
             _sector = sector;
+            _sectorStartState = sectorStartState;
             OnFight = StartCurrentLocation;
             OnLobby = OpenLobby;
             OnGoToNext = GoToNext;
-            _sector.Changed += OnSectorChanged;
+            _sectorStartState.Changed += OnSectorChanged;
         }
 
         private void StartCurrentLocation()
@@ -43,8 +45,7 @@ namespace vikwhite
 
         private void GoToNext()
         {
-            _sector.MoveToNextLocation();
-            Changed?.Invoke();
+            _sectorStartState.MoveToNextLocation();
         }
 
         private void OnSectorChanged()
@@ -55,7 +56,7 @@ namespace vikwhite
         public override void Dispose()
         {
             base.Dispose();
-            _sector.Changed -= OnSectorChanged;
+            _sectorStartState.Changed -= OnSectorChanged;
             OnFight = null;
             OnLobby = null;
             OnGoToNext = null;

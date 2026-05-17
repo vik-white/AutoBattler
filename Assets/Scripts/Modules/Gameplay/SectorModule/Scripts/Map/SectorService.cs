@@ -11,13 +11,11 @@ namespace vikwhite
         string CurrentLocation { get; }
         string CurrentSector { get; }
         bool HasNextLocation { get; }
-        bool IsMoving { get; }
         event Action Changed;
         void Initialize();
-        void SetPlayerModel(ISectorPlayerModel player);
-        void ClearPlayerModel();
         void InitializePoints();
-        void MoveToNextLocation();
+        bool TryGetCurrentLocationPosition(out Vector3 position);
+        bool TryGetNextLocation(out string locationID, out Vector3 position);
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
     }
@@ -27,16 +25,13 @@ namespace vikwhite
         private readonly IProfileService _profile;
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
-        private ISectorPlayerModel _player;
         private readonly List<string> _sectorLocationIDs = new();
         private readonly Dictionary<string, SectorPoint> _pointsByLocation = new();
         private string _currentLocation;
-        private string _movingLocation;
 
         public string CurrentLocation => _currentLocation;
         public string CurrentSector => GetLocationSector(_currentLocation);
         public bool HasNextLocation => !string.IsNullOrEmpty(GetNextLocationID(_currentLocation));
-        public bool IsMoving => _player != null && _player.IsMoving;
         public event Action Changed;
 
         public SectorService(IProfileService profile, IConfigs configs, IEventDispatcher dispatcher)
@@ -52,24 +47,7 @@ namespace vikwhite
             if (IsValidLocation(_currentLocation)) return;
 
             var firstLocation = GetSectorLocations().FirstOrDefault();
-            if (firstLocation != null)
-                SetCurrentLocation(firstLocation.ID);
-        }
-
-        public void SetPlayerModel(ISectorPlayerModel player)
-        {
-            ClearPlayerModel();
-            _player = player;
-            if (_player != null) _player.MovementCompleted += OnPlayerMovementCompleted;
-        }
-
-        public void ClearPlayerModel()
-        {
-            if (_player != null)
-                _player.MovementCompleted -= OnPlayerMovementCompleted;
-
-            _player = null;
-            _movingLocation = string.Empty;
+            if (firstLocation != null) SetCurrentLocation(firstLocation.ID);
         }
 
         public void InitializePoints()
@@ -93,7 +71,6 @@ namespace vikwhite
                 }
             }
 
-            MovePlayerToCurrentLocation();
             Changed?.Invoke();
         }
 
@@ -107,17 +84,21 @@ namespace vikwhite
                 .ToList();
         }
 
-        public void MoveToNextLocation()
+        public bool TryGetCurrentLocationPosition(out Vector3 position)
         {
-            if (_player == null || _player.IsMoving) return;
+            return TryGetLocationPosition(_currentLocation, out position);
+        }
 
-            var nextLocation = GetNextLocationID(_currentLocation);
-            if (string.IsNullOrEmpty(nextLocation)) return;
-            if (!_pointsByLocation.TryGetValue(nextLocation, out var nextPoint)) return;
+        public bool TryGetNextLocation(out string locationID, out Vector3 position)
+        {
+            locationID = GetNextLocationID(_currentLocation);
+            if (string.IsNullOrEmpty(locationID))
+            {
+                position = default;
+                return false;
+            }
 
-            _movingLocation = nextLocation;
-            _player.MoveTo(nextPoint.Position);
-            Changed?.Invoke();
+            return TryGetLocationPosition(locationID, out position);
         }
 
         public void SetCurrentLocation(string id)
@@ -126,7 +107,6 @@ namespace vikwhite
 
             _currentLocation = id;
             _dispatcher.Dispatch(new SetSectorLocationEvent(_currentLocation));
-            MovePlayerToCurrentLocation();
             Changed?.Invoke();
         }
 
@@ -137,25 +117,16 @@ namespace vikwhite
                 SetCurrentLocation(nextLocation);
         }
 
-        private void MovePlayerToCurrentLocation()
+        private bool TryGetLocationPosition(string locationID, out Vector3 position)
         {
-            if (_player == null) return;
-
-            if (_pointsByLocation.TryGetValue(_currentLocation, out var currentPoint))
-                _player.PlaceAt(currentPoint.Position);
-        }
-
-        private void OnPlayerMovementCompleted()
-        {
-            if (string.IsNullOrEmpty(_movingLocation))
+            if (!string.IsNullOrEmpty(locationID) && _pointsByLocation.TryGetValue(locationID, out var point))
             {
-                Changed?.Invoke();
-                return;
+                position = point.Position;
+                return true;
             }
 
-            var completedLocation = _movingLocation;
-            _movingLocation = string.Empty;
-            SetCurrentLocation(completedLocation);
+            position = default;
+            return false;
         }
 
         private string GetNextLocationID(string locationID)

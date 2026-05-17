@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace vikwhite
@@ -7,12 +6,10 @@ namespace vikwhite
     {
         Vector3 Position { get; }
         bool IsMoving { get; }
-        event Action Changed;
-        event Action MovementCompleted;
         void SetMoveSpeed(float value);
         void PlaceAt(Vector3 position);
-        void MoveTo(Vector3 position);
-        void Update();
+        bool MoveTo(Vector3 position);
+        bool Update(float deltaTime);
     }
 
     public class SectorPlayerModel : ISectorPlayerModel
@@ -22,12 +19,10 @@ namespace vikwhite
         private Vector3 _position;
         private Vector3 _targetPosition;
         private float _moveSpeed = 4f;
+        private bool _hasPosition;
 
         public Vector3 Position => _position;
-        public bool HasPosition { get; private set; }
         public bool IsMoving { get; private set; }
-        public event Action Changed;
-        public event Action MovementCompleted;
 
         public void SetMoveSpeed(float value)
         {
@@ -38,49 +33,41 @@ namespace vikwhite
         {
             _position = position;
             _targetPosition = position;
-            HasPosition = true;
+            _hasPosition = true;
             IsMoving = false;
-            Changed?.Invoke();
         }
 
-        public void MoveTo(Vector3 position)
+        public bool MoveTo(Vector3 position)
         {
-            if (IsMoving) return;
-            if (!HasPosition)
+            if (IsMoving) return false;
+            if (!_hasPosition)
             {
                 PlaceAt(position);
-                MovementCompleted?.Invoke();
-                return;
+                return true;
             }
 
             _targetPosition = position;
             if (Vector3.Distance(_position, _targetPosition) <= CompleteDistance)
             {
                 _position = _targetPosition;
-                Changed?.Invoke();
-                MovementCompleted?.Invoke();
-                return;
+                IsMoving = false;
+                return true;
             }
 
             IsMoving = true;
-            Changed?.Invoke();
+            return false;
         }
 
-        public void Update()
+        public bool Update(float deltaTime)
         {
-            if (!IsMoving) return;
+            if (!IsMoving) return false;
 
-            _position = Vector3.MoveTowards(_position, _targetPosition, _moveSpeed * Time.deltaTime);
-            if (Vector3.Distance(_position, _targetPosition) > CompleteDistance)
-            {
-                Changed?.Invoke();
-                return;
-            }
+            _position = Vector3.MoveTowards(_position, _targetPosition, _moveSpeed * deltaTime);
+            if (Vector3.Distance(_position, _targetPosition) > CompleteDistance) return false;
 
             _position = _targetPosition;
             IsMoving = false;
-            Changed?.Invoke();
-            MovementCompleted?.Invoke();
+            return true;
         }
     }
 }
