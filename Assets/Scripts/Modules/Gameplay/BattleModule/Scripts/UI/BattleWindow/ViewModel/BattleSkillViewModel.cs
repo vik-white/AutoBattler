@@ -38,9 +38,6 @@ namespace vikwhite
 
         public float GetHealthProgress()
         {
-            if (!IsCharacterAlive()) return 0;
-            if (!_entityManager.HasComponent<Health>(Model.Character) || !_entityManager.HasComponent<HealthMax>(Model.Character)) return 0;
-
             var health = _entityManager.GetComponentData<Health>(Model.Character).Value;
             var healthMax = _entityManager.GetComponentData<HealthMax>(Model.Character).Value;
             return healthMax > 0 ? Mathf.Clamp01(health / healthMax) : 0;
