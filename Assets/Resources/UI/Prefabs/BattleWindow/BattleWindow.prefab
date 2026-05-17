@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Battle::vikwhite.BattleWindowHierarchy
   FPS: {fileID: 1981236262750256749}
   LobbyButton: {fileID: 2697599653866853872}
-  AbilityContainer: {fileID: 7524061258504610809}
+  SkillContainer: {fileID: 7524061258504610809}
 --- !u!1 &1069908227835291104
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,10 +10,10 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public class BattleAbilityViewModel : ViewModel<BattleWindowCharacterArgs>
+    public class BattleSkillViewModel : ViewModel<BattleWindowCharacterArgs>
     {
         private readonly EntityManager _entityManager;
-        private readonly uint _abilityID;
+        private readonly uint _skillID;
 
         public UnityAction Activate;
         public event Action Died;
@@ -22,15 +22,15 @@ namespace vikwhite
         public string Title { get; }
         public bool IsDead { get; private set; }
 
-        public BattleAbilityViewModel(BattleWindowCharacterArgs args, IConfigs configs) : base(args)
+        public BattleSkillViewModel(BattleWindowCharacterArgs args, IConfigs configs) : base(args)
         {
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            _abilityID = args.Config.GetSkill(SkillSlotType.Active);
+            _skillID = args.Config.GetSkill(SkillSlotType.Active);
 
             var characterData = FindCharacterData(configs, args.Config.ID);
             Icon = characterData?.PortraitImage;
             Title = characterData?.Name ?? string.Empty;
-            Activate = OnActivateAbility;
+            Activate = OnActivateSkill;
 
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
             AddDisposable(Disposable.Create(() => DeadCharacterEventSystem.OnExecute -= OnDeadCharacter));
@@ -50,25 +50,25 @@ namespace vikwhite
         {
             if (!IsCharacterAlive() || !_entityManager.HasComponent<Skill>(Model.Character)) return 0;
 
-            foreach (var ability in _entityManager.GetBuffer<Skill>(Model.Character))
+            foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {
-                var config = ability.GetConfig();
-                if (config.ID != _abilityID) continue;
-                if (ability.Cooldown >= config.Cooldown) return 1;
-                return config.Cooldown > 0 ? Mathf.Clamp01(ability.Cooldown / config.Cooldown) : 1;
+                var config = skill.GetConfig();
+                if (config.ID != _skillID) continue;
+                if (skill.Cooldown >= config.Cooldown) return 1;
+                return config.Cooldown > 0 ? Mathf.Clamp01(skill.Cooldown / config.Cooldown) : 1;
             }
 
             return 0;
         }
 
-        private void OnActivateAbility()
+        private void OnActivateSkill()
         {
             if (!IsAvailable()) return;
 
             _entityManager.CreateFrameEntity(new ActivateSkillEvent
             {
                 Character = Model.Character,
-                SkillID = _abilityID
+                SkillID = _skillID
             });
         }
 
@@ -76,11 +76,11 @@ namespace vikwhite
         {
             if (!IsCharacterAlive() || !_entityManager.HasComponent<Skill>(Model.Character)) return false;
 
-            foreach (var ability in _entityManager.GetBuffer<Skill>(Model.Character))
+            foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {
-                var config = ability.GetConfig();
-                if (config.ID == _abilityID)
-                    return ability.Cooldown >= config.Cooldown;
+                var config = skill.GetConfig();
+                if (config.ID == _skillID)
+                    return skill.Cooldown >= config.Cooldown;
             }
 
             return false;

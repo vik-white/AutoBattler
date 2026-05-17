@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3792951037941022178}
   m_Layer: 5
-  m_Name: AbilityBar
+  m_Name: SkillBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 2656794204881893097}
   - component: {fileID: 2697033519937234259}
   m_Layer: 5
-  m_Name: Ability
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,10 +201,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dd3e9983e708c24190a65c28c001dac, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Battle::vikwhite.BattleAbilityHierarchy
+  m_EditorClassIdentifier: Battle::vikwhite.BattleSkillHierarchy
   Button: {fileID: 2697033519937234259}
   HealthBar: {fileID: 7734593369526949329}
-  AbilityBar: {fileID: 3792951037941022178}
+  SkillBar: {fileID: 3792951037941022178}
   Fade: {fileID: 284654364177188827}
   Icon: {fileID: 951929379308034131}
   Title: {fileID: 5785965734024390387}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 3260548868395473962}
   - component: {fileID: 6526442427924057944}
   m_Layer: 5
-  m_Name: AbilityBar
+  m_Name: SkillBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

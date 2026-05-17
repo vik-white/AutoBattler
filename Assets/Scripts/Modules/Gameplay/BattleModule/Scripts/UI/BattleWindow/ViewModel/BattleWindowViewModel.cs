@@ -13,10 +13,10 @@ namespace vikwhite
     public class BattleWindowViewModel : WindowViewModel
     {
         public readonly List<BattleHealthBarViewModel> HealthBars = new();
-        public readonly List<BattleAbilityViewModel> Abilities = new();
+        public readonly List<BattleSkillViewModel> Skills = new();
 
         public event Action<BattleHealthBarViewModel> HealthBarCreated;
-        public event Action<BattleAbilityViewModel> AbilityCreated;
+        public event Action<BattleSkillViewModel> SkillCreated;
         public event Action<BattleDamageFlyTextViewModel> DamageFlyTextCreated;
 
         public UnityAction OnLobby;
@@ -52,10 +52,10 @@ namespace vikwhite
 
             if (config.GetSkill(SkillSlotType.Active) != 0 && !args.IsEnemy)
             {
-                var ability = CreateViewModel<BattleAbilityViewModel, BattleWindowCharacterArgs>(args);
-                Abilities.Add(ability);
-                AddDisposable(ability);
-                AbilityCreated?.Invoke(ability);
+                var skill = CreateViewModel<BattleSkillViewModel, BattleWindowCharacterArgs>(args);
+                Skills.Add(skill);
+                AddDisposable(skill);
+                SkillCreated?.Invoke(skill);
             }
         }
 
@@ -71,7 +71,7 @@ namespace vikwhite
             base.Dispose();
             OnLobby = null;
             HealthBarCreated = null;
-            AbilityCreated = null;
+            SkillCreated = null;
             DamageFlyTextCreated = null;
             CreateCharacterEventSystem.OnExecute -= OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute -= OnCreateDamageFlyText;

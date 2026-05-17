@@ -5,17 +5,17 @@ namespace vikwhite
 {
     public class BattleWindowView : WindowView<BattleWindowHierarchy, BattleWindowViewModel>
     {
-        private readonly IBattleAbilityViewFactory _abilityViewFactory;
+        private readonly IBattleSkillViewFactory _skillViewFactory;
         private readonly IBattleHealthBarViewFactory _healthBarViewFactory;
         private readonly IBattleDamageFlyTextViewFactory _damageFlyTextViewFactory;
 
         public BattleWindowView(
             GameObject view,
-            IBattleAbilityViewFactory abilityViewFactory,
+            IBattleSkillViewFactory skillViewFactory,
             IBattleHealthBarViewFactory healthBarViewFactory,
             IBattleDamageFlyTextViewFactory damageFlyTextViewFactory) : base(view)
         {
-            _abilityViewFactory = abilityViewFactory;
+            _skillViewFactory = skillViewFactory;
             _healthBarViewFactory = healthBarViewFactory;
             _damageFlyTextViewFactory = damageFlyTextViewFactory;
         }
@@ -27,16 +27,16 @@ namespace vikwhite
             foreach (var healthBar in viewModel.HealthBars)
                 CreateHealthBar(healthBar);
 
-            foreach (var ability in viewModel.Abilities)
-                CreateAbility(ability);
+            foreach (var skill in viewModel.Skills)
+                CreateSkill(skill);
 
             viewModel.HealthBarCreated += CreateHealthBar;
-            viewModel.AbilityCreated += CreateAbility;
+            viewModel.SkillCreated += CreateSkill;
             viewModel.DamageFlyTextCreated += CreateDamageFlyText;
             Register(Observable.EveryUpdate().Subscribe(_ => UpdateHud()));
 
             Register(Disposable.Create(() => viewModel.HealthBarCreated -= CreateHealthBar));
-            Register(Disposable.Create(() => viewModel.AbilityCreated -= CreateAbility));
+            Register(Disposable.Create(() => viewModel.SkillCreated -= CreateSkill));
             Register(Disposable.Create(() => viewModel.DamageFlyTextCreated -= CreateDamageFlyText));
         }
 
@@ -46,10 +46,10 @@ namespace vikwhite
                 _view.FPS.text = BaseViewModel.FpsText;
         }
 
-        private void CreateAbility(BattleAbilityViewModel ability)
+        private void CreateSkill(BattleSkillViewModel skill)
         {
-            if (_view.AbilityContainer == null) return;
-            AddDisposable(_abilityViewFactory.Get(ability, _view.AbilityContainer));
+            if (_view.SkillContainer == null) return;
+            AddDisposable(_skillViewFactory.Get(skill, _view.SkillContainer));
         }
 
         private void CreateHealthBar(BattleHealthBarViewModel healthBar)

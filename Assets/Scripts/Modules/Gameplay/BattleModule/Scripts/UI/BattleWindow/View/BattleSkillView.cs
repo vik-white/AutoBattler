@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class BattleAbilityView : View<BattleAbilityHierarchy, BattleAbilityViewModel>
+    public class BattleSkillView : View<BattleSkillHierarchy, BattleSkillViewModel>
     {
-        public BattleAbilityView(GameObject view) : base(view) { }
+        public BattleSkillView(GameObject view) : base(view) { }
 
-        protected override void UpdateViewModel(BattleAbilityViewModel viewModel)
+        protected override void UpdateViewModel(BattleSkillViewModel viewModel)
         {
             if (_view.Icon != null) _view.Icon.sprite = viewModel.Icon;
             if (_view.Fade != null) _view.Fade.sprite = viewModel.Icon;
@@ -28,7 +28,7 @@ namespace vikwhite
             if (BaseViewModel == null || BaseViewModel.IsDead) return;
 
             SetProgress(_view.HealthBar, BaseViewModel.GetHealthProgress());
-            SetProgress(_view.AbilityBar, BaseViewModel.GetCooldownProgress());
+            SetProgress(_view.SkillBar, BaseViewModel.GetCooldownProgress());
         }
 
         private void OnDied()
@@ -40,7 +40,7 @@ namespace vikwhite
         {
             if (_view.Fade != null) _view.Fade.gameObject.SetActive(isDead);
             if (_view.HealthBar != null) _view.HealthBar.gameObject.SetActive(!isDead);
-            if (_view.AbilityBar != null) _view.AbilityBar.gameObject.SetActive(!isDead);
+            if (_view.SkillBar != null) _view.SkillBar.gameObject.SetActive(!isDead);
             if (_view.Button != null) _view.Button.interactable = !isDead;
         }
 

@@ -7,6 +7,6 @@ namespace vikwhite
     {
         public Text FPS;
         public Button LobbyButton;
-        public RectTransform AbilityContainer;
+        public RectTransform SkillContainer;
     }
 }

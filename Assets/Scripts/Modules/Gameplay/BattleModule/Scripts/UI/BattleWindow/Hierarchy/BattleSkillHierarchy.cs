@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 namespace vikwhite
 {
-    public class BattleAbilityHierarchy : MonoBehaviour
+    public class BattleSkillHierarchy : MonoBehaviour
     {
         public Button Button;
         public RectTransform HealthBar;
-        public RectTransform AbilityBar;
+        public RectTransform SkillBar;
         public Image Fade;
         public Image Icon;
         public TMP_Text Title;

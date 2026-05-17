@@ -14,9 +14,9 @@ namespace vikwhite
             Register<IBattleWindow, BattleWindow>();
             Register<BattleWindowViewModel>();
             Register<BattleWindowView>();
-            Register<IBattleAbilityViewFactory, BattleAbilityViewFactory>();
-            Register<BattleAbilityViewModel>();
-            Register<BattleAbilityView>();
+            Register<IBattleSkillViewFactory, BattleSkillViewFactory>();
+            Register<BattleSkillViewModel>();
+            Register<BattleSkillView>();
             Register<IBattleHealthBarViewFactory, BattleHealthBarViewFactory>();
             Register<BattleHealthBarViewModel>();
             Register<BattleHealthBarView>();
