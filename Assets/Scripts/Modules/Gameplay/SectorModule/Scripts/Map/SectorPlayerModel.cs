@@ -6,16 +6,16 @@ namespace vikwhite
     public interface ISectorPlayerModel
     {
         Vector3 Position { get; }
-        bool HasPosition { get; }
         bool IsMoving { get; }
         event Action Changed;
         event Action MovementCompleted;
         void SetMoveSpeed(float value);
         void PlaceAt(Vector3 position);
         void MoveTo(Vector3 position);
+        void Update();
     }
 
-    public class SectorPlayerModel : ISectorPlayerModel, IUpdatable
+    public class SectorPlayerModel : ISectorPlayerModel
     {
         private const float CompleteDistance = 0.02f;
 

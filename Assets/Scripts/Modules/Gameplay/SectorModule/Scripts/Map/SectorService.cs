@@ -14,6 +14,8 @@ namespace vikwhite
         bool IsMoving { get; }
         event Action Changed;
         void Initialize();
+        void SetPlayerModel(ISectorPlayerModel player);
+        void ClearPlayerModel();
         void InitializePoints();
         void MoveToNextLocation();
         void SetCurrentLocation(string id);
@@ -25,7 +27,7 @@ namespace vikwhite
         private readonly IProfileService _profile;
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
-        private readonly ISectorPlayerModel _player;
+        private ISectorPlayerModel _player;
         private readonly List<string> _sectorLocationIDs = new();
         private readonly Dictionary<string, SectorPoint> _pointsByLocation = new();
         private string _currentLocation;
@@ -34,16 +36,14 @@ namespace vikwhite
         public string CurrentLocation => _currentLocation;
         public string CurrentSector => GetLocationSector(_currentLocation);
         public bool HasNextLocation => !string.IsNullOrEmpty(GetNextLocationID(_currentLocation));
-        public bool IsMoving => _player.IsMoving;
+        public bool IsMoving => _player != null && _player.IsMoving;
         public event Action Changed;
 
-        public SectorService(IProfileService profile, IConfigs configs, IEventDispatcher dispatcher, ISectorPlayerModel player)
+        public SectorService(IProfileService profile, IConfigs configs, IEventDispatcher dispatcher)
         {
             _profile = profile;
             _configs = configs;
             _dispatcher = dispatcher;
-            _player = player;
-            _player.MovementCompleted += OnPlayerMovementCompleted;
         }
 
         public void Initialize()
@@ -54,6 +54,22 @@ namespace vikwhite
             var firstLocation = GetSectorLocations().FirstOrDefault();
             if (firstLocation != null)
                 SetCurrentLocation(firstLocation.ID);
+        }
+
+        public void SetPlayerModel(ISectorPlayerModel player)
+        {
+            ClearPlayerModel();
+            _player = player;
+            if (_player != null) _player.MovementCompleted += OnPlayerMovementCompleted;
+        }
+
+        public void ClearPlayerModel()
+        {
+            if (_player != null)
+                _player.MovementCompleted -= OnPlayerMovementCompleted;
+
+            _player = null;
+            _movingLocation = string.Empty;
         }
 
         public void InitializePoints()
@@ -93,7 +109,7 @@ namespace vikwhite
 
         public void MoveToNextLocation()
         {
-            if (_player.IsMoving) return;
+            if (_player == null || _player.IsMoving) return;
 
             var nextLocation = GetNextLocationID(_currentLocation);
             if (string.IsNullOrEmpty(nextLocation)) return;
@@ -123,6 +139,8 @@ namespace vikwhite
 
         private void MovePlayerToCurrentLocation()
         {
+            if (_player == null) return;
+
             if (_pointsByLocation.TryGetValue(_currentLocation, out var currentPoint))
                 _player.PlaceAt(currentPoint.Position);
         }

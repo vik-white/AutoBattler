@@ -12,8 +12,6 @@ namespace vikwhite
             Register<ISectorWindow, SectorWindow>();
             Register<SectorWindowViewModel>();
             Register<SectorWindowView>();
-            Register<ISectorPlayerModel, SectorPlayerModel>();
-            Register<ISectorPlayerPresenter, SectorPlayerPresenter>();
             Register<ISectorService, SectorService>();
         }
     }

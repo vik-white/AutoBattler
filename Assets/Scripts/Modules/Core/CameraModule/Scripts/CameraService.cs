@@ -4,57 +4,45 @@ namespace vikwhite
 {
     public interface ICameraService
     {
-        void Follow(Transform target);
-        void Center();
-        void Release();
+        void SetTarget(Transform target);
+        void ClearTarget();
     }
 
     public class CameraService : ICameraService, IUpdatable
     {
-        private Camera _camera;
+        private Camera _camera = Camera.main;
+        private Vector3 _battlePosition = new (-51.6f, 47.5f, - 29.7f );
         private Transform _target;
-        private float _cameraDistance;
 
-        public void Follow(Transform target)
+        public void SetTarget(Transform target)
         {
             _target = target;
-            _cameraDistance = 0;
+            FollowTarget();
         }
 
-        public void Center()
-        {
-            if (_target == null) return;
-
-            if (_camera == null)
-                _camera = Camera.main;
-            if (_camera == null) return;
-
-            if (_cameraDistance <= 0)
-                UpdateCameraDistance();
-
-            _camera.transform.position = _target.position - _camera.transform.forward * _cameraDistance;
-        }
-
-        public void Release()
+        public void ClearTarget()
         {
             _target = null;
-            _camera = null;
-            _cameraDistance = 0;
+            _camera.transform.position = _battlePosition;
         }
 
         public void Update()
         {
-            Center();
+            if (_target != null) FollowTarget();
+            else _camera.transform.position = _battlePosition;
         }
 
-        private void UpdateCameraDistance()
+        private void FollowTarget()
         {
-            if (_camera == null || _target == null) return;
+            _camera.transform.position = _target.position - _camera.transform.forward * GetCameraDistance();
+        }
 
+        private float GetCameraDistance()
+        {
             var targetOffset = _target.position - _camera.transform.position;
-            _cameraDistance = Mathf.Abs(Vector3.Dot(targetOffset, _camera.transform.forward));
-            if (_cameraDistance <= 0.01f)
-                _cameraDistance = Vector3.Distance(_camera.transform.position, _target.position);
+            var cameraDistance = Mathf.Abs(Vector3.Dot(targetOffset, _camera.transform.forward));
+            if (cameraDistance <= 0.01f) cameraDistance = Vector3.Distance(_camera.transform.position, _target.position);
+            return cameraDistance;
         }
     }
 }
