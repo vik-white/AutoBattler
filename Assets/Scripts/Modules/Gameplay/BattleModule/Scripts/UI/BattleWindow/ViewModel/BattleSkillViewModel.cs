@@ -38,6 +38,8 @@ namespace vikwhite
 
         public float GetHealthProgress()
         {
+            if (!CanReadHealth()) return 0;
+
             var health = _entityManager.GetComponentData<Health>(Model.Character).Value;
             var healthMax = _entityManager.GetComponentData<HealthMax>(Model.Character).Value;
             return healthMax > 0 ? Mathf.Clamp01(health / healthMax) : 0;
@@ -86,6 +88,13 @@ namespace vikwhite
         private bool IsCharacterAlive()
         {
             return !IsDead && _entityManager.Exists(Model.Character);
+        }
+
+        private bool CanReadHealth()
+        {
+            return IsCharacterAlive()
+                && _entityManager.HasComponent<Health>(Model.Character)
+                && _entityManager.HasComponent<HealthMax>(Model.Character);
         }
 
         private void OnDeadCharacter(DeadCharacterEvent evnt)
