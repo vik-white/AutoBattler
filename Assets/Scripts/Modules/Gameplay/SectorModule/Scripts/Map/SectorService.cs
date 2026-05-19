@@ -14,7 +14,7 @@ namespace vikwhite
         event Action Changed;
         void Initialize();
         void InitializePoints();
-        bool TryGetCurrentLocationPosition(out Vector3 position);
+        Vector3 GetCurrentLocationPosition();
         bool TryGetNextLocation(out string locationID, out Vector3 position);
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
@@ -84,9 +84,10 @@ namespace vikwhite
                 .ToList();
         }
 
-        public bool TryGetCurrentLocationPosition(out Vector3 position)
+        public Vector3 GetCurrentLocationPosition()
         {
-            return TryGetLocationPosition(_currentLocation, out position);
+            TryGetLocationPosition(_currentLocation, out var position);
+            return position;
         }
 
         public bool TryGetNextLocation(out string locationID, out Vector3 position)

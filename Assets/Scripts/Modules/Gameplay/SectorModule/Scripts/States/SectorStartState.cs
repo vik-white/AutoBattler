@@ -23,54 +23,27 @@ namespace vikwhite
 
         public void Enter()
         {
-            _player = new SectorPlayer(_sector);
-            _player.Changed += ApplyPlayerView;
-            InitializePlayer();
             _sector.InitializePoints();
-            PlacePlayerAtCurrentLocation();
+            _player = new SectorPlayer(_sector.GetCurrentLocationPosition());
+            _playerView = Object.FindAnyObjectByType<PlayerPoint>(FindObjectsInactive.Include);
+            _player.OnMove += _playerView.Move;
+            _player.OnStop += _playerView.Stop;
+            _playerView.transform.position = _player.Position;
+            _camera.SetTarget(_playerView.transform);
             _sectorWindow.ShowWindow(_player);
         }
 
         public void Exit()
         {
+            _camera.ClearTarget();
             _sectorWindow.CloseWindow();
-            ReleasePlayer();
-            _player.Changed -= ApplyPlayerView;
+            _player.OnMove -= _playerView.Move;
+            _player.OnStop -= _playerView.Stop;
         }
 
         public void Update()
         {
-            if (!_player.IsMoving) return;
             _player.Update(Time.deltaTime);
-            ApplyPlayerView();
-        }
-
-        private void InitializePlayer()
-        {
-            ReleasePlayer();
-            _playerView = Object.FindAnyObjectByType<PlayerPoint>(FindObjectsInactive.Include);
-            _player.SetMoveSpeed(_playerView.Speed);
-            _camera.SetTarget(_playerView.transform);
-        }
-
-        private void ReleasePlayer()
-        {
-            _camera.ClearTarget();
-            _playerView = null;
-        }
-
-        private void PlacePlayerAtCurrentLocation()
-        {
-            if (!_sector.TryGetCurrentLocationPosition(out var position)) return;
-
-            _player.PlaceAt(position);
-            ApplyPlayerView();
-        }
-
-        private void ApplyPlayerView()
-        {
-            if (_playerView == null) return;
-            _playerView.ApplyState(_player.Position, _player.IsMoving);
         }
     }
 }

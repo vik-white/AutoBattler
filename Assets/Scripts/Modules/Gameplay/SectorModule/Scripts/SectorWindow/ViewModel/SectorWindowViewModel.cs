@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace vikwhite
@@ -10,6 +11,7 @@ namespace vikwhite
         private readonly ISquadWindow _squadWindow;
         private readonly ISectorService _sector;
         private readonly SectorPlayer _player;
+        
         public string CurrentLocation => _sector.CurrentLocation;
         public bool CanGoToNext => _sector.HasNextLocation && !_player.IsMoving;
         public bool CanFight => !_player.IsMoving;
@@ -38,7 +40,14 @@ namespace vikwhite
         
         public void OpenLobby() => _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
 
-        private void GoToNext() => _player.MoveToNextLocation();
+        private void GoToNext()
+        {
+            if(_sector.TryGetNextLocation(out string locationID, out Vector3 position))
+            {
+                _sector.SetCurrentLocation(locationID);
+                _player.Move(position);
+            }
+        }
 
         public override void Dispose()
         {
