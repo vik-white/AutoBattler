@@ -13,9 +13,9 @@ namespace vikwhite
         bool HasNextLocation { get; }
         void Initialize();
         void InitializePoints();
-        Vector3 GetCurrentLocationPosition();
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
+        Vector3 GetCurrentLocationPosition();
     }
 
     public class SectorService : ISectorService
