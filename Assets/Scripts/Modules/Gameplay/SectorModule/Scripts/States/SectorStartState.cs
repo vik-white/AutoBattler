@@ -13,7 +13,6 @@ namespace vikwhite
         private readonly ICameraService _camera;
         private SectorPlayer _player;
         private PlayerPoint _playerView;
-        private bool _isActive;
 
         public SectorStartState(ISectorWindow sectorWindow, ISectorService sector, ICameraService camera)
         {
@@ -24,7 +23,6 @@ namespace vikwhite
 
         public void Enter()
         {
-            _isActive = true;
             _player = new SectorPlayer(_sector);
             _player.Changed += ApplyPlayerView;
             InitializePlayer();
@@ -35,7 +33,6 @@ namespace vikwhite
 
         public void Exit()
         {
-            _isActive = false;
             _sectorWindow.CloseWindow();
             ReleasePlayer();
             _player.Changed -= ApplyPlayerView;
@@ -43,9 +40,7 @@ namespace vikwhite
 
         public void Update()
         {
-            if (!_isActive) return;
             if (!_player.IsMoving) return;
-
             _player.Update(Time.deltaTime);
             ApplyPlayerView();
         }
@@ -54,12 +49,6 @@ namespace vikwhite
         {
             ReleasePlayer();
             _playerView = Object.FindAnyObjectByType<PlayerPoint>(FindObjectsInactive.Include);
-            if (_playerView == null)
-            {
-                Debug.LogWarning("PlayerPoint was not found on sector scene.");
-                return;
-            }
-
             _player.SetMoveSpeed(_playerView.Speed);
             _camera.SetTarget(_playerView.transform);
         }

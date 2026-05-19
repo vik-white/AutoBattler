@@ -16,7 +16,6 @@ namespace vikwhite
         public UnityAction OnFight;
         public UnityAction OnLobby;
         public UnityAction OnGoToNext;
-        public event Action Changed;
 
         public SectorWindowViewModel(SectorPlayer sectorPlayer, ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, IEnvironmentStateMachine environmentStateMachine): base(sectorPlayer)
         {
@@ -28,7 +27,6 @@ namespace vikwhite
             OnFight = StartCurrentLocation;
             OnLobby = OpenLobby;
             OnGoToNext = GoToNext;
-            _player.Changed += OnSectorChanged;
         }
 
         private void StartCurrentLocation()
@@ -38,29 +36,16 @@ namespace vikwhite
             _squadWindow.ShowWindow();
         }
         
-        public void OpenLobby()
-        {
-            _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
-        }
+        public void OpenLobby() => _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
 
-        private void GoToNext()
-        {
-            _player.MoveToNextLocation();
-        }
-
-        private void OnSectorChanged()
-        {
-            Changed?.Invoke();
-        }
+        private void GoToNext() => _player.MoveToNextLocation();
 
         public override void Dispose()
         {
             base.Dispose();
-            _player.Changed -= OnSectorChanged;
             OnFight = null;
             OnLobby = null;
             OnGoToNext = null;
-            Changed = null;
         }
     }
 }
