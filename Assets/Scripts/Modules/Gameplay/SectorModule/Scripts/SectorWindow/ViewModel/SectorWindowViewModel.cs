@@ -3,32 +3,32 @@ using UnityEngine.Events;
 
 namespace vikwhite
 {
-    public class SectorWindowViewModel : WindowViewModel
+    public class SectorWindowViewModel : WindowViewModel<SectorPlayer>
     {
         private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadWindow _squadWindow;
         private readonly ISectorService _sector;
-        private readonly ISectorStartState _sectorStartState;
+        private readonly SectorPlayer _player;
         public string CurrentLocation => _sector.CurrentLocation;
-        public bool CanGoToNext => _sector.HasNextLocation && !_sectorStartState.IsMoving;
-        public bool CanFight => !_sectorStartState.IsMoving;
+        public bool CanGoToNext => _sector.HasNextLocation && !_player.IsMoving;
+        public bool CanFight => !_player.IsMoving;
         public UnityAction OnFight;
         public UnityAction OnLobby;
         public UnityAction OnGoToNext;
         public event Action Changed;
 
-        public SectorWindowViewModel(ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, ISectorStartState sectorStartState, IEnvironmentStateMachine environmentStateMachine)
+        public SectorWindowViewModel(SectorPlayer sectorPlayer, ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, IEnvironmentStateMachine environmentStateMachine): base(sectorPlayer)
         {
             _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
             _squadWindow = squadWindow;
             _sector = sector;
-            _sectorStartState = sectorStartState;
+            _player = sectorPlayer;
             OnFight = StartCurrentLocation;
             OnLobby = OpenLobby;
             OnGoToNext = GoToNext;
-            _sectorStartState.Changed += OnSectorChanged;
+            _player.Changed += OnSectorChanged;
         }
 
         private void StartCurrentLocation()
@@ -45,7 +45,7 @@ namespace vikwhite
 
         private void GoToNext()
         {
-            _sectorStartState.MoveToNextLocation();
+            _player.MoveToNextLocation();
         }
 
         private void OnSectorChanged()
@@ -56,7 +56,7 @@ namespace vikwhite
         public override void Dispose()
         {
             base.Dispose();
-            _sectorStartState.Changed -= OnSectorChanged;
+            _player.Changed -= OnSectorChanged;
             OnFight = null;
             OnLobby = null;
             OnGoToNext = null;
