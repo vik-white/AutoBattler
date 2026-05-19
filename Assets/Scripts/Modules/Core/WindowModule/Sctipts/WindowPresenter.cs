@@ -5,7 +5,7 @@ namespace vikwhite
         void CloseWindow();
     }
     
-    public abstract class WindowPresenter<TView, TViewModel> : IWindowPresenter where TView : View, IWindowView<TViewModel> where TViewModel : IWindowViewModel
+    public abstract class WindowPresenter<TView, TViewModel> : IWindowPresenter where TView : View, IWindowView<TViewModel> where TViewModel : class, IWindowViewModel
     {
         protected readonly IWindowViewFactory _windowViewFactory = DI.Resolve<IWindowViewFactory>();
         protected readonly IViewModelFactory _viewModelFactory = DI.Resolve<IViewModelFactory>();

@@ -11,37 +11,22 @@ namespace vikwhite
         {
             BindClick(_view.CloseButton, viewModel.OnLobby);
             BindClick(_view.FightButton, viewModel.OnFight);
-            if (_view.GoToNextButton != null)
-                BindClick(_view.GoToNextButton, viewModel.OnGoToNext);
-
+            BindClick(_view.GoToNextButton, viewModel.OnGoToNext);
             viewModel.Changed += Refresh;
-            Register(new ActionDisposable(() => viewModel.Changed -= Refresh));
             Refresh();
-
-            void Refresh()
-            {
-                if (_view.Location != null)
-                    _view.Location.text = viewModel.CurrentLocation;
-                if (_view.GoToNextButton != null)
-                    _view.GoToNextButton.interactable = viewModel.CanGoToNext;
-                if (_view.FightButton != null)
-                    _view.FightButton.interactable = viewModel.CanFight;
-            }
         }
-
-        private sealed class ActionDisposable : IDisposable
+        
+        private void Refresh()
         {
-            private readonly Action _dispose;
-
-            public ActionDisposable(Action dispose)
-            {
-                _dispose = dispose;
-            }
-
-            public void Dispose()
-            {
-                _dispose?.Invoke();
-            }
+            if (_view.Location != null) _view.Location.text = ViewModel.CurrentLocation;
+            if (_view.GoToNextButton != null) _view.GoToNextButton.interactable = ViewModel.CanGoToNext;
+            if (_view.FightButton != null) _view.FightButton.interactable = ViewModel.CanFight;
+        }
+        
+        public override void Dispose()
+        {
+            base.Dispose();
+            ViewModel.Changed -= Refresh;
         }
     }
 }

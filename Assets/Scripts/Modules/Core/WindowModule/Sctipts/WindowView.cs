@@ -12,14 +12,16 @@ namespace vikwhite
         void HideInternal();
         void CloseInternal();
     }
-    
-    public interface IWindowView<in T> : IView<T>, IWindowView where T:IWindowViewModel { }
-    
-    public class WindowView<TView, TViewModel> : View<TView, TViewModel>, IWindowView<TViewModel>
-        where TViewModel : class, IWindowViewModel
-        where TView : MonoBehaviour
+
+    public interface IWindowView<TViewModel> : IView<TViewModel>, IWindowView where TViewModel : class, IWindowViewModel
     {
-        public IWindowViewModel ViewModel => BaseViewModel;
+        new TViewModel ViewModel { get; }
+    }
+    
+    public class WindowView<TView, TViewModel> : View<TView, TViewModel>, IWindowView<TViewModel> where TViewModel : class, IWindowViewModel where TView : MonoBehaviour
+    {
+        public TViewModel ViewModel => BaseViewModel;
+        IWindowViewModel IWindowView.ViewModel => ViewModel;
         public bool IsShown { get; set; }
         public bool IsClosed { get; set; }
         
