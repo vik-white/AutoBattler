@@ -32,7 +32,8 @@ namespace vikwhite
                 },
                 ClassShards = new (),
                 ClassBooks = new (),
-                Squad = new [] {"","","","",""}
+                Squad = new [] {"","","","",""},
+                RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID
             };
 
             foreach (CharacterClassType @class in Enum.GetValues(typeof(CharacterClassType)))

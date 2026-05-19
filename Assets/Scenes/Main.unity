@@ -267,7 +267,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 30
-  far clip plane: 100
+  far clip plane: 200
   field of view: 10.000001
   orthographic: 0
   orthographic size: 5
@@ -418,7 +418,6 @@ MonoBehaviour:
   - {fileID: 1811446165255543267, guid: 6f68628f96d30534bb9255ffc23c504e, type: 3}
   - {fileID: 2613462060424995206, guid: e7668317a5999474f9225cdeb55700dc, type: 3}
   - {fileID: 2613462060424995206, guid: f31af5725e70d604ea0033b1773856ac, type: 3}
-  DamageFlyTextPrefab: {fileID: 4650129500932448462, guid: 92fbbd060ab92c14bb76bc1e6eeef3ae, type: 3}
 --- !u!1 &2031485601
 GameObject:
   m_ObjectHideFlags: 0
