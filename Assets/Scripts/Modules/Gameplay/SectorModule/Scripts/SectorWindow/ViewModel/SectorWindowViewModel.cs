@@ -42,11 +42,8 @@ namespace vikwhite
 
         private void GoToNext()
         {
-            if(_sector.TryGetNextLocation(out string locationID, out Vector3 position))
-            {
-                _sector.SetCurrentLocation(locationID);
-                _player.Move(position);
-            }
+            _sector.CompleteCurrentLocation();
+            _player.Move(_sector.GetCurrentLocationPosition());
         }
 
         public override void Dispose()
