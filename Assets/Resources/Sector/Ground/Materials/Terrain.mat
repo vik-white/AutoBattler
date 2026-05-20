@@ -106,7 +106,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Rock_Texture:
-        m_Texture: {fileID: 2800000, guid: d551d44691cd3ea4483c7e9bec196b93, type: 3}
+        m_Texture: {fileID: 2800000, guid: 111f653879ca62042b66914eca2e9d01, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
