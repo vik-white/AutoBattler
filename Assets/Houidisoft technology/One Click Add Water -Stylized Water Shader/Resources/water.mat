@@ -24,7 +24,9 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 7afefe52747e09c4091f05f19eb4b2f6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ENABLE_FOAM
+  - _ENABLE_REFRACTION
   m_InvalidKeywords:
   - _ALPHAMODULATE_ON
   - _EMISSION
@@ -155,14 +157,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _ENABLE_FOAM: 0
-    - _ENABLE_REFRACTION: 0
+    - _ENABLE_FOAM: 1
+    - _ENABLE_REFRACTION: 1
     - _ENABLE_WAVES: 0
     - _EnvironmentReflections: 1
     - _Float: 0.01
     - _Float_1: 0.001
     - _Float_2: 0.001
-    - _Foam_depth: 2.36
+    - _Foam_depth: 14.19
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -174,7 +176,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 2
     - _ReceiveShadows: 1
-    - _Refraction_Power: 0.54
+    - _Refraction_Power: 0.98
     - _Rim_strenght: 31.8
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -201,10 +203,10 @@ Material:
     - _deph_normal: 2.91
     - _foam: 1
     - _foam_amaont: 0.7
-    - _foam_cutoff: 1.17
-    - _foam_scale: 0.28
+    - _foam_cutoff: 5.21
+    - _foam_scale: 0.1
     - _foam_scale_1: 0.000001
-    - _foam_speed: 0.03
+    - _foam_speed: 0.04
     - _fr: 2.33
     - _highFrequeny: 1
     - _intensit: 2
@@ -212,13 +214,14 @@ Material:
     - _normal_strenght: 1
     - _refraction_strenght: 0.1
     - _scale: 250
+    - _shore_line_thickness: 2.01
     - _strenght_norm: 1
     - _strength: 3.58
     - _w: 23.33
     - _water_Refreaction: 4.34
     - _water_color_1_depth: 0
-    - _water_color_2_depth: 0.78
-    - _water_color_3_depth: 2.31
+    - _water_color_2_depth: 0.98
+    - _water_color_3_depth: 3.4
     - _water_movement_speed: 2
     - _wave: 1
     m_Colors:
@@ -232,10 +235,11 @@ Material:
     - _Wave_Direction: {r: 0.5, g: 0.1, b: 0, a: 0}
     - _Waves_direction: {r: 1, g: 1, b: 1, a: 0}
     - _deep_water_color: {r: 0.14352672, g: 0.5546285, b: 0.7735849, a: 1}
-    - _foam_color: {r: 1, g: 1, b: 1, a: 1}
+    - _foam_color: {r: 0.43081754, g: 0.8342276, b: 1, a: 1}
     - _shallow_water_color: {r: 0, g: 0.654088, b: 0.6130472, a: 1}
+    - _shore_line_color: {r: 0.23584887, g: 0.9013431, b: 1, a: 0.32941177}
     - _water_color_1: {r: 0, g: 0.6192589, b: 0.83137256, a: 0.09411765}
-    - _water_color_2: {r: 0, g: 0.59411013, b: 0.8930817, a: 1}
+    - _water_color_2: {r: 0, g: 0.59411013, b: 0.8930817, a: 0.8901961}
     - _water_color_3: {r: 0, g: 0.28176093, b: 0.44025147, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
