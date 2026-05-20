@@ -152,7 +152,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth: 2
+    - _Depth: 1.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -164,7 +164,7 @@ Material:
     - _Float: 0.01
     - _Float_1: 0.001
     - _Float_2: 0.001
-    - _Foam_depth: 29.6
+    - _Foam_depth: 2.36
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -195,7 +195,7 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     - _angle: 0.001
-    - _caustics_Alpha: 0.93
+    - _caustics_Alpha: 0.366
     - _caustics_Speed: 6
     - _caustics_Strenght: 4.92
     - _caustics_scale: 26.72
@@ -203,10 +203,10 @@ Material:
     - _deph_normal: 2.91
     - _foam: 1
     - _foam_amaont: 0.7
-    - _foam_cutoff: 43.3
-    - _foam_scale: 0.1
+    - _foam_cutoff: 1.17
+    - _foam_scale: 0.28
     - _foam_scale_1: 0.000001
-    - _foam_speed: 0.01
+    - _foam_speed: 0.03
     - _fr: 2.33
     - _highFrequeny: 1
     - _intensit: 2
@@ -230,8 +230,8 @@ Material:
     - _Vector4: {r: 0, g: 0, b: 0, a: 0}
     - _Wave_Direction: {r: 0.5, g: 0.1, b: 0, a: 0}
     - _Waves_direction: {r: 1, g: 1, b: 1, a: 0}
-    - _deep_water_color: {r: 0, g: 0.21036127, b: 0.26415092, a: 1}
+    - _deep_water_color: {r: 0, g: 0.14311719, b: 0.21383637, a: 1}
     - _foam_color: {r: 1, g: 1, b: 1, a: 1}
-    - _shallow_water_color: {r: 0, g: 0.55345905, b: 0.48997995, a: 0.6039216}
+    - _shallow_water_color: {r: 0, g: 1, b: 0.9355764, a: 0.5254902}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
