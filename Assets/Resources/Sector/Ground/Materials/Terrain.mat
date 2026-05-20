@@ -106,6 +106,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Rock_Normal_Map:
+        m_Texture: {fileID: 2800000, guid: cc4a5b3471d1f8545b8b831921190b06, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Rock_Texture:
         m_Texture: {fileID: 2800000, guid: 111f653879ca62042b66914eca2e9d01, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -176,7 +180,8 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Rock_Slope_Angle: 27.2
+    - _Rock_Slope_Angle: 27.11
+    - _Rock_Slope_Blend: 0.15
     - _Rock_Tile_Size: 8.3
     - _Smoothness: 0.5
     - _Smoothness0: 1
