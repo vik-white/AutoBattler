@@ -220,8 +220,8 @@ Material:
     - _w: 23.33
     - _water_Refreaction: 4.34
     - _water_color_1_depth: 0
-    - _water_color_2_depth: 0.98
-    - _water_color_3_depth: 3.4
+    - _water_color_2_depth: 0.62
+    - _water_color_3_depth: 1.17
     - _water_movement_speed: 2
     - _wave: 1
     m_Colors:
