@@ -20,11 +20,11 @@
     "_tempCollidersAction": 1,
     "_paletteManager": {
         "_selectedPaletteIdx": 0,
-        "_selectedBrushIdx": -1,
+        "_selectedBrushIdx": 1,
         "_showBrushName": false,
         "_viewList": false,
         "_showTabsInMultipleRows": false,
-        "_iconSize": 64
+        "_iconSize": 165
     },
     "_pinManager": {
         "_profileKeys": [
