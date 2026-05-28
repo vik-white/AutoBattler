@@ -20,7 +20,7 @@
     "_tempCollidersAction": 1,
     "_paletteManager": {
         "_selectedPaletteIdx": 0,
-        "_selectedBrushIdx": -1,
+        "_selectedBrushIdx": 1,
         "_showBrushName": false,
         "_viewList": false,
         "_showTabsInMultipleRows": false,
@@ -2890,7 +2890,7 @@
             "_origin": {
                 "x": 0.0,
                 "y": 0.5139365196228027,
-                "z": 72.32881164550781
+                "z": 64.49378967285156
             },
             "_rotation": {
                 "x": 0.0,
