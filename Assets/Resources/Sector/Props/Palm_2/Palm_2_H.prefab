@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 4521618800000000002, guid: 61c1f26368c042d0ad6c1c77c0f4b03a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521618800000000002, guid: 61c1f26368c042d0ad6c1c77c0f4b03a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.07
+      objectReference: {fileID: 0}
     - target: {fileID: 6632625051905436303, guid: 61c1f26368c042d0ad6c1c77c0f4b03a, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -66,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8577964478105940220, guid: 61c1f26368c042d0ad6c1c77c0f4b03a, type: 3}
       propertyPath: m_Name
-      value: Palm_2_H Variant
+      value: Palm_2_H
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
