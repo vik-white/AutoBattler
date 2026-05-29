@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace vikwhite.Pathing
+namespace vikwhite
 {
     public readonly struct BezierPathSample
     {

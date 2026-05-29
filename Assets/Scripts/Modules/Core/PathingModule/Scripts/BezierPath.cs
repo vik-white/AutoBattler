@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace vikwhite.Pathing
+namespace vikwhite
 {
     [DisallowMultipleComponent]
     [AddComponentMenu("Pathing/Bezier Path")]

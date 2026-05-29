@@ -2,9 +2,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
-using vikwhite.Pathing;
 
-namespace vikwhite.EditorTools
+namespace vikwhite
 {
     [CustomEditor(typeof(BezierPath))]
     public sealed class BezierPathEditor : Editor

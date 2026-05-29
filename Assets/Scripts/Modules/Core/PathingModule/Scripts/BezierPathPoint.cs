@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace vikwhite.Pathing
+namespace vikwhite
 {
     [Serializable]
     public sealed class BezierPathPoint

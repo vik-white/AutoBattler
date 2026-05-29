@@ -1,4 +1,4 @@
-namespace vikwhite.Pathing
+namespace vikwhite
 {
     public enum BezierPathTangentMode
     {

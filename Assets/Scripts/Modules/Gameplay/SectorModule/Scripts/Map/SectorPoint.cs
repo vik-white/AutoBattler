@@ -11,6 +11,7 @@ namespace vikwhite
         private const float GizmoArrowHeadAngle = 25f;
 
         public int Index;
+        public BezierPath Path;
 
         public Vector3 Position => transform.position;
 
