@@ -54,7 +54,7 @@ namespace vikwhite
                 if (point.Index >= 0 && point.Index < _locationIDs.Count)
                 {
                     var locationID = _locationIDs[point.Index];
-                    point.Initialize(locationID);
+                    point.Initialize();
                     _points[locationID] = point;
                 }
             }
