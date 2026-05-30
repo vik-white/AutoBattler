@@ -29,13 +29,12 @@ namespace vikwhite
             _player.OnMove += _playerView.Move;
             _player.OnStop += _playerView.Stop;
             _playerView.transform.position = _player.Position;
-            _camera.SetTarget(_playerView.transform);
             _sectorWindow.ShowWindow(_player);
+            _camera.Initialize(new Vector3(-6.099998f, 7.28f, -7.16f), Quaternion.Euler(32.098f, 40.58f, 1.131f), 60, _playerView.transform);
         }
 
         public void Exit()
         {
-            _camera.ClearTarget();
             _sectorWindow.CloseWindow();
             _player.OnMove -= _playerView.Move;
             _player.OnStop -= _playerView.Stop;

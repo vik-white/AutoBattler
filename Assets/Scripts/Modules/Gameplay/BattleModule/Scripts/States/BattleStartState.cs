@@ -23,14 +23,16 @@ namespace vikwhite
         private readonly IStateMachine<IBattleState> _stateMachine;
         private readonly IConfigs _configs;
         private readonly IBattleWindow _battleWindow;
+        private readonly ICameraService _camera;
 
-        public BattleStartState(ILocationProvider locationProvider, ISquadService squad, IStateMachine<IBattleState> stateMachine, IConfigs configs, IBattleWindow battleWindow)
+        public BattleStartState(ILocationProvider locationProvider, ISquadService squad, IStateMachine<IBattleState> stateMachine, IConfigs configs, IBattleWindow battleWindow, ICameraService camera)
         {
             _locationProvider = locationProvider;
             _squad = squad;
             _stateMachine = stateMachine;
             _configs = configs;
             _battleWindow = battleWindow;
+            _camera = camera;
         }
 
         public void Enter()
@@ -66,6 +68,8 @@ namespace vikwhite
 
             DefeatBattleEventSystem.OnExecute = _ =>_stateMachine.SwitchState<IBattleDefeatState>();
             VictoryBattleEventSystem.OnExecute = _ => _stateMachine.SwitchState<IBattleVictoryState>();
+            
+            _camera.Initialize(new Vector3(-51.6f, 47.5f, - 29.7f), Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
         }
 
         private static void SetCameraPosition()
