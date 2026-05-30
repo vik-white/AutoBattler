@@ -35,6 +35,7 @@ namespace vikwhite
 
         public void Exit()
         {
+            _camera.DetachFromParent();
             _sectorWindow.CloseWindow();
             _player.OnMove -= _playerView.Move;
             _player.OnStop -= _playerView.Stop;
