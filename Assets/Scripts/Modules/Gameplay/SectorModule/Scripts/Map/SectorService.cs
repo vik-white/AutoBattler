@@ -42,12 +42,12 @@ namespace vikwhite
         public void Initialize()
         {
             _currentLocation = _profile.Data.RoadMapLocation;
+            InitializeLocationIDs();
         }
 
         public void InitializePoints()
         {
-            _locationIDs.Clear();
-            _locationIDs.AddRange(GetSectorLocationIDs(CurrentSector));
+            InitializeLocationIDs();
             _points.Clear();
             var points = UnityEngine.Object.FindObjectsByType<SectorPoint>(FindObjectsInactive.Include).OrderBy(point => point.Index);
             foreach (var point in points)
@@ -55,7 +55,7 @@ namespace vikwhite
                 if (point.Index >= 0 && point.Index < _locationIDs.Count)
                 {
                     var locationID = _locationIDs[point.Index];
-                    point.Initialize();
+                    point.Initialize(_configs.Map.Get(locationID), IsCharacterVisible(point.Index));
                     _points[locationID] = point;
                 }
             }
@@ -65,9 +65,15 @@ namespace vikwhite
         {
             _currentLocation = id;
             _dispatcher.Dispatch(new SetSectorLocationEvent(_currentLocation));
+            UpdatePointCharactersVisibility();
         }
 
-        public void CompleteCurrentLocation() => SetCurrentLocation(GetNextLocationID(_currentLocation));
+        public void CompleteCurrentLocation()
+        {
+            var nextLocationID = GetNextLocationID(_currentLocation);
+            if (string.IsNullOrEmpty(nextLocationID)) return;
+            SetCurrentLocation(nextLocationID);
+        }
 
         public SectorPoint GetCurrentLocationPoint()
         {
@@ -75,6 +81,26 @@ namespace vikwhite
         }
 
         public BezierPath GetCurrentLocationPath() => GetCurrentLocationPoint()?.Path;
+
+        private void InitializeLocationIDs()
+        {
+            _locationIDs.Clear();
+            _locationIDs.AddRange(GetSectorLocationIDs(CurrentSector));
+        }
+
+        private void UpdatePointCharactersVisibility()
+        {
+            foreach (var point in _points.Values)
+            {
+                point.SetCharacterVisible(IsCharacterVisible(point.Index));
+            }
+        }
+
+        private bool IsCharacterVisible(int pointIndex)
+        {
+            var currentIndex = _locationIDs.IndexOf(_currentLocation);
+            return currentIndex < 0 || pointIndex >= currentIndex;
+        }
 
         private string GetNextLocationID(string locationID)
         {

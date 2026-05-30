@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using vikwhite.Data;
 
 namespace vikwhite
 {
@@ -13,9 +13,58 @@ namespace vikwhite
         public int Index;
         public BezierPath Path;
 
-        public void Initialize()
+        private GameObject _characterPrefab;
+        private GameObject _characterInstance;
+
+        public void Initialize(IMapData mapData, bool showCharacter)
         {
             gameObject.SetActive(true);
+            SetCharacterPrefab(mapData?.Prefab);
+            SetCharacterVisible(showCharacter);
+        }
+
+        public void SetCharacterVisible(bool visible)
+        {
+            if (_characterInstance != null)
+            {
+                _characterInstance.SetActive(visible);
+            }
+        }
+
+        private void SetCharacterPrefab(GameObject prefab)
+        {
+            if (_characterPrefab == prefab && _characterInstance != null)
+            {
+                AlignCharacter();
+                return;
+            }
+
+            ClearCharacter();
+            _characterPrefab = prefab;
+
+            if (_characterPrefab == null) return;
+
+            _characterInstance = Instantiate(_characterPrefab, transform.position, transform.rotation, transform);
+            _characterInstance.name = _characterPrefab.name;
+            AlignCharacter();
+        }
+
+        private void AlignCharacter()
+        {
+            if (_characterInstance == null) return;
+
+            _characterInstance.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        }
+
+        private void ClearCharacter()
+        {
+            if (_characterInstance != null)
+            {
+                Destroy(_characterInstance);
+            }
+
+            _characterPrefab = null;
+            _characterInstance = null;
         }
 
         private void OnDrawGizmos()
