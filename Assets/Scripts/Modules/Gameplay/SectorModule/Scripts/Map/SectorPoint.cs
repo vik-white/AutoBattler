@@ -9,6 +9,7 @@ namespace vikwhite
         private const float GizmoArrowLength = 0.5f;
         private const float GizmoArrowHeadLength = 0.12f;
         private const float GizmoArrowHeadAngle = 25f;
+        private const float CharacterScale = 1.5f;
 
         public int Index;
         public BezierPath Path;
@@ -54,6 +55,7 @@ namespace vikwhite
             if (_characterInstance == null) return;
 
             _characterInstance.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            _characterInstance.transform.localScale = Vector3.one * CharacterScale;
         }
 
         private void ClearCharacter()
