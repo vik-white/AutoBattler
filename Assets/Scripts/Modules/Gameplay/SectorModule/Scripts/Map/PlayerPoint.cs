@@ -59,14 +59,22 @@ public class PlayerPoint : MonoBehaviour
 
     private Vector3 SnapToGround(Vector3 position)
     {
-        if (TrySnapToTerrain(position, out Vector3 terrainPosition))
+        bool hasTerrain = TrySnapToTerrain(position, out Vector3 terrainPosition);
+        bool hasCollider = TrySnapToCollider(position, out Vector3 colliderPosition);
+
+        if (hasTerrain && hasCollider)
         {
-            return terrainPosition;
+            return colliderPosition.y > terrainPosition.y ? colliderPosition : terrainPosition;
         }
 
-        if (TrySnapToCollider(position, out Vector3 colliderPosition))
+        if (hasCollider)
         {
             return colliderPosition;
+        }
+
+        if (hasTerrain)
+        {
+            return terrainPosition;
         }
 
         return position;
