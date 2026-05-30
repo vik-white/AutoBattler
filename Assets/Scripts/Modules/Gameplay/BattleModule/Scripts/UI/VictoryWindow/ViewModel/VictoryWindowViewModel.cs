@@ -26,7 +26,7 @@ namespace vikwhite
                 Rewards.Add(CreateViewModel<RewardItemViewModel, Reward>(reward));
 
             sector.CompleteCurrentLocation();
-            OnEnd = () => stateMachine.SwitchState(EnvironmentType.Lobby);
+            OnEnd = () => stateMachine.SwitchState(EnvironmentType.Sector);
         }
 
         public override void Dispose()
