@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
@@ -49,7 +50,6 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
         private readonly ScreenSpaceOutlineSettings settings;
         private readonly FilteringSettings filteringSettings;
         private readonly List<ShaderTagId> shaderTagIdList;
-        private readonly Material normalsMaterial;
 
         private static readonly int SceneViewSpaceNormalsId = Shader.PropertyToID("_SceneViewSpaceNormals");
 
@@ -64,18 +64,12 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
             this.settings = settings;
             this.renderPassEvent = renderPassEvent;
             requiresIntermediateTexture = true;
+            ConfigureInput(ScriptableRenderPassInput.Depth);
 
             var outlineShader = Shader.Find("Hidden/Outlines");
             if (outlineShader == null)
             {
                 Debug.LogWarning("ScreenSpaceOutlines: shader 'Hidden/Outlines' was not found. The renderer feature will be disabled.");
-                return;
-            }
-
-            var viewSpaceNormalsShader = Shader.Find("Hidden/ViewSpaceNormals");
-            if (viewSpaceNormalsShader == null)
-            {
-                Debug.LogWarning("ScreenSpaceOutlines: shader 'Hidden/ViewSpaceNormals' was not found. The renderer feature will be disabled.");
                 return;
             }
 
@@ -91,13 +85,9 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
             filteringSettings = new FilteringSettings(RenderQueueRange.opaque, layerMask, renderMask);
             shaderTagIdList = new List<ShaderTagId>
             {
-                new ShaderTagId("UniversalForward"),
-                new ShaderTagId("UniversalForwardOnly"),
-                new ShaderTagId("LightweightForward"),
-                new ShaderTagId("SRPDefaultUnlit")
+                new ShaderTagId("DepthNormals"),
+                new ShaderTagId("DepthNormalsOnly")
             };
-
-            normalsMaterial = new Material(viewSpaceNormalsShader);
         }
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
@@ -110,18 +100,24 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
             if (resourceData.isActiveTargetBackBuffer)
                 return;
 
-            if (screenSpaceOutlineMaterial == null || normalsMaterial == null)
+            if (screenSpaceOutlineMaterial == null)
                 return;
 
             var normalsDesc = cameraData.cameraTargetDescriptor;
-            normalsDesc.colorFormat = settings.colorFormat;
-            normalsDesc.depthBufferBits = settings.depthBufferBits;
+            normalsDesc.graphicsFormat = GetNormalsGraphicsFormat();
+            normalsDesc.depthBufferBits = 0;
             var normalsTexture = UniversalRenderer.CreateRenderGraphTexture(
                 renderGraph,
                 normalsDesc,
                 "_ScreenSpaceOutlineNormals",
                 true,
                 settings.filterMode);
+
+            var normalsDepthDesc = renderGraph.GetTextureDesc(normalsTexture);
+            normalsDepthDesc.name = "_ScreenSpaceOutlineDepth";
+            normalsDepthDesc.format = GraphicsFormatUtility.GetDepthStencilFormat(GetDepthBufferBits(settings.depthBufferBits));
+            normalsDepthDesc.clearBuffer = false;
+            var normalsDepthTexture = renderGraph.CreateTexture(normalsDepthDesc);
 
             using (var builder = renderGraph.AddRasterRenderPass<NormalsPassData>("ScreenSpaceOutlinesNormals", out var passData))
             {
@@ -135,7 +131,6 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
                 drawSettings.perObjectData = settings.perObjectData;
                 drawSettings.enableDynamicBatching = settings.enableDynamicBatching;
                 drawSettings.enableInstancing = settings.enableInstancing;
-                drawSettings.overrideMaterial = normalsMaterial;
 
                 var rendererListParams = new RendererListParams(renderingData.cullResults, drawSettings, filteringSettings);
                 passData.RendererList = renderGraph.CreateRendererList(rendererListParams);
@@ -146,12 +141,12 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
 
                 builder.UseRendererList(passData.RendererList);
                 builder.SetRenderAttachment(normalsTexture, 0, AccessFlags.Write);
-                builder.SetRenderAttachmentDepth(resourceData.activeDepthTexture, AccessFlags.Read);
+                builder.SetRenderAttachmentDepth(normalsDepthTexture, AccessFlags.Write);
                 builder.SetGlobalTextureAfterPass(normalsTexture, SceneViewSpaceNormalsId);
 
                 builder.SetRenderFunc(static (NormalsPassData data, RasterGraphContext context) =>
                 {
-                    context.cmd.ClearRenderTarget(RTClearFlags.Color, data.BackgroundColor, 1, 0);
+                    context.cmd.ClearRenderTarget(RTClearFlags.ColorDepth, data.BackgroundColor, 1, 0);
                     context.cmd.DrawRendererList(data.RendererList);
                 });
             }
@@ -173,7 +168,24 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
         public void Release()
         {
             CoreUtils.Destroy(screenSpaceOutlineMaterial);
-            CoreUtils.Destroy(normalsMaterial);
+        }
+
+        private static GraphicsFormat GetNormalsGraphicsFormat()
+        {
+            if (SystemInfo.IsFormatSupported(GraphicsFormat.R8G8B8A8_SNorm, GraphicsFormatUsage.Render))
+                return GraphicsFormat.R8G8B8A8_SNorm;
+
+            if (SystemInfo.IsFormatSupported(GraphicsFormat.R16G16B16A16_SFloat, GraphicsFormatUsage.Render))
+                return GraphicsFormat.R16G16B16A16_SFloat;
+
+            return GraphicsFormat.R32G32B32A32_SFloat;
+        }
+
+        private static int GetDepthBufferBits(int configuredDepthBufferBits)
+        {
+            return configuredDepthBufferBits == 16 || configuredDepthBufferBits == 24 || configuredDepthBufferBits == 32
+                ? configuredDepthBufferBits
+                : 24;
         }
     }
 

@@ -27,6 +27,7 @@ Shader "Hidden/Outlines"
             HLSLPROGRAM
             #pragma vertex Vert
             #pragma fragment Frag
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Fog.hlsl"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
@@ -68,9 +69,31 @@ Shader "Hidden/Outlines"
                 return SampleSceneDepth(uv);
             }
 
+            float DepthToNearToFar(float rawDepth)
+            {
+                float viewZ = LinearEyeDepth(rawDepth, _ZBufferParams);
+                return max(viewZ - _ProjectionParams.y, 0.0);
+            }
+
+            float SampleNearToFarDepth(float2 uv)
+            {
+                return DepthToNearToFar(SampleDepth(uv));
+            }
+
+            float SampleOutlineFogFactor(float2 uv, float2 texelSize)
+            {
+                float2 offset = texelSize * max(_OutlineScale, 1.0);
+                float nearToFarZ = SampleNearToFarDepth(uv);
+                nearToFarZ = min(nearToFarZ, SampleNearToFarDepth(uv + float2(offset.x, 0)));
+                nearToFarZ = min(nearToFarZ, SampleNearToFarDepth(uv + float2(0, offset.y)));
+                return ComputeFogFactorZ0ToFar(nearToFarZ);
+            }
+
             float3 SampleNormals(float2 uv)
             {
-                return SAMPLE_TEXTURE2D(_SceneViewSpaceNormals, sampler_SceneViewSpaceNormals, uv).xyz * 2.0 - 1.0;
+                float3 normalWS = SAMPLE_TEXTURE2D(_SceneViewSpaceNormals, sampler_SceneViewSpaceNormals, uv).xyz;
+                normalWS *= rsqrt(max(dot(normalWS, normalWS), 1e-6));
+                return TransformWorldToViewDir(normalWS, false);
             }
 
             float FragEdge(float2 uv, float2 texelSize)
@@ -104,7 +127,9 @@ Shader "Hidden/Outlines"
                 float2 texelSize = 1.0 / _ScreenParams.xy;
                 float edge = FragEdge(input.uv, texelSize);
 
-                float3 color = lerp(source.rgb, _OutlineColor.rgb, edge * _OutlineColor.a);
+                float fogFactor = SampleOutlineFogFactor(input.uv, texelSize);
+                float3 outlineColor = MixFog(_OutlineColor.rgb, fogFactor);
+                float3 color = lerp(source.rgb, outlineColor, edge * _OutlineColor.a);
                 return float4(color, source.a);
             }
             ENDHLSL
