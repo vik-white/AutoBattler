@@ -52643,6 +52643,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1848702058187011801, guid: 8eed9c31bea4489296a49c2e3dc5d8ed, type: 3}
   m_PrefabInstance: {fileID: 552088581}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &552354462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 552354464}
+  - component: {fileID: 552354463}
+  m_Layer: 0
+  m_Name: Path_12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &552354463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552354462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0daccfa7d3434a85014f1f4bdb073a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pathing::vikwhite.Pathing.BezierPath
+  points:
+  - position: {x: -0.9876236, y: -1.0416183, z: 0.59066045}
+    inTangent: {x: -0.6967244, y: -0.0028378633, z: 0.26679015}
+    outTangent: {x: 0.9844281, y: 0.0040097237, z: -0.37695783}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 1.5292387, y: -0.5632119, z: -1.0089777}
+    inTangent: {x: -0.62066543, y: -0.24569082, z: 0.8477653}
+    outTangent: {x: 0.49740595, y: 0.19689846, z: -0.6794055}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 2.3315456, y: 0.4834795, z: -3.2957575}
+    inTangent: {x: -0.24490094, y: -0.28280783, z: 0.9152982}
+    outTangent: {x: 0.22386996, y: 0.25852156, z: -0.83669657}
+    tangentMode: 2
+    angle: 160.6668
+  - position: {x: 3.4283814, y: 1.0703106, z: -5.4863214}
+    inTangent: {x: -0.21806645, y: -0.12141609, z: 1.70066}
+    outTangent: {x: 0.16595192, y: 0.09239952, z: -1.2942284}
+    tangentMode: 2
+    angle: 148.16586
+  - position: {x: 2.1170845, y: 1.5231266, z: -9.630428}
+    inTangent: {x: 0.46596098, y: 0.10930824, z: 1.5174961}
+    outTangent: {x: -0.32083616, y: -0.07526389, z: -1.0448676}
+    tangentMode: 2
+    angle: -162.83803
+  - position: {x: 3.7856493, y: 1.5342679, z: -12.241994}
+    inTangent: {x: -1.8329144, y: 0.08078432, z: 0.21420956}
+    outTangent: {x: 0.9105343, y: -0.040131114, z: -0.10641258}
+    tangentMode: 2
+    angle: 146.3389
+  - position: {x: 6.3768487, y: 1.6380086, z: -12.133333}
+    inTangent: {x: -0.9600496, y: -0.091201305, z: 0.0040769577}
+    outTangent: {x: 1.0828952, y: 0.102871194, z: -0.004598635}
+    tangentMode: 2
+    angle: 90.24323
+  closed: 0
+  samplesPerSegment: 16
+  drawGizmos: 1
+  gizmoColor: {r: 0.1, g: 0.8, b: 1, a: 1}
+  snapToTerrainSurface: 0
+--- !u!4 &552354464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552354462}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.8786841, z: -0, w: 0.4774037}
+  m_LocalPosition: {x: 3.44, y: 4.88, z: -31.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 861468006}
+  m_LocalEulerAnglesHint: {x: 0, y: -122.968, z: 0}
 --- !u!1001 &555136101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82311,9 +82396,13 @@ Transform:
   - {fileID: 335703253}
   - {fileID: 1582264721}
   - {fileID: 819769577}
+  - {fileID: 1779756607}
   - {fileID: 922057108}
+  - {fileID: 1237327331}
   - {fileID: 1773414469}
+  - {fileID: 2112023881}
   - {fileID: 1891272727}
+  - {fileID: 552354464}
   - {fileID: 1298757827}
   - {fileID: 609188405}
   - {fileID: 1599654380}
@@ -118598,6 +118687,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1848702058187011801, guid: 8eed9c31bea4489296a49c2e3dc5d8ed, type: 3}
   m_PrefabInstance: {fileID: 1235905979}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1237327329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237327331}
+  - component: {fileID: 1237327330}
+  m_Layer: 0
+  m_Name: Path_10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1237327330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237327329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0daccfa7d3434a85014f1f4bdb073a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pathing::vikwhite.Pathing.BezierPath
+  points:
+  - position: {x: -1.0604172, y: -1.2706113, z: 0.46178177}
+    inTangent: {x: -0.701417, y: -0.13612011, z: 0.21469566}
+    outTangent: {x: 1.2386081, y: 0.2403698, z: -0.37912366}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 2.4072921, y: -0.6064973, z: -1.4204096}
+    inTangent: {x: -1.0143127, y: -0.53371954, z: 1.6506877}
+    outTangent: {x: 0.79287535, y: 0.41720176, z: -1.2903215}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 4.7297583, y: -0.12020445, z: -2.5523062}
+    inTangent: {x: -0.6795277, y: -0.19067197, z: 0.07987404}
+    outTangent: {x: 1.1721029, y: 0.32888603, z: -0.13777304}
+    tangentMode: 2
+    angle: 117.055534
+  - position: {x: 7.244176, y: -2.9355521, z: -5.413839}
+    inTangent: {x: -0.9970139, y: 0.13904592, z: 0.76328456}
+    outTangent: {x: 1.8099537, y: -0.25242043, z: -1.3856473}
+    tangentMode: 2
+    angle: 157.5391
+  - position: {x: 9.827999, y: -3.4145303, z: -7.9294033}
+    inTangent: {x: -0.64905864, y: 0.37018722, z: 1.300851}
+    outTangent: {x: 0.58329964, y: -0.3326819, z: -1.1690559}
+    tangentMode: 2
+    angle: 149.38597
+  - position: {x: 11.409664, y: -4.0624695, z: -10.16157}
+    inTangent: {x: -0.91298515, y: 0.19006413, z: 0.9438989}
+    outTangent: {x: 1.1989899, y: -0.24960423, z: -1.2395878}
+    tangentMode: 2
+    angle: 155.10333
+  - position: {x: 17.524075, y: -4.6231146, z: -12.990625}
+    inTangent: {x: -1.8198915, y: 0.078780286, z: 1.4287815}
+    outTangent: {x: 1.9655666, y: -0.085086346, z: -1.54315}
+    tangentMode: 2
+    angle: 115.69076
+  - position: {x: 22.13232, y: -5.1647124, z: -18.699482}
+    inTangent: {x: -3.1869411, y: 0.29639196, z: 1.3389797}
+    outTangent: {x: 1.3958063, y: -0.1298128, z: -0.58644205}
+    tangentMode: 2
+    angle: 143.75626
+  closed: 0
+  samplesPerSegment: 16
+  drawGizmos: 1
+  gizmoColor: {r: 0.1, g: 0.8, b: 1, a: 1}
+  snapToTerrainSurface: 0
+--- !u!4 &1237327331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237327329}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.4984583, z: -0, w: 0.8669137}
+  m_LocalPosition: {x: -49.455, y: 5.285, z: -52.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 861468006}
+  m_LocalEulerAnglesHint: {x: 0, y: -59.796, z: 0}
 --- !u!1001 &1237585072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171253,6 +171432,86 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6632625051905436303, guid: 8f3e106519404011aac47501eeb70acc, type: 3}
   m_PrefabInstance: {fileID: 1778891660}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1779756605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779756607}
+  - component: {fileID: 1779756606}
+  m_Layer: 0
+  m_Name: Path_09
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1779756606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779756605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0daccfa7d3434a85014f1f4bdb073a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pathing::vikwhite.Pathing.BezierPath
+  points:
+  - position: {x: -1.4476974, y: -1.6750721, z: 1.3643446}
+    inTangent: {x: -0.61445224, y: 0.014299122, z: 0.42290998}
+    outTangent: {x: 1.2627574, y: -0.029386044, z: -0.86911994}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 1.1763941, y: -1.4179449, z: -1.173037}
+    inTangent: {x: -1.0685015, y: -0.37338135, z: 0.75307715}
+    outTangent: {x: 1.3525718, y: 0.47264802, z: -0.9532893}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 3.8155715, y: -0.91539454, z: -2.4637387}
+    inTangent: {x: -1.0582967, y: -0.48256063, z: 0.5507567}
+    outTangent: {x: 1.3120571, y: 0.59826994, z: -0.68281823}
+    tangentMode: 2
+    angle: 109.619225
+  - position: {x: 5.6224446, y: 0.21054935, z: -6.829128}
+    inTangent: {x: -1.057065, y: -0.4904204, z: 1.0898477}
+    outTangent: {x: 0.6970453, y: 0.32339096, z: -0.71866274}
+    tangentMode: 2
+    angle: 166.84697
+  - position: {x: 8.517893, y: 1.021385, z: -8.173802}
+    inTangent: {x: -1.202977, y: -0.4603568, z: 0.34170818}
+    outTangent: {x: 0.6445017, y: 0.24663877, z: -0.18307209}
+    tangentMode: 2
+    angle: 117.9149
+  - position: {x: 8.864158, y: 1.4980197, z: -9.535932}
+    inTangent: {x: 0.27262592, y: -0.15697002, z: 0.40633678}
+    outTangent: {x: -0.36640766, y: 0.21096681, z: -0.54611427}
+    tangentMode: 2
+    angle: 164.35779
+  closed: 0
+  samplesPerSegment: 16
+  drawGizmos: 1
+  gizmoColor: {r: 0.1, g: 0.8, b: 1, a: 1}
+  snapToTerrainSurface: 0
+--- !u!4 &1779756607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779756605}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9997247, z: -0, w: 0.023467718}
+  m_LocalPosition: {x: -42.75, y: 2.42, z: -64.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 861468006}
+  m_LocalEulerAnglesHint: {x: 0, y: -177.311, z: 0}
 --- !u!1001 &1779790129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203377,6 +203636,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6632625051905436303, guid: d002e842d0264d05a45bdaea428b521c, type: 3}
   m_PrefabInstance: {fileID: 2111490362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2112023879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2112023881}
+  - component: {fileID: 2112023880}
+  m_Layer: 0
+  m_Name: Path_11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2112023880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112023879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0daccfa7d3434a85014f1f4bdb073a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Pathing::vikwhite.Pathing.BezierPath
+  points:
+  - position: {x: -1.1104946, y: -1.0416183, z: 0.5837822}
+    inTangent: {x: -0.7238932, y: -0.17109248, z: 0.057582475}
+    outTangent: {x: 1.0170059, y: 0.2403698, z: -0.080898285}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 1.3837452, y: -0.9592788, z: -0.69280624}
+    inTangent: {x: -0.764547, y: -0.16811708, z: 0.6157878}
+    outTangent: {x: 1.1524963, y: 0.2534237, z: -0.9282532}
+    tangentMode: 2
+    angle: 0
+  - position: {x: 4.941202, y: -1.0578964, z: -2.627987}
+    inTangent: {x: -1.5319716, y: -0.042726766, z: 0.25082922}
+    outTangent: {x: 1.9235916, y: 0.053649068, z: -0.31494904}
+    tangentMode: 2
+    angle: 124.87996
+  - position: {x: 10.449015, y: -0.86288583, z: -1.3666496}
+    inTangent: {x: -1.384332, y: -0.53077424, z: -1.1730154}
+    outTangent: {x: 0.98220825, y: 0.37659383, z: 0.8322754}
+    tangentMode: 2
+    angle: 79.10898
+  - position: {x: 12.898462, y: -0.48135448, z: 2.1619415}
+    inTangent: {x: -1.0310991, y: -0.27948663, z: -0.75146854}
+    outTangent: {x: 1.0244675, y: 0.2776891, z: 0.74663544}
+    tangentMode: 2
+    angle: 21.839233
+  - position: {x: 17.9992, y: 0.49334395, z: 1.7835884}
+    inTangent: {x: -2.8051376, y: -0.5091356, z: 1.1192474}
+    outTangent: {x: 1.5108167, y: 0.27421492, z: -0.6028145}
+    tangentMode: 2
+    angle: 92.50936
+  - position: {x: 21.75194, y: 1.5410326, z: 5.1076965}
+    inTangent: {x: 0.13358307, y: -0.050338984, z: -2.305107}
+    outTangent: {x: -0.188672, y: 0.07109851, z: 3.2557209}
+    tangentMode: 2
+    angle: 52.219868
+  - position: {x: 23.142725, y: 2.5824535, z: 8.57386}
+    inTangent: {x: -0.068229675, y: -0.45857906, z: -0.5993767}
+    outTangent: {x: 0.12832755, y: 0.8625034, z: 1.127318}
+    tangentMode: 2
+    angle: 9.302985
+  closed: 0
+  samplesPerSegment: 16
+  drawGizmos: 1
+  gizmoColor: {r: 0.1, g: 0.8, b: 1, a: 1}
+  snapToTerrainSurface: 0
+--- !u!4 &2112023881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112023879}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.669, y: 1.194, z: -42.811}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 861468006}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2112200434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -207313,6 +207662,10 @@ PrefabInstance:
       value: -124.621
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
+      propertyPath: Path
+      value: 
+      objectReference: {fileID: 1582264722}
+    - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
       propertyPath: Index
       value: 8
       objectReference: {fileID: 0}
@@ -207373,6 +207726,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -149.65
       objectReference: {fileID: 0}
+    - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
+      propertyPath: Path
+      value: 
+      objectReference: {fileID: 1779756606}
     - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
       propertyPath: Index
       value: 9
@@ -207435,6 +207792,10 @@ PrefabInstance:
       value: -110.202
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
+      propertyPath: Path
+      value: 
+      objectReference: {fileID: 1237327330}
+    - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
       propertyPath: Index
       value: 10
       objectReference: {fileID: 0}
@@ -207496,6 +207857,10 @@ PrefabInstance:
       value: -168.906
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
+      propertyPath: Path
+      value: 
+      objectReference: {fileID: 2112023880}
+    - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
       propertyPath: Index
       value: 11
       objectReference: {fileID: 0}
@@ -207556,6 +207921,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 145.99
       objectReference: {fileID: 0}
+    - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
+      propertyPath: Path
+      value: 
+      objectReference: {fileID: 552354463}
     - target: {fileID: 1000000000000000005, guid: fca76480c26345bb9305617d096d3723, type: 3}
       propertyPath: Index
       value: 12
