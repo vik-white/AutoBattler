@@ -15,7 +15,8 @@ namespace vikwhite
         void InitializePoints();
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
-        Vector3 GetCurrentLocationPosition();
+        SectorPoint GetCurrentLocationPoint();
+        BezierPath GetCurrentLocationPath();
     }
 
     public class SectorService : ISectorService
@@ -68,15 +69,19 @@ namespace vikwhite
 
         public void CompleteCurrentLocation() => SetCurrentLocation(GetNextLocationID(_currentLocation));
 
+        public SectorPoint GetCurrentLocationPoint()
+        {
+            return _points.TryGetValue(_currentLocation, out var point) ? point : null;
+        }
+
+        public BezierPath GetCurrentLocationPath() => GetCurrentLocationPoint()?.Path;
+
         private string GetNextLocationID(string locationID)
         {
             var index = _locationIDs.IndexOf(locationID);
             if (index < 0 || index >= _locationIDs.Count - 1) return string.Empty;
             return _locationIDs[index + 1];
         }
-        
-        public Vector3 GetCurrentLocationPosition() => _points[_currentLocation].Position;
-
         private IReadOnlyList<string> GetSectorLocationIDs(string sector) => GetSectorLocations().Where(locationData => locationData.Sector == sector).Select(locationData => locationData.ID).ToList();
 
         private IEnumerable<IMapData> GetSectorLocations() => _configs.Map.GetAll().Where(locationData => !string.IsNullOrEmpty(locationData.Sector));

@@ -13,8 +13,6 @@ namespace vikwhite
         public int Index;
         public BezierPath Path;
 
-        public Vector3 Position => transform.position;
-
         public void Initialize()
         {
             gameObject.SetActive(true);

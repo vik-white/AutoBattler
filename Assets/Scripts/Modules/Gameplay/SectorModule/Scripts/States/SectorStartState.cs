@@ -24,11 +24,14 @@ namespace vikwhite
         public void Enter()
         {
             _sector.InitializePoints();
-            _player = new SectorPlayer(_sector.GetCurrentLocationPosition());
+            BezierPath path = _sector.GetCurrentLocationPath();
+            _player = new SectorPlayer();
             _playerView = Object.FindAnyObjectByType<PlayerPoint>(FindObjectsInactive.Include);
             _player.OnMove += _playerView.Move;
             _player.OnStop += _playerView.Stop;
-            _playerView.transform.position = _player.Position;
+            _playerView.Stop();
+            _player.Move(path);
+
             _sectorWindow.ShowWindow(_player);
             _camera.Initialize(new Vector3(-6.099998f, 7.28f, -7.16f), Quaternion.Euler(32.098f, 40.58f, 1.131f), 60, _playerView.transform);
         }

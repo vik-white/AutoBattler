@@ -43,7 +43,7 @@ namespace vikwhite
         private void GoToNext()
         {
             _sector.CompleteCurrentLocation();
-            _player.Move(_sector.GetCurrentLocationPosition());
+            _player.Move(_sector.GetCurrentLocationPath());
         }
 
         public override void Dispose()
