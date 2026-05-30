@@ -19,21 +19,28 @@ namespace vikwhite
         public event Action<BattleSkillViewModel> SkillCreated;
         public event Action<BattleDamageFlyTextViewModel> DamageFlyTextCreated;
 
-        public UnityAction OnLobby;
+        public UnityAction OnQuickVictory;
         public string FpsText => $"FPS: {Mathf.RoundToInt(1f / Time.deltaTime)}";
 
-        private readonly IEnvironmentStateMachine _environmentStateMachine;
+        private readonly IStateMachine<IBattleState> _battleStateMachine;
+        private bool _quickVictoryRequested;
 
-        public BattleWindowViewModel(IEnvironmentStateMachine environmentStateMachine)
+        public BattleWindowViewModel(IStateMachine<IBattleState> battleStateMachine)
         {
-            _environmentStateMachine = environmentStateMachine;
-            OnLobby = OpenLobby;
+            _battleStateMachine = battleStateMachine;
+            OnQuickVictory = QuickVictory;
 
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
         }
 
-        private void OpenLobby() => _environmentStateMachine.SwitchState(EnvironmentType.Lobby);
+        private void QuickVictory()
+        {
+            if (_quickVictoryRequested) return;
+            _quickVictoryRequested = true;
+            ECSWorld.SetManagedEnabled<BattleSystemGroup>(false);
+            _battleStateMachine.SwitchState<IBattleVictoryState>();
+        }
 
         private void OnCreateCharacter(CreateCharacterEvent evnt)
         {
@@ -69,7 +76,7 @@ namespace vikwhite
         public override void Dispose()
         {
             base.Dispose();
-            OnLobby = null;
+            OnQuickVictory = null;
             HealthBarCreated = null;
             SkillCreated = null;
             DamageFlyTextCreated = null;

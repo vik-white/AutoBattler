@@ -12,14 +12,12 @@ namespace vikwhite
         {
             BindClick(_view.CloseButton, viewModel.OnLobby);
             BindClick(_view.FightButton, viewModel.OnFight);
-            BindClick(_view.GoToNextButton, viewModel.OnGoToNext);
             Register(Observable.EveryUpdate().Subscribe(_ => Update()));
         }
         
         private void Update()
         {
             _view.Location.text = ViewModel.CurrentLocation;
-            _view.GoToNextButton.interactable = ViewModel.CanGoToNext;
             _view.FightButton.interactable = ViewModel.CanFight;
         }
     }

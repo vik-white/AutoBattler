@@ -18,7 +18,7 @@ namespace vikwhite
 
         protected override void UpdateViewModel(BattleWindowViewModel viewModel)
         {
-            BindClick(_view.LobbyButton, viewModel.OnLobby);
+            BindClick(_view.QuickVictoryButton, viewModel.OnQuickVictory);
 
             foreach (var healthBar in viewModel.HealthBars) CreateHealthBar(healthBar);
             foreach (var skill in viewModel.Skills) CreateSkill(skill);
