@@ -11,6 +11,7 @@ namespace vikwhite
 
         protected override void Register()
         {
+            Register<LoadingScreenModuleDependency>();
             Register<SectorModuleDependency>();
             Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
@@ -20,6 +21,9 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
+            var loadingScreen = Resolve<ILoadingScreenService>();
+            loadingScreen.Show();
+            yield return null;
             Resolve<IProfileService>().Load();
             Resolve<IResourceService>().Initialize();
             Resolve<IClassShardService>().Initialize();
@@ -31,8 +35,9 @@ namespace vikwhite
             _sectorScene = sector.CurrentSector;
             _previousActiveScene = SceneManager.GetActiveScene();
             var loader = SceneManager.LoadSceneAsync(_sectorScene, LoadSceneMode.Additive);
-            while (!loader.isDone) yield return null;
+            yield return loadingScreen.TrackProgress(loader);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(_sectorScene));
+            yield return loadingScreen.Hide();
             Resolve<IStateMachine<ISectorState>>().SwitchState<ISectorStartState>();
             yield return null;
         }

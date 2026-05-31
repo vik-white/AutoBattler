@@ -8,6 +8,7 @@ namespace vikwhite
     {
         protected override void Register()
         {
+            Register<LoadingScreenModuleDependency>();
             Register<BattleModuleDependency>();
             Register<ProfileModuleDependency>();
             Register<SquadModuleDependency>();
@@ -19,6 +20,9 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
+            var loadingScreen = Resolve<ILoadingScreenService>();
+            loadingScreen.Show();
+            yield return null;
             Resolve<IProfileService>().Load(); 
             Resolve<IResourceService>().Initialize();
             Resolve<IClassShardService>().Initialize();
@@ -27,8 +31,8 @@ namespace vikwhite
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
-            while (!loader.isDone) yield return null;
-            yield return new WaitForSeconds(0.1f);
+            yield return loadingScreen.TrackProgress(loader);
+            yield return loadingScreen.Hide();
             Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
         }
         
