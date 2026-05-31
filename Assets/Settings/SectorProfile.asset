@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
@@ -119,26 +119,26 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.21583654
-          value: 0.29083663
-          inSlope: 1.188666
-          outSlope: 1.188666
+          time: 0.22165279
+          value: 0.2986666
+          inSlope: 1.452092
+          outSlope: 1.452092
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.43422735
-          value: 0.561753
-          inSlope: 0.954608
-          outSlope: 0.954608
+          time: 0.41639972
+          value: 0.6133332
+          inSlope: 1.3875582
+          outSlope: 1.3875582
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.6743295
-          value: 0.77158034
+          time: 0.63549
+          value: 0.8426666
           inSlope: 0.84539825
           outSlope: 0.84539825
           tangentMode: 0

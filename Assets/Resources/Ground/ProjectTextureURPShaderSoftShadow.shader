@@ -41,6 +41,7 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile _ _LIGHT_LAYERS
             #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
             #pragma multi_compile_fragment _ _SHADOWS_SOFT
             #pragma multi_compile _ SHADOWS_SHADOWMASK
@@ -95,6 +96,7 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
             float3 GetAdditionalLighting(float3 positionWS, float3 normalWS, float4 positionCS, float4 shadowCoord)
             {
                 float3 lighting = 0;
+                uint meshRenderingLayers = GetMeshRenderingLayer();
 
                 InputData inputData = (InputData)0;
                 inputData.positionWS = positionWS;
@@ -107,8 +109,13 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                 UNITY_LOOP for (uint lightIndex = 0; lightIndex < min(URP_FP_DIRECTIONAL_LIGHTS_COUNT, MAX_VISIBLE_LIGHTS); lightIndex++)
                 {
                     Light light = GetAdditionalLight(lightIndex, positionWS, half4(1, 1, 1, 1));
-                    float NdotL = saturate(dot(normalWS, light.direction));
-                    lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                    #if defined(_LIGHT_LAYERS)
+                    if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+                    #endif
+                    {
+                        float NdotL = saturate(dot(normalWS, light.direction));
+                        lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                    }
                 }
                 #endif
 
@@ -116,8 +123,13 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                 uint lightCount = GetAdditionalLightsCount();
                 LIGHT_LOOP_BEGIN(lightCount)
                     Light light = GetAdditionalLight(lightIndex, positionWS, half4(1, 1, 1, 1));
-                    float NdotL = saturate(dot(normalWS, light.direction));
-                    lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                    #if defined(_LIGHT_LAYERS)
+                    if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
+                    #endif
+                    {
+                        float NdotL = saturate(dot(normalWS, light.direction));
+                        lighting += light.color * NdotL * light.distanceAttenuation * light.shadowAttenuation;
+                    }
                 LIGHT_LOOP_END
                 #endif
 
@@ -153,9 +165,7 @@ Shader "Custom/URPColoredShadowWithTransparency_ProjectedTexture_WithAdditionalL
                     shadow = MainLightRealtimeShadow(IN.shadowCoord);
                 #endif
 
-                Light mainLight = GetMainLight(IN.shadowCoord);
-                float NdotL = saturate(dot(normal, mainLight.direction));
-                float3 lighting = mainLight.color * NdotL;
+                float3 lighting = float3(1.0, 1.0, 1.0);
                 lighting += GetAdditionalLighting(IN.positionWS, normal, IN.positionCS, IN.shadowCoord);
 
                 float shadowStrength = _ShadowOpacity * (1.0 - shadow);
