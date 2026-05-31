@@ -504,15 +504,15 @@ namespace PluginMaster
                         foreach (var hit in hitArray)
                         {
                             var colliderObj = hit.collider.gameObject;
-                            var hitID = colliderObj.GetInstanceID();
+                            var hitID = PWBCore.GetObjectId(colliderObj);
                             if (PWBCore.IsTempCollider(hitID))
                             {
                                 colliderObj = PWBCore.GetGameObjectFromTempColliderId(hitID);
-                                hitID = colliderObj.GetInstanceID();
+                                hitID = PWBCore.GetObjectId(colliderObj);
                             }
                             foreach (var filter in selection)
                             {
-                                if (hitID == filter.GetInstanceID()) filtered.Add(hit);
+                                if (hitID == PWBCore.GetObjectId(filter)) filtered.Add(hit);
                             }
                         }
                         hitArray = filtered.ToArray();
@@ -524,8 +524,9 @@ namespace PluginMaster
                     foreach (var hit in hitArray)
                     {
                         var obj = hit.collider.gameObject;
-                        if (PWBCore.IsTempCollider(obj.GetInstanceID()))
-                            obj = PWBCore.GetGameObjectFromTempColliderId(obj.GetInstanceID());
+                        var objId = PWBCore.GetObjectId(obj);
+                        if (PWBCore.IsTempCollider(objId))
+                            obj = PWBCore.GetGameObjectFromTempColliderId(objId);
                         if (IsVisible(ref obj)) filtered.Add(hit);
                     }
                     hitArray = filtered.ToArray();
@@ -539,15 +540,15 @@ namespace PluginMaster
                     foreach (var collider in collider2DArray)
                     {
                         var colliderObj = collider.gameObject;
-                        var hitID = colliderObj.GetInstanceID();
+                        var hitID = PWBCore.GetObjectId(colliderObj);
                         if (PWBCore.IsTempCollider(hitID))
                         {
                             colliderObj = PWBCore.GetGameObjectFromTempColliderId(hitID);
-                            hitID = colliderObj.GetInstanceID();
+                            hitID = PWBCore.GetObjectId(colliderObj);
                         }
                         foreach (var filter in selection)
                         {
-                            if (hitID == filter.GetInstanceID()) filtered.Add(collider);
+                            if (hitID == PWBCore.GetObjectId(filter)) filtered.Add(collider);
                         }
                     }
                     collider2DArray = filtered.ToArray();
@@ -566,8 +567,9 @@ namespace PluginMaster
                     {
                         minDist = sphereCastHit.distance;
                         closestObj = sphereCastHit.collider.gameObject;
-                        if (PWBCore.IsTempCollider(closestObj.GetInstanceID()))
-                            closestObj = PWBCore.GetGameObjectFromTempColliderId(closestObj.GetInstanceID());
+                        var closestObjId = PWBCore.GetObjectId(closestObj);
+                        if (PWBCore.IsTempCollider(closestObjId))
+                            closestObj = PWBCore.GetGameObjectFromTempColliderId(closestObjId);
                     }
                 }
                 if (DistanceUtils.FindNearestVertexToMouse(out closestVertexInfo, closestObj.transform)) return true;
@@ -582,8 +584,9 @@ namespace PluginMaster
                 foreach (var collider in collider2DArray)
                 {
                     var obj = collider.gameObject;
-                    if (PWBCore.IsTempCollider(obj.GetInstanceID()))
-                        obj = PWBCore.GetGameObjectFromTempColliderId(obj.GetInstanceID());
+                    var objId = PWBCore.GetObjectId(obj);
+                    if (PWBCore.IsTempCollider(objId))
+                        obj = PWBCore.GetGameObjectFromTempColliderId(objId);
 
                     if (DistanceUtils.FindNearestVertexToMouse(out RaycastHit closestVertexInfo2D, obj.transform))
                     {

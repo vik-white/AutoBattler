@@ -723,11 +723,7 @@ namespace PluginMaster
                 || tool == ToolManager.PaintTool.GRAVITY || tool == ToolManager.PaintTool.LINE
                 || tool == ToolManager.PaintTool.SHAPE || tool == ToolManager.PaintTool.TILING)
                 && PaletteManager.selectedBrushIdx < 0) return;
-#if UNITY_2022_2_OR_NEWER
-            var allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-#else
-            var allObjects = GameObject.FindObjectsOfType<GameObject>();
-#endif
+            var allObjects = PWBCore.FindObjects<GameObject>();
             _octree = null;
             _paintedObjects.Clear();
             var allPrefabsPaths = new System.Collections.Generic.HashSet<string>();
@@ -794,7 +790,7 @@ namespace PluginMaster
             _paintedObjects.Add(obj);
         }
 
-        public static bool OctreeContains(int objId) => octree.Contains(objId);
+        public static bool OctreeContains(ulong objId) => octree.Contains(objId);
         #endregion
 
         #region STROKE & PAINT
@@ -910,12 +906,12 @@ namespace PluginMaster
             }
         }
 
-        private static System.Collections.Generic.Dictionary<int, MeshAndRenderer[]> _meshesAndRenderers
-            = new System.Collections.Generic.Dictionary<int, MeshAndRenderer[]>();
+        private static System.Collections.Generic.Dictionary<ulong, MeshAndRenderer[]> _meshesAndRenderers
+            = new System.Collections.Generic.Dictionary<ulong, MeshAndRenderer[]>();
         private static void PreviewBrushItem(GameObject prefab, Matrix4x4 rootToWorld, int layer,
             Camera camera, bool redMaterial, bool reverseTriangles, bool flipX, bool flipY)
         {
-            var id = prefab.GetInstanceID();
+            var id = PWBCore.GetObjectId(prefab);
             if (!_meshesAndRenderers.ContainsKey(id))
             {
                 var meshesAndRenderers = new System.Collections.Generic.List<MeshAndRenderer>();
@@ -1142,8 +1138,8 @@ namespace PluginMaster
             if (!settings.createSubparentPerPalette && !settings.createSubparentPerTool
                 && !settings.createSubparentPerBrush && !settings.createSubparentPerPrefab) return _autoParent;
 
-            var _autoParentId = _autoParent == null ? -1 : _autoParent.gameObject.GetInstanceID();
-            string GetSubParentKey(int parentId = -1, string palette = NO_PALETTE_NAME, string tool = NO_TOOL_NAME,
+            var _autoParentId = _autoParent == null ? NO_OBJ_ID : PWBCore.GetObjectId(_autoParent.gameObject).ToString();
+            string GetSubParentKey(string parentId = NO_OBJ_ID, string palette = NO_PALETTE_NAME, string tool = NO_TOOL_NAME,
                 string id = NO_OBJ_ID, string brush = NO_BRUSH_NAME, string prefab = NO_PREFAB_NAME)
                 => parentId + PARENT_KEY_SEPARATOR + palette + PARENT_KEY_SEPARATOR + tool + PARENT_KEY_SEPARATOR
                 + id + PARENT_KEY_SEPARATOR + brush + PARENT_KEY_SEPARATOR + prefab;
@@ -1266,8 +1262,8 @@ namespace PluginMaster
             public TerrainDataSimple(float[,,] alphamaps, Vector3 size, TerrainLayer[] layers)
                 => (this.alphamaps, this.size, this.layers) = (alphamaps, size, layers);
         }
-        private static System.Collections.Generic.Dictionary<int, TerrainDataSimple> _terrainAlphamaps
-            = new System.Collections.Generic.Dictionary<int, TerrainDataSimple>();
+        private static System.Collections.Generic.Dictionary<ulong, TerrainDataSimple> _terrainAlphamaps
+            = new System.Collections.Generic.Dictionary<ulong, TerrainDataSimple>();
         public static bool MouseRaycast(Ray mouseRay, out RaycastHit mouseHit,
             out GameObject collider, float maxDistance, LayerMask layerMask,
             bool paintOnPalettePrefabs, bool castOnMeshesWithoutCollider, string[] tags = null,
@@ -1277,12 +1273,12 @@ namespace PluginMaster
             bool IsTempCollider(GameObject obj)
             {
                 var hitParent = obj.transform.parent;
-                return hitParent != null && hitParent.gameObject.GetInstanceID() == PWBCore.parentColliderId;
+                return hitParent != null && PWBCore.GetObjectId(hitParent.gameObject) == PWBCore.parentColliderId;
             }
 
             GameObject GetOriginalCollider(GameObject obj)
             {
-                if (IsTempCollider(obj)) return PWBCore.GetGameObjectFromTempColliderId(obj.GetInstanceID());
+                if (IsTempCollider(obj)) return PWBCore.GetGameObjectFromTempColliderId(PWBCore.GetObjectId(obj));
                 return obj;
             }
 
@@ -1315,7 +1311,7 @@ namespace PluginMaster
                 var terrain = obj.GetComponent<Terrain>();
                 if (terrain == null) return true;
 
-                var instanceId = terrain.GetInstanceID();
+                var instanceId = PWBCore.GetObjectId(terrain);
                 int alphamapW = 0;
                 int alphamapH = 0;
                 float[,,] alphamaps;

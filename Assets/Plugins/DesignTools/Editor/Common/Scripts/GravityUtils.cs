@@ -156,6 +156,17 @@ namespace PluginMaster
         private static bool _isPlaying = false;
         private static bool _stop = false;
 
+        private static T[] FindObjects<T>() where T : UnityEngine.Object
+        {
+#if UNITY_6000_4_OR_NEWER
+            return Object.FindObjectsByType<T>();
+#elif UNITY_2022_2_OR_NEWER
+            return Object.FindObjectsByType<T>(FindObjectsSortMode.None);
+#else
+            return Object.FindObjectsOfType<T>();
+#endif
+        }
+
         private static void AddCollider(GameObject obj, Mesh mesh, SimulateGravityData data)
         {
             var collider = MeshUtils.AddCollider(mesh, obj);
@@ -208,21 +219,11 @@ namespace PluginMaster
 
             if (simData.ignoreSceneColliders)
             {
-#if UNITY_2022_2_OR_NEWER
-                sceneColliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None)
+                sceneColliders = FindObjects<Collider>()
                     .Where(sc => sc.enabled && sc.gameObject.activeInHierarchy && !sc.isTrigger).ToArray();
-#else
-                sceneColliders = Object.FindObjectsOfType<Collider>()
-                    .Where(sc => sc.enabled && sc.gameObject.activeInHierarchy && !sc.isTrigger).ToArray();
-#endif
                 foreach (var sceneCollider in sceneColliders) sceneCollider.enabled = false;
-#if UNITY_2022_2_OR_NEWER
-                var sceneMeshFilters = Object.FindObjectsByType<MeshFilter>(FindObjectsSortMode.None)
+                var sceneMeshFilters = FindObjects<MeshFilter>()
                     .Where(mf => mf.gameObject.activeInHierarchy && mf.sharedMesh != null).ToArray();
-#else
-                var sceneMeshFilters = Object.FindObjectsOfType<MeshFilter>()
-                    .Where(mf => mf.gameObject.activeInHierarchy && mf.sharedMesh != null).ToArray();
-#endif
                 tempColliders = new System.Collections.Generic.List<Collider>();
                 foreach (var meshFilter in sceneMeshFilters)
                 {
@@ -233,22 +234,13 @@ namespace PluginMaster
             }
             else
             {
-#if UNITY_2022_2_OR_NEWER
-                invisibleColliders = Object.FindObjectsByType<Collider>(FindObjectsSortMode.None)
+                invisibleColliders = FindObjects<Collider>()
                   .Where(sc => sc.enabled && sc.gameObject.activeInHierarchy && !IsVisible(sc.gameObject)).ToArray();
-#else
-                invisibleColliders = Object.FindObjectsOfType<Collider>()
-                  .Where(sc => sc.enabled && sc.gameObject.activeInHierarchy && !IsVisible(sc.gameObject)).ToArray();
-#endif
                 foreach (var invisibleCollider in invisibleColliders) invisibleCollider.enabled = false;
             }
             var originalGravity = Physics.gravity;
             Physics.gravity = simData.gravity;
-#if UNITY_2022_2_OR_NEWER
-            var allBodies = Object.FindObjectsByType<Rigidbody>(FindObjectsSortMode.None);
-#else
-            var allBodies = Object.FindObjectsOfType<Rigidbody>();
-#endif
+            var allBodies = FindObjects<Rigidbody>();
             var originalBodies = new System.Collections.Generic.List<(Rigidbody body, bool useGravity, bool isKinematic,
                 float drag, float angularDrag, float mass, RigidbodyConstraints constraints,
                 RigidbodyInterpolation interpolation, CollisionDetectionMode collisionDetectionMode)>();

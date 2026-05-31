@@ -140,12 +140,7 @@ namespace PluginMaster
                 thumbnailTexture.Apply();
                 return;
             }
-#if UNITY_2022_2_OR_NEWER
-            var sceneLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None)
-                .ToDictionary(comp => comp, light => light.cullingMask);
-#else
-            var sceneLights = Object.FindObjectsOfType<Light>().ToDictionary(comp => comp, light => light.cullingMask);
-#endif
+            var sceneLights = PWBCore.FindObjects<Light>().ToDictionary(comp => comp, light => light.cullingMask);
 
             const string rootName = "PWBThumbnailEditor";
 
@@ -296,13 +291,8 @@ namespace PluginMaster
 
 
 #if PWB_HDRP || PWB_URP
-#if UNITY_2022_2_OR_NEWER
-            var sceneVolumes = Object.FindObjectsByType<UnityEngine.Rendering.Volume>(FindObjectsSortMode.None)
+            var sceneVolumes = PWBCore.FindObjects<UnityEngine.Rendering.Volume>()
                 .ToDictionary(comp => comp, vol => vol.isActiveAndEnabled);
-#else
-            var sceneVolumes = Object.FindObjectsOfType<UnityEngine.Rendering.Volume>()
-                .ToDictionary(comp => comp, vol => vol.isActiveAndEnabled);
-#endif
             foreach (var vol in sceneVolumes.Keys) vol.gameObject.SetActive(false);
 
             var meshRenderers = thumbnailEditor.target.GetComponentsInChildren<MeshRenderer>()

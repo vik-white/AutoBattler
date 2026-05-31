@@ -775,17 +775,17 @@ namespace PluginMaster
             {
                 var obj = _pinHit.collider.gameObject;
                 var hitParent = _pinHit.collider.transform.parent;
-                if (hitParent != null && hitParent.gameObject.GetInstanceID() == PWBCore.parentColliderId)
-                    obj = PWBCore.GetGameObjectFromTempColliderId(obj.GetInstanceID());
+                if (hitParent != null && PWBCore.GetObjectId(hitParent.gameObject) == PWBCore.parentColliderId)
+                    obj = PWBCore.GetGameObjectFromTempColliderId(PWBCore.GetObjectId(obj));
             }
             GameObject objUnderMouse = null;
             if (_pinHit.collider != null)
             {
                 var parentUnderMouse = _pinHit.collider.transform.parent;
                 if (parentUnderMouse != null
-                    && parentUnderMouse.gameObject.GetInstanceID() == PWBCore.parentColliderId)
+                    && PWBCore.GetObjectId(parentUnderMouse.gameObject) == PWBCore.parentColliderId)
                     objUnderMouse = PWBCore.GetGameObjectFromTempColliderId(
-                        _pinHit.collider.gameObject.GetInstanceID());
+                        PWBCore.GetObjectId(_pinHit.collider.gameObject));
                 else objUnderMouse = _pinHit.collider.gameObject;
             }
 

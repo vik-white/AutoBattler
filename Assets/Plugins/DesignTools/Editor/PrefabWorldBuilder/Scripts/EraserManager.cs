@@ -118,7 +118,7 @@ namespace PluginMaster
                         } while (outermost != parent);
                     }
                 }
-                PWBCore.DestroyTempCollider(obj.GetInstanceID());
+                PWBCore.DestroyTempCollider(PWBCore.GetObjectId(obj));
                 UnityEditor.Undo.DestroyObjectImmediate(obj);
             }
             foreach (var obj in _toErase) EraseObject(obj);

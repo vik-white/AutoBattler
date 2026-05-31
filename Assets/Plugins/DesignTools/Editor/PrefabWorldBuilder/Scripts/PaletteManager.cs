@@ -1181,8 +1181,8 @@ namespace PluginMaster
                 if (_embedInSurface) UpdateBottomVertices();
             }
         }
-        public bool ContainsPrefab(int prefabId)
-            => _items.Exists(item => item.prefab != null && item.prefab.GetInstanceID() == prefabId);
+        public bool ContainsPrefab(ulong prefabId)
+            => _items.Exists(item => item.prefab != null && PWBCore.GetObjectId(item.prefab) == prefabId);
 
         public bool ContainsPrefabPath(string path) => _items.Exists(item => item.prefabPath == path);
         public bool ContainsSceneObject(GameObject obj)
@@ -1192,7 +1192,7 @@ namespace PluginMaster
             if (outermostPrefab == null) return false;
             var prefab = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(outermostPrefab);
             if (prefab == null) return false;
-            return ContainsPrefab(prefab.GetInstanceID());
+            return ContainsPrefab(PWBCore.GetObjectId(prefab));
         }
 
         public Vector3 minBrushSize
@@ -1505,34 +1505,34 @@ namespace PluginMaster
             Save();
         }
 
-        public System.Collections.Generic.SortedDictionary<int, bool> _objectQuery
-            = new System.Collections.Generic.SortedDictionary<int, bool>();
+        public System.Collections.Generic.SortedDictionary<ulong, bool> _objectQuery
+            = new System.Collections.Generic.SortedDictionary<ulong, bool>();
 
         public void ClearObjectQuery()
         {
             if (_objectQuery != null) _objectQuery.Clear();
-            else _objectQuery = new System.Collections.Generic.SortedDictionary<int, bool>();
+            else _objectQuery = new System.Collections.Generic.SortedDictionary<ulong, bool>();
         }
 
         public bool ContainsSceneObject(GameObject obj)
         {
             if (obj == null) return false;
-            var objId = obj.GetInstanceID();
-            if (_objectQuery == null) _objectQuery = new System.Collections.Generic.SortedDictionary<int, bool>();
+            var objId = PWBCore.GetObjectId(obj);
+            if (_objectQuery == null) _objectQuery = new System.Collections.Generic.SortedDictionary<ulong, bool>();
             if (_objectQuery.ContainsKey(objId)) return _objectQuery[objId];
             _objectQuery.Add(objId, false);
             var outermostPrefab = UnityEditor.PrefabUtility.GetOutermostPrefabInstanceRoot(obj);
             if (outermostPrefab == null) return false;
             var prefab = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(outermostPrefab);
             if (prefab == null) return false;
-            _objectQuery[objId] = _brushes.Exists(brush => brush.ContainsPrefab(prefab.GetInstanceID()));
+            _objectQuery[objId] = _brushes.Exists(brush => brush.ContainsPrefab(PWBCore.GetObjectId(prefab)));
             return _objectQuery[objId];
         }
 
         public bool ContainsPrefab(GameObject prefab)
         {
             if (prefab == null) return false;
-            return _brushes.Exists(brush => brush.ContainsPrefab(prefab.GetInstanceID()));
+            return _brushes.Exists(brush => brush.ContainsPrefab(PWBCore.GetObjectId(prefab)));
         }
 
         public bool ContainsPrefabPath(string path) => _brushes.Exists(brush => brush.ContainsPrefabPath(path));
@@ -1543,8 +1543,9 @@ namespace PluginMaster
             if (outermostPrefab == null) return -1;
             var prefab = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(outermostPrefab);
             if (prefab == null) return -1;
-            var idx = _brushes.FindIndex(brush => brush.ContainsPrefab(prefab.GetInstanceID()) && brush.itemCount == 1);
-            if (idx == -1) idx = _brushes.FindIndex(brush => brush.ContainsPrefab(prefab.GetInstanceID()));
+            var prefabId = PWBCore.GetObjectId(prefab);
+            var idx = _brushes.FindIndex(brush => brush.ContainsPrefab(prefabId) && brush.itemCount == 1);
+            if (idx == -1) idx = _brushes.FindIndex(brush => brush.ContainsPrefab(prefabId));
             return idx;
         }
 

@@ -95,6 +95,35 @@ namespace PluginMaster
             && !System.IO.Path.GetPathRoot(path).Equals(System.IO.Path.DirectorySeparatorChar.ToString(),
                 System.StringComparison.Ordinal);
 
+        public static ulong GetObjectId(UnityEngine.Object obj)
+        {
+#if UNITY_6000_4_OR_NEWER
+            return EntityId.ToULong(obj.GetEntityId());
+#else
+            return unchecked((ulong)obj.GetInstanceID());
+#endif
+        }
+
+        public static UnityEngine.Object ObjectFromId(ulong id)
+        {
+#if UNITY_6000_4_OR_NEWER
+            return UnityEditor.EditorUtility.EntityIdToObject(EntityId.FromULong(id));
+#else
+            return UnityEditor.EditorUtility.InstanceIDToObject(unchecked((int)id));
+#endif
+        }
+
+        public static T[] FindObjects<T>() where T : UnityEngine.Object
+        {
+#if UNITY_6000_4_OR_NEWER
+            return GameObject.FindObjectsByType<T>();
+#elif UNITY_2022_2_OR_NEWER
+            return GameObject.FindObjectsByType<T>(FindObjectsSortMode.None);
+#else
+            return GameObject.FindObjectsOfType<T>();
+#endif
+        }
+
 
         #endregion
         #region TEMP COLLIDERS
@@ -107,47 +136,47 @@ namespace PluginMaster
                 if (_parentCollider == null)
                 {
                     _parentCollider = new GameObject(PWBCore.PARENT_COLLIDER_NAME);
-                    _parentColliderId = _parentCollider.GetInstanceID();
+                    _parentColliderId = GetObjectId(_parentCollider);
                     _parentCollider.hideFlags = HideFlags.HideAndDontSave;
                 }
                 return _parentCollider;
             }
         }
-        private static int _parentColliderId = -1;
-        public static int parentColliderId => _parentColliderId;
+        private static ulong _parentColliderId = 0;
+        public static ulong parentColliderId => _parentColliderId;
 
-        private static System.Collections.Generic.Dictionary<int, GameObject> _tempCollidersIds
-            = new System.Collections.Generic.Dictionary<int, GameObject>();
-        private static System.Collections.Generic.Dictionary<int, GameObject> _tempCollidersTargets
-            = new System.Collections.Generic.Dictionary<int, GameObject>();
-        private static System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>>
+        private static System.Collections.Generic.Dictionary<ulong, GameObject> _tempCollidersIds
+            = new System.Collections.Generic.Dictionary<ulong, GameObject>();
+        private static System.Collections.Generic.Dictionary<ulong, GameObject> _tempCollidersTargets
+            = new System.Collections.Generic.Dictionary<ulong, GameObject>();
+        private static System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.HashSet<ulong>>
             _tempCollidersTargetParentsIds
-            = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>>();
-        private static System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>>
+            = new System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.HashSet<ulong>>();
+        private static System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.HashSet<ulong>>
             _tempCollidersTargetChildrenIds
-            = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.HashSet<int>>();
+            = new System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.HashSet<ulong>>();
 
         private static BoundsOctree<MeshFilter> _meshFilterOctree = new BoundsOctree<MeshFilter>(10, Vector3.zero, 0.5f, 0.5f);
         private static PointOctree<MeshFilter> _meshFilterPointOctree = new PointOctree<MeshFilter>(10, Vector3.zero, 0.5f);
         public static bool CollidersContains(GameObject[] selection, string colliderName)
         {
-            int objId;
-            if (!int.TryParse(colliderName, out objId)) return false;
+            ulong objId;
+            if (!ulong.TryParse(colliderName, out objId)) return false;
             foreach (var obj in selection)
-                if (obj.GetInstanceID() == objId)
+                if (GetObjectId(obj) == objId)
                     return true;
             return false;
         }
 
-        public static bool IsTempCollider(int instanceId) => _tempCollidersIds.ContainsKey(instanceId);
+        public static bool IsTempCollider(ulong instanceId) => _tempCollidersIds.ContainsKey(instanceId);
 
-        public static GameObject GetGameObjectFromTempColliderId(int instanceId)
+        public static GameObject GetGameObjectFromTempColliderId(ulong instanceId)
         {
             if (!_tempCollidersIds.ContainsKey(instanceId)) return null;
             else if (_tempCollidersIds[instanceId] == null)
             {
                 _tempCollidersIds.Remove(instanceId);
-                var tempCol = UnityEditor.EditorUtility.InstanceIDToObject(instanceId);
+                var tempCol = ObjectFromId(instanceId);
                 if (tempCol != null) Object.DestroyImmediate(tempCol);
                 return null;
             }
@@ -157,7 +186,8 @@ namespace PluginMaster
         public static GameObject GetGameObjectFromTempCollider(GameObject source)
         {
             if (source == null) return null;
-            if (IsTempCollider(source.GetInstanceID())) return GetGameObjectFromTempColliderId(source.GetInstanceID());
+            var sourceId = GetObjectId(source);
+            if (IsTempCollider(sourceId)) return GetGameObjectFromTempColliderId(sourceId);
             return source;
         }
 
@@ -220,21 +250,24 @@ namespace PluginMaster
         private static void AddParentsIds(GameObject target)
         {
             var parents = target.GetComponentsInParent<Transform>();
+            var targetId = GetObjectId(target);
             foreach (var parent in parents)
             {
-                if (!_tempCollidersTargetParentsIds.ContainsKey(target.GetInstanceID()))
-                    _tempCollidersTargetParentsIds.Add(target.GetInstanceID(), new System.Collections.Generic.HashSet<int>());
-                _tempCollidersTargetParentsIds[target.GetInstanceID()].Add(parent.gameObject.GetInstanceID());
-                if (!_tempCollidersTargetChildrenIds.ContainsKey(parent.gameObject.GetInstanceID()))
-                    _tempCollidersTargetChildrenIds.Add(parent.gameObject.GetInstanceID(),
-                        new System.Collections.Generic.HashSet<int>());
-                _tempCollidersTargetChildrenIds[parent.gameObject.GetInstanceID()].Add(target.GetInstanceID());
+                var parentId = GetObjectId(parent.gameObject);
+                if (!_tempCollidersTargetParentsIds.ContainsKey(targetId))
+                    _tempCollidersTargetParentsIds.Add(targetId, new System.Collections.Generic.HashSet<ulong>());
+                _tempCollidersTargetParentsIds[targetId].Add(parentId);
+                if (!_tempCollidersTargetChildrenIds.ContainsKey(parentId))
+                    _tempCollidersTargetChildrenIds.Add(parentId,
+                        new System.Collections.Generic.HashSet<ulong>());
+                _tempCollidersTargetChildrenIds[parentId].Add(targetId);
             }
         }
 
         private static GameObject CreateTempCollider(GameObject target, Mesh mesh)
         {
             if (target == null || mesh == null) return null;
+            var targetId = GetObjectId(target);
             var differentVertices = new System.Collections.Generic.HashSet<Vector3>();
             foreach (var vertex in mesh.vertices)
             {
@@ -242,21 +275,21 @@ namespace PluginMaster
                 if (differentVertices.Count >= 3) break;
             }
             if (differentVertices.Count < 3) return null;
-            if (_tempCollidersTargets.ContainsKey(target.GetInstanceID()))
+            if (_tempCollidersTargets.ContainsKey(targetId))
             {
-                if (_tempCollidersTargets[target.GetInstanceID()] != null)
-                    return _tempCollidersTargets[target.GetInstanceID()];
-                else _tempCollidersTargets.Remove(target.GetInstanceID());
+                if (_tempCollidersTargets[targetId] != null)
+                    return _tempCollidersTargets[targetId];
+                else _tempCollidersTargets.Remove(targetId);
             }
-            var name = target.GetInstanceID().ToString();
+            var name = targetId.ToString();
             var tempObj = new GameObject(name);
             tempObj.hideFlags = HideFlags.HideAndDontSave;
-            _tempCollidersIds.Add(tempObj.GetInstanceID(), target);
+            _tempCollidersIds.Add(GetObjectId(tempObj), target);
             tempObj.transform.SetParent(parentCollider.transform);
             tempObj.transform.position = target.transform.position;
             tempObj.transform.rotation = target.transform.rotation;
             tempObj.transform.localScale = target.transform.lossyScale;
-            _tempCollidersTargets.Add(target.GetInstanceID(), tempObj);
+            _tempCollidersTargets.Add(targetId, tempObj);
             AddParentsIds(target);
 
             MeshUtils.AddCollider(mesh, tempObj);
@@ -301,22 +334,23 @@ namespace PluginMaster
             foreach (var spriteRenderer in spriteRenderers)
             {
                 var target = spriteRenderer.gameObject;
+                var targetId = GetObjectId(target);
                 if (!target.activeInHierarchy) continue;
                 if (spriteRenderer.sprite == null) continue;
-                if (_tempCollidersTargets.ContainsKey(target.GetInstanceID()))
+                if (_tempCollidersTargets.ContainsKey(targetId))
                 {
-                    if (_tempCollidersTargets[target.GetInstanceID()] != null) return;
-                    else _tempCollidersTargets.Remove(target.GetInstanceID());
+                    if (_tempCollidersTargets[targetId] != null) return;
+                    else _tempCollidersTargets.Remove(targetId);
                 }
-                var name = spriteRenderer.gameObject.GetInstanceID().ToString();
+                var name = targetId.ToString();
                 var tempObj = new GameObject(name);
                 tempObj.hideFlags = HideFlags.HideAndDontSave;
-                _tempCollidersIds.Add(tempObj.GetInstanceID(), spriteRenderer.gameObject);
+                _tempCollidersIds.Add(GetObjectId(tempObj), spriteRenderer.gameObject);
                 tempObj.transform.SetParent(parentCollider.transform);
                 tempObj.transform.position = spriteRenderer.transform.position;
                 tempObj.transform.rotation = spriteRenderer.transform.rotation;
                 tempObj.transform.localScale = spriteRenderer.transform.lossyScale;
-                _tempCollidersTargets.Add(target.GetInstanceID(), tempObj);
+                _tempCollidersTargets.Add(targetId, tempObj);
                 AddParentsIds(target);
                 var boxCollider = tempObj.AddComponent<BoxCollider>();
                 boxCollider.size = (Vector3)(spriteRenderer.sprite.rect.size / spriteRenderer.sprite.pixelsPerUnit)
@@ -325,7 +359,7 @@ namespace PluginMaster
                 if (collider != null && !collider.isTrigger) continue;
                 tempObj = new GameObject(name);
                 tempObj.hideFlags = HideFlags.HideAndDontSave;
-                _tempCollidersIds.Add(tempObj.GetInstanceID(), spriteRenderer.gameObject);
+                _tempCollidersIds.Add(GetObjectId(tempObj), spriteRenderer.gameObject);
                 tempObj.transform.SetParent(parentCollider.transform);
                 tempObj.transform.position = spriteRenderer.transform.position;
                 tempObj.transform.rotation = spriteRenderer.transform.rotation;
@@ -394,7 +428,7 @@ namespace PluginMaster
         }
 
 
-        public static void DestroyTempCollider(int objId)
+        public static void DestroyTempCollider(ulong objId)
         {
             if (!_tempCollidersTargets.ContainsKey(objId)) return;
             var temCollider = _tempCollidersTargets[objId];
@@ -403,7 +437,7 @@ namespace PluginMaster
                 _tempCollidersTargets.Remove(objId);
                 return;
             }
-            var tempId = temCollider.GetInstanceID();
+            var tempId = GetObjectId(temCollider);
             _tempCollidersIds.Remove(tempId);
             _tempCollidersTargets.Remove(objId);
             _tempCollidersTargetParentsIds.Remove(objId);
@@ -417,7 +451,7 @@ namespace PluginMaster
             _tempCollidersTargetChildrenIds.Clear();
             var parentObj = GameObject.Find(PWBCore.PARENT_COLLIDER_NAME);
             if (parentObj != null) Object.DestroyImmediate(parentObj);
-            _parentColliderId = -1;
+            _parentColliderId = 0;
         }
 
 
@@ -425,7 +459,7 @@ namespace PluginMaster
         {
             foreach (var obj in objects)
             {
-                var parentId = obj.GetInstanceID();
+                var parentId = GetObjectId(obj);
                 bool isParent = false;
                 foreach (var childId in _tempCollidersTargetParentsIds.Keys)
                 {
@@ -451,7 +485,7 @@ namespace PluginMaster
                         _tempCollidersTargets.Remove(id);
                         continue;
                     }
-                    var childObj = (GameObject)UnityEditor.EditorUtility.InstanceIDToObject(id);
+                    var childObj = ObjectFromId(id) as GameObject;
                     if (childObj == null) continue;
                     tempCollider.transform.position = childObj.transform.position;
                     tempCollider.transform.rotation = childObj.transform.rotation;
@@ -466,7 +500,7 @@ namespace PluginMaster
             {
                 if (obj == null) continue;
                 if (!obj.activeInHierarchy) continue;
-                var parentId = obj.GetInstanceID();
+                var parentId = GetObjectId(obj);
                 bool isParent = false;
                 foreach (var childId in _tempCollidersTargetParentsIds.Keys)
                 {
@@ -492,7 +526,7 @@ namespace PluginMaster
                         _tempCollidersTargets.Remove(id);
                         continue;
                     }
-                    var childObj = (GameObject)UnityEditor.EditorUtility.InstanceIDToObject(id);
+                    var childObj = ObjectFromId(id) as GameObject;
                     if (childObj == null) continue;
                     tempCollider.SetActive(value);
                     tempCollider.transform.position = childObj.transform.position;
@@ -504,7 +538,7 @@ namespace PluginMaster
 
         public static GameObject[] GetTempColliders(GameObject obj)
         {
-            var parentId = obj.GetInstanceID();
+            var parentId = GetObjectId(obj);
             bool isParent = false;
             foreach (var childId in _tempCollidersTargetParentsIds.Keys)
             {
@@ -544,7 +578,7 @@ namespace PluginMaster
         public const string DATA_DIR = "Data";
         public const string FILE_NAME = "PWBData";
         public const string FULL_FILE_NAME = FILE_NAME + ".txt";
-        public const string RELATIVE_TOOL_DIR = "PluginMaster/DesignTools/Editor/PrefabWorldBuilder";
+        public const string RELATIVE_TOOL_DIR = "Plugins/DesignTools/Editor/PrefabWorldBuilder";
         public const string RELATIVE_RESOURCES_DIR = RELATIVE_TOOL_DIR + "/Resources";
         public const string RELATIVE_DATA_DIR = RELATIVE_RESOURCES_DIR + "/" + DATA_DIR;
         public const string PALETTES_DIR = "Palettes";
@@ -2167,6 +2201,8 @@ namespace PluginMaster
     public class PWBSettings
     {
         #region COMMON
+        private const string LEGACY_RELATIVE_DATA_DIR
+            = "PluginMaster/DesignTools/Editor/PrefabWorldBuilder/Resources/Data";
         private static string _settingsPath = null;
         private static PWBSettings _instance = null;
         private PWBSettings() { }
@@ -2193,7 +2229,9 @@ namespace PluginMaster
             if (!System.IO.File.Exists(settingsPath))
             {
                 var files = System.IO.Directory.GetFiles(Application.dataPath,
-                        PWBData.FULL_FILE_NAME, System.IO.SearchOption.AllDirectories);
+                        PWBData.FULL_FILE_NAME, System.IO.SearchOption.AllDirectories)
+                    .Where(path => !path.Replace("\\", "/").Contains(LEGACY_RELATIVE_DATA_DIR))
+                    .ToArray();
                 if (files.Length > 0) _dataDir = System.IO.Path.GetDirectoryName(files[0]);
                 else
                 {
@@ -2211,12 +2249,36 @@ namespace PluginMaster
                 _shortcutProfiles = settings._shortcutProfiles;
                 _selectedProfileIdx = settings._selectedProfileIdx;
             }
+            if (NormalizeLegacyDataDir()) Save();
+            DeleteLegacyDataDirIfOnlyMetaFiles();
         }
 
         private void Save()
         {
             var jsonString = JsonUtility.ToJson(this, true);
             System.IO.File.WriteAllText(settingsPath, jsonString);
+        }
+
+        private bool NormalizeLegacyDataDir()
+        {
+            if (string.IsNullOrEmpty(_dataDir)) return false;
+            var normalized = _dataDir.Replace("\\", "/");
+            if (!normalized.Contains(LEGACY_RELATIVE_DATA_DIR)) return false;
+            _dataDir = normalized.Replace(LEGACY_RELATIVE_DATA_DIR, PWBData.RELATIVE_DATA_DIR);
+            return true;
+        }
+
+        private static void DeleteLegacyDataDirIfOnlyMetaFiles()
+        {
+            var legacyRoot = Application.dataPath + "/PluginMaster";
+            if (!System.IO.Directory.Exists(legacyRoot)) return;
+            var containsDataFiles = System.IO.Directory
+                .GetFiles(legacyRoot, "*", System.IO.SearchOption.AllDirectories)
+                .Any(path => !path.EndsWith(".meta", System.StringComparison.OrdinalIgnoreCase));
+            if (containsDataFiles) return;
+            System.IO.Directory.Delete(legacyRoot, true);
+            var metaPath = legacyRoot + ".meta";
+            if (System.IO.File.Exists(metaPath)) System.IO.File.Delete(metaPath);
         }
         #endregion
 
@@ -2228,7 +2290,8 @@ namespace PluginMaster
         {
             if (instance._dataDir == null) instance.LoadFromFile();
             if (PWBCore.IsFullPath(instance._dataDir)) instance._dataDir = PWBCore.GetRelativePath(instance._dataDir);
-
+            if (instance.NormalizeLegacyDataDir()) instance.Save();
+            DeleteLegacyDataDirIfOnlyMetaFiles();
         }
 
         public static string relativeDataDir

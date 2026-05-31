@@ -46,13 +46,22 @@ namespace PluginMaster
             return max;
         }
 
-        private static System.Collections.Generic.Dictionary<(int, ObjectProperty), Bounds> _boundsDictionary
-            = new System.Collections.Generic.Dictionary<(int, ObjectProperty), Bounds>();
+        private static ulong GetObjectId(UnityEngine.Object obj)
+        {
+#if UNITY_6000_4_OR_NEWER
+            return EntityId.ToULong(obj.GetEntityId());
+#else
+            return unchecked((ulong)obj.GetInstanceID());
+#endif
+        }
+
+        private static System.Collections.Generic.Dictionary<(ulong, ObjectProperty), Bounds> _boundsDictionary
+            = new System.Collections.Generic.Dictionary<(ulong, ObjectProperty), Bounds>();
 
         public static Bounds GetBounds(Transform transform, ObjectProperty property = ObjectProperty.BOUNDING_BOX,
             bool useDictionary = true)
         {
-            var key = (transform.gameObject.GetInstanceID(), property);
+            var key = (GetObjectId(transform.gameObject), property);
             if (useDictionary && _boundsDictionary.ContainsKey(key)) return _boundsDictionary[key];
             var terrain = transform.GetComponent<Terrain>();
             var renderer = transform.GetComponent<Renderer>();
@@ -98,8 +107,8 @@ namespace PluginMaster
             return result;
         }
 
-        private static System.Collections.Generic.Dictionary<(int, ObjectProperty, Vector2), Bounds>
-            _boundsRecursiveDictionary = new System.Collections.Generic.Dictionary<(int, ObjectProperty, Vector2), Bounds>();
+        private static System.Collections.Generic.Dictionary<(ulong, ObjectProperty, Vector2), Bounds>
+            _boundsRecursiveDictionary = new System.Collections.Generic.Dictionary<(ulong, ObjectProperty, Vector2), Bounds>();
 
         public static Bounds GetBoundsRecursive(Transform transform, bool recursive = true,
             ObjectProperty property = ObjectProperty.BOUNDING_BOX, bool useDictionary = true)
@@ -110,7 +119,7 @@ namespace PluginMaster
             if (spriteRenderer != null && spriteRenderer.enabled && spriteRenderer.sprite != null)
                 pivot2D = spriteRenderer.sprite.pivot;
 
-            var key = (transform.gameObject.GetInstanceID(), property, pivot2D);
+            var key = (GetObjectId(transform.gameObject), property, pivot2D);
             if (useDictionary && _boundsRecursiveDictionary.ContainsKey(key))
                 return _boundsRecursiveDictionary[key];
 
@@ -328,14 +337,14 @@ namespace PluginMaster
         }
         private struct BoundsRotKey
         {
-            int id;
+            ulong id;
             Vector3 position;
             Quaternion rotation;
             Vector3 scale;
             Quaternion boundsRotation;
             Vector2 pivot2D;
 
-            public BoundsRotKey(int id, Vector3 position, Quaternion rotation,
+            public BoundsRotKey(ulong id, Vector3 position, Quaternion rotation,
                 Vector3 scale, Quaternion boundsRotation, Vector2 pivot2D)
             {
                 this.id = id;
@@ -358,7 +367,7 @@ namespace PluginMaster
             var spriteRenderer = transform.GetComponent<SpriteRenderer>();
             if (spriteRenderer != null && spriteRenderer.enabled && spriteRenderer.sprite != null)
                 pivot2D = spriteRenderer.sprite.pivot;
-            var key = new BoundsRotKey(transform.gameObject.GetInstanceID(), transform.position,
+            var key = new BoundsRotKey(GetObjectId(transform.gameObject), transform.position,
                 transform.rotation, transform.lossyScale, rotation, pivot2D);
             useDictionary = false;
             if (useDictionary && _boundsRotDictionary.ContainsKey(key)) return _boundsRotDictionary[key];

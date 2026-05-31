@@ -239,7 +239,7 @@ namespace PluginMaster
             else UnityEditor.AssetDatabase.OpenAsset(_documentationPdf);
         }
     }
-    [Icon("Assets/PluginMaster/DesignTools/PrefabWorldBuilder/Editor/Resources/Sprites/Brush.png")]
+    [Icon("Assets/Plugins/DesignTools/Editor/PrefabWorldBuilder/Resources/Sprites/Brush.png")]
     [UnityEditor.Overlays.Overlay(typeof(UnityEditor.SceneView), "PWB Prop Placement Tools", true)]
     public class PWBPropPlacementToolbarOverlay : UnityEditor.Overlays.ToolbarOverlay
     {
@@ -314,7 +314,7 @@ namespace PluginMaster
         }
     }
 
-    [Icon("Assets/PluginMaster/DesignTools/PrefabWorldBuilder/Editor/Resources/Sprites/Selection.png")]
+    [Icon("Assets/Plugins/DesignTools/Editor/PrefabWorldBuilder/Resources/Sprites/Selection.png")]
     [UnityEditor.Overlays.Overlay(typeof(UnityEditor.SceneView), "PWB Selection Tools", true)]
     public class PWBSelectionToolbarOverlay : UnityEditor.Overlays.ToolbarOverlay
     {
@@ -470,7 +470,7 @@ namespace PluginMaster
         }
     }
 
-    [Icon("Assets/PluginMaster/DesignTools/PrefabWorldBuilder/Editor/Resources/Sprites/Grid.png")]
+    [Icon("Assets/Plugins/DesignTools/Editor/PrefabWorldBuilder/Resources/Sprites/Grid.png")]
     [UnityEditor.Overlays.Overlay(typeof(UnityEditor.SceneView), "PWB Grid Tools", true)]
     public class PWBGridToolbarOverlay : UnityEditor.Overlays.ToolbarOverlay
     {

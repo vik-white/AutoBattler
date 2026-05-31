@@ -113,8 +113,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GroundBlendHeight: 1.39
-    - _GroundBlendStrength: 0.92
+    - _GroundBlendHeight: 0.68
+    - _GroundBlendStrength: 2.32
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005

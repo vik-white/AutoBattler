@@ -718,22 +718,18 @@ namespace PluginMaster
         private void SelectReferences(object idx)
         {
             var items = PaletteManager.selectedPalette.GetBrush((int)idx).items;
-            var itemsprefabIds = new System.Collections.Generic.List<int>();
+            var itemsprefabIds = new System.Collections.Generic.List<ulong>();
             foreach (var item in items)
             {
-                if (item.prefab != null) itemsprefabIds.Add(item.prefab.GetInstanceID());
+                if (item.prefab != null) itemsprefabIds.Add(PWBCore.GetObjectId(item.prefab));
             }
             var selection = new System.Collections.Generic.List<GameObject>();
-#if UNITY_2022_2_OR_NEWER
-            var objects = GameObject.FindObjectsByType<Transform>(FindObjectsSortMode.None);
-#else
-            var objects = GameObject.FindObjectsOfType<Transform>();
-#endif
+            var objects = PWBCore.FindObjects<Transform>();
             foreach (var obj in objects)
             {
                 var source = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(obj);
                 if (source == null) continue;
-                var sourceIdx = source.gameObject.GetInstanceID();
+                var sourceIdx = PWBCore.GetObjectId(source.gameObject);
                 if (itemsprefabIds.Contains(sourceIdx)) selection.Add(obj.gameObject);
             }
             UnityEditor.Selection.objects = selection.ToArray();

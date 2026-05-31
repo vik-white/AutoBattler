@@ -310,10 +310,10 @@ namespace PluginMaster
             return step;
         }
 
-        private static System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<Vector3>>
-            _extrudeAngles = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<Vector3>>();
-        private static System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<Pose>>
-            _extrudePoses = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<Pose>>();
+        private static System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.List<Vector3>>
+            _extrudeAngles = new System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.List<Vector3>>();
+        private static System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.List<Pose>>
+            _extrudePoses = new System.Collections.Generic.Dictionary<ulong, System.Collections.Generic.List<Pose>>();
 
         private static void PreviewExtrudedObjects(Camera camera, Transform anchor)
         {
@@ -326,7 +326,7 @@ namespace PluginMaster
                 var objPose = new Pose(obj.transform.position, obj.transform.rotation);
 
                 var delta = step;
-                var objId = obj.GetInstanceID();
+                var objId = PWBCore.GetObjectId(obj);
                 _extrudePoses.Add(objId, new System.Collections.Generic.List<Pose>());
                 System.Collections.Generic.List<Vector3> rotationList = null;
                 if (_extrudeAngles.ContainsKey(objId))
@@ -428,7 +428,7 @@ namespace PluginMaster
                 GameObject extruded = null;
                 var parent = GetParent(ExtrudeManager.settings, obj.name, true, null);
                 if (ExtrudeManager.settings.sameParentAsSource) parent = obj.transform.parent;
-                foreach(var pose in _extrudePoses[obj.GetInstanceID()])
+                foreach(var pose in _extrudePoses[PWBCore.GetObjectId(obj)])
                 {
                     extruded = UnityEditor.PrefabUtility.IsOutermostPrefabInstanceRoot(obj)
                          ? (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(

@@ -601,6 +601,7 @@ namespace PluginMaster
 
         private System.Collections.Generic.HashSet<ulong> _allObjectIds = new System.Collections.Generic.HashSet<ulong>();
         public bool Contains(int objId) => _allObjectIds.Contains((ulong)objId);
+        public bool Contains(ulong objId) => _allObjectIds.Contains(objId);
         public bool Contains(UnityEngine.Object obj) => _allObjectIds.Contains(GetObjectId(obj));
 
         private static ulong GetObjectId(UnityEngine.Object obj)
