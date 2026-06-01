@@ -89,11 +89,22 @@ Shader "Hidden/Outlines"
                 return ComputeFogFactorZ0ToFar(nearToFarZ);
             }
 
-            float3 SampleNormals(float2 uv)
+            float3 SampleRawNormals(float2 uv)
             {
-                float3 normalWS = SAMPLE_TEXTURE2D(_SceneViewSpaceNormals, sampler_SceneViewSpaceNormals, uv).xyz;
-                normalWS *= rsqrt(max(dot(normalWS, normalWS), 1e-6));
-                return TransformWorldToViewDir(normalWS, false);
+                return SAMPLE_TEXTURE2D(_SceneViewSpaceNormals, sampler_SceneViewSpaceNormals, uv).xyz;
+            }
+
+            float3 NormalizeViewNormal(float3 rawNormal)
+            {
+                float3 n = rawNormal * rsqrt(max(dot(rawNormal, rawNormal), 1e-6));
+                return TransformWorldToViewDir(n, false);
+            }
+
+            float CharacterMaskFromRaw(float3 rawNormal)
+            {
+                // Background pixels of the filtered normals texture are cleared to (0,0,0,0),
+                // so any pixel with a non-trivial normal length belongs to a filtered (character) object.
+                return step(0.01, dot(rawNormal, rawNormal));
             }
 
             float FragEdge(float2 uv, float2 texelSize)
@@ -107,9 +118,17 @@ Shader "Hidden/Outlines"
                 float depthEdge = abs(depthCenter - depthRight) + abs(depthCenter - depthUp);
                 depthEdge *= _RobertsCrossMultiplier;
 
-                float3 normalCenter = SampleNormals(uv);
-                float3 normalRight = SampleNormals(uv + float2(offset.x, 0));
-                float3 normalUp = SampleNormals(uv + float2(0, offset.y));
+                float3 rawNormalCenter = SampleRawNormals(uv);
+                float3 rawNormalRight = SampleRawNormals(uv + float2(offset.x, 0));
+                float3 rawNormalUp = SampleRawNormals(uv + float2(0, offset.y));
+
+                float characterMask = max(
+                    CharacterMaskFromRaw(rawNormalCenter),
+                    max(CharacterMaskFromRaw(rawNormalRight), CharacterMaskFromRaw(rawNormalUp)));
+
+                float3 normalCenter = NormalizeViewNormal(rawNormalCenter);
+                float3 normalRight = NormalizeViewNormal(rawNormalRight);
+                float3 normalUp = NormalizeViewNormal(rawNormalUp);
 
                 float normalEdge = length(normalCenter - normalRight) + length(normalCenter - normalUp);
                 float angleBoost = saturate((1.0 - abs(normalCenter.z)) - _SteepAngleThreshold) * _SteepAngleMultiplier;
@@ -118,7 +137,7 @@ Shader "Hidden/Outlines"
                 float depthMask = step(_DepthThreshold, depthEdge);
                 float normalMask = step(_NormalThreshold, normalEdge);
 
-                return saturate(max(depthMask, normalMask));
+                return saturate(max(depthMask, normalMask)) * characterMask;
             }
 
             float4 Frag(Varyings input) : SV_Target

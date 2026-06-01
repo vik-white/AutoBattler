@@ -113,11 +113,9 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
                 true,
                 settings.filterMode);
 
-            var normalsDepthDesc = renderGraph.GetTextureDesc(normalsTexture);
-            normalsDepthDesc.name = "_ScreenSpaceOutlineDepth";
-            normalsDepthDesc.format = GraphicsFormatUtility.GetDepthStencilFormat(GetDepthBufferBits(settings.depthBufferBits));
-            normalsDepthDesc.clearBuffer = false;
-            var normalsDepthTexture = renderGraph.CreateTexture(normalsDepthDesc);
+            var sceneDepthTexture = resourceData.activeDepthTexture;
+            if (!sceneDepthTexture.IsValid())
+                return;
 
             using (var builder = renderGraph.AddRasterRenderPass<NormalsPassData>("ScreenSpaceOutlinesNormals", out var passData))
             {
@@ -141,12 +139,16 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
 
                 builder.UseRendererList(passData.RendererList);
                 builder.SetRenderAttachment(normalsTexture, 0, AccessFlags.Write);
-                builder.SetRenderAttachmentDepth(normalsDepthTexture, AccessFlags.Write);
+                // Reuse the scene's depth attachment so the normals pass respects occlusion
+                // from ground / props. Characters were already drawn into this depth buffer
+                // during the opaque pass, so re-rendering them here writes the same depth
+                // (no-op) for visible pixels and gets depth-tested away for occluded ones.
+                builder.SetRenderAttachmentDepth(sceneDepthTexture, AccessFlags.ReadWrite);
                 builder.SetGlobalTextureAfterPass(normalsTexture, SceneViewSpaceNormalsId);
 
                 builder.SetRenderFunc(static (NormalsPassData data, RasterGraphContext context) =>
                 {
-                    context.cmd.ClearRenderTarget(RTClearFlags.ColorDepth, data.BackgroundColor, 1, 0);
+                    context.cmd.ClearRenderTarget(RTClearFlags.Color, data.BackgroundColor, 1, 0);
                     context.cmd.DrawRendererList(data.RendererList);
                 });
             }
@@ -179,13 +181,6 @@ public class ScreenSpaceOutlines : ScriptableRendererFeature
                 return GraphicsFormat.R16G16B16A16_SFloat;
 
             return GraphicsFormat.R32G32B32A32_SFloat;
-        }
-
-        private static int GetDepthBufferBits(int configuredDepthBufferBits)
-        {
-            return configuredDepthBufferBits == 16 || configuredDepthBufferBits == 24 || configuredDepthBufferBits == 32
-                ? configuredDepthBufferBits
-                : 24;
         }
     }
 
