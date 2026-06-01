@@ -8,14 +8,7 @@ namespace vikwhite
 
         protected override void UpdateViewModel(LoadingScreenViewModel viewModel)
         {
-            viewModel.OnProgressChanged += UpdateProgress;
-            UpdateProgress(viewModel.Progress);
-        }
-
-        protected override void ReleaseViewModel()
-        {
-            if (ViewModel != null) ViewModel.OnProgressChanged -= UpdateProgress;
-            base.ReleaseViewModel();
+            Bind(viewModel.Progress, UpdateProgress);
         }
 
         private void UpdateProgress(float progress)

@@ -1,10 +1,12 @@
 using System.Collections;
+using UniRx;
 using UnityEngine;
 
 namespace vikwhite
 {
     public interface ILoadingScreenService
     {
+        IReadOnlyReactiveProperty<float> Progress { get; }
         void Show();
         void SetProgress(float progress);
         IEnumerator TrackProgress(AsyncOperation operation);
@@ -20,10 +22,12 @@ namespace vikwhite
         private const float ProgressCompleteThreshold = 0.999f;
 
         private readonly ILoadingScreenWindow _window;
+        private readonly ReactiveProperty<float> _progress = new(0f);
         private float _shownTime;
-        private float _displayedProgress;
         private float _targetProgress;
         private bool _isShown;
+
+        public IReadOnlyReactiveProperty<float> Progress => _progress;
 
         public LoadingScreenService(ILoadingScreenWindow window)
         {
@@ -33,11 +37,10 @@ namespace vikwhite
         public void Show()
         {
             _shownTime = Time.unscaledTime;
-            _displayedProgress = 0f;
+            _progress.Value = 0f;
             _targetProgress = 0f;
             _isShown = true;
             _window.ShowWindow();
-            _window.SetProgress(_displayedProgress);
         }
 
         public void SetProgress(float progress)
@@ -63,24 +66,23 @@ namespace vikwhite
 
             SetProgress(1f);
             while (Time.unscaledTime - _shownTime < MinVisibleTime ||
-                   _displayedProgress < ProgressCompleteThreshold)
+                   _progress.Value < ProgressCompleteThreshold)
             {
                 UpdateDisplayedProgress();
                 yield return null;
             }
 
-            _window.SetProgress(1f);
+            _progress.Value = 1f;
             _window.CloseWindow();
             _isShown = false;
         }
 
         private void UpdateDisplayedProgress()
         {
-            _displayedProgress = Mathf.MoveTowards(
-                _displayedProgress,
+            _progress.Value = Mathf.MoveTowards(
+                _progress.Value,
                 _targetProgress,
                 FillSpeed * Time.unscaledDeltaTime);
-            _window.SetProgress(_displayedProgress);
         }
 
         private float GetLoadingTarget(AsyncOperation operation)

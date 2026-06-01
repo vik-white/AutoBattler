@@ -1,17 +1,16 @@
-using System;
-using UnityEngine;
+using UniRx;
 
 namespace vikwhite
 {
     public class LoadingScreenViewModel : WindowViewModel
     {
-        public event Action<float> OnProgressChanged;
-        public float Progress { get; private set; }
+        private readonly ILoadingScreenService _loadingScreenService;
 
-        public void SetProgress(float progress)
+        public IReadOnlyReactiveProperty<float> Progress => _loadingScreenService.Progress;
+
+        public LoadingScreenViewModel(ILoadingScreenService loadingScreenService)
         {
-            Progress = Mathf.Clamp01(progress);
-            OnProgressChanged?.Invoke(Progress);
+            _loadingScreenService = loadingScreenService;
         }
     }
 }
