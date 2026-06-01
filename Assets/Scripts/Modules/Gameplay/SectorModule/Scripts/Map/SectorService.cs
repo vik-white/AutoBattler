@@ -21,6 +21,8 @@ namespace vikwhite
 
     public class SectorService : ISectorService
     {
+        private const int VisibleCharactersAhead = 2;
+
         private readonly IProfileService _profile;
         private readonly IConfigs _configs;
         private readonly IEventDispatcher _dispatcher;
@@ -99,7 +101,8 @@ namespace vikwhite
         private bool IsCharacterVisible(int pointIndex)
         {
             var currentIndex = _locationIDs.IndexOf(_currentLocation);
-            return currentIndex < 0 || pointIndex >= currentIndex;
+            if (currentIndex < 0) return true;
+            return pointIndex >= currentIndex && pointIndex <= currentIndex + VisibleCharactersAhead;
         }
 
         private string GetNextLocationID(string locationID)
