@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -12,6 +13,14 @@ namespace vikwhite
         private const string DefaultOutputRootName = "Generated Grass Prefabs";
         private const int ConfirmCandidateCount = 50000;
         private const string PrefabPathPrefsKey = "grassPrefabPath";
+        private const string DefaultMeshFolderFallback = "Assets/Generated/GrassTiles";
+        private const string GeneratedMeshFolderSuffix = "_GrassTiles";
+
+        public enum GenerationMode
+        {
+            MeshTiles = 0,
+            IndividualPrefabs = 1,
+        }
 
         [SerializeField] private Terrain terrain;
         [SerializeField] private GameObject grassPrefab;
@@ -38,6 +47,13 @@ namespace vikwhite
         [SerializeField] private int randomSeed = 12345;
         [SerializeField] private bool showPreview = true;
         [SerializeField] private float previewMarkerRadius = 0.35f;
+
+        // Mesh-tiles mode parameters.
+        [SerializeField] private GenerationMode generationMode = GenerationMode.MeshTiles;
+        [SerializeField] private float tileSize = 10f;
+        [SerializeField] private bool addLodGroup = true;
+        [SerializeField] private float lodCullScreenRelativeHeight = 0.04f;
+        [SerializeField] private string meshOutputFolder = string.Empty;
 
         private GrassPlacement[] previewPlacements = Array.Empty<GrassPlacement>();
         private bool previewDirty = true;
@@ -150,6 +166,7 @@ namespace vikwhite
 
             EditorGUILayout.Space(8f);
             EditorGUILayout.LabelField("Output", EditorStyles.boldLabel);
+            generationMode = (GenerationMode)EditorGUILayout.EnumPopup("Generation Mode", generationMode);
             outputParent = (Transform)EditorGUILayout.ObjectField("Output Parent", outputParent, typeof(Transform), true);
             using (new EditorGUI.DisabledScope(outputParent != null))
             {
@@ -157,6 +174,30 @@ namespace vikwhite
             }
 
             clearBeforeGenerate = EditorGUILayout.Toggle("Clear Before Generate", clearBeforeGenerate);
+
+            if (generationMode == GenerationMode.MeshTiles)
+            {
+                EditorGUILayout.Space(4f);
+                EditorGUILayout.LabelField("Mesh Tiles", EditorStyles.boldLabel);
+                tileSize = Mathf.Max(0.1f, EditorGUILayout.FloatField("Tile Size", tileSize));
+                addLodGroup = EditorGUILayout.Toggle("Add LOD Group", addLodGroup);
+                using (new EditorGUI.DisabledScope(!addLodGroup))
+                {
+                    lodCullScreenRelativeHeight = EditorGUILayout.Slider(
+                        new GUIContent("LOD Cull Threshold",
+                            "Тайл становится Culled, когда его экранная относительная высота падает ниже этого значения. " +
+                            "Меньше = трава видна с большего расстояния."),
+                        lodCullScreenRelativeHeight, 0.001f, 0.5f);
+                }
+                meshOutputFolder = EditorGUILayout.TextField(
+                    new GUIContent("Mesh Folder",
+                        "Папка под Assets/, куда сохраняются объединённые меши. Пусто = рядом со сценой / fallback."),
+                    meshOutputFolder ?? string.Empty);
+                EditorGUILayout.HelpBox(
+                    "В этом режиме каждый тайл — один MeshRenderer с объединённым мешем травы и LODGroup. " +
+                    $"Эффективные ассеты будут лежать в: {DescribeResolvedMeshFolder()}.",
+                    MessageType.None);
+            }
 
             EditorGUILayout.Space(12f);
             DrawActionButtons();
@@ -216,11 +257,15 @@ namespace vikwhite
 
         private void DrawActionButtons()
         {
+            string generateLabel = generationMode == GenerationMode.MeshTiles
+                ? "Generate Tile Meshes"
+                : "Generate Prefabs";
+
             using (new EditorGUILayout.HorizontalScope())
             {
                 using (new EditorGUI.DisabledScope(!CanGenerate()))
                 {
-                    if (GUILayout.Button("Generate Prefabs", GUILayout.Height(28f)))
+                    if (GUILayout.Button(generateLabel, GUILayout.Height(28f)))
                     {
                         Generate();
                     }
@@ -246,6 +291,10 @@ namespace vikwhite
             else if (grassLayerIndex < 0)
             {
                 EditorGUILayout.HelpBox("The selected terrain has no texture layers.", MessageType.Warning);
+            }
+            else if (generationMode == GenerationMode.MeshTiles && !TryGetGrassMeshSource(out _, out _, out _, out var meshIssue))
+            {
+                EditorGUILayout.HelpBox(meshIssue, MessageType.Warning);
             }
         }
 
@@ -280,9 +329,21 @@ namespace vikwhite
                 ClearChildren(parent);
             }
 
-            int createdCount = CreateGrassPrefabs(parent, terrainData, estimatedCandidates);
-            EditorSceneManager.MarkSceneDirty(terrain.gameObject.scene);
-            Debug.Log($"Grass Prefab Generator created {createdCount} prefab instances on '{terrain.name}'.", terrain);
+            int createdCount;
+            switch (generationMode)
+            {
+                case GenerationMode.MeshTiles:
+                    createdCount = CreateGrassTileMeshes(parent, terrainData, estimatedCandidates, out int tileCount);
+                    EditorSceneManager.MarkSceneDirty(terrain.gameObject.scene);
+                    Debug.Log($"Grass Prefab Generator created {tileCount} tile meshes " +
+                              $"({createdCount} grass instances baked) on '{terrain.name}'.", terrain);
+                    break;
+                default:
+                    createdCount = CreateGrassPrefabs(parent, terrainData, estimatedCandidates);
+                    EditorSceneManager.MarkSceneDirty(terrain.gameObject.scene);
+                    Debug.Log($"Grass Prefab Generator created {createdCount} prefab instances on '{terrain.name}'.", terrain);
+                    break;
+            }
         }
 
         private int CreateGrassPrefabs(Transform parent, TerrainData terrainData, int estimatedCandidates)
@@ -311,6 +372,321 @@ namespace vikwhite
             {
                 EditorUtility.ClearProgressBar();
             }
+        }
+
+        /// <summary>
+        /// Собирает все размещения в группы по тайлам tileSize × tileSize (в плоскости XZ),
+        /// для каждого тайла объединяет копии меша травы (через <see cref="Mesh.CombineMeshes"/>),
+        /// сохраняет ассет, кладёт под <paramref name="parent"/> отдельный GameObject с
+        /// <see cref="MeshFilter"/>+<see cref="MeshRenderer"/>+<see cref="LODGroup"/>.
+        /// </summary>
+        private int CreateGrassTileMeshes(
+            Transform parent,
+            TerrainData terrainData,
+            int estimatedCandidates,
+            out int tileCount)
+        {
+            tileCount = 0;
+
+            if (!TryGetGrassMeshSource(out Mesh sourceMesh, out Material sourceMaterial,
+                                        out Matrix4x4 meshLocalToPrefabRoot, out var sourceIssue))
+            {
+                EditorUtility.DisplayDialog("Generate Grass Tiles", sourceIssue, "OK");
+                return 0;
+            }
+
+            // 1) Собираем все размещения, чтобы потом сгруппировать по тайлам.
+            var placements = new List<GrassPlacement>(Mathf.Min(estimatedCandidates, 65536));
+            try
+            {
+                ProcessGrassPlacements(
+                    terrainData,
+                    estimatedCandidates,
+                    (checkedCount, totalCount) => checkedCount % 256 == 0 && EditorUtility.DisplayCancelableProgressBar(
+                        "Collecting grass placements",
+                        $"{checkedCount:n0} / {totalCount:n0}",
+                        totalCount > 0 ? checkedCount / (float)totalCount : 1f),
+                    p => placements.Add(p));
+            }
+            finally
+            {
+                EditorUtility.ClearProgressBar();
+            }
+
+            if (placements.Count == 0)
+            {
+                Debug.LogWarning("Grass Prefab Generator: размещений не получилось — нет ни одного тайла.");
+                return 0;
+            }
+
+            // 2) Группируем по тайлам.
+            var safeTileSize = Mathf.Max(0.1f, tileSize);
+            var tiles = new Dictionary<Vector2Int, List<GrassPlacement>>(placements.Count / 16 + 1);
+            foreach (var p in placements)
+            {
+                var key = new Vector2Int(
+                    Mathf.FloorToInt(p.Position.x / safeTileSize),
+                    Mathf.FloorToInt(p.Position.z / safeTileSize));
+                if (!tiles.TryGetValue(key, out var list))
+                {
+                    list = new List<GrassPlacement>(64);
+                    tiles[key] = list;
+                }
+                list.Add(p);
+            }
+
+            // 3) Запекаем меш и создаём GameObject на каждый тайл.
+            var meshFolder = ResolveAndEnsureMeshFolder(parent);
+            var generatedAssetPaths = new List<string>(tiles.Count);
+            int processed = 0;
+            int totalInstances = 0;
+
+            try
+            {
+                foreach (var kvp in tiles)
+                {
+                    processed++;
+                    if (processed % 8 == 0)
+                    {
+                        bool canceled = EditorUtility.DisplayCancelableProgressBar(
+                            "Baking grass tile meshes",
+                            $"Tile {kvp.Key.x},{kvp.Key.y}  ({processed:n0} / {tiles.Count:n0})",
+                            processed / (float)tiles.Count);
+                        if (canceled) break;
+                    }
+
+                    var built = BakeGrassTile(
+                        kvp.Key, kvp.Value, safeTileSize,
+                        sourceMesh, sourceMaterial, meshLocalToPrefabRoot,
+                        parent, meshFolder);
+                    if (string.IsNullOrEmpty(built.MeshAssetPath)) continue;
+
+                    generatedAssetPaths.Add(built.MeshAssetPath);
+                    totalInstances += built.BlobCount;
+                    tileCount++;
+                }
+            }
+            finally
+            {
+                EditorUtility.ClearProgressBar();
+                if (generatedAssetPaths.Count > 0)
+                {
+                    AssetDatabase.SaveAssets();
+                }
+            }
+
+            return totalInstances;
+        }
+
+        private readonly struct BakedTile
+        {
+            public readonly string MeshAssetPath;
+            public readonly int BlobCount;
+
+            public BakedTile(string meshAssetPath, int blobCount)
+            {
+                MeshAssetPath = meshAssetPath;
+                BlobCount     = blobCount;
+            }
+        }
+
+        private BakedTile BakeGrassTile(
+            Vector2Int tileKey,
+            List<GrassPlacement> tilePlacements,
+            float currentTileSize,
+            Mesh sourceMesh,
+            Material sourceMaterial,
+            Matrix4x4 meshLocalToPrefabRoot,
+            Transform parent,
+            string meshFolder)
+        {
+            if (tilePlacements == null || tilePlacements.Count == 0) return default;
+
+            // Центр тайла в мировых координатах. Вершины комбайнятся относительно него,
+            // чтобы не накапливать float-ошибку для больших координат.
+            var tileCenter = new Vector3(
+                (tileKey.x + 0.5f) * currentTileSize,
+                0f,
+                (tileKey.y + 0.5f) * currentTileSize);
+
+            var instances = new CombineInstance[tilePlacements.Count];
+            for (int i = 0; i < tilePlacements.Count; i++)
+            {
+                var p = tilePlacements[i];
+                // prefab root → world
+                var rootMatrix = Matrix4x4.TRS(p.Position, p.Rotation, Vector3.one * p.ScaleMultiplier);
+                // mesh local → world
+                var meshWorld = rootMatrix * meshLocalToPrefabRoot;
+                // mesh local → tile-local (вычитаем tileCenter из translation)
+                var meshTileLocal = Matrix4x4.Translate(-tileCenter) * meshWorld;
+
+                instances[i] = new CombineInstance
+                {
+                    mesh         = sourceMesh,
+                    transform    = meshTileLocal,
+                    subMeshIndex = 0,
+                };
+            }
+
+            var tileName = $"GrassTile_{tileKey.x}_{tileKey.y}";
+            var combined = new Mesh
+            {
+                name        = tileName,
+                indexFormat = IndexFormat.UInt32,
+            };
+            combined.CombineMeshes(instances, mergeSubMeshes: true, useMatrices: true);
+            combined.RecalculateBounds();
+
+            var assetPath = $"{meshFolder}/{tileName}.asset";
+            var savedMesh = SaveOrReplaceMeshAsset(combined, assetPath);
+
+            var tileGo = new GameObject(tileName);
+            Undo.RegisterCreatedObjectUndo(tileGo, "Generate Grass Tiles");
+            Undo.SetTransformParent(tileGo.transform, parent, "Generate Grass Tiles");
+            tileGo.transform.SetPositionAndRotation(tileCenter, Quaternion.identity);
+            tileGo.transform.localScale = Vector3.one;
+
+            var mf = tileGo.AddComponent<MeshFilter>();
+            mf.sharedMesh = savedMesh;
+
+            var mr = tileGo.AddComponent<MeshRenderer>();
+            mr.sharedMaterial   = sourceMaterial;
+            mr.shadowCastingMode = ShadowCastingMode.Off; // оригинальный grass prefab тоже без теней
+            mr.receiveShadows    = true;
+
+            if (addLodGroup)
+            {
+                var lodGroup = tileGo.AddComponent<LODGroup>();
+                lodGroup.fadeMode             = LODFadeMode.None;
+                lodGroup.animateCrossFading   = false;
+                lodGroup.SetLODs(new[]
+                {
+                    new LOD(Mathf.Clamp(lodCullScreenRelativeHeight, 0.0001f, 0.95f),
+                            new Renderer[] { mr }),
+                });
+                lodGroup.RecalculateBounds();
+            }
+
+            return new BakedTile(assetPath, tilePlacements.Count);
+        }
+
+        /// <summary>
+        /// Достаёт исходный меш и материал травы из префаба и собирает полную матрицу
+        /// «mesh local → prefab root», поднимаясь по родителям. Так корректно учитываются
+        /// все локальные смещения/повороты/скейлы внутри префаба (включая Y-сжатие).
+        /// </summary>
+        private bool TryGetGrassMeshSource(
+            out Mesh mesh,
+            out Material material,
+            out Matrix4x4 meshLocalToPrefabRoot,
+            out string error)
+        {
+            mesh                  = null;
+            material              = null;
+            meshLocalToPrefabRoot = Matrix4x4.identity;
+
+            if (grassPrefab == null)
+            {
+                error = "Grass Prefab не задан.";
+                return false;
+            }
+
+            MeshFilter mf = grassPrefab.GetComponentInChildren<MeshFilter>(includeInactive: true);
+            if (mf == null || mf.sharedMesh == null)
+            {
+                error = "В Grass Prefab нет MeshFilter с sharedMesh — нечего объединять.";
+                return false;
+            }
+
+            var mr = mf.GetComponent<MeshRenderer>();
+            if (mr == null || mr.sharedMaterial == null)
+            {
+                error = "В Grass Prefab нет MeshRenderer с материалом — задай материал травы.";
+                return false;
+            }
+
+            mesh     = mf.sharedMesh;
+            material = mr.sharedMaterial;
+
+            var matrix = Matrix4x4.identity;
+            for (Transform t = mf.transform; t != null && t.gameObject != grassPrefab; t = t.parent)
+            {
+                matrix = Matrix4x4.TRS(t.localPosition, t.localRotation, t.localScale) * matrix;
+            }
+            meshLocalToPrefabRoot = matrix;
+
+            error = null;
+            return true;
+        }
+
+        private string DescribeResolvedMeshFolder()
+        {
+            string folder = ResolveDesiredMeshFolder(outputParent != null ? outputParent.gameObject.scene : default);
+            return string.IsNullOrEmpty(folder) ? DefaultMeshFolderFallback : folder;
+        }
+
+        private string ResolveAndEnsureMeshFolder(Transform parent)
+        {
+            var scene = parent != null ? parent.gameObject.scene : (terrain != null ? terrain.gameObject.scene : default);
+            string folder = ResolveDesiredMeshFolder(scene);
+            if (string.IsNullOrEmpty(folder)) folder = DefaultMeshFolderFallback;
+            EnsureAssetFolderExists(folder);
+            return folder;
+        }
+
+        private string ResolveDesiredMeshFolder(UnityEngine.SceneManagement.Scene scene)
+        {
+            if (!string.IsNullOrWhiteSpace(meshOutputFolder))
+            {
+                return meshOutputFolder.Trim().Replace('\\', '/').TrimEnd('/');
+            }
+
+            if (scene.IsValid() && !string.IsNullOrEmpty(scene.path))
+            {
+                var sceneDir  = Path.GetDirectoryName(scene.path)?.Replace('\\', '/');
+                var sceneName = Path.GetFileNameWithoutExtension(scene.path);
+                if (!string.IsNullOrEmpty(sceneDir) && !string.IsNullOrEmpty(sceneName))
+                {
+                    return $"{sceneDir}/{sceneName}{GeneratedMeshFolderSuffix}";
+                }
+            }
+
+            return DefaultMeshFolderFallback;
+        }
+
+        private static void EnsureAssetFolderExists(string folder)
+        {
+            if (string.IsNullOrEmpty(folder)) return;
+            if (AssetDatabase.IsValidFolder(folder)) return;
+
+            // Создаём цепочку папок по сегментам.
+            var parts = folder.Split('/');
+            var current = parts[0]; // обычно "Assets"
+            for (int i = 1; i < parts.Length; i++)
+            {
+                var next = $"{current}/{parts[i]}";
+                if (!AssetDatabase.IsValidFolder(next))
+                {
+                    AssetDatabase.CreateFolder(current, parts[i]);
+                }
+                current = next;
+            }
+        }
+
+        private static Mesh SaveOrReplaceMeshAsset(Mesh fresh, string assetPath)
+        {
+            var existing = AssetDatabase.LoadAssetAtPath<Mesh>(assetPath);
+            if (existing != null)
+            {
+                EditorUtility.CopySerialized(fresh, existing);
+                UnityEngine.Object.DestroyImmediate(fresh);
+                EditorUtility.SetDirty(existing);
+                return existing;
+            }
+
+            AssetDatabase.CreateAsset(fresh, assetPath);
+            EditorUtility.SetDirty(fresh);
+            return fresh;
         }
 
         private void RebuildPreview()
@@ -599,9 +975,37 @@ namespace vikwhite
 
         private void ClearChildren(Transform parent)
         {
+            // Перед уничтожением соберём пути меш-ассетов, которые лежат в нашей "generated"
+            // папке — их же и удалим, чтобы не плодились бесхозные .asset файлы при пересборке.
+            var toDeleteAssets = new HashSet<string>();
+            var ourMeshFolder  = ResolveDesiredMeshFolder(parent != null ? parent.gameObject.scene : default);
+            if (string.IsNullOrEmpty(ourMeshFolder)) ourMeshFolder = DefaultMeshFolderFallback;
+            ourMeshFolder = ourMeshFolder.TrimEnd('/') + "/";
+
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                var childMf = parent.GetChild(i).GetComponent<MeshFilter>();
+                if (childMf == null || childMf.sharedMesh == null) continue;
+                var meshPath = AssetDatabase.GetAssetPath(childMf.sharedMesh);
+                if (!string.IsNullOrEmpty(meshPath) &&
+                    meshPath.Replace('\\', '/').StartsWith(ourMeshFolder, StringComparison.OrdinalIgnoreCase))
+                {
+                    toDeleteAssets.Add(meshPath);
+                }
+            }
+
             for (int i = parent.childCount - 1; i >= 0; i--)
             {
                 Undo.DestroyObjectImmediate(parent.GetChild(i).gameObject);
+            }
+
+            foreach (var path in toDeleteAssets)
+            {
+                AssetDatabase.DeleteAsset(path);
+            }
+            if (toDeleteAssets.Count > 0)
+            {
+                AssetDatabase.SaveAssets();
             }
         }
 
@@ -744,6 +1148,12 @@ namespace vikwhite
             showPreview = EditorPrefs.GetBool(GetPrefsKey(nameof(showPreview)), showPreview);
             previewMarkerRadius = EditorPrefs.GetFloat(GetPrefsKey(nameof(previewMarkerRadius)), previewMarkerRadius);
 
+            generationMode = (GenerationMode)EditorPrefs.GetInt(GetPrefsKey(nameof(generationMode)), (int)generationMode);
+            tileSize = EditorPrefs.GetFloat(GetPrefsKey(nameof(tileSize)), tileSize);
+            addLodGroup = EditorPrefs.GetBool(GetPrefsKey(nameof(addLodGroup)), addLodGroup);
+            lodCullScreenRelativeHeight = EditorPrefs.GetFloat(GetPrefsKey(nameof(lodCullScreenRelativeHeight)), lodCullScreenRelativeHeight);
+            meshOutputFolder = EditorPrefs.GetString(GetPrefsKey(nameof(meshOutputFolder)), meshOutputFolder ?? string.Empty);
+
             NormalizeScaleRange();
         }
 
@@ -774,6 +1184,12 @@ namespace vikwhite
             EditorPrefs.SetInt(GetPrefsKey(nameof(randomSeed)), randomSeed);
             EditorPrefs.SetBool(GetPrefsKey(nameof(showPreview)), showPreview);
             EditorPrefs.SetFloat(GetPrefsKey(nameof(previewMarkerRadius)), previewMarkerRadius);
+
+            EditorPrefs.SetInt(GetPrefsKey(nameof(generationMode)), (int)generationMode);
+            EditorPrefs.SetFloat(GetPrefsKey(nameof(tileSize)), tileSize);
+            EditorPrefs.SetBool(GetPrefsKey(nameof(addLodGroup)), addLodGroup);
+            EditorPrefs.SetFloat(GetPrefsKey(nameof(lodCullScreenRelativeHeight)), lodCullScreenRelativeHeight);
+            EditorPrefs.SetString(GetPrefsKey(nameof(meshOutputFolder)), meshOutputFolder ?? string.Empty);
         }
 
         private static string GetPrefsKey(string name)
