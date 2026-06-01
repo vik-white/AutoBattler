@@ -59,7 +59,13 @@ public sealed class StoneAtlasIndex : MonoBehaviour
 
     private void Apply()
     {
-        if (_renderer == null) return;
+        if (_renderer == null)
+        {
+            _renderer = GetComponent<Renderer>();
+            if (_renderer == null)
+                _renderer = GetComponentInChildren<Renderer>();
+            if (_renderer == null) return;
+        }
 
         _block ??= new MaterialPropertyBlock();
         _renderer.GetPropertyBlock(_block);
