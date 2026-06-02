@@ -7,18 +7,21 @@ namespace vikwhite
 
     public class QuestFactory : IQuestFactory
     {
+        private readonly DiContainer _container;
         private readonly IRewardFactory _rewardFactory;
 
-        public QuestFactory(IRewardFactory rewardFactory)
+        public QuestFactory(DiContainer container, IRewardFactory rewardFactory)
         {
+            _container = container;
             _rewardFactory = rewardFactory;
         }
 
         public Quest Create(IQuestData data)
         {
             if (data == null) return null;
-            var rewards = _rewardFactory.CreateFromData(data.Rewards);
-            return new Quest(data.ID, data.Type, data.Description, data.Amount, data.Global, rewards);
+            var quest = _container.Resolve<Quest>();
+            quest.Initialize(data);
+            return quest;
         }
     }
 }

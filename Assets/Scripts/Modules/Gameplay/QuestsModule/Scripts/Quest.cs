@@ -5,6 +5,8 @@ namespace vikwhite
 {
     public class Quest
     {
+        private readonly IRewardFactory _rewardFactory;
+        
         public string ID;
         public QuestType Type;
         public string Description;
@@ -14,14 +16,19 @@ namespace vikwhite
         public ReactiveProperty<bool> Claimed;
         public List<Reward> Rewards;
 
-        public Quest(string id, QuestType type, string description, int amount, bool global, List<Reward> rewards)
+        public Quest(IRewardFactory rewardFactory)
         {
-            ID = id;
-            Type = type;
-            Description = description;
-            Amount = amount;
-            Global = global;
-            Rewards = rewards;
+            _rewardFactory = rewardFactory;
+        }
+        
+        public void Initialize(IQuestData data)
+        {
+            ID = data.ID;
+            Type = data.Type;
+            Description = data.Description;
+            Amount = data.Amount;
+            Global = data.Global;
+            Rewards = _rewardFactory.CreateFromData(data.Rewards);
             Progress = new ReactiveProperty<int>(0);
             Claimed = new ReactiveProperty<bool>(false);
         }

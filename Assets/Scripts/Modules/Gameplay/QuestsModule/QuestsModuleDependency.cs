@@ -5,6 +5,7 @@ namespace vikwhite
         protected override void Register()
         {
             Register<IQuestFactory, QuestFactory>();
+            Register<Quest>();
 
             Register<IQuestItemViewFactory, QuestItemViewFactory>();
             Register<QuestItemViewModel>();
