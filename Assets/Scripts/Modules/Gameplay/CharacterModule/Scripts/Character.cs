@@ -1,3 +1,4 @@
+using System;
 using UniRx;
 using vikwhite.Data;
 using vikwhite.ECS;
@@ -80,8 +81,8 @@ namespace vikwhite
         
         private float GetAttack() => _characterData.Attack * _upgrade.GetStatMultiplier(StatType.Attack);
 
-        public int GetMaxLevel() => _configs.Stars.Get(_stars.Value - 1).Level;
+        public int GetMaxLevel() => _configs.Stars.Get(Math.Max(0, _stars.Value - 1)).Level;
 
-        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(_stars.Value - 1).GetMaxSkillLevel(slotType);
+        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(Math.Max(0, _stars.Value - 1)).GetMaxSkillLevel(slotType);
     }
 }
