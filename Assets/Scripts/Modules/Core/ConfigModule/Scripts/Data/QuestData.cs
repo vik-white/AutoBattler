@@ -65,6 +65,20 @@ namespace vikwhite
                     break;
 
                 case QuestType.CharacterLevelUpAmount:
+                {
+                    var parts = Value.Split(':');
+                    if (parts.Length >= 2)
+                    {
+                        TargetID = parts[0].Trim();
+                        int.TryParse(parts[1].Trim(), out Amount);
+                    }
+                    else
+                    {
+                        int.TryParse(Value.Trim(), out Amount);
+                    }
+                    break;
+                }
+
                 case QuestType.CharacterReachLevel:
                 {
                     var parts = Value.Split(':');

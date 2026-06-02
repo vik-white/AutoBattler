@@ -9,15 +9,16 @@ namespace vikwhite
             {
                 var quest = quests[i];
                 if (quest == null || quest.Claimed.Value) continue;
-                if (quest.TargetID != evnt.ID) continue;
 
                 switch (quest.Type)
                 {
                     case QuestType.CharacterLevelUpAmount:
+                        if (!string.IsNullOrEmpty(quest.TargetID) && quest.TargetID != evnt.ID) continue;
                         if (quest.Progress.Value < quest.Amount) quest.Progress.Value += 1;
                         break;
 
                     case QuestType.CharacterReachLevel:
+                        if (quest.TargetID != evnt.ID) continue;
                         if (evnt.Level > quest.Progress.Value) quest.Progress.Value = evnt.Level;
                         break;
                 }
