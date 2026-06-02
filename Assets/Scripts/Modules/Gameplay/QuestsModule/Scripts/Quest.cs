@@ -11,6 +11,7 @@ namespace vikwhite
         public QuestType Type;
         public string Description;
         public int Amount;
+        public string TargetID;
         public bool Global;
         public ReactiveProperty<int> Progress;
         public ReactiveProperty<bool> Claimed;
@@ -27,7 +28,9 @@ namespace vikwhite
             Type = data.Type;
             Description = data.Description;
             Amount = data.Amount;
+            TargetID = data.TargetID;
             Global = data.Global;
+            if (Type == QuestType.CompleteLevel && Amount <= 0) Amount = 1;
             Rewards = _rewardFactory.CreateFromData(data.Rewards);
             Progress = new ReactiveProperty<int>(0);
             Claimed = new ReactiveProperty<bool>(false);

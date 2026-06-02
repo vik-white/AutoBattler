@@ -16,6 +16,8 @@ namespace vikwhite
             Register<CharacterModuleDependency>();
             Register<SectorModuleDependency>();
             Register<RewardModuleDependency>();
+            Register<QuestsModuleDependency>();
+            Register<EventsModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
@@ -30,6 +32,8 @@ namespace vikwhite
             Resolve<ISectorService>().Initialize();
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
+            Resolve<IEventsService>().Initialize();
+            Resolve<IEventsService>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             yield return loadingScreen.TrackProgress(loader);
             yield return loadingScreen.Hide();

@@ -4,8 +4,12 @@ namespace vikwhite
     {
         protected override void Register()
         {
+            Register<IQuestRegistry, QuestRegistry>();
             Register<IQuestFactory, QuestFactory>();
             Register<Quest>();
+
+            Register<IEventHandler, SetSectorLocationQuestHandler>();
+            Register<IEventHandler, ChangeCharacterLevelQuestHandler>();
 
             Register<IQuestItemViewFactory, QuestItemViewFactory>();
             Register<QuestItemViewModel>();

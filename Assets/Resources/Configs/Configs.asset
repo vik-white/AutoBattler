@@ -2793,7 +2793,6 @@ MonoBehaviour:
   quests:
     IDS:
     - CompleteLevel4
-    - CompleteLevelsGlobal5
     - CompleteLevels3
     - TankLevelUpAmount2
     - TankReachLevel2
@@ -2803,7 +2802,7 @@ MonoBehaviour:
     - ID: CompleteLevel4
       Type: 0
       Value: level_4
-      Global: 1
+      Global: 0
       Description: Complete level_4
       Rewards:
       - Type: 0
@@ -2835,42 +2834,6 @@ MonoBehaviour:
         Probability: 1
       Amount: 0
       TargetID: level_4
-      Resource: 0
-    - ID: CompleteLevelsGlobal5
-      Type: 1
-      Value: 5
-      Global: 1
-      Description: Complete 5 Levels
-      Rewards:
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
-      - Type: 0
-        ResourceType: 1
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 10
-        MaxValue: 10
-        Probability: 1
-      - Type: 6
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 2
-        MaxValue: 2
-        Probability: 1
-      Amount: 5
-      TargetID: 
       Resource: 0
     - ID: CompleteLevels3
       Type: 1
@@ -3064,7 +3027,6 @@ MonoBehaviour:
       Duration: 0
       Quests:
       - CompleteLevel4
-      - CompleteLevelsGlobal5
       - CompleteLevels3
       - TankLevelUpAmount2
       - TankReachLevel2
@@ -3076,7 +3038,6 @@ MonoBehaviour:
       Duration: 24
       Quests:
       - CompleteLevel4
-      - CompleteLevelsGlobal5
       - CompleteLevels3
       - TankLevelUpAmount2
       - TankReachLevel2

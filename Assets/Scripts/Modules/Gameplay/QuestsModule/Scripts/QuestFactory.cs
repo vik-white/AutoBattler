@@ -9,11 +9,13 @@ namespace vikwhite
     {
         private readonly DiContainer _container;
         private readonly IRewardFactory _rewardFactory;
+        private readonly IQuestRegistry _registry;
 
-        public QuestFactory(DiContainer container, IRewardFactory rewardFactory)
+        public QuestFactory(DiContainer container, IRewardFactory rewardFactory, IQuestRegistry registry)
         {
             _container = container;
             _rewardFactory = rewardFactory;
+            _registry = registry;
         }
 
         public Quest Create(IQuestData data)
@@ -21,6 +23,7 @@ namespace vikwhite
             if (data == null) return null;
             var quest = _container.Resolve<Quest>();
             quest.Initialize(data);
+            _registry.Register(quest);
             return quest;
         }
     }

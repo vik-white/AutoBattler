@@ -65,8 +65,10 @@ namespace vikwhite
 
         public void SetCurrentLocation(string id)
         {
+            if (_currentLocation == id) return;
+            var previousLocation = _currentLocation;
             _currentLocation = id;
-            _dispatcher.Dispatch(new SetSectorLocationEvent(_currentLocation));
+            _dispatcher.Dispatch(new SetSectorLocationEvent(previousLocation, _currentLocation));
             UpdatePointCharactersVisibility();
         }
 
