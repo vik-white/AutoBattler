@@ -25,6 +25,7 @@ namespace vikwhite.Data
         IConfig<ISummonData> Summons { get; }
         IConfig<IStarData> Stars { get; }
         IConfig<IQuestData> Quests { get; }
+        IConfig<IEventData> Events { get; }
         
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
         IReadOnlyDictionary<RarityType, Color> RarityColors { get; }
@@ -50,6 +51,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<SummonData, ISummonData> summons;
         [SerializeField] private Config<StarData, IStarData> stars;
         [SerializeField] private Config<QuestData, IQuestData> quests;
+        [SerializeField] private Config<EventData, IEventData> events;
         
         [TableList][SerializeField] List<ResourceIconData> resourceIcons;
         private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
@@ -69,6 +71,7 @@ namespace vikwhite.Data
         public IConfig<ISummonData> Summons => summons;
         public IConfig<IStarData> Stars => stars;
         public IConfig<IQuestData> Quests => quests;
+        public IConfig<IEventData> Events => events;
         
         public IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons
         {

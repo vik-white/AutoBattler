@@ -61,7 +61,7 @@ namespace vikwhite
                     break;
 
                 case QuestType.CompleteLevels:
-                    int.TryParse(Value.Replace(" ", "").Trim(), out Amount);
+                    int.TryParse(Value.Trim(), out Amount);
                     break;
 
                 case QuestType.CharacterLevelUpAmount:
