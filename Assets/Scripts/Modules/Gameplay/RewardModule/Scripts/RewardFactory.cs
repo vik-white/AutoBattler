@@ -8,6 +8,7 @@ namespace vikwhite
     {
         List<Reward> Create(string id);
         List<Reward> Create(string id, int count);
+        List<Reward> CreateFromData(IReadOnlyCollection<RewardData> dataList);
     }
 
     public class RewardFactory : IRewardFactory
@@ -55,6 +56,24 @@ namespace vikwhite
                 foreach (var reward in Create(id))
                     AddOrMerge(result, reward);
             }
+            return result;
+        }
+
+        public List<Reward> CreateFromData(IReadOnlyCollection<RewardData> dataList)
+        {
+            var result = new List<Reward>();
+            if (dataList == null) return result;
+
+            foreach (var rewardData in dataList)
+            {
+                var reward = CreateReward(rewardData);
+                if (reward == null) continue;
+
+                var max = Mathf.Max(rewardData.MinValue, rewardData.MaxValue);
+                reward.Value = Random.Range(rewardData.MinValue, max + 1);
+                AddOrMerge(result, reward);
+            }
+
             return result;
         }
 

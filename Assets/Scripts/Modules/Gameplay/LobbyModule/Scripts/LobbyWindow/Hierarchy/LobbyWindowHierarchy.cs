@@ -8,4 +8,5 @@ public class LobbyWindowHierarchy : MonoBehaviour
     public Button MapButton;
     public Button BankButton;
     public RectTransform ResourcesContainer;
+    public RectTransform EventsContainer;
 }

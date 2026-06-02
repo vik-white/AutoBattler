@@ -15,6 +15,8 @@ namespace vikwhite
             Register<CharacterModuleDependency>();
             Register<RewardModuleDependency>();
             Register<BankModuleDependency>();
+            Register<QuestsModuleDependency>();
+            Register<EventsModuleDependency>();
         }
 
         protected override IEnumerator Initialize()
@@ -26,6 +28,8 @@ namespace vikwhite
             Resolve<ICharactersService>().Initialize();
             Resolve<ISquadService>().Initialize();
             Resolve<ISectorService>().Initialize();
+            Resolve<IQuestsService>().Initialize();
+            Resolve<IEventsService>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();
             yield return null;
         }
