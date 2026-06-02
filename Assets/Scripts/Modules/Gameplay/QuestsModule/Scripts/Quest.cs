@@ -13,6 +13,7 @@ namespace vikwhite
         public string Description;
         public int Amount;
         public string TargetID;
+        public ResourceType Resource;
         public bool Global;
         public ReactiveProperty<int> Progress;
         public ReactiveProperty<bool> Claimed;
@@ -31,6 +32,7 @@ namespace vikwhite
             Description = data.Description;
             Amount = data.Amount;
             TargetID = data.TargetID;
+            Resource = data.Resource;
             Global = data.Global;
             if (Type == QuestType.CompleteLevel && Amount <= 0) Amount = 1;
             Rewards = rewards ?? new List<Reward>();

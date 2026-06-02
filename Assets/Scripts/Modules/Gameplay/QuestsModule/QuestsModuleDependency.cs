@@ -10,6 +10,7 @@ namespace vikwhite
 
             Register<IEventHandler, SetSectorLocationQuestHandler>();
             Register<IEventHandler, ChangeCharacterLevelQuestHandler>();
+            Register<IEventHandler, ChangeResourceQuestHandler>();
 
             Register<IQuestItemViewFactory, QuestItemViewFactory>();
             Register<QuestItemViewModel>();

@@ -37,14 +37,14 @@ namespace vikwhite
         public void Add(ResourceType type, int amount) {
             if(amount <=0 ) return;
             _resources[type].Amount.Value += amount;
-            _dispatcher.Dispatch(new ChangeResourceEvent(type, _resources[type].Amount.Value));
+            _dispatcher.Dispatch(new ChangeResourceEvent(type, _resources[type].Amount.Value, amount));
         }
 
         public void Spend(ResourceType type, int amount) {
             if(amount <=0 ) return;
             if (_resources[type].Amount.Value - amount >= 0) {
                 _resources[type].Amount.Value -= amount;
-                _dispatcher.Dispatch(new ChangeResourceEvent(type, _resources[type].Amount.Value));
+                _dispatcher.Dispatch(new ChangeResourceEvent(type, _resources[type].Amount.Value, -amount));
             }
         }
     }
