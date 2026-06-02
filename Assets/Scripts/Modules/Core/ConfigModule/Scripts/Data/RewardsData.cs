@@ -37,7 +37,7 @@ namespace vikwhite
             }
         }
         
-        public bool TryParseReward(string rewardString, out RewardData data)
+        public static bool TryParseReward(string rewardString, out RewardData data)
         {
             data = default;
             if(rewardString == "" || rewardString == null) return false;
