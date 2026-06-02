@@ -4,6 +4,7 @@ namespace vikwhite
     {
         protected override void Register()
         {
+            Register<IGameEventFactory, GameEventFactory>();
             Register<IEventsService, EventsService>();
 
             Register<IEventItemViewFactory, EventItemViewFactory>();

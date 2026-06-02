@@ -89,6 +89,7 @@ namespace vikwhite
         protected void Register(IDisposable disposable)
         {
             _bindDisposables.Add(disposable);
+            disposable.AddTo(GameObject);
         }
         
         protected void BindClick(Button button, UnityAction onClick)
@@ -99,7 +100,9 @@ namespace vikwhite
 
         protected void Bind<T>(IReadOnlyReactiveProperty<T> field, Action<T> onChange)
         {
-            _bindDisposables.Add(field.Subscribe(onChange));
+            var disposable = field.Subscribe(onChange);
+            _bindDisposables.Add(disposable);
+            disposable.AddTo(GameObject);
         }
         
         protected virtual void ReleaseViewModel()

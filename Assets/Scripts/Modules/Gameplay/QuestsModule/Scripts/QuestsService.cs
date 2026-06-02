@@ -13,13 +13,13 @@ namespace vikwhite
     public class QuestsService : IQuestsService
     {
         private readonly IConfigs _configs;
-        private readonly IRewardFactory _rewardFactory;
+        private readonly IQuestFactory _questFactory;
         private readonly Dictionary<string, Quest> _quests = new();
 
-        public QuestsService(IConfigs configs, IRewardFactory rewardFactory)
+        public QuestsService(IConfigs configs, IQuestFactory questFactory)
         {
             _configs = configs;
-            _rewardFactory = rewardFactory;
+            _questFactory = questFactory;
         }
 
         public void Initialize()
@@ -30,7 +30,10 @@ namespace vikwhite
             {
                 if (data == null || string.IsNullOrEmpty(data.ID)) continue;
                 if (_quests.ContainsKey(data.ID)) continue;
-                _quests.Add(data.ID, CreateQuest(data));
+
+                var quest = _questFactory.Create(data);
+                if (quest == null) continue;
+                _quests.Add(quest.ID, quest);
             }
         }
 
@@ -41,11 +44,5 @@ namespace vikwhite
         }
 
         public IReadOnlyCollection<Quest> GetAll() => _quests.Values;
-
-        private Quest CreateQuest(IQuestData data)
-        {
-            var rewards = _rewardFactory.CreateFromData(data.Rewards);
-            return new Quest(data.ID, data.Type, data.Description, data.Amount, data.Global, rewards);
-        }
     }
 }
