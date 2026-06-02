@@ -32,6 +32,7 @@ namespace vikwhite
                 },
                 ClassShards = new (),
                 ClassBooks = new (),
+                Quests = new (),
                 Squad = new [] {"","","","",""},
                 RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID
             };
@@ -79,6 +80,7 @@ namespace vikwhite
             Data.Characters ??= new List<CharacterData>();
             Data.ClassShards ??= new List<ClassShardData>();
             Data.ClassBooks ??= new List<ClassBookData>();
+            Data.Quests ??= new List<QuestProfileData>();
 
             foreach (ResourceType type in Enum.GetValues(typeof(ResourceType)))
             {

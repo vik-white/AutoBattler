@@ -5,9 +5,10 @@ namespace vikwhite
 {
     public class Quest
     {
-        private readonly IRewardFactory _rewardFactory;
-        
+        private readonly IEventDispatcher _dispatcher;
+
         public string ID;
+        public string EventID;
         public QuestType Type;
         public string Description;
         public int Amount;
@@ -17,13 +18,14 @@ namespace vikwhite
         public ReactiveProperty<bool> Claimed;
         public List<Reward> Rewards;
 
-        public Quest(IRewardFactory rewardFactory)
+        public Quest(IEventDispatcher dispatcher)
         {
-            _rewardFactory = rewardFactory;
+            _dispatcher = dispatcher;
         }
-        
-        public void Initialize(IQuestData data)
+
+        public void Initialize(string eventId, IQuestData data, List<Reward> rewards, int progress, bool claimed)
         {
+            EventID = eventId;
             ID = data.ID;
             Type = data.Type;
             Description = data.Description;
@@ -31,9 +33,11 @@ namespace vikwhite
             TargetID = data.TargetID;
             Global = data.Global;
             if (Type == QuestType.CompleteLevel && Amount <= 0) Amount = 1;
-            Rewards = _rewardFactory.CreateFromData(data.Rewards);
-            Progress = new ReactiveProperty<int>(0);
-            Claimed = new ReactiveProperty<bool>(false);
+            Rewards = rewards ?? new List<Reward>();
+            Progress = new ReactiveProperty<int>(progress);
+            Claimed = new ReactiveProperty<bool>(claimed);
+            Progress.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeQuestProgressEvent(EventID, ID, value)));
+            Claimed.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeQuestClaimedEvent(EventID, ID, value)));
         }
 
         public bool IsCompleted => Progress.Value >= Amount;

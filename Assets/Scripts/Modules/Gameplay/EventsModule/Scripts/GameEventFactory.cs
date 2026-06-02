@@ -40,7 +40,7 @@ namespace vikwhite
                 var questData = _configs.Quests.Get(id);
                 if (questData == null) continue;
 
-                var quest = _questFactory.Create(questData);
+                var quest = _questFactory.Create(data.ID, questData);
                 if (quest != null) quests.Add(quest);
             }
 
