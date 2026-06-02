@@ -12,19 +12,22 @@ namespace vikwhite
         private readonly IQuestRegistry _registry;
         private readonly IProfileService _profile;
         private readonly IEventDispatcher _dispatcher;
+        private readonly ISectorService _sector;
 
         public QuestFactory(
             DiContainer container,
             IRewardFactory rewardFactory,
             IQuestRegistry registry,
             IProfileService profile,
-            IEventDispatcher dispatcher)
+            IEventDispatcher dispatcher,
+            ISectorService sector)
         {
             _container = container;
             _rewardFactory = rewardFactory;
             _registry = registry;
             _profile = profile;
             _dispatcher = dispatcher;
+            _sector = sector;
         }
 
         public Quest Create(string eventId, IQuestData data)
@@ -48,7 +51,20 @@ namespace vikwhite
             var quest = _container.Resolve<Quest>();
             quest.Initialize(eventId, data, rewards, progress, claimed);
             _registry.Register(quest);
+
+            ApplyAlreadyPassedState(quest);
             return quest;
+        }
+
+        private void ApplyAlreadyPassedState(Quest quest)
+        {
+            if (quest.Claimed.Value) return;
+            if (quest.Progress.Value >= quest.Amount) return;
+
+            if (quest.Type == QuestType.CompleteLevel && _sector.IsLocationPassed(quest.TargetID))
+            {
+                quest.Progress.Value = quest.Amount;
+            }
         }
 
         private QuestProfileData FindProfileData(string eventId, string questId)

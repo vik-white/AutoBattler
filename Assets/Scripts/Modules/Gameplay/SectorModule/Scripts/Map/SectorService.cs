@@ -15,6 +15,7 @@ namespace vikwhite
         void InitializePoints();
         void SetCurrentLocation(string id);
         void CompleteCurrentLocation();
+        bool IsLocationPassed(string locationID);
         SectorPoint GetCurrentLocationPoint();
         BezierPath GetCurrentLocationPath();
     }
@@ -77,6 +78,17 @@ namespace vikwhite
             var nextLocationID = GetNextLocationID(_currentLocation);
             if (string.IsNullOrEmpty(nextLocationID)) return;
             SetCurrentLocation(nextLocationID);
+        }
+
+        public bool IsLocationPassed(string locationID)
+        {
+            if (string.IsNullOrEmpty(locationID)) return false;
+            if (locationID == _currentLocation) return false;
+
+            var targetIndex = _locationIDs.IndexOf(locationID);
+            var currentIndex = _locationIDs.IndexOf(_currentLocation);
+            if (targetIndex < 0 || currentIndex < 0) return false;
+            return targetIndex < currentIndex;
         }
 
         public SectorPoint GetCurrentLocationPoint()
