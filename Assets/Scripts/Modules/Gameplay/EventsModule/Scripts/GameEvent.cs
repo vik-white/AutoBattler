@@ -8,15 +8,15 @@ namespace vikwhite
         public string Name;
         public GameEventType Type;
         public int Duration;
-        public List<string> QuestIds;
+        public List<Quest> Quests;
 
-        public GameEvent(string id, string name, GameEventType type, int duration, List<string> questIds)
+        public GameEvent(string id, string name, GameEventType type, int duration, List<Quest> quests)
         {
             ID = id;
             Name = name;
             Type = type;
             Duration = duration;
-            QuestIds = questIds ?? new List<string>();
+            Quests = quests ?? new List<Quest>();
         }
     }
 }
