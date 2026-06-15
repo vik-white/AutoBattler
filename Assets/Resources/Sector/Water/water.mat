@@ -185,7 +185,7 @@ Material:
     - _SrcBlend: 2
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Texture_scale: 40
+    - _Texture_scale: 33.2
     - _WaveSpeed: 0.01
     - _Wave_ampllitude: 0.1
     - _Waveampllitude: 2

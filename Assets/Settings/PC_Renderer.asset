@@ -71,7 +71,7 @@ MonoBehaviour:
   renderPassEvent: 300
   outlinesLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
   renderLayerMask: 2
   outlineSettings:
     outlineColor: {r: 0, g: 0.024572175, b: 0.1509434, a: 0.6156863}
