@@ -10,7 +10,6 @@ namespace vikwhite
             Register<SummonWindowViewModel>();
             Register<SummonWindowView>();
 
-            Register<ISummonItemViewFactory, SummonItemViewFactory>();
             Register<SummonItemViewModel>();
             Register<SummonItemView>();
         }

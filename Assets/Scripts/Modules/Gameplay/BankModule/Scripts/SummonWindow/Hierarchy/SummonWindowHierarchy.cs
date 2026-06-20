@@ -5,7 +5,8 @@ namespace vikwhite
 {
     public class SummonWindowHierarchy : MonoBehaviour
     {
-        public RectTransform SummonItemContainer;
+        public SummonItemHierarchy Summon1;
+        public SummonItemHierarchy Summon2;
         public Button CloseButton;
     }
 }

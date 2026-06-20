@@ -11,11 +11,10 @@ namespace vikwhite
         public string Title;
         public int PriceX1;
         public int PriceX10;
-        public ResourceViewModel Resource;
         public UnityAction OnBuyX1;
         public UnityAction OnBuyX10;
 
-        public SummonItemViewModel(SummonItem model, IBankService bank, IResourceService resources, IRewardFactory rewardFactory, IRewardsWindow rewardsWindow) : base(model)
+        public SummonItemViewModel(SummonItem model, IBankService bank, IRewardFactory rewardFactory, IRewardsWindow rewardsWindow) : base(model)
         {
             _bank = bank;
             _rewardFactory = rewardFactory;
@@ -23,7 +22,6 @@ namespace vikwhite
             Title = model.Name;
             PriceX1 = model.Price;
             PriceX10 = model.Price * 10;
-            Resource = CreateViewModel<ResourceViewModel, Resource>(resources.Get(model.Currency));
             OnBuyX1 = () => Buy(1);
             OnBuyX10 = () => Buy(10);
         }
