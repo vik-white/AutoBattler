@@ -4,24 +4,17 @@ namespace vikwhite
 {
     public class LobbyWindowView : WindowView<LobbyWindowHierarchy, LobbyWindowViewModel>
     {
-        private readonly IResourceViewFactory _resourceViewFactory;
         private readonly IEventItemViewFactory _eventItemViewFactory;
         
-        public LobbyWindowView(GameObject view, IResourceViewFactory resourceViewFactory, IEventItemViewFactory eventItemViewFactory) : base(view)
+        public LobbyWindowView(GameObject view, IEventItemViewFactory eventItemViewFactory) : base(view)
         {
-            _resourceViewFactory = resourceViewFactory;
             _eventItemViewFactory = eventItemViewFactory;
         }
         
         protected override void UpdateViewModel(LobbyWindowViewModel viewModel)
         {
-            BindClick(_view.CheatsButton, viewModel.OnCheats);
-            BindClick(_view.MapButton, viewModel.OnMap);
-            BindClick(_view.BankButton, viewModel.OnBank);
-            _view.ResourcesContainer.ClearChildren();
-            foreach (var resource in viewModel.Resources)
-                _resourceViewFactory.Get(resource, _view.ResourcesContainer);
-
+            BindClick(_view.AdventureButton, viewModel.OnAdventure);
+            BindClick(_view.SummonButton, viewModel.OnSummon);
             if (_view.EventsContainer != null)
             {
                 _view.EventsContainer.ClearChildren();

@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class LobbyWindowHierarchy : MonoBehaviour
 {
-    public Button CheatsButton;
-    public Button MapButton;
-    public Button BankButton;
-    public RectTransform ResourcesContainer;
+    public Button AdventureButton;
+    public Button SummonButton;
     public RectTransform EventsContainer;
 }
