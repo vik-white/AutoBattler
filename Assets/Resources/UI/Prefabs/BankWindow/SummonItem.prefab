@@ -54,9 +54,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Bank::vikwhite.SummonItemHierarchy
   Title: {fileID: 3321571955918716042}
+  Count: {fileID: 8710434735983042855}
+  BuyX1Text: {fileID: 7114799772988529786}
+  BuyX10Text: {fileID: 354728658932973807}
   PriceX1: {fileID: 5704571765833713044}
   PriceX10: {fileID: 2988792198791092481}
-  ResourceContainer: {fileID: 0}
+  BuyX1Icon: {fileID: 3262543864561251614}
+  BuyX10Icon: {fileID: 5410517759888370059}
   BuyX1Button: {fileID: 5895537306782848566}
   BuyX10Button: {fileID: 3999689697587743395}
 --- !u!1 &5106366032802802210
@@ -549,6 +553,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+--- !u!114 &354728658932973807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 473081665314046824, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+  m_PrefabInstance: {fileID: 179166044019131271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &1084309394437178568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 968479766453585743, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
@@ -576,6 +591,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &5410517759888370059 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5290185494850972172, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+  m_PrefabInstance: {fileID: 179166044019131271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &7218252013028089618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,7 +724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5353621389046406172, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 30.65
       objectReference: {fileID: 0}
     - target: {fileID: 5353621389046406172, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -713,6 +739,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+--- !u!114 &3262543864561251614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5290185494850972172, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+  m_PrefabInstance: {fileID: 7218252013028089618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &5704571765833713044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3100398740103780998, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
@@ -735,6 +772,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &7114799772988529786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 473081665314046824, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
+  m_PrefabInstance: {fileID: 7218252013028089618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &7592183595852568669 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 968479766453585743, guid: 52ac3090c7f193e4aa84e9bb838c14e4, type: 3}
