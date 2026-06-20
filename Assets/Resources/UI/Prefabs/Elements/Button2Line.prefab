@@ -391,6 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3545715573074675156}
   - component: {fileID: 3389892008470960917}
+  - component: {fileID: 7453216985601188001}
   m_Layer: 5
   m_Name: Line
   m_TagString: Untagged
@@ -445,6 +446,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7453216985601188001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4461727290270592596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6d0c3dd2d246b2a4f28bb332b8164e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Window::vikwhite.UILayoutAutoRebuilder
+  _target: {fileID: 0}
+  _rebuildFrames: 2
+  _rebuildParent: 1
 --- !u!1 &6723550168561722739
 GameObject:
   m_ObjectHideFlags: 0
