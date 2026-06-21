@@ -2418,12 +2418,12 @@ MonoBehaviour:
     - Summon2
     Data:
     - ID: Summon1
-      Name: Summon1
+      Name: Advanced Recruitment
       Resource: 3
       Price: 1
       Reward: SummonRewardCommon
     - ID: Summon2
-      Name: Summon2
+      Name: Epic Recruitment
       Resource: 4
       Price: 1
       Reward: SummonRewardEpic
