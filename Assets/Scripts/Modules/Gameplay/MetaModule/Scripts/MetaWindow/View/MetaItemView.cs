@@ -9,6 +9,7 @@ namespace vikwhite
 
         protected override void UpdateViewModel(MetaItemViewModel viewModel)
         {
+            BindClick(_view.Button, viewModel.OnSelect);
             Bind(viewModel.Level, level => _view.Level.text = $"Lv. {level}");
             CreateView<MetaStarsView, MetaStarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
 
