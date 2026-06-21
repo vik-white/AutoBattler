@@ -25,7 +25,7 @@ namespace vikwhite.Data
         string StarUpgrade { get; }
         string SkillUpgrade { get; }
         Sprite Image { get; }
-        Sprite PortraitImage { get; }
+        Sprite ShardImage { get; }
         IReadOnlyDictionary<SkillSlotType, uint> Skills { get; }
         uint GetSkill(SkillSlotType slotType);
         float GetStat(StatType stat);
@@ -52,7 +52,7 @@ namespace vikwhite.Data
         public string StarUpgrade;
         public string SkillUpgrade;
         public Sprite Image;
-        public Sprite PortraitImage;
+        public Sprite ShardImage;
 
         public uint SkillAttack;
         public uint SkillActive;
@@ -84,7 +84,7 @@ namespace vikwhite.Data
         string ICharacterData.StarUpgrade => StarUpgrade;
         string ICharacterData.SkillUpgrade => SkillUpgrade;
         Sprite ICharacterData.Image => Image;
-        Sprite ICharacterData.PortraitImage => PortraitImage;
+        Sprite ICharacterData.ShardImage => ShardImage;
         IReadOnlyDictionary<SkillSlotType, uint> ICharacterData.Skills => Skills;
 
         public uint GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : 0;
@@ -113,7 +113,7 @@ namespace vikwhite.Data
         public void Parse(Dictionary<string, string> row)
         {
             if (row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
-            if (row["Image"] != "") PortraitImage = Resources.Load<Sprite>($"Characters/PortraitImages/{row["Image"]}");
+            if (row["Image"] != "") ShardImage = Resources.Load<Sprite>($"Characters/Shards/{row["Image"]}");
             _skills = null;
         }
     }

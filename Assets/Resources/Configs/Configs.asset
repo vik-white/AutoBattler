@@ -32,7 +32,6 @@ MonoBehaviour:
   characters:
     IDS:
     - Dummy
-    - Test
     - Brawler
     - Tank
     - Healer
@@ -64,36 +63,10 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 0
       SkillActive: 0
       SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
-    - ID: Test
-      Name: Test
-      Prefab: IronfistDwarf
-      Rarity: 0
-      Class: 0
-      Scale: 1.4
-      Health: 14000
-      Shield: 0
-      Attack: 20
-      Defense: 1
-      CritChance: 0.1
-      CritValue: 1.5
-      Squad: 1
-      HealthBar: 1
-      LevelUpgrade: BaseLevelUp
-      StarUpgrade: StarLevelUp
-      SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
-      PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
-      SkillAttack: 2213220330
-      SkillActive: 1605752999
-      SkillPassive1: 1849116823
       SkillPassive2: 0
       SkillMeta1: 0
       SkillMeta2: 0
@@ -115,8 +88,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
-      PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
+      Image: {fileID: 21300000, guid: 57cde3afcff1bad43b42ee0e5bce57f1, type: 3}
+      ShardImage: {fileID: 21300000, guid: 185ee0d488b068044a64f0d4c8895a6a, type: 3}
       SkillAttack: 3795814207
       SkillActive: 2496368978
       SkillPassive1: 0
@@ -127,7 +100,7 @@ MonoBehaviour:
     - ID: Tank
       Name: Dwarf
       Prefab: IronfistDwarfRed
-      Rarity: 1
+      Rarity: 2
       Class: 0
       Scale: 1.4
       Health: 1400
@@ -141,8 +114,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: 3fa468ad5203f25469f862ceaf6b614e, type: 3}
-      PortraitImage: {fileID: 21300000, guid: f2636e2b179f98a438bfd913e83049b3, type: 3}
+      Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
+      ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
       SkillAttack: 2213220330
       SkillActive: 1605752999
       SkillPassive1: 0
@@ -153,7 +126,7 @@ MonoBehaviour:
     - ID: Healer
       Name: Celen
       Prefab: Healer
-      Rarity: 2
+      Rarity: 3
       Class: 1
       Scale: 1.4
       Health: 700
@@ -167,8 +140,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: 60d2a0b66c297be4cb32e9beb6522048, type: 3}
-      PortraitImage: {fileID: 21300000, guid: 9247176c9bdd07e4384671dfff158f20, type: 3}
+      Image: {fileID: 21300000, guid: 3d5036cfaebf07a4f8d31f3285705eda, type: 3}
+      ShardImage: {fileID: 21300000, guid: 9d539f52d55cff940aeb50ae5a6a22e4, type: 3}
       SkillAttack: 1578047653
       SkillActive: 370847456
       SkillPassive1: 0
@@ -179,7 +152,7 @@ MonoBehaviour:
     - ID: Mage
       Name: Karter
       Prefab: IronfistDwarfBlue
-      Rarity: 3
+      Rarity: 4
       Class: 3
       Scale: 1.2
       Health: 650
@@ -193,8 +166,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: dfc02d0fdff074244948035f21e8fab9, type: 3}
-      PortraitImage: {fileID: 21300000, guid: 12b0d76732c58304e84033f5587285a4, type: 3}
+      Image: {fileID: 21300000, guid: 8f46b0f4e118fc340ba7bedfe5fae125, type: 3}
+      ShardImage: {fileID: 21300000, guid: b0e68e79ccc7ac649801ca63fc16e113, type: 3}
       SkillAttack: 616699424
       SkillActive: 2475848034
       SkillPassive1: 0
@@ -219,8 +192,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: 18612d756703dbe4c91dd529fe8a2a76, type: 3}
-      PortraitImage: {fileID: 21300000, guid: 79e7b9e8b25fe7f4caece791660ac9bf, type: 3}
+      Image: {fileID: 21300000, guid: 5de92cab170c73d4ea69ee0b1f107565, type: 3}
+      ShardImage: {fileID: 21300000, guid: 9c221be692bb5be44a2aa4edcc14706b, type: 3}
       SkillAttack: 3548031329
       SkillActive: 703911167
       SkillPassive1: 0
@@ -245,8 +218,8 @@ MonoBehaviour:
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: dcc516e5b8537eb4495d30e9ac025c94, type: 3}
-      PortraitImage: {fileID: 21300000, guid: 40315a1438a85474491eb73189a968fc, type: 3}
+      Image: {fileID: 21300000, guid: 4d750203891ff6b459ad4f1d601f578c, type: 3}
+      ShardImage: {fileID: 21300000, guid: c49faee5efb3b2948b5e76c5c18fe2fa, type: 3}
       SkillAttack: 1578047653
       SkillActive: 1516922681
       SkillPassive1: 0
@@ -272,7 +245,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
@@ -298,7 +271,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 3548031329
       SkillActive: 0
       SkillPassive1: 0
@@ -324,7 +297,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 2201965509
       SkillActive: 0
       SkillPassive1: 0
@@ -350,7 +323,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 4243707639
       SkillActive: 0
       SkillPassive1: 0
@@ -376,7 +349,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 4070441441
       SkillActive: 0
       SkillPassive1: 1107468141
@@ -402,7 +375,7 @@ MonoBehaviour:
       StarUpgrade: StarLevelUp
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
-      PortraitImage: {fileID: 0}
+      ShardImage: {fileID: 0}
       SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
@@ -2304,15 +2277,6 @@ MonoBehaviour:
     - ID: LevelReward
       Rewards:
       - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 35
-        MaxValue: 45
-        Probability: 1
-      - Type: 0
         ResourceType: 3
         ShardGroupType: 0
         Class: 0
@@ -2342,15 +2306,6 @@ MonoBehaviour:
       RewardBasket: []
     - ID: BossLevelReward
       Rewards:
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 80
-        Probability: 1
       - Type: 0
         ResourceType: 4
         ShardGroupType: 0
@@ -2392,15 +2347,6 @@ MonoBehaviour:
         MaxValue: 5
         Probability: 3
       - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 35
-        MaxValue: 45
-        Probability: 2
-      - Type: 0
         ResourceType: 2
         ShardGroupType: 0
         Class: 0
@@ -2421,15 +2367,6 @@ MonoBehaviour:
         MinValue: 8
         MaxValue: 10
         Probability: 4
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 80
-        MaxValue: 100
-        Probability: 2
       - Type: 0
         ResourceType: 2
         ShardGroupType: 0
@@ -2806,15 +2743,6 @@ MonoBehaviour:
       Description: Complete level_4
       Rewards:
       - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
-      - Type: 0
         ResourceType: 1
         ShardGroupType: 0
         Class: 0
@@ -2841,15 +2769,6 @@ MonoBehaviour:
       Global: 0
       Description: Complete 3 Levels
       Rewards:
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
       - Type: 0
         ResourceType: 1
         ShardGroupType: 0
@@ -2878,15 +2797,6 @@ MonoBehaviour:
       Description: LevelUp Tank 2
       Rewards:
       - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
-      - Type: 0
         ResourceType: 1
         ShardGroupType: 0
         Class: 0
@@ -2913,15 +2823,6 @@ MonoBehaviour:
       Global: 0
       Description: Reach Tank 2 Level
       Rewards:
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
       - Type: 0
         ResourceType: 1
         ShardGroupType: 0
@@ -2950,15 +2851,6 @@ MonoBehaviour:
       Description: Collect 100 Gold
       Rewards:
       - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
-      - Type: 0
         ResourceType: 1
         ShardGroupType: 0
         Class: 0
@@ -2985,15 +2877,6 @@ MonoBehaviour:
       Global: 0
       Description: Spend 100 Gold
       Rewards:
-      - Type: 0
-        ResourceType: 0
-        ShardGroupType: 0
-        Class: 0
-        Rarity: 0
-        ID: 
-        MinValue: 60
-        MaxValue: 60
-        Probability: 1
       - Type: 0
         ResourceType: 1
         ShardGroupType: 0

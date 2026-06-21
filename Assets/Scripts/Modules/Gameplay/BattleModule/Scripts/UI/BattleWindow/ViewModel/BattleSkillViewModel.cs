@@ -28,7 +28,7 @@ namespace vikwhite
             _skillID = args.Config.GetSkill(SkillSlotType.Active);
 
             var characterData = FindCharacterData(configs, args.Config.ID);
-            Icon = characterData?.PortraitImage;
+            //Icon = characterData?.PortraitImage;
             Title = characterData?.Name ?? string.Empty;
             Activate = OnActivateSkill;
 
