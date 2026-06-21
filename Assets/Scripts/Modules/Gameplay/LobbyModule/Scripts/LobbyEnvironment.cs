@@ -15,6 +15,7 @@ namespace vikwhite
             Register<CharacterModuleDependency>();
             Register<RewardModuleDependency>();
             Register<BankModuleDependency>();
+            Register<MetaModuleDependency>();
             Register<QuestsModuleDependency>();
             Register<EventsModuleDependency>();
         }

@@ -15,6 +15,7 @@ namespace vikwhite
         {
             BindClick(_view.AdventureButton, viewModel.OnAdventure);
             BindClick(_view.SummonButton, viewModel.OnSummon);
+            BindClick(_view.MetaButton, viewModel.OnMeta);
             if (_view.EventsContainer != null)
             {
                 _view.EventsContainer.ClearChildren();

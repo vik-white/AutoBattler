@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7396412129834199411}
+  - component: {fileID: 6671843406195068196}
   m_Layer: 5
   m_Name: MetaWindow
   m_TagString: Untagged
@@ -119,6 +120,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6671843406195068196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868406621255605603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfeb0e2e54c64fb38e37f8378242c32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaWindowHierarchy
+  ItemContainer: {fileID: 9052066208859663457}
 --- !u!1 &3071549762392050532
 GameObject:
   m_ObjectHideFlags: 0

@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Lobby::LobbyWindowHierarchy
   AdventureButton: {fileID: 3566977789111629028}
   SummonButton: {fileID: 3365835307198377132}
+  MetaButton: {fileID: 2462581874368306413}
   EventsContainer: {fileID: 5500002}
 --- !u!1 &988690264242794537
 GameObject:

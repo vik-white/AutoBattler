@@ -10,11 +10,13 @@ namespace vikwhite
         public List<EventItemViewModel> Events = new ();
         public UnityAction OnAdventure;
         public UnityAction OnSummon;
+        public UnityAction OnMeta;
         
-        public LobbyWindowViewModel(ISummonWindow summonWindow, IEnvironmentStateMachine environmentStateMachine, IEventsService eventsService)
+        public LobbyWindowViewModel(ISummonWindow summonWindow, IMetaWindow metaWindow, IEnvironmentStateMachine environmentStateMachine, IEventsService eventsService)
         {
             _environmentStateMachine = environmentStateMachine;
             OnSummon = summonWindow.ShowWindow;
+            OnMeta = metaWindow.ShowWindow;
             OnAdventure = OpenAdventure;
 
             foreach (var gameEvent in eventsService.GetAll())
@@ -31,6 +33,7 @@ namespace vikwhite
             base.Dispose();
             OnAdventure = null;
             OnSummon = null;
+            OnMeta = null;
         }
     }
 }
