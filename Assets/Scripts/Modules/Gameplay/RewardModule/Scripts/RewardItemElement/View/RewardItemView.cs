@@ -11,6 +11,8 @@ namespace vikwhite
             _view.Icon.sprite = viewModel.Icon;
             _view.Value.text = viewModel.Value.ToString();
             _view.BG.sprite = viewModel.RarityBG;
+            _view.Shard.sprite = viewModel.Shard;
+            _view.Shard.gameObject.SetActive(viewModel.Shard != null);
         }
     }
 }
