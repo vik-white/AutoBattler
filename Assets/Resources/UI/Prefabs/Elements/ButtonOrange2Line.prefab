@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 8965178939605220035}
   - component: {fileID: 3890342652974156068}
   m_Layer: 5
-  m_Name: Button2Line
+  m_Name: ButtonOrange2Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

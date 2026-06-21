@@ -8,9 +8,8 @@ namespace vikwhite
     {
         public TMP_Text Description;
         public TMP_Text Progress;
-        public Slider ProgressBar;
         public RectTransform RewardsContainer;
         public Button ClaimButton;
-        public GameObject ClaimedLabel;
+        public Button GoButton;
     }
 }

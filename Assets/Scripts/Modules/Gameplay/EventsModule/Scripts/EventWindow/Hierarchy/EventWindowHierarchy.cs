@@ -9,6 +9,5 @@ namespace vikwhite
         public TMP_Text Title;
         public Button CloseButton;
         public RectTransform QuestsContainer;
-        public GameObject EmptyState;
     }
 }

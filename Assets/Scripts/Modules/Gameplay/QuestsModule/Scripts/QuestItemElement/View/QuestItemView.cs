@@ -14,38 +14,31 @@ namespace vikwhite
         protected override void UpdateViewModel(QuestItemViewModel viewModel)
         {
             _view.Description.text = viewModel.Description;
-
+            Bind(viewModel.Claimed, RefreshClaimed);
+            Bind(viewModel.Claimable, RefreshClaim);
             Bind(viewModel.Progress, progress => RefreshProgress(viewModel, progress));
-            Bind(viewModel.Claimable, claimable => RefreshClaim(viewModel, claimable));
-            Bind(viewModel.Claimed, claimed => RefreshClaimedLabel(claimed));
-
             BindClick(_view.ClaimButton, viewModel.OnClaim);
-
             _view.RewardsContainer.ClearChildren();
             foreach (var reward in viewModel.Rewards)
                 _rewardItemFactory.Get(reward, _view.RewardsContainer);
         }
-
+        
         private void RefreshProgress(QuestItemViewModel viewModel, int progress)
         {
-            _view.Progress.text = $"{progress}/{viewModel.Amount}";
-            if (_view.ProgressBar != null)
-            {
-                _view.ProgressBar.maxValue = Mathf.Max(viewModel.Amount, 1);
-                _view.ProgressBar.value = progress;
-            }
+            _view.Progress.text = $"({progress}/{viewModel.Amount})";
         }
 
-        private void RefreshClaim(QuestItemViewModel viewModel, bool claimable)
+        private void RefreshClaim(bool claimable)
         {
-            _view.ClaimButton.gameObject.SetActive(viewModel.Claimed.Value == false);
-            _view.ClaimButton.interactable = claimable;
+            _view.ClaimButton.gameObject.SetActive(claimable);
+            _view.GoButton.gameObject.SetActive(!claimable);
         }
-
-        private void RefreshClaimedLabel(bool claimed)
+        
+        private void RefreshClaimed(bool claimed)
         {
-            if (_view.ClaimedLabel != null) _view.ClaimedLabel.SetActive(claimed);
-            if (claimed) _view.ClaimButton.gameObject.SetActive(false);
+            if(!claimed) return;
+            _view.ClaimButton.gameObject.SetActive(false);
+            _view.GoButton.gameObject.SetActive(false);
         }
     }
 }

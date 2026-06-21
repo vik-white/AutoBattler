@@ -24,9 +24,6 @@ namespace vikwhite
                 foreach (var quest in viewModel.Quests)
                     _questItemFactory.Get(quest, _view.QuestsContainer);
             }
-
-            if (_view.EmptyState != null)
-                _view.EmptyState.SetActive(viewModel.Type == GameEventType.Quest && viewModel.Quests.Count == 0);
         }
     }
 }
