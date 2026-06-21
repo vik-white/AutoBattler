@@ -13,6 +13,7 @@ namespace vikwhite
 
         protected override void UpdateViewModel(MetaWindowViewModel viewModel)
         {
+            BindClick(_view.CloseButton, viewModel.Close);
             _view.ItemContainer.ClearChildren();
             foreach (var character in viewModel.Characters)
                 _itemViewFactory.Get(character, _view.ItemContainer);

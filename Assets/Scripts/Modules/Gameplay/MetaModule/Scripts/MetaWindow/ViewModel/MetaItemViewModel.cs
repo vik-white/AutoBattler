@@ -21,7 +21,7 @@ namespace vikwhite
             configs.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);
             ClassIcon = classIcon;
             
-            configs.RarityBG.TryGetValue(character.Config.Rarity, out var rarityBackground);
+            configs.MetaRarityBG.TryGetValue(character.Config.Rarity, out var rarityBackground);
             RarityBackground = rarityBackground;
         }
     }

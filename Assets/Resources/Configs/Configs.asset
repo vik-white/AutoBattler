@@ -3036,6 +3036,13 @@ MonoBehaviour:
     BG: {fileID: 21300000, guid: e7652e4f56503b54d9c34a1674656bdb, type: 3}
   - Type: 4
     BG: {fileID: 21300000, guid: bced4443babaa294a82ecf754829bbdd, type: 3}
+  metaRarityBG:
+  - Type: 2
+    BG: {fileID: 21300000, guid: 30134bd7801b0524eabccfb587b40bba, type: 3}
+  - Type: 3
+    BG: {fileID: 21300000, guid: 9a4827ca4fc142f418709628ad862fe4, type: 3}
+  - Type: 4
+    BG: {fileID: 21300000, guid: 09d036dc6d175c042b9a6ba4f7902200, type: 3}
   classIcons:
   - Type: 0
     Icon: {fileID: 21300000, guid: dd0b1cd6e36781546851acdf8dfc0123, type: 3}
