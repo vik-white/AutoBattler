@@ -17,6 +17,7 @@ namespace vikwhite
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
             Register<CharacterModuleDependency>();
+            Register<CheatModuleDependency>();
         }
 
         protected override IEnumerator Initialize()

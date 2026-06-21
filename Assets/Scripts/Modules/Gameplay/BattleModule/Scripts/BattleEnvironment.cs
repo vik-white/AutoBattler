@@ -18,6 +18,7 @@ namespace vikwhite
             Register<RewardModuleDependency>();
             Register<QuestsModuleDependency>();
             Register<EventsModuleDependency>();
+            Register<CheatModuleDependency>();
         }
 
         protected override IEnumerator Initialize()

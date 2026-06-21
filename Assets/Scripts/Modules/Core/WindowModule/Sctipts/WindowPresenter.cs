@@ -2,6 +2,7 @@ namespace vikwhite
 {
     public interface IWindowPresenter
     {
+        bool IsShowing { get; }
         void CloseWindow();
     }
     
@@ -13,6 +14,7 @@ namespace vikwhite
         private bool _isShowing;
         private TView _view;
         private TViewModel _viewModel;
+        public bool IsShowing => _isShowing;
         public abstract string AssetName { get; }
 
         public void ShowWindow(TViewModel viewModel)
