@@ -19,7 +19,7 @@ namespace vikwhite
             Name = model.Config.Name;
             Level = model.Level;
             OnSelect = () => characterWindow.ShowWindow(model);
-            RarityColor = configs.RarityColors[model.Config.Rarity];
+            RarityColor = Color.white;
         }
         
         public override void Dispose()

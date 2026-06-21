@@ -3,8 +3,9 @@ namespace vikwhite
     public enum RarityType
     {
         Common = 0,
-        Rare = 1,
-        Epic = 2,
-        Legendary = 3,
+        Uncommon = 1,
+        Rare = 2,
+        Epic = 3,
+        Legendary = 4,
     }
 }

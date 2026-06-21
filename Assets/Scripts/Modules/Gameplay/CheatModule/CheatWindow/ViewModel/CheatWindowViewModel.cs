@@ -21,7 +21,7 @@ namespace vikwhite
                 MapItems.Add(CreateViewModel<MapItemViewModel, IMapData>(location));
             }
             OnAddGem = () => resource.Add(ResourceType.Gem, 100);
-            OnAddGold = () => resource.Add(ResourceType.Gold, 100);
+            OnAddGold = () => resource.Add(ResourceType.Exp, 100);
             OnAddBook = () => resource.Add(ResourceType.Book, 10);
             OnAddKeyCommon = () => resource.Add(ResourceType.KeyCommon, 10);
             OnAddKeyEpic = () => resource.Add(ResourceType.KeyEpic, 10);

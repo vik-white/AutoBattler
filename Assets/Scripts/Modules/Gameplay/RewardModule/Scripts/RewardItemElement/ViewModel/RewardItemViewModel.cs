@@ -8,17 +8,14 @@ namespace vikwhite
         private readonly IConfigs _configs;
         public int Value;
         public Sprite Icon;
-        public Color RarityColor;
-        public string ClassName;
+        public Sprite RarityBG;
 
         public RewardItemViewModel(Reward model, IConfigs configs) : base(model)
         {
             _configs = configs;
             Value = model.Value;
             Icon = GetIcon(model);
-            RarityColor = GetRarityColor(model);
-            if (model is ClassShardReward) ClassName = (model as ClassShardReward).Class.ToString();
-            if (model is ClassBookReward) ClassName = (model as ClassBookReward).Class.ToString();
+            RarityBG = GetRarityBG(model);
         }
 
         private Sprite GetIcon(Reward reward)
@@ -26,22 +23,21 @@ namespace vikwhite
             switch (reward)
             {
                 case ResourceReward res: return _configs.ResourceIcons[res.ResourceType];
-                case ShardReward shard: return _configs.Characters.Get(shard.ID).Image;
+                case ShardReward res: return _configs.ResourceIcons[ResourceType.ShardEpic];
                 case ClassBookReward book: return _configs.ResourceIcons[ResourceType.Book];
                 default: return null;
             }
         }
         
-        private Color GetRarityColor(Reward reward)
+        private Sprite GetRarityBG(Reward reward)
         {
             switch (reward)
             {
-                case ShardReward shard:
-                    return _configs.RarityColors[_configs.Characters.Get(shard.ID).Rarity];
-                case ClassShardReward classShard:
-                    return _configs.RarityColors[classShard.Rarity];
-                default:
-                    return default;
+                case ResourceReward res: return _configs.RarityBG[RarityType.Common];
+                case ShardReward shard: return _configs.RarityBG[_configs.Characters.Get(shard.ID).Rarity];
+                case ClassBookReward book: return _configs.RarityBG[RarityType.Epic];
+                case ClassShardReward classShard: return _configs.RarityBG[classShard.Rarity];
+                default: return null;
             }
         }
     }

@@ -64,7 +64,7 @@ namespace vikwhite
             Books = resource.GetAmount(ResourceType.Book);
             Class = config.Class.ToString();
             Rarity = config.Rarity.ToString();
-            RarityColor = configs.RarityColors[config.Rarity];
+            RarityColor = Color.white;
             
             var activeSkillID = config.GetSkill(SkillSlotType.Active);
             foreach (var abilityData in configs.Skills.GetAll())
@@ -75,7 +75,7 @@ namespace vikwhite
                 break;
             }
             
-            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold)));
+            Resources.Add(CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp)));
             OnUpgradeLevel = LevelUpgrade;
             OnSkillUpgrade = SkillUpgrade;
             OnStarsUpgrade = StarsUpgrade;
@@ -96,8 +96,8 @@ namespace vikwhite
         private void LevelUpgrade()
         {
             if (Model.GetMaxLevel() <= Model.Level.Value) return; 
-            if (_resource.GetAmount(ResourceType.Gold).Value < LevelUpPrice) return; 
-            _resource.Spend(ResourceType.Gold, LevelUpPrice);
+            if (_resource.GetAmount(ResourceType.Exp).Value < LevelUpPrice) return; 
+            _resource.Spend(ResourceType.Exp, LevelUpPrice);
             Model.UpgradeLevel();
         }
 
