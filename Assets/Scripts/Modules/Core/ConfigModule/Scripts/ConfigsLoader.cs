@@ -29,6 +29,7 @@ namespace vikwhite.Data
         
         IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
         IReadOnlyDictionary<RarityType, Sprite> RarityBG { get; }
+        IReadOnlyDictionary<CharacterClassType, Sprite> ClassIcons { get; }
     }
     
     [Serializable]
@@ -58,6 +59,9 @@ namespace vikwhite.Data
 
         [TableList][SerializeField] List<RarityBGData> rarityBG;
         private Dictionary<RarityType, Sprite> rarityBGDictionary;
+        
+        [TableList][SerializeField] List<CharacterClassIconData> classIcons;
+        private Dictionary<CharacterClassType, Sprite> classIconsDictionary;
         
         public ISettingData Settings => settings.Get();
         public IConfig<ICharacterData> Characters => characters;
@@ -98,6 +102,20 @@ namespace vikwhite.Data
                         rarityBGDictionary.Add(rarity.Type, rarity.BG);
                 }
                 return rarityBGDictionary;
+            }
+        }
+        
+        public IReadOnlyDictionary<CharacterClassType, Sprite> ClassIcons
+        {
+            get
+            {
+                if (classIconsDictionary == null)
+                {
+                    classIconsDictionary = new Dictionary<CharacterClassType, Sprite>();
+                    foreach (var @class in classIcons)
+                        classIconsDictionary.Add(@class.Type, @class.Icon);
+                }
+                return classIconsDictionary;
             }
         }
 

@@ -64,6 +64,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 0
       SkillActive: 0
       SkillPassive1: 0
@@ -90,6 +91,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 57cde3afcff1bad43b42ee0e5bce57f1, type: 3}
       ShardImage: {fileID: 21300000, guid: 185ee0d488b068044a64f0d4c8895a6a, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 3795814207
       SkillActive: 2496368978
       SkillPassive1: 0
@@ -116,6 +118,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
       ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 2213220330
       SkillActive: 1605752999
       SkillPassive1: 0
@@ -142,6 +145,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 3d5036cfaebf07a4f8d31f3285705eda, type: 3}
       ShardImage: {fileID: 21300000, guid: 9d539f52d55cff940aeb50ae5a6a22e4, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 1578047653
       SkillActive: 370847456
       SkillPassive1: 0
@@ -168,6 +172,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 8f46b0f4e118fc340ba7bedfe5fae125, type: 3}
       ShardImage: {fileID: 21300000, guid: b0e68e79ccc7ac649801ca63fc16e113, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 616699424
       SkillActive: 2475848034
       SkillPassive1: 0
@@ -194,6 +199,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 5de92cab170c73d4ea69ee0b1f107565, type: 3}
       ShardImage: {fileID: 21300000, guid: 9c221be692bb5be44a2aa4edcc14706b, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 3548031329
       SkillActive: 703911167
       SkillPassive1: 0
@@ -220,6 +226,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 21300000, guid: 4d750203891ff6b459ad4f1d601f578c, type: 3}
       ShardImage: {fileID: 21300000, guid: c49faee5efb3b2948b5e76c5c18fe2fa, type: 3}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 1578047653
       SkillActive: 1516922681
       SkillPassive1: 0
@@ -246,6 +253,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
@@ -272,6 +280,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 3548031329
       SkillActive: 0
       SkillPassive1: 0
@@ -298,6 +307,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 2201965509
       SkillActive: 0
       SkillPassive1: 0
@@ -324,6 +334,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 4243707639
       SkillActive: 0
       SkillPassive1: 0
@@ -350,6 +361,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 4070441441
       SkillActive: 0
       SkillPassive1: 1107468141
@@ -376,6 +388,7 @@ MonoBehaviour:
       SkillUpgrade: SkillLevelUp
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
+      ImagePrefab: {fileID: 0}
       SkillAttack: 3795814207
       SkillActive: 0
       SkillPassive1: 0
@@ -3023,3 +3036,14 @@ MonoBehaviour:
     BG: {fileID: 21300000, guid: e7652e4f56503b54d9c34a1674656bdb, type: 3}
   - Type: 4
     BG: {fileID: 21300000, guid: bced4443babaa294a82ecf754829bbdd, type: 3}
+  classIcons:
+  - Type: 0
+    Icon: {fileID: 21300000, guid: dd0b1cd6e36781546851acdf8dfc0123, type: 3}
+  - Type: 1
+    Icon: {fileID: 21300000, guid: 754f2b15a41a24448bc915b20c977198, type: 3}
+  - Type: 2
+    Icon: {fileID: 21300000, guid: c3588eae0d1ae4747afeb521fb1b16de, type: 3}
+  - Type: 3
+    Icon: {fileID: 21300000, guid: 79283a0bddbaa5d498cac51dacfb7191, type: 3}
+  - Type: 4
+    Icon: {fileID: 21300000, guid: 92b15f46f0287464389d2140291580f4, type: 3}
