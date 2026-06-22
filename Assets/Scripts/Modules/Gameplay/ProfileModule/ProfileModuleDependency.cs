@@ -8,8 +8,6 @@ namespace vikwhite
             Register<IEventHandler, SetSquadCharacterProfileHandler>();
             Register<IEventHandler, SetSectorLocationProfileHandler>();
             Register<IEventHandler, ChangeResourceProfileHandler>();
-            Register<IEventHandler, ChangeClassShardProfileHandler>();
-            Register<IEventHandler, ChangeClassBookProfileHandler>();
             Register<IEventHandler, ChangeCharacterLevelProfileHandler>();
             Register<IEventHandler, ChangeCharacterShardProfileHandler>();
             Register<IEventHandler, ChangeCharacterStarsProfileHandler>();

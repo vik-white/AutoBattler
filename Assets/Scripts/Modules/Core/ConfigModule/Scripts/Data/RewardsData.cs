@@ -72,29 +72,6 @@ namespace vikwhite
                     if (!Enum.TryParse<ShardGroupType>(idString, out var shardGroupType)) return false;
                     data.ShardGroupType = shardGroupType;
                     break;
-                case RewardType.ClassShard:
-                    var classRarity = idString.Split('-');
-                    if (classRarity.Length != 2) return false;
-                    if (!Enum.TryParse<CharacterClassType>(classRarity[0].Trim(), out var classType)) return false;
-                    if (!Enum.TryParse<RarityType>(classRarity[1].Trim(), out var rarityType)) return false;
-                    data.Class = classType;
-                    data.Rarity = rarityType;
-                    break;
-                case RewardType.ClassShardGroup:
-                    var str = idString.Split('-');
-                    if (!Enum.TryParse<ShardGroupType>(str[0], out shardGroupType)) return false;
-                    data.ShardGroupType = shardGroupType;
-                    if(shardGroupType == ShardGroupType.Class) data.Class = Enum.Parse<CharacterClassType>(str[1].Trim());
-                    if(shardGroupType == ShardGroupType.Rarity) data.Rarity = Enum.Parse<RarityType>(str[1].Trim());
-                    break;
-                case RewardType.ClassBook:
-                    if (!Enum.TryParse<CharacterClassType>(idString, out var bookClassType)) return false;
-                    data.Class = bookClassType;
-                    break;
-                case RewardType.ClassBookGroup:
-                    if (!Enum.TryParse<ShardGroupType>(idString, out shardGroupType)) return false;
-                    data.ShardGroupType = shardGroupType;
-                    break;
             }
 
             return true;

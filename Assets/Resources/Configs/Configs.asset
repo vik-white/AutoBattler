@@ -2800,8 +2800,17 @@ MonoBehaviour:
         MinValue: 2
         MaxValue: 2
         Probability: 1
-      - Type: 5
-        ResourceType: 0
+      - Type: 0
+        ResourceType: 12
+        ShardGroupType: 0
+        Class: 0
+        Rarity: 0
+        ID: 
+        MinValue: 2
+        MaxValue: 2
+        Probability: 1
+      - Type: 0
+        ResourceType: 5
         ShardGroupType: 0
         Class: 0
         Rarity: 0

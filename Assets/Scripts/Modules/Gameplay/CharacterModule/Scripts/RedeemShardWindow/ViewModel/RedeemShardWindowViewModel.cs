@@ -6,8 +6,6 @@ namespace vikwhite
 {
     public class RedeemShardWindowViewModel : WindowViewModel<Character>
     {
-        private readonly IClassShardService _classShards;
-        private readonly ClassShardKey _key;
         private readonly ReactiveProperty<int> _selected = new(0);
 
         public string Name;
@@ -19,15 +17,12 @@ namespace vikwhite
         public UnityAction OnRemove;
         public UnityAction OnRedeem;
 
-        public RedeemShardWindowViewModel(Character character, IClassShardService classShards) : base(character)
+        public RedeemShardWindowViewModel(Character character) : base(character)
         {
-            _classShards = classShards;
-            _key = new ClassShardKey(character.Config.Class, character.Config.Rarity);
             Name = character.Config.Name;
             Image = character.Config.Image;
             AddDisposable(_selected);
             Selected = _selected;
-            ClassShardsAmount = _classShards.GetAmount(_key);
             OnAdd = Add;
             OnAddMax = AddMax;
             OnRemove = Remove;
@@ -54,9 +49,7 @@ namespace vikwhite
         private void Redeem()
         {
             if (_selected.Value <= 0) return;
-            if (!_classShards.CanSpend(_key, _selected.Value)) return;
             int amount = _selected.Value;
-            _classShards.Spend(_key, amount);
             Model.AddShards(amount);
             _selected.Value = 0;
         }

@@ -26,7 +26,6 @@ namespace vikwhite
             {
                 case ResourceReward res: return _configs.UI.ResourceIcons[res.ResourceType];
                 case ShardReward shard: return GetShardIcon(shard);
-                case ClassBookReward book: return GetBookIcon(book);
                 default: return null;
             }
         }
@@ -42,27 +41,12 @@ namespace vikwhite
             }
         }
         
-        private Sprite GetBookIcon(ClassBookReward book)
-        {
-            switch (book.Class)
-            {
-                case CharacterClassType.Tank: return _configs.UI.ResourceIcons[ResourceType.BookTank];
-                case CharacterClassType.Assassin: return _configs.UI.ResourceIcons[ResourceType.BookAssassin];
-                case CharacterClassType.Mystic: return _configs.UI.ResourceIcons[ResourceType.BookMystic];
-                case CharacterClassType.Mage: return _configs.UI.ResourceIcons[ResourceType.BookMage];
-                case CharacterClassType.Support: return _configs.UI.ResourceIcons[ResourceType.BookSupport];
-                default: return _configs.UI.ResourceIcons[ResourceType.ShardRare];
-            }
-        }
-        
         private Sprite GetRarityBG(Reward reward)
         {
             switch (reward)
             {
                 case ResourceReward res: return _configs.UI.Rarities[RarityType.Common].RewardBG;
                 case ShardReward shard: return _configs.UI.Rarities[_configs.Characters.Get(shard.ID).Rarity].RewardBG;
-                case ClassShardReward classShard: return _configs.UI.Rarities[classShard.Rarity].RewardBG;
-                case ClassBookReward book: return _configs.UI.Rarities[RarityType.Epic].RewardBG;
                 default: return null;
             }
         }

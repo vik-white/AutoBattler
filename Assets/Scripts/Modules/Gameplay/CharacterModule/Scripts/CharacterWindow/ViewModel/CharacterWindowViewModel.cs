@@ -9,7 +9,6 @@ namespace vikwhite
     public class CharacterWindowViewModel: WindowViewModel<Character>
     {
         private readonly IResourceService _resource;
-        private readonly IClassBookService _classBooks;
         private readonly IConfigs _configs;
         private readonly IRedeemShardWindow _redeemShardWindow;
         private readonly IRedeemBookWindow _redeemBookWindow;
@@ -39,10 +38,9 @@ namespace vikwhite
         public int SkillUpPrice;
         public int StarUpPrice;
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IClassShardService classShards, IClassBookService classBooks, IRedeemShardWindow redeemShardWindow, IRedeemBookWindow redeemBookWindow) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, IRedeemShardWindow redeemShardWindow, IRedeemBookWindow redeemBookWindow) : base(character)
         {
             _resource = resource;
-            _classBooks = classBooks;
             _configs = configs;
             _redeemShardWindow = redeemShardWindow;
             _redeemBookWindow = redeemBookWindow;
@@ -59,8 +57,6 @@ namespace vikwhite
             
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
-            ClassShards = classShards.GetAmount(config.Class, config.Rarity);
-            ClassBooks = classBooks.GetAmount(config.Class);
             Books = resource.GetAmount(ResourceType.Book);
             Class = config.Class.ToString();
             Rarity = config.Rarity.ToString();
@@ -105,8 +101,8 @@ namespace vikwhite
         {
             if (Model.GetMaxSkillLevel(SkillSlotType.Active) <= Model.SkillLevel.Value) return;
             var config = _configs.Characters.Get(Model.ID);
-            if (_classBooks.GetAmount(config.Class).Value < SkillUpPrice) return;
-            _classBooks.Spend(config.Class, SkillUpPrice);
+            //if (_classBooks.GetAmount(config.Class).Value < SkillUpPrice) return;
+            //_classBooks.Spend(config.Class, SkillUpPrice);
             Model.UpgradeSkill();
         }
         
