@@ -24,7 +24,7 @@ namespace vikwhite
         {
             switch (reward)
             {
-                case ResourceReward res: return _configs.ResourceIcons[res.ResourceType];
+                case ResourceReward res: return _configs.UI.ResourceIcons[res.ResourceType];
                 case ShardReward shard: return GetShardIcon(shard);
                 case ClassBookReward book: return GetBookIcon(book);
                 default: return null;
@@ -35,10 +35,10 @@ namespace vikwhite
         {
             switch (_configs.Characters.Get(shard.ID).Rarity)
             {
-                case RarityType.Rare: return _configs.ResourceIcons[ResourceType.ShardRare];
-                case RarityType.Epic: return _configs.ResourceIcons[ResourceType.ShardEpic];
-                case RarityType.Legendary: return _configs.ResourceIcons[ResourceType.ShardLegendary];
-                default: return _configs.ResourceIcons[ResourceType.ShardRare];
+                case RarityType.Rare: return _configs.UI.ResourceIcons[ResourceType.ShardRare];
+                case RarityType.Epic: return _configs.UI.ResourceIcons[ResourceType.ShardEpic];
+                case RarityType.Legendary: return _configs.UI.ResourceIcons[ResourceType.ShardLegendary];
+                default: return _configs.UI.ResourceIcons[ResourceType.ShardRare];
             }
         }
         
@@ -46,12 +46,12 @@ namespace vikwhite
         {
             switch (book.Class)
             {
-                case CharacterClassType.Tank: return _configs.ResourceIcons[ResourceType.BookTank];
-                case CharacterClassType.Assassin: return _configs.ResourceIcons[ResourceType.BookAssassin];
-                case CharacterClassType.Mystic: return _configs.ResourceIcons[ResourceType.BookMystic];
-                case CharacterClassType.Mage: return _configs.ResourceIcons[ResourceType.BookMage];
-                case CharacterClassType.Support: return _configs.ResourceIcons[ResourceType.BookSupport];
-                default: return _configs.ResourceIcons[ResourceType.ShardRare];
+                case CharacterClassType.Tank: return _configs.UI.ResourceIcons[ResourceType.BookTank];
+                case CharacterClassType.Assassin: return _configs.UI.ResourceIcons[ResourceType.BookAssassin];
+                case CharacterClassType.Mystic: return _configs.UI.ResourceIcons[ResourceType.BookMystic];
+                case CharacterClassType.Mage: return _configs.UI.ResourceIcons[ResourceType.BookMage];
+                case CharacterClassType.Support: return _configs.UI.ResourceIcons[ResourceType.BookSupport];
+                default: return _configs.UI.ResourceIcons[ResourceType.ShardRare];
             }
         }
         
@@ -59,10 +59,10 @@ namespace vikwhite
         {
             switch (reward)
             {
-                case ResourceReward res: return _configs.RarityBG[RarityType.Common];
-                case ShardReward shard: return _configs.RarityBG[_configs.Characters.Get(shard.ID).Rarity];
-                case ClassShardReward classShard: return _configs.RarityBG[classShard.Rarity];
-                case ClassBookReward book: return _configs.RarityBG[RarityType.Epic];
+                case ResourceReward res: return _configs.UI.Rarities[RarityType.Common].RewardBG;
+                case ShardReward shard: return _configs.UI.Rarities[_configs.Characters.Get(shard.ID).Rarity].RewardBG;
+                case ClassShardReward classShard: return _configs.UI.Rarities[classShard.Rarity].RewardBG;
+                case ClassBookReward book: return _configs.UI.Rarities[RarityType.Epic].RewardBG;
                 default: return null;
             }
         }

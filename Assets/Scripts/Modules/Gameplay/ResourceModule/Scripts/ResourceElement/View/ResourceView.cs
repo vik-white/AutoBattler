@@ -15,7 +15,7 @@ namespace vikwhite
         protected override void UpdateViewModel(ResourceViewModel viewModel)
         {
             Bind(viewModel.Amount, SetAmount);
-            _view.Icon.sprite = _configs.ResourceIcons[viewModel.Type];
+            _view.Icon.sprite = _configs.UI.ResourceIcons[viewModel.Type];
         }
         
         private void SetAmount(int amount) => _view.Amount.text = amount.ToString();

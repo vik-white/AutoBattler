@@ -2998,59 +2998,58 @@ MonoBehaviour:
       Type: 1
       Duration: 0
       Quests: []
-  resourceIcons:
-  - Type: 0
-    Icon: {fileID: 21300000, guid: f93d0acf3eb88c54d89bd4921f3afd3b, type: 3}
-  - Type: 1
-    Icon: {fileID: 21300000, guid: a60ba86e18bf90942a6dc05be7381858, type: 3}
-  - Type: 2
-    Icon: {fileID: 21300000, guid: 05195fabeabb3e342b284d4938a8c1ab, type: 3}
-  - Type: 3
-    Icon: {fileID: 21300000, guid: 6a522c314ae7caa479d39f515399b0fa, type: 3}
-  - Type: 4
-    Icon: {fileID: 21300000, guid: c576e994ae0844a4ca6d13c365c4e081, type: 3}
-  - Type: 5
-    Icon: {fileID: 21300000, guid: 2ddace0a8e400cd439c01b1766d7eb65, type: 3}
-  - Type: 6
-    Icon: {fileID: 21300000, guid: 73a16277e37b5ba4cacb4656a33e4bf7, type: 3}
-  - Type: 7
-    Icon: {fileID: 21300000, guid: 9d7aa88b96c68524d89eff30a49ffad7, type: 3}
-  - Type: 8
-    Icon: {fileID: 21300000, guid: 26e09b45a9f49a840a543177e14c4175, type: 3}
-  - Type: 9
-    Icon: {fileID: 21300000, guid: ba72f808689cc3e4a9b509fa83daaf30, type: 3}
-  - Type: 10
-    Icon: {fileID: 21300000, guid: 78c704be0a831464fbb14dfd052da5dd, type: 3}
-  - Type: 11
-    Icon: {fileID: 21300000, guid: 8fff08a2fdd0fbf428e7253f5c4d9cd8, type: 3}
-  - Type: 12
-    Icon: {fileID: 21300000, guid: 592b10ec98035b94fb46e73a98561953, type: 3}
-  rarityBG:
-  - Type: 0
-    BG: {fileID: 21300000, guid: bafdd5d81d006984aa755c2813da714a, type: 3}
-  - Type: 1
-    BG: {fileID: 21300000, guid: 9d8048cf43fc83340833fb57a3a8a846, type: 3}
-  - Type: 2
-    BG: {fileID: 21300000, guid: 36197c84fb590a544afdfba275e2b175, type: 3}
-  - Type: 3
-    BG: {fileID: 21300000, guid: e7652e4f56503b54d9c34a1674656bdb, type: 3}
-  - Type: 4
-    BG: {fileID: 21300000, guid: bced4443babaa294a82ecf754829bbdd, type: 3}
-  metaRarityBG:
-  - Type: 2
-    BG: {fileID: 21300000, guid: 30134bd7801b0524eabccfb587b40bba, type: 3}
-  - Type: 3
-    BG: {fileID: 21300000, guid: 9a4827ca4fc142f418709628ad862fe4, type: 3}
-  - Type: 4
-    BG: {fileID: 21300000, guid: 09d036dc6d175c042b9a6ba4f7902200, type: 3}
-  classIcons:
-  - Type: 0
-    Icon: {fileID: 21300000, guid: dd0b1cd6e36781546851acdf8dfc0123, type: 3}
-  - Type: 1
-    Icon: {fileID: 21300000, guid: 754f2b15a41a24448bc915b20c977198, type: 3}
-  - Type: 2
-    Icon: {fileID: 21300000, guid: c3588eae0d1ae4747afeb521fb1b16de, type: 3}
-  - Type: 3
-    Icon: {fileID: 21300000, guid: 79283a0bddbaa5d498cac51dacfb7191, type: 3}
-  - Type: 4
-    Icon: {fileID: 21300000, guid: 92b15f46f0287464389d2140291580f4, type: 3}
+  ui:
+    resourceIcons:
+    - Type: 0
+      Icon: {fileID: 21300000, guid: f93d0acf3eb88c54d89bd4921f3afd3b, type: 3}
+    - Type: 1
+      Icon: {fileID: 21300000, guid: a60ba86e18bf90942a6dc05be7381858, type: 3}
+    - Type: 2
+      Icon: {fileID: 21300000, guid: 05195fabeabb3e342b284d4938a8c1ab, type: 3}
+    - Type: 3
+      Icon: {fileID: 21300000, guid: 6a522c314ae7caa479d39f515399b0fa, type: 3}
+    - Type: 4
+      Icon: {fileID: 21300000, guid: c576e994ae0844a4ca6d13c365c4e081, type: 3}
+    - Type: 5
+      Icon: {fileID: 21300000, guid: 2ddace0a8e400cd439c01b1766d7eb65, type: 3}
+    - Type: 6
+      Icon: {fileID: 21300000, guid: 73a16277e37b5ba4cacb4656a33e4bf7, type: 3}
+    - Type: 7
+      Icon: {fileID: 21300000, guid: 9d7aa88b96c68524d89eff30a49ffad7, type: 3}
+    - Type: 8
+      Icon: {fileID: 21300000, guid: 26e09b45a9f49a840a543177e14c4175, type: 3}
+    - Type: 9
+      Icon: {fileID: 21300000, guid: ba72f808689cc3e4a9b509fa83daaf30, type: 3}
+    - Type: 10
+      Icon: {fileID: 21300000, guid: 78c704be0a831464fbb14dfd052da5dd, type: 3}
+    - Type: 11
+      Icon: {fileID: 21300000, guid: 8fff08a2fdd0fbf428e7253f5c4d9cd8, type: 3}
+    - Type: 12
+      Icon: {fileID: 21300000, guid: 592b10ec98035b94fb46e73a98561953, type: 3}
+    rarities:
+    - Type: 0
+      RewardBG: {fileID: 21300000, guid: bafdd5d81d006984aa755c2813da714a, type: 3}
+      MetaBG: {fileID: 0}
+    - Type: 1
+      RewardBG: {fileID: 21300000, guid: 9d8048cf43fc83340833fb57a3a8a846, type: 3}
+      MetaBG: {fileID: 0}
+    - Type: 2
+      RewardBG: {fileID: 21300000, guid: 36197c84fb590a544afdfba275e2b175, type: 3}
+      MetaBG: {fileID: 21300000, guid: 30134bd7801b0524eabccfb587b40bba, type: 3}
+    - Type: 3
+      RewardBG: {fileID: 21300000, guid: e7652e4f56503b54d9c34a1674656bdb, type: 3}
+      MetaBG: {fileID: 21300000, guid: 9a4827ca4fc142f418709628ad862fe4, type: 3}
+    - Type: 4
+      RewardBG: {fileID: 21300000, guid: bced4443babaa294a82ecf754829bbdd, type: 3}
+      MetaBG: {fileID: 21300000, guid: 09d036dc6d175c042b9a6ba4f7902200, type: 3}
+    classIcons:
+    - Type: 0
+      Icon: {fileID: 21300000, guid: dd0b1cd6e36781546851acdf8dfc0123, type: 3}
+    - Type: 1
+      Icon: {fileID: 21300000, guid: 754f2b15a41a24448bc915b20c977198, type: 3}
+    - Type: 2
+      Icon: {fileID: 21300000, guid: c3588eae0d1ae4747afeb521fb1b16de, type: 3}
+    - Type: 3
+      Icon: {fileID: 21300000, guid: 79283a0bddbaa5d498cac51dacfb7191, type: 3}
+    - Type: 4
+      Icon: {fileID: 21300000, guid: 92b15f46f0287464389d2140291580f4, type: 3}

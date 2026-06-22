@@ -21,11 +21,11 @@ namespace vikwhite
             Stars = CreateViewModel<MetaStarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ImagePrefab = character.Config.ImagePrefab;
             
-            configs.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);
+            configs.UI.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);
             ClassIcon = classIcon;
             
-            configs.MetaRarityBG.TryGetValue(character.Config.Rarity, out var rarityBackground);
-            RarityBackground = rarityBackground;
+            configs.UI.Rarities.TryGetValue(character.Config.Rarity, out var rarity);
+            RarityBackground = rarity.RewardBG;
         }
 
         public override void Dispose()

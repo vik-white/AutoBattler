@@ -26,11 +26,7 @@ namespace vikwhite.Data
         IConfig<IStarData> Stars { get; }
         IConfig<IQuestData> Quests { get; }
         IConfig<IEventData> Events { get; }
-        
-        IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons { get; }
-        IReadOnlyDictionary<RarityType, Sprite> RarityBG { get; }
-        IReadOnlyDictionary<RarityType, Sprite> MetaRarityBG { get; }
-        IReadOnlyDictionary<CharacterClassType, Sprite> ClassIcons { get; }
+        IUIConfigs UI { get; }
     }
     
     [Serializable]
@@ -54,18 +50,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<StarData, IStarData> stars;
         [SerializeField] private Config<QuestData, IQuestData> quests;
         [SerializeField] private Config<EventData, IEventData> events;
-        
-        [TableList][SerializeField] List<ResourceIconData> resourceIcons;
-        private Dictionary<ResourceType, Sprite> resourceIconsDictionary;
-
-        [TableList][SerializeField] List<RarityBGData> rarityBG;
-        private Dictionary<RarityType, Sprite> rarityBGDictionary;
-        
-        [TableList][SerializeField] List<RarityBGData> metaRarityBG;
-        private Dictionary<RarityType, Sprite> metaRarityBGDictionary;
-        
-        [TableList][SerializeField] List<CharacterClassIconData> classIcons;
-        private Dictionary<CharacterClassType, Sprite> classIconsDictionary;
+        [SerializeField] private UIConfigs ui;
         
         public ISettingData Settings => settings.Get();
         public IConfig<ICharacterData> Characters => characters;
@@ -80,62 +65,7 @@ namespace vikwhite.Data
         public IConfig<IStarData> Stars => stars;
         public IConfig<IQuestData> Quests => quests;
         public IConfig<IEventData> Events => events;
-        
-        public IReadOnlyDictionary<ResourceType, Sprite> ResourceIcons
-        {
-            get
-            {
-                if (resourceIconsDictionary == null)
-                {
-                    resourceIconsDictionary = new Dictionary<ResourceType, Sprite>();
-                    foreach (var resource in resourceIcons)
-                        resourceIconsDictionary.Add(resource.Type, resource.Icon);
-                }
-                return resourceIconsDictionary;
-            }
-        }
-
-        public IReadOnlyDictionary<RarityType, Sprite> RarityBG
-        {
-            get
-            {
-                if (rarityBGDictionary == null)
-                {
-                    rarityBGDictionary = new Dictionary<RarityType, Sprite>();
-                    foreach (var rarity in rarityBG)
-                        rarityBGDictionary.Add(rarity.Type, rarity.BG);
-                }
-                return rarityBGDictionary;
-            }
-        }
-        
-        public IReadOnlyDictionary<RarityType, Sprite> MetaRarityBG
-        {
-            get
-            {
-                if (metaRarityBGDictionary == null)
-                {
-                    metaRarityBGDictionary = new Dictionary<RarityType, Sprite>();
-                    foreach (var rarity in metaRarityBG)
-                        metaRarityBGDictionary.Add(rarity.Type, rarity.BG);
-                }
-                return metaRarityBGDictionary;
-            }
-        }
-        
-        public IReadOnlyDictionary<CharacterClassType, Sprite> ClassIcons
-        {
-            get
-            {
-                if (classIconsDictionary == null)
-                {
-                    classIconsDictionary = new Dictionary<CharacterClassType, Sprite>();
-                    foreach (var @class in classIcons)
-                        classIconsDictionary.Add(@class.Type, @class.Icon);
-                }
-                return classIconsDictionary;
-            }
-        }
+        public IUIConfigs UI => ui;
 
 #if UNITY_EDITOR
         [Button("Load")][PropertyOrder(-1)]

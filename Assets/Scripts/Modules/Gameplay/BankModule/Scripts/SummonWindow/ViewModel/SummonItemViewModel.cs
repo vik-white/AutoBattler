@@ -35,7 +35,7 @@ namespace vikwhite
             PriceX10 = model.Price * 10;
             PriceX1Text = FormatPrice(PriceX1);
             PriceX10Text = FormatPrice(PriceX10);
-            if (configs.ResourceIcons.TryGetValue(model.Currency, out var icon)) CurrencyIcon = icon;
+            if (configs.UI.ResourceIcons.TryGetValue(model.Currency, out var icon)) CurrencyIcon = icon;
 
             OnBuyX1 = () => Buy(1);
             OnBuyX10 = () => Buy(10);

@@ -4,9 +4,10 @@ using UnityEngine;
 namespace vikwhite
 {
     [Serializable]
-    public struct RarityBGData
+    public struct RarityUIData
     {
         public RarityType Type;
-        public Sprite BG;
+        public Sprite RewardBG;
+        public Sprite MetaBG;
     }
 }
