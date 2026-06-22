@@ -2,13 +2,13 @@ using UnityEngine.InputSystem;
 
 namespace vikwhite
 {
-    public interface ICheatWindowHotkey : IUpdatable { }
+    public interface ICheatService : IUpdatable { }
 
-    public class CheatWindowHotkey : ICheatWindowHotkey
+    public class CheatService : ICheatService
     {
         private readonly ICheatWindow _cheatWindow;
 
-        public CheatWindowHotkey(ICheatWindow cheatWindow)
+        public CheatService(ICheatWindow cheatWindow)
         {
             _cheatWindow = cheatWindow;
         }

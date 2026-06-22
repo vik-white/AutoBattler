@@ -25,6 +25,7 @@ namespace vikwhite
             var loadingScreen = Resolve<ILoadingScreenService>();
             loadingScreen.Show();
             yield return null;
+            Resolve<ICheatService>();
             Resolve<IProfileService>().Load();
             Resolve<IResourceService>().Initialize();
             Resolve<IClassShardService>().Initialize();

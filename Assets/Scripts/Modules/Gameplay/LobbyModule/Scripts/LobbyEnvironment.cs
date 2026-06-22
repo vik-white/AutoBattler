@@ -22,6 +22,7 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
+            Resolve<ICheatService>();
             Resolve<IProfileService>().Load(); 
             Resolve<IResourceService>().Initialize();
             Resolve<IClassShardService>().Initialize();

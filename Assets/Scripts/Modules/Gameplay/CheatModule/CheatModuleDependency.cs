@@ -5,14 +5,12 @@ namespace vikwhite
         protected override void Register()
         {
             Register<ICheatWindow, CheatWindow>();
-            Register<ICheatWindowHotkey, CheatWindowHotkey>();
+            Register<ICheatService, CheatService>();
             Register<CheatWindowViewModel>();
             Register<CheatWindowView>();
             Register<IMapItemViewFactory, MapItemViewFactory>();
             Register<MapItemViewModel>();
             Register<MapItemView>();
-
-            _container.Resolve<ICheatWindowHotkey>();
         }
     }
 }
