@@ -26,7 +26,7 @@ namespace vikwhite.Data
         string SkillUpgrade { get; }
         Sprite Image { get; }
         Sprite ShardImage { get; }
-        GameObject ImagePrefab { get; }
+        GameObject HeadPrefab { get; }
         IReadOnlyDictionary<SkillSlotType, uint> Skills { get; }
         uint GetSkill(SkillSlotType slotType);
         float GetStat(StatType stat);
@@ -54,7 +54,7 @@ namespace vikwhite.Data
         public string SkillUpgrade;
         public Sprite Image;
         public Sprite ShardImage;
-        public GameObject ImagePrefab;
+        public GameObject HeadPrefab;
 
         public uint SkillAttack;
         public uint SkillActive;
@@ -87,7 +87,7 @@ namespace vikwhite.Data
         string ICharacterData.SkillUpgrade => SkillUpgrade;
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.ShardImage => ShardImage;
-        GameObject ICharacterData.ImagePrefab => ImagePrefab;
+        GameObject ICharacterData.HeadPrefab => HeadPrefab;
         IReadOnlyDictionary<SkillSlotType, uint> ICharacterData.Skills => Skills;
 
         public uint GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : 0;
@@ -117,7 +117,7 @@ namespace vikwhite.Data
         {
             if (row["Image"] != "") Image = Resources.Load<Sprite>($"Characters/Images/{row["Image"]}");
             if (row["Image"] != "") ShardImage = Resources.Load<Sprite>($"Characters/Shards/{row["Image"]}");
-            if (row["Image"] != "") ImagePrefab = Resources.Load<GameObject>($"Characters/ImagePrefabs/{row["Image"]}");
+            if (row["Image"] != "") HeadPrefab = Resources.Load<GameObject>($"Characters/HeadPrefabs/{row["Image"]}");
             _skills = null;
         }
     }

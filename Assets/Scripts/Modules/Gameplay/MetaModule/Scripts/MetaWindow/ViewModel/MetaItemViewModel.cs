@@ -19,13 +19,13 @@ namespace vikwhite
             OnSelect = () => characterWindow.ShowWindow(character);
             Level = character.Level;
             Stars = CreateViewModel<MetaStarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
-            ImagePrefab = character.Config.ImagePrefab;
+            ImagePrefab = character.Config.HeadPrefab;
             
             configs.UI.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);
             ClassIcon = classIcon;
             
             configs.UI.Rarities.TryGetValue(character.Config.Rarity, out var rarity);
-            RarityBackground = rarity.RewardBG;
+            RarityBackground = rarity.MetaBG;
         }
 
         public override void Dispose()
