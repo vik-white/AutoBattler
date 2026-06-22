@@ -12,6 +12,10 @@ namespace vikwhite
         public Button LevelUpButton;
         public Button CloseButton;
         public Image Image;
+        public Image ClassIcon;
         public StarsHierarchy Stars;
+        public GameObject R;
+        public GameObject SR;
+        public GameObject SSR;
     }
 }

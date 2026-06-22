@@ -1010,7 +1010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 232}
+  m_AnchoredPosition: {x: -10, y: 192.31}
   m_SizeDelta: {x: 897.0898, y: 897.0898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6045961518056227891
@@ -2056,7 +2056,11 @@ MonoBehaviour:
   LevelUpButton: {fileID: 1339031858475028266}
   CloseButton: {fileID: 5306465055309029531}
   Image: {fileID: 450560384686737895}
+  ClassIcon: {fileID: 5264610032892242174}
   Stars: {fileID: 4963229687974814970}
+  R: {fileID: 8050622446515980393}
+  SR: {fileID: 5220117936498602237}
+  SSR: {fileID: 1725645211290761814}
 --- !u!1 &7213037411571545396
 GameObject:
   m_ObjectHideFlags: 0

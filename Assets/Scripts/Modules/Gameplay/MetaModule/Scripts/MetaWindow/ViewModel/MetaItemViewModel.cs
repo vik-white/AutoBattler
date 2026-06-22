@@ -20,10 +20,7 @@ namespace vikwhite
             Level = character.Level;
             Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ImagePrefab = character.Config.HeadPrefab;
-            
-            configs.UI.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);
-            ClassIcon = classIcon;
-            
+            ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             configs.UI.Rarities.TryGetValue(character.Config.Rarity, out var rarity);
             RarityBackground = rarity.MetaBG;
         }

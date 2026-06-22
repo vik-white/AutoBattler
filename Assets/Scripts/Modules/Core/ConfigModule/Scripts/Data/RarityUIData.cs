@@ -9,5 +9,6 @@ namespace vikwhite
         public RarityType Type;
         public Sprite RewardBG;
         public Sprite MetaBG;
+        public Sprite Letter;
     }
 }

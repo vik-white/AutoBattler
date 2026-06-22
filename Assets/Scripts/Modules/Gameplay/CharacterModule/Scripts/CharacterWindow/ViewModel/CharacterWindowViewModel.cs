@@ -16,6 +16,8 @@ namespace vikwhite
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
         public int LevelUpPrice;
+        public RarityType Rarity;
+        public Sprite ClassIcon;
         public StarsViewModel Stars { get; }
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
@@ -27,6 +29,8 @@ namespace vikwhite
             LevelUpPrice = configs.Settings.LevelUpPrice;
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
+            Rarity = config.Rarity;
+            ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
