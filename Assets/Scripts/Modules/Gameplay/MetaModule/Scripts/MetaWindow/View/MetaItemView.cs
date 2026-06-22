@@ -11,7 +11,7 @@ namespace vikwhite
         {
             BindClick(_view.Button, viewModel.OnSelect);
             Bind(viewModel.Level, level => _view.Level.text = $"Lv. {level}");
-            CreateView<MetaStarsView, MetaStarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
+            CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
 
             if (viewModel.RarityBackground != null)
                 _view.Background.sprite = viewModel.RarityBackground;

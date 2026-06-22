@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class MetaStarHierarchy : MonoBehaviour
+    public class StarHierarchy : MonoBehaviour
     {
         public RectTransform[] Leaves;
     }

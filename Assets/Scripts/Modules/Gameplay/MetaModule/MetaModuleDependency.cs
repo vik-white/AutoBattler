@@ -11,8 +11,8 @@ namespace vikwhite
             Register<IMetaItemViewFactory, MetaItemViewFactory>();
             Register<MetaItemViewModel>();
             Register<MetaItemView>();
-            Register<MetaStarsViewModel>();
-            Register<MetaStarsView>();
+            Register<StarsViewModel>();
+            Register<StarsView>();
         }
     }
 }

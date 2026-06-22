@@ -11,6 +11,6 @@ namespace vikwhite
         public RectTransform ImageContainer;
         public Image ClassIcon;
         public TMP_Text Level;
-        public MetaStarsHierarchy Stars;
+        public StarsHierarchy Stars;
     }
 }

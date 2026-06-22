@@ -1512,6 +1512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7173777581606673292}
+  - component: {fileID: 4115278853053280759}
   m_Layer: 5
   m_Name: StarBig
   m_TagString: Untagged
@@ -1544,6 +1545,25 @@ RectTransform:
   m_AnchoredPosition: {x: 163.85, y: -308.55}
   m_SizeDelta: {x: 201.70001, y: 214.49998}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4115278853053280759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971621004398634101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
+  Leaves:
+  - {fileID: 5697338714793646596}
+  - {fileID: 5352191158610119311}
+  - {fileID: 1227456322022021159}
+  - {fileID: 4125503174980867122}
+  - {fileID: 490666262073816137}
+  - {fileID: 81335266247742764}
 --- !u!1 &9062853351280519462
 GameObject:
   m_ObjectHideFlags: 0

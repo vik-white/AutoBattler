@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace vikwhite
 {
-    public class MetaStarsView : View<MetaStarsHierarchy, MetaStarsViewModel>
+    public class StarsView : View<StarsHierarchy, StarsViewModel>
     {
-        public MetaStarsView(GameObject view) : base(view) { }
+        public StarsView(GameObject view) : base(view) { }
 
-        protected override void UpdateViewModel(MetaStarsViewModel viewModel)
+        protected override void UpdateViewModel(StarsViewModel viewModel)
         {
             Bind(viewModel.Leaves, UpdateStars);
         }
@@ -20,7 +20,7 @@ namespace vikwhite
                 leavesLeft = SetStarLeaves(star, leavesLeft);
         }
 
-        private static int SetStarLeaves(MetaStarHierarchy star, int activeLeaves)
+        private static int SetStarLeaves(StarHierarchy star, int activeLeaves)
         {
             var leavesLeft = Mathf.Max(0, activeLeaves);
             if (star == null || star.Leaves == null) return leavesLeft;

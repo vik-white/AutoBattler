@@ -12,11 +12,11 @@ namespace vikwhite
         private readonly IConfigs _configs;
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
-        public IReadOnlyReactiveProperty<int> Stars;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
         public int LevelUpPrice;
+        public StarsViewModel Stars { get; }
         
         public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
@@ -24,10 +24,10 @@ namespace vikwhite
             _configs = configs;
             Name = character.Config.Name;
             Level = character.Level;
-            Stars = character.Stars;
             LevelUpPrice = configs.Settings.LevelUpPrice;
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
+            Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
         }

@@ -9,7 +9,7 @@ namespace vikwhite
     {
         public UnityAction OnSelect;
         public IReadOnlyReactiveProperty<int> Level { get; }
-        public MetaStarsViewModel Stars { get; }
+        public StarsViewModel Stars { get; }
         public Sprite ClassIcon { get; }
         public Sprite RarityBackground { get; }
         public GameObject ImagePrefab { get; }
@@ -18,7 +18,7 @@ namespace vikwhite
         {
             OnSelect = () => characterWindow.ShowWindow(character);
             Level = character.Level;
-            Stars = CreateViewModel<MetaStarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
+            Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ImagePrefab = character.Config.HeadPrefab;
             
             configs.UI.ClassIcons.TryGetValue(character.Config.Class, out var classIcon);

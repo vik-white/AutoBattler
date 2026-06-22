@@ -1764,6 +1764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972904020232285126}
   - component: {fileID: 4003592451054156145}
+  - component: {fileID: 3869114333929464987}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1818,6 +1819,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3869114333929464987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6641307915727151964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6d0c3dd2d246b2a4f28bb332b8164e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Window::vikwhite.UILayoutAutoRebuilder
+  _target: {fileID: 0}
+  _rebuildFrames: 2
+  _rebuildParent: 1
 --- !u!1 &6772630475931334850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2056,7 @@ MonoBehaviour:
   LevelUpButton: {fileID: 1339031858475028266}
   CloseButton: {fileID: 5306465055309029531}
   Image: {fileID: 450560384686737895}
+  Stars: {fileID: 4963229687974814970}
 --- !u!1 &7213037411571545396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 688623748256403965}
+  - component: {fileID: 4963229687974814970}
   m_Layer: 5
   m_Name: Stars
   m_TagString: Untagged
@@ -2292,6 +2310,24 @@ RectTransform:
   m_AnchoredPosition: {x: -1.0999985, y: -425.3}
   m_SizeDelta: {x: 352.17102, y: 61.01178}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4963229687974814970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599521442464667952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3a9233672747e6875e985884ea08c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarsHierarchy
+  Stars:
+  - {fileID: 9137595158098173455}
+  - {fileID: 4519175974698992128}
+  - {fileID: 2800531913528078796}
+  - {fileID: 1848813062580460682}
+  - {fileID: 3838044897754533572}
 --- !u!1 &7899683627206698399
 GameObject:
   m_ObjectHideFlags: 0
@@ -3158,6 +3194,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+--- !u!114 &4519175974698992128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115278853053280759, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+  m_PrefabInstance: {fileID: 552604420119147511}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
 --- !u!224 &7216277852047583355 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173777581606673292, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
@@ -3272,6 +3319,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+--- !u!114 &3838044897754533572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115278853053280759, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+  m_PrefabInstance: {fileID: 891450148046126899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
 --- !u!224 &8057346123172521151 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173777581606673292, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
@@ -3671,6 +3729,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+--- !u!114 &2800531913528078796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115278853053280759, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+  m_PrefabInstance: {fileID: 2288132899810476091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
 --- !u!224 &8957505779108486071 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173777581606673292, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
@@ -3785,6 +3854,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+--- !u!114 &1848813062580460682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115278853053280759, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+  m_PrefabInstance: {fileID: 2356550284062174589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
 --- !u!224 &4844260544889009905 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173777581606673292, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
@@ -3904,3 +3984,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7173777581606673292, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
   m_PrefabInstance: {fileID: 5175526791823994872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9137595158098173455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115278853053280759, guid: eaf1e893406a4c249a5569cb06cf04da, type: 3}
+  m_PrefabInstance: {fileID: 5175526791823994872}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99916633c504b5794e37bdeff16962d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Meta::vikwhite.MetaStarHierarchy
