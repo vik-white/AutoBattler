@@ -59,10 +59,10 @@ namespace vikwhite
 
             AddDisposables(_selectedSkill, _skillName, _skillDescription, _skillUpgradePrice, _canUpgradeSkill);
             CreateSkills();
+            SelectSkill(_skills[0]);
             AddDisposable(character.SkillLevel.Subscribe(_ => RefreshSkills()));
             AddDisposable(character.Stars.Subscribe(_ => RefreshSkills()));
             AddDisposable(ClassBooksAmount.Subscribe(_ => RefreshUpgradeState()));
-            SelectFirstSkill();
             RefreshSkills();
         }
 
@@ -72,91 +72,53 @@ namespace vikwhite
             {
                 var skillID = Model.Config.GetSkill(slot);
                 var skill = _configs.Skills.Get(skillID);
-                var skillName = GetSkillName(skillID);
-                var viewModel = CreateViewModel<SkillItemViewModel, SkillItemModel>(new SkillItemModel(slot, skill, skillName));
+                var viewModel = CreateViewModel<SkillItemViewModel, SkillItemModel>(new SkillItemModel(slot, skill));
                 viewModel.OnSelect = () => SelectSkill(viewModel);
                 _skills.Add(viewModel);
             }
         }
 
-        private void SelectFirstSkill()
-        {
-            foreach (var skill in _skills)
-            {
-                if (!skill.IsVisible.Value) continue;
-                SelectSkill(skill);
-                return;
-            }
-
-            SelectSkill(null);
-        }
-
         private void SelectSkill(SkillItemViewModel skill)
         {
-            if (skill != null && !skill.IsVisible.Value) return;
-
             _selectedSkill.Value = skill;
-            foreach (var item in _skills)
-                item.SetSelected(item == skill);
-
+            foreach (var item in _skills) item.SetSelected(item == skill);
             RefreshSelectedSkill();
         }
 
         private void RefreshSkills()
         {
-            foreach (var skill in _skills)
-                skill.SetLevel(GetSkillLevel(skill.Slot));
-
+            foreach (var skill in _skills) skill.SetLevel(GetSkillLevel(skill.Slot));
             RefreshSelectedSkill();
         }
 
         private void RefreshSelectedSkill()
         {
-            var selected = _selectedSkill.Value;
-            if (selected == null)
-            {
-                _skillName.Value = "";
-                _skillDescription.Value = "";
-                RefreshUpgradeState();
-                return;
-            }
-
-            _skillName.Value = $"{selected.Name} Lv.{selected.Level.Value}";
-            _skillDescription.Value = selected.Description;
+            _skillName.Value = $"{_selectedSkill.Value.Name} Lv.{_selectedSkill.Value.Level.Value}";
+            _skillDescription.Value = _selectedSkill.Value.Description;
             RefreshUpgradeState();
-        }
-
-        private int GetSkillLevel(SkillSlotType slot)
-        {
-            var maxLevel = Model.GetMaxSkillLevel(slot);
-            return maxLevel <= 0 ? 0 : Mathf.Min(Model.SkillLevel.Value, maxLevel);
         }
 
         private void RefreshUpgradeState()
         {
             var price = _configs.Settings.SkillUpPrice;
             _skillUpgradePrice.Value = $"{ClassBooksAmount.Value}/{price}";
-
             var selected = _selectedSkill.Value;
             var maxLevel = selected == null ? 0 : Model.GetMaxSkillLevel(selected.Slot);
-            _canUpgradeSkill.Value = selected != null
-                                     && selected.IsVisible.Value
-                                     && maxLevel > 0
-                                     && Model.SkillLevel.Value < maxLevel
-                                     && (price <= 0 || ClassBooksAmount.Value >= price);
+            _canUpgradeSkill.Value = selected != null && selected.IsVisible.Value && maxLevel > 0 && Model.SkillLevel.Value < maxLevel && (price <= 0 || ClassBooksAmount.Value >= price);
+        }
+        
+        private int GetSkillLevel(SkillSlotType slot)
+        {
+            var maxLevel = Model.GetMaxSkillLevel(slot);
+            return maxLevel <= 0 ? 0 : Mathf.Min(Model.SkillLevel.Value, maxLevel);
         }
 
         private void UpgradeSkill()
         {
-            var selected = _selectedSkill.Value;
-            if (selected == null) return;
-
-            var maxLevel = Model.GetMaxSkillLevel(selected.Slot);
+            var maxLevel = Model.GetMaxSkillLevel(_selectedSkill.Value.Slot);
             if (maxLevel <= 0 || Model.SkillLevel.Value >= maxLevel) return;
-
             var price = _configs.Settings.SkillUpPrice;
             if (price > 0 && ClassBooksAmount.Value < price) return;
-
             if (price > 0) _resources.Spend(_classBookResource, price);
             Model.UpgradeSkill();
         }
@@ -165,39 +127,6 @@ namespace vikwhite
         {
             _characterWindow.ShowWindow(Model);
             Close();
-        }
-
-        private ISkillData GetSkill(string skillID)
-        {
-            if (skillID == null) return null;
-
-            foreach (var skill in _configs.Skills.GetAll())
-            {
-                if (skill != null && skill.ID == skillID) return skill;
-            }
-
-            return null;
-        }
-
-        private string GetSkillName(string skillID)
-        {
-            if (skillID == null) return "";
-
-            var skills = _configs.Skills.GetAll();
-            var skillConfig = _configs.Skills as ConfigCore;
-
-            for (var i = 0; i < skills.Count; i++)
-            {
-                var skill = skills[i];
-                if (skill == null || skill.ID != skillID) continue;
-
-                if (skillConfig?.IDS != null && i < skillConfig.IDS.Count)
-                    return skillConfig.IDS[i];
-
-                return skillID.ToString();
-            }
-
-            return skillID.ToString();
         }
 
         public override void Dispose()

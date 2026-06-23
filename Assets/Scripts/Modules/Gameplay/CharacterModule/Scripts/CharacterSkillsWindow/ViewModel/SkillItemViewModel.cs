@@ -12,7 +12,7 @@ namespace vikwhite
         private readonly ReactiveProperty<int> _level = new();
 
         public SkillSlotType Slot => Model.Slot;
-        public string Name => Model.Name;
+        public string Name => Model.Skill.ID;
         public string Description => Model.Skill?.Description ?? "";
         public Sprite Icon => Model.Skill?.IconImage;
         public IReadOnlyReactiveProperty<bool> IsVisible => _isVisible;

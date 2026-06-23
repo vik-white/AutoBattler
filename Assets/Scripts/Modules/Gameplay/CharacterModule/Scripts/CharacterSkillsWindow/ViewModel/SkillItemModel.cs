@@ -6,15 +6,13 @@ namespace vikwhite
     {
         public SkillSlotType Slot { get; }
         public ISkillData Skill { get; }
-        public string Name { get; }
 
         public bool HasSkill => Skill != null;
 
-        public SkillItemModel(SkillSlotType slot, ISkillData skill, string name)
+        public SkillItemModel(SkillSlotType slot, ISkillData skill)
         {
             Slot = slot;
             Skill = skill;
-            Name = name;
         }
     }
 }
