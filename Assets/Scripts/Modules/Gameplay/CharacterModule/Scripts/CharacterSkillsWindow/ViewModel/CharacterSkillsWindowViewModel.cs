@@ -113,7 +113,7 @@ namespace vikwhite
             var price = _configs.Settings.SkillUpPrice;
             if (price > 0 && ClassBooksAmount.Value < price) return;
             if (price > 0) _resources.Spend(_classBookResource, price);
-            Model.UpgradeSkill(_selectedSkill.Value.Slot);
+            Model.UpgradeSkill(_selectedSkill.Value.ID);
         }
 
         private void OpenStats()

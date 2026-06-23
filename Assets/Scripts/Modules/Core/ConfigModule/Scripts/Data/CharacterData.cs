@@ -29,6 +29,7 @@ namespace vikwhite.Data
         GameObject HeadPrefab { get; }
         IReadOnlyDictionary<SkillSlotType, string> Skills { get; }
         string GetSkill(SkillSlotType slotType);
+        SkillSlotType GetSkillSlot(string id);
         float GetStat(StatType stat);
     }
 
@@ -91,6 +92,15 @@ namespace vikwhite.Data
         IReadOnlyDictionary<SkillSlotType, string> ICharacterData.Skills => Skills;
 
         public string GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : null;
+        
+        public SkillSlotType GetSkillSlot(string id)
+        {
+            foreach (var slot in SkillSlotExtensions.UpgradableSlots)
+            {
+                if(_skills.ContainsKey(slot) &&  _skills[slot] == id) return slot;
+            }
+            return SkillSlotType.None;
+        }
 
         public float GetStat(StatType stat) => stat switch
         {

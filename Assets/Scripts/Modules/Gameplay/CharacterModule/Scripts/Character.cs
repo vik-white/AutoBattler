@@ -20,8 +20,6 @@ namespace vikwhite
         private ReactiveProperty<int> _stars;
         private ReactiveProperty<int> _skillLevel;
         private readonly List<CharacterSkill> _skills = new();
-        private readonly Dictionary<string, CharacterSkill> _skillsByID = new();
-        private readonly Dictionary<SkillSlotType, CharacterSkill> _skillsBySlot = new();
         private CharacterUpgrade _upgrade;
 
         public string ID => _id;
@@ -57,6 +55,17 @@ namespace vikwhite
             _stars.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)); CalculateStats(); });
         }
 
+        private void InitializeSkills(IReadOnlyList<SkillData> skills)
+        {
+            foreach (var skillData in skills)
+            {
+                var slot = _characterData.GetSkillSlot(skillData.ID);
+                var skill = new CharacterSkill(skillData.ID, slot, skillData.Level);
+                _skills.Add(skill);
+                skill.Level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, skill.ID, value)));
+            }
+        }
+
         private CharacterUpgrade CreateUpgrade() => new (
             _level.Value - 1, 
             _stars.Value, 
@@ -67,18 +76,8 @@ namespace vikwhite
 
         public void UpgradeLevel() => _level.Value++;
 
-        public void UpgradeSkill(SkillSlotType slotType)
-        {
-            if (_skillsBySlot.TryGetValue(slotType, out var skill))
-                skill.UpgradeLevel();
-        }
-
-        public void UpgradeSkill(string skillID)
-        {
-            if (_skillsByID.TryGetValue(skillID, out var skill))
-                skill.UpgradeLevel();
-        }
-
+        public void UpgradeSkill(string id) => _skills.Find(e => e.ID == id).UpgradeLevel();
+        
         public void UpgradeStars() => _stars.Value++;
 
         private void CalculateStats()
@@ -98,64 +97,14 @@ namespace vikwhite
 
         public int GetMaxLevel() => _configs.Stars.Get(Math.Max(0, _stars.Value - 1)).Level;
 
-        public int GetMaxSkillLevel(SkillSlotType slotType) => _configs.Stars.Get(Math.Max(0, _stars.Value - 1)).GetMaxSkillLevel(slotType);
+        public int GetMaxSkillLevel(SkillSlotType slot) => _configs.Stars.Get(Math.Max(0, _stars.Value - 1)).GetMaxSkillLevel(slot);
 
-        public int GetSkillLevel(SkillSlotType slotType) =>
-            _skillsBySlot.TryGetValue(slotType, out var skill) ? skill.Level.Value : 0;
-
-        public CharacterSkill GetSkill(SkillSlotType slotType) =>
-            _skillsBySlot.TryGetValue(slotType, out var skill) ? skill : null;
-
-        public CharacterSkill GetSkill(string skillID) =>
-            _skillsByID.TryGetValue(skillID, out var skill) ? skill : null;
-
-        private void InitializeSkills(IReadOnlyList<SkillData> skillData)
+        public int GetSkillLevel(SkillSlotType slot)
         {
-            _skills.Clear();
-            _skillsByID.Clear();
-            _skillsBySlot.Clear();
-
-            foreach (var slot in SkillSlotExtensions.CharacterSlots)
-            {
-                var skillID = _characterData.GetSkill(slot);
-                if (string.IsNullOrEmpty(skillID)) continue;
-
-                var skill = new CharacterSkill(skillID, slot, GetInitialSkillLevel(skillID, skillData));
-                _skills.Add(skill);
-                _skillsByID[skill.ID] = skill;
-                _skillsBySlot[skill.Slot] = skill;
-
-                skill.Level.Skip(1).Subscribe(value =>
-                {
-                    _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, skill.ID, value));
-                    RefreshSkillLevel();
-                    CalculateStats();
-                });
-            }
-
-            RefreshSkillLevel();
+            var skill = _skills.Find(e => e.Slot == slot);
+            return skill != null ? skill.Level.Value : 0;
         }
 
-        private int GetInitialSkillLevel(string skillID, IReadOnlyList<SkillData> skillData)
-        {
-            if (skillData == null) return 1;
-
-            for (int i = 0; i < skillData.Count; i++)
-            {
-                if (skillData[i].ID == skillID)
-                    return Math.Max(1, skillData[i].Level);
-            }
-
-            return 1;
-        }
-
-        private void RefreshSkillLevel()
-        {
-            var level = 1;
-            for (int i = 0; i < _skills.Count; i++)
-                level = Math.Max(level, _skills[i].Level.Value);
-
-            _skillLevel.Value = level;
-        }
+        public CharacterSkill GetSkill(SkillSlotType slot) => _skills.Find(e => e.Slot == slot);
     }
 }
