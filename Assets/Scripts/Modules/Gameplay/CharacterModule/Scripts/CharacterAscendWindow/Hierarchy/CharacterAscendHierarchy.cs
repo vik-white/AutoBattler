@@ -9,11 +9,10 @@ namespace vikwhite
         public TMP_Text Name;
         public TMP_Text ShardPrice;
         public TMP_Text RedeemAmount;
-        public RectTransform CloseButton;
-        public RectTransform AscendButton;
-        public Button RedeemButton;
-        public RectTransform PreviousStarButton;
-        public RectTransform NextStarButton;
+        public Button CloseButton;
+        public Button AscendButton;
+        public Button PreviousStarButton;
+        public Button NextStarButton;
         public Image Image;
         public Image ClassIcon;
         public Image ShardBar;

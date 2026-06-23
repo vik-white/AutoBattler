@@ -8,7 +8,6 @@ namespace vikwhite
     public class CharacterAscendWindowViewModel : WindowViewModel<Character>
     {
         private readonly IConfigs _configs;
-        private readonly IResourceService _resourceService;
         private readonly ReactiveProperty<int> _selectedStars;
         private readonly ReactiveProperty<bool> _canSelectPreviousStar = new();
         private readonly ReactiveProperty<bool> _canSelectNextStar = new();
@@ -31,14 +30,12 @@ namespace vikwhite
         public SelectableStarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
         public UnityAction OnAscend;
-        public UnityAction OnRedeemShard;
         public UnityAction OnSelectPreviousStar;
         public UnityAction OnSelectNextStar;
 
         public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService) : base(character)
         {
             _configs = configs;
-            _resourceService = resourceService;
             _redeemResourceType = GetShardResourceType(character.Config.Rarity);
 
             Name = character.Config.Name;
@@ -58,7 +55,6 @@ namespace vikwhite
                 new StatsInfoModel(character, character.Level, character.Stars, character.Level, _selectedStars));
 
             OnAscend = Ascend;
-            OnRedeemShard = RedeemShard;
             OnSelectPreviousStar = SelectPreviousStar;
             OnSelectNextStar = SelectNextStar;
 
@@ -71,7 +67,6 @@ namespace vikwhite
             base.Dispose();
 
             OnAscend = null;
-            OnRedeemShard = null;
             OnSelectPreviousStar = null;
             OnSelectNextStar = null;
         }
@@ -96,17 +91,6 @@ namespace vikwhite
             }
 
             Model.UpgradeStars();
-        }
-
-        private void RedeemShard()
-        {
-            if (_resourceService.GetAmount(_redeemResourceType).Value <= 0)
-            {
-                return;
-            }
-
-            _resourceService.Spend(_redeemResourceType, 1);
-            Model.AddShards(1);
         }
 
         private void SelectPreviousStar()
