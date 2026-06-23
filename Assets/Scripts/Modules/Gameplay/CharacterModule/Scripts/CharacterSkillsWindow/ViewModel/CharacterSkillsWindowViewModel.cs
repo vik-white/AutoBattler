@@ -32,6 +32,7 @@ namespace vikwhite
         public string Name { get; }
         public Sprite Image { get; }
         public Sprite ClassIcon { get; }
+        public Sprite BookClassIcon { get; }
         public IReadOnlyList<SkillItemViewModel> Skills => _skills;
         public IReadOnlyReactiveProperty<string> SkillName => _skillName;
         public IReadOnlyReactiveProperty<string> SkillDescription => _skillDescription;
@@ -52,6 +53,7 @@ namespace vikwhite
             Name = character.Config.Name;
             Image = character.Config.Image;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
+            BookClassIcon = configs.UI.ResourceIcons[_classBookResource];
             BooksAmount = resources.GetAmount(ResourceType.Book);
             ClassBooksAmount = resources.GetAmount(_classBookResource);
             OnOpenStats = OpenStats;

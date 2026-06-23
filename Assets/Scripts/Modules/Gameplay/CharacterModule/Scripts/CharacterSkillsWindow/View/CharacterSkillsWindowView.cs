@@ -21,6 +21,7 @@ namespace vikwhite
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
+            _view.BookClassIcon.sprite = viewModel.BookClassIcon;
             
             for (var i = 0; i < viewModel.Skills.Count; i++)
                 CreateView<SkillItemView, SkillItemHierarchy>(_view.SkillItems[i]).Initialize(viewModel.Skills[i]);

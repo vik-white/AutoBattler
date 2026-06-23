@@ -1695,6 +1695,7 @@ MonoBehaviour:
   CloseButton: {fileID: 5306465055309029531}
   Image: {fileID: 450560384686737895}
   ClassIcon: {fileID: 5264610032892242174}
+  BookClassIcon: {fileID: 7927170746563079170}
   SkillItems:
   - {fileID: 9086674328589307107}
   - {fileID: 6326664936165755564}
@@ -3258,7 +3259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 146.67
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3300,6 +3301,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2652606721731600873, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
   m_PrefabInstance: {fileID: 1069390041072541864}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7927170746563079170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6977706780033453226, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
+  m_PrefabInstance: {fileID: 1069390041072541864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1761816660468821143
 PrefabInstance:
   m_ObjectHideFlags: 0

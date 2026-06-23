@@ -16,6 +16,7 @@ namespace vikwhite
         public Button CloseButton;
         public Image Image;
         public Image ClassIcon;
+        public Image BookClassIcon;
         public SkillItemHierarchy[] SkillItems;
     }
 }
