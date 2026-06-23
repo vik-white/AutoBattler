@@ -65,13 +65,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 0
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: 
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Brawler
       Name: Bob
       Prefab: IronfistDwarf
@@ -92,13 +92,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 57cde3afcff1bad43b42ee0e5bce57f1, type: 3}
       ShardImage: {fileID: 21300000, guid: 185ee0d488b068044a64f0d4c8895a6a, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 03d0cc33b96e7a24ca85963d1406572d, type: 3}
-      SkillAttack: 3795814207
-      SkillActive: 2496368978
-      SkillPassive1: 1849116823
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_2
+      SkillActive: OrbitingFireBoll
+      SkillPassive1: Passive1
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Tank
       Name: Dwarf
       Prefab: IronfistDwarfRed
@@ -119,13 +119,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
       ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
-      SkillAttack: 2213220330
-      SkillActive: 1605752999
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_3
+      SkillActive: Tank
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Healer
       Name: Celen
       Prefab: Healer
@@ -146,13 +146,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 3d5036cfaebf07a4f8d31f3285705eda, type: 3}
       ShardImage: {fileID: 21300000, guid: 9d539f52d55cff940aeb50ae5a6a22e4, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 5a1f99b43a94daa4ea7520ec1bab7788, type: 3}
-      SkillAttack: 1578047653
-      SkillActive: 370847456
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: RangeAttack_1
+      SkillActive: Healer
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Mage
       Name: Karter
       Prefab: IronfistDwarfBlue
@@ -173,13 +173,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 8f46b0f4e118fc340ba7bedfe5fae125, type: 3}
       ShardImage: {fileID: 21300000, guid: b0e68e79ccc7ac649801ca63fc16e113, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 80a61bcf750b05b4eaa3ba3740b69227, type: 3}
-      SkillAttack: 616699424
-      SkillActive: 2475848034
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: RangeAttack_2
+      SkillActive: Mage
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Assassin
       Name: Nory
       Prefab: IronfistDwarfPurple
@@ -200,13 +200,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 5de92cab170c73d4ea69ee0b1f107565, type: 3}
       ShardImage: {fileID: 21300000, guid: 9c221be692bb5be44a2aa4edcc14706b, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 58a312d858f128f4c901be2e97ceeac1, type: 3}
-      SkillAttack: 3548031329
-      SkillActive: 703911167
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_1
+      SkillActive: Assassin
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Support
       Name: Duku
       Prefab: IronfistDwarf
@@ -227,13 +227,13 @@ MonoBehaviour:
       Image: {fileID: 21300000, guid: 4d750203891ff6b459ad4f1d601f578c, type: 3}
       ShardImage: {fileID: 21300000, guid: c49faee5efb3b2948b5e76c5c18fe2fa, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: d3254e0c7a20c0e48867e747e91f2f2e, type: 3}
-      SkillAttack: 1578047653
-      SkillActive: 1516922681
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: RangeAttack_1
+      SkillActive: Support
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Enemy
       Name: 
       Prefab: Sceleton
@@ -254,13 +254,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 3795814207
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_2
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Enemy1
       Name: 
       Prefab: Sceleton
@@ -281,13 +281,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 3548031329
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_1
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: EnemyRange
       Name: 
       Prefab: Sceleton
@@ -308,13 +308,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 2201965509
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: RangeAttack_4
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Sceleton
       Name: 
       Prefab: Sceleton
@@ -335,13 +335,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 4243707639
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: FlowMeleeAttack
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: SceletonBoss
       Name: 
       Prefab: Sceleton
@@ -362,13 +362,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 4070441441
-      SkillActive: 0
-      SkillPassive1: 1107468141
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: RangeAttack_3
+      SkillActive: 
+      SkillPassive1: SceletonBoss
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Sceletonminiboss
       Name: 
       Prefab: Sceleton
@@ -389,13 +389,13 @@ MonoBehaviour:
       Image: {fileID: 0}
       ShardImage: {fileID: 0}
       HeadPrefab: {fileID: 0}
-      SkillAttack: 3795814207
-      SkillActive: 0
-      SkillPassive1: 0
-      SkillPassive2: 0
-      SkillMeta1: 0
-      SkillMeta2: 0
-      SkillMeta3: 0
+      SkillAttack: MeleeAttack_2
+      SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
   map:
     IDS:
     - Test
@@ -1105,7 +1105,7 @@ MonoBehaviour:
     - Passive5
     - Passive6
     Data:
-    - ID: 4243707639
+    - ID: FlowMeleeAttack
       Type: 1
       Icon: 
       Cooldown: 5
@@ -1142,7 +1142,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 3548031329
+    - ID: MeleeAttack_1
       Type: 1
       Icon: 
       Cooldown: 1.2
@@ -1179,7 +1179,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 3795814207
+    - ID: MeleeAttack_2
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1216,7 +1216,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 2213220330
+    - ID: MeleeAttack_3
       Type: 1
       Icon: 
       Cooldown: 2
@@ -1253,7 +1253,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 1578047653
+    - ID: RangeAttack_1
       Type: 0
       Icon: 
       Cooldown: 2
@@ -1290,7 +1290,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 616699424
+    - ID: RangeAttack_2
       Type: 0
       Icon: 
       Cooldown: 1.5
@@ -1327,7 +1327,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 4070441441
+    - ID: RangeAttack_3
       Type: 0
       Icon: 
       Cooldown: 1.8
@@ -1364,7 +1364,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 2201965509
+    - ID: RangeAttack_4
       Type: 0
       Icon: 
       Cooldown: 1.3
@@ -1401,7 +1401,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 3753657975
+    - ID: RangeAttackAOE
       Type: 0
       Icon: 
       Cooldown: 3
@@ -1438,7 +1438,7 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
-    - ID: 232099915
+    - ID: SpawnSkeletons
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1477,7 +1477,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 3693692732
+    - ID: HealBuff
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1514,7 +1514,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 3503821397
+    - ID: ShieldBuff
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1551,7 +1551,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 858787147
+    - ID: ShieldBuffBig
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1588,7 +1588,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 1376285117
+    - ID: AggroBuff
       Type: 4
       Icon: 
       Cooldown: 1
@@ -1625,7 +1625,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 2425292117
+    - ID: RearJump
       Type: 6
       Icon: 
       Cooldown: 1
@@ -1659,7 +1659,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 1495396533
+    - ID: SpeedAttack
       Type: 3
       Icon: 
       Cooldown: 1
@@ -1696,7 +1696,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 2496368978
+    - ID: OrbitingFireBoll
       Type: 2
       Icon: Heal
       Cooldown: 7
@@ -1734,7 +1734,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
         3 \u0448\u0430\u0440\u0430\u043C\u0438 \u043F\u043E \u043A\u0440\u0443\u0433\u0443"
-    - ID: 1516922681
+    - ID: Support
       Type: 3
       Icon: Heal
       Cooldown: 12
@@ -1772,7 +1772,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: "\u0423\u0441\u043A\u043E\u0440\u044F\u0435\u0442 \u0432\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
         \u0430\u0431\u0438\u043B\u043E\u043A"
-    - ID: 2475848034
+    - ID: Mage
       Type: 3
       Icon: Heal
       Cooldown: 10
@@ -1810,7 +1810,7 @@ MonoBehaviour:
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: "\u0423\u0434\u0430\u0440 \u043B\u044C\u0434\u043E\u043C \u043F\u043E
         \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
-    - ID: 1605752999
+    - ID: Tank
       Type: 5
       Icon: Heal
       Cooldown: 11
@@ -1846,7 +1846,7 @@ MonoBehaviour:
       Description: "\u0410\u0433\u0440\u0438\u0442 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432
         \u043D\u0430 \u0441\u0435\u0431\u044F \u0438 \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439
         \u0449\u0438\u0442"
-    - ID: 370847456
+    - ID: Healer
       Type: 5
       Icon: Heal
       Cooldown: 10
@@ -1882,7 +1882,7 @@ MonoBehaviour:
       Description: "\u041B\u0435\u0447\u0438\u0442 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432
         \u0438 \u043D\u0430\u043A\u043B\u0430\u0434\u044B\u0432\u0430\u0435\u0442
         \u043D\u0435\u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0449\u0438\u0442"
-    - ID: 703911167
+    - ID: Assassin
       Type: 5
       Icon: Heal
       Cooldown: 7
@@ -1918,7 +1918,7 @@ MonoBehaviour:
       Description: "\u041F\u0440\u044B\u0433\u0430\u0435\u0442 \u043A \u0434\u0430\u043B\u044C\u043D\u0435\u0439
         \u0446\u0435\u043B\u0438 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
         \u0431\u044B\u0441\u0442\u0440\u044B\u0435 \u0443\u0434\u0430\u0440\u044B"
-    - ID: 1107468141
+    - ID: SceletonBoss
       Type: 5
       Icon: 
       Cooldown: 9
@@ -1952,7 +1952,7 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
-    - ID: 1849116823
+    - ID: Passive1
       Type: 3
       Icon: Heal
       Cooldown: 1
@@ -1990,7 +1990,7 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
-    - ID: 3112843777
+    - ID: Passive2
       Type: 3
       Icon: Heal
       Cooldown: 1
@@ -2027,7 +2027,7 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
-    - ID: 2895788845
+    - ID: Passive3
       Type: 3
       Icon: Heal
       Cooldown: 1
@@ -2064,7 +2064,7 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
-    - ID: 2914914361
+    - ID: Passive4
       Type: 3
       Icon: Heal
       Cooldown: 1
@@ -2101,7 +2101,7 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
-    - ID: 414909054
+    - ID: Passive5
       Type: 3
       Icon: Heal
       Cooldown: 1
@@ -2138,7 +2138,7 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
-    - ID: 528522508
+    - ID: Passive6
       Type: 3
       Icon: Heal
       Cooldown: 1

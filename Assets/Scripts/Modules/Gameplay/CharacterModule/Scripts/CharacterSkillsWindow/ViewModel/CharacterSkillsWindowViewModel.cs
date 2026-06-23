@@ -42,11 +42,7 @@ namespace vikwhite
         public UnityAction OnOpenStats;
         public UnityAction OnUpgradeSkill;
 
-        public CharacterSkillsWindowViewModel(
-            Character character,
-            IConfigs configs,
-            IResourceService resources,
-            ICharacterWindow characterWindow) : base(character)
+        public CharacterSkillsWindowViewModel(Character character, IConfigs configs, IResourceService resources, ICharacterWindow characterWindow) : base(character)
         {
             _configs = configs;
             _resources = resources;
@@ -75,10 +71,9 @@ namespace vikwhite
             foreach (var slot in SlotOrder)
             {
                 var skillID = Model.Config.GetSkill(slot);
-                var skill = GetSkill(skillID);
+                var skill = _configs.Skills.Get(skillID);
                 var skillName = GetSkillName(skillID);
-                var viewModel = CreateViewModel<SkillItemViewModel, SkillItemModel>(
-                    new SkillItemModel(slot, skillID, skill, skillName));
+                var viewModel = CreateViewModel<SkillItemViewModel, SkillItemModel>(new SkillItemModel(slot, skill, skillName));
                 viewModel.OnSelect = () => SelectSkill(viewModel);
                 _skills.Add(viewModel);
             }
@@ -172,9 +167,9 @@ namespace vikwhite
             Close();
         }
 
-        private ISkillData GetSkill(uint skillID)
+        private ISkillData GetSkill(string skillID)
         {
-            if (skillID == 0) return null;
+            if (skillID == null) return null;
 
             foreach (var skill in _configs.Skills.GetAll())
             {
@@ -184,9 +179,9 @@ namespace vikwhite
             return null;
         }
 
-        private string GetSkillName(uint skillID)
+        private string GetSkillName(string skillID)
         {
-            if (skillID == 0) return "";
+            if (skillID == null) return "";
 
             var skills = _configs.Skills.GetAll();
             var skillConfig = _configs.Skills as ConfigCore;

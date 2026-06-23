@@ -27,8 +27,8 @@ namespace vikwhite.Data
         Sprite Image { get; }
         Sprite ShardImage { get; }
         GameObject HeadPrefab { get; }
-        IReadOnlyDictionary<SkillSlotType, uint> Skills { get; }
-        uint GetSkill(SkillSlotType slotType);
+        IReadOnlyDictionary<SkillSlotType, string> Skills { get; }
+        string GetSkill(SkillSlotType slotType);
         float GetStat(StatType stat);
     }
 
@@ -56,17 +56,17 @@ namespace vikwhite.Data
         public Sprite ShardImage;
         public GameObject HeadPrefab;
 
-        public uint SkillAttack;
-        public uint SkillActive;
-        public uint SkillPassive1;
-        public uint SkillPassive2;
-        public uint SkillMeta1;
-        public uint SkillMeta2;
-        public uint SkillMeta3;
+        public string SkillAttack;
+        public string SkillActive;
+        public string SkillPassive1;
+        public string SkillPassive2;
+        public string SkillMeta1;
+        public string SkillMeta2;
+        public string SkillMeta3;
 
-        private Dictionary<SkillSlotType, uint> _skills;
+        private Dictionary<SkillSlotType, string> _skills;
 
-        public IReadOnlyDictionary<SkillSlotType, uint> Skills => _skills ??= BuildSkills();
+        public IReadOnlyDictionary<SkillSlotType, string> Skills => _skills ??= BuildSkills();
 
         string ICharacterData.ID => ID;
         string ICharacterData.Name => Name;
@@ -88,9 +88,9 @@ namespace vikwhite.Data
         Sprite ICharacterData.Image => Image;
         Sprite ICharacterData.ShardImage => ShardImage;
         GameObject ICharacterData.HeadPrefab => HeadPrefab;
-        IReadOnlyDictionary<SkillSlotType, uint> ICharacterData.Skills => Skills;
+        IReadOnlyDictionary<SkillSlotType, string> ICharacterData.Skills => Skills;
 
-        public uint GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : 0;
+        public string GetSkill(SkillSlotType slotType) => Skills.TryGetValue(slotType, out var id) ? id : null;
 
         public float GetStat(StatType stat) => stat switch
         {
@@ -102,7 +102,7 @@ namespace vikwhite.Data
             _ => 0f,
         };
 
-        private Dictionary<SkillSlotType, uint> BuildSkills() => new()
+        private Dictionary<SkillSlotType, string> BuildSkills() => new()
         {
             { SkillSlotType.Attack, SkillAttack },
             { SkillSlotType.Active, SkillActive },

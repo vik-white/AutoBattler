@@ -119,6 +119,12 @@ namespace vikwhite.Data
         public I Get(int index = 0) {
             return Data[index] as I;
         }
+        
+        /*public I Get(uint id) {
+            if(_dictionary == null) InitDictionary();
+            if(!_dictionary.ContainsKey(id)) return null;
+            return _dictionary[id] as I;
+        }*/
 
         public List<I> GetAll() {
             if(IData == null) {

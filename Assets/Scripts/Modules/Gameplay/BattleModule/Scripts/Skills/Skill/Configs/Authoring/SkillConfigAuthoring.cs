@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Rukhanka.Toolbox;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace vikwhite.ECS
             {
                 var config = new SkillConfig
                 {
-                    ID = data.ID,
+                    ID = data.ID.CalculateHash32(),
                     Type = data.Type,
                     Targets = CreateTargets(data.Targets),
                     Cooldown = data.Cooldown,

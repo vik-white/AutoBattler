@@ -9,7 +9,7 @@ namespace vikwhite.Data
 {
     public interface ISkillData
     {
-        uint ID { get; }
+        string ID { get; }
         SkillType Type { get; }
         string Icon { get; }
         float Cooldown { get; }
@@ -48,7 +48,7 @@ namespace vikwhite.Data
     [Serializable]
     public class SkillData : ISkillData, ICustomJsonParser
     {
-        public uint ID;
+        public string ID;
         public SkillType Type;
         public string Icon;
         public float Cooldown;
@@ -83,7 +83,7 @@ namespace vikwhite.Data
         public Sprite IconImage;
         public string Description;
         
-        uint ISkillData.ID => ID;
+        string ISkillData.ID => ID;
         SkillType ISkillData.Type => Type;
         string ISkillData.Icon => Icon;
         float ISkillData.Cooldown => Cooldown;
