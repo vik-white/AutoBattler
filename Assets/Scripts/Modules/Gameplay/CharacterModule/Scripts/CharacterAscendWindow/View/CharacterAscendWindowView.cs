@@ -34,7 +34,7 @@ namespace vikwhite
             Bind(viewModel.CanSelectNextStar, value => _view.NextStarButton.interactable = value);
             Bind(viewModel.RedeemResource.Amount, value => _view.RedeemAmount.text = value.ToString());
 
-            CreateView<SelectableStarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
+            CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
             CreateView<StatsInfoView, StatsInfoHierarchy>(_view.StatsInfo).Initialize(viewModel.StatsInfo);
         }
     }

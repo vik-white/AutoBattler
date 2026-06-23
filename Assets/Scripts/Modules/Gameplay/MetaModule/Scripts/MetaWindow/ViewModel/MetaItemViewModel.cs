@@ -18,7 +18,7 @@ namespace vikwhite
         {
             OnSelect = () => characterWindow.ShowWindow(character);
             Level = character.Level;
-            Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
+            Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(character.Stars));
             ImagePrefab = character.Config.HeadPrefab;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             configs.UI.Rarities.TryGetValue(character.Config.Rarity, out var rarity);

@@ -50,7 +50,7 @@ namespace vikwhite
             Image = config.Image;
             Rarity = config.Rarity;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
-            Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
+            Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(character.Stars));
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
             OnOpenUpgradeInfo = OpenUpgradeInfo;

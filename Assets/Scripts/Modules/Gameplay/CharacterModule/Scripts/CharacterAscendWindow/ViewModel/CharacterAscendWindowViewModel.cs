@@ -26,7 +26,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<string> ShardPrice => _shardPrice;
         public IReadOnlyReactiveProperty<float> ShardProgress => _shardProgress;
         public ResourceViewModel RedeemResource { get; }
-        public SelectableStarsViewModel Stars { get; }
+        public StarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
         public UnityAction OnAscend;
         public UnityAction OnSelectPreviousStar;
@@ -47,7 +47,7 @@ namespace vikwhite
             AddDisposables(_selectedStars, _canSelectPreviousStar, _canSelectNextStar, _shardPrice, _shardProgress);
 
             RedeemResource = CreateViewModel<ResourceViewModel, Resource>(resourceService.Get(_redeemResourceType));
-            Stars = CreateViewModel<SelectableStarsViewModel, SelectableStarsModel>(new SelectableStarsModel(character.Stars, _selectedStars));
+            Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(character.Stars, _selectedStars));
             StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(new StatsInfoModel(character, character.Level, character.Stars, character.Level, _selectedStars));
 
             OnAscend = Ascend;

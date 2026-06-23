@@ -19,8 +19,8 @@ namespace vikwhite
             Register<ICharacterAscendWindow, CharacterAscendWindow>();
             Register<CharacterAscendWindowViewModel>();
             Register<CharacterAscendWindowView>();
-            Register<SelectableStarsViewModel>();
-            Register<SelectableStarsView>();
+            Register<StarsViewModel>();
+            Register<StarsView>();
 
             Register<StatsInfoViewModel>();
             Register<StatsInfoView>();

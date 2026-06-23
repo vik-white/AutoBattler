@@ -43,7 +43,7 @@ namespace vikwhite
             AddDisposable(character.Stars.Subscribe(UpdateSelectedStars));
 
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
-            Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(_selectedStars);
+            Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(_selectedStars));
             StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(
                 new StatsInfoModel(character, character.Level, character.Stars, _selectedLevel, _selectedStars));
             OnUpgradeLevel = LevelUpgrade;
