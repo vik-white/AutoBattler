@@ -29,10 +29,11 @@ namespace vikwhite
         public StarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
         public UnityAction OnAscend;
+        public UnityAction OnSummon;
         public UnityAction OnSelectPreviousStar;
         public UnityAction OnSelectNextStar;
 
-        public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService) : base(character)
+        public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService, ISummonWindow summonWindow) : base(character)
         {
             _configs = configs;
             _redeemResourceType = ResourceHandler.GetShardResourceType(character.Config.Rarity);
@@ -51,6 +52,7 @@ namespace vikwhite
             StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(new StatsInfoModel(character, character.Level, character.Stars, character.Level, _selectedStars));
 
             OnAscend = Ascend;
+            OnSummon = summonWindow.ShowWindow;
             OnSelectPreviousStar = SelectPreviousStar;
             OnSelectNextStar = SelectNextStar;
 
@@ -62,6 +64,7 @@ namespace vikwhite
         {
             base.Dispose();
             OnAscend = null;
+            OnSummon = null;
             OnSelectPreviousStar = null;
             OnSelectNextStar = null;
         }

@@ -7,5 +7,6 @@ namespace vikwhite
     {
         public RectTransform ItemContainer;
         public Button CloseButton;
+        public Button SummonButton;
     }
 }

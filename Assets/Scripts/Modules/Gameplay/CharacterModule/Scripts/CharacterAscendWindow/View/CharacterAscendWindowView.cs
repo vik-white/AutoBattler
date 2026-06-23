@@ -20,6 +20,7 @@ namespace vikwhite
 
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.AscendButton, viewModel.OnAscend);
+            BindClick(_view.SummonButton, viewModel.OnSummon);
             BindClick(_view.PreviousStarButton, viewModel.OnSelectPreviousStar);
             BindClick(_view.NextStarButton, viewModel.OnSelectNextStar);
 

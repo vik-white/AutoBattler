@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Meta::vikwhite.MetaWindowHierarchy
   ItemContainer: {fileID: 9052066208859663457}
   CloseButton: {fileID: 2023631387200609741}
+  SummonButton: {fileID: 5566502718279660971}
 --- !u!1 &3071549762392050532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,6 +1879,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3761578601109506945, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
   m_PrefabInstance: {fileID: 3669976829776601369}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5566502718279660971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 918227441998759402, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
+  m_PrefabInstance: {fileID: 3669976829776601369}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &3970146592037080868
 PrefabInstance:
   m_ObjectHideFlags: 0

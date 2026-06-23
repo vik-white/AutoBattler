@@ -11,6 +11,7 @@ namespace vikwhite
         public TMP_Text RedeemAmount;
         public Button CloseButton;
         public Button AscendButton;
+        public Button SummonButton;
         public Button PreviousStarButton;
         public Button NextStarButton;
         public Image Image;
