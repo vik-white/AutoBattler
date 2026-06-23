@@ -22,9 +22,14 @@ namespace vikwhite
             _view.Image.sprite = viewModel.Image;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
             _view.BookClassIcon.sprite = viewModel.BookClassIcon;
-            
+
+            for (var i = 0; i < _view.SkillItems.Length; i++) _view.SkillItems[i].gameObject.SetActive(false);
             for (var i = 0; i < viewModel.Skills.Count; i++)
-                CreateView<SkillItemView, SkillItemHierarchy>(_view.SkillItems[i]).Initialize(viewModel.Skills[i]);
+            {
+                var index = (int)viewModel.Skills[i].Slot - 1;
+                _view.SkillItems[index].gameObject.SetActive(true);
+                CreateView<SkillItemView, SkillItemHierarchy>(_view.SkillItems[index]).Initialize(viewModel.Skills[i]);
+            }
         }
     }
 }

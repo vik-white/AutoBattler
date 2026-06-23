@@ -52,8 +52,7 @@ namespace vikwhite
             AddDisposables(_selectedSkill, _skillName, _skillDescription, _skillUpgradePrice, _canUpgradeSkill);
             CreateSkills();
             SelectSkill(_skills[0]);
-            foreach (var skill in character.Skills)
-                AddDisposable(skill.Level.Subscribe(_ => RefreshSkills()));
+            foreach (var skill in character.Skills) AddDisposable(skill.Level.Subscribe(_ => RefreshSkills()));
             AddDisposable(character.Stars.Subscribe(_ => RefreshSkills()));
             AddDisposable(ClassBooksAmount.Subscribe(_ => RefreshUpgradeState()));
             RefreshSkills();
@@ -63,9 +62,9 @@ namespace vikwhite
         {
             foreach (var slot in SkillSlotExtensions.UpgradableSlots)
             {
-                var skillID = Model.Config.GetSkill(slot);
-                var skill = _configs.Skills.Get(skillID);
-                var viewModel = CreateViewModel<SkillItemViewModel, SkillItemModel>(new SkillItemModel(slot, skill));
+                var skill = Model.GetSkill(slot);
+                if (skill == null) continue;
+                var viewModel = CreateViewModel<SkillItemViewModel, CharacterSkill>(skill);
                 viewModel.OnSelect = () => SelectSkill(viewModel);
                 _skills.Add(viewModel);
             }

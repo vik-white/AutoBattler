@@ -1,31 +1,33 @@
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
+using vikwhite.Data;
 
 namespace vikwhite
 {
-    public class SkillItemViewModel : ViewModel<SkillItemModel>
+    public class SkillItemViewModel : ViewModel<CharacterSkill>
     {
+        private readonly ISkillData _config;
         private readonly ReactiveProperty<bool> _isVisible = new();
         private readonly ReactiveProperty<bool> _isSelected = new();
         private readonly ReactiveProperty<bool> _isLocked = new();
-        private readonly ReactiveProperty<int> _level = new();
 
         public SkillSlotType Slot => Model.Slot;
-        public string ID => Model.Skill?.ID;
-        public string Name => Model.Skill?.ID ?? "";
-        public string Description => Model.Skill?.Description ?? "";
-        public Sprite Icon => Model.Skill?.IconImage;
+        public string ID => Model.ID;
+        public string Name => _config?.ID ?? "";
+        public string Description => _config?.Description ?? "";
+        public Sprite Icon => _config?.IconImage;
         public IReadOnlyReactiveProperty<bool> IsVisible => _isVisible;
         public IReadOnlyReactiveProperty<bool> IsSelected => _isSelected;
         public IReadOnlyReactiveProperty<bool> IsLocked => _isLocked;
-        public IReadOnlyReactiveProperty<int> Level => _level;
+        public IReadOnlyReactiveProperty<int> Level => Model.Level;
         public UnityAction OnSelect;
 
-        public SkillItemViewModel(SkillItemModel model) : base(model)
+        public SkillItemViewModel(CharacterSkill model, IConfigs configs) : base(model)
         {
-            AddDisposables(_isVisible, _isSelected, _isLocked, _level);
-            _isVisible.Value = model.HasSkill;
+            _config = configs.Skills.Get(model.ID);
+            AddDisposables(_isVisible, _isSelected, _isLocked);
+            _isVisible.Value = _config != null;
         }
 
         public void SetSelected(bool selected)
@@ -35,7 +37,6 @@ namespace vikwhite
 
         public void SetLevel(int level)
         {
-            _level.Value = level;
             _isLocked.Value = level <= 0;
         }
 
