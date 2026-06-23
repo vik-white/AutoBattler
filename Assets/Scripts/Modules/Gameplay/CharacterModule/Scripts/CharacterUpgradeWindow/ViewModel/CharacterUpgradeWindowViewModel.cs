@@ -8,6 +8,7 @@ namespace vikwhite
     public class CharacterUpgradeWindowViewModel : WindowViewModel<Character>
     {
         private readonly IConfigs _configs;
+        private readonly IResourceService _resource;
         private readonly ReactiveProperty<int> _selectedLevel;
         private readonly ReactiveProperty<int> _selectedStars;
         private readonly ReactiveProperty<bool> _canSelectPreviousLevel = new();
@@ -19,29 +20,44 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> SelectedLevel => _selectedLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectPreviousLevel => _canSelectPreviousLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectNextLevel => _canSelectNextLevel;
+        public ResourceViewModel ExpResources;
+        public int LevelUpPrice;
         public StarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
+        public UnityAction OnUpgradeLevel;
         public UnityAction OnSelectPreviousLevel;
         public UnityAction OnSelectNextLevel;
 
-        public CharacterUpgradeWindowViewModel(Character character, IConfigs configs) : base(character)
+        public CharacterUpgradeWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
             _configs = configs;
+            _resource = resource;
             Name = character.Config.Name;
             Image = character.Config.Image;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
+            LevelUpPrice = configs.Settings.LevelUpPrice;
             _selectedLevel = new ReactiveProperty<int>(GetInitialSelectedLevel(character));
             _selectedStars = new ReactiveProperty<int>(character.Stars.Value);
             AddDisposables(_selectedLevel, _selectedStars, _canSelectPreviousLevel, _canSelectNextLevel);
             AddDisposable(character.Level.Subscribe(_ => ClampSelectedLevel()));
             AddDisposable(character.Stars.Subscribe(UpdateSelectedStars));
 
+            ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(_selectedStars);
             StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(
                 new StatsInfoModel(character, character.Level, character.Stars, _selectedLevel, _selectedStars));
+            OnUpgradeLevel = LevelUpgrade;
             OnSelectPreviousLevel = SelectPreviousLevel;
             OnSelectNextLevel = SelectNextLevel;
             RefreshLevelSelectionState();
+        }
+
+        private void LevelUpgrade()
+        {
+            if (Model.GetMaxLevel() <= Model.Level.Value) return;
+            if (_resource.GetAmount(ResourceType.Exp).Value < LevelUpPrice) return;
+            _resource.Spend(ResourceType.Exp, LevelUpPrice);
+            Model.UpgradeLevel();
         }
 
         private int GetInitialSelectedLevel(Character character)
@@ -91,6 +107,7 @@ namespace vikwhite
         public override void Dispose()
         {
             base.Dispose();
+            OnUpgradeLevel = null;
             OnSelectPreviousLevel = null;
             OnSelectNextLevel = null;
         }
