@@ -342,7 +342,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 305.12485, y: -39.7205}
-  m_SizeDelta: {x: 0, y: 74.1348}
+  m_SizeDelta: {x: 121.8, y: 74.1348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &516748683426282435
 CanvasRenderer:
@@ -1777,6 +1777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005289594815546579}
+  - component: {fileID: 6650000000000000400}
   m_Layer: 5
   m_Name: CharacterAscendWindow
   m_TagString: Untagged
@@ -1818,6 +1819,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6650000000000000400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015827576262481715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7dacd66024f20b74869d5663dbf32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::vikwhite.CharacterAscendHierarchy
+  Name: {fileID: 6196243976808835415}
+  ShardPrice: {fileID: 8450685412383153481}
+  RedeemAmount: {fileID: 2265797479995414157}
+  CloseButton: {fileID: 5259988396580377371}
+  AscendButton: {fileID: 2488535645150409987}
+  RedeemButton: {fileID: 9214214885688699736}
+  PreviousStarButton: {fileID: 4562911739611051945}
+  NextStarButton: {fileID: 8006636184505887738}
+  Image: {fileID: 450560384686737895}
+  ClassIcon: {fileID: 5264610032892242174}
+  ShardBar: {fileID: 4551496948136056487}
+  ShardBarIcon: {fileID: 4041656650087829924}
+  RedeemShardIcon: {fileID: 1422084403004235258}
+  HeroShardIcon: {fileID: 7642600231647542781}
+  Stars: {fileID: 4963229687974814970}
+  StatsInfo: {fileID: 1316399054071751533}
 --- !u!1 &7175340753384612920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3594,6 +3623,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c5f2313948e6a34782088b9d2573ac3, type: 3}
+--- !u!114 &1316399054071751533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6650000000000000200, guid: 7c5f2313948e6a34782088b9d2573ac3, type: 3}
+  m_PrefabInstance: {fileID: 5624224298022626213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c818cb29f044e0a8b6f9aa93f7eb6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::vikwhite.StatsInfoHierarchy
 --- !u!224 &3468014332443866726 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9092097608696321475, guid: 7c5f2313948e6a34782088b9d2573ac3, type: 3}

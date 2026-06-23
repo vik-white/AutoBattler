@@ -11,6 +11,7 @@ namespace vikwhite
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.LevelUpButton, viewModel.OnUpgradeLevel);
             BindClick(_view.InfoButton, viewModel.OnOpenUpgradeInfo);
+            BindClick(_view.AscendButton, viewModel.OnOpenAscendInfo);
             BindClick(_view.PreviousCharacterButton, viewModel.OnSelectPreviousCharacter);
             BindClick(_view.NextCharacterButton, viewModel.OnSelectNextCharacter);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());

@@ -5,5 +5,6 @@ namespace vikwhite
     public class StarHierarchy : MonoBehaviour
     {
         public RectTransform[] Leaves;
+        public RectTransform[] SelectedLeaves;
     }
 }

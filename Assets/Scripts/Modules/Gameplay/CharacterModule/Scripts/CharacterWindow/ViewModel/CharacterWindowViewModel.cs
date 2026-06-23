@@ -11,6 +11,7 @@ namespace vikwhite
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
         private readonly ICharacterUpgradeWindow _characterUpgradeWindow;
+        private readonly ICharacterAscendWindow _characterAscendWindow;
         private readonly ICharacterWindow _characterWindow;
         private readonly List<Character> _characters;
         public string Name;
@@ -19,6 +20,7 @@ namespace vikwhite
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
         public UnityAction OnOpenUpgradeInfo;
+        public UnityAction OnOpenAscendInfo;
         public UnityAction OnSelectPreviousCharacter;
         public UnityAction OnSelectNextCharacter;
         public int LevelUpPrice;
@@ -31,12 +33,14 @@ namespace vikwhite
             IConfigs configs,
             IResourceService resource,
             ICharacterUpgradeWindow characterUpgradeWindow,
+            ICharacterAscendWindow characterAscendWindow,
             ICharactersService charactersService,
             ICharacterWindow characterWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
             _characterUpgradeWindow = characterUpgradeWindow;
+            _characterAscendWindow = characterAscendWindow;
             _characterWindow = characterWindow;
             _characters = new List<Character>(charactersService.GetCharacters());
             Name = character.Config.Name;
@@ -50,11 +54,14 @@ namespace vikwhite
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
             OnOpenUpgradeInfo = OpenUpgradeInfo;
+            OnOpenAscendInfo = OpenAscendInfo;
             OnSelectPreviousCharacter = SelectPreviousCharacter;
             OnSelectNextCharacter = SelectNextCharacter;
         }
 
         private void OpenUpgradeInfo() => _characterUpgradeWindow.ShowWindow(Model);
+
+        private void OpenAscendInfo() => _characterAscendWindow.ShowWindow(Model);
 
         private void SelectPreviousCharacter() => SelectCharacter(-1);
 
@@ -84,6 +91,7 @@ namespace vikwhite
             base.Dispose();
             OnUpgradeLevel = null;
             OnOpenUpgradeInfo = null;
+            OnOpenAscendInfo = null;
             OnSelectPreviousCharacter = null;
             OnSelectNextCharacter = null;
         }

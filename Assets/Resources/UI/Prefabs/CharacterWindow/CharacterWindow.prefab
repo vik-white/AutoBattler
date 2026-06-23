@@ -2057,6 +2057,7 @@ MonoBehaviour:
   LevelUpPrice: {fileID: 895829695771368584}
   LevelUpButton: {fileID: 1339031858475028266}
   InfoButton: {fileID: 3088214468008058243}
+  AscendButton: {fileID: 2731942167387515639}
   PreviousCharacterButton: {fileID: 6650000000000000401}
   NextCharacterButton: {fileID: 6650000000000000402}
   CloseButton: {fileID: 5306465055309029531}
