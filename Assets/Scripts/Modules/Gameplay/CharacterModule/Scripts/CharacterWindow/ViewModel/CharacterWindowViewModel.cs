@@ -10,20 +10,23 @@ namespace vikwhite
     {
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
+        private readonly ICharacterUpgradeWindow _characterUpgradeWindow;
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
+        public UnityAction OnOpenUpgradeInfo;
         public int LevelUpPrice;
         public RarityType Rarity;
         public Sprite ClassIcon;
         public StarsViewModel Stars { get; }
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
+        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, ICharacterUpgradeWindow characterUpgradeWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
+            _characterUpgradeWindow = characterUpgradeWindow;
             Name = character.Config.Name;
             Level = character.Level;
             LevelUpPrice = configs.Settings.LevelUpPrice;
@@ -34,7 +37,10 @@ namespace vikwhite
             Stars = CreateViewModel<StarsViewModel, IReadOnlyReactiveProperty<int>>(character.Stars);
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
+            OnOpenUpgradeInfo = OpenUpgradeInfo;
         }
+
+        private void OpenUpgradeInfo() => _characterUpgradeWindow.ShowWindow(Model);
 
         private void LevelUpgrade()
         {
@@ -48,6 +54,7 @@ namespace vikwhite
         {
             base.Dispose();
             OnUpgradeLevel = null;
+            OnOpenUpgradeInfo = null;
         }
     }
 }

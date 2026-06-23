@@ -4,19 +4,16 @@ using UnityEngine.UI;
 
 namespace vikwhite
 {
-    public class CharacterHierarchy : MonoBehaviour
+    public class CharacterUpgradeHierarchy : MonoBehaviour
     {
         public TMP_Text Name;
         public TMP_Text Level;
-        public TMP_Text LevelUpPrice;
-        public Button LevelUpButton;
-        public Button InfoButton;
         public Button CloseButton;
+        public Button PreviousLevelButton;
+        public Button NextLevelButton;
         public Image Image;
         public Image ClassIcon;
         public StarsHierarchy Stars;
-        public GameObject R;
-        public GameObject SR;
-        public GameObject SSR;
+        public StatsInfoHierarchy StatsInfo;
     }
 }
