@@ -1954,7 +1954,7 @@ MonoBehaviour:
       Description: 
     - ID: 1849116823
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -1988,11 +1988,11 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
     - ID: 3112843777
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -2025,11 +2025,11 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
     - ID: 2895788845
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -2062,11 +2062,11 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
     - ID: 2914914361
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -2099,11 +2099,11 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
     - ID: 414909054
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -2136,11 +2136,11 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
     - ID: 528522508
       Type: 3
-      Icon: 
+      Icon: Heal
       Cooldown: 1
       Chance: 1
       Radius: 0
@@ -2173,7 +2173,7 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 0
       Animation: 0
-      IconImage: {fileID: 0}
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
   hexPositions:
     IDS:

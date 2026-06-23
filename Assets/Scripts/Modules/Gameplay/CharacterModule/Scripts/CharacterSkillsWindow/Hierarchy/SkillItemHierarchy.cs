@@ -9,6 +9,7 @@ namespace vikwhite
         public Button Button;
         public Image Icon;
         public TMP_Text Level;
+        public GameObject LevelContainer;
         public GameObject Lock;
         public GameObject Selected;
     }
