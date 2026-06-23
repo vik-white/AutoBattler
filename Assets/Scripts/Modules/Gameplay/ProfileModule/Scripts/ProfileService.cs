@@ -43,8 +43,28 @@ namespace vikwhite
             foreach (var characterData in _configs.Characters.GetAll())
             {
                 if (characterData.Squad)
-                    Data.Characters.Add(new CharacterData { ID = characterData.ID, Level = 1, Shards = 0, Stars = 0, SkillLevel = 1 } );
+                    Data.Characters.Add(new CharacterData
+                    {
+                        ID = characterData.ID,
+                        Level = 1,
+                        Shards = 0,
+                        Stars = 0,
+                        Skills = CreateSkills(characterData)
+                    });
             }
+        }
+
+        private List<SkillData> CreateSkills(ICharacterData characterData)
+        {
+            var skills = new List<SkillData>();
+            foreach (var slot in SkillSlotExtensions.CharacterSlots)
+            {
+                var skillID = characterData.GetSkill(slot);
+                if (string.IsNullOrEmpty(skillID)) continue;
+                var level = _configs.Stars.Get().GetMaxSkillLevel(slot);
+                skills.Add(new SkillData { ID = skillID, Level = level });
+            }
+            return skills;
         }
         
         public void Save()

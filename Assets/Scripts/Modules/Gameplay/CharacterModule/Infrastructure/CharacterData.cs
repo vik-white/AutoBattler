@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace vikwhite
 {
@@ -9,6 +10,6 @@ namespace vikwhite
         public int Level;
         public int Shards;
         public int Stars;
-        public int SkillLevel;
+        public List<SkillData> Skills = new();
     }
 }

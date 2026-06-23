@@ -52,7 +52,8 @@ namespace vikwhite
             AddDisposables(_selectedSkill, _skillName, _skillDescription, _skillUpgradePrice, _canUpgradeSkill);
             CreateSkills();
             SelectSkill(_skills[0]);
-            AddDisposable(character.SkillLevel.Subscribe(_ => RefreshSkills()));
+            foreach (var skill in character.Skills)
+                AddDisposable(skill.Level.Subscribe(_ => RefreshSkills()));
             AddDisposable(character.Stars.Subscribe(_ => RefreshSkills()));
             AddDisposable(ClassBooksAmount.Subscribe(_ => RefreshUpgradeState()));
             RefreshSkills();
@@ -96,23 +97,24 @@ namespace vikwhite
             _skillUpgradePrice.Value = $"{ClassBooksAmount.Value}/{price}";
             var selected = _selectedSkill.Value;
             var maxLevel = selected == null ? 0 : Model.GetMaxSkillLevel(selected.Slot);
-            _canUpgradeSkill.Value = selected != null && selected.IsVisible.Value && maxLevel > 0 && Model.SkillLevel.Value < maxLevel && (price <= 0 || ClassBooksAmount.Value >= price);
+            var skillLevel = selected == null ? 0 : Model.GetSkillLevel(selected.Slot);
+            _canUpgradeSkill.Value = selected != null && selected.IsVisible.Value && maxLevel > 0 && skillLevel < maxLevel && (price <= 0 || ClassBooksAmount.Value >= price);
         }
         
         private int GetSkillLevel(SkillSlotType slot)
         {
             var maxLevel = Model.GetMaxSkillLevel(slot);
-            return maxLevel <= 0 ? 0 : Mathf.Min(Model.SkillLevel.Value, maxLevel);
+            return maxLevel <= 0 ? 0 : Mathf.Min(Model.GetSkillLevel(slot), maxLevel);
         }
 
         private void UpgradeSkill()
         {
             var maxLevel = Model.GetMaxSkillLevel(_selectedSkill.Value.Slot);
-            if (maxLevel <= 0 || Model.SkillLevel.Value >= maxLevel) return;
+            if (maxLevel <= 0 || Model.GetSkillLevel(_selectedSkill.Value.Slot) >= maxLevel) return;
             var price = _configs.Settings.SkillUpPrice;
             if (price > 0 && ClassBooksAmount.Value < price) return;
             if (price > 0) _resources.Spend(_classBookResource, price);
-            Model.UpgradeSkill();
+            Model.UpgradeSkill(_selectedSkill.Value.Slot);
         }
 
         private void OpenStats()

@@ -1,8 +1,10 @@
+using System.Collections.Generic;
+
 namespace vikwhite
 {
     public interface ICharacterFactory
     {
-        Character Create(string id, int level, int shards, int stars, int skillLevel);
+        Character Create(string id, int level, int shards, int stars, IReadOnlyList<SkillData> skills);
     }
     
     public class CharacterFactory : ICharacterFactory
@@ -14,10 +16,10 @@ namespace vikwhite
             _container = container;
         }
 
-        public Character Create(string id, int level, int shards, int stars, int skillLevel)
+        public Character Create(string id, int level, int shards, int stars, IReadOnlyList<SkillData> skills)
         {
             var character = _container.Resolve<Character>();
-            character.Initialize(id, level, shards, stars, skillLevel);
+            character.Initialize(id, level, shards, stars, skills);
             return character;
         }
     }
