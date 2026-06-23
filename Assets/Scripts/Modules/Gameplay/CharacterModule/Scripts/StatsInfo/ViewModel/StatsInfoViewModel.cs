@@ -47,13 +47,11 @@ namespace vikwhite
         private float CalculateStat(StatType stat, int level, int stars)
         {
             var character = Model.Character;
-            var upgrade = new vikwhite.Data.CharacterUpgrade(
+            var upgrade = new CharacterUpgrade(
                 Mathf.Max(0, level - 1),
                 Mathf.Max(0, stars),
-                Mathf.Max(0, character.SkillLevel.Value - 1),
                 _configs.Upgrades.Get(character.Config.LevelUpgrade),
-                _configs.Upgrades.Get(character.Config.StarUpgrade),
-                _configs.Upgrades.Get(character.Config.SkillUpgrade));
+                _configs.Upgrades.Get(character.Config.StarUpgrade));
 
             return character.Config.GetStat(stat) * upgrade.GetStatMultiplier(stat);
         }

@@ -29,7 +29,6 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<int> Shards => _shards;
         public IReadOnlyReactiveProperty<int> Stars => _stars;
-        public IReadOnlyReactiveProperty<int> SkillLevel => _skillLevel;
         public IReadOnlyList<CharacterSkill> Skills => _skills;
 
         public Character(IConfigs configs, IEventDispatcher dispatcher)
@@ -69,10 +68,8 @@ namespace vikwhite
         private CharacterUpgrade CreateUpgrade() => new (
             _level.Value - 1, 
             _stars.Value, 
-            _skillLevel.Value - 1, 
             _configs.Upgrades.Get(_characterData.LevelUpgrade), 
-            _configs.Upgrades.Get(_characterData.StarUpgrade), 
-            _configs.Upgrades.Get(_characterData.SkillUpgrade));
+            _configs.Upgrades.Get(_characterData.StarUpgrade));
 
         public void UpgradeLevel() => _level.Value++;
 

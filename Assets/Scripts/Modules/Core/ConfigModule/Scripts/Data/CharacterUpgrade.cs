@@ -6,31 +6,20 @@ namespace vikwhite.Data
     {
         public readonly int LevelRank;
         public readonly int StarRank;
-        public readonly int SkillRank;
         public readonly IUpgradeData LevelUp;
         public readonly IUpgradeData StarUp;
-        public readonly IUpgradeData SkillUp;
 
-        public CharacterUpgrade(int levelRank, int starRank, int skillRank, IUpgradeData levelUp, IUpgradeData starUp, IUpgradeData skillUp)
+        public CharacterUpgrade(int levelRank, int starRank, IUpgradeData levelUp, IUpgradeData starUp)
         {
             LevelRank = levelRank;
             StarRank = starRank;
-            SkillRank = skillRank;
             LevelUp = levelUp;
             StarUp = starUp;
-            SkillUp = skillUp;
         }
 
         public float GetStatMultiplier(StatType stat) =>
-            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
+            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank,
                 LevelUp.GetStatMultiplier(stat),
-                StarUp.GetStatMultiplier(stat),
-                SkillUp.GetStatMultiplier(stat));
-
-        public float GetSkillMultiplier(SkillSlotType slot) =>
-            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
-                LevelUp.GetSkillMultiplier(slot),
-                StarUp.GetSkillMultiplier(slot),
-                SkillUp.GetSkillMultiplier(slot));
+                StarUp.GetStatMultiplier(stat));
     }
 }

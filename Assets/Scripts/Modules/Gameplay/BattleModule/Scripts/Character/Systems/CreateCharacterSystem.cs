@@ -23,10 +23,8 @@ namespace vikwhite.ECS
                 {
                     LevelRank = request.ValueRO.Level - 1,
                     StarRank = request.ValueRO.Stars,
-                    SkillRank = request.ValueRO.SkillLevel - 1,
                     LevelUp = upgradeConfigs.Get(config.LevelUpgrade),
-                    StarUp = upgradeConfigs.Get(config.StarUpgrade),
-                    SkillUp = upgradeConfigs.Get(config.SkillUpgrade),
+                    StarUp = upgradeConfigs.Get(config.StarUpgrade)
                 };
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);

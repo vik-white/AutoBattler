@@ -6,22 +6,18 @@ namespace vikwhite.ECS
     {
         public int LevelRank;
         public int StarRank;
-        public int SkillRank;
         public UpgradeConfig LevelUp;
         public UpgradeConfig StarUp;
-        public UpgradeConfig SkillUp;
 
         public float GetStatMultiplier(StatType stat) =>
-            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
+            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank,
                 LevelUp.GetStatMultiplier(stat),
-                StarUp.GetStatMultiplier(stat),
-                SkillUp.GetStatMultiplier(stat));
+                StarUp.GetStatMultiplier(stat));
 
         public float GetSkillMultiplier(SkillSlotType slot) =>
-            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank, SkillRank,
+            CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank,
                 LevelUp.GetSkillMultiplier(slot),
-                StarUp.GetSkillMultiplier(slot),
-                SkillUp.GetSkillMultiplier(slot));
+                StarUp.GetSkillMultiplier(slot));
 
         public float GetSkillMultiplier(in CharacterConfigData config, uint skillID)
         {

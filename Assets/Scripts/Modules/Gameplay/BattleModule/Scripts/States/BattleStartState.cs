@@ -53,8 +53,7 @@ namespace vikwhite
                 {
                     ID = character.ID.CalculateHash32(), 
                     Level = character.Level.Value,
-                    Stars = character.Stars.Value,
-                    SkillLevel = character.SkillLevel.Value,
+                    Stars = character.Stars.Value
                 } : default;
                 initializeSquad.Value.Add(createCharacter);
             }
