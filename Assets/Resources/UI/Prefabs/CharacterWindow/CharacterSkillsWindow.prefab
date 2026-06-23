@@ -460,7 +460,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 305.12485, y: -39.7205}
-  m_SizeDelta: {x: 0, y: 74.1348}
+  m_SizeDelta: {x: 121.8, y: 74.1348}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &516748683426282435
 CanvasRenderer:
@@ -1173,6 +1173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 164787954802472813}
+  - component: {fileID: 5573786949964307268}
   m_Layer: 5
   m_Name: Tab
   m_TagString: Untagged
@@ -1201,6 +1202,50 @@ RectTransform:
   m_AnchoredPosition: {x: -233.6, y: 41.869995}
   m_SizeDelta: {x: 231.172, y: 83.732056}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5573786949964307268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130433359871245182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6341832827597927402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005289594815546579}
+  - component: {fileID: 6065993289281513472}
   m_Layer: 5
   m_Name: CharacterSkillsWindow
   m_TagString: Untagged
@@ -1627,6 +1673,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6065993289281513472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015827576262481715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b219921cfee4ccca73f49a5a35aaed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::CharacterSkillsWindowHierarchy
+  Name: {fileID: 6196243976808835415}
+  SkillName: {fileID: 7236661250149828881}
+  SkillDescription: {fileID: 5398509017270568731}
+  SkillUpgradePrice: {fileID: 895829695771368584}
+  BooksAmount: {fileID: 1668684714610512251}
+  RedeemLabel: {fileID: 6386874396902523034}
+  StatsButton: {fileID: 5573786949964307268}
+  UpgradeButton: {fileID: 1339031858475028266}
+  CloseButton: {fileID: 5306465055309029531}
+  Image: {fileID: 450560384686737895}
+  ClassIcon: {fileID: 5264610032892242174}
+  SkillItems: []
 --- !u!1 &7261609176083397479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,6 +2988,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4988730019359419054, guid: f1b3253b81a27714a833c93fc0ceac26, type: 3}
   m_PrefabInstance: {fileID: 992124623034743221}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5306465055309029531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4927190660073691438, guid: f1b3253b81a27714a833c93fc0ceac26, type: 3}
+  m_PrefabInstance: {fileID: 992124623034743221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1019658545131619555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3165,6 +3246,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
+--- !u!114 &895829695771368584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 196360472709757984, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
+  m_PrefabInstance: {fileID: 1069390041072541864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &1339031858475028266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2036206418082525058, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
+  m_PrefabInstance: {fileID: 1069390041072541864}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &3033402299957903681 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2652606721731600873, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}

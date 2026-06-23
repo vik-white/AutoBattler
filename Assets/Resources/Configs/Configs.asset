@@ -94,7 +94,7 @@ MonoBehaviour:
       HeadPrefab: {fileID: 1627395168336176711, guid: 03d0cc33b96e7a24ca85963d1406572d, type: 3}
       SkillAttack: 3795814207
       SkillActive: 2496368978
-      SkillPassive1: 0
+      SkillPassive1: 1849116823
       SkillPassive2: 0
       SkillMeta1: 0
       SkillMeta2: 0

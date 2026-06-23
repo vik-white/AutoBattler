@@ -15,6 +15,7 @@ namespace vikwhite
         public Button PreviousCharacterButton;
         public Button NextCharacterButton;
         public Button CloseButton;
+        public Button SkillsButton;
         public Image Image;
         public Image ClassIcon;
         public StarsHierarchy Stars;

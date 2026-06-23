@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace vikwhite
 {
@@ -14,6 +16,7 @@ namespace vikwhite
             BindClick(_view.AscendButton, viewModel.OnOpenAscendInfo);
             BindClick(_view.PreviousCharacterButton, viewModel.OnSelectPreviousCharacter);
             BindClick(_view.NextCharacterButton, viewModel.OnSelectNextCharacter);
+            BindClick(_view.SkillsButton, viewModel.OnOpenSkills);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
             Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);

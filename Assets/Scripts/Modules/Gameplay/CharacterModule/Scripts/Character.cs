@@ -49,7 +49,7 @@ namespace vikwhite
             _level.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)); CalculateStats(); });
             _shards.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterShardEvent(_id, value)); CalculateStats(); });
             _stars.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)); CalculateStats(); });
-            _skillLevel.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, value)));
+            _skillLevel.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, value)); CalculateStats(); });
         }
 
         private CharacterUpgrade CreateUpgrade() => new (
