@@ -8,16 +8,6 @@ namespace vikwhite
 {
     public class CharacterSkillsWindowViewModel : WindowViewModel<Character>
     {
-        private static readonly SkillSlotType[] SlotOrder =
-        {
-            SkillSlotType.Active,
-            SkillSlotType.Passive1,
-            SkillSlotType.Passive2,
-            SkillSlotType.Meta1,
-            SkillSlotType.Meta2,
-            SkillSlotType.Meta3,
-        };
-
         private readonly IConfigs _configs;
         private readonly IResourceService _resources;
         private readonly ICharacterWindow _characterWindow;
@@ -70,7 +60,7 @@ namespace vikwhite
 
         private void CreateSkills()
         {
-            foreach (var slot in SlotOrder)
+            foreach (var slot in SkillSlotExtensions.UpgradableSlots)
             {
                 var skillID = Model.Config.GetSkill(slot);
                 var skill = _configs.Skills.Get(skillID);
