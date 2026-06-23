@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.13333334, g: 0.22745098, b: 0.33333334, a: 0.5019608}
@@ -127,6 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3263841428657225885}
+  - component: {fileID: 6551496948136056487}
   m_Layer: 5
   m_Name: ShardBar
   m_TagString: Untagged
@@ -156,6 +157,19 @@ RectTransform:
   m_AnchoredPosition: {x: 26.57354, y: -6.873291}
   m_SizeDelta: {x: 331.85364, y: 44.18799}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6551496948136056487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515056948535971640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd7af8ca4d6246169e6a568d9544982c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Window::vikwhite.ProgressBar
+  _bar: {fileID: 2060939209509871561}
 --- !u!1 &1687979975139362575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,7 +1854,7 @@ MonoBehaviour:
   NextStarButton: {fileID: 3558820117010161630}
   Image: {fileID: 450560384686737895}
   ClassIcon: {fileID: 5264610032892242174}
-  ShardBar: {fileID: 4551496948136056487}
+  ShardBar: {fileID: 6551496948136056487}
   ShardBarIcon: {fileID: 4041656650087829924}
   RedeemShardIcon: {fileID: 1422084403004235258}
   HeroShardIcon: {fileID: 7642600231647542781}

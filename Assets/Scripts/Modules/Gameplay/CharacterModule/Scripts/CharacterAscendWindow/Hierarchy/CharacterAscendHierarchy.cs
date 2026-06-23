@@ -15,7 +15,7 @@ namespace vikwhite
         public Button NextStarButton;
         public Image Image;
         public Image ClassIcon;
-        public Image ShardBar;
+        public ProgressBar ShardBar;
         public Image ShardBarIcon;
         public Image RedeemShardIcon;
         public Image HeroShardIcon;
