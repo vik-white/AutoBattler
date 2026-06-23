@@ -18,8 +18,7 @@ namespace vikwhite
         public readonly string Name;
         public readonly Sprite Image;
         public readonly Sprite ClassIcon;
-        public readonly Sprite ShardBarIcon;
-        public readonly Sprite RedeemShardIcon;
+        public readonly Sprite ShardIcon;
         public readonly Sprite HeroShardIcon;
 
         public IReadOnlyReactiveProperty<bool> CanSelectPreviousStar => _canSelectPreviousStar;
@@ -36,23 +35,20 @@ namespace vikwhite
         public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService) : base(character)
         {
             _configs = configs;
-            _redeemResourceType = GetShardResourceType(character.Config.Rarity);
+            _redeemResourceType = ResourceHandler.GetShardResourceType(character.Config.Rarity);
 
             Name = character.Config.Name;
             Image = character.Config.Image;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
-            ShardBarIcon = GetRarityShardIcon(character.Config.Rarity);
-            RedeemShardIcon = GetResourceIcon(_redeemResourceType);
+            ShardIcon = _configs.UI.Rarities[character.Config.Rarity].Shard;
             HeroShardIcon = character.Config.ShardImage;
 
             _selectedStars = new ReactiveProperty<int>(GetInitialSelectedStars(character));
             AddDisposables(_selectedStars, _canSelectPreviousStar, _canSelectNextStar, _shardPrice, _shardProgress);
 
             RedeemResource = CreateViewModel<ResourceViewModel, Resource>(resourceService.Get(_redeemResourceType));
-            Stars = CreateViewModel<SelectableStarsViewModel, SelectableStarsModel>(
-                new SelectableStarsModel(character.Stars, _selectedStars));
-            StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(
-                new StatsInfoModel(character, character.Level, character.Stars, character.Level, _selectedStars));
+            Stars = CreateViewModel<SelectableStarsViewModel, SelectableStarsModel>(new SelectableStarsModel(character.Stars, _selectedStars));
+            StatsInfo = CreateViewModel<StatsInfoViewModel, StatsInfoModel>(new StatsInfoModel(character, character.Level, character.Stars, character.Level, _selectedStars));
 
             OnAscend = Ascend;
             OnSelectPreviousStar = SelectPreviousStar;
@@ -65,7 +61,6 @@ namespace vikwhite
         public override void Dispose()
         {
             base.Dispose();
-
             OnAscend = null;
             OnSelectPreviousStar = null;
             OnSelectNextStar = null;
@@ -73,44 +68,23 @@ namespace vikwhite
 
         private void Ascend()
         {
-            if (Model.Stars.Value >= GetMaxStars())
-            {
-                return;
-            }
-
+            if (Model.Stars.Value >= GetMaxStars()) return;
             var price = _configs.Settings.StarUpPrice;
-
-            if (price > 0 && Model.Shards.Value < price)
-            {
-                return;
-            }
-
-            if (price > 0)
-            {
-                Model.RemoveShards(price);
-            }
-
+            if (price > 0 && Model.Shards.Value < price)return;
+            if (price > 0) Model.RemoveShards(price);
             Model.UpgradeStars();
         }
 
         private void SelectPreviousStar()
         {
-            if (_selectedStars.Value <= Model.Stars.Value)
-            {
-                return;
-            }
-
+            if (_selectedStars.Value <= Model.Stars.Value) return;
             _selectedStars.Value--;
             RefreshStarSelectionState();
         }
 
         private void SelectNextStar()
         {
-            if (_selectedStars.Value >= GetMaxStars())
-            {
-                return;
-            }
-
+            if (_selectedStars.Value >= GetMaxStars())return;
             _selectedStars.Value++;
             RefreshStarSelectionState();
         }
@@ -118,13 +92,9 @@ namespace vikwhite
         private void UpdateSelectedStars(int currentStars)
         {
             if (_selectedStars.Value <= currentStars)
-            {
                 _selectedStars.Value = GetInitialSelectedStars(Model);
-            }
             else
-            {
                 _selectedStars.Value = Mathf.Clamp(_selectedStars.Value, currentStars, GetMaxStars());
-            }
 
             RefreshStarSelectionState();
             RefreshShardState();
@@ -143,44 +113,8 @@ namespace vikwhite
             _shardProgress.Value = price <= 0 ? 1f : Mathf.Clamp01((float)Model.Shards.Value / price);
         }
 
-        private int GetInitialSelectedStars(Character character)
-        {
-            return Mathf.Clamp(character.Stars.Value + 1, character.Stars.Value, GetMaxStars());
-        }
+        private int GetInitialSelectedStars(Character character) => Mathf.Clamp(character.Stars.Value + 1, character.Stars.Value, GetMaxStars());
 
-        private int GetMaxStars()
-        {
-            return _configs.Stars.GetAll().Count;
-        }
-
-        private Sprite GetRarityShardIcon(RarityType rarity)
-        {
-            if (_configs.UI.Rarities.TryGetValue(rarity, out var rarityUIData) && rarityUIData.Shard != null)
-            {
-                return rarityUIData.Shard;
-            }
-
-            return GetResourceIcon(GetShardResourceType(rarity));
-        }
-
-        private Sprite GetResourceIcon(ResourceType resourceType)
-        {
-            if (_configs.UI.ResourceIcons.TryGetValue(resourceType, out var icon))
-            {
-                return icon;
-            }
-
-            return null;
-        }
-
-        private ResourceType GetShardResourceType(RarityType rarity)
-        {
-            return rarity switch
-            {
-                RarityType.Epic => ResourceType.ShardEpic,
-                RarityType.Legendary => ResourceType.ShardLegendary,
-                _ => ResourceType.ShardRare
-            };
-        }
+        private int GetMaxStars() => _configs.Stars.GetAll().Count;
     }
 }

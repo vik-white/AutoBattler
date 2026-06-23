@@ -2366,7 +2366,16 @@ MonoBehaviour:
         Probability: 1
       RewardBasket: []
     - ID: SummonRewardCommon
-      Rewards: []
+      Rewards:
+      - Type: 0
+        ResourceType: 5
+        ShardGroupType: 0
+        Class: 0
+        Rarity: 0
+        ID: 
+        MinValue: 2
+        MaxValue: 2
+        Probability: 1
       RewardBasket:
       - Type: 2
         ResourceType: 0
@@ -2396,7 +2405,16 @@ MonoBehaviour:
         MaxValue: 2
         Probability: 3
     - ID: SummonRewardEpic
-      Rewards: []
+      Rewards:
+      - Type: 0
+        ResourceType: 5
+        ShardGroupType: 0
+        Class: 0
+        Rarity: 0
+        ID: 
+        MinValue: 2
+        MaxValue: 2
+        Probability: 1
       RewardBasket:
       - Type: 2
         ResourceType: 0

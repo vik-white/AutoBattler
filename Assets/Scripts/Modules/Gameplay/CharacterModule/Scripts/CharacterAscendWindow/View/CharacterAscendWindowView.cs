@@ -15,8 +15,8 @@ namespace vikwhite
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
-            _view.ShardBarIcon.sprite = viewModel.ShardBarIcon;
-            _view.RedeemShardIcon.sprite = viewModel.RedeemShardIcon;
+            _view.ShardBarIcon.sprite = viewModel.ShardIcon;
+            _view.RedeemShardIcon.sprite = viewModel.ShardIcon;
             _view.HeroShardIcon.sprite = viewModel.HeroShardIcon;
 
             _view.ShardBar.type = Image.Type.Filled;
