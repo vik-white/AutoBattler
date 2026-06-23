@@ -1690,13 +1690,18 @@ MonoBehaviour:
   SkillDescription: {fileID: 5398509017270568731}
   SkillUpgradePrice: {fileID: 895829695771368584}
   BooksAmount: {fileID: 1668684714610512251}
-  RedeemLabel: {fileID: 6386874396902523034}
   StatsButton: {fileID: 5573786949964307268}
   UpgradeButton: {fileID: 1339031858475028266}
   CloseButton: {fileID: 5306465055309029531}
   Image: {fileID: 450560384686737895}
   ClassIcon: {fileID: 5264610032892242174}
-  SkillItems: []
+  SkillItems:
+  - {fileID: 9086674328589307107}
+  - {fileID: 6326664936165755564}
+  - {fileID: 3010927702470159193}
+  - {fileID: 7516488849244218519}
+  - {fileID: 5205323408914130387}
+  - {fileID: 8610341358815786869}
 --- !u!1 &7261609176083397479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2789,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
   m_PrefabInstance: {fileID: 523200389204983669}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8610341358815786869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 523200389204983669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!1001 &581250041470096953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3101,6 +3117,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
   m_PrefabInstance: {fileID: 1019658545131619555}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9086674328589307107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 1019658545131619555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!1001 &1069390041072541864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3231,7 +3258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 146.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3375,6 +3402,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
   m_PrefabInstance: {fileID: 1761816660468821143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7516488849244218519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 1761816660468821143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!1001 &2877800292935353004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3472,6 +3510,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+--- !u!114 &6326664936165755564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 2877800292935353004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!224 &7802843857675646695 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
@@ -3574,6 +3623,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+--- !u!114 &5205323408914130387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 4035737829645692371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!224 &8338580836372060568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
@@ -3681,6 +3741,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5456468544121549899, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
   m_PrefabInstance: {fileID: 6481844148652794713}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3010927702470159193 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087572280994498560, guid: 323cbf46753801242a1a5aa02b092694, type: 3}
+  m_PrefabInstance: {fileID: 6481844148652794713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfab274651a4d41941d81ca952d9398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::SkillItemHierarchy
 --- !u!1001 &8393388865908728970
 PrefabInstance:
   m_ObjectHideFlags: 0
