@@ -11,6 +11,8 @@ namespace vikwhite
         public TMP_Text LevelUpPrice;
         public Button LevelUpButton;
         public Button InfoButton;
+        public Button PreviousCharacterButton;
+        public Button NextCharacterButton;
         public Button CloseButton;
         public Image Image;
         public Image ClassIcon;

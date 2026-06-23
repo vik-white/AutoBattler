@@ -11,6 +11,8 @@ namespace vikwhite
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.LevelUpButton, viewModel.OnUpgradeLevel);
             BindClick(_view.InfoButton, viewModel.OnOpenUpgradeInfo);
+            BindClick(_view.PreviousCharacterButton, viewModel.OnSelectPreviousCharacter);
+            BindClick(_view.NextCharacterButton, viewModel.OnSelectNextCharacter);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
             Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);

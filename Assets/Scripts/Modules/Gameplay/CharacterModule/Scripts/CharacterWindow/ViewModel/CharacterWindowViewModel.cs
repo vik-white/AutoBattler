@@ -11,22 +11,34 @@ namespace vikwhite
         private readonly IResourceService _resource;
         private readonly IConfigs _configs;
         private readonly ICharacterUpgradeWindow _characterUpgradeWindow;
+        private readonly ICharacterWindow _characterWindow;
+        private readonly List<Character> _characters;
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
         public UnityAction OnOpenUpgradeInfo;
+        public UnityAction OnSelectPreviousCharacter;
+        public UnityAction OnSelectNextCharacter;
         public int LevelUpPrice;
         public RarityType Rarity;
         public Sprite ClassIcon;
         public StarsViewModel Stars { get; }
         
-        public CharacterWindowViewModel(Character character, IConfigs configs, IResourceService resource, ICharacterUpgradeWindow characterUpgradeWindow) : base(character)
+        public CharacterWindowViewModel(
+            Character character,
+            IConfigs configs,
+            IResourceService resource,
+            ICharacterUpgradeWindow characterUpgradeWindow,
+            ICharactersService charactersService,
+            ICharacterWindow characterWindow) : base(character)
         {
             _resource = resource;
             _configs = configs;
             _characterUpgradeWindow = characterUpgradeWindow;
+            _characterWindow = characterWindow;
+            _characters = new List<Character>(charactersService.GetCharacters());
             Name = character.Config.Name;
             Level = character.Level;
             LevelUpPrice = configs.Settings.LevelUpPrice;
@@ -38,9 +50,26 @@ namespace vikwhite
             ExpResources = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Exp));
             OnUpgradeLevel = LevelUpgrade;
             OnOpenUpgradeInfo = OpenUpgradeInfo;
+            OnSelectPreviousCharacter = SelectPreviousCharacter;
+            OnSelectNextCharacter = SelectNextCharacter;
         }
 
         private void OpenUpgradeInfo() => _characterUpgradeWindow.ShowWindow(Model);
+
+        private void SelectPreviousCharacter() => SelectCharacter(-1);
+
+        private void SelectNextCharacter() => SelectCharacter(1);
+
+        private void SelectCharacter(int direction)
+        {
+            if (_characters.Count <= 1) return;
+
+            var index = _characters.FindIndex(character => character.ID == Model.ID);
+            if (index < 0) return;
+
+            var nextIndex = (index + direction + _characters.Count) % _characters.Count;
+            _characterWindow.ShowWindow(_characters[nextIndex]);
+        }
 
         private void LevelUpgrade()
         {
@@ -55,6 +84,8 @@ namespace vikwhite
             base.Dispose();
             OnUpgradeLevel = null;
             OnOpenUpgradeInfo = null;
+            OnSelectPreviousCharacter = null;
+            OnSelectNextCharacter = null;
         }
     }
 }
