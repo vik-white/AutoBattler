@@ -16,6 +16,8 @@ namespace vikwhite
             BindClick(_view.AdventureButton, viewModel.OnAdventure);
             BindClick(_view.SummonButton, viewModel.OnSummon);
             BindClick(_view.MetaButton, viewModel.OnMeta);
+            Bind(viewModel.Might, might => _view.Might.text = might.ToString());
+            Bind(viewModel.Gems, gems => _view.Gems.text = gems.ToString());
             if (_view.EventsContainer != null)
             {
                 _view.EventsContainer.ClearChildren();

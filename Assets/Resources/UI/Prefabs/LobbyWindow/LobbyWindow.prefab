@@ -378,6 +378,8 @@ MonoBehaviour:
   SummonButton: {fileID: 3365835307198377132}
   MetaButton: {fileID: 2462581874368306413}
   EventsContainer: {fileID: 5500002}
+  Might: {fileID: 4003430014594037208}
+  Gems: {fileID: 7941697338019197560}
 --- !u!1 &988690264242794537
 GameObject:
   m_ObjectHideFlags: 0
