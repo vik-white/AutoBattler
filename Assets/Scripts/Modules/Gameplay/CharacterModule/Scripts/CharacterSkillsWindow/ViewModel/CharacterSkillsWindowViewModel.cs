@@ -11,6 +11,7 @@ namespace vikwhite
         private readonly IConfigs _configs;
         private readonly IResourceService _resources;
         private readonly ICharacterWindow _characterWindow;
+        private readonly ICharacterSkillsWindow _characterSkillsWindow;
         private readonly ResourceType _classBookResource;
         private readonly List<SkillItemViewModel> _skills = new();
         private readonly ReactiveProperty<SkillItemViewModel> _selectedSkill = new();
@@ -23,6 +24,7 @@ namespace vikwhite
         public Sprite Image { get; }
         public Sprite ClassIcon { get; }
         public Sprite BookClassIcon { get; }
+        private readonly List<Character> _characters;
         public IReadOnlyList<SkillItemViewModel> Skills => _skills;
         public IReadOnlyReactiveProperty<string> SkillName => _skillName;
         public IReadOnlyReactiveProperty<string> SkillDescription => _skillDescription;
@@ -30,16 +32,27 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<bool> CanUpgradeSkill => _canUpgradeSkill;
         public IReadOnlyReactiveProperty<int> BooksAmount { get; }
         public IReadOnlyReactiveProperty<int> ClassBooksAmount { get; }
+        public UnityAction OnSelectPreviousCharacter;
+        public UnityAction OnSelectNextCharacter;
         public UnityAction OnOpenStats;
         public UnityAction OnUpgradeSkill;
         public UnityAction OnRedeem;
 
-        public CharacterSkillsWindowViewModel(Character character, IConfigs configs, IResourceService resources, ICharacterWindow characterWindow, IRedeemBookWindow redeemBookWindow) : base(character)
+        public CharacterSkillsWindowViewModel(
+            Character character, 
+            IConfigs configs, 
+            IResourceService resources, 
+            ICharacterWindow characterWindow, 
+            ICharacterSkillsWindow characterSkillsWindow,
+            IRedeemBookWindow redeemBookWindow,
+            ICharactersService charactersService) : base(character)
         {
             _configs = configs;
             _resources = resources;
             _characterWindow = characterWindow;
+            _characterSkillsWindow = characterSkillsWindow;
             _classBookResource = ResourceHandler.GetBookResourceType(character.Config.Class);
+            _characters = new List<Character>(charactersService.GetCharacters());
 
             Name = character.Config.Name;
             Image = character.Config.Image;
@@ -50,6 +63,8 @@ namespace vikwhite
             OnOpenStats = OpenStats;
             OnUpgradeSkill = UpgradeSkill;
             OnRedeem = () => redeemBookWindow.ShowWindow(character);
+            OnSelectPreviousCharacter = SelectPreviousCharacter;
+            OnSelectNextCharacter = SelectNextCharacter;
 
             AddDisposables(_selectedSkill, _skillName, _skillDescription, _skillUpgradePrice, _canUpgradeSkill);
             CreateSkills();
@@ -123,6 +138,21 @@ namespace vikwhite
             _characterWindow.ShowWindow(Model);
             Close();
         }
+        
+        private void SelectPreviousCharacter() => SelectCharacter(-1);
+
+        private void SelectNextCharacter() => SelectCharacter(1);
+
+        private void SelectCharacter(int direction)
+        {
+            if (_characters.Count <= 1) return;
+
+            var index = _characters.FindIndex(character => character.ID == Model.ID);
+            if (index < 0) return;
+
+            var nextIndex = (index + direction + _characters.Count) % _characters.Count;
+            _characterSkillsWindow.ShowWindow(_characters[nextIndex]);
+        }
 
         public override void Dispose()
         {
@@ -130,6 +160,8 @@ namespace vikwhite
             OnOpenStats = null;
             OnUpgradeSkill = null;
             OnRedeem = null;
+            OnSelectPreviousCharacter = null;
+            OnSelectNextCharacter = null;
         }
     }
 }
