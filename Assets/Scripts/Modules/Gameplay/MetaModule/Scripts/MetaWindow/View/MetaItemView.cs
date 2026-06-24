@@ -11,6 +11,12 @@ namespace vikwhite
         {
             BindClick(_view.Button, viewModel.OnSelect);
             Bind(viewModel.Level, level => _view.Level.text = $"Lv. {level}");
+            Bind(viewModel.Tip, tip =>
+            {
+                _view.TipStars.SetActive(tip == MetaItemTipType.Stars);
+                _view.TipSkills.SetActive(tip == MetaItemTipType.Skills);
+                _view.TipUpgrade.SetActive(tip == MetaItemTipType.Upgrade);
+            });
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
 
             if (viewModel.RarityBackground != null)

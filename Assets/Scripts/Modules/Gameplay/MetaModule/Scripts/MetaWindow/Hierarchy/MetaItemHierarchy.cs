@@ -12,5 +12,8 @@ namespace vikwhite
         public Image ClassIcon;
         public TMP_Text Level;
         public StarsHierarchy Stars;
+        public GameObject TipUpgrade;
+        public GameObject TipStars;
+        public GameObject TipSkills;
     }
 }
