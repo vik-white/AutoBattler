@@ -25,6 +25,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<bool> CanSelectNextStar => _canSelectNextStar;
         public IReadOnlyReactiveProperty<string> ShardPrice => _shardPrice;
         public IReadOnlyReactiveProperty<float> ShardProgress => _shardProgress;
+        public IReadOnlyReactiveProperty<int> Might;
         public ResourceViewModel RedeemResource { get; }
         public StarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
@@ -44,6 +45,7 @@ namespace vikwhite
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             ShardIcon = _configs.UI.Rarities[character.Config.Rarity].Shard;
             HeroShardIcon = character.Config.ShardImage;
+            Might = character.Might;
 
             _selectedStars = new ReactiveProperty<int>(GetInitialSelectedStars(character));
             AddDisposables(_selectedStars, _canSelectPreviousStar, _canSelectNextStar, _shardPrice, _shardProgress);

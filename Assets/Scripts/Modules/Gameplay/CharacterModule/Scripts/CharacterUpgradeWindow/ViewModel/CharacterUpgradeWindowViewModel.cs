@@ -20,6 +20,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> SelectedLevel => _selectedLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectPreviousLevel => _canSelectPreviousLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectNextLevel => _canSelectNextLevel;
+        public IReadOnlyReactiveProperty<int> Might;
         public ResourceViewModel ExpResources;
         public int LevelUpPrice;
         public StarsViewModel Stars { get; }
@@ -32,6 +33,7 @@ namespace vikwhite
         {
             _configs = configs;
             _resource = resource;
+            Might = character.Might;
             Name = character.Config.Name;
             Image = character.Config.Image;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];

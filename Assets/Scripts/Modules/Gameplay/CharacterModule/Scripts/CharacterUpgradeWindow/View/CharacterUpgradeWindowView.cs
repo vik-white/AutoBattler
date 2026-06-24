@@ -13,6 +13,7 @@ namespace vikwhite
             BindClick(_view.PreviousLevelButton, viewModel.OnSelectPreviousLevel);
             BindClick(_view.NextLevelButton, viewModel.OnSelectNextLevel);
             Bind(viewModel.SelectedLevel, level => _view.Level.text = level.ToString());
+            Bind(viewModel.Might, might => _view.Might.text = might.ToString());
             Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
             Bind(viewModel.CanSelectPreviousLevel, value => _view.PreviousLevelButton.interactable = value);
             Bind(viewModel.CanSelectNextLevel, value => _view.NextLevelButton.interactable = value);

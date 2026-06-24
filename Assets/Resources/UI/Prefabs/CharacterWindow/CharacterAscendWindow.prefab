@@ -1893,6 +1893,7 @@ MonoBehaviour:
   Name: {fileID: 6196243976808835415}
   ShardPrice: {fileID: 8450685412383153481}
   RedeemAmount: {fileID: 2265797479995414157}
+  Might: {fileID: 7178688167279623996}
   CloseButton: {fileID: 5306465055309029531}
   AscendButton: {fileID: 1874888106182425448}
   SummonButton: {fileID: 9214214885688699736}

@@ -1055,6 +1055,7 @@ MonoBehaviour:
   Name: {fileID: 6196243976808835415}
   Level: {fileID: 841713210017681497}
   LevelUpPrice: {fileID: 895829695771368584}
+  Might: {fileID: 7178688167279623996}
   LevelUpButton: {fileID: 1339031858475028266}
   CloseButton: {fileID: 5306465055309029531}
   PreviousLevelButton: {fileID: 7002122391822091149}
@@ -2141,7 +2142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 146.67
       objectReference: {fileID: 0}
     - target: {fileID: 7202569432365136570, guid: 614c5472bbc56fb41a9d78efdebcfe96, type: 3}
       propertyPath: m_AnchoredPosition.x

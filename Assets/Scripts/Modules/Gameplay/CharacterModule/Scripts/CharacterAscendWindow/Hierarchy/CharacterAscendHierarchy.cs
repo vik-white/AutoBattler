@@ -9,6 +9,7 @@ namespace vikwhite
         public TMP_Text Name;
         public TMP_Text ShardPrice;
         public TMP_Text RedeemAmount;
+        public TMP_Text Might;
         public Button CloseButton;
         public Button AscendButton;
         public Button SummonButton;
