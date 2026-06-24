@@ -1,44 +1,47 @@
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
+using vikwhite.Data;
 
 namespace vikwhite
 {
     public class RedeemShardWindowViewModel : WindowViewModel<Character>
     {
         private readonly ReactiveProperty<int> _selected = new(0);
-
+        private readonly IResourceService _resource;
+        private ResourceType _shardType;
+        
         public string Name;
-        public Sprite Image;
+        public Sprite HeroShardIcon;
+        public Sprite ShardIcon;
         public IReadOnlyReactiveProperty<int> Selected;
-        public IReadOnlyReactiveProperty<int> ClassShardsAmount;
+        public IReadOnlyReactiveProperty<int> ShardsAmount;
+        public IReadOnlyReactiveProperty<int> HeroShardsAmount;
         public UnityAction OnAdd;
-        public UnityAction OnAddMax;
         public UnityAction OnRemove;
         public UnityAction OnRedeem;
 
-        public RedeemShardWindowViewModel(Character character) : base(character)
+        public RedeemShardWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
+            _resource = resource;
             Name = character.Config.Name;
-            Image = character.Config.Image;
+            _shardType = ResourceHandler.GetShardResourceType(character.Config.Rarity);
+            ShardsAmount = resource.Get(_shardType).Amount;
+            HeroShardsAmount = character.Shards;
+            HeroShardIcon = character.Config.ShardImage;
+            ShardIcon = configs.UI.Rarities[character.Config.Rarity].Shard;
             AddDisposable(_selected);
             Selected = _selected;
             OnAdd = Add;
-            OnAddMax = AddMax;
             OnRemove = Remove;
             OnRedeem = Redeem;
         }
 
-        private int GetAvailable() => ClassShardsAmount?.Value ?? 0;
+        private int GetAvailable() => ShardsAmount?.Value ?? 0;
 
         private void Add()
         {
             if (_selected.Value < GetAvailable()) _selected.Value++;
-        }
-
-        private void AddMax()
-        {
-            _selected.Value = GetAvailable();
         }
 
         private void Remove()
@@ -50,6 +53,7 @@ namespace vikwhite
         {
             if (_selected.Value <= 0) return;
             int amount = _selected.Value;
+            _resource.Spend(_shardType, amount);
             Model.AddShards(amount);
             _selected.Value = 0;
         }
@@ -58,7 +62,6 @@ namespace vikwhite
         {
             base.Dispose();
             OnAdd = null;
-            OnAddMax = null;
             OnRemove = null;
             OnRedeem = null;
         }

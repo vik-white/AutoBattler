@@ -9,20 +9,22 @@ namespace vikwhite
         protected override void UpdateViewModel(RedeemShardWindowViewModel viewModel)
         {
             BindClick(_view.CloseButton, viewModel.Close);
+            BindClick(_view.CloseFadeButton, viewModel.Close);
             BindClick(_view.AddButton, viewModel.OnAdd);
-            BindClick(_view.AddMaxButton, viewModel.OnAddMax);
             BindClick(_view.RemoveButton, viewModel.OnRemove);
             BindClick(_view.RedeemButton, viewModel.OnRedeem);
-            _view.Name.text = viewModel.Name;
             Bind(viewModel.Selected, _ => UpdateTexts(viewModel));
-            Bind(viewModel.ClassShardsAmount, _ => UpdateTexts(viewModel));
+            Bind(viewModel.ShardsAmount, _ => UpdateTexts(viewModel));
         }
 
         private void UpdateTexts(RedeemShardWindowViewModel viewModel)
         {
-            _view.ClassShards.text = (viewModel.ClassShardsAmount.Value - viewModel.Selected.Value).ToString();
-            _view.Shards.text = $"+{viewModel.Selected.Value}";
-            _view.Image.sprite = viewModel.Image;
+            _view.ShardsAmount.text = $"{viewModel.ShardsAmount.Value - viewModel.Selected.Value}";
+            _view.HeroShardsAmount.text = $"{viewModel.HeroShardsAmount.Value}";
+            _view.CurrentShardsAmount.text = $"{viewModel.Selected.Value}";
+            _view.HeroShardIcon.sprite = viewModel.HeroShardIcon;
+            _view.ShardIcon1.sprite = viewModel.ShardIcon;
+            _view.ShardIcon2.sprite = viewModel.ShardIcon;
         }
     }
 }

@@ -14,6 +14,7 @@ namespace vikwhite
         public Button SummonButton;
         public Button PreviousStarButton;
         public Button NextStarButton;
+        public Button RedeemButton;
         public Image Image;
         public Image ClassIcon;
         public ProgressBar ShardBar;

@@ -30,10 +30,11 @@ namespace vikwhite
         public StatsInfoViewModel StatsInfo { get; }
         public UnityAction OnAscend;
         public UnityAction OnSummon;
+        public UnityAction OnRedeem;
         public UnityAction OnSelectPreviousStar;
         public UnityAction OnSelectNextStar;
 
-        public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService, ISummonWindow summonWindow) : base(character)
+        public CharacterAscendWindowViewModel(Character character, IConfigs configs, IResourceService resourceService, ISummonWindow summonWindow, IRedeemShardWindow redeemShardWindow) : base(character)
         {
             _configs = configs;
             _redeemResourceType = ResourceHandler.GetShardResourceType(character.Config.Rarity);
@@ -53,6 +54,7 @@ namespace vikwhite
 
             OnAscend = Ascend;
             OnSummon = summonWindow.ShowWindow;
+            OnRedeem = () => redeemShardWindow.ShowWindow(character);
             OnSelectPreviousStar = SelectPreviousStar;
             OnSelectNextStar = SelectNextStar;
 
@@ -65,6 +67,7 @@ namespace vikwhite
             base.Dispose();
             OnAscend = null;
             OnSummon = null;
+            OnRedeem = null;
             OnSelectPreviousStar = null;
             OnSelectNextStar = null;
         }
