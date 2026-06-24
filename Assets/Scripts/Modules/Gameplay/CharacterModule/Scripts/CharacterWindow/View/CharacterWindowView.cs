@@ -18,7 +18,7 @@ namespace vikwhite
             BindClick(_view.NextCharacterButton, viewModel.OnSelectNextCharacter);
             BindClick(_view.SkillsButton, viewModel.OnOpenSkills);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
-            Bind(viewModel.Might, might => _view.Might.text = might.ToString());
+            Bind(viewModel.Might, might => _view.Might.text = might);
             Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
             _view.Name.text = viewModel.Name;

@@ -5,14 +5,16 @@ namespace vikwhite
 {
     public static class MightHandler
     {
-        public static int Calculate(Character character)
+        public static int Calculate(Character character) => Calculate(character, character.Level.Value, character.Stars.Value);
+
+        public static int Calculate(Character character, int level, int stars)
         {
-            float attack = CharacterStatsHandler.Calculate(character, StatType.Attack);
+            float attack = CharacterStatsHandler.Calculate(character, StatType.Attack, level, stars);
             float attackCooldown = character.GetSkill(SkillSlotType.Attack).Config.Cooldown;
-            float critChance = CharacterStatsHandler.Calculate(character, StatType.CritChance);
-            float critValue = CharacterStatsHandler.Calculate(character, StatType.CritValue);
-            float health = CharacterStatsHandler.Calculate(character, StatType.Health);
-            float defense = CharacterStatsHandler.Calculate(character, StatType.Defense);
+            float critChance = CharacterStatsHandler.Calculate(character, StatType.CritChance, level, stars);
+            float critValue = CharacterStatsHandler.Calculate(character, StatType.CritValue, level, stars);
+            float health = CharacterStatsHandler.Calculate(character, StatType.Health, level, stars);
+            float defense = CharacterStatsHandler.Calculate(character, StatType.Defense, level, stars);
             float activeSkillBaseMight = GetSkillMight(character, SkillSlotType.Active);
             float activeSkillLevelMightMultiplier = GetSkillLevelMightMultiplier(character, SkillSlotType.Active);
             float passive1BaseMight = GetSkillMight(character, SkillSlotType.Passive1);
