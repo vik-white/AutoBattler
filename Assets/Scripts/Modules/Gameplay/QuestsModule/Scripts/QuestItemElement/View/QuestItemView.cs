@@ -14,8 +14,8 @@ namespace vikwhite
         protected override void UpdateViewModel(QuestItemViewModel viewModel)
         {
             _view.Description.text = viewModel.Description;
-            Bind(viewModel.Claimed, RefreshClaimed);
-            Bind(viewModel.Claimable, RefreshClaim);
+            Bind(viewModel.Claimed, _ => RefreshButtons(viewModel));
+            Bind(viewModel.Claimable, _ => RefreshButtons(viewModel));
             Bind(viewModel.Progress, progress => RefreshProgress(viewModel, progress));
             BindClick(_view.ClaimButton, viewModel.OnClaim);
             _view.RewardsContainer.ClearChildren();
@@ -28,17 +28,12 @@ namespace vikwhite
             _view.Progress.text = $"({progress}/{viewModel.Amount})";
         }
 
-        private void RefreshClaim(bool claimable)
+        private void RefreshButtons(QuestItemViewModel viewModel)
         {
-            _view.ClaimButton.gameObject.SetActive(claimable);
-            _view.GoButton.gameObject.SetActive(!claimable);
-        }
-        
-        private void RefreshClaimed(bool claimed)
-        {
-            if(!claimed) return;
-            _view.ClaimButton.gameObject.SetActive(false);
-            _view.GoButton.gameObject.SetActive(false);
+            bool claimed = viewModel.Claimed.Value;
+            bool claimable = viewModel.Claimable.Value;
+            _view.ClaimButton.gameObject.SetActive(!claimed && claimable);
+            _view.GoButton.gameObject.SetActive(!claimed && !claimable);
         }
     }
 }

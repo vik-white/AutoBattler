@@ -3024,8 +3024,6 @@ MonoBehaviour:
   events:
     IDS:
     - StartEvent
-    - RepeatEvent
-    - RatingEvent
     Data:
     - ID: StartEvent
       Name: Start Event
@@ -3038,22 +3036,6 @@ MonoBehaviour:
       - TankReachLevel2
       - CollectExp100
       - SpendExp100
-    - ID: RepeatEvent
-      Name: Repeat Event
-      Type: 0
-      Duration: 24
-      Quests:
-      - CompleteLevel4
-      - CompleteLevels3
-      - TankLevelUpAmount2
-      - TankReachLevel2
-      - CollectExp100
-      - SpendExp100
-    - ID: RatingEvent
-      Name: Rating Event
-      Type: 1
-      Duration: 0
-      Quests: []
   ui:
     resourceIcons:
     - Type: 0
