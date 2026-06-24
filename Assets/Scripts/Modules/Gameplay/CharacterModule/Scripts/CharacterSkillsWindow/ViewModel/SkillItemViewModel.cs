@@ -14,7 +14,7 @@ namespace vikwhite
 
         public SkillSlotType Slot => Model.Slot;
         public string ID => Model.ID;
-        public string Name => _config?.ID ?? "";
+        public string Name => _config.Name;
         public string Description => _config?.Description ?? "";
         public Sprite Icon => _config?.IconImage;
         public IReadOnlyReactiveProperty<bool> IsVisible => _isVisible;
