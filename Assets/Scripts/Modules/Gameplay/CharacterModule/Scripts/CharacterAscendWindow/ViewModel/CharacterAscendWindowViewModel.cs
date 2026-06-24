@@ -68,7 +68,7 @@ namespace vikwhite
         private string GetMightText(int currentMight, int selectedStars)
         {
             var selectedStarsMight = MightHandler.Calculate(Model, Model.Level.Value, selectedStars);
-            return $"{currentMight} +{selectedStarsMight - currentMight}";
+            return $"{currentMight} <color=#B2DE2A>+{selectedStarsMight - currentMight}</color>";
         }
 
         public override void Dispose()

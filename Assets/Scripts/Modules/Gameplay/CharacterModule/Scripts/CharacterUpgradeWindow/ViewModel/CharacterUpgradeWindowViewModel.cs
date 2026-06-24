@@ -7,7 +7,6 @@ namespace vikwhite
 {
     public class CharacterUpgradeWindowViewModel : WindowViewModel<Character>
     {
-        private readonly IConfigs _configs;
         private readonly IResourceService _resource;
         private readonly ReactiveProperty<int> _selectedLevel;
         private readonly ReactiveProperty<int> _selectedStars;
@@ -32,7 +31,6 @@ namespace vikwhite
 
         public CharacterUpgradeWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
-            _configs = configs;
             _resource = resource;
             Name = character.Config.Name;
             Image = character.Config.Image;
@@ -58,7 +56,7 @@ namespace vikwhite
         private string GetMightText(int currentMight, int selectedLevel)
         {
             var selectedLevelMight = MightHandler.Calculate(Model, selectedLevel, Model.Stars.Value);
-            return $"{currentMight} +{selectedLevelMight - currentMight}";
+            return $"{currentMight} <color=#B2DE2A>+{selectedLevelMight - currentMight}</color>";
         }
 
         private void LevelUpgrade()
@@ -72,7 +70,7 @@ namespace vikwhite
         private int GetInitialSelectedLevel(Character character)
         {
             var currentLevel = character.Level.Value;
-            return Mathf.Clamp(currentLevel + 1, currentLevel, GetMaxSelectableLevel(currentLevel, character.Stars.Value));
+            return currentLevel + 1;
         }
 
         private void SelectPreviousLevel()
@@ -84,7 +82,6 @@ namespace vikwhite
 
         private void SelectNextLevel()
         {
-            if (_selectedLevel.Value >= GetMaxSelectableLevel()) return;
             _selectedLevel.Value++;
             RefreshLevelSelectionState();
         }
@@ -97,20 +94,14 @@ namespace vikwhite
 
         private void ClampSelectedLevel()
         {
-            _selectedLevel.Value = Mathf.Clamp(_selectedLevel.Value, Model.Level.Value, GetMaxSelectableLevel());
+            _selectedLevel.Value = Mathf.Max(_selectedLevel.Value, Model.Level.Value);
             RefreshLevelSelectionState();
         }
-
-        private int GetMaxSelectableLevel() => GetMaxSelectableLevel(Model.Level.Value, _selectedStars.Value);
-
-        private int GetMaxSelectableLevel(int currentLevel, int stars) => Mathf.Max(currentLevel, GetMaxLevel(stars));
-
-        private int GetMaxLevel(int stars) => _configs.Stars.Get(Mathf.Max(0, stars - 1)).Level;
 
         private void RefreshLevelSelectionState()
         {
             _canSelectPreviousLevel.Value = _selectedLevel.Value > Model.Level.Value;
-            _canSelectNextLevel.Value = _selectedLevel.Value < GetMaxSelectableLevel();
+            _canSelectNextLevel.Value = true;
         }
 
         public override void Dispose()

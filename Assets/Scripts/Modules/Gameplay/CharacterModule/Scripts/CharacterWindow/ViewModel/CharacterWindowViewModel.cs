@@ -15,10 +15,9 @@ namespace vikwhite
         private readonly ICharacterSkillsWindow _characterSkillsWindow;
         private readonly ICharacterWindow _characterWindow;
         private readonly List<Character> _characters;
-        private readonly ReadOnlyReactiveProperty<string> _might;
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
-        public IReadOnlyReactiveProperty<string> Might => _might;
+        public IReadOnlyReactiveProperty<int> Might;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
@@ -51,8 +50,7 @@ namespace vikwhite
             _characters = new List<Character>(charactersService.GetCharacters());
             Name = character.Config.Name;
             Level = character.Level;
-            _might = character.Might.CombineLatest(character.Level, character.Stars, GetMightText).ToReadOnlyReactiveProperty();
-            AddDisposable(_might);
+            Might = character.Might;
             LevelUpPrice = configs.Settings.LevelUpPrice;
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;
@@ -66,12 +64,6 @@ namespace vikwhite
             OnOpenSkills = OpenSkills;
             OnSelectPreviousCharacter = SelectPreviousCharacter;
             OnSelectNextCharacter = SelectNextCharacter;
-        }
-
-        private string GetMightText(int currentMight, int level, int stars)
-        {
-            var nextLevelMight = MightHandler.Calculate(Model, level + 1, stars);
-            return $"{currentMight} +{nextLevelMight - currentMight}";
         }
 
         private void OpenUpgradeInfo() => _characterUpgradeWindow.ShowWindow(Model);
