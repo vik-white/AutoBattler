@@ -13,6 +13,7 @@ namespace vikwhite
         private readonly ReactiveProperty<int> _selectedStars;
         private readonly ReactiveProperty<bool> _canSelectPreviousLevel = new();
         private readonly ReactiveProperty<bool> _canSelectNextLevel = new();
+        private readonly ReadOnlyReactiveProperty<string> _might;
 
         public string Name;
         public Sprite Image;
@@ -20,7 +21,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> SelectedLevel => _selectedLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectPreviousLevel => _canSelectPreviousLevel;
         public IReadOnlyReactiveProperty<bool> CanSelectNextLevel => _canSelectNextLevel;
-        public IReadOnlyReactiveProperty<int> Might;
+        public IReadOnlyReactiveProperty<string> Might => _might;
         public ResourceViewModel ExpResources;
         public int LevelUpPrice;
         public StarsViewModel Stars { get; }
@@ -33,14 +34,14 @@ namespace vikwhite
         {
             _configs = configs;
             _resource = resource;
-            Might = character.Might;
             Name = character.Config.Name;
             Image = character.Config.Image;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             LevelUpPrice = configs.Settings.LevelUpPrice;
             _selectedLevel = new ReactiveProperty<int>(GetInitialSelectedLevel(character));
             _selectedStars = new ReactiveProperty<int>(character.Stars.Value);
-            AddDisposables(_selectedLevel, _selectedStars, _canSelectPreviousLevel, _canSelectNextLevel);
+            _might = character.Might.CombineLatest(_selectedLevel, GetMightText).ToReadOnlyReactiveProperty();
+            AddDisposables(_selectedLevel, _selectedStars, _canSelectPreviousLevel, _canSelectNextLevel, _might);
             AddDisposable(character.Level.Subscribe(_ => ClampSelectedLevel()));
             AddDisposable(character.Stars.Subscribe(UpdateSelectedStars));
 
@@ -52,6 +53,12 @@ namespace vikwhite
             OnSelectPreviousLevel = SelectPreviousLevel;
             OnSelectNextLevel = SelectNextLevel;
             RefreshLevelSelectionState();
+        }
+
+        private string GetMightText(int currentMight, int selectedLevel)
+        {
+            var selectedLevelMight = MightHandler.Calculate(Model, selectedLevel, Model.Stars.Value);
+            return $"{currentMight} +{selectedLevelMight - currentMight}";
         }
 
         private void LevelUpgrade()
