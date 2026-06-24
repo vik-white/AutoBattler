@@ -44,6 +44,8 @@ namespace vikwhite.Data
         AnimationType Animation { get; }
         Sprite IconImage { get; }
         string Description { get; }
+        float Might { get; }
+        float LevelMightMultiplier { get; }
     }
     
     [Serializable]
@@ -84,6 +86,8 @@ namespace vikwhite.Data
         public AnimationType Animation;
         public Sprite IconImage;
         public string Description;
+        public float Might;
+        public float LevelMightMultiplier;
         
         string ISkillData.ID => ID;
         string ISkillData.Name => Name;
@@ -120,6 +124,8 @@ namespace vikwhite.Data
         AnimationType ISkillData.Animation => Animation;
         Sprite ISkillData.IconImage => IconImage;
         string ISkillData.Description => Description;
+        float ISkillData.Might => Might;
+        float ISkillData.LevelMightMultiplier => LevelMightMultiplier;
         
         public void Parse(Dictionary<string, string> row)
         {

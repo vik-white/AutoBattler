@@ -1143,6 +1143,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: MeleeAttack_1
       Name: 
       Type: 1
@@ -1181,6 +1183,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: MeleeAttack_2
       Name: 
       Type: 1
@@ -1219,6 +1223,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: MeleeAttack_3
       Name: 
       Type: 1
@@ -1257,6 +1263,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RangeAttack_1
       Name: 
       Type: 0
@@ -1295,6 +1303,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RangeAttack_2
       Name: 
       Type: 0
@@ -1333,6 +1343,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RangeAttack_3
       Name: 
       Type: 0
@@ -1371,6 +1383,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RangeAttack_4
       Name: 
       Type: 0
@@ -1409,6 +1423,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RangeAttackAOE
       Name: 
       Type: 0
@@ -1447,6 +1463,8 @@ MonoBehaviour:
       Animation: 1
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: SpawnSkeletons
       Name: 
       Type: 3
@@ -1487,6 +1505,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: HealBuff
       Name: 
       Type: 3
@@ -1525,6 +1545,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: ShieldBuff
       Name: 
       Type: 3
@@ -1563,6 +1585,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: ShieldBuffBig
       Name: 
       Type: 3
@@ -1601,6 +1625,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: AggroBuff
       Name: 
       Type: 4
@@ -1639,6 +1665,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: RearJump
       Name: 
       Type: 6
@@ -1674,6 +1702,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: SpeedAttack
       Name: 
       Type: 3
@@ -1712,6 +1742,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: OrbitingFireBoll
       Name: Orbiting Fire Boll
       Type: 2
@@ -1750,6 +1782,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Deals damage with 3 orbs in a circle
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Support
       Name: Speeds Up
       Type: 3
@@ -1788,6 +1822,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Speeds up ability recovery
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Mage
       Name: Ice Strike
       Type: 3
@@ -1826,6 +1862,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Ice strikes an area
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Tank
       Name: Aggresses
       Type: 5
@@ -1861,6 +1899,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Aggresses enemies and grants a small shield
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Healer
       Name: Heals
       Type: 5
@@ -1896,6 +1936,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Heals allies and grants a small shield
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Assassin
       Name: Rapid Strike
       Type: 5
@@ -1931,6 +1973,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Leaps to a distant target and deals rapid strikes
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: SceletonBoss
       Name: 
       Type: 5
@@ -1966,6 +2010,8 @@ MonoBehaviour:
       Animation: 4
       IconImage: {fileID: 0}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive1
       Name: Passive
       Type: 3
@@ -2005,6 +2051,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Passive skill
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive2
       Name: 
       Type: 3
@@ -2043,6 +2091,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive3
       Name: 
       Type: 3
@@ -2081,6 +2131,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive4
       Name: 
       Type: 3
@@ -2119,6 +2171,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive5
       Name: 
       Type: 3
@@ -2157,6 +2211,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: Passive6
       Name: 
       Type: 3
@@ -2195,6 +2251,8 @@ MonoBehaviour:
       Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
   hexPositions:
     IDS:
     - BasePosition
