@@ -70,7 +70,7 @@ namespace vikwhite
 
         private string GetMightText(int currentMight, int level, int stars)
         {
-            var nextLevelMight = level < Model.GetMaxLevel() ? MightHandler.Calculate(Model, level + 1, stars) : currentMight;
+            var nextLevelMight = MightHandler.Calculate(Model, level + 1, stars);
             return $"{currentMight} +{nextLevelMight - currentMight}";
         }
 

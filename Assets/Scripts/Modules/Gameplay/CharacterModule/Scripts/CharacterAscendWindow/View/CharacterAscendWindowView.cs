@@ -25,7 +25,7 @@ namespace vikwhite
             BindClick(_view.PreviousStarButton, viewModel.OnSelectPreviousStar);
             BindClick(_view.NextStarButton, viewModel.OnSelectNextStar);
 
-            Bind(viewModel.Might, might => _view.Might.text = might.ToString());
+            Bind(viewModel.Might, might => _view.Might.text = might);
             Bind(viewModel.ShardPrice, value => _view.ShardPrice.text = value);
             Bind(viewModel.ShardProgress, value => _view.ShardBar.SetProgress(value));
             Bind(viewModel.CanSelectPreviousStar, value => _view.PreviousStarButton.interactable = value);

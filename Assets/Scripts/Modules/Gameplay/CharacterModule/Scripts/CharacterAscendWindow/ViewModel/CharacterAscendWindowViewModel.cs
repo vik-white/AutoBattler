@@ -13,6 +13,7 @@ namespace vikwhite
         private readonly ReactiveProperty<bool> _canSelectNextStar = new();
         private readonly ReactiveProperty<string> _shardPrice = new();
         private readonly ReactiveProperty<float> _shardProgress = new();
+        private readonly ReadOnlyReactiveProperty<string> _might;
         private readonly ResourceType _redeemResourceType;
 
         public readonly string Name;
@@ -25,7 +26,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<bool> CanSelectNextStar => _canSelectNextStar;
         public IReadOnlyReactiveProperty<string> ShardPrice => _shardPrice;
         public IReadOnlyReactiveProperty<float> ShardProgress => _shardProgress;
-        public IReadOnlyReactiveProperty<int> Might;
+        public IReadOnlyReactiveProperty<string> Might => _might;
         public ResourceViewModel RedeemResource { get; }
         public StarsViewModel Stars { get; }
         public StatsInfoViewModel StatsInfo { get; }
@@ -45,10 +46,10 @@ namespace vikwhite
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
             ShardIcon = _configs.UI.Rarities[character.Config.Rarity].Shard;
             HeroShardIcon = character.Config.ShardImage;
-            Might = character.Might;
 
             _selectedStars = new ReactiveProperty<int>(GetInitialSelectedStars(character));
-            AddDisposables(_selectedStars, _canSelectPreviousStar, _canSelectNextStar, _shardPrice, _shardProgress);
+            _might = character.Might.CombineLatest(_selectedStars, GetMightText).ToReadOnlyReactiveProperty();
+            AddDisposables(_selectedStars, _canSelectPreviousStar, _canSelectNextStar, _shardPrice, _shardProgress, _might);
 
             RedeemResource = CreateViewModel<ResourceViewModel, Resource>(resourceService.Get(_redeemResourceType));
             Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(character.Stars, _selectedStars));
@@ -62,6 +63,12 @@ namespace vikwhite
 
             AddDisposable(character.Stars.Subscribe(UpdateSelectedStars));
             AddDisposable(character.Shards.Subscribe(_ => RefreshShardState()));
+        }
+
+        private string GetMightText(int currentMight, int selectedStars)
+        {
+            var selectedStarsMight = MightHandler.Calculate(Model, Model.Level.Value, selectedStars);
+            return $"{currentMight} +{selectedStarsMight - currentMight}";
         }
 
         public override void Dispose()
