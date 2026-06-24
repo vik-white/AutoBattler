@@ -1,9 +1,27 @@
 using UnityEngine;
+using vikwhite.ECS;
 
 namespace vikwhite
 {
     public static class MightHandler
     {
+        public static int Calculate(Character character)
+        {
+            float attack = CharacterStatsHandler.Calculate(character, StatType.Attack);
+            float attackCooldown = 0;
+            float critChance = CharacterStatsHandler.Calculate(character, StatType.CritChance);
+            float critValue = CharacterStatsHandler.Calculate(character, StatType.CritValue);
+            float health = CharacterStatsHandler.Calculate(character, StatType.Health);
+            float defense = CharacterStatsHandler.Calculate(character, StatType.Defense);
+            float activeSkillBaseMight = 0;
+            float activeSkillLevelMightMultiplier = 0;
+            float passive1BaseMight = 0;
+            float passive1LevelMightMultiplier = 0;
+            float passive2BaseMight = 0;
+            float passive2LevelMightMultiplier = 0;
+            return Calculate(attack, attackCooldown, critChance, critValue, health, defense, activeSkillBaseMight, activeSkillLevelMightMultiplier, passive1BaseMight, passive1LevelMightMultiplier, passive2BaseMight, passive2LevelMightMultiplier);
+        }
+        
         public static int Calculate(
             float attack,
             float attackCooldown,
