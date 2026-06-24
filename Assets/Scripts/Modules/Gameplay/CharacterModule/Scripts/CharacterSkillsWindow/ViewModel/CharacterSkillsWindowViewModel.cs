@@ -32,8 +32,9 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> ClassBooksAmount { get; }
         public UnityAction OnOpenStats;
         public UnityAction OnUpgradeSkill;
+        public UnityAction OnRedeem;
 
-        public CharacterSkillsWindowViewModel(Character character, IConfigs configs, IResourceService resources, ICharacterWindow characterWindow) : base(character)
+        public CharacterSkillsWindowViewModel(Character character, IConfigs configs, IResourceService resources, ICharacterWindow characterWindow, IRedeemBookWindow redeemBookWindow) : base(character)
         {
             _configs = configs;
             _resources = resources;
@@ -48,6 +49,7 @@ namespace vikwhite
             ClassBooksAmount = resources.GetAmount(_classBookResource);
             OnOpenStats = OpenStats;
             OnUpgradeSkill = UpgradeSkill;
+            OnRedeem = () => redeemBookWindow.ShowWindow(character);
 
             AddDisposables(_selectedSkill, _skillName, _skillDescription, _skillUpgradePrice, _canUpgradeSkill);
             CreateSkills();
@@ -127,6 +129,7 @@ namespace vikwhite
             base.Dispose();
             OnOpenStats = null;
             OnUpgradeSkill = null;
+            OnRedeem = null;
         }
     }
 }

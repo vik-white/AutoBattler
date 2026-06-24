@@ -14,6 +14,7 @@ namespace vikwhite
         public Button StatsButton;
         public Button UpgradeButton;
         public Button CloseButton;
+        public Button RedeemButton;
         public Image Image;
         public Image ClassIcon;
         public Image BookClassIcon;

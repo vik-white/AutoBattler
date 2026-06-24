@@ -2,13 +2,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RedeemBookHierarchy : MonoBehaviour
+namespace vikwhite
 {
-    public TMP_Text ClassBooks;
-    public TMP_Text Books;
-    public Button AddButton;
-    public Button AddMaxButton;
-    public Button RemoveButton;
-    public Button RedeemButton;
-    public Button CloseButton;
+    public class RedeemBookHierarchy : MonoBehaviour
+    {
+        public Image ClassBookIcon;
+        public TMP_Text BookAmount;
+        public TMP_Text ClassBookAmount;
+        public TMP_Text CurrentBookAmount;
+        public Button AddButton;
+        public Button RemoveButton;
+        public Button RedeemButton;
+        public Button CloseButton;
+        public Button CloseFadeButton;
+        public HorizontalSliderDrag Slider;
+    }
 }

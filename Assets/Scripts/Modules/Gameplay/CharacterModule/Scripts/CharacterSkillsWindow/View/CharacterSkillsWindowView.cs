@@ -11,6 +11,7 @@ namespace vikwhite
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.StatsButton, viewModel.OnOpenStats);
             BindClick(_view.UpgradeButton, viewModel.OnUpgradeSkill);
+            BindClick(_view.RedeemButton, viewModel.OnRedeem);
 
             Bind(viewModel.SkillName, value => _view.SkillName.text = value);
             Bind(viewModel.SkillDescription, value =>_view.SkillDescription.text = value);
