@@ -110,7 +110,9 @@ namespace vikwhite
         private void RefreshUpgradeState()
         {
             var price = _configs.Settings.SkillUpPrice;
-            _skillUpgradePrice.Value = $"{ClassBooksAmount.Value}/{price}";
+            var amount = ClassBooksAmount.Value;
+            var amountColor = amount >= price ? ColorHandler.Green : ColorHandler.Red;
+            _skillUpgradePrice.Value = $"{amount.ToString().Color(amountColor)}/{price}";
             var selected = _selectedSkill.Value;
             var maxLevel = selected == null ? 0 : Model.GetMaxSkillLevel(selected.Slot);
             var skillLevel = selected == null ? 0 : Model.GetSkillLevel(selected.Slot);

@@ -14,7 +14,7 @@ namespace vikwhite
             BindClick(_view.NextLevelButton, viewModel.OnSelectNextLevel);
             Bind(viewModel.SelectedLevel, level => _view.Level.text = level.ToString());
             Bind(viewModel.Might, might => _view.Might.text = might);
-            Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
+            Bind(viewModel.ExpResources.Amount, SetLevelUpPrice);
             Bind(viewModel.CanSelectPreviousLevel, value => _view.PreviousLevelButton.interactable = value);
             Bind(viewModel.CanSelectNextLevel, value => _view.NextLevelButton.interactable = value);
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
@@ -22,9 +22,13 @@ namespace vikwhite
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
-            SetLevelUpPrice();
+            SetLevelUpPrice(viewModel.ExpResources.Amount.Value);
         }
 
-        private void SetLevelUpPrice() => _view.LevelUpPrice.text = $"{ViewModel.ExpResources.Amount}/{ViewModel.LevelUpPrice}";
+        private void SetLevelUpPrice(int amount)
+        {
+            var amountColor = amount >= ViewModel.LevelUpPrice ? ColorHandler.Green : ColorHandler.Red;
+            _view.LevelUpPrice.text = $"{amount.ToString().Color(amountColor)}/{ViewModel.LevelUpPrice}";
+        }
     }
 }

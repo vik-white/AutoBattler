@@ -19,17 +19,21 @@ namespace vikwhite
             BindClick(_view.SkillsButton, viewModel.OnOpenSkills);
             Bind(viewModel.Level, level => _view.Level.text = level.ToString());
             Bind(viewModel.Might, might => _view.Might.text = might.ToString());
-            Bind(viewModel.ExpResources.Amount, _ => SetLevelUpPrice());
+            Bind(viewModel.ExpResources.Amount, SetLevelUpPrice);
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
             _view.Name.text = viewModel.Name;
             _view.Image.sprite = viewModel.Image;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
-            SetLevelUpPrice();
+            SetLevelUpPrice(viewModel.ExpResources.Amount.Value);
             _view.R.gameObject.SetActive(viewModel.Rarity == RarityType.Rare);
             _view.SR.gameObject.SetActive(viewModel.Rarity == RarityType.Epic);
             _view.SSR.gameObject.SetActive(viewModel.Rarity == RarityType.Legendary);
         }
 
-        private void SetLevelUpPrice() => _view.LevelUpPrice.text = $"{ViewModel.ExpResources.Amount}/{ViewModel.LevelUpPrice}";
+        private void SetLevelUpPrice(int amount)
+        {
+            var amountColor = amount >= ViewModel.LevelUpPrice ? ColorHandler.Green : ColorHandler.Red;
+            _view.LevelUpPrice.text = $"{amount.ToString().Color(amountColor)}/{ViewModel.LevelUpPrice}";
+        }
     }
 }

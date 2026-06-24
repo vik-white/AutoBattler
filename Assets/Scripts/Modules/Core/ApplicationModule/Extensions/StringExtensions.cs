@@ -5,6 +5,11 @@ namespace vikwhite
 {
     public static class StringExtensions
     {
+        public static string Color(this string input, Color color)
+        {
+            return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{input}</color>";
+        }
+
         public static string CapitalizeFirstLetter(this string input)
         {
             if (string.IsNullOrEmpty(input))
