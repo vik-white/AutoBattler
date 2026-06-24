@@ -8,21 +8,35 @@ namespace vikwhite
         public static int Calculate(Character character)
         {
             float attack = CharacterStatsHandler.Calculate(character, StatType.Attack);
-            float attackCooldown = 0;
+            float attackCooldown = character.GetSkill(SkillSlotType.Attack).Config.Cooldown;
             float critChance = CharacterStatsHandler.Calculate(character, StatType.CritChance);
             float critValue = CharacterStatsHandler.Calculate(character, StatType.CritValue);
             float health = CharacterStatsHandler.Calculate(character, StatType.Health);
             float defense = CharacterStatsHandler.Calculate(character, StatType.Defense);
-            float activeSkillBaseMight = 0;
-            float activeSkillLevelMightMultiplier = 0;
-            float passive1BaseMight = 0;
-            float passive1LevelMightMultiplier = 0;
-            float passive2BaseMight = 0;
-            float passive2LevelMightMultiplier = 0;
+            float activeSkillBaseMight = GetSkillMight(character, SkillSlotType.Active);
+            float activeSkillLevelMightMultiplier = GetSkillLevelMightMultiplier(character, SkillSlotType.Active);
+            float passive1BaseMight = GetSkillMight(character, SkillSlotType.Passive1);
+            float passive1LevelMightMultiplier = GetSkillLevelMightMultiplier(character, SkillSlotType.Passive1);
+            float passive2BaseMight = GetSkillMight(character, SkillSlotType.Passive2);
+            float passive2LevelMightMultiplier = GetSkillLevelMightMultiplier(character, SkillSlotType.Passive2);
             return Calculate(attack, attackCooldown, critChance, critValue, health, defense, activeSkillBaseMight, activeSkillLevelMightMultiplier, passive1BaseMight, passive1LevelMightMultiplier, passive2BaseMight, passive2LevelMightMultiplier);
         }
+
+        private static float GetSkillMight(Character character, SkillSlotType slot)
+        {
+            var skill = character.GetSkill(slot);
+            if (skill != null) return skill.Config.Might;
+            return 0;
+        }
         
-        public static int Calculate(
+        private static float GetSkillLevelMightMultiplier(Character character, SkillSlotType slot)
+        {
+            var skill = character.GetSkill(slot);
+            if (skill != null) return skill.Config.LevelMightMultiplier * skill.Level.Value + 1;
+            return 0;
+        }
+        
+        private static int Calculate(
             float attack,
             float attackCooldown,
             float critChance,

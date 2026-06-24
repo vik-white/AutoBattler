@@ -95,7 +95,7 @@ namespace vikwhite.Data
         
         public SkillSlotType GetSkillSlot(string id)
         {
-            foreach (var slot in SkillSlotExtensions.UpgradableSlots)
+            foreach (var slot in SkillSlotExtensions.CharacterSlots)
             {
                 if(_skills.ContainsKey(slot) &&  _skills[slot] == id) return slot;
             }

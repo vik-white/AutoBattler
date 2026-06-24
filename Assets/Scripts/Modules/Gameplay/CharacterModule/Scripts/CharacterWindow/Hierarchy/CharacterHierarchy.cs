@@ -9,6 +9,7 @@ namespace vikwhite
         public TMP_Text Name;
         public TMP_Text Level;
         public TMP_Text LevelUpPrice;
+        public TMP_Text Might;
         public Button LevelUpButton;
         public Button InfoButton;
         public Button AscendButton;

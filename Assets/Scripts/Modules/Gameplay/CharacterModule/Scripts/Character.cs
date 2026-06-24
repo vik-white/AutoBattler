@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine;
 using vikwhite.Data;
 using vikwhite.ECS;
 
@@ -16,6 +17,7 @@ namespace vikwhite
         private ReactiveProperty<int> _level;
         private ReactiveProperty<int> _shards;
         private ReactiveProperty<int> _stars;
+        private ReactiveProperty<int> _might;
         private readonly List<CharacterSkill> _skills = new();
 
         public string ID => _id;
@@ -23,6 +25,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> Level => _level;
         public IReadOnlyReactiveProperty<int> Shards => _shards;
         public IReadOnlyReactiveProperty<int> Stars => _stars;
+        public IReadOnlyReactiveProperty<int> Might => _might;
         public IReadOnlyList<CharacterSkill> Skills => _skills;
         public IUpgradeData LevelUpgrade => _configs.Upgrades.Get(_characterData.LevelUpgrade);
         public IUpgradeData StarUpgrade => _configs.Upgrades.Get(_characterData.StarUpgrade);
@@ -41,6 +44,9 @@ namespace vikwhite
             _shards = new ReactiveProperty<int>(shards);
             _stars = new ReactiveProperty<int>(stars);
             InitializeSkills(skills);
+            _might = new ReactiveProperty<int>(MightHandler.Calculate(this));
+            _level.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterLevelEvent(_id, value)); CalculateStats(); });
+            _stars.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterStarsEvent(_id, value)); CalculateStats(); });
         }
 
         private void InitializeSkills(IReadOnlyList<SkillData> skills)
@@ -48,10 +54,15 @@ namespace vikwhite
             foreach (var skillData in skills)
             {
                 var slot = _characterData.GetSkillSlot(skillData.ID);
-                var skill = new CharacterSkill(skillData.ID, slot, skillData.Level);
+                var skill = new CharacterSkill(_configs.Skills.Get(skillData.ID), slot, skillData.Level);
                 _skills.Add(skill);
-                skill.Level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, skill.ID, value)));
+                skill.Level.Skip(1).Subscribe(value => { _dispatcher.Dispatch(new ChangeCharacterSkillLevelEvent(_id, skill.ID, value)); CalculateStats(); });
             }
+        }
+
+        public void CalculateStats()
+        {
+            _might.Value = MightHandler.Calculate(this);
         }
 
         public void UpgradeLevel() => _level.Value++;

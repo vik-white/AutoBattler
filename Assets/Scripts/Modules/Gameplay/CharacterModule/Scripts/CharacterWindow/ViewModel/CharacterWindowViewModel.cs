@@ -17,6 +17,7 @@ namespace vikwhite
         private readonly List<Character> _characters;
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
+        public IReadOnlyReactiveProperty<int> Might;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
@@ -49,6 +50,7 @@ namespace vikwhite
             _characters = new List<Character>(charactersService.GetCharacters());
             Name = character.Config.Name;
             Level = character.Level;
+            Might = character.Might;
             LevelUpPrice = configs.Settings.LevelUpPrice;
             var config = configs.Characters.Get(character.ID);
             Image = config.Image;

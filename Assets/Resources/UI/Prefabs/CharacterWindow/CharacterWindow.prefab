@@ -2100,6 +2100,7 @@ MonoBehaviour:
   Name: {fileID: 6196243976808835415}
   Level: {fileID: 841713210017681497}
   LevelUpPrice: {fileID: 895829695771368584}
+  Might: {fileID: 7178688167279623996}
   LevelUpButton: {fileID: 1339031858475028266}
   InfoButton: {fileID: 3088214468008058243}
   AscendButton: {fileID: 2731942167387515639}
@@ -2394,6 +2395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9028924456942226934}
   - component: {fileID: 2928920880249316755}
+  - component: {fileID: 3495123581957483310}
   m_Layer: 5
   m_Name: Might
   m_TagString: Untagged
@@ -2448,6 +2450,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3495123581957483310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899683627206698399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f6d0c3dd2d246b2a4f28bb332b8164e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Window::vikwhite.UILayoutAutoRebuilder
+  _target: {fileID: 0}
+  _rebuildFrames: 2
+  _rebuildParent: 1
 --- !u!1 &8050622446515980393
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,14 +5,16 @@ namespace vikwhite
     public class CharacterSkill
     {
         private readonly ReactiveProperty<int> _level;
-
-        public string ID { get; }
+        private Data.ISkillData _config; 
+        
+        public Data.ISkillData Config => _config;
+        public string ID => _config.ID;
         public SkillSlotType Slot { get; }
         public IReadOnlyReactiveProperty<int> Level => _level;
 
-        public CharacterSkill(string id, SkillSlotType slot, int level)
+        public CharacterSkill(Data.ISkillData config, SkillSlotType slot, int level)
         {
-            ID = id;
+            _config = config;
             Slot = slot;
             _level = new ReactiveProperty<int>(level);
         }
