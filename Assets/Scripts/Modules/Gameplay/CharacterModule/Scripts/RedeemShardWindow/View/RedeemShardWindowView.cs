@@ -13,11 +13,12 @@ namespace vikwhite
             BindClick(_view.AddButton, viewModel.OnAdd);
             BindClick(_view.RemoveButton, viewModel.OnRemove);
             BindClick(_view.RedeemButton, viewModel.OnRedeem);
-            Bind(viewModel.Selected, _ => UpdateTexts(viewModel));
-            Bind(viewModel.ShardsAmount, _ => UpdateTexts(viewModel));
+            Bind(viewModel.Selected, _ => UpdateState(viewModel));
+            Bind(viewModel.ShardsAmount, _ => UpdateState(viewModel));
+            _view.Slider.Initialize(progress => viewModel.OnSelect?.Invoke(Mathf.RoundToInt(progress * viewModel.ShardsAmount.Value)));
         }
 
-        private void UpdateTexts(RedeemShardWindowViewModel viewModel)
+        private void UpdateState(RedeemShardWindowViewModel viewModel)
         {
             _view.ShardsAmount.text = $"{viewModel.ShardsAmount.Value - viewModel.Selected.Value}";
             _view.HeroShardsAmount.text = $"{viewModel.HeroShardsAmount.Value}";
@@ -25,6 +26,7 @@ namespace vikwhite
             _view.HeroShardIcon.sprite = viewModel.HeroShardIcon;
             _view.ShardIcon1.sprite = viewModel.ShardIcon;
             _view.ShardIcon2.sprite = viewModel.ShardIcon;
+            _view.Slider.SetValue(viewModel.ShardsAmount.Value > 0 ? viewModel.Selected.Value / (float)viewModel.ShardsAmount.Value : 0f);
         }
     }
 }

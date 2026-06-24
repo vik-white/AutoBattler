@@ -20,6 +20,7 @@ namespace vikwhite
         public UnityAction OnAdd;
         public UnityAction OnRemove;
         public UnityAction OnRedeem;
+        public UnityAction<int> OnSelect;
 
         public RedeemShardWindowViewModel(Character character, IConfigs configs, IResourceService resource) : base(character)
         {
@@ -32,21 +33,33 @@ namespace vikwhite
             ShardIcon = configs.UI.Rarities[character.Config.Rarity].Shard;
             AddDisposable(_selected);
             Selected = _selected;
+            AddDisposable(ShardsAmount.Subscribe(_ => ClampSelected()));
             OnAdd = Add;
             OnRemove = Remove;
             OnRedeem = Redeem;
+            OnSelect = SetSelected;
         }
 
         private int GetAvailable() => ShardsAmount?.Value ?? 0;
 
         private void Add()
         {
-            if (_selected.Value < GetAvailable()) _selected.Value++;
+            SetSelected(_selected.Value + 1);
         }
 
         private void Remove()
         {
-            if (_selected.Value > 0) _selected.Value--;
+            SetSelected(_selected.Value - 1);
+        }
+
+        private void SetSelected(int amount)
+        {
+            _selected.Value = Mathf.Clamp(amount, 0, GetAvailable());
+        }
+
+        private void ClampSelected()
+        {
+            SetSelected(_selected.Value);
         }
 
         private void Redeem()
@@ -64,6 +77,7 @@ namespace vikwhite
             OnAdd = null;
             OnRemove = null;
             OnRedeem = null;
+            OnSelect = null;
         }
     }
 }
