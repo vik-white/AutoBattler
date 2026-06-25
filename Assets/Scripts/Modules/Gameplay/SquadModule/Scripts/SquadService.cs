@@ -8,6 +8,8 @@ namespace vikwhite
     {
         IReadOnlyList<Character> SelectedCharacters { get; }
         IReadOnlyReactiveProperty<int> SelectedCount { get; }
+        IReadOnlyReactiveProperty<int> PlayerMight { get; }
+        IReadOnlyReactiveProperty<int> EnemyMight { get; }
 
         event Action<Character, int> CharacterSelected;
         event Action<Character, int> CharacterDeselected;
@@ -18,6 +20,7 @@ namespace vikwhite
         bool TrySelect(Character character);
         void Deselect(Character character);
         void Clear();
+        void SetEnemyMight(int might);
         void RequestFight();
         void RequestBack();
     }
@@ -28,9 +31,13 @@ namespace vikwhite
 
         private readonly Character[] _selectedCharacters = new Character[MaxCharacters];
         private readonly ReactiveProperty<int> _selectedCount = new();
+        private readonly ReactiveProperty<int> _playerMight = new();
+        private readonly ReactiveProperty<int> _enemyMight = new();
 
         public IReadOnlyList<Character> SelectedCharacters => _selectedCharacters;
         public IReadOnlyReactiveProperty<int> SelectedCount => _selectedCount;
+        public IReadOnlyReactiveProperty<int> PlayerMight => _playerMight;
+        public IReadOnlyReactiveProperty<int> EnemyMight => _enemyMight;
 
         public event Action<Character, int> CharacterSelected;
         public event Action<Character, int> CharacterDeselected;
@@ -52,6 +59,7 @@ namespace vikwhite
 
             _selectedCharacters[slot] = character;
             _selectedCount.Value++;
+            RecalculatePlayerMight();
             CharacterSelected?.Invoke(character, slot);
             return true;
         }
@@ -65,6 +73,7 @@ namespace vikwhite
 
             _selectedCharacters[slot] = null;
             _selectedCount.Value--;
+            RecalculatePlayerMight();
             CharacterDeselected?.Invoke(character, slot);
         }
 
@@ -72,6 +81,13 @@ namespace vikwhite
         {
             Array.Clear(_selectedCharacters, 0, _selectedCharacters.Length);
             _selectedCount.Value = 0;
+            _playerMight.Value = 0;
+            _enemyMight.Value = 0;
+        }
+
+        public void SetEnemyMight(int might)
+        {
+            _enemyMight.Value = Math.Max(0, might);
         }
 
         public void RequestFight()
@@ -83,6 +99,17 @@ namespace vikwhite
         public void RequestBack()
         {
             BackRequested?.Invoke();
+        }
+
+        private void RecalculatePlayerMight()
+        {
+            var might = 0;
+            foreach (var character in _selectedCharacters)
+            {
+                if (character != null)
+                    might += character.Might.Value;
+            }
+            _playerMight.Value = might;
         }
     }
 }

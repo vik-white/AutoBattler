@@ -11,6 +11,7 @@ namespace vikwhite
             Register<IBattleVictoryState, BattleVictoryState>();
             Register<IBattleEndState, BattleEndState>();
             Register<IBattleSquadPlacementService, BattleSquadPlacementService>();
+            Register<IBattleMightService, BattleMightService>();
 
             Register<IBattleWindow, BattleWindow>();
             Register<BattleWindowViewModel>();

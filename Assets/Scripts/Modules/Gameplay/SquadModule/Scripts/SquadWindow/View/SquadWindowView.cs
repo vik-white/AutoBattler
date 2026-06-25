@@ -13,8 +13,8 @@ namespace vikwhite
         
         protected override void UpdateViewModel(SquadWindowViewModel viewModel)
         {
-            _view.PlayerMight.text = "0";
-            _view.EnemyMight.text = "0";
+            Bind(viewModel.PlayerMight, might => _view.PlayerMight.text = might.ToString());
+            Bind(viewModel.EnemyMight, might => _view.EnemyMight.text = might.ToString());
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.FightButton, viewModel.StartFight);
             Bind(viewModel.CanFight, canFight => _view.FightButton.interactable = canFight);

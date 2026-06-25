@@ -12,6 +12,8 @@ namespace vikwhite
 
         public List<SquadItemViewModel> Characters { get; } = new();
         public IReadOnlyReactiveProperty<bool> CanFight => _canFight;
+        public IReadOnlyReactiveProperty<int> PlayerMight => _squad.PlayerMight;
+        public IReadOnlyReactiveProperty<int> EnemyMight => _squad.EnemyMight;
         public UnityAction OnFight;
         
         public SquadWindowViewModel(ISquadService squad, ICharactersService characters)

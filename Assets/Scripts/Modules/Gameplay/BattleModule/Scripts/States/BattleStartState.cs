@@ -27,6 +27,7 @@ namespace vikwhite
         private readonly ISquadWindow _squadWindow;
         private readonly ISquadService _squad;
         private readonly IBattleSquadPlacementService _squadPlacement;
+        private readonly IBattleMightService _battleMight;
         private readonly ICameraService _camera;
 
         public BattleStartState(
@@ -38,6 +39,7 @@ namespace vikwhite
             ISquadWindow squadWindow,
             ISquadService squad,
             IBattleSquadPlacementService squadPlacement,
+            IBattleMightService battleMight,
             ICameraService camera)
         {
             _locationProvider = locationProvider;
@@ -48,12 +50,14 @@ namespace vikwhite
             _squadWindow = squadWindow;
             _squad = squad;
             _squadPlacement = squadPlacement;
+            _battleMight = battleMight;
             _camera = camera;
         }
 
         public void Enter()
         {
             _squad.Clear();
+            _battleMight.UpdateEnemyMight();
             _squadPlacement.Begin();
             _squad.FightRequested += StartFight;
             _squad.BackRequested += ReturnToMap;

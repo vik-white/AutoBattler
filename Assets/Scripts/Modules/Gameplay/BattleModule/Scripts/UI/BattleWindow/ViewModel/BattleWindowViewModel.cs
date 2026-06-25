@@ -29,13 +29,13 @@ namespace vikwhite
         private readonly HashSet<Entity> _characters = new();
         private bool _quickVictoryRequested;
 
-        public BattleWindowViewModel(IStateMachine<IBattleState> battleStateMachine)
+        public BattleWindowViewModel(IStateMachine<IBattleState> battleStateMachine, ISquadService squad)
         {
             _battleStateMachine = battleStateMachine;
             OnQuickVictory = QuickVictory;
             OnPause = TogglePause;
-            PlayerMight = 0;
-            EnemyMight = 0;
+            PlayerMight = squad.PlayerMight.Value;
+            EnemyMight = squad.EnemyMight.Value;
 
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
