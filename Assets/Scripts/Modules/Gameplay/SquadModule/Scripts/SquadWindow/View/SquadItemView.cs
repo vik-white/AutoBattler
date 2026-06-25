@@ -13,7 +13,7 @@ namespace vikwhite
             _view.ClassIcon.sprite = viewModel.ClassIcon;
             _view.RarityBG.sprite = viewModel.RarityBG;
             BindClick(_view.Button, viewModel.OnSelect);
-            Bind(viewModel.Level, level => _view.Level.text = $"{level} Lv");
+            Bind(viewModel.Level, level => _view.Level.text = $"<size=17>Lv.</size> {level}");
             Bind(viewModel.IsSelected, selected => _view.Selected.SetActive(selected));
             _view.HeroContainer.ClearChildren();
             Object.Instantiate(viewModel.ImagePrefab, _view.HeroContainer, false);
