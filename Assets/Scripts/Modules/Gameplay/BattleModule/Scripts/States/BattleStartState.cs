@@ -16,7 +16,7 @@ namespace vikwhite
 
     public class BattleStartState : IBattleStartState
     {
-        private static readonly Vector3 BattleCameraPosition = new(-51.6f, 47.5f, -29.7f);
+        private static readonly Vector3 BattleCameraPosition = new(-50.18f, 48.1f, -28.88f);
 
         private readonly ILocationProvider _locationProvider;
         private readonly ISquadService _squad;
@@ -37,7 +37,6 @@ namespace vikwhite
 
         public void Enter()
         {
-            SetCameraPosition();
             _battleWindow.Show();
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
@@ -68,14 +67,7 @@ namespace vikwhite
             DefeatBattleEventSystem.OnExecute = _ =>_stateMachine.SwitchState<IBattleDefeatState>();
             VictoryBattleEventSystem.OnExecute = _ => _stateMachine.SwitchState<IBattleVictoryState>();
             
-            _camera.Initialize(new Vector3(-51.6f, 47.5f, - 29.7f), Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
-        }
-
-        private static void SetCameraPosition()
-        {
-            var camera = Camera.main;
-            if (camera != null)
-                camera.transform.position = BattleCameraPosition;
+            _camera.Initialize(BattleCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
         }
 
         public void Exit()

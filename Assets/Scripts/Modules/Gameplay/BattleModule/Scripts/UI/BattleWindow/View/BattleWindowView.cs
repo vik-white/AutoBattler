@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
@@ -19,9 +18,9 @@ namespace vikwhite
 
         protected override void UpdateViewModel(BattleWindowViewModel viewModel)
         {
-            BindClick(_view.QuickVictoryButton, viewModel.OnQuickVictory);
-
             _view.SkillContainer.ClearChildren();
+            _view.PlayerMight.text = viewModel.PlayerMight.ToString();
+            _view.EnemyMight.text = viewModel.EnemyMight.ToString();
             
             foreach (var healthBar in viewModel.HealthBars) CreateHealthBar(healthBar);
             foreach (var skill in viewModel.Skills) CreateSkill(skill);
@@ -29,15 +28,9 @@ namespace vikwhite
             viewModel.HealthBarCreated += CreateHealthBar;
             viewModel.SkillCreated += CreateSkill;
             viewModel.DamageFlyTextCreated += CreateDamageFlyText;
-            Register(Observable.EveryUpdate().Subscribe(_ => UpdateFPS()));
             Register(Disposable.Create(() => viewModel.HealthBarCreated -= CreateHealthBar));
             Register(Disposable.Create(() => viewModel.SkillCreated -= CreateSkill));
             Register(Disposable.Create(() => viewModel.DamageFlyTextCreated -= CreateDamageFlyText));
-        }
-
-        private void UpdateFPS()
-        {
-            if (_view.FPS != null && BaseViewModel != null) _view.FPS.text = BaseViewModel.FpsText;
         }
 
         private void CreateSkill(BattleSkillViewModel skill)

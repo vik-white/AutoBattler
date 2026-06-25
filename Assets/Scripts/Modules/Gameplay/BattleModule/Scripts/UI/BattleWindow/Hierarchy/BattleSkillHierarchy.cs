@@ -7,10 +7,11 @@ namespace vikwhite
     public class BattleSkillHierarchy : MonoBehaviour
     {
         public Button Button;
-        public RectTransform HealthBar;
+        public Image RarityBG;
+        public ProgressBar HealthBar;
         public RectTransform SkillBar;
-        public Image Fade;
-        public Image Icon;
-        public TMP_Text Title;
+        public RectTransform HeroContainer;
+        public GameObject Lock;
+        public TMP_Text Time;
     }
 }

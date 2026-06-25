@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,8 +6,8 @@ namespace vikwhite
 {
     public class BattleWindowHierarchy : MonoBehaviour
     {
-        public Text FPS;
-        public Button QuickVictoryButton;
         public RectTransform SkillContainer;
+        public TMP_Text PlayerMight;
+        public TMP_Text EnemyMight;
     }
 }

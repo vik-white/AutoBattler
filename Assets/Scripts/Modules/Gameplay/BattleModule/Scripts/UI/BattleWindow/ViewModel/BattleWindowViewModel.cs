@@ -21,6 +21,8 @@ namespace vikwhite
 
         public UnityAction OnQuickVictory;
         public string FpsText => $"FPS: {Mathf.RoundToInt(1f / Time.deltaTime)}";
+        public int PlayerMight;
+        public int EnemyMight;
 
         private readonly IStateMachine<IBattleState> _battleStateMachine;
         private bool _quickVictoryRequested;
@@ -29,6 +31,8 @@ namespace vikwhite
         {
             _battleStateMachine = battleStateMachine;
             OnQuickVictory = QuickVictory;
+            PlayerMight = 0;
+            EnemyMight = 0;
 
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
