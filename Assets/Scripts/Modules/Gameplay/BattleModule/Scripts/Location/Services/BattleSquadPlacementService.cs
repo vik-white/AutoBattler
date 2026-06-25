@@ -16,11 +16,13 @@ namespace vikwhite
     public class BattleSquadPlacementService : IBattleSquadPlacementService
     {
         private readonly ISquadService _squad;
+        private readonly IBattleGridService _grid;
         private bool _isActive;
 
-        public BattleSquadPlacementService(ISquadService squad)
+        public BattleSquadPlacementService(ISquadService squad, IBattleGridService grid)
         {
             _squad = squad;
+            _grid = grid;
         }
 
         public void Begin()
@@ -28,6 +30,7 @@ namespace vikwhite
             if (_isActive) return;
 
             _isActive = true;
+            _grid.SetVisible(true);
             _squad.CharacterSelected += PlaceCharacter;
             _squad.CharacterDeselected += RemoveCharacter;
         }
@@ -37,6 +40,7 @@ namespace vikwhite
             if (!_isActive) return;
 
             _isActive = false;
+            _grid.SetVisible(false);
             _squad.CharacterSelected -= PlaceCharacter;
             _squad.CharacterDeselected -= RemoveCharacter;
         }

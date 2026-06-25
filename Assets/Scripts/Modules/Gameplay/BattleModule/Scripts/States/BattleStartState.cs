@@ -16,8 +16,8 @@ namespace vikwhite
 
     public class BattleStartState : IBattleStartState
     {
-        private static readonly Vector3 BattleCameraPosition = new(-50.18f, 48.1f, -28.88f);
-        private static readonly Vector3 SquadCameraPosition = new(-51.07f, 47.36f, -29.39f);
+        private static readonly Vector3 BattleCameraPosition = new(-61.28f, 58.9f, -35.26f);
+        private static readonly Vector3 SquadCameraPosition = new(-61.7f, 57.5f, -35.5f);
 
         private readonly ILocationProvider _locationProvider;
         private readonly IStateMachine<IBattleState> _stateMachine;
