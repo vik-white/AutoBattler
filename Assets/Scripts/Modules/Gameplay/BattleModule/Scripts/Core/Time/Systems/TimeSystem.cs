@@ -60,7 +60,6 @@ namespace vikwhite.ECS
 
         public static bool TogglePause()
         {
-            Debug.Log("TogglePause");
             SetPaused(!IsPaused);
             return IsPaused;
         }
