@@ -29,7 +29,6 @@ namespace vikwhite
             Resolve<IProfileService>().Load();
             Resolve<IResourceService>().Initialize();
             Resolve<ICharactersService>().Initialize();
-            Resolve<ISquadService>().Initialize();
             var sector = Resolve<ISectorService>();
             sector.Initialize();
             _sectorScene = sector.CurrentSector;

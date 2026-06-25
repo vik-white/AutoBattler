@@ -19,16 +19,14 @@ namespace vikwhite
         private static readonly Vector3 BattleCameraPosition = new(-50.18f, 48.1f, -28.88f);
 
         private readonly ILocationProvider _locationProvider;
-        private readonly ISquadService _squad;
         private readonly IStateMachine<IBattleState> _stateMachine;
         private readonly IConfigs _configs;
         private readonly IBattleWindow _battleWindow;
         private readonly ICameraService _camera;
 
-        public BattleStartState(ILocationProvider locationProvider, ISquadService squad, IStateMachine<IBattleState> stateMachine, IConfigs configs, IBattleWindow battleWindow, ICameraService camera)
+        public BattleStartState(ILocationProvider locationProvider, IStateMachine<IBattleState> stateMachine, IConfigs configs, IBattleWindow battleWindow, ICameraService camera)
         {
             _locationProvider = locationProvider;
-            _squad = squad;
             _stateMachine = stateMachine;
             _configs = configs;
             _battleWindow = battleWindow;
@@ -47,7 +45,7 @@ namespace vikwhite
             ECSWorld.SetEnabled<CharacterConfigInitializeSystem>(true);
 
             var initializeSquad = new InitializeSquad { Value = new FixedList512Bytes<CreateCharacter>() };
-            foreach (var character in _squad.GetCharacters())
+            /*foreach (var character in _squad.GetCharacters())
             {
                 var createCharacter = character != null ? new CreateCharacter
                 {
@@ -56,7 +54,7 @@ namespace vikwhite
                     Stars = character.Stars.Value
                 } : default;
                 initializeSquad.Value.Add(createCharacter);
-            }
+            }*/
             ECSWorld.CreateEntity(initializeSquad); 
 
             var locationType = _configs.Map.Get(_locationProvider.ID).Type;

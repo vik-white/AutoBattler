@@ -9,7 +9,6 @@ namespace vikwhite
         public List<CharacterData> Characters = new();
         public List<ResourceData> Resources = new();
         public List<QuestProfileData> Quests = new();
-        public string[] Squad;
         public string RoadMapLocation;
     }
 }

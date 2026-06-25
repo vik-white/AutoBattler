@@ -26,7 +26,6 @@ namespace vikwhite
             Resolve<IProfileService>().Load(); 
             Resolve<IResourceService>().Initialize();
             Resolve<ICharactersService>().Initialize();
-            Resolve<ISquadService>().Initialize();
             Resolve<ISectorService>().Initialize();
             Resolve<IEventsService>().Initialize();
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyStartState>();

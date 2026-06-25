@@ -4,8 +4,6 @@ namespace vikwhite
     {
         protected override void Register()
         {
-            Register<ISquadService, SquadServiceService>();
-            
             Register<ISquadWindow, SquadWindow>();
             Register<SquadWindowViewModel>();
             Register<SquadWindowView>();

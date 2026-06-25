@@ -10,7 +10,6 @@ namespace vikwhite
 
         protected override void UpdateViewModel(SquadItemViewModel viewModel)
         {
-            _view.ID = viewModel.ID;
             _view.ClassIcon.sprite = viewModel.ClassIcon;
             _view.RarityBG.sprite = viewModel.RarityBG;
             BindClick(_view.Button, viewModel.OnSelect);

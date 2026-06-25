@@ -8,15 +8,13 @@ namespace vikwhite
     public class SquadItemViewModel: WindowViewModel<Character>
     {
         public UnityAction OnSelect;
-        public string ID { get; }
         public IReadOnlyReactiveProperty<int> Level;
         public Sprite RarityBG { get; }
         public Sprite ClassIcon { get; }
         public GameObject ImagePrefab { get; }
         
-        public SquadItemViewModel(Character model, ICharacterWindow characterWindow, IConfigs configs) : base(model)
+        public SquadItemViewModel(Character model, IConfigs configs) : base(model)
         {
-            ID = model.ID;
             Level = model.Level;
             ImagePrefab = model.Config.HeadPrefab;
             ClassIcon = configs.UI.ClassIcons[model.Config.Class];

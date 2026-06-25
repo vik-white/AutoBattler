@@ -39,7 +39,6 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.BookTank, Amount = 0 },
                 },
                 Quests = new (),
-                Squad = new [] {"","","","",""},
                 RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID
             };
 

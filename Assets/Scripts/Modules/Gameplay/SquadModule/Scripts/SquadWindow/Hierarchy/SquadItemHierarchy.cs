@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace vikwhite
 {
-    public class SquadItemHierarchy : UIScrollAndDrag
+    public class SquadItemHierarchy : MonoBehaviour
     {
         public Button Button;
         public RectTransform HeroContainer;

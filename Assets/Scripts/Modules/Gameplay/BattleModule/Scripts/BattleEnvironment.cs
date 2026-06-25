@@ -31,7 +31,6 @@ namespace vikwhite
             Resolve<IResourceService>().Initialize();
             Resolve<ISectorService>().Initialize();
             Resolve<ICharactersService>().Initialize();
-            Resolve<ISquadService>().Initialize();
             Resolve<IEventsService>().Initialize();
             Resolve<IEventsService>().Initialize();
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
