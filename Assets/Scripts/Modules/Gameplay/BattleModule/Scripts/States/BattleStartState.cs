@@ -17,6 +17,7 @@ namespace vikwhite
     public class BattleStartState : IBattleStartState
     {
         private static readonly Vector3 BattleCameraPosition = new(-50.18f, 48.1f, -28.88f);
+        private static readonly Vector3 SquadCameraPosition = new(-51.07f, 47.36f, -29.39f);
 
         private readonly ILocationProvider _locationProvider;
         private readonly IStateMachine<IBattleState> _stateMachine;
@@ -75,7 +76,7 @@ namespace vikwhite
             DefeatBattleEventSystem.OnExecute = _ =>_stateMachine.SwitchState<IBattleDefeatState>();
             VictoryBattleEventSystem.OnExecute = _ => _stateMachine.SwitchState<IBattleVictoryState>();
             
-            _camera.Initialize(BattleCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
+            _camera.Initialize(SquadCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
             _squadWindow.ShowWindow();
         }
 
@@ -92,8 +93,7 @@ namespace vikwhite
 
         private void StartFight()
         {
-            if (_squad.SelectedCount.Value == 0) return;
-
+            _camera.Initialize(BattleCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
             _squadPlacement.End();
             _battleWindow.Show();
             ECSWorld.CreateEntity(new InitializeSquad
