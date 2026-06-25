@@ -9,6 +9,7 @@ namespace vikwhite
     public interface ISectorService
     {
         string CurrentLocation { get; }
+        int CurrentLocationIndex { get; }
         string CurrentSector { get; }
         bool HasNextLocation { get; }
         void Initialize();
@@ -32,6 +33,7 @@ namespace vikwhite
         private string _currentLocation;
 
         public string CurrentLocation => _currentLocation;
+        public int CurrentLocationIndex => _locationIDs.IndexOf(_currentLocation);
         public string CurrentSector => _configs.Map.Get(_currentLocation).Sector;
         public bool HasNextLocation => !string.IsNullOrEmpty(GetNextLocationID(_currentLocation));
 

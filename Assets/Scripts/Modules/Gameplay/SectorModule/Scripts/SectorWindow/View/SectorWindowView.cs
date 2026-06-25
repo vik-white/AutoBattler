@@ -17,8 +17,8 @@ namespace vikwhite
         
         private void Update()
         {
-            _view.Location.text = ViewModel.CurrentLocation;
-            _view.FightButton.interactable = ViewModel.CanFight;
+            _view.Location.text = $"Mystical Jungle 1-{ViewModel.CurrentLocationIndex + 1}";
+            _view.FightButton.gameObject.SetActive(ViewModel.CanFight);
         }
     }
 }

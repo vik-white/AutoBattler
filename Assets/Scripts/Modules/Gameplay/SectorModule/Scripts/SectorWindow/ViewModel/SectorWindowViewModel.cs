@@ -12,8 +12,7 @@ namespace vikwhite
         private readonly ISectorService _sector;
         private readonly SectorPlayer _player;
         
-        public string CurrentLocation => _sector.CurrentLocation;
-        public bool CanGoToNext => _sector.HasNextLocation && !_player.IsMoving;
+        public int CurrentLocationIndex => _sector.CurrentLocationIndex;
         public bool CanFight => !_player.IsMoving;
         public UnityAction OnFight;
         public UnityAction OnLobby;
