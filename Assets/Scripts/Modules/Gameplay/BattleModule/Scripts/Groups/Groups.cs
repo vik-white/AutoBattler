@@ -5,14 +5,27 @@ namespace vikwhite.ECS
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     public partial class BattleSystemGroup : ComponentSystemGroup
     {
+        private EntityQuery _timeQuery;
+
         protected override void OnCreate()
         {
             base.OnCreate();
+            _timeQuery = GetEntityQuery(ComponentType.ReadOnly<Time>());
             Enabled = false;
+        }
+
+        protected override void OnUpdate()
+        {
+            if (!_timeQuery.IsEmptyIgnoreFilter && _timeQuery.GetSingleton<Time>().IsPaused) return;
+            base.OnUpdate();
         }
     }
 
+    [UpdateInGroup(typeof(BattleSystemGroup), OrderFirst = true)]
+    public partial class TimeSystemGroup : ComponentSystemGroup { }
+
     [UpdateInGroup(typeof(BattleSystemGroup))]
+    [UpdateAfter(typeof(TimeSystemGroup))]
     public partial class CleanupSystemGroup : ComponentSystemGroup { }
     
     [UpdateInGroup(typeof(BattleSystemGroup))]

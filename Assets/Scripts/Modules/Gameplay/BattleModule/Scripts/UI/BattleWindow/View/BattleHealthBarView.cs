@@ -1,5 +1,6 @@
 using UniRx;
 using UnityEngine;
+using vikwhite.ECS;
 
 namespace vikwhite
 {
@@ -84,13 +85,13 @@ namespace vikwhite
 
             if (_whiteHealthDelayLeft > 0)
             {
-                _whiteHealthDelayLeft -= Time.deltaTime;
+                _whiteHealthDelayLeft -= TimeSystem.DeltaTime;
                 SetProgressBarScale(_view.HealthWhiteProgressBar, _whiteHealthFill);
                 return;
             }
 
             _isWhiteHealthDecreasing = true;
-            _whiteHealthFill = Mathf.MoveTowards(_whiteHealthFill, _healthFill, WhiteHealthDecreaseSpeed * Time.deltaTime);
+            _whiteHealthFill = Mathf.MoveTowards(_whiteHealthFill, _healthFill, WhiteHealthDecreaseSpeed * TimeSystem.DeltaTime);
             if (Mathf.Approximately(_whiteHealthFill, _healthFill))
                 _isWhiteHealthDecreasing = false;
 

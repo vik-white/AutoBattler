@@ -9,6 +9,8 @@ namespace vikwhite.ECS
     public partial struct PreviousPositionSystem : ISystem
     {
         public void OnUpdate(ref SystemState state) {
+            if (SystemAPI.HasSingleton<Time>() && SystemAPI.GetSingleton<Time>().IsPaused) return;
+
             foreach (var (transform, previous, distance) in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PreviousPosition>, RefRW<MoveDistance>>()) {
                 float3 currentPos = transform.ValueRO.Position;
                 float3 prevPos = previous.ValueRO.Value;

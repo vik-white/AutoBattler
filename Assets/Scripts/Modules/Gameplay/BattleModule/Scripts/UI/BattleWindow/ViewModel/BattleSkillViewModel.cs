@@ -84,7 +84,7 @@ namespace vikwhite
 
         private bool IsAvailable()
         {
-            if (!IsCharacterAlive() || !_entityManager.HasComponent<Skill>(Model.Character)) return false;
+            if (TimeSystem.IsPaused || !IsCharacterAlive() || !_entityManager.HasComponent<Skill>(Model.Character)) return false;
 
             foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {

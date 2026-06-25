@@ -8,6 +8,7 @@ namespace vikwhite
     {
         public void Enter() 
         {
+            TimeSystem.Reset();
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(false);
             ECSWorld.DestroyScene();
         }

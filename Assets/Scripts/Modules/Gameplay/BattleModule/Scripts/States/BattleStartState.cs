@@ -37,6 +37,7 @@ namespace vikwhite
 
         public void Enter()
         {
+            TimeSystem.Reset();
             _battleWindow.Show();
 
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(true);
@@ -72,6 +73,7 @@ namespace vikwhite
 
         public void Exit()
         {
+            TimeSystem.SetPaused(false);
             _battleWindow.Hide();
         }
     }

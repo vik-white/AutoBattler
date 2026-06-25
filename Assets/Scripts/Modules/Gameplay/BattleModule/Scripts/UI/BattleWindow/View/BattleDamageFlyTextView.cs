@@ -1,6 +1,7 @@
 using TMPro;
 using UniRx;
 using UnityEngine;
+using vikwhite.ECS;
 
 namespace vikwhite
 {
@@ -48,7 +49,7 @@ namespace vikwhite
         {
             if (BaseViewModel == null) return;
 
-            BaseViewModel.Tick(Time.deltaTime);
+            BaseViewModel.Tick(TimeSystem.DeltaTime);
             UpdatePosition(BaseViewModel.Progress);
             UpdateAlpha(BaseViewModel.Progress);
 

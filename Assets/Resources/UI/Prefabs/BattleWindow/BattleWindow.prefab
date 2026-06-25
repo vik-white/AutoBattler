@@ -432,10 +432,10 @@ RectTransform:
   - {fileID: 3355452593793742320}
   - {fileID: 3020362918127685065}
   - {fileID: 6203597091705480457}
+  - {fileID: 7524061258504610809}
   - {fileID: 5094631060187077982}
   - {fileID: 8251243355178878676}
   - {fileID: 7197083234476842424}
-  - {fileID: 7524061258504610809}
   - {fileID: 7397073312441846471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -459,6 +459,7 @@ MonoBehaviour:
   SkillContainer: {fileID: 7524061258504610809}
   PlayerMight: {fileID: 4854424218599099062}
   EnemyMight: {fileID: 4353539458782996202}
+  PauseButton: {fileID: 439187857290113697}
 --- !u!1 &1564596077522483922
 GameObject:
   m_ObjectHideFlags: 0

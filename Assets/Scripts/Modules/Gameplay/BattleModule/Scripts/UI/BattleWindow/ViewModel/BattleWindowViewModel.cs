@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using Utilities.Extensions;
 using vikwhite.ECS;
-using Time = UnityEngine.Time;
 
 namespace vikwhite
 {
@@ -20,7 +19,8 @@ namespace vikwhite
         public event Action<BattleDamageFlyTextViewModel> DamageFlyTextCreated;
 
         public UnityAction OnQuickVictory;
-        public string FpsText => $"FPS: {Mathf.RoundToInt(1f / Time.deltaTime)}";
+        public UnityAction OnPause;
+        public string FpsText => $"FPS: {(TimeSystem.UnscaledDeltaTime > 0f ? Mathf.RoundToInt(1f / TimeSystem.UnscaledDeltaTime) : 0)}";
         public int PlayerMight;
         public int EnemyMight;
 
@@ -31,6 +31,7 @@ namespace vikwhite
         {
             _battleStateMachine = battleStateMachine;
             OnQuickVictory = QuickVictory;
+            OnPause = TogglePause;
             PlayerMight = 0;
             EnemyMight = 0;
 
@@ -38,10 +39,16 @@ namespace vikwhite
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
         }
 
+        private static void TogglePause()
+        {
+            TimeSystem.TogglePause();
+        }
+
         private void QuickVictory()
         {
             if (_quickVictoryRequested) return;
             _quickVictoryRequested = true;
+            TimeSystem.SetPaused(false);
             ECSWorld.SetManagedEnabled<BattleSystemGroup>(false);
             _battleStateMachine.SwitchState<IBattleVictoryState>();
         }
@@ -81,6 +88,7 @@ namespace vikwhite
         {
             base.Dispose();
             OnQuickVictory = null;
+            OnPause = null;
             HealthBarCreated = null;
             SkillCreated = null;
             DamageFlyTextCreated = null;

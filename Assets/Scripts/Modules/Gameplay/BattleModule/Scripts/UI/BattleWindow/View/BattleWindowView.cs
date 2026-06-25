@@ -21,6 +21,7 @@ namespace vikwhite
             _view.SkillContainer.ClearChildren();
             _view.PlayerMight.text = viewModel.PlayerMight.ToString();
             _view.EnemyMight.text = viewModel.EnemyMight.ToString();
+            BindClick(_view.PauseButton, viewModel.OnPause);
             
             foreach (var healthBar in viewModel.HealthBars) CreateHealthBar(healthBar);
             foreach (var skill in viewModel.Skills) CreateSkill(skill);

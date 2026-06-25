@@ -9,5 +9,6 @@ namespace vikwhite
         public RectTransform SkillContainer;
         public TMP_Text PlayerMight;
         public TMP_Text EnemyMight;
+        public Button PauseButton;
     }
 }
