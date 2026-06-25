@@ -8,7 +8,6 @@ namespace vikwhite
     {
         private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ILocationProvider _locationProvider;
-        private readonly ISquadWindow _squadWindow;
         private readonly ISectorService _sector;
         private readonly SectorPlayer _player;
         
@@ -18,11 +17,10 @@ namespace vikwhite
         public UnityAction OnLobby;
         public UnityAction OnGoToNext;
 
-        public SectorWindowViewModel(SectorPlayer sectorPlayer, ILocationProvider locationProvider, ISquadWindow squadWindow, ISectorService sector, IEnvironmentStateMachine environmentStateMachine): base(sectorPlayer)
+        public SectorWindowViewModel(SectorPlayer sectorPlayer, ILocationProvider locationProvider, ISectorService sector, IEnvironmentStateMachine environmentStateMachine): base(sectorPlayer)
         {
             _environmentStateMachine = environmentStateMachine;
             _locationProvider = locationProvider;
-            _squadWindow = squadWindow;
             _sector = sector;
             _player = sectorPlayer;
             OnFight = StartCurrentLocation;
@@ -34,7 +32,7 @@ namespace vikwhite
         {
             _sector.SetCurrentLocation(_sector.CurrentLocation);
             _locationProvider.ID = _sector.CurrentLocation;
-            _squadWindow.ShowWindow();
+            _environmentStateMachine.SwitchState(EnvironmentType.Battle);
         }
         
         public void OpenLobby() => _environmentStateMachine.SwitchState(EnvironmentType.Lobby);

@@ -14,6 +14,7 @@ namespace vikwhite
             _view.RarityBG.sprite = viewModel.RarityBG;
             BindClick(_view.Button, viewModel.OnSelect);
             Bind(viewModel.Level, level => _view.Level.text = $"{level} Lv");
+            Bind(viewModel.IsSelected, selected => _view.Selected.SetActive(selected));
             _view.HeroContainer.ClearChildren();
             Object.Instantiate(viewModel.ImagePrefab, _view.HeroContainer, false);
         }

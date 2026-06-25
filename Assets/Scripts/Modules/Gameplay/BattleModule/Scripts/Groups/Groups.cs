@@ -5,18 +5,47 @@ namespace vikwhite.ECS
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     public partial class BattleSystemGroup : ComponentSystemGroup
     {
+        public static bool AllowSetupWhilePaused { get; set; }
+
         private EntityQuery _timeQuery;
+        private TimeSystemGroup _timeSystemGroup;
+        private CleanupSystemGroup _cleanupSystemGroup;
+        private InitializeSystemGroup _initializeSystemGroup;
+        private SetupSystemGroup _setupSystemGroup;
+        private CreateSystemGroup _createSystemGroup;
+        private EventSystemGroup _eventSystemGroup;
+        private FrameCleanupSystemGroup _frameCleanupSystemGroup;
 
         protected override void OnCreate()
         {
             base.OnCreate();
             _timeQuery = GetEntityQuery(ComponentType.ReadOnly<Time>());
+            _timeSystemGroup = World.GetExistingSystemManaged<TimeSystemGroup>();
+            _cleanupSystemGroup = World.GetExistingSystemManaged<CleanupSystemGroup>();
+            _initializeSystemGroup = World.GetExistingSystemManaged<InitializeSystemGroup>();
+            _setupSystemGroup = World.GetExistingSystemManaged<SetupSystemGroup>();
+            _createSystemGroup = World.GetExistingSystemManaged<CreateSystemGroup>();
+            _eventSystemGroup = World.GetExistingSystemManaged<EventSystemGroup>();
+            _frameCleanupSystemGroup = World.GetExistingSystemManaged<FrameCleanupSystemGroup>();
             Enabled = false;
         }
 
         protected override void OnUpdate()
         {
-            if (!_timeQuery.IsEmptyIgnoreFilter && _timeQuery.GetSingleton<Time>().IsPaused) return;
+            if (!_timeQuery.IsEmptyIgnoreFilter && _timeQuery.GetSingleton<Time>().IsPaused)
+            {
+                if (!AllowSetupWhilePaused) return;
+
+                _timeSystemGroup.Update();
+                _cleanupSystemGroup.Update();
+                _initializeSystemGroup.Update();
+                _setupSystemGroup.Update();
+                _createSystemGroup.Update();
+                _eventSystemGroup.Update();
+                _frameCleanupSystemGroup.Update();
+                return;
+            }
+
             base.OnUpdate();
         }
     }

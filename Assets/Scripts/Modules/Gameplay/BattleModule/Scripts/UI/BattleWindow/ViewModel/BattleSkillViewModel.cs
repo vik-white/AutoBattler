@@ -71,6 +71,11 @@ namespace vikwhite
             return 0;
         }
 
+        public bool Exists()
+        {
+            return _entityManager.Exists(Model.Character);
+        }
+
         private void OnActivateSkill()
         {
             if (!IsAvailable()) return;

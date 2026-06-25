@@ -31,7 +31,7 @@ namespace vikwhite.ECS
             ecb.Playback(state.EntityManager);
         }
 
-        private float3 GetPosition(int index)
+        public static float3 GetPosition(int index)
         {
             switch (index)
             {

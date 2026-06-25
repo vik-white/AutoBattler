@@ -36,6 +36,14 @@ namespace vikwhite.ECS
                     Stars = request.ValueRO.Stars,
                     SkillLevel = request.ValueRO.SkillLevel,
                 });
+                if (request.ValueRO.SquadCharacterID != 0)
+                {
+                    ecb.AddComponent(characterEntity, new SquadSelection
+                    {
+                        CharacterID = request.ValueRO.SquadCharacterID,
+                        Slot = request.ValueRO.SquadSlot
+                    });
+                }
                 if (request.ValueRO.IsEnemy) ecb.AddComponent<Enemy>(characterEntity);
 
                 ecb.SetComponent(characterEntity, new LocalTransform
