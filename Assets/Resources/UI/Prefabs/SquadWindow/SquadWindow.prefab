@@ -1354,6 +1354,8 @@ MonoBehaviour:
   CloseButton: {fileID: 4511782415224657933}
   FightButton: {fileID: 7060378924167763087}
   SquadItemsContainer: {fileID: 8423994940576890403}
+  PlayerMight: {fileID: 1542478622843885075}
+  EnemyMight: {fileID: 3430376724488355154}
 --- !u!1 &7016124539275277909
 GameObject:
   m_ObjectHideFlags: 0

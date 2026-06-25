@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,5 +9,7 @@ namespace vikwhite
         public Button CloseButton;
         public Button FightButton;
         public RectTransform SquadItemsContainer;
+        public TMP_Text PlayerMight;
+        public TMP_Text EnemyMight;
     }
 }
