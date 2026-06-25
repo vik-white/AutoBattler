@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,6 @@ namespace vikwhite
     {
         public Button CloseButton;
         public Button FightButton;
-        public UIDropContainer CharacterContainer;
-        public List<UIDropContainer> SquadContainers;
+        public RectTransform SquadItemsContainer;
     }
 }

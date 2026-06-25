@@ -25,16 +25,8 @@ namespace vikwhite
             _view.ClassIcon.sprite = viewModel.ClassIcon;
             _view.ClassIcon.enabled = viewModel.ClassIcon != null;
             
-            SetCharacterImage(viewModel.ImagePrefab);
-        }
-
-        private void SetCharacterImage(GameObject imagePrefab)
-        {
             _view.ImageContainer.ClearChildren();
-            if (imagePrefab == null) return;
-            
-            Object.Instantiate(imagePrefab, _view.ImageContainer, false);
+            Object.Instantiate(viewModel.ImagePrefab, _view.ImageContainer, false);
         }
-
     }
 }

@@ -10,9 +10,9 @@ namespace vikwhite
             Register<SquadWindowViewModel>();
             Register<SquadWindowView>();
             
-            Register<ICardViewFactory, CardViewFactory>();
-            Register<CardViewModel>();
-            Register<CardView>();
+            Register<ISquadItemViewFactory, SquadItemViewFactory>();
+            Register<SquadItemViewModel>();
+            Register<SquadItemView>();
         }
     }
 }

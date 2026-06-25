@@ -1,9 +1,9 @@
 namespace vikwhite
 {
-    public interface ICardViewFactory : IPooledViewFactory<CardView, CardViewModel> { }
+    public interface ISquadItemViewFactory : IPooledViewFactory<SquadItemView, SquadItemViewModel> { }
     
-    public class CardViewFactory : PooledViewFactory<CardView, CardViewModel>, ICardViewFactory
+    public class SquadItemViewFactory : PooledViewFactory<SquadItemView, SquadItemViewModel>, ISquadItemViewFactory
     {
-        public override string AssetName => "UI/Prefabs/SquadWindow/Card";
+        public override string AssetName => "UI/Prefabs/SquadWindow/SquadItem";
     }
 }

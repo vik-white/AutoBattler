@@ -43,8 +43,7 @@ namespace vikwhite
             Stars = CreateViewModel<StarsViewModel, StarsModel>(new StarsModel(character.Stars));
             ImagePrefab = character.Config.HeadPrefab;
             ClassIcon = configs.UI.ClassIcons[character.Config.Class];
-            configs.UI.Rarities.TryGetValue(character.Config.Rarity, out var rarity);
-            RarityBackground = rarity.MetaBG;
+            RarityBackground = configs.UI.Rarities[character.Config.Rarity].MetaBG;
 
             AddDisposable(_tip);
             AddDisposable(character.Level.Subscribe(_ => RefreshTip()));

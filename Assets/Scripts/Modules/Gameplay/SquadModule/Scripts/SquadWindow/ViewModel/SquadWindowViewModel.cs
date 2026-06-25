@@ -7,8 +7,8 @@ namespace vikwhite
     public class SquadWindowViewModel: WindowViewModel
     {
         private readonly IEnvironmentStateMachine _environmentStateMachine;
-        public CardViewModel[] Squad = new CardViewModel[5];
-        public List<CardViewModel> Cards = new();
+        public SquadItemViewModel[] Squad = new SquadItemViewModel[5];
+        public List<SquadItemViewModel> Characters { get; } = new();
         public UnityAction<int, string> OnSetCharacter;
         public UnityAction<int> OnRemoveCharacter;
         public UnityAction OnFight;
@@ -17,17 +17,8 @@ namespace vikwhite
         {
             _environmentStateMachine = environmentStateMachine;
             
-            for (int i = 0; i < squad.GetCharacters().Count; i++)
-            {
-                var character = squad.GetCharacters()[i];
-                if (character != null) Squad[i] = CreateViewModel<CardViewModel, Character>(character);
-            }
-            
             foreach (var character in characters.GetCharacters())
-            {
-                if(!squad.GetCharacters().Contains(character))
-                    Cards.Add(CreateViewModel<CardViewModel, Character>(character));
-            }
+                Characters.Add(CreateViewModel<SquadItemViewModel, Character>(character));
 
             OnSetCharacter = squad.SetCharacter;
             OnRemoveCharacter = squad.SetCharacter;
