@@ -13,8 +13,14 @@ namespace vikwhite
 
         public void SetVisible(bool visible)
         {
-            if(_grid == null) _grid = GameObject.FindFirstObjectByType<HexGrid>().gameObject;
-            _grid.SetActive(visible);
+            if (_grid == null)
+            {
+                var grid = Object.FindAnyObjectByType<HexGrid>(FindObjectsInactive.Include);
+                _grid = grid != null ? grid.gameObject : null;
+            }
+
+            if (_grid != null)
+                _grid.SetActive(visible);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace vikwhite.ECS
                 ecb.SetComponent(characterEntity, new LocalTransform
                 {
                     Position = request.ValueRO.Position,
-                    Rotation = quaternion.identity,
+                    Rotation = GetInitialRotation(request.ValueRO.IsEnemy),
                     Scale = config.Scale
                 });
                 ecb.AddComponent(characterEntity, new PreviousPosition { Value = request.ValueRO.Position });
@@ -91,6 +91,12 @@ namespace vikwhite.ECS
                 ecb.CreateFrameEntity(new CreateCharacterEvent { Character = characterEntity });
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private static quaternion GetInitialRotation(bool isEnemy)
+        {
+            var direction = isEnemy ? new float3(-1f, 0f, 0f) : new float3(1f, 0f, 0f);
+            return quaternion.LookRotationSafe(direction, math.up());
         }
 
         private void CreateSkill(DynamicBuffer<SkillRuntimeData> runtimeData, DynamicBuffer<Skill> skills, SkillSlotData<uint> slot)
