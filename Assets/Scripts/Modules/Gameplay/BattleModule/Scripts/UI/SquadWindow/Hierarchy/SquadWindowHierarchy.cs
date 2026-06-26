@@ -11,5 +11,7 @@ namespace vikwhite
         public RectTransform SquadItemsContainer;
         public TMP_Text PlayerMight;
         public TMP_Text EnemyMight;
+        public RectTransform Top;
+        public RectTransform Bottom;
     }
 }
