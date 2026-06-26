@@ -15,6 +15,7 @@ namespace vikwhite
         private TView _view;
         private TViewModel _viewModel;
         public bool IsShowing => _isShowing;
+        protected TView View => _view;
         public abstract string AssetName { get; }
 
         public void ShowWindow(TViewModel viewModel)

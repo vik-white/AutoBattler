@@ -63,7 +63,6 @@ namespace vikwhite
         {
             _squadPlacement.End();
             BattleSystemGroup.AllowSetupWhilePaused = false;
-            if (_squadWindow.IsShowing) _squadWindow.CloseWindow();
         }
 
         private void InitializeLocation()

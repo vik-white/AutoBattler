@@ -18,12 +18,14 @@ namespace vikwhite
 
         private readonly IStateMachine<IBattleState> _stateMachine;
         private readonly IBattleWindow _battleWindow;
+        private readonly ISquadWindow _squadWindow;
         private readonly ICameraService _camera;
 
-        public BattleStartState(IStateMachine<IBattleState> stateMachine, IBattleWindow battleWindow, ICameraService camera)
+        public BattleStartState(IStateMachine<IBattleState> stateMachine, IBattleWindow battleWindow, ISquadWindow squadWindow, ICameraService camera)
         {
             _stateMachine = stateMachine;
             _battleWindow = battleWindow;
+            _squadWindow = squadWindow;
             _camera = camera;
         }
 
@@ -45,6 +47,7 @@ namespace vikwhite
             DefeatBattleEventSystem.OnExecute = null;
             VictoryBattleEventSystem.OnExecute = null;
             TimeSystem.SetPaused(false);
+            if (_squadWindow.IsShowing) _squadWindow.CloseWindow();
             _battleWindow.Hide();
         }
     }

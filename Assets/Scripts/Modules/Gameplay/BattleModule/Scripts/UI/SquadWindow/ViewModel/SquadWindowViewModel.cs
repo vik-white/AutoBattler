@@ -8,6 +8,7 @@ namespace vikwhite
     public class SquadWindowViewModel: WindowViewModel
     {
         private readonly ISquadService _squad;
+        private readonly ISquadWindow _squadWindow;
         private readonly IStateMachine<IBattleState> _battleStateMachine;
         private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ReactiveProperty<bool> _canFight = new(false);
@@ -20,11 +21,13 @@ namespace vikwhite
         
         public SquadWindowViewModel(
             ISquadService squad,
+            ISquadWindow squadWindow,
             ICharactersService characters,
             IStateMachine<IBattleState> battleStateMachine,
             IEnvironmentStateMachine environmentStateMachine)
         {
             _squad = squad;
+            _squadWindow = squadWindow;
             _battleStateMachine = battleStateMachine;
             _environmentStateMachine = environmentStateMachine;
             
