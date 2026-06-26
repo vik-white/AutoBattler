@@ -10,7 +10,7 @@ namespace vikwhite
         public Image RarityBG;
         public Image RarityFrame;
         public ProgressBar HealthBar;
-        public RectTransform SkillBar;
+        public Image SkillBar;
         public RectTransform HeroContainer;
         public Image Glow;
         public GameObject Lock;

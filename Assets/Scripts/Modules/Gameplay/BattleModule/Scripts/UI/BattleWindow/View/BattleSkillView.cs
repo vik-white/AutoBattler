@@ -1,6 +1,8 @@
 using DG.Tweening;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 namespace vikwhite
 {
@@ -93,9 +95,9 @@ namespace vikwhite
                 .AppendCallback(() => { _animated = false; });
         }
 
-        private static void SetProgress(RectTransform progressBar, float value)
+        private static void SetProgress(Image progressBar, float value)
         {
-            progressBar.localScale = new Vector3(1, 1 - Mathf.Clamp01(value), 1);
+            progressBar.fillAmount = 1 - Mathf.Clamp01(value);
         }
     }
 }

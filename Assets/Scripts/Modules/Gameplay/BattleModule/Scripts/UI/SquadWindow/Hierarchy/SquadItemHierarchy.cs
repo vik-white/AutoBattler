@@ -12,5 +12,6 @@ namespace vikwhite
         public Image ClassIcon;
         public TMP_Text Level;
         public GameObject Selected;
+        public UIChildrenColor Item;
     }
 }

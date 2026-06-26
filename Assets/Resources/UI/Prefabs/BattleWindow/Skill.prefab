@@ -336,14 +336,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: ad58470626cd2e14f8b509e313bb7890, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0.595
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4496733547461203733
@@ -604,7 +604,7 @@ MonoBehaviour:
   RarityBG: {fileID: 5012725971806277557}
   RarityFrame: {fileID: 5121807365171887064}
   HealthBar: {fileID: 8086327994436237310}
-  SkillBar: {fileID: 3369579923414098931}
+  SkillBar: {fileID: 5309830865938874612}
   HeroContainer: {fileID: 4111421642305715307}
   Glow: {fileID: 7836620078605477263}
   Lock: {fileID: 3194922914234876576}
