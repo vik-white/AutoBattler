@@ -11,7 +11,6 @@ namespace vikwhite
             Register<LoadingScreenModuleDependency>();
             Register<BattleModuleDependency>();
             Register<ProfileModuleDependency>();
-            Register<SquadModuleDependency>();
             Register<ResourceModuleDependency>();
             Register<CharacterModuleDependency>();
             Register<SectorModuleDependency>();
@@ -36,7 +35,7 @@ namespace vikwhite
             var loader = SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
             yield return loadingScreen.TrackProgress(loader);
             yield return loadingScreen.Hide();
-            Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleStartState>();
+            Resolve<IStateMachine<IBattleState>>().SwitchState<IBattleSquadState>();
         }
         
         protected override void Release()

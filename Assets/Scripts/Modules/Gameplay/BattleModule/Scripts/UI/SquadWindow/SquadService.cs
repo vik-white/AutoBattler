@@ -13,16 +13,12 @@ namespace vikwhite
 
         event Action<Character, int> CharacterSelected;
         event Action<Character, int> CharacterDeselected;
-        event Action FightRequested;
-        event Action BackRequested;
 
         bool IsSelected(Character character);
         bool TrySelect(Character character);
         void Deselect(Character character);
         void Clear();
         void SetEnemyMight(int might);
-        void RequestFight();
-        void RequestBack();
     }
 
     public class SquadService : ISquadService
@@ -41,8 +37,6 @@ namespace vikwhite
 
         public event Action<Character, int> CharacterSelected;
         public event Action<Character, int> CharacterDeselected;
-        public event Action FightRequested;
-        public event Action BackRequested;
 
         public bool IsSelected(Character character)
         {
@@ -88,17 +82,6 @@ namespace vikwhite
         public void SetEnemyMight(int might)
         {
             _enemyMight.Value = Math.Max(0, might);
-        }
-
-        public void RequestFight()
-        {
-            if (_selectedCount.Value > 0)
-                FightRequested?.Invoke();
-        }
-
-        public void RequestBack()
-        {
-            BackRequested?.Invoke();
         }
 
         private void RecalculatePlayerMight()

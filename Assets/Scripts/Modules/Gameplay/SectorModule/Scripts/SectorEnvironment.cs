@@ -13,7 +13,6 @@ namespace vikwhite
         {
             Register<LoadingScreenModuleDependency>();
             Register<SectorModuleDependency>();
-            Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
             Register<CharacterModuleDependency>();

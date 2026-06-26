@@ -8,7 +8,6 @@ namespace vikwhite
         {
             Register<LobbyModuleDependency>();
             Register<CheatModuleDependency>();
-            Register<SquadModuleDependency>();
             Register<ProfileModuleDependency>();
             Register<ResourceModuleDependency>();
             Register<SectorModuleDependency>();

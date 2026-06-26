@@ -8,6 +8,8 @@ namespace vikwhite
     public class SquadWindowViewModel: WindowViewModel
     {
         private readonly ISquadService _squad;
+        private readonly IStateMachine<IBattleState> _battleStateMachine;
+        private readonly IEnvironmentStateMachine _environmentStateMachine;
         private readonly ReactiveProperty<bool> _canFight = new(false);
 
         public List<SquadItemViewModel> Characters { get; } = new();
@@ -16,9 +18,15 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<int> EnemyMight => _squad.EnemyMight;
         public UnityAction OnFight;
         
-        public SquadWindowViewModel(ISquadService squad, ICharactersService characters)
+        public SquadWindowViewModel(
+            ISquadService squad,
+            ICharactersService characters,
+            IStateMachine<IBattleState> battleStateMachine,
+            IEnvironmentStateMachine environmentStateMachine)
         {
             _squad = squad;
+            _battleStateMachine = battleStateMachine;
+            _environmentStateMachine = environmentStateMachine;
             
             foreach (var character in characters.GetCharacters())
             {
@@ -35,14 +43,13 @@ namespace vikwhite
         public void StartFight()
         {
             if (_squad.SelectedCount.Value == 0) return;
-            _squad.RequestFight();
-            base.Close();
+            _battleStateMachine.SwitchState<IBattleStartState>();
         }
 
         public override void Close()
         {
             base.Close();
-            _squad.RequestBack();
+            _environmentStateMachine.SwitchState(EnvironmentType.Sector);
         }
 
         private void ToggleCharacter(SquadItemViewModel item)

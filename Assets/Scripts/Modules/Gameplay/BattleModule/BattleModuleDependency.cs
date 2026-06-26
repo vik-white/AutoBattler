@@ -6,6 +6,7 @@ namespace vikwhite
         {
             Register<IStateMachine<IBattleState>, StateMachine<IBattleState>>();
             Register<IStateFactory<IBattleState>, StateFactory<IBattleState>>();
+            Register<IBattleSquadState, BattleSquadState>();
             Register<IBattleStartState, BattleStartState>();
             Register<IBattleDefeatState, BattleDefeatState>();
             Register<IBattleVictoryState, BattleVictoryState>();
@@ -13,6 +14,14 @@ namespace vikwhite
             Register<IBattleSquadPlacementService, BattleSquadPlacementService>();
             Register<IBattleMightService, BattleMightService>();
             Register<IBattleGridService, BattleGridService>();
+            Register<ISquadService, SquadService>();
+
+            Register<ISquadWindow, SquadWindow>();
+            Register<SquadWindowViewModel>();
+            Register<SquadWindowView>();
+            Register<ISquadItemViewFactory, SquadItemViewFactory>();
+            Register<SquadItemViewModel>();
+            Register<SquadItemView>();
 
             Register<IBattleWindow, BattleWindow>();
             Register<BattleWindowViewModel>();
