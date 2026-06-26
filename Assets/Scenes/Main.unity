@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 881994785}
   - component: {fileID: 881994784}
   - component: {fileID: 881994783}
+  - component: {fileID: 881994787}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -301,6 +302,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 39.456, y: 60.041, z: 0.26}
+--- !u!114 &881994787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881994782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee01e66702087b4798e633ca34c7956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LeTai.TranslucentImage::LeTai.Asset.TranslucentImage.TranslucentImageSource
+  maxUpdateRate: Infinity
+  preview: 0
+  blurAlgorithmSelection: 0
+  blurConfig: {fileID: 11400000, guid: 20d7e103f8a073a4d8aafaf34047582b, type: 2}
+  downsample: 0
+  blurRegion:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1029027856
 GameObject:
   m_ObjectHideFlags: 0
