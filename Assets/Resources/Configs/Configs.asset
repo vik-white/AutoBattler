@@ -3094,6 +3094,61 @@ MonoBehaviour:
       - TankReachLevel2
       - CollectExp100
       - SpendExp100
+  resources:
+    IDS:
+    - Exp
+    - Gem
+    - Book
+    - KeyCommon
+    - KeyEpic
+    - ShardRare
+    - ShardEpic
+    - ShardLegendary
+    - BookTank
+    - BookAssassin
+    - BookMage
+    - BookSupport
+    - BookMystic
+    Data:
+    - ID: Exp
+      Type: 0
+      Rarity: 1
+    - ID: Gem
+      Type: 0
+      Rarity: 1
+    - ID: Book
+      Type: 0
+      Rarity: 3
+    - ID: KeyCommon
+      Type: 0
+      Rarity: 0
+    - ID: KeyEpic
+      Type: 0
+      Rarity: 1
+    - ID: ShardRare
+      Type: 0
+      Rarity: 2
+    - ID: ShardEpic
+      Type: 0
+      Rarity: 3
+    - ID: ShardLegendary
+      Type: 0
+      Rarity: 4
+    - ID: BookTank
+      Type: 0
+      Rarity: 2
+    - ID: BookAssassin
+      Type: 0
+      Rarity: 2
+    - ID: BookMage
+      Type: 0
+      Rarity: 2
+    - ID: BookSupport
+      Type: 0
+      Rarity: 2
+    - ID: BookMystic
+      Type: 0
+      Rarity: 2
   ui:
     resourceIcons:
     - Type: 0
