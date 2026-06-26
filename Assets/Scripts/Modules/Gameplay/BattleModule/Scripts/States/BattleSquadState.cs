@@ -5,9 +5,7 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public interface IBattleSquadState : IBattleState
-    {
-    }
+    public interface IBattleSquadState : IBattleState { }
 
     public class BattleSquadState : IBattleSquadState
     {
@@ -21,14 +19,7 @@ namespace vikwhite
         private readonly IBattleMightService _battleMight;
         private readonly ICameraService _camera;
 
-        public BattleSquadState(
-            ILocationProvider locationProvider,
-            IConfigs configs,
-            ISquadWindow squadWindow,
-            ISquadService squad,
-            IBattleSquadPlacementService squadPlacement,
-            IBattleMightService battleMight,
-            ICameraService camera)
+        public BattleSquadState(ILocationProvider locationProvider, IConfigs configs, ISquadWindow squadWindow, ISquadService squad, IBattleSquadPlacementService squadPlacement, IBattleMightService battleMight, ICameraService camera)
         {
             _locationProvider = locationProvider;
             _configs = configs;

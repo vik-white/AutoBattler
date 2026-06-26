@@ -4,13 +4,9 @@ using vikwhite.ECS;
 
 namespace vikwhite
 {
-    public interface IBattleState : IState
-    {
-    }
+    public interface IBattleState : IState { }
 
-    public interface IBattleStartState : IBattleState
-    {
-    }
+    public interface IBattleStartState : IBattleState { }
 
     public class BattleStartState : IBattleStartState
     {
