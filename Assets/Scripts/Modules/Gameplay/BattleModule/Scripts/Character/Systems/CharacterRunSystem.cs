@@ -13,6 +13,16 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state) {
             foreach (var (transform, moveDistance, character, abilities, entity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<MoveDistance>, RefRO<Character>, DynamicBuffer<Skill>>().WithEntityAccess())
             {
+                var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(entity);
+                var param = animator[(int)AnimationType.Running];
+
+                if (SystemAPI.HasComponent<MovementLock>(entity))
+                {
+                    param.BoolValue = false;
+                    animator[(int)AnimationType.Running] = param;
+                    continue;
+                }
+
                 var isNearTarget = true;
                 var characterConfig = character.ValueRO.GetConfig();
                 var isHaveAbility = abilities.Length != 0;
@@ -34,8 +44,6 @@ namespace vikwhite.ECS
 
                 var isGrounded = transform.ValueRO.Position.y < 0.001f;
 
-                var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(entity);
-                var param = animator[(int)AnimationType.Running];
                 param.BoolValue = !isNearTarget && isGrounded && moveDistance.ValueRO.Value > 0.01f;
                 animator[(int)AnimationType.Running] = param;
             }

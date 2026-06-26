@@ -27,6 +27,13 @@ namespace vikwhite.ECS
         private void PlayAnimation(ref SystemState state, Entity character, AnimationType animation, float speed)
         {
             var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(character);
+            if (animation is AnimationType.Attack or AnimationType.Ability)
+            {
+                var runningParam = animator[(int)AnimationType.Running];
+                runningParam.BoolValue = false;
+                animator[(int)AnimationType.Running] = runningParam;
+            }
+
             var param = animator[(int)animation];
             param.SetTrigger();
             animator[(int)animation] = param;
