@@ -1657,7 +1657,7 @@ MonoBehaviour:
       AuraInterval: 0
       Skills: 
       ImpulseUp: 2
-      ImpulseProvider: 5
+      ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 686645142
       ProjectilePrefab: 0

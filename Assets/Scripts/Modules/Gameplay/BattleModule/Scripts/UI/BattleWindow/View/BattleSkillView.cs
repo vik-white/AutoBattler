@@ -43,12 +43,12 @@ namespace vikwhite
         private void UpdateBars()
         {
             if (BaseViewModel == null) return;
+            if (BaseViewModel.IsDead) return;
             if (!BaseViewModel.Exists())
             {
                 DisposeAndDestroy();
                 return;
             }
-            if (BaseViewModel.IsDead) return;
 
             var cooldown = BaseViewModel.GetCooldown();
             _view.Time.text = cooldown.ToString();
