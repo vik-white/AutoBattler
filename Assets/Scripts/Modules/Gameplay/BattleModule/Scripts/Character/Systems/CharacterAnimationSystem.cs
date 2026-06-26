@@ -9,6 +9,9 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state)
         {
+            var movementLocks = SystemAPI.GetComponentLookup<MovementLock>(true);
+            var dead = SystemAPI.GetComponentLookup<Dead>(true);
+
             foreach (var skillStartedEvent in SystemAPI.Query<RefRO<StartedSkillEvent>>())
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
@@ -21,7 +24,12 @@ namespace vikwhite.ECS
                 PlayAnimation(ref state, deadEvent.ValueRO.Character, AnimationType.Dead, 1f);
 
             foreach (var createEffectEvent in SystemAPI.Query<RefRO<CreateEffectEvent>>())
+            {
+                if (dead.HasComponent(createEffectEvent.ValueRO.Target)) continue;
+                if (movementLocks.HasComponent(createEffectEvent.ValueRO.Target)) continue;
+
                 PlayAnimation(ref state, createEffectEvent.ValueRO.Target, AnimationType.Reaction, 1f);
+            }
         }
 
         private void PlayAnimation(ref SystemState state, Entity character, AnimationType animation, float speed)

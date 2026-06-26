@@ -13,7 +13,9 @@ namespace vikwhite.ECS
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var movementLocks = SystemAPI.GetComponentLookup<MovementLock>(true);
+            var activeSkillAnimationLocks = SystemAPI.GetComponentLookup<ActiveSkillAnimationLock>(true);
             var startedLocks = new HashSet<Entity>();
+            var startedActiveSkillLocks = new HashSet<Entity>();
             var endedLocks = new HashSet<Entity>();
             var endHash = "End".CalculateHash32();
 
@@ -34,18 +36,30 @@ namespace vikwhite.ECS
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (!ShouldLockMovement(skillConfig.Animation)) continue;
                 startedLocks.Add(skillStartedEvent.ValueRO.Character);
+
+                if (skillConfig.Trigger == TriggerType.Activate)
+                    startedActiveSkillLocks.Add(skillStartedEvent.ValueRO.Character);
             }
 
             foreach (var entity in endedLocks)
             {
                 if (!startedLocks.Contains(entity))
                     ecb.RemoveComponent<MovementLock>(entity);
+
+                if (!startedActiveSkillLocks.Contains(entity) && activeSkillAnimationLocks.HasComponent(entity))
+                    ecb.RemoveComponent<ActiveSkillAnimationLock>(entity);
             }
 
             foreach (var entity in startedLocks)
             {
                 if (!movementLocks.HasComponent(entity))
                     ecb.AddComponent<MovementLock>(entity);
+            }
+
+            foreach (var entity in startedActiveSkillLocks)
+            {
+                if (!activeSkillAnimationLocks.HasComponent(entity))
+                    ecb.AddComponent<ActiveSkillAnimationLock>(entity);
             }
 
             ecb.Playback(state.EntityManager);

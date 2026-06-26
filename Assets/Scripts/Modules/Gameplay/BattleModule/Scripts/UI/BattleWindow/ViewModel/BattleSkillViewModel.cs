@@ -94,12 +94,26 @@ namespace vikwhite
         private bool IsAvailable()
         {
             if (TimeSystem.IsPaused || !IsCharacterAlive() || !_entityManager.HasComponent<Skill>(Model.Character)) return false;
+            if (HasSkillAnimationInProgress()) return false;
 
             foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {
                 var config = skill.GetConfig();
                 if (config.ID == _skillID)
                     return skill.Cooldown >= config.Cooldown;
+            }
+
+            return false;
+        }
+
+        private bool HasSkillAnimationInProgress()
+        {
+            if (_entityManager.HasComponent<ActiveSkillAnimationLock>(Model.Character)) return true;
+            if (!_entityManager.HasComponent<StarterSkill>(Model.Character)) return false;
+
+            foreach (var pendingSkill in _entityManager.GetBuffer<StarterSkill>(Model.Character))
+            {
+                if (pendingSkill.WaitForAnimation && pendingSkill.Skill.Value.ID == _skillID) return true;
             }
 
             return false;

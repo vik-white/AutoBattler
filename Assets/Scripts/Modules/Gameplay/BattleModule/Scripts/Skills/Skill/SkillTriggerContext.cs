@@ -9,6 +9,8 @@ namespace vikwhite.ECS
         public readonly ComponentLookup<Character> Characters;
         public readonly ComponentLookup<Enemy> Enemies;
         public readonly ComponentLookup<Dead> Dead;
+        public readonly ComponentLookup<MovementLock> MovementLocks;
+        public readonly ComponentLookup<ActiveSkillAnimationLock> ActiveSkillAnimationLocks;
         public readonly ComponentLookup<Target> Targets;
 
         public SkillTriggerContext(
@@ -16,12 +18,16 @@ namespace vikwhite.ECS
             ComponentLookup<Character> characters,
             ComponentLookup<Enemy> enemies,
             ComponentLookup<Dead> dead,
+            ComponentLookup<MovementLock> movementLocks,
+            ComponentLookup<ActiveSkillAnimationLock> activeSkillAnimationLocks,
             ComponentLookup<Target> targets)
         {
             Transforms = transforms;
             Characters = characters;
             Enemies = enemies;
             Dead = dead;
+            MovementLocks = movementLocks;
+            ActiveSkillAnimationLocks = activeSkillAnimationLocks;
             Targets = targets;
         }
 

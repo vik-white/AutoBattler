@@ -12,7 +12,7 @@ namespace vikwhite.ECS
                    && MatchesRequestedSkill(owner, skillConfig, request)
                    && skillConfig.Trigger == request.Trigger
                    && skill.Cooldown >= skillConfig.Cooldown
-                   && CanStartAnimation(skillConfig, starterSkills)
+                   && CanStartAnimation(owner, skillConfig, starterSkills, request, context)
                    && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
                    && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);
         }
@@ -22,14 +22,21 @@ namespace vikwhite.ECS
             return !context.Dead.HasComponent(owner) || request.AllowDeadSourceOwner && owner == request.Source;
         }
 
-        private static bool CanStartAnimation(in SkillConfig skillConfig, DynamicBuffer<StarterSkill> starterSkills)
+        private static bool CanStartAnimation(Entity owner, in SkillConfig skillConfig, DynamicBuffer<StarterSkill> starterSkills, in SkillTriggerRequest request, in SkillTriggerContext context)
         {
             if (!HasActivationAnimation(skillConfig)) return true;
 
+            var isManualActivation = request.Trigger == TriggerType.Activate && request.GetRequestedSkillID(owner) == skillConfig.ID;
+            if (context.ActiveSkillAnimationLocks.HasComponent(owner)) return false;
+            if (!isManualActivation && context.MovementLocks.HasComponent(owner)) return false;
+
             foreach (var starterSkill in starterSkills)
             {
-                if (starterSkill.WaitForAnimation)
-                    return false;
+                if (!starterSkill.WaitForAnimation) continue;
+                if (isManualActivation && starterSkill.Skill.Value.Trigger != TriggerType.Activate)
+                    continue;
+
+                return false;
             }
 
             return true;

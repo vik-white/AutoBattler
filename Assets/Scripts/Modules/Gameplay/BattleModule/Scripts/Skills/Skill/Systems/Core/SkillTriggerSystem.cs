@@ -17,22 +17,24 @@ namespace vikwhite.ECS
                 SystemAPI.GetComponentLookup<Character>(true),
                 SystemAPI.GetComponentLookup<Enemy>(true),
                 SystemAPI.GetComponentLookup<Dead>(true),
+                SystemAPI.GetComponentLookup<MovementLock>(true),
+                SystemAPI.GetComponentLookup<ActiveSkillAnimationLock>(true),
                 SystemAPI.GetComponentLookup<Target>(true));
 
             var requests = new NativeList<SkillTriggerRequest>(Allocator.Temp);
-
-            foreach (var cooldownEvent in SystemAPI.Query<RefRO<SkillCooldownEvent>>())
-            {
-                var source = cooldownEvent.ValueRO.Character;
-                if (!context.IsAliveCharacter(source)) continue;
-                requests.Add(new SkillTriggerRequest(source, TriggerType.Cooldown, cooldownEvent.ValueRO.SkillID));
-            }
 
             foreach (var activateEvent in SystemAPI.Query<RefRO<ActivateSkillEvent>>())
             {
                 var source = activateEvent.ValueRO.Character;
                 if (!context.IsAliveCharacter(source)) continue;
                 requests.Add(new SkillTriggerRequest(source, TriggerType.Activate, activateEvent.ValueRO.SkillID, true));
+            }
+
+            foreach (var cooldownEvent in SystemAPI.Query<RefRO<SkillCooldownEvent>>())
+            {
+                var source = cooldownEvent.ValueRO.Character;
+                if (!context.IsAliveCharacter(source)) continue;
+                requests.Add(new SkillTriggerRequest(source, TriggerType.Cooldown, cooldownEvent.ValueRO.SkillID));
             }
 
             foreach (var damageEvent in SystemAPI.Query<RefRO<GetDamageEvent>>())
@@ -75,12 +77,16 @@ namespace vikwhite.ECS
                 
                 if (Random.value > skillConfig.Chance) continue;
 
-                StartSkill(ecb, owner, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), starterSkills, skill.Config);
+                var isManualActivation = request.Trigger == TriggerType.Activate && request.GetRequestedSkillID(owner) == skillConfig.ID;
+                StartSkill(ecb, owner, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), starterSkills, skill.Config, isManualActivation);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, float3 position, float speed, DynamicBuffer<StarterSkill> starterSkills, BlobAssetReference<SkillConfig> skillConfig)
+        private static void StartSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, float3 position, float speed, DynamicBuffer<StarterSkill> starterSkills, BlobAssetReference<SkillConfig> skillConfig, bool isManualActivation)
         {
+            if (isManualActivation)
+                RemoveInterruptiblePendingAnimations(starterSkills);
+
             ecb.CreateFrameEntity(new StartedSkillEvent
             {
                 Character = character,
@@ -95,6 +101,21 @@ namespace vikwhite.ECS
                 Skill = skillConfig,
                 WaitForAnimation = SkillHandler.HasActivationAnimation(skillConfig.Value)
             });
+        }
+
+        private static void RemoveInterruptiblePendingAnimations(DynamicBuffer<StarterSkill> starterSkills)
+        {
+            for (int i = 0; i < starterSkills.Length;)
+            {
+                var starterSkill = starterSkills[i];
+                if (starterSkill.WaitForAnimation && starterSkill.Skill.Value.Trigger != TriggerType.Activate)
+                {
+                    starterSkills.RemoveAt(i);
+                    continue;
+                }
+
+                i++;
+            }
         }
     }
 }
