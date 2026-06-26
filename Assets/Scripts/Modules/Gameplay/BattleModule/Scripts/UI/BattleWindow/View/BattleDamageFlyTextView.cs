@@ -62,7 +62,8 @@ namespace vikwhite
             if (_camera == null) _camera = Camera.main;
             if (_camera == null) return;
 
-            _view.transform.position = _camera.WorldToScreenPoint(_startPosition + _flyDirection * (FlyHeight * progress));
+            if (_view.transform is RectTransform rectTransform)
+                rectTransform.SetUiPositionFromWorld(_camera, _startPosition + _flyDirection * (FlyHeight * progress));
         }
 
         private Vector3 ComputeFlyDirection()

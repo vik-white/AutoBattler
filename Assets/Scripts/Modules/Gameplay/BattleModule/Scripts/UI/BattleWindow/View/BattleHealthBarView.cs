@@ -40,8 +40,8 @@ namespace vikwhite
             }
 
             var camera = Camera.main;
-            if (camera != null)
-                _view.transform.position = camera.WorldToScreenPoint(BaseViewModel.GetHeadPosition());
+            if (camera != null && _view.transform is RectTransform rectTransform)
+                rectTransform.SetUiPositionFromWorld(camera, BaseViewModel.GetHeadPosition());
 
             UpdateHealthBars(BaseViewModel.GetHealthFill());
 

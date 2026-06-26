@@ -19,8 +19,25 @@ namespace vikwhite
 
         protected override IEnumerator Initialize()
         {
-            Resolve<IUIRoot>().Initialize(GameObject.FindAnyObjectByType<Canvas>().GetComponent<RectTransform>());
+            var canvas = FindRootCanvas();
+            Resolve<IUIRoot>().Initialize(canvas.GetComponent<RectTransform>());
             yield return null;
+        }
+
+        private static Canvas FindRootCanvas()
+        {
+#if UNITY_2023_1_OR_NEWER
+            var canvases = GameObject.FindObjectsByType<Canvas>(FindObjectsInactive.Exclude);
+#else
+            var canvases = GameObject.FindObjectsOfType<Canvas>();
+#endif
+            foreach (var canvas in canvases)
+            {
+                if (canvas.name != "Overlay Canvas")
+                    return canvas;
+            }
+
+            return GameObject.FindAnyObjectByType<Canvas>();
         }
     }
 }
