@@ -33,15 +33,87 @@ namespace vikwhite.ECS
 
         public static float3 GetPosition(int index)
         {
-            switch (index)
+            return BattleSquadGridPositions.GetDefaultWorldPosition(index);
+        }
+    }
+
+    public static class BattleSquadGridPositions
+    {
+        public const float DropSnapDistance = 0.6f;
+
+        private static readonly int2[] AvailableCells =
+        {
+            new(-3, 0),
+            new(-2, 0),
+            new(-1, 0),
+            new(-4, 1),
+            new(-3, 1),
+            new(-2, 1),
+            new(-4, 2),
+            new(-3, 2),
+            new(-3, -1),
+            new(-2, -1),
+            new(-1, -1),
+            new(-2, -2),
+            new(-1, -2),
+        };
+
+        private static readonly int2[] DefaultCells =
+        {
+            new(-3, 1),
+            new(-2, -1),
+            new(-4, 1),
+            new(-3, 0),
+            new(-3, -1),
+        };
+
+        public static float3 GetDefaultWorldPosition(int slot)
+        {
+            if (slot < 0 || slot >= DefaultCells.Length) return float3.zero;
+            return HexCoordinatesHandler.AxialToWorld(DefaultCells[slot]);
+        }
+
+        public static float3 GetWorldPosition(int2 cell)
+        {
+            return HexCoordinatesHandler.AxialToWorld(cell);
+        }
+
+        public static bool TryGetNearestCell(float3 worldPosition, out int2 cell, out float3 cellWorldPosition)
+        {
+            return TryGetNearestCell(worldPosition, DropSnapDistance, out cell, out cellWorldPosition);
+        }
+
+        public static bool TryGetNearestCell(float3 worldPosition, float maxDistance, out int2 cell, out float3 cellWorldPosition)
+        {
+            var nearestIndex = -1;
+            var nearestDistanceSq = float.MaxValue;
+            var positionXZ = worldPosition.xz;
+
+            for (var i = 0; i < AvailableCells.Length; i++)
             {
-                case 0: return HexCoordinatesHandler.AxialToWorld(new int2(-3,1));
-                case 1: return HexCoordinatesHandler.AxialToWorld(new int2(-2,-1));
-                case 2: return HexCoordinatesHandler.AxialToWorld(new int2(-4,1));
-                case 3: return HexCoordinatesHandler.AxialToWorld(new int2(-3,0));
-                case 4: return HexCoordinatesHandler.AxialToWorld(new int2(-3,-1));
-                default: return float3.zero;
+                var candidateWorld = HexCoordinatesHandler.AxialToWorld(AvailableCells[i]);
+                var distanceSq = math.distancesq(positionXZ, candidateWorld.xz);
+                if (distanceSq >= nearestDistanceSq) continue;
+
+                nearestDistanceSq = distanceSq;
+                nearestIndex = i;
             }
+
+            if (nearestIndex >= 0 && nearestDistanceSq <= maxDistance * maxDistance)
+            {
+                cell = AvailableCells[nearestIndex];
+                cellWorldPosition = HexCoordinatesHandler.AxialToWorld(cell);
+                return true;
+            }
+
+            cell = default;
+            cellWorldPosition = default;
+            return false;
+        }
+
+        public static bool SameCell(int2 first, int2 second)
+        {
+            return first.x == second.x && first.y == second.y;
         }
     }
 }
