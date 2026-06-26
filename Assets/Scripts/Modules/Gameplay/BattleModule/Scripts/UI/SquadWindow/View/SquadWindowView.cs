@@ -6,8 +6,8 @@ namespace vikwhite
     public class SquadWindowView : WindowView<SquadWindowHierarchy, SquadWindowViewModel>
     {
         private readonly ISquadItemViewFactory _squadItemViewFactory;
-        private readonly Vector2 _topDefaultPosition;
-        private readonly Vector2 _bottomDefaultPosition;
+            private readonly Vector2 _topDefaultPosition;
+            private readonly Vector2 _bottomDefaultPosition;
         
         public SquadWindowView(GameObject view, ISquadItemViewFactory squadItemViewFactory) : base(view)
         {
@@ -38,22 +38,8 @@ namespace vikwhite
         {
             DOTween.Sequence()
                 .SetUpdate(true)
-                .Join(CreateAnchoredPositionYTween(_view.Top, _topDefaultPosition.y + 92f).SetEase(Ease.OutCubic))
-                .Join(CreateAnchoredPositionYTween(_view.Bottom, _bottomDefaultPosition.y - 600f).SetEase(Ease.OutCubic));
-        }
-        
-        private static Tween CreateAnchoredPositionYTween(RectTransform target, float endValue)
-        {
-            return DOTween.To(
-                () => target.anchoredPosition.y,
-                y =>
-                {
-                    Vector2 position = target.anchoredPosition;
-                    position.y = y;
-                    target.anchoredPosition = position;
-                },
-                endValue,
-                1);
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.Top, _topDefaultPosition.y + 92f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.Bottom, _bottomDefaultPosition.y - 600f).SetEase(Ease.OutCubic));
         }
     }
 }

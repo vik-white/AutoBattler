@@ -16,6 +16,7 @@ namespace vikwhite
         private readonly uint _skillID;
 
         public UnityAction Activate;
+        public UnityAction OnActivate;
         public event Action Died;
 
         public Sprite RarityBG { get; }
@@ -66,7 +67,7 @@ namespace vikwhite
             foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {
                 var config = skill.GetConfig();
-                if (config.ID == _skillID) return (int)(config.Cooldown - skill.Cooldown);
+                if (config.ID == _skillID) return Mathf.CeilToInt(config.Cooldown - skill.Cooldown);
             }
             return 0;
         }
@@ -85,6 +86,7 @@ namespace vikwhite
                 Character = Model.Character,
                 SkillID = _skillID
             });
+            OnActivate?.Invoke();
         }
 
         private bool IsAvailable()

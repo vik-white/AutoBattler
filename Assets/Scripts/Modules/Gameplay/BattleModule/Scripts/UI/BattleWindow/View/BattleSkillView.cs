@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UniRx;
 using UnityEngine;
 
@@ -5,16 +6,29 @@ namespace vikwhite
 {
     public class BattleSkillView : View<BattleSkillHierarchy, BattleSkillViewModel>
     {
-        public BattleSkillView(GameObject view) : base(view) { }
+        private readonly Vector2 _rarityBGDefaultPosition;
+        private readonly Vector2 _heroContainerDefaultPosition;
+        private bool _animated;
+        
+        public BattleSkillView(GameObject view) : base(view)
+        {
+            _rarityBGDefaultPosition = _view.RarityBG.rectTransform.anchoredPosition;
+            _heroContainerDefaultPosition = _view.HeroContainer.anchoredPosition;
+        }
 
         protected override void UpdateViewModel(BattleSkillViewModel viewModel)
         {
             _view.RarityBG.sprite = viewModel.RarityBG;
             BindClick(_view.Button, viewModel.Activate);
+            viewModel.OnActivate += PlayAnimation;
             viewModel.Died += OnDied;
             Register(Observable.EveryUpdate().Subscribe(_ => UpdateBars()));
 
-            Register(Disposable.Create(() => viewModel.Died -= OnDied));
+            Register(Disposable.Create(() =>
+            {
+                viewModel.OnActivate -= PlayAnimation;
+                viewModel.Died -= OnDied;
+            }));
 
             SetDeadState(viewModel.IsDead);
             SetCharacterImage(viewModel.ImagePrefab);
@@ -33,6 +47,7 @@ namespace vikwhite
 
             var cooldown = BaseViewModel.GetCooldown();
             _view.Time.text = cooldown.ToString();
+            _view.Lock.gameObject.SetActive(!_animated);
             _view.Time.gameObject.SetActive(cooldown > 0);
             _view.HealthBar.SetProgress(BaseViewModel.GetHealthProgress());
             SetProgress(_view.SkillBar, BaseViewModel.GetCooldownProgress());
@@ -56,6 +71,19 @@ namespace vikwhite
             _view.HeroContainer.ClearChildren();
             if (imagePrefab == null) return;
             Object.Instantiate(imagePrefab, _view.HeroContainer, false);
+        }
+        
+        private void PlayAnimation()
+        {
+            _animated = true;
+            DOTween.Sequence()
+                .SetUpdate(true)
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.RarityBG.rectTransform, _rarityBGDefaultPosition.y + 109, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.HeroContainer, _heroContainerDefaultPosition.y + 80, 0.2f).SetEase(Ease.OutCubic))
+                .AppendInterval(1.5f)
+                .Append(TweenHendler.CreateAnchoredPositionYTween(_view.RarityBG.rectTransform, _rarityBGDefaultPosition.y, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.HeroContainer, _heroContainerDefaultPosition.y, 0.2f).SetEase(Ease.OutCubic))
+                .AppendCallback(() => { _animated = false; });
         }
 
         private static void SetProgress(RectTransform progressBar, float value)
