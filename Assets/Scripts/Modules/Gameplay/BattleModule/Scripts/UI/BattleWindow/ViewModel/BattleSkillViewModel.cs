@@ -20,6 +20,7 @@ namespace vikwhite
         public event Action Died;
 
         public Sprite RarityBG { get; }
+        public Sprite RarityFrame { get; }
         public GameObject ImagePrefab { get; }
         public bool IsDead { get; private set; }
 
@@ -31,6 +32,7 @@ namespace vikwhite
             var characterData = FindCharacterData(configs, args.Config.ID);
             ImagePrefab = characterData.HeadPrefab;
             RarityBG = configs.UI.Rarities[characterData.Rarity].BattleBG;
+            RarityFrame = configs.UI.Rarities[characterData.Rarity].BattleFrame;
             Activate = OnActivateSkill;
 
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;

@@ -8,6 +8,7 @@ namespace vikwhite
     {
         public Button Button;
         public Image RarityBG;
+        public Image RarityFrame;
         public ProgressBar HealthBar;
         public RectTransform SkillBar;
         public RectTransform HeroContainer;

@@ -21,6 +21,7 @@ namespace vikwhite
         protected override void UpdateViewModel(BattleSkillViewModel viewModel)
         {
             _view.RarityBG.sprite = viewModel.RarityBG;
+            _view.RarityFrame.sprite = viewModel.RarityFrame;
             BindClick(_view.Button, viewModel.Activate);
             viewModel.OnActivate += PlayAnimation;
             viewModel.Died += OnDied;

@@ -10,6 +10,7 @@ namespace vikwhite
         public Sprite RewardBG;
         public Sprite MetaBG;
         public Sprite BattleBG;
+        public Sprite BattleFrame;
         public Sprite Letter;
         public Sprite Shard;
     }
