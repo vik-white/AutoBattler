@@ -12,8 +12,11 @@ namespace vikwhite
 {
     public class BattleSkillViewModel : ViewModel<BattleWindowCharacterArgs>
     {
+        private const float AutoActivationAttemptInterval = 0.1f;
+
         private readonly EntityManager _entityManager;
         private readonly uint _skillID;
+        private float _nextAutoActivationTime;
 
         public UnityAction Activate;
         public UnityAction OnActivate;
@@ -36,7 +39,9 @@ namespace vikwhite
             Activate = OnActivateSkill;
 
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
+            StartedSkillEventSystem.OnExecute += OnStartedSkill;
             AddDisposable(Disposable.Create(() => DeadCharacterEventSystem.OnExecute -= OnDeadCharacter));
+            AddDisposable(Disposable.Create(() => StartedSkillEventSystem.OnExecute -= OnStartedSkill));
         }
 
         public float GetHealthProgress()
@@ -79,16 +84,29 @@ namespace vikwhite
             return _entityManager.Exists(Model.Character);
         }
 
+        public void AutoActivate()
+        {
+            if (UnityEngine.Time.unscaledTime < _nextAutoActivationTime) return;
+            if (!IsAvailable()) return;
+
+            _nextAutoActivationTime = UnityEngine.Time.unscaledTime + AutoActivationAttemptInterval;
+            CreateActivateSkillEvent();
+        }
+
         private void OnActivateSkill()
         {
             if (!IsAvailable()) return;
 
+            CreateActivateSkillEvent();
+        }
+
+        private void CreateActivateSkillEvent()
+        {
             _entityManager.CreateFrameEntity(new ActivateSkillEvent
             {
                 Character = Model.Character,
                 SkillID = _skillID
             });
-            OnActivate?.Invoke();
         }
 
         private bool IsAvailable()
@@ -139,6 +157,14 @@ namespace vikwhite
             Died?.Invoke();
         }
 
+        private void OnStartedSkill(StartedSkillEvent evnt)
+        {
+            if (evnt.Character != Model.Character) return;
+            if (evnt.Skill.Value.ID != _skillID) return;
+
+            OnActivate?.Invoke();
+        }
+
         private static ICharacterData FindCharacterData(IConfigs configs, uint characterID)
         {
             foreach (var characterData in configs.Characters.GetAll())
@@ -154,6 +180,7 @@ namespace vikwhite
         {
             base.Dispose();
             Activate = null;
+            OnActivate = null;
             Died = null;
         }
     }

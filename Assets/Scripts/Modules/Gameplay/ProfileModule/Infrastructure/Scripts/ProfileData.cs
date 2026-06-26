@@ -10,5 +10,6 @@ namespace vikwhite
         public List<ResourceData> Resources = new();
         public List<QuestProfileData> Quests = new();
         public string RoadMapLocation;
+        public bool AutoUseSkills;
     }
 }

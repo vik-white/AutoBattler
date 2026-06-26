@@ -10,5 +10,6 @@ namespace vikwhite
         public TMP_Text PlayerMight;
         public TMP_Text EnemyMight;
         public Button PauseButton;
+        public Button AutoButton;
     }
 }

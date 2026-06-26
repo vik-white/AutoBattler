@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -461,6 +461,7 @@ MonoBehaviour:
   PlayerMight: {fileID: 4854424218599099062}
   EnemyMight: {fileID: 4353539458782996202}
   PauseButton: {fileID: 439187857290113697}
+  AutoButton: {fileID: 1674670221348344434}
 --- !u!114 &1113240109845769210
 MonoBehaviour:
   m_ObjectHideFlags: 0

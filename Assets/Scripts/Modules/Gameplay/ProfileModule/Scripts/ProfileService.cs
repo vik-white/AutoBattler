@@ -10,6 +10,7 @@ namespace vikwhite
     public class ProfileService : IProfileService
     {
         private readonly IConfigs _configs;
+        private bool _autoUseSkillsChanged;
         public ProfileData Data { get; private set; } = new();
         
         public ProfileService(IConfigs configs)
@@ -39,7 +40,8 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.BookTank, Amount = 0 },
                 },
                 Quests = new (),
-                RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID
+                RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID,
+                AutoUseSkills = false
             };
 
             foreach (var characterData in _configs.Characters.GetAll())
@@ -71,8 +73,16 @@ namespace vikwhite
         
         public void Save()
         {
+            PreserveAutoUseSkillsIfUnchanged();
             string json = JsonUtility.ToJson(Data);
             File.WriteAllText(Application.persistentDataPath + "/Profile.json", json);
+            _autoUseSkillsChanged = false;
+        }
+
+        public void SetAutoUseSkills(bool value)
+        {
+            Data.AutoUseSkills = value;
+            _autoUseSkillsChanged = true;
         }
         
         public void Load()
@@ -89,6 +99,22 @@ namespace vikwhite
             {
                 Save();
             }
+
+            _autoUseSkillsChanged = false;
+        }
+
+        private void PreserveAutoUseSkillsIfUnchanged()
+        {
+            if (_autoUseSkillsChanged) return;
+
+            string path = Application.persistentDataPath + "/Profile.json";
+            if (!File.Exists(path)) return;
+
+            string json = File.ReadAllText(path);
+            var savedData = JsonUtility.FromJson<ProfileData>(json);
+            if (savedData == null) return;
+
+            Data.AutoUseSkills = savedData.AutoUseSkills;
         }
     }
 }

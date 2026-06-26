@@ -19,32 +19,56 @@ namespace vikwhite
         public event Action<BattleSkillViewModel> SkillCreated;
         public event Action<BattleDamageFlyTextViewModel> DamageFlyTextCreated;
 
+        private readonly ReactiveProperty<bool> _autoUseSkills;
         public UnityAction OnQuickVictory;
         public UnityAction OnPause;
+        public UnityAction OnToggleAutoUseSkills;
+        public IReadOnlyReactiveProperty<bool> AutoUseSkills => _autoUseSkills;
         public string FpsText => $"FPS: {(TimeSystem.UnscaledDeltaTime > 0f ? Mathf.RoundToInt(1f / TimeSystem.UnscaledDeltaTime) : 0)}";
         public int PlayerMight;
         public int EnemyMight;
 
         private readonly IStateMachine<IBattleState> _battleStateMachine;
+        private readonly IProfileService _profile;
         private readonly HashSet<Entity> _characters = new();
         private bool _quickVictoryRequested;
 
-        public BattleWindowViewModel(IStateMachine<IBattleState> battleStateMachine, ISquadService squad)
+        public BattleWindowViewModel(IStateMachine<IBattleState> battleStateMachine, ISquadService squad, IProfileService profile)
         {
             _battleStateMachine = battleStateMachine;
+            _profile = profile;
+            _autoUseSkills = new ReactiveProperty<bool>(_profile.Data.AutoUseSkills);
             OnQuickVictory = QuickVictory;
             OnPause = TogglePause;
+            OnToggleAutoUseSkills = ToggleAutoUseSkills;
             PlayerMight = squad.PlayerMight.Value;
             EnemyMight = squad.EnemyMight.Value;
 
             CreateCharacterEventSystem.OnExecute += OnCreateCharacter;
             CreateDamageFlyTextEventSystem.OnExecute += OnCreateDamageFlyText;
+            AddDisposable(Observable.EveryUpdate().Subscribe(_ => AutoUseReadySkills()));
+            AddDisposable(_autoUseSkills);
             AddExistingCharacters();
         }
 
         private static void TogglePause()
         {
             TimeSystem.TogglePause();
+        }
+
+        private void ToggleAutoUseSkills()
+        {
+            _autoUseSkills.Value = !_autoUseSkills.Value;
+            _profile.SetAutoUseSkills(_autoUseSkills.Value);
+            _profile.Save();
+        }
+
+        private void AutoUseReadySkills()
+        {
+            if (!_autoUseSkills.Value) return;
+
+            for (var i = 0; i < Skills.Count; i++)
+                Skills[i].AutoActivate();
         }
 
         private void QuickVictory()
@@ -116,6 +140,7 @@ namespace vikwhite
             base.Dispose();
             OnQuickVictory = null;
             OnPause = null;
+            OnToggleAutoUseSkills = null;
             HealthBarCreated = null;
             SkillCreated = null;
             DamageFlyTextCreated = null;
