@@ -49,7 +49,6 @@ namespace vikwhite
 
             InitializeLocation();
             _camera.Initialize(SquadCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
-            _battleWindow.Show();
             _squadWindow.ShowWindow();
         }
 

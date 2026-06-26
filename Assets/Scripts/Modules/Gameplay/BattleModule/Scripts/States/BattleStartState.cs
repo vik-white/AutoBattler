@@ -35,6 +35,7 @@ namespace vikwhite
             ECSWorld.SetEnabled<EndBattleSystem>(true);
             BattleSystemGroup.AllowSetupWhilePaused = false;
             TimeSystem.SetPaused(false);
+            _battleWindow.Show();
         }
 
         public void Exit()

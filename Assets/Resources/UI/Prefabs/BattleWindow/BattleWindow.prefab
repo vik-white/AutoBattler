@@ -409,6 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7396412129834199411}
   - component: {fileID: -5620818867549845693}
+  - component: {fileID: 1113240109845769210}
   m_Layer: 5
   m_Name: BattleWindow
   m_TagString: Untagged
@@ -460,6 +461,20 @@ MonoBehaviour:
   PlayerMight: {fileID: 4854424218599099062}
   EnemyMight: {fileID: 4353539458782996202}
   PauseButton: {fileID: 439187857290113697}
+--- !u!114 &1113240109845769210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868406621255605603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f61d7f0c8a4e4ea9f2a9f35194a620, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Window::vikwhite.UILayerTarget
+  layer: 1
+  worldPositionStays: 0
 --- !u!1 &1564596077522483922
 GameObject:
   m_ObjectHideFlags: 0
