@@ -24,9 +24,7 @@ namespace vikwhite
         public void UpdateEnemyMight()
         {
             var location = _configs.Map.Get(_location.ID);
-            var might = location.Type == LocationType.Static
-                ? CalculateStaticLocation()
-                : CalculateFlowLocation();
+            var might = location.Type == LocationType.Static ? CalculateStaticLocation() : 0;
             _squad.SetEnemyMight(might);
         }
 
@@ -40,29 +38,7 @@ namespace vikwhite
                 might += CalculateCharacter(enemy.ID, enemy.Level);
             return might;
         }
-
-        private int CalculateFlowLocation()
-        {
-            var maxMight = 0;
-            foreach (var step in _configs.LocationFlow.GetAll())
-            {
-                if (step.LocationID != _location.ID) continue;
-
-                var strongestEnemy = 0;
-                foreach (var enemyID in step.Enemies)
-                {
-                    var enemy = _configs.Characters.Get(enemyID);
-                    if (enemy == null) continue;
-                    strongestEnemy = System.Math.Max(
-                        strongestEnemy,
-                        MightHandler.Calculate(enemy, _configs, 1, 0, 1));
-                }
-
-                maxMight = System.Math.Max(maxMight, strongestEnemy * step.Count);
-            }
-            return maxMight;
-        }
-
+        
         private int CalculateCharacter(uint characterID, int level)
         {
             foreach (var character in _configs.Characters.GetAll())

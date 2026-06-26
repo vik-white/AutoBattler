@@ -34,7 +34,7 @@ namespace vikwhite
             DefeatBattleEventSystem.OnExecute = _ =>_stateMachine.SwitchState<IBattleDefeatState>();
             VictoryBattleEventSystem.OnExecute = _ => _stateMachine.SwitchState<IBattleVictoryState>();
 
-            _camera.Initialize(BattleCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
+            _camera.MoveTo(BattleCameraPosition, 0.5f);
             _battleWindow.Show();
             ECSWorld.CreateEntity(new InitializeSquad { Value = new FixedList512Bytes<CreateCharacter>() });
             ECSWorld.SetEnabled<EndBattleSystem>(true);

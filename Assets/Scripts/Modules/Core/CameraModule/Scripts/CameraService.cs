@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ namespace vikwhite
     {
         void Initialize(Vector3 position, Quaternion rotation, float fov, Transform parent = null);
         void DetachFromParent();
+        void MoveTo(Vector3 position, float duration);
     }
 
     public class CameraService : ICameraService
@@ -27,13 +29,27 @@ namespace vikwhite
             camera.transform.localRotation = rotation;
             camera.fieldOfView = fov;
         }
-
+        
         public void DetachFromParent()
         {
             var camera = UpdateCameraReference();
             camera.transform.SetParent(null, true);
-            if (_originScene.IsValid() && _originScene.isLoaded && camera.gameObject.scene.handle != _originScene.handle)
+            if (_originScene.IsValid() && _originScene.isLoaded &&
+                camera.gameObject.scene.handle != _originScene.handle)
                 SceneManager.MoveGameObjectToScene(camera.gameObject, _originScene);
+        }
+
+        public void MoveTo(Vector3 position, float duration)
+        {
+            var camera = UpdateCameraReference();
+            DOTween.To(
+                    () => camera.transform.localPosition,
+                    value => camera.transform.localPosition = value,
+                    position,
+                    duration)
+                .SetEase(Ease.InOutSine)
+                .SetUpdate(true)
+                .SetTarget(camera);
         }
 
         private Camera UpdateCameraReference()

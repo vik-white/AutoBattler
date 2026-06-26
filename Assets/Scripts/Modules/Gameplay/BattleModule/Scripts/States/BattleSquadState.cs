@@ -59,12 +59,6 @@ namespace vikwhite
             _squadWindow.ShowWindow();
         }
 
-        public void Exit()
-        {
-            _squadPlacement.End();
-            BattleSystemGroup.AllowSetupWhilePaused = false;
-        }
-
         private void InitializeLocation()
         {
             var locationType = _configs.Map.Get(_locationProvider.ID).Type;
@@ -72,6 +66,12 @@ namespace vikwhite
                 ECSWorld.CreateEntity(new InitializeStaticEnemies { ID = _locationProvider.ID.CalculateHash32() });
             if (locationType == LocationType.Flow)
                 ECSWorld.CreateEntity(new LocationEnemiesFlow { ID = _locationProvider.ID.CalculateHash32() });
+        }
+
+        public void Exit()
+        {
+            _squadPlacement.End();
+            BattleSystemGroup.AllowSetupWhilePaused = false;
         }
     }
 }
