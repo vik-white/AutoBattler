@@ -8,12 +8,14 @@ namespace vikwhite
     {
         private readonly Vector2 _rarityBGDefaultPosition;
         private readonly Vector2 _heroContainerDefaultPosition;
+        private readonly Vector2 _glowDefaultPosition;
         private bool _animated;
         
         public BattleSkillView(GameObject view) : base(view)
         {
             _rarityBGDefaultPosition = _view.RarityBG.rectTransform.anchoredPosition;
             _heroContainerDefaultPosition = _view.HeroContainer.anchoredPosition;
+            _glowDefaultPosition = _view.Glow.rectTransform.anchoredPosition;
         }
 
         protected override void UpdateViewModel(BattleSkillViewModel viewModel)
@@ -79,9 +81,13 @@ namespace vikwhite
             DOTween.Sequence()
                 .SetUpdate(true)
                 .Join(TweenHendler.CreateAnchoredPositionYTween(_view.RarityBG.rectTransform, _rarityBGDefaultPosition.y + 109, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.Glow.rectTransform, _glowDefaultPosition.y + 109, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateGraphicAlphaTween(_view.Glow, 1, 0.2f).SetEase(Ease.OutCubic))
                 .Join(TweenHendler.CreateAnchoredPositionYTween(_view.HeroContainer, _heroContainerDefaultPosition.y + 80, 0.2f).SetEase(Ease.OutCubic))
                 .AppendInterval(1.5f)
                 .Append(TweenHendler.CreateAnchoredPositionYTween(_view.RarityBG.rectTransform, _rarityBGDefaultPosition.y, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateAnchoredPositionYTween(_view.Glow.rectTransform, _glowDefaultPosition.y, 0.2f).SetEase(Ease.OutCubic))
+                .Join(TweenHendler.CreateGraphicAlphaTween(_view.Glow, 0, 0.2f).SetEase(Ease.OutCubic))
                 .Join(TweenHendler.CreateAnchoredPositionYTween(_view.HeroContainer, _heroContainerDefaultPosition.y, 0.2f).SetEase(Ease.OutCubic))
                 .AppendCallback(() => { _animated = false; });
         }

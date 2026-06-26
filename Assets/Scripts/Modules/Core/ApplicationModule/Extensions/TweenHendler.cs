@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace vikwhite
 {
@@ -17,6 +18,18 @@ namespace vikwhite
                 },
                 endValue,
                 duration);
+        }
+
+        public static Tween CreateGraphicAlphaTween(Graphic target, float endValue, float duration = 1)
+        {
+            return DOTween.To(() => target.color.a, alpha => SetGraphicAlpha(target, alpha), endValue, duration);
+        }
+
+        public static void SetGraphicAlpha(Graphic target, float alpha)
+        {
+            Color color = target.color;
+            color.a = alpha;
+            target.color = color;
         }
     }
 }

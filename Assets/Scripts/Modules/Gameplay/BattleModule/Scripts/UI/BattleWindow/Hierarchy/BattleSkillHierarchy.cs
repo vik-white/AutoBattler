@@ -11,6 +11,7 @@ namespace vikwhite
         public ProgressBar HealthBar;
         public RectTransform SkillBar;
         public RectTransform HeroContainer;
+        public Image Glow;
         public GameObject Lock;
         public TMP_Text Time;
     }
