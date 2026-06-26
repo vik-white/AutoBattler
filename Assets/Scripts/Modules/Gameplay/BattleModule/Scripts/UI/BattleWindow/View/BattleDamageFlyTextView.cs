@@ -11,8 +11,8 @@ namespace vikwhite
         private const float CritScaleMultiplier = 1.5f;
         private const float SpreadAngleDegrees = 25f;
 
-        private static readonly Color EnemyDamageColor = new(1f, 0.2f, 0.2f, 1f);
-        private static readonly Color SquadDamageColor = new(0.25f, 1f, 0.35f, 1f);
+        private static readonly Color EnemyDamageColor = ColorHandler.Red;
+        private static readonly Color SquadDamageColor = ColorHandler.Green;
         private static readonly Color CritDamageColor = new(1f, 0.85f, 0.1f, 1f);
 
         private Camera _camera;
