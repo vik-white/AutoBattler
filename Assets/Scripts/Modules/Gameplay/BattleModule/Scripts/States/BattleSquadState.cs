@@ -14,16 +14,18 @@ namespace vikwhite
         private readonly ILocationProvider _locationProvider;
         private readonly IConfigs _configs;
         private readonly ISquadWindow _squadWindow;
+        private readonly IBattleWindow _battleWindow;
         private readonly ISquadService _squad;
         private readonly IBattleSquadPlacementService _squadPlacement;
         private readonly IBattleMightService _battleMight;
         private readonly ICameraService _camera;
 
-        public BattleSquadState(ILocationProvider locationProvider, IConfigs configs, ISquadWindow squadWindow, ISquadService squad, IBattleSquadPlacementService squadPlacement, IBattleMightService battleMight, ICameraService camera)
+        public BattleSquadState(ILocationProvider locationProvider, IConfigs configs, ISquadWindow squadWindow, IBattleWindow battleWindow, ISquadService squad, IBattleSquadPlacementService squadPlacement, IBattleMightService battleMight, ICameraService camera)
         {
             _locationProvider = locationProvider;
             _configs = configs;
             _squadWindow = squadWindow;
+            _battleWindow = battleWindow;
             _squad = squad;
             _squadPlacement = squadPlacement;
             _battleMight = battleMight;
@@ -47,6 +49,7 @@ namespace vikwhite
 
             InitializeLocation();
             _camera.Initialize(SquadCameraPosition, Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
+            _battleWindow.Show();
             _squadWindow.ShowWindow();
         }
 
