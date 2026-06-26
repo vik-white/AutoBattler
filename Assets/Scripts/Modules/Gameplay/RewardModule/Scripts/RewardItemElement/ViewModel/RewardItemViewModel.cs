@@ -45,7 +45,11 @@ namespace vikwhite
         {
             switch (reward)
             {
-                case ResourceReward res: return _configs.UI.Rarities[RarityType.Common].RewardBG;
+                case ResourceReward res:
+                {
+                    var rarity = _configs.Resources.Get(res.ResourceType.ToString()).Rarity;
+                    return _configs.UI.Rarities[rarity].RewardBG;
+                }
                 case ShardReward shard: return _configs.UI.Rarities[_configs.Characters.Get(shard.ID).Rarity].RewardBG;
                 default: return null;
             }
