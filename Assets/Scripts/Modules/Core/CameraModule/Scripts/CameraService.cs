@@ -16,7 +16,10 @@ namespace vikwhite
 
     public class CameraService : ICameraService, IUpdatable
     {
-        private static readonly Plane DragPlane = new(Vector3.up, Vector3.zero);
+        private const int MaxDragRaycastHits = 32;
+
+        private static readonly Plane FallbackDragPlane = new(Vector3.up, Vector3.zero);
+        private static readonly RaycastHit[] DragRaycastHits = new RaycastHit[MaxDragRaycastHits];
 
         private Camera _camera;
         private Scene _originScene;
@@ -125,7 +128,13 @@ namespace vikwhite
         private static bool TryGetDragWorldPosition(Camera camera, Vector2 screenPosition, out Vector3 position)
         {
             var ray = camera.ScreenPointToRay(screenPosition);
-            if (DragPlane.Raycast(ray, out var distance))
+            if (TryGetTerrainHit(ray, camera.farClipPlane, out var hit))
+            {
+                position = hit.point;
+                return true;
+            }
+
+            if (FallbackDragPlane.Raycast(ray, out var distance))
             {
                 position = ray.GetPoint(distance);
                 return true;
@@ -133,6 +142,30 @@ namespace vikwhite
 
             position = default;
             return false;
+        }
+
+        private static bool TryGetTerrainHit(Ray ray, float maxDistance, out RaycastHit terrainHit)
+        {
+            var hitCount = Physics.RaycastNonAlloc(
+                ray,
+                DragRaycastHits,
+                maxDistance,
+                Physics.DefaultRaycastLayers,
+                QueryTriggerInteraction.Ignore);
+
+            terrainHit = default;
+            var nearestDistance = float.MaxValue;
+
+            for (var i = 0; i < hitCount; i++)
+            {
+                var hit = DragRaycastHits[i];
+                if (hit.collider is not TerrainCollider || hit.distance >= nearestDistance) continue;
+
+                terrainHit = hit;
+                nearestDistance = hit.distance;
+            }
+
+            return nearestDistance < float.MaxValue;
         }
 
         private static bool IsPointerOverUi()
