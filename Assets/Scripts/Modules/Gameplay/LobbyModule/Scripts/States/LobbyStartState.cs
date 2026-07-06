@@ -21,12 +21,12 @@ namespace vikwhite
         {
             _lobbyWindow.ShowWindow();
             _camera.Initialize(new Vector3(12.76f, 49.78f, -11.7f), Quaternion.Euler(45.97f, -45.7f, 0), 40);
-            _camera.SetLobbyControlsEnabled(true);
+            _camera.SetControlsEnabled(true);
         }
 
         public void Exit()
         {
-            _camera.SetLobbyControlsEnabled(false);
+            _camera.SetControlsEnabled(false);
             _lobbyWindow.CloseWindow();
         }
     }
