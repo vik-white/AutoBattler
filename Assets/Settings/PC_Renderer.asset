@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4775180e186eb2149b333a710d1d070c, type: 3}
   m_Name: ScreenSpaceOutlines
   m_EditorClassIdentifier: Assembly-CSharp::ScreenSpaceOutlines
-  m_Active: 1
+  m_Active: 0
   renderPassEvent: 300
   outlinesLayerMask:
     serializedVersion: 2
