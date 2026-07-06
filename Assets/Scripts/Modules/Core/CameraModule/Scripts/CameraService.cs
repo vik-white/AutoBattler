@@ -1,5 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace vikwhite
@@ -9,12 +11,18 @@ namespace vikwhite
         void Initialize(Vector3 position, Quaternion rotation, float fov, Transform parent = null);
         void DetachFromParent();
         void MoveTo(Vector3 position, float duration);
+        void SetDragEnabled(bool isEnabled);
     }
 
-    public class CameraService : ICameraService
+    public class CameraService : ICameraService, IUpdatable
     {
+        private static readonly Plane DragPlane = new(Vector3.up, Vector3.zero);
+
         private Camera _camera;
         private Scene _originScene;
+        private bool _isDragEnabled;
+        private bool _isDragging;
+        private Vector3 _lastDragWorldPosition;
 
         public CameraService()
         {
@@ -28,6 +36,8 @@ namespace vikwhite
             camera.transform.localPosition = position;
             camera.transform.localRotation = rotation;
             camera.fieldOfView = fov;
+            _isDragEnabled = false;
+            _isDragging = false;
         }
         
         public void DetachFromParent()
@@ -52,11 +62,82 @@ namespace vikwhite
                 .SetTarget(camera);
         }
 
+        public void SetDragEnabled(bool isEnabled)
+        {
+            _isDragEnabled = isEnabled;
+            if (!isEnabled)
+                _isDragging = false;
+        }
+
+        public void Update()
+        {
+            if (!_isDragEnabled) return;
+
+            var camera = UpdateCameraReference();
+            var mouse = Mouse.current;
+            if (camera == null || mouse == null) return;
+
+            var screenPosition = mouse.position.ReadValue();
+
+            if (mouse.leftButton.wasPressedThisFrame)
+                BeginDrag(camera, screenPosition);
+
+            if (!_isDragging) return;
+
+            if (mouse.leftButton.isPressed)
+                Drag(camera, screenPosition);
+            else
+                _isDragging = false;
+        }
+
         private Camera UpdateCameraReference()
         {
             if (_camera == null) _camera = Camera.main;
             if (_camera != null && !_originScene.IsValid()) _originScene = _camera.gameObject.scene;
             return _camera;
+        }
+
+        private void BeginDrag(Camera camera, Vector2 screenPosition)
+        {
+            if (IsPointerOverUi()) return;
+            if (!TryGetDragWorldPosition(camera, screenPosition, out _lastDragWorldPosition)) return;
+
+            DOTween.Kill(camera);
+            _isDragging = true;
+        }
+
+        private void Drag(Camera camera, Vector2 screenPosition)
+        {
+            if (!TryGetDragWorldPosition(camera, screenPosition, out var dragWorldPosition)) return;
+
+            var height = camera.transform.position.y;
+            var offset = _lastDragWorldPosition - dragWorldPosition;
+            offset.y = 0f;
+
+            var position = camera.transform.position + offset;
+            position.y = height;
+            camera.transform.position = position;
+
+            if (TryGetDragWorldPosition(camera, screenPosition, out var updatedDragWorldPosition))
+                _lastDragWorldPosition = updatedDragWorldPosition;
+        }
+
+        private static bool TryGetDragWorldPosition(Camera camera, Vector2 screenPosition, out Vector3 position)
+        {
+            var ray = camera.ScreenPointToRay(screenPosition);
+            if (DragPlane.Raycast(ray, out var distance))
+            {
+                position = ray.GetPoint(distance);
+                return true;
+            }
+
+            position = default;
+            return false;
+        }
+
+        private static bool IsPointerOverUi()
+        {
+            return EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
         }
     }
 }
