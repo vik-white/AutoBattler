@@ -21,7 +21,7 @@ namespace vikwhite
         public void Enter() 
         {
             _lobbyWindow.ShowWindow();
-            _camera.Initialize(new Vector3(-61.28f, 58.9f, -35.26f), Quaternion.Euler(39.456f, 60.041f, 0.26f), 10);
+            _camera.Initialize(new Vector3(12.76f, 49.78f, -11.7f), Quaternion.Euler(45.97f, -45.7f, 0), 40);
         }
 
         public void Exit()
