@@ -7,6 +7,7 @@ public class LobbyWindowHierarchy : MonoBehaviour
     public Button AdventureButton;
     public Button SummonButton;
     public Button MetaButton;
+    public RectTransform ResourcesContainer;
     public RectTransform EventsContainer;
     public TMP_Text Might;
     public TMP_Text Gems;

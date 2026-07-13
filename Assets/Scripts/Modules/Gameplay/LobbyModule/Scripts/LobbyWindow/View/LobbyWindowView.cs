@@ -5,10 +5,12 @@ namespace vikwhite
     public class LobbyWindowView : WindowView<LobbyWindowHierarchy, LobbyWindowViewModel>
     {
         private readonly IEventItemViewFactory _eventItemViewFactory;
+        private readonly IResourceViewFactory _resourceViewFactory;
         
-        public LobbyWindowView(GameObject view, IEventItemViewFactory eventItemViewFactory) : base(view)
+        public LobbyWindowView(GameObject view, IEventItemViewFactory eventItemViewFactory, IResourceViewFactory resourceViewFactory) : base(view)
         {
             _eventItemViewFactory = eventItemViewFactory;
+            _resourceViewFactory = resourceViewFactory;
         }
         
         protected override void UpdateViewModel(LobbyWindowViewModel viewModel)
@@ -24,6 +26,8 @@ namespace vikwhite
                 foreach (var gameEvent in viewModel.Events)
                     _eventItemViewFactory.Get(gameEvent, _view.EventsContainer);
             }
+            _view.ResourcesContainer.ClearChildren();
+            _resourceViewFactory.Get(viewModel.Gold, _view.ResourcesContainer);
         }
     }
 }

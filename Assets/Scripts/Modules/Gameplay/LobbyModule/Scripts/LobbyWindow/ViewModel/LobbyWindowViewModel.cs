@@ -13,6 +13,7 @@ namespace vikwhite
         private readonly ReadOnlyReactiveProperty<int> _might;
         public IReadOnlyReactiveProperty<int> Might => _might;
         public IReadOnlyReactiveProperty<int> Gems { get; }
+        public ResourceViewModel Gold { get; }
         public UnityAction OnAdventure;
         public UnityAction OnSummon;
         public UnityAction OnMeta;
@@ -23,7 +24,7 @@ namespace vikwhite
             IEnvironmentStateMachine environmentStateMachine,
             IEventsService eventsService,
             ICharactersService charactersService,
-            IResourceService resourceService)
+            IResourceService resource)
         {
             _environmentStateMachine = environmentStateMachine;
             OnSummon = summonWindow.ShowWindow;
@@ -34,7 +35,8 @@ namespace vikwhite
             _might = characterMight.CombineLatest().Select(values => values.Sum()).ToReadOnlyReactiveProperty();
             AddDisposable(_might);
             
-            Gems = resourceService.GetAmount(ResourceType.Gem);
+            Gems = resource.GetAmount(ResourceType.Gem);
+            Gold = CreateViewModel<ResourceViewModel, Resource>(resource.Get(ResourceType.Gold));
 
             foreach (var gameEvent in eventsService.GetAll())
                 Events.Add(CreateViewModel<EventItemViewModel, GameEvent>(gameEvent));

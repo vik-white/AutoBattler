@@ -38,6 +38,7 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.BookMystic, Amount = 0 },
                     new ResourceData{ Type = ResourceType.BookSupport, Amount = 0 },
                     new ResourceData{ Type = ResourceType.BookTank, Amount = 0 },
+                    new ResourceData{ Type = ResourceType.Gold, Amount = 0 },
                 },
                 Quests = new (),
                 RoadMapLocation = _configs.Map.GetAll().Where(e => e.Sector != "").First().ID,

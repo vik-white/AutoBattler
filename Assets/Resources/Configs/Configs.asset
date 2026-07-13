@@ -3154,75 +3154,135 @@ MonoBehaviour:
     Data:
     - Room: Hall
       Level: 1
-      Production: Gold
-      ProductionUpgrade: Gold:100
-      CapacityUpgrade: Gold:100
-      ResRequirements: Gold:100
-      RoomRequirements: 
+      Production: 13
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 100
+      CapacityUpgrade:
+      - Resource: 13
+        Count: 100
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Hall
       Level: 2
-      Production: Gold
-      ProductionUpgrade: Gold:100
-      CapacityUpgrade: Gold:100
-      ResRequirements: Gold:100
-      RoomRequirements: 
+      Production: 13
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 100
+      CapacityUpgrade:
+      - Resource: 13
+        Count: 100
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Hall
       Level: 3
-      Production: Gold
-      ProductionUpgrade: Gold:100
-      CapacityUpgrade: Gold:100
-      ResRequirements: Gold:100
-      RoomRequirements: 
+      Production: 13
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 100
+      CapacityUpgrade:
+      - Resource: 13
+        Count: 100
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Training
       Level: 1
-      Production: Exp
-      ProductionUpgrade: Exp:10
-      CapacityUpgrade: Exp:10
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:1;Kitchen:1
+      Production: 0
+      ProductionUpgrade:
+      - Resource: 0
+        Count: 10
+      CapacityUpgrade:
+      - Resource: 0
+        Count: 10
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
+      - Room: Kitchen
+        Level: 1
       UpgradeTime: 0.1
     - Room: Library
       Level: 1
-      Production: Book
-      ProductionUpgrade: Book:0,1
-      CapacityUpgrade: Book:1
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:1
+      Production: 2
+      ProductionUpgrade:
+      - Resource: 2
+        Count: 0.1
+      CapacityUpgrade:
+      - Resource: 2
+        Count: 1
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
       UpgradeTime: 0.1
     - Room: Living
       Level: 1
-      Production: 
-      ProductionUpgrade: Gold:10
-      CapacityUpgrade: 
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:1
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
       UpgradeTime: 0.1
     - Room: Kitchen
       Level: 1
-      Production: 
-      ProductionUpgrade: Gold:10
-      CapacityUpgrade: 
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:1
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
       UpgradeTime: 0.1
     - Room: Cellar
       Level: 1
-      Production: 
-      ProductionUpgrade: Gold:10
-      CapacityUpgrade: 
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:1
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
       UpgradeTime: 0.1
     - Room: Trophy
       Level: 1
-      Production: 
-      ProductionUpgrade: Gold:10
-      CapacityUpgrade: 
-      ResRequirements: Gold:100
-      RoomRequirements: Hall:2
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 2
       UpgradeTime: 0.1
   ui:
     resourceIcons:
@@ -3252,6 +3312,8 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: 8fff08a2fdd0fbf428e7253f5c4d9cd8, type: 3}
     - Type: 12
       Icon: {fileID: 21300000, guid: 592b10ec98035b94fb46e73a98561953, type: 3}
+    - Type: 13
+      Icon: {fileID: 21300000, guid: 6aeaa9940399a3142ae29702b2fa4737, type: 3}
     rarities:
     - Type: 0
       RewardBG: {fileID: 21300000, guid: bafdd5d81d006984aa755c2813da714a, type: 3}
