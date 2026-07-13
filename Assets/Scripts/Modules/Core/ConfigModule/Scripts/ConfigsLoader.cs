@@ -27,6 +27,7 @@ namespace vikwhite.Data
         IConfig<IQuestData> Quests { get; }
         IConfig<IEventData> Events { get; }
         IConfig<IResourceData> Resources { get; }
+        IConfig<IRoomData> Rooms { get; }
         IUIConfigs UI { get; }
     }
     
@@ -52,6 +53,7 @@ namespace vikwhite.Data
         [SerializeField] private Config<QuestData, IQuestData> quests;
         [SerializeField] private Config<EventData, IEventData> events;
         [SerializeField] private Config<ResourceData, IResourceData> resources;
+        [SerializeField] private Config<RoomData, IRoomData> rooms;
         [SerializeField] private UIConfigs ui;
         
         public ISettingData Settings => settings.Get();
@@ -68,6 +70,7 @@ namespace vikwhite.Data
         public IConfig<IQuestData> Quests => quests;
         public IConfig<IEventData> Events => events;
         public IConfig<IResourceData> Resources => resources;
+        public IConfig<IRoomData> Rooms => rooms;
         public IUIConfigs UI => ui;
 
 #if UNITY_EDITOR

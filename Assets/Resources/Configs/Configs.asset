@@ -3149,6 +3149,81 @@ MonoBehaviour:
     - ID: BookMystic
       Type: 0
       Rarity: 2
+  rooms:
+    IDS: []
+    Data:
+    - Room: Hall
+      Level: 1
+      Production: Gold
+      ProductionUpgrade: Gold:100
+      CapacityUpgrade: Gold:100
+      ResRequirements: Gold:100
+      RoomRequirements: 
+      UpgradeTime: 0.1
+    - Room: Hall
+      Level: 2
+      Production: Gold
+      ProductionUpgrade: Gold:100
+      CapacityUpgrade: Gold:100
+      ResRequirements: Gold:100
+      RoomRequirements: 
+      UpgradeTime: 0.1
+    - Room: Hall
+      Level: 3
+      Production: Gold
+      ProductionUpgrade: Gold:100
+      CapacityUpgrade: Gold:100
+      ResRequirements: Gold:100
+      RoomRequirements: 
+      UpgradeTime: 0.1
+    - Room: Training
+      Level: 1
+      Production: Exp
+      ProductionUpgrade: Exp:10
+      CapacityUpgrade: Exp:10
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:1;Kitchen:1
+      UpgradeTime: 0.1
+    - Room: Library
+      Level: 1
+      Production: Book
+      ProductionUpgrade: Book:0,1
+      CapacityUpgrade: Book:1
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:1
+      UpgradeTime: 0.1
+    - Room: Living
+      Level: 1
+      Production: 
+      ProductionUpgrade: Gold:10
+      CapacityUpgrade: 
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:1
+      UpgradeTime: 0.1
+    - Room: Kitchen
+      Level: 1
+      Production: 
+      ProductionUpgrade: Gold:10
+      CapacityUpgrade: 
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:1
+      UpgradeTime: 0.1
+    - Room: Cellar
+      Level: 1
+      Production: 
+      ProductionUpgrade: Gold:10
+      CapacityUpgrade: 
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:1
+      UpgradeTime: 0.1
+    - Room: Trophy
+      Level: 1
+      Production: 
+      ProductionUpgrade: Gold:10
+      CapacityUpgrade: 
+      ResRequirements: Gold:100
+      RoomRequirements: Hall:2
+      UpgradeTime: 0.1
   ui:
     resourceIcons:
     - Type: 0

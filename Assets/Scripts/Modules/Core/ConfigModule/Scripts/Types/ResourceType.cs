@@ -2,6 +2,7 @@ namespace vikwhite
 {
     public enum ResourceType
     {
+        None = -1,
         Exp = 0,
         Gem = 1,
         Book = 2,
@@ -15,5 +16,6 @@ namespace vikwhite
         BookMystic = 10,
         BookSupport = 11,
         BookTank = 12,
+        Gold = 13,
     }
 }
