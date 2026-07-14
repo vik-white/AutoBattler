@@ -36,6 +36,7 @@ namespace vikwhite
             Resolve<ICharactersService>().Initialize();
             Resolve<ISectorService>().Initialize();
             Resolve<IEventsService>().Initialize();
+            Resolve<IRoomsService>().Initialize();
             _previousActiveScene = SceneManager.GetActiveScene();
             var loader = SceneManager.LoadSceneAsync(TavernScene, LoadSceneMode.Additive);
             yield return loadingScreen.TrackProgress(loader);

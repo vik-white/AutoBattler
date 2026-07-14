@@ -12,6 +12,8 @@ namespace vikwhite
             Register<ILobbyWindow, LobbyWindow>();
             Register<LobbyWindowViewModel>();
             Register<LobbyWindowView>();
+            
+            Register<IRoomsService, RoomsService>();
         }
     }
 }
