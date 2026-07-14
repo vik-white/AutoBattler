@@ -14,5 +14,6 @@ namespace vikwhite
     {
         public RoomType Type;
         public Transform Container;
+        public BoxCollider Collider;
     }
 }
