@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace vikwhite.Data
 {
     public interface IRoomData
     {
         string Room { get; }
+        GameObject Prefab { get; }
         int Level { get; }
         ResourceType Production { get; }
         List<ResourceCountData> ProductionUpgrade { get; }
@@ -33,6 +35,7 @@ namespace vikwhite.Data
     public class RoomData: IRoomData, ICustomJsonParser
     {
         public string Room;
+        public GameObject Prefab;
         public int Level;
         public ResourceType Production;
         public List<ResourceCountData> ProductionUpgrade = new();
@@ -42,6 +45,7 @@ namespace vikwhite.Data
         public float UpgradeTime;
         
         string IRoomData.Room => Room;
+        GameObject IRoomData.Prefab => Prefab;
         int IRoomData.Level => Level;
         ResourceType IRoomData.Production => Production;
         List<ResourceCountData> IRoomData.ProductionUpgrade => ProductionUpgrade;
@@ -52,6 +56,8 @@ namespace vikwhite.Data
         
         public void Parse(Dictionary<string, string> row)
         {
+            if (row["Prefab"] != "") Prefab = Resources.Load<GameObject>($"Rooms/{row["Prefab"]}");
+            
             foreach (var srt in row["ProductionUpgrade"].Split(";"))
             {
                 if(srt == "") continue;

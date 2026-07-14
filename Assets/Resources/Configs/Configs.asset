@@ -3153,6 +3153,7 @@ MonoBehaviour:
     IDS: []
     Data:
     - Room: Hall
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 1
       Production: 13
       ProductionUpgrade:
@@ -3167,6 +3168,7 @@ MonoBehaviour:
       RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Hall
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 2
       Production: 13
       ProductionUpgrade:
@@ -3181,6 +3183,7 @@ MonoBehaviour:
       RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Hall
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 3
       Production: 13
       ProductionUpgrade:
@@ -3195,6 +3198,7 @@ MonoBehaviour:
       RoomRequirements: []
       UpgradeTime: 0.1
     - Room: Training
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: 0
       ProductionUpgrade:
@@ -3213,6 +3217,7 @@ MonoBehaviour:
         Level: 1
       UpgradeTime: 0.1
     - Room: Library
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: 2
       ProductionUpgrade:
@@ -3228,7 +3233,38 @@ MonoBehaviour:
       - Room: Hall
         Level: 1
       UpgradeTime: 0.1
-    - Room: Living
+    - Room: Living1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
+      UpgradeTime: 0.1
+    - Room: Living2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Resource: 13
+        Count: 10
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 100
+      RoomRequirements:
+      - Room: Hall
+        Level: 1
+      UpgradeTime: 0.1
+    - Room: Living3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
@@ -3243,6 +3279,7 @@ MonoBehaviour:
         Level: 1
       UpgradeTime: 0.1
     - Room: Kitchen
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
@@ -3257,6 +3294,7 @@ MonoBehaviour:
         Level: 1
       UpgradeTime: 0.1
     - Room: Cellar
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
@@ -3271,6 +3309,7 @@ MonoBehaviour:
         Level: 1
       UpgradeTime: 0.1
     - Room: Trophy
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
