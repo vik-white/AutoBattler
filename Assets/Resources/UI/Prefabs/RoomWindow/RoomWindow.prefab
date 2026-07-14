@@ -637,6 +637,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8305480921327358064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015827576262481715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2d5f1e7d3d4971a3eb1cabcb27b0b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Lobby::vikwhite.RoomWindowHierarchy
+  Title: {fileID: 5581922811995134724}
+  CloseButton: {fileID: 2030422433876573177}
+  CloseFadeButton: {fileID: 1781136468292789154}
+  UpgradeButton: {fileID: 5009672118949489654}
 --- !u!1 &8147230653298351634
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,21 +773,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8305480921327358064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015827576262481715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2d5f1e7d3d4971a3eb1cabcb27b0b4, type: 3}
-  m_Name: ''
-  m_EditorClassIdentifier: Lobby::vikwhite.RoomWindowHierarchy
-  Title: {fileID: 5581922811995134724}
-  CloseButton: {fileID: 2030422433876573177}
-  CloseFadeButton: {fileID: 1781136468292789154}
 --- !u!1001 &5277054112640511516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -873,6 +874,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
+--- !u!114 &5009672118949489654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 918227441998759402, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
+  m_PrefabInstance: {fileID: 5277054112640511516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &9009472011808040349 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3761578601109506945, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}

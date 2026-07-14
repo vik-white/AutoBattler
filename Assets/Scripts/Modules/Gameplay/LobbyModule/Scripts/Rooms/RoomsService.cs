@@ -18,16 +18,18 @@ namespace vikwhite
         private readonly IProfileService _profile;
         private readonly IConfigs _configs;
         private readonly IRoomWindow _roomWindow;
+        private readonly IEventDispatcher _dispatcher;
         private readonly List<Room> _rooms = new();
         private readonly Dictionary<Collider, Room> _roomsByCollider = new();
         private Vector2 _pointerDownPosition;
         private bool _isPointerDown;
         
-        public RoomsService(IProfileService profile, IConfigs configs, IRoomWindow roomWindow)
+        public RoomsService(IProfileService profile, IConfigs configs, IRoomWindow roomWindow, IEventDispatcher dispatcher)
         {
             _profile = profile;
             _configs = configs;
             _roomWindow = roomWindow;
+            _dispatcher = dispatcher;
         }
 
         public void Initialize()
@@ -41,7 +43,7 @@ namespace vikwhite
                 room.Container.ClearChildren();
                 var profileData = _profile.Data.Rooms.Find(e => e.Type == room.Type);
                 var configData = _configs.Rooms.GetAll().Find(e => e.Type == room.Type);
-                var roomModel = new Room(profileData.Type, profileData.Level);
+                var roomModel = new Room(profileData.Type, profileData.Level, _dispatcher);
                 _rooms.Add(roomModel);
                 _roomsByCollider.Add(room.Collider, roomModel);
                 var roomGO = GameObject.Instantiate(configData.Prefab, room.Container);

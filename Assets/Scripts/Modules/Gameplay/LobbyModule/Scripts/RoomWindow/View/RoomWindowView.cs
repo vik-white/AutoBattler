@@ -8,9 +8,10 @@ namespace vikwhite
 
         protected override void UpdateViewModel(RoomWindowViewModel viewModel)
         {
-            _view.Title.text = viewModel.Title;
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.CloseFadeButton, viewModel.Close);
+            BindClick(_view.UpgradeButton, viewModel.OnUpgrade);
+            Bind(viewModel.Level, level => _view.Title.text = $"{viewModel.Title} Lv.{level}");
         }
     }
 }
