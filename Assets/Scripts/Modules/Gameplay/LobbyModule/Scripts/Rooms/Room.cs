@@ -9,11 +9,15 @@ namespace vikwhite
         public RoomType Type;
         public ReactiveProperty<int> Level;
 
-        public Room(RoomType type, int level, IEventDispatcher dispatcher)
+        public Room(IEventDispatcher dispatcher)
+        {
+            _dispatcher = dispatcher;
+        }
+
+        public void Initialize(RoomType type, int level)
         {
             Type = type;
             Level = new ReactiveProperty<int>(level);
-            _dispatcher = dispatcher;
             Level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeRoomLevelEvent(Type, value)));
         }
 
