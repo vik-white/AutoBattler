@@ -12,5 +12,13 @@ namespace vikwhite
             }
             return go;
         }
+        
+        public static void ClearChildren(this GameObject go)
+        {
+            for (int i = go.transform.childCount - 1; i >= 0; i--)
+            {
+                Object.Destroy(go.transform.GetChild(i).gameObject);
+            }
+        }
     }
 }

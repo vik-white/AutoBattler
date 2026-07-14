@@ -5,7 +5,7 @@ namespace vikwhite
     [Serializable]
     public class RoomData
     {
-        public string ID;
+        public RoomType Type;
         public int Level;
     }
 }

@@ -20,8 +20,15 @@ namespace vikwhite
 
         public void Initialize()
         {
-            foreach (var roomData in _profile.Data.Rooms)
-                _rooms.Add(new Room(roomData.ID, roomData.Level));
+            var tavern = UnityEngine.Object.FindAnyObjectByType<TavernHierarchy>(FindObjectsInactive.Include);
+
+            foreach (var room in tavern.Rooms)
+            {
+                room.Container.ClearChildren();
+            }
+            
+            //foreach (var roomData in _profile.Data.Rooms)
+            //    _rooms.Add(new Room(roomData.Type, roomData.Level));
         }
     }
 }

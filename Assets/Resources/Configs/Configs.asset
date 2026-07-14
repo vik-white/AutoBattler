@@ -3152,7 +3152,7 @@ MonoBehaviour:
   rooms:
     IDS: []
     Data:
-    - Room: Hall
+    - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 1
       Production: 13
@@ -3167,7 +3167,7 @@ MonoBehaviour:
         Count: 100
       RoomRequirements: []
       UpgradeTime: 0.1
-    - Room: Hall
+    - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 2
       Production: 13
@@ -3182,7 +3182,7 @@ MonoBehaviour:
         Count: 100
       RoomRequirements: []
       UpgradeTime: 0.1
-    - Room: Hall
+    - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 3
       Production: 13
@@ -3197,7 +3197,7 @@ MonoBehaviour:
         Count: 100
       RoomRequirements: []
       UpgradeTime: 0.1
-    - Room: Training
+    - Type: 1
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: 0
@@ -3211,12 +3211,12 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
-      - Room: Kitchen
+      - Type: 6
         Level: 1
       UpgradeTime: 0.1
-    - Room: Library
+    - Type: 2
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: 2
@@ -3230,10 +3230,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Living1
+    - Type: 3
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3245,10 +3245,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Living2
+    - Type: 4
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3260,10 +3260,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Living3
+    - Type: 5
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3275,10 +3275,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Kitchen
+    - Type: 6
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3290,10 +3290,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Cellar
+    - Type: 7
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3305,10 +3305,10 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 1
       UpgradeTime: 0.1
-    - Room: Trophy
+    - Type: 8
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
@@ -3320,7 +3320,7 @@ MonoBehaviour:
       - Resource: 13
         Count: 100
       RoomRequirements:
-      - Room: Hall
+      - Type: 0
         Level: 2
       UpgradeTime: 0.1
   ui:

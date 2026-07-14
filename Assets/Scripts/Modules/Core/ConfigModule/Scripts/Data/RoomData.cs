@@ -6,7 +6,7 @@ namespace vikwhite.Data
 {
     public interface IRoomData
     {
-        string Room { get; }
+        RoomType Type { get; }
         GameObject Prefab { get; }
         int Level { get; }
         ResourceType Production { get; }
@@ -27,14 +27,14 @@ namespace vikwhite.Data
     [Serializable]
     public class RoomLevelData
     {
-        public string Room;
+        public RoomType Type;
         public int Level;
     }
     
     [Serializable]
     public class RoomData: IRoomData, ICustomJsonParser
     {
-        public string Room;
+        public RoomType Type;
         public GameObject Prefab;
         public int Level;
         public ResourceType Production;
@@ -44,7 +44,7 @@ namespace vikwhite.Data
         public List<RoomLevelData> RoomRequirements = new();
         public float UpgradeTime;
         
-        string IRoomData.Room => Room;
+        RoomType IRoomData.Type => Type;
         GameObject IRoomData.Prefab => Prefab;
         int IRoomData.Level => Level;
         ResourceType IRoomData.Production => Production;
@@ -94,7 +94,8 @@ namespace vikwhite.Data
                 var parts = srt.Split(':');
                 var typeString = parts[0];
                 var valueString = parts[1];
-                RoomRequirements.Add(new RoomLevelData { Room = typeString, Level = int.Parse(valueString) });
+                if (!Enum.TryParse<RoomType>(typeString, out var type)) continue;
+                RoomRequirements.Add(new RoomLevelData { Type = type, Level = int.Parse(valueString) });
             }
         }
     }

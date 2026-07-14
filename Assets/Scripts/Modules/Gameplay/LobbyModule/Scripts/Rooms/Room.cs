@@ -2,12 +2,12 @@ namespace vikwhite
 {
     public class Room
     {
-        public string ID;
+        public RoomType Type;
         public int Level;
 
-        public Room(string id, int level)
+        public Room(RoomType type, int level)
         {
-            ID = id;
+            Type = type;
             Level = level;
         }
     }
