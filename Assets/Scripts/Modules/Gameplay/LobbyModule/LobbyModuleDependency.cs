@@ -19,6 +19,7 @@ namespace vikwhite
             
             Register<IRoomFactory, RoomFactory>();
             Register<Room>();
+            Register<IRoomSelectionService, RoomSelectionService>();
             Register<IRoomsService, RoomsService>();
         }
     }
