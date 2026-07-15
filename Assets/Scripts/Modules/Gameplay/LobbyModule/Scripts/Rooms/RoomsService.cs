@@ -1,16 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using vikwhite.Data;
 
 namespace vikwhite
 {
+    public readonly struct RoomUpgradeState
+    {
+        public bool IsUpgrading { get; }
+        public float Progress { get; }
+        public long SecondsRemaining { get; }
+
+        public RoomUpgradeState(bool isUpgrading, float progress, long secondsRemaining)
+        {
+            IsUpgrading = isUpgrading;
+            Progress = progress;
+            SecondsRemaining = secondsRemaining;
+        }
+    }
+
     public interface IRoomsService
     {
         void Initialize();
         void Clear();
         Room Get(RoomType type);
+        RoomUpgradeState GetUpgradeState(Room room);
         void Upgrade(Room room);
         void CollectProduction(Room room, ResourceType resourceType);
     }
@@ -26,6 +42,7 @@ namespace vikwhite
         private readonly IUIRoot _uiRoot;
         private readonly Dictionary<RoomType, Room> _rooms = new();
         private readonly List<RoomProductionView> _roomProductionViews = new();
+        private readonly CompositeDisposable _upgradeSubscriptions = new();
         
         public RoomsService(
             IProfileService profile,
@@ -64,7 +81,8 @@ namespace vikwhite
                     profileData.Level,
                     profileData.Production,
                     profileData.Capacity,
-                    profileData.LastProductionCollectionUnixTime);
+                    profileData.LastProductionCollectionUnixTime,
+                    profileData.UpgradeStartUnixTime);
                 _rooms.Add(roomModel.Type, roomModel);
                 _roomSelection.Register(roomContainer.Collider, roomModel);
 
@@ -83,10 +101,17 @@ namespace vikwhite
                         _uiRoot.GetLayer(UILayer.WORLD)));
                 }
             }
+
+            CompleteFinishedUpgrades();
+            Observable.Interval(TimeSpan.FromSeconds(1), Scheduler.MainThreadIgnoreTimeScale)
+                .Subscribe(_ => CompleteFinishedUpgrades())
+                .AddTo(_upgradeSubscriptions);
         }
 
         public void Clear()
         {
+            _upgradeSubscriptions.Clear();
+
             for (var i = 0; i < _roomProductionViews.Count; i++)
                 _roomProductionViews[i].DisposeAndDestroy();
 
@@ -97,6 +122,8 @@ namespace vikwhite
 
         public void Upgrade(Room room)
         {
+            if (room == null || room.IsUpgrading) return;
+
             var roomConfigs = _configs.Rooms.GetAll()
                 .Where(data => data.Type == room.Type)
                 .ToList();
@@ -126,13 +153,85 @@ namespace vikwhite
             foreach (var cost in resourceCosts)
                 _resourceService.Spend(cost.Type, cost.Amount);
 
-            var upgradeUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            room.SetLastProductionCollectionTime(upgradeUnixTime);
+            var upgradeStartUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            room.SetLastProductionCollectionTime(upgradeStartUnixTime);
+            room.SetUpgradeStartTime(upgradeStartUnixTime);
+            CompleteFinishedUpgrades(upgradeStartUnixTime);
+        }
+
+        public RoomUpgradeState GetUpgradeState(Room room)
+        {
+            if (room == null
+                || !room.IsUpgrading
+                || !TryGetUpgradeData(room, out _, out var completionUnixTime))
+                return default;
+
+            var currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            var durationSeconds = completionUnixTime - room.UpgradeStartUnixTime.Value;
+            var elapsedSeconds = Math.Max(0, currentUnixTime - room.UpgradeStartUnixTime.Value);
+            var progress = durationSeconds <= 0
+                ? 1f
+                : Mathf.Clamp01((float)elapsedSeconds / durationSeconds);
+
+            return new RoomUpgradeState(
+                true,
+                progress,
+                Math.Max(0, completionUnixTime - currentUnixTime));
+        }
+
+        private void CompleteFinishedUpgrades()
+        {
+            CompleteFinishedUpgrades(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        }
+
+        private void CompleteFinishedUpgrades(long currentUnixTime)
+        {
+            var completedUpgrades = new List<(Room Room, IRoomData Config, long CompletionUnixTime)>();
+            foreach (var room in _rooms.Values)
+            {
+                if (!room.IsUpgrading) continue;
+
+                if (!TryGetUpgradeData(room, out var config, out var completionUnixTime))
+                {
+                    room.SetLastProductionCollectionTime(currentUnixTime);
+                    room.SetUpgradeStartTime(0);
+                    continue;
+                }
+
+                if (completionUnixTime <= currentUnixTime)
+                    completedUpgrades.Add((room, config, completionUnixTime));
+            }
+
+            foreach (var upgradeData in completedUpgrades.OrderBy(data => data.CompletionUnixTime))
+                CompleteUpgrade(upgradeData.Room, upgradeData.Config, upgradeData.CompletionUnixTime);
+        }
+
+        private bool TryGetUpgradeData(Room room, out IRoomData config, out long completionUnixTime)
+        {
+            var roomConfigs = _configs.Rooms.GetAll()
+                .Where(data => data.Type == room.Type)
+                .ToList();
+            config = roomConfigs.Find(data => data.Level == room.Level.Value);
+            var hasNextLevel = roomConfigs.Any(data => data.Level == room.Level.Value + 1);
+            if (config == null || !hasNextLevel)
+            {
+                completionUnixTime = 0;
+                return false;
+            }
+
+            var durationSeconds = Math.Max(0L, (long)Math.Round(config.UpgradeTime * 60d * 60d));
+            completionUnixTime = room.UpgradeStartUnixTime.Value + durationSeconds;
+            return true;
+        }
+
+        private void CompleteUpgrade(Room room, IRoomData configData, long completionUnixTime)
+        {
+            room.SetLastProductionCollectionTime(completionUnixTime);
             foreach (var upgrade in configData.ProductionUpgrade.GroupBy(data => data.Type))
             {
                 if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
                 {
-                    targetRoom.SetLastProductionCollectionTime(upgradeUnixTime);
+                    targetRoom.SetLastProductionCollectionTime(completionUnixTime);
                     targetRoom.AddProduction(upgrade.Sum(data => data.Count));
                 }
             }
@@ -141,17 +240,18 @@ namespace vikwhite
             {
                 if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
                 {
-                    targetRoom.SetLastProductionCollectionTime(upgradeUnixTime);
+                    targetRoom.SetLastProductionCollectionTime(completionUnixTime);
                     targetRoom.AddCapacity(upgrade.Sum(data => data.Count));
                 }
             }
 
             room.UpgradeLevel();
+            room.SetUpgradeStartTime(0);
         }
 
         public void CollectProduction(Room room, ResourceType resourceType)
         {
-            if (room == null || resourceType == ResourceType.None) return;
+            if (room == null || room.IsUpgrading || resourceType == ResourceType.None) return;
 
             var currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             var state = RoomProductionCalculator.Calculate(

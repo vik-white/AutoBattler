@@ -54,7 +54,8 @@ namespace vikwhite
                     Level = 0,
                     Production = 0f,
                     Capacity = 0f,
-                    LastProductionCollectionUnixTime = currentUnixTime
+                    LastProductionCollectionUnixTime = currentUnixTime,
+                    UpgradeStartUnixTime = 0
                 });
 
             foreach (var characterData in _configs.Characters.GetAll())

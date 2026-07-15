@@ -34,12 +34,14 @@ namespace vikwhite
         private readonly ReactiveProperty<RoomWindowContent> _content = new();
         private readonly ReactiveProperty<bool> _canUpgrade = new();
         private readonly ReactiveProperty<bool> _hasUpgrade = new();
+        private readonly ReactiveProperty<RoomUpgradeState> _upgradeState = new();
 
         public string Title => Model.Type.ToString();
         public IReadOnlyReactiveProperty<int> Level => Model.Level;
         public IReadOnlyReactiveProperty<RoomWindowContent> Content => _content;
         public IReadOnlyReactiveProperty<bool> CanUpgrade => _canUpgrade;
         public IReadOnlyReactiveProperty<bool> HasUpgrade => _hasUpgrade;
+        public IReadOnlyReactiveProperty<RoomUpgradeState> UpgradeState => _upgradeState;
         public UnityAction OnUpgrade;
 
         public RoomWindowViewModel(
@@ -51,11 +53,15 @@ namespace vikwhite
             _configs = configs;
             _resourceService = resourceService;
             _roomsService = roomsService;
-            AddDisposables(_content, _canUpgrade, _hasUpgrade, _requirementSubscriptions);
+            AddDisposables(_content, _canUpgrade, _hasUpgrade, _upgradeState, _requirementSubscriptions);
             AddDisposable(Level
                 .CombineLatest(Model.Production, (level, _) => level)
                 .CombineLatest(Model.Capacity, (level, _) => level)
+                .CombineLatest(Model.UpgradeStartUnixTime, (level, _) => level)
                 .Subscribe(RefreshContent));
+            AddDisposable(Model.UpgradeStartUnixTime.Subscribe(_ => RefreshUpgradeState()));
+            AddDisposable(Observable.Interval(TimeSpan.FromSeconds(1), Scheduler.MainThreadIgnoreTimeScale)
+                .Subscribe(_ => RefreshUpgradeState()));
             OnUpgrade = Upgrade;
         }
 
@@ -116,6 +122,7 @@ namespace vikwhite
         private void RefreshCanUpgrade(IRoomData upgradeConfig)
         {
             _canUpgrade.Value = upgradeConfig != null
+                                && !Model.IsUpgrading
                                 && upgradeConfig.ResRequirements.All(IsResourceRequirementMet)
                                 && upgradeConfig.RoomRequirements.All(IsRoomRequirementMet);
 
@@ -194,6 +201,11 @@ namespace vikwhite
         private void Upgrade()
         {
             if (_canUpgrade.Value) Model.Upgrade();
+        }
+
+        private void RefreshUpgradeState()
+        {
+            _upgradeState.Value = _roomsService.GetUpgradeState(Model);
         }
 
         private static string FormatUpgrade(float value)

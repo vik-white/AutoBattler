@@ -10,5 +10,6 @@ namespace vikwhite
         public float Production;
         public float Capacity;
         public long LastProductionCollectionUnixTime;
+        public long UpgradeStartUnixTime;
     }
 }

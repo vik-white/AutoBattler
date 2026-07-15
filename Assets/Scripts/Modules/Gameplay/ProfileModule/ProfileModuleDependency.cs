@@ -15,6 +15,7 @@ namespace vikwhite
             Register<IEventHandler, ChangeRoomProductionProfileHandler>();
             Register<IEventHandler, ChangeRoomCapacityProfileHandler>();
             Register<IEventHandler, ChangeRoomProductionCollectionTimeProfileHandler>();
+            Register<IEventHandler, ChangeRoomUpgradeStartTimeProfileHandler>();
             Register<IEventHandler, CreateQuestProfileHandler>();
             Register<IEventHandler, ChangeQuestProgressProfileHandler>();
             Register<IEventHandler, ChangeQuestClaimedProfileHandler>();

@@ -9,7 +9,7 @@ namespace vikwhite
         private readonly IRoomsService _roomsService;
 
         public ResourceType Type => Model.Type;
-        public bool HasProduction => Model.Room.Production.Value > 0f;
+        public bool HasProduction => Model.Room.Production.Value > 0f && !Model.Room.IsUpgrading;
         public UnityAction OnCollect;
 
         public RoomProductionViewModel(RoomProductionModel model, IRoomsService roomsService) : base(model)
@@ -20,6 +20,8 @@ namespace vikwhite
 
         public RoomProductionState GetState()
         {
+            if (Model.Room.IsUpgrading) return default;
+
             return RoomProductionCalculator.Calculate(
                 Model.Room.LastProductionCollectionUnixTime.Value,
                 Model.Room.Production.Value,

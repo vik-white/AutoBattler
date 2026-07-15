@@ -47,4 +47,16 @@ namespace vikwhite
             UnixTime = unixTime;
         }
     }
+
+    public class ChangeRoomUpgradeStartTimeEvent
+    {
+        public RoomType Type;
+        public long UnixTime;
+
+        public ChangeRoomUpgradeStartTimeEvent(RoomType type, long unixTime)
+        {
+            Type = type;
+            UnixTime = unixTime;
+        }
+    }
 }

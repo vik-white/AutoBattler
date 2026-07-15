@@ -12,6 +12,9 @@ namespace vikwhite
         public ReactiveProperty<float> Production;
         public ReactiveProperty<float> Capacity;
         public ReactiveProperty<long> LastProductionCollectionUnixTime;
+        public ReactiveProperty<long> UpgradeStartUnixTime;
+
+        public bool IsUpgrading => UpgradeStartUnixTime.Value > 0;
 
         public Room(IEventDispatcher dispatcher, IRoomsService roomsService)
         {
@@ -24,18 +27,22 @@ namespace vikwhite
             int level,
             float production,
             float capacity,
-            long lastProductionCollectionUnixTime)
+            long lastProductionCollectionUnixTime,
+            long upgradeStartUnixTime)
         {
             Type = type;
             Level = new ReactiveProperty<int>(level);
             Production = new ReactiveProperty<float>(production);
             Capacity = new ReactiveProperty<float>(capacity);
             LastProductionCollectionUnixTime = new ReactiveProperty<long>(lastProductionCollectionUnixTime);
+            UpgradeStartUnixTime = new ReactiveProperty<long>(upgradeStartUnixTime);
             Level.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeRoomLevelEvent(Type, value)));
             Production.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeRoomProductionEvent(Type, value)));
             Capacity.Skip(1).Subscribe(value => _dispatcher.Dispatch(new ChangeRoomCapacityEvent(Type, value)));
             LastProductionCollectionUnixTime.Skip(1).Subscribe(value =>
                 _dispatcher.Dispatch(new ChangeRoomProductionCollectionTimeEvent(Type, value)));
+            UpgradeStartUnixTime.Skip(1).Subscribe(value =>
+                _dispatcher.Dispatch(new ChangeRoomUpgradeStartTimeEvent(Type, value)));
         }
 
         public void Upgrade() => _roomsService.Upgrade(this);
@@ -48,5 +55,7 @@ namespace vikwhite
 
         internal void SetLastProductionCollectionTime(long unixTime) =>
             LastProductionCollectionUnixTime.Value = unixTime;
+
+        internal void SetUpgradeStartTime(long unixTime) => UpgradeStartUnixTime.Value = unixTime;
     }
 }

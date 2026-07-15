@@ -56,4 +56,18 @@ namespace vikwhite
             }
         }
     }
+
+    public class ChangeRoomUpgradeStartTimeProfileHandler : ProfileHandler<ChangeRoomUpgradeStartTimeEvent>
+    {
+        protected override void Handle(ChangeRoomUpgradeStartTimeEvent evnt)
+        {
+            foreach (var roomData in _profile.Data.Rooms)
+            {
+                if (roomData.Type != evnt.Type) continue;
+                roomData.UpgradeStartUnixTime = evnt.UnixTime;
+                _profile.Save();
+                return;
+            }
+        }
+    }
 }
