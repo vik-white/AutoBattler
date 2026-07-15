@@ -2,7 +2,7 @@ namespace vikwhite
 {
     public interface IRoomFactory
     {
-        Room Create(RoomType type, int level);
+        Room Create(RoomType type, int level, float production);
     }
 
     public class RoomFactory : IRoomFactory
@@ -14,10 +14,10 @@ namespace vikwhite
             _container = container;
         }
 
-        public Room Create(RoomType type, int level)
+        public Room Create(RoomType type, int level, float production)
         {
             var room = _container.Resolve<Room>();
-            room.Initialize(type, level);
+            room.Initialize(type, level, production);
             return room;
         }
     }
