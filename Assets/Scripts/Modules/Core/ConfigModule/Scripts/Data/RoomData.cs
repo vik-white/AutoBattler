@@ -10,11 +10,18 @@ namespace vikwhite.Data
         GameObject Prefab { get; }
         int Level { get; }
         ResourceType Production { get; }
-        List<ResourceCountData> ProductionUpgrade { get; }
+        List<ProductionCountData> ProductionUpgrade { get; }
         List<ResourceCountData> CapacityUpgrade { get; }
         List<ResourceCountData> ResRequirements { get; }
         List<RoomLevelData> RoomRequirements { get; }
         float UpgradeTime { get; }
+    }
+    
+    [Serializable]
+    public class ProductionCountData
+    {
+        public RoomType Type;
+        public float Count;
     }
 
     [Serializable]
@@ -38,7 +45,7 @@ namespace vikwhite.Data
         public GameObject Prefab;
         public int Level;
         public ResourceType Production;
-        public List<ResourceCountData> ProductionUpgrade = new();
+        public List<ProductionCountData> ProductionUpgrade = new();
         public List<ResourceCountData> CapacityUpgrade = new();
         public List<ResourceCountData> ResRequirements = new();
         public List<RoomLevelData> RoomRequirements = new();
@@ -48,7 +55,7 @@ namespace vikwhite.Data
         GameObject IRoomData.Prefab => Prefab;
         int IRoomData.Level => Level;
         ResourceType IRoomData.Production => Production;
-        List<ResourceCountData> IRoomData.ProductionUpgrade => ProductionUpgrade;
+        List<ProductionCountData> IRoomData.ProductionUpgrade => ProductionUpgrade;
         List<ResourceCountData> IRoomData.CapacityUpgrade => CapacityUpgrade;
         List<ResourceCountData> IRoomData.ResRequirements => ResRequirements;
         List<RoomLevelData> IRoomData.RoomRequirements => RoomRequirements;
@@ -64,8 +71,8 @@ namespace vikwhite.Data
                 var parts = srt.Split(':');
                 var typeString = parts[0];
                 var valueString = parts[1];
-                if (!Enum.TryParse<ResourceType>(typeString, out var type)) continue;
-                ProductionUpgrade.Add(new ResourceCountData { Resource = type, Count = valueString.ToFloat() });
+                if (!Enum.TryParse<RoomType>(typeString, out var type)) continue;
+                ProductionUpgrade.Add(new ProductionCountData { Type = type, Count = valueString.ToFloat() });
             }
             
             foreach (var srt in row["CapacityUpgrade"].Split(";"))
