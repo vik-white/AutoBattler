@@ -18,18 +18,21 @@ namespace vikwhite
         private readonly IConfigs _configs;
         private readonly IRoomFactory _roomFactory;
         private readonly IRoomSelectionService _roomSelection;
+        private readonly IResourceService _resourceService;
         private readonly Dictionary<RoomType, Room> _rooms = new();
         
         public RoomsService(
             IProfileService profile,
             IConfigs configs,
             IRoomFactory roomFactory,
-            IRoomSelectionService roomSelection)
+            IRoomSelectionService roomSelection,
+            IResourceService resourceService)
         {
             _profile = profile;
             _configs = configs;
             _roomFactory = roomFactory;
             _roomSelection = roomSelection;
+            _resourceService = resourceService;
         }
 
         public void Initialize()
@@ -60,6 +63,28 @@ namespace vikwhite
             var configData = roomConfigs.Find(data => data.Level == room.Level.Value);
             var hasNextLevel = roomConfigs.Any(data => data.Level == room.Level.Value + 1);
             if (configData == null || !hasNextLevel) return;
+
+            var resourceCosts = configData.ResRequirements
+                .GroupBy(data => data.Resource)
+                .Select(group => new
+                {
+                    Type = group.Key,
+                    Amount = Mathf.CeilToInt(group.Sum(data => data.Count))
+                })
+                .ToList();
+
+            if (resourceCosts.Any(cost =>
+                    cost.Type == ResourceType.None
+                    || _resourceService.GetAmount(cost.Type).Value < cost.Amount))
+                return;
+
+            if (configData.RoomRequirements.Any(requirement =>
+                    !_rooms.TryGetValue(requirement.Type, out var requiredRoom)
+                    || requiredRoom.Level.Value < requirement.Level))
+                return;
+
+            foreach (var cost in resourceCosts)
+                _resourceService.Spend(cost.Type, cost.Amount);
 
             foreach (var upgrade in configData.ProductionUpgrade.GroupBy(data => data.Type))
             {
