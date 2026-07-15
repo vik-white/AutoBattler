@@ -45,6 +45,12 @@ namespace vikwhite
 
         private void UpdateView()
         {
+            if (BaseViewModel == null || !BaseViewModel.HasProduction)
+            {
+                SetActive(false);
+                return;
+            }
+
             UpdatePosition();
             UpdateProduction();
         }
@@ -71,6 +77,7 @@ namespace vikwhite
             if (BaseViewModel == null) return;
 
             var state = BaseViewModel.GetState();
+            if (_button != null) _button.interactable = state.CollectibleAmount > 0;
             var rounded = Mathf.Round(state.Accumulated);
             _view.Value.text = Mathf.Approximately(state.Accumulated, rounded)
                 ? Mathf.RoundToInt(state.Accumulated).ToString()

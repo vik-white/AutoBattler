@@ -148,9 +148,11 @@ namespace vikwhite
                 room.LastProductionCollectionUnixTime.Value,
                 room.Production.Value,
                 currentUnixTime);
-            var amount = Mathf.FloorToInt(state.Accumulated);
+            var amount = state.CollectibleAmount;
 
-            if (amount > 0) _resourceService.Add(resourceType, amount);
+            if (amount <= 0) return;
+
+            _resourceService.Add(resourceType, amount);
             room.SetLastProductionCollectionTime(currentUnixTime);
         }
 

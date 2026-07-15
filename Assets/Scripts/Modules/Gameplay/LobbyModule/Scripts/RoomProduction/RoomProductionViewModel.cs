@@ -9,6 +9,7 @@ namespace vikwhite
         private readonly IRoomsService _roomsService;
 
         public ResourceType Type => Model.Type;
+        public bool HasProduction => Model.Room.Production.Value > 0f;
         public UnityAction OnCollect;
 
         public RoomProductionViewModel(RoomProductionModel model, IRoomsService roomsService) : base(model)

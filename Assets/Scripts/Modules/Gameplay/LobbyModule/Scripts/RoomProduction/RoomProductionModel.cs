@@ -20,6 +20,7 @@ namespace vikwhite
     public readonly struct RoomProductionState
     {
         public float Accumulated { get; }
+        public int CollectibleAmount => Mathf.FloorToInt(Accumulated);
         public int SecondsUntilNextProduction { get; }
 
         public RoomProductionState(float accumulated, int secondsUntilNextProduction)
