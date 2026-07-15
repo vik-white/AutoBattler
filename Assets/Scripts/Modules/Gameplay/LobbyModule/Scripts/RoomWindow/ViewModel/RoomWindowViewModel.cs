@@ -112,6 +112,14 @@ namespace vikwhite
             _canUpgrade.Value = currentConfig != null
                                 && currentConfig.ResRequirements.All(IsResourceRequirementMet)
                                 && currentConfig.RoomRequirements.All(IsRoomRequirementMet);
+
+            var content = _content.Value;
+            if (content == null) return;
+
+            _content.Value = new RoomWindowContent(
+                content.Production,
+                CreateRequirementLines(currentConfig),
+                content.Upgrades);
         }
 
         private bool IsResourceRequirementMet(ResourceCountData requirement)
@@ -139,16 +147,22 @@ namespace vikwhite
             };
         }
 
-        private static IReadOnlyList<RoomLineModel> CreateRequirementLines(IRoomData currentConfig)
+        private IReadOnlyList<RoomLineModel> CreateRequirementLines(IRoomData currentConfig)
         {
             if (currentConfig == null) return Array.Empty<RoomLineModel>();
 
             var lines = new List<RoomLineModel>();
             foreach (var requirement in currentConfig.ResRequirements)
-                lines.Add(new RoomLineModel(requirement.Resource.ToString(), FormatNumber(requirement.Count)));
+                lines.Add(new RoomLineModel(
+                    requirement.Resource.ToString(),
+                    FormatNumber(requirement.Count),
+                    IsResourceRequirementMet(requirement)));
 
             foreach (var requirement in currentConfig.RoomRequirements)
-                lines.Add(new RoomLineModel(requirement.Type.ToString(), $"Lv.{requirement.Level}"));
+                lines.Add(new RoomLineModel(
+                    requirement.Type.ToString(),
+                    $"Lv.{requirement.Level}",
+                    IsRoomRequirementMet(requirement)));
 
             return lines;
         }
