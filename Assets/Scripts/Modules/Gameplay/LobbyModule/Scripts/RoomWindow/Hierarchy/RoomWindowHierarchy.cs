@@ -10,5 +10,8 @@ namespace vikwhite
         public Button CloseButton;
         public Button CloseFadeButton;
         public Button UpgradeButton;
+        public Transform ProdactionContainer;
+        public Transform UpgradesContainer;
+        public Transform RequirementsContainer;
     }
 }
