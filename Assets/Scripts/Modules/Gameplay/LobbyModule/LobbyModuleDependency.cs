@@ -20,6 +20,10 @@ namespace vikwhite
             Register<IRoomLineViewFactory, RoomLineViewFactory>();
             Register<RoomLineViewModel>();
             Register<RoomLineView>();
+
+            Register<IRoomProductionViewFactory, RoomProductionViewFactory>();
+            Register<RoomProductionViewModel>();
+            Register<RoomProductionView>();
             
             Register<IRoomFactory, RoomFactory>();
             Register<Room>();

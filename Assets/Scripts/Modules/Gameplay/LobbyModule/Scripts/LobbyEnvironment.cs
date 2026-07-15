@@ -49,6 +49,7 @@ namespace vikwhite
         protected override void Release()
         {
             Resolve<IStateMachine<ILobbyState>>().SwitchState<ILobbyEndState>();
+            Resolve<IRoomsService>().Clear();
             SceneManager.SetActiveScene(_previousActiveScene);
             SceneManager.UnloadSceneAsync(TavernScene);
         }
