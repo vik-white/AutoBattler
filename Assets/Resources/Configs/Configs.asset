@@ -3160,8 +3160,8 @@ MonoBehaviour:
       - Type: 0
         Count: 100
       CapacityUpgrade:
-      - Resource: 13
-        Count: 100
+      - Type: 0
+        Count: 300
       ResRequirements:
       - Resource: 13
         Count: 100
@@ -3175,8 +3175,8 @@ MonoBehaviour:
       - Type: 0
         Count: 110
       CapacityUpgrade:
-      - Resource: 13
-        Count: 100
+      - Type: 0
+        Count: 300
       ResRequirements:
       - Resource: 13
         Count: 110
@@ -3190,8 +3190,8 @@ MonoBehaviour:
       - Type: 0
         Count: 120
       CapacityUpgrade:
-      - Resource: 13
-        Count: 100
+      - Type: 0
+        Count: 300
       ResRequirements:
       - Resource: 13
         Count: 120
@@ -3205,8 +3205,8 @@ MonoBehaviour:
       - Type: 0
         Count: 130
       CapacityUpgrade:
-      - Resource: 13
-        Count: 100
+      - Type: 0
+        Count: 300
       ResRequirements:
       - Resource: 13
         Count: 130
@@ -3220,8 +3220,8 @@ MonoBehaviour:
       - Type: 1
         Count: 10
       CapacityUpgrade:
-      - Resource: 0
-        Count: 10
+      - Type: 1
+        Count: 100
       ResRequirements:
       - Resource: 13
         Count: 100
@@ -3239,8 +3239,8 @@ MonoBehaviour:
       - Type: 1
         Count: 10
       CapacityUpgrade:
-      - Resource: 0
-        Count: 10
+      - Type: 1
+        Count: 100
       ResRequirements:
       - Resource: 13
         Count: 100
@@ -3258,8 +3258,8 @@ MonoBehaviour:
       - Type: 2
         Count: 0.1
       CapacityUpgrade:
-      - Resource: 2
-        Count: 1
+      - Type: 2
+        Count: 2
       ResRequirements:
       - Resource: 13
         Count: 100
@@ -3275,8 +3275,8 @@ MonoBehaviour:
       - Type: 2
         Count: 0.1
       CapacityUpgrade:
-      - Resource: 2
-        Count: 1
+      - Type: 2
+        Count: 2
       ResRequirements:
       - Resource: 13
         Count: 100

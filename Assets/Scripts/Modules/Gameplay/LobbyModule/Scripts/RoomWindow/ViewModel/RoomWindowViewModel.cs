@@ -181,7 +181,7 @@ namespace vikwhite
                 lines.Add(new RoomLineModel($"{upgrade.Type} Production", FormatUpgrade(upgrade.Count)));
 
             foreach (var upgrade in upgradeConfig.CapacityUpgrade)
-                lines.Add(new RoomLineModel($"{upgrade.Resource} Capacity", FormatUpgrade(upgrade.Count)));
+                lines.Add(new RoomLineModel($"{upgrade.Type} Capacity", FormatUpgrade(upgrade.Count)));
 
             return lines;
         }
