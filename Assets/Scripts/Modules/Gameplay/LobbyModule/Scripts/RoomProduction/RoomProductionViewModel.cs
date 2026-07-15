@@ -1,14 +1,29 @@
-using UniRx;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace vikwhite
 {
     public class RoomProductionViewModel : ViewModel<RoomProductionModel>
     {
-        public ResourceType Type => Model.Type;
-        public IReadOnlyReactiveProperty<float> Production => Model.Room.Production;
+        private readonly IRoomsService _roomsService;
 
-        public RoomProductionViewModel(RoomProductionModel model) : base(model) { }
+        public ResourceType Type => Model.Type;
+        public UnityAction OnCollect;
+
+        public RoomProductionViewModel(RoomProductionModel model, IRoomsService roomsService) : base(model)
+        {
+            _roomsService = roomsService;
+            OnCollect = Collect;
+        }
+
+        public RoomProductionState GetState()
+        {
+            return RoomProductionCalculator.Calculate(
+                Model.Room.LastProductionCollectionUnixTime.Value,
+                Model.Room.Production.Value,
+                DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+        }
 
         public bool TryGetWorldPosition(out Vector3 position)
         {
@@ -20,6 +35,14 @@ namespace vikwhite
 
             position = Model.Anchor.bounds.center;
             return true;
+        }
+
+        private void Collect() => _roomsService.CollectProduction(Model.Room, Model.Type);
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            OnCollect = null;
         }
     }
 }

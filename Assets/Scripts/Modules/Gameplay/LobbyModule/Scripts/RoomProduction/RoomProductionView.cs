@@ -1,5 +1,6 @@
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using vikwhite.Data;
 
 namespace vikwhite
@@ -8,11 +9,13 @@ namespace vikwhite
     {
         private readonly IConfigs _configs;
         private readonly RectTransform _rectTransform;
+        private readonly Button _button;
 
         public RoomProductionView(GameObject view, IConfigs configs) : base(view)
         {
             _configs = configs;
             _rectTransform = view.transform as RectTransform;
+            _button = view.GetComponent<Button>();
         }
 
         protected override void UpdateViewModel(RoomProductionViewModel viewModel)
@@ -24,18 +27,26 @@ namespace vikwhite
             _rectTransform.localScale = Vector3.one;
 
             var canvasGroup = GameObject.GetComponent<CanvasGroup>();
-            if (canvasGroup == null) canvasGroup = GameObject.AddComponent<CanvasGroup>();
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+            if (canvasGroup != null)
+            {
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+            }
 
             if (_configs.UI.ResourceIcons.TryGetValue(viewModel.Type, out var icon))
                 _view.Icon.sprite = icon;
             _view.Icon.preserveAspect = true;
-            _view.Time.gameObject.SetActive(false);
+            _view.Time.gameObject.SetActive(true);
 
-            Bind(viewModel.Production, SetProduction);
-            Register(Observable.EveryLateUpdate().Subscribe(_ => UpdatePosition()));
+            if (_button != null) BindClick(_button, viewModel.OnCollect);
+            Register(Observable.EveryLateUpdate().Subscribe(_ => UpdateView()));
+            UpdateView();
+        }
+
+        private void UpdateView()
+        {
             UpdatePosition();
+            UpdateProduction();
         }
 
         private void UpdatePosition()
@@ -55,12 +66,17 @@ namespace vikwhite
             if (isVisible) _rectTransform.SetUiPosition(screenPosition);
         }
 
-        private void SetProduction(float production)
+        private void UpdateProduction()
         {
-            var rounded = Mathf.Round(production);
-            _view.Value.text = Mathf.Approximately(production, rounded)
-                ? Mathf.RoundToInt(production).ToString()
-                : $"{production:0.#}";
+            if (BaseViewModel == null) return;
+
+            var state = BaseViewModel.GetState();
+            var rounded = Mathf.Round(state.Accumulated);
+            _view.Value.text = Mathf.Approximately(state.Accumulated, rounded)
+                ? Mathf.RoundToInt(state.Accumulated).ToString()
+                : $"{state.Accumulated:0.#}";
+            _view.Time.text = $"{state.SecondsUntilNextProduction / 60:00}:" +
+                              $"{state.SecondsUntilNextProduction % 60:00}";
         }
     }
 }

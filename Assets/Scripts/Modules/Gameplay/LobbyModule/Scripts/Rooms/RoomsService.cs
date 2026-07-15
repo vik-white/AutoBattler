@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace vikwhite
         void Clear();
         Room Get(RoomType type);
         void Upgrade(Room room);
+        void CollectProduction(Room room, ResourceType resourceType);
     }
     
     public class RoomsService : IRoomsService
@@ -57,7 +59,11 @@ namespace vikwhite
                     .OrderBy(data => data.Level)
                     .ToList();
                 var configData = roomConfigs.First();
-                var roomModel = _roomFactory.Create(profileData.Type, profileData.Level, profileData.Production);
+                var roomModel = _roomFactory.Create(
+                    profileData.Type,
+                    profileData.Level,
+                    profileData.Production,
+                    profileData.LastProductionCollectionUnixTime);
                 _rooms.Add(roomModel.Type, roomModel);
                 _roomSelection.Register(roomContainer.Collider, roomModel);
 
@@ -119,13 +125,33 @@ namespace vikwhite
             foreach (var cost in resourceCosts)
                 _resourceService.Spend(cost.Type, cost.Amount);
 
+            var upgradeUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            room.SetLastProductionCollectionTime(upgradeUnixTime);
             foreach (var upgrade in configData.ProductionUpgrade.GroupBy(data => data.Type))
             {
                 if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
+                {
+                    targetRoom.SetLastProductionCollectionTime(upgradeUnixTime);
                     targetRoom.AddProduction(upgrade.Sum(data => data.Count));
+                }
             }
 
             room.UpgradeLevel();
+        }
+
+        public void CollectProduction(Room room, ResourceType resourceType)
+        {
+            if (room == null || resourceType == ResourceType.None) return;
+
+            var currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            var state = RoomProductionCalculator.Calculate(
+                room.LastProductionCollectionUnixTime.Value,
+                room.Production.Value,
+                currentUnixTime);
+            var amount = Mathf.FloorToInt(state.Accumulated);
+
+            if (amount > 0) _resourceService.Add(resourceType, amount);
+            room.SetLastProductionCollectionTime(currentUnixTime);
         }
 
         public Room Get(RoomType type)

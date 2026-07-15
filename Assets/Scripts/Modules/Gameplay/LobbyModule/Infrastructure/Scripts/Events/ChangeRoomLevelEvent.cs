@@ -23,4 +23,16 @@ namespace vikwhite
             Production = production;
         }
     }
+
+    public class ChangeRoomProductionCollectionTimeEvent
+    {
+        public RoomType Type;
+        public long UnixTime;
+
+        public ChangeRoomProductionCollectionTimeEvent(RoomType type, long unixTime)
+        {
+            Type = type;
+            UnixTime = unixTime;
+        }
+    }
 }

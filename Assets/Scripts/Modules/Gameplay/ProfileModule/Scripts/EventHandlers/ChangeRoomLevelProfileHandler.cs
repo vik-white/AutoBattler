@@ -27,4 +27,19 @@ namespace vikwhite
             }
         }
     }
+
+    public class ChangeRoomProductionCollectionTimeProfileHandler
+        : ProfileHandler<ChangeRoomProductionCollectionTimeEvent>
+    {
+        protected override void Handle(ChangeRoomProductionCollectionTimeEvent evnt)
+        {
+            foreach (var roomData in _profile.Data.Rooms)
+            {
+                if (roomData.Type != evnt.Type) continue;
+                roomData.LastProductionCollectionUnixTime = evnt.UnixTime;
+                _profile.Save();
+                return;
+            }
+        }
+    }
 }

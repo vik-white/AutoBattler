@@ -20,6 +20,7 @@ namespace vikwhite
 
         public void Rest()
         {
+            var currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             Data = new ProfileData()
             {
                 Characters = new (),
@@ -47,7 +48,13 @@ namespace vikwhite
             };
             
             foreach (var roomData in _configs.Rooms.GetAll().Where(e => e.Level == 1))
-                Data.Rooms.Add(new RoomData { Type = roomData.Type, Level = 0, Production = 0f });
+                Data.Rooms.Add(new RoomData
+                {
+                    Type = roomData.Type,
+                    Level = 0,
+                    Production = 0f,
+                    LastProductionCollectionUnixTime = currentUnixTime
+                });
 
             foreach (var characterData in _configs.Characters.GetAll())
             {
@@ -99,6 +106,7 @@ namespace vikwhite
             {
                 string json = File.ReadAllText(path);
                 Data = JsonUtility.FromJson<ProfileData>(json);
+                if (InitializeMissingRoomProductionTimes()) Save();
             }
             else
             {
@@ -106,6 +114,21 @@ namespace vikwhite
             }
 
             _autoUseSkillsChanged = false;
+        }
+
+        private bool InitializeMissingRoomProductionTimes()
+        {
+            var changed = false;
+            var currentUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            foreach (var room in Data.Rooms)
+            {
+                if (room.LastProductionCollectionUnixTime > 0) continue;
+
+                room.LastProductionCollectionUnixTime = currentUnixTime;
+                changed = true;
+            }
+
+            return changed;
         }
 
         private void PreserveAutoUseSkillsIfUnchanged()
