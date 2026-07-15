@@ -54,9 +54,12 @@ namespace vikwhite
 
         public void Upgrade(Room room)
         {
-            var configData = _configs.Rooms.GetAll()
-                .Find(data => data.Type == room.Type && data.Level == room.Level.Value);
-            if (configData == null) return;
+            var roomConfigs = _configs.Rooms.GetAll()
+                .Where(data => data.Type == room.Type)
+                .ToList();
+            var configData = roomConfigs.Find(data => data.Level == room.Level.Value);
+            var hasNextLevel = roomConfigs.Any(data => data.Level == room.Level.Value + 1);
+            if (configData == null || !hasNextLevel) return;
 
             foreach (var upgrade in configData.ProductionUpgrade.GroupBy(data => data.Type))
             {

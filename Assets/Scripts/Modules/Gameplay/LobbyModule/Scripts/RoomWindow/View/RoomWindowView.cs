@@ -24,6 +24,7 @@ namespace vikwhite
             BindClick(_view.UpgradeButton, viewModel.OnUpgrade);
             Bind(viewModel.Level, level => _view.Title.text = $"{viewModel.Title} Lv.{level}");
             Bind(viewModel.CanUpgrade, canUpgrade => _view.UpgradeButton.interactable = canUpgrade);
+            Bind(viewModel.HasUpgrade, hasUpgrade => _view.UpgradeButton.gameObject.SetActive(hasUpgrade));
             Bind(viewModel.Content, RefreshContent);
         }
 

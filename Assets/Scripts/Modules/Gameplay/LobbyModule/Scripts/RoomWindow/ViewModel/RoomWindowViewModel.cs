@@ -33,11 +33,13 @@ namespace vikwhite
         private readonly CompositeDisposable _requirementSubscriptions = new();
         private readonly ReactiveProperty<RoomWindowContent> _content = new();
         private readonly ReactiveProperty<bool> _canUpgrade = new();
+        private readonly ReactiveProperty<bool> _hasUpgrade = new();
 
         public string Title => Model.Type.ToString();
         public IReadOnlyReactiveProperty<int> Level => Model.Level;
         public IReadOnlyReactiveProperty<RoomWindowContent> Content => _content;
         public IReadOnlyReactiveProperty<bool> CanUpgrade => _canUpgrade;
+        public IReadOnlyReactiveProperty<bool> HasUpgrade => _hasUpgrade;
         public UnityAction OnUpgrade;
 
         public RoomWindowViewModel(
@@ -49,7 +51,7 @@ namespace vikwhite
             _configs = configs;
             _resourceService = resourceService;
             _roomsService = roomsService;
-            AddDisposables(_content, _canUpgrade, _requirementSubscriptions);
+            AddDisposables(_content, _canUpgrade, _hasUpgrade, _requirementSubscriptions);
             AddDisposable(Level
                 .CombineLatest(Model.Production, (level, _) => level)
                 .Subscribe(RefreshContent));
@@ -64,35 +66,38 @@ namespace vikwhite
                 .ToList();
 
             var currentConfig = roomConfigs.Find(data => data.Level == level);
+            var nextConfig = roomConfigs.Find(data => data.Level == level + 1);
             var productionConfig = roomConfigs.LastOrDefault(data => data.Level <= level);
+            _hasUpgrade.Value = nextConfig != null;
+            var upgradeConfig = _hasUpgrade.Value ? currentConfig : null;
 
             _content.Value = new RoomWindowContent(
                 CreateProductionLines(productionConfig, Model.Production.Value),
-                CreateRequirementLines(currentConfig),
-                CreateUpgradeLines(currentConfig));
-            BindRequirementSubscriptions(currentConfig);
+                CreateRequirementLines(upgradeConfig),
+                CreateUpgradeLines(upgradeConfig));
+            BindRequirementSubscriptions(upgradeConfig);
         }
 
-        private void BindRequirementSubscriptions(IRoomData currentConfig)
+        private void BindRequirementSubscriptions(IRoomData upgradeConfig)
         {
             _requirementSubscriptions.Clear();
-            if (currentConfig == null)
+            if (upgradeConfig == null)
             {
                 _canUpgrade.Value = false;
                 return;
             }
 
-            foreach (var resource in currentConfig.ResRequirements
+            foreach (var resource in upgradeConfig.ResRequirements
                          .Select(data => data.Resource)
                          .Where(type => type != ResourceType.None)
                          .Distinct())
             {
                 _resourceService.GetAmount(resource)
-                    .Subscribe(_ => RefreshCanUpgrade(currentConfig))
+                    .Subscribe(_ => RefreshCanUpgrade(upgradeConfig))
                     .AddTo(_requirementSubscriptions);
             }
 
-            foreach (var roomType in currentConfig.RoomRequirements
+            foreach (var roomType in upgradeConfig.RoomRequirements
                          .Select(data => data.Type)
                          .Distinct())
             {
@@ -100,25 +105,25 @@ namespace vikwhite
                 if (requiredRoom == null) continue;
 
                 requiredRoom.Level
-                    .Subscribe(_ => RefreshCanUpgrade(currentConfig))
+                    .Subscribe(_ => RefreshCanUpgrade(upgradeConfig))
                     .AddTo(_requirementSubscriptions);
             }
 
-            RefreshCanUpgrade(currentConfig);
+            RefreshCanUpgrade(upgradeConfig);
         }
 
-        private void RefreshCanUpgrade(IRoomData currentConfig)
+        private void RefreshCanUpgrade(IRoomData upgradeConfig)
         {
-            _canUpgrade.Value = currentConfig != null
-                                && currentConfig.ResRequirements.All(IsResourceRequirementMet)
-                                && currentConfig.RoomRequirements.All(IsRoomRequirementMet);
+            _canUpgrade.Value = upgradeConfig != null
+                                && upgradeConfig.ResRequirements.All(IsResourceRequirementMet)
+                                && upgradeConfig.RoomRequirements.All(IsRoomRequirementMet);
 
             var content = _content.Value;
             if (content == null) return;
 
             _content.Value = new RoomWindowContent(
                 content.Production,
-                CreateRequirementLines(currentConfig),
+                CreateRequirementLines(upgradeConfig),
                 content.Upgrades);
         }
 
@@ -147,18 +152,18 @@ namespace vikwhite
             };
         }
 
-        private IReadOnlyList<RoomLineModel> CreateRequirementLines(IRoomData currentConfig)
+        private IReadOnlyList<RoomLineModel> CreateRequirementLines(IRoomData upgradeConfig)
         {
-            if (currentConfig == null) return Array.Empty<RoomLineModel>();
+            if (upgradeConfig == null) return Array.Empty<RoomLineModel>();
 
             var lines = new List<RoomLineModel>();
-            foreach (var requirement in currentConfig.ResRequirements)
+            foreach (var requirement in upgradeConfig.ResRequirements)
                 lines.Add(new RoomLineModel(
                     requirement.Resource.ToString(),
                     FormatNumber(requirement.Count),
                     IsResourceRequirementMet(requirement)));
 
-            foreach (var requirement in currentConfig.RoomRequirements)
+            foreach (var requirement in upgradeConfig.RoomRequirements)
                 lines.Add(new RoomLineModel(
                     requirement.Type.ToString(),
                     $"Lv.{requirement.Level}",
@@ -167,15 +172,15 @@ namespace vikwhite
             return lines;
         }
 
-        private static IReadOnlyList<RoomLineModel> CreateUpgradeLines(IRoomData currentConfig)
+        private static IReadOnlyList<RoomLineModel> CreateUpgradeLines(IRoomData upgradeConfig)
         {
-            if (currentConfig == null) return Array.Empty<RoomLineModel>();
+            if (upgradeConfig == null) return Array.Empty<RoomLineModel>();
 
             var lines = new List<RoomLineModel>();
-            foreach (var upgrade in currentConfig.ProductionUpgrade)
+            foreach (var upgrade in upgradeConfig.ProductionUpgrade)
                 lines.Add(new RoomLineModel($"{upgrade.Type} Production", FormatUpgrade(upgrade.Count)));
 
-            foreach (var upgrade in currentConfig.CapacityUpgrade)
+            foreach (var upgrade in upgradeConfig.CapacityUpgrade)
                 lines.Add(new RoomLineModel($"{upgrade.Resource} Capacity", FormatUpgrade(upgrade.Count)));
 
             return lines;
