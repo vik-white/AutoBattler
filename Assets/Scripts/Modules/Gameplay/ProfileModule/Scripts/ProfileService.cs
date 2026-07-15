@@ -47,7 +47,7 @@ namespace vikwhite
             };
             
             foreach (var roomData in _configs.Rooms.GetAll().Where(e => e.Level == 1))
-                Data.Rooms.Add(new RoomData { Type = roomData.Type, Level = 1, Production = 0f });
+                Data.Rooms.Add(new RoomData { Type = roomData.Type, Level = 0, Production = 0f });
 
             foreach (var characterData in _configs.Characters.GetAll())
             {

@@ -8,6 +8,7 @@ namespace vikwhite
     public interface IRoomsService
     {
         void Initialize();
+        Room Get(RoomType type);
         void Upgrade(Room room);
     }
     
@@ -64,6 +65,12 @@ namespace vikwhite
             }
 
             room.UpgradeLevel();
+        }
+
+        public Room Get(RoomType type)
+        {
+            _rooms.TryGetValue(type, out var room);
+            return room;
         }
     }
 }
