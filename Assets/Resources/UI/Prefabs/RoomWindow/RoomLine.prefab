@@ -358,6 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6062501924837348944}
+  - component: {fileID: 7456801411008058026}
   m_Layer: 5
   m_Name: RoomLine
   m_TagString: Untagged
@@ -387,3 +388,17 @@ RectTransform:
   m_AnchoredPosition: {x: -0.19421387, y: 135.98532}
   m_SizeDelta: {x: 574.8806, y: 47.9706}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7456801411008058026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778824340293222409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8faae664224e9680baf907a322dfcf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Lobby::vikwhite.RoomLineHierarchy
+  Label: {fileID: 1637544498584456430}
+  Value: {fileID: 6760355074920101638}
