@@ -15,10 +15,11 @@ namespace vikwhite
         {
             BindClick(_view.CloseButton, viewModel.Close);
             BindClick(_view.AddGemButton, viewModel.OnAddGem);
-            BindClick(_view.AddGoldButton, viewModel.OnAddGold);
+            BindClick(_view.AddExpButton, viewModel.OnAddGold);
             BindClick(_view.AddBookButton, viewModel.OnAddBook);
             BindClick(_view.AddKeyCommonButton, viewModel.OnAddKeyCommon);
             BindClick(_view.AddKeyEpicButton, viewModel.OnAddKeyEpic);
+            BindClick(_view.AddGoldButton, viewModel.OnAddGold);
             foreach (Transform child in _view.MapItemContainer) GameObject.Destroy(child.gameObject);
             foreach (var mapItem in viewModel.MapItems)
             {
