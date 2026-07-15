@@ -63,6 +63,7 @@ namespace vikwhite
                     profileData.Type,
                     profileData.Level,
                     profileData.Production,
+                    profileData.Capacity,
                     profileData.LastProductionCollectionUnixTime);
                 _rooms.Add(roomModel.Type, roomModel);
                 _roomSelection.Register(roomContainer.Collider, roomModel);
@@ -136,6 +137,15 @@ namespace vikwhite
                 }
             }
 
+            foreach (var upgrade in configData.CapacityUpgrade.GroupBy(data => data.Type))
+            {
+                if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
+                {
+                    targetRoom.SetLastProductionCollectionTime(upgradeUnixTime);
+                    targetRoom.AddCapacity(upgrade.Sum(data => data.Count));
+                }
+            }
+
             room.UpgradeLevel();
         }
 
@@ -147,6 +157,7 @@ namespace vikwhite
             var state = RoomProductionCalculator.Calculate(
                 room.LastProductionCollectionUnixTime.Value,
                 room.Production.Value,
+                room.Capacity.Value,
                 currentUnixTime);
             var amount = state.CollectibleAmount;
 

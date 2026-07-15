@@ -37,15 +37,22 @@ namespace vikwhite
         public static RoomProductionState Calculate(
             long lastCollectionUnixTime,
             float production,
+            float capacity,
             long currentUnixTime)
         {
             var elapsedSeconds = Math.Max(0, currentUnixTime - lastCollectionUnixTime);
             var completedIntervals = elapsedSeconds / ProductionIntervalSeconds;
-            var secondsUntilNextProduction = (int)(ProductionIntervalSeconds
-                                                   - elapsedSeconds % ProductionIntervalSeconds);
+            var normalizedCapacity = Mathf.Max(0f, capacity);
+            var accumulated = Mathf.Min(
+                completedIntervals * Mathf.Max(0f, production),
+                normalizedCapacity);
+            var isAtCapacity = accumulated >= normalizedCapacity;
+            var secondsUntilNextProduction = isAtCapacity
+                ? 0
+                : (int)(ProductionIntervalSeconds - elapsedSeconds % ProductionIntervalSeconds);
 
             return new RoomProductionState(
-                completedIntervals * production,
+                accumulated,
                 secondsUntilNextProduction);
         }
     }

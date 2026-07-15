@@ -54,6 +54,7 @@ namespace vikwhite
             AddDisposables(_content, _canUpgrade, _hasUpgrade, _requirementSubscriptions);
             AddDisposable(Level
                 .CombineLatest(Model.Production, (level, _) => level)
+                .CombineLatest(Model.Capacity, (level, _) => level)
                 .Subscribe(RefreshContent));
             OnUpgrade = Upgrade;
         }
@@ -72,7 +73,7 @@ namespace vikwhite
             var upgradeConfig = _hasUpgrade.Value ? currentConfig : null;
 
             _content.Value = new RoomWindowContent(
-                CreateProductionLines(productionConfig, Model.Production.Value),
+                CreateProductionLines(productionConfig, Model.Production.Value, Model.Capacity.Value),
                 CreateRequirementLines(upgradeConfig),
                 CreateUpgradeLines(upgradeConfig));
             BindRequirementSubscriptions(upgradeConfig);
@@ -141,14 +142,18 @@ namespace vikwhite
 
         private static IReadOnlyList<RoomLineModel> CreateProductionLines(
             IRoomData currentConfig,
-            float production)
+            float production,
+            float capacity)
         {
             if (currentConfig == null || currentConfig.Production == ResourceType.None)
                 return Array.Empty<RoomLineModel>();
 
             return new[]
             {
-                new RoomLineModel(currentConfig.Production.ToString(), FormatNumber(production))
+                new RoomLineModel(
+                    currentConfig.Production.ToString(),
+                    $"{FormatNumber(production)}/min"),
+                new RoomLineModel("Capacity", FormatNumber(capacity))
             };
         }
 

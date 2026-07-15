@@ -24,6 +24,18 @@ namespace vikwhite
         }
     }
 
+    public class ChangeRoomCapacityEvent
+    {
+        public RoomType Type;
+        public float Capacity;
+
+        public ChangeRoomCapacityEvent(RoomType type, float capacity)
+        {
+            Type = type;
+            Capacity = capacity;
+        }
+    }
+
     public class ChangeRoomProductionCollectionTimeEvent
     {
         public RoomType Type;

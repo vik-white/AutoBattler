@@ -39,7 +39,7 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.BookMystic, Amount = 0 },
                     new ResourceData{ Type = ResourceType.BookSupport, Amount = 0 },
                     new ResourceData{ Type = ResourceType.BookTank, Amount = 0 },
-                    new ResourceData{ Type = ResourceType.Gold, Amount = 0 },
+                    new ResourceData{ Type = ResourceType.Gold, Amount = 100 },
                 },
                 Quests = new (),
                 Rooms = new (),
@@ -53,6 +53,7 @@ namespace vikwhite
                     Type = roomData.Type,
                     Level = 0,
                     Production = 0f,
+                    Capacity = 0f,
                     LastProductionCollectionUnixTime = currentUnixTime
                 });
 

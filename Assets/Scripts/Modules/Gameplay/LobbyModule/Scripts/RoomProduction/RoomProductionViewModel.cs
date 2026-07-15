@@ -23,6 +23,7 @@ namespace vikwhite
             return RoomProductionCalculator.Calculate(
                 Model.Room.LastProductionCollectionUnixTime.Value,
                 Model.Room.Production.Value,
+                Model.Room.Capacity.Value,
                 DateTimeOffset.UtcNow.ToUnixTimeSeconds());
         }
 

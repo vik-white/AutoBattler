@@ -28,6 +28,20 @@ namespace vikwhite
         }
     }
 
+    public class ChangeRoomCapacityProfileHandler : ProfileHandler<ChangeRoomCapacityEvent>
+    {
+        protected override void Handle(ChangeRoomCapacityEvent evnt)
+        {
+            foreach (var roomData in _profile.Data.Rooms)
+            {
+                if (roomData.Type != evnt.Type) continue;
+                roomData.Capacity = evnt.Capacity;
+                _profile.Save();
+                return;
+            }
+        }
+    }
+
     public class ChangeRoomProductionCollectionTimeProfileHandler
         : ProfileHandler<ChangeRoomProductionCollectionTimeEvent>
     {
