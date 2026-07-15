@@ -3173,13 +3173,13 @@ MonoBehaviour:
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 100
+        Count: 110
       CapacityUpgrade:
       - Resource: 13
         Count: 100
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 110
       RoomRequirements: []
       UpgradeTime: 0.1
     - Type: 0
@@ -3188,13 +3188,13 @@ MonoBehaviour:
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 100
+        Count: 120
       CapacityUpgrade:
       - Resource: 13
         Count: 100
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 120
       RoomRequirements: []
       UpgradeTime: 0.1
     - Type: 0
@@ -3203,13 +3203,13 @@ MonoBehaviour:
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 100
+        Count: 130
       CapacityUpgrade:
       - Resource: 13
         Count: 100
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 130
       RoomRequirements: []
       UpgradeTime: 0.1
     - Type: 1
@@ -3309,7 +3309,7 @@ MonoBehaviour:
       CapacityUpgrade: []
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 110
       RoomRequirements:
       - Type: 0
         Level: 1
