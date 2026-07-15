@@ -7,5 +7,6 @@ namespace vikwhite
     {
         public RoomType Type;
         public int Level;
+        public float Production;
     }
 }

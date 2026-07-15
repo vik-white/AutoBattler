@@ -8,6 +8,7 @@ namespace vikwhite
 
         public RoomType Type;
         public ReactiveProperty<int> Level;
+        public ReactiveProperty<float> Production;
 
         public Room(IEventDispatcher dispatcher)
         {
