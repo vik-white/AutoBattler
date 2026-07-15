@@ -28,6 +28,7 @@ namespace vikwhite
     public class RoomWindowViewModel : WindowViewModel<Room>
     {
         private readonly IConfigs _configs;
+        private readonly IProfileService _profile;
         private readonly ReactiveProperty<RoomWindowContent> _content = new();
         private readonly ReactiveProperty<bool> _canUpgrade = new();
 
@@ -37,9 +38,10 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<bool> CanUpgrade => _canUpgrade;
         public UnityAction OnUpgrade;
 
-        public RoomWindowViewModel(Room room, IConfigs configs) : base(room)
+        public RoomWindowViewModel(Room room, IConfigs configs, IProfileService profile) : base(room)
         {
             _configs = configs;
+            _profile = profile;
             AddDisposables(_content, _canUpgrade);
             AddDisposable(Level.Subscribe(RefreshContent));
             OnUpgrade = Upgrade;
@@ -47,7 +49,8 @@ namespace vikwhite
 
         private void RefreshContent(int level)
         {
-            var roomConfigs = _configs.Rooms.GetAll()
+            var allRoomConfigs = _configs.Rooms.GetAll();
+            var roomConfigs = allRoomConfigs
                 .Where(data => data.Type == Model.Type)
                 .OrderBy(data => data.Level)
                 .ToList();
@@ -57,30 +60,35 @@ namespace vikwhite
 
             _canUpgrade.Value = currentConfig != null;
             _content.Value = new RoomWindowContent(
-                CreateProductionLines(roomConfigs, productionConfig, level),
+                CreateProductionLines(allRoomConfigs, productionConfig, level),
                 CreateRequirementLines(currentConfig),
                 CreateUpgradeLines(currentConfig));
         }
 
-        private static IReadOnlyList<RoomLineModel> CreateProductionLines(
-            List<IRoomData> roomConfigs,
+        private IReadOnlyList<RoomLineModel> CreateProductionLines(
+            List<IRoomData> allRoomConfigs,
             IRoomData currentConfig,
             int level)
         {
             if (currentConfig == null || currentConfig.Production == ResourceType.None)
                 return Array.Empty<RoomLineModel>();
 
-            // ProductionUpgrade contains the production delta unlocked by each level.
-            var production = roomConfigs
-                .Where(data => data.Level <= level)
+            var production = allRoomConfigs
+                .Where(data => data.Level <= GetRoomLevel(data.Type, level))
                 .SelectMany(data => data.ProductionUpgrade)
-                .Where(data => data.Resource == currentConfig.Production)
+                .Where(data => data.Type == Model.Type)
                 .Sum(data => data.Count);
 
             return new[]
             {
                 new RoomLineModel(currentConfig.Production.ToString(), FormatNumber(production))
             };
+        }
+
+        private int GetRoomLevel(RoomType type, int currentRoomLevel)
+        {
+            if (type == Model.Type) return currentRoomLevel;
+            return _profile.Data.Rooms.Find(data => data.Type == type)?.Level ?? 0;
         }
 
         private static IReadOnlyList<RoomLineModel> CreateRequirementLines(IRoomData currentConfig)
@@ -103,7 +111,7 @@ namespace vikwhite
 
             var lines = new List<RoomLineModel>();
             foreach (var upgrade in currentConfig.ProductionUpgrade)
-                lines.Add(new RoomLineModel($"{upgrade.Resource} Production", FormatUpgrade(upgrade.Count)));
+                lines.Add(new RoomLineModel($"{upgrade.Type} Production", FormatUpgrade(upgrade.Count)));
 
             foreach (var upgrade in currentConfig.CapacityUpgrade)
                 lines.Add(new RoomLineModel($"{upgrade.Resource} Capacity", FormatUpgrade(upgrade.Count)));
