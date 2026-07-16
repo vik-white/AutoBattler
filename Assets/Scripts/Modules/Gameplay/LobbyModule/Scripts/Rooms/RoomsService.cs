@@ -242,19 +242,13 @@ namespace vikwhite
             foreach (var upgrade in configData.ProductionUpgrade.GroupBy(data => data.Type))
             {
                 if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
-                {
-                    targetRoom.SetLastProductionCollectionTime(completionUnixTime);
                     targetRoom.AddProduction(upgrade.Sum(data => data.Count));
-                }
             }
 
             foreach (var upgrade in configData.CapacityUpgrade.GroupBy(data => data.Type))
             {
                 if (_rooms.TryGetValue(upgrade.Key, out var targetRoom))
-                {
-                    targetRoom.SetLastProductionCollectionTime(completionUnixTime);
                     targetRoom.AddCapacity(upgrade.Sum(data => data.Count));
-                }
             }
 
             room.UpgradeLevel();
