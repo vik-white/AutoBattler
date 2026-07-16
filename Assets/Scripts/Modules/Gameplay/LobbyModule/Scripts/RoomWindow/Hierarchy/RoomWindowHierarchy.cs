@@ -13,5 +13,6 @@ namespace vikwhite
         public Transform ProdactionContainer;
         public Transform UpgradesContainer;
         public Transform RequirementsContainer;
+        public ProgressBar ProgressBar;
     }
 }
