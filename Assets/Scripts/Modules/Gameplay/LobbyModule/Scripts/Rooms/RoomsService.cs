@@ -42,6 +42,7 @@ namespace vikwhite
         private readonly IRoomProgressViewFactory _roomProgressFactory;
         private readonly IUIRoot _uiRoot;
         private readonly Dictionary<RoomType, Room> _rooms = new();
+        private readonly Dictionary<RoomType, Transform> _roomSceneContainers = new();
         private readonly List<RoomProductionView> _roomProductionViews = new();
         private readonly List<RoomProgressView> _roomProgressViews = new();
         private readonly CompositeDisposable _upgradeSubscriptions = new();
@@ -73,13 +74,11 @@ namespace vikwhite
             var tavern = UnityEngine.Object.FindAnyObjectByType<TavernHierarchy>(FindObjectsInactive.Include);
             foreach (var roomContainer in tavern.Rooms)
             {
-                roomContainer.Container.ClearChildren();
                 var profileData = _profile.Data.Rooms.Find(e => e.Type == roomContainer.Type);
                 var roomConfigs = _configs.Rooms.GetAll()
                     .Where(data => data.Type == roomContainer.Type)
                     .OrderBy(data => data.Level)
                     .ToList();
-                var configData = roomConfigs.First();
                 var roomModel = _roomFactory.Create(
                     profileData.Type,
                     profileData.Level,
@@ -88,10 +87,9 @@ namespace vikwhite
                     profileData.LastProductionCollectionUnixTime,
                     profileData.UpgradeStartUnixTime);
                 _rooms.Add(roomModel.Type, roomModel);
+                _roomSceneContainers.Add(roomModel.Type, roomContainer.Container);
                 _roomSelection.Register(roomContainer.Collider, roomModel);
-
-                var roomGO = GameObject.Instantiate(configData.Prefab, roomContainer.Container);
-                roomGO.transform.localPosition = Vector3.zero;
+                ReplaceRoomPrefab(roomModel);
 
                 var productionConfig = roomConfigs.LastOrDefault(data => data.Level <= roomModel.Level.Value);
                 if (productionConfig != null && productionConfig.Production != ResourceType.None)
@@ -130,6 +128,7 @@ namespace vikwhite
             _roomProductionViews.Clear();
             _roomProgressViews.Clear();
             _roomSelection.Clear();
+            _roomSceneContainers.Clear();
             _rooms.Clear();
         }
 
@@ -259,7 +258,23 @@ namespace vikwhite
             }
 
             room.UpgradeLevel();
+            ReplaceRoomPrefab(room);
             room.SetUpgradeStartTime(0);
+        }
+
+        private void ReplaceRoomPrefab(Room room)
+        {
+            if (room == null
+                || !_roomSceneContainers.TryGetValue(room.Type, out var container))
+                return;
+
+            var config = _configs.Rooms.GetAll()
+                .FirstOrDefault(data => data.Type == room.Type && data.Level == room.Level.Value);
+            if (config?.Prefab == null) return;
+
+            container.ClearChildren();
+            var roomGameObject = GameObject.Instantiate(config.Prefab, container);
+            roomGameObject.transform.localPosition = Vector3.zero;
         }
 
         public void CollectProduction(Room room, ResourceType resourceType)
