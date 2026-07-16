@@ -39,9 +39,11 @@ namespace vikwhite
         private readonly IRoomSelectionService _roomSelection;
         private readonly IResourceService _resourceService;
         private readonly IRoomProductionViewFactory _roomProductionFactory;
+        private readonly IRoomProgressViewFactory _roomProgressFactory;
         private readonly IUIRoot _uiRoot;
         private readonly Dictionary<RoomType, Room> _rooms = new();
         private readonly List<RoomProductionView> _roomProductionViews = new();
+        private readonly List<RoomProgressView> _roomProgressViews = new();
         private readonly CompositeDisposable _upgradeSubscriptions = new();
         
         public RoomsService(
@@ -51,6 +53,7 @@ namespace vikwhite
             IRoomSelectionService roomSelection,
             IResourceService resourceService,
             IRoomProductionViewFactory roomProductionFactory,
+            IRoomProgressViewFactory roomProgressFactory,
             IUIRoot uiRoot)
         {
             _profile = profile;
@@ -59,6 +62,7 @@ namespace vikwhite
             _roomSelection = roomSelection;
             _resourceService = resourceService;
             _roomProductionFactory = roomProductionFactory;
+            _roomProgressFactory = roomProgressFactory;
             _uiRoot = uiRoot;
         }
 
@@ -100,6 +104,11 @@ namespace vikwhite
                         productionModel,
                         _uiRoot.GetLayer(UILayer.WORLD)));
                 }
+
+                var progressModel = new RoomProgressModel(roomModel, roomContainer.Collider);
+                _roomProgressViews.Add(_roomProgressFactory.Get(
+                    progressModel,
+                    _uiRoot.GetLayer(UILayer.WORLD)));
             }
 
             CompleteFinishedUpgrades();
@@ -115,7 +124,11 @@ namespace vikwhite
             for (var i = 0; i < _roomProductionViews.Count; i++)
                 _roomProductionViews[i].DisposeAndDestroy();
 
+            for (var i = 0; i < _roomProgressViews.Count; i++)
+                _roomProgressViews[i].DisposeAndDestroy();
+
             _roomProductionViews.Clear();
+            _roomProgressViews.Clear();
             _roomSelection.Clear();
             _rooms.Clear();
         }
