@@ -216,11 +216,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7062137608079168214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 334.93, y: 45.9413}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6243429745530354087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -958,7 +958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7062137608079168214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -994,6 +994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Window::vikwhite.ProgressBar
   _bar: {fileID: 1346015819507747632}
+  _text: {fileID: 7778295736574030720}
 --- !u!1 &6637102137895458307
 GameObject:
   m_ObjectHideFlags: 0

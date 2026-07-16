@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace vikwhite
@@ -5,6 +6,7 @@ namespace vikwhite
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private RectTransform _bar;
+        [SerializeField] private TMP_Text _text;
 
         private float _fullWidth;
 
@@ -20,6 +22,8 @@ namespace vikwhite
             value = Mathf.Clamp01(value);
             _bar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _fullWidth * value);
         }
+        
+        public void SetText(string text) => _text.text = text;
 
         private void CacheFullWidth()
         {

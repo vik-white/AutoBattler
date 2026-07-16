@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 7292748399674543791}
   - component: {fileID: 2483929635174555511}
   m_Layer: 5
-  m_Name: RoomProduction
+  m_Name: RoomProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
