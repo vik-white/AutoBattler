@@ -3158,312 +3158,5633 @@ MonoBehaviour:
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 100
+        Count: 2
       CapacityUpgrade:
       - Type: 0
-        Count: 300
-      ResRequirements:
-      - Resource: 13
-        Count: 100
+        Count: 480
+      ResRequirements: []
       RoomRequirements: []
-      UpgradeTime: 0.1
+      UpgradeTime: 0
     - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 1
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 110
+        Count: 2
       CapacityUpgrade:
       - Type: 0
-        Count: 300
+        Count: 480
       ResRequirements:
       - Resource: 13
-        Count: 110
-      RoomRequirements: []
-      UpgradeTime: 0.1
+        Count: 180
+      RoomRequirements:
+      - Type: 6
+        Level: 1
+      UpgradeTime: 0.001667
     - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 2
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 120
+        Count: 2
       CapacityUpgrade:
       - Type: 0
-        Count: 300
+        Count: 480
       ResRequirements:
       - Resource: 13
-        Count: 120
-      RoomRequirements: []
-      UpgradeTime: 0.1
+        Count: 805
+      RoomRequirements:
+      - Type: 7
+        Level: 2
+      UpgradeTime: 0.016667
     - Type: 0
       Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
       Level: 3
       Production: 13
       ProductionUpgrade:
       - Type: 0
-        Count: 130
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 1800
+      RoomRequirements:
+      - Type: 3
+        Level: 3
+      UpgradeTime: 0.05
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 4
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1080
+      ResRequirements:
+      - Resource: 13
+        Count: 7600
+      RoomRequirements:
+      - Type: 6
+        Level: 4
+      UpgradeTime: 0.166667
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 5
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 19000
+      RoomRequirements:
+      - Type: 4
+        Level: 5
+      UpgradeTime: 0.5
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 6
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 900
+      ResRequirements:
+      - Resource: 13
+        Count: 69000
+      RoomRequirements:
+      - Type: 7
+        Level: 6
+      UpgradeTime: 1
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 7
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 900
+      ResRequirements:
+      - Resource: 13
+        Count: 120000
+      RoomRequirements:
+      - Type: 5
+        Level: 7
+      UpgradeTime: 2.5
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 8
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 900
+      ResRequirements:
+      - Resource: 13
+        Count: 260000
+      RoomRequirements:
+      - Type: 3
+        Level: 8
+      UpgradeTime: 4.5
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 9
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2950.91
+      ResRequirements:
+      - Resource: 13
+        Count: 460000
+      RoomRequirements:
+      - Type: 4
+        Level: 9
+      UpgradeTime: 6
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 10
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1225.09
+      ResRequirements:
+      - Resource: 13
+        Count: 1300000
+      RoomRequirements:
+      - Type: 9
+        Level: 10
+      UpgradeTime: 7.5
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 11
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1240.36
+      ResRequirements:
+      - Resource: 13
+        Count: 1600000
+      RoomRequirements:
+      - Type: 6
+        Level: 11
+      - Type: 11
+        Level: 11
+      UpgradeTime: 9
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 12
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1648.73
+      ResRequirements:
+      - Resource: 13
+        Count: 2300000
+      RoomRequirements:
+      - Type: 7
+        Level: 12
+      - Type: 11
+        Level: 12
+      UpgradeTime: 11
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 13
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1669.09
+      ResRequirements:
+      - Resource: 13
+        Count: 3100000
+      RoomRequirements:
+      - Type: 3
+        Level: 13
+      - Type: 11
+        Level: 13
+      UpgradeTime: 14
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 14
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4476.73
+      ResRequirements:
+      - Resource: 13
+        Count: 4600000
+      RoomRequirements:
+      - Type: 4
+        Level: 14
+      - Type: 11
+        Level: 14
+      UpgradeTime: 18
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 15
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1994.79
+      ResRequirements:
+      - Resource: 13
+        Count: 5900000
+      RoomRequirements:
+      - Type: 5
+        Level: 15
+      - Type: 11
+        Level: 15
+      UpgradeTime: 30.87
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 16
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2018.55
+      ResRequirements:
+      - Resource: 13
+        Count: 9300000
+      RoomRequirements:
+      - Type: 9
+        Level: 16
+      - Type: 11
+        Level: 16
+      UpgradeTime: 36.57
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 17
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2042.3
+      ResRequirements:
+      - Resource: 13
+        Count: 12000000
+      RoomRequirements:
+      - Type: 6
+        Level: 17
+      - Type: 11
+        Level: 17
+      UpgradeTime: 43.88
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 18
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2066.06
+      ResRequirements:
+      - Resource: 13
+        Count: 15000000
+      RoomRequirements:
+      - Type: 7
+        Level: 18
+      - Type: 11
+        Level: 18
+      UpgradeTime: 66.83
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 19
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6335.88
+      ResRequirements:
+      - Resource: 13
+        Count: 21000000
+      RoomRequirements:
+      - Type: 3
+        Level: 19
+      - Type: 11
+        Level: 19
+      UpgradeTime: 82.37
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 20
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2415.52
+      ResRequirements:
+      - Resource: 13
+        Count: 27000000
+      RoomRequirements:
+      - Type: 4
+        Level: 20
+      - Type: 11
+        Level: 20
+      UpgradeTime: 107.83
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 21
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2442.67
+      ResRequirements:
+      - Resource: 13
+        Count: 36000000
+      RoomRequirements:
+      - Type: 5
+        Level: 21
+      - Type: 11
+        Level: 21
+      UpgradeTime: 160.49
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 22
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 5
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3027.88
+      ResRequirements:
+      - Resource: 13
+        Count: 44000000
+      RoomRequirements:
+      - Type: 9
+        Level: 22
+      - Type: 11
+        Level: 22
+      UpgradeTime: 224.33
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 23
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 5
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3061.82
+      ResRequirements:
+      - Resource: 13
+        Count: 60000000
+      RoomRequirements:
+      - Type: 6
+        Level: 23
+      - Type: 11
+        Level: 23
+      UpgradeTime: 314.05
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 24
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 5
+      CapacityUpgrade:
+      - Type: 0
+        Count: 9097.27
+      ResRequirements:
+      - Resource: 13
+        Count: 81000000
+      RoomRequirements:
+      - Type: 7
+        Level: 24
+      - Type: 11
+        Level: 24
+      UpgradeTime: 440.7
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 25
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 5
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3520.91
+      ResRequirements:
+      - Resource: 13
+        Count: 100000000
+      RoomRequirements:
+      - Type: 3
+        Level: 25
+      - Type: 11
+        Level: 25
+      UpgradeTime: 506.3
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 26
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 6
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4202.18
+      ResRequirements:
+      - Resource: 13
+        Count: 140000000
+      RoomRequirements:
+      - Type: 4
+        Level: 26
+      - Type: 11
+        Level: 26
+      UpgradeTime: 608.22
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 27
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 6
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4248
+      ResRequirements:
+      - Resource: 13
+        Count: 190000000
+      RoomRequirements:
+      - Type: 5
+        Level: 27
+      - Type: 11
+        Level: 27
+      UpgradeTime: 699.03
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 28
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 6
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4293.82
+      ResRequirements:
+      - Resource: 13
+        Count: 240000000
+      RoomRequirements:
+      - Type: 9
+        Level: 28
+      - Type: 11
+        Level: 28
+      UpgradeTime: 806.37
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 29
+      Production: 13
+      ProductionUpgrade:
+      - Type: 0
+        Count: 6
+      CapacityUpgrade:
+      - Type: 0
+        Count: 12630.55
+      ResRequirements:
+      - Resource: 13
+        Count: 300000000
+      RoomRequirements:
+      - Type: 6
+        Level: 29
+      - Type: 11
+        Level: 29
+      UpgradeTime: 965.12
+    - Type: 0
+      Prefab: {fileID: 2344811112408025094, guid: 0ff5a1fb900912243acc825d0ca124df, type: 3}
+      Level: 30
+      Production: 13
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 30
+      RoomRequirements:
+      - Type: 0
+        Level: 1
+      UpgradeTime: 0.000556
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 45
+      RoomRequirements:
+      - Type: 0
+        Level: 2
+      UpgradeTime: 0.000833
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 200
+      RoomRequirements:
+      - Type: 0
+        Level: 3
+      UpgradeTime: 0.002778
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 450
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.009722
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 540
+      ResRequirements:
+      - Resource: 13
+        Count: 1900
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.019444
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
       CapacityUpgrade:
       - Type: 0
         Count: 300
       ResRequirements:
       - Resource: 13
-        Count: 130
+        Count: 4800
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.038889
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 17000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.079167
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 31000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.119444
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 65000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.175
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1154.55
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.233333
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 801.45
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 0.3
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 811.64
+      ResRequirements:
+      - Resource: 13
+        Count: 150000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 0.358333
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 821.82
+      ResRequirements:
+      - Resource: 13
+        Count: 210000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 0.433333
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 832
+      ResRequirements:
+      - Resource: 13
+        Count: 280000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 0.558333
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2169.45
+      ResRequirements:
+      - Resource: 13
+        Count: 410000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 0.716667
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 994.42
+      ResRequirements:
+      - Resource: 13
+        Count: 530000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 1.22
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1006.3
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 1.46
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1018.18
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 1.75
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1030.06
+      ResRequirements:
+      - Resource: 13
+        Count: 1400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 2.63
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3096.48
+      ResRequirements:
+      - Resource: 13
+        Count: 1900000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 3.29
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1204.36
+      ResRequirements:
+      - Resource: 13
+        Count: 2400000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 4.28
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1217.94
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 6.42
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1231.52
+      ResRequirements:
+      - Resource: 13
+        Count: 4000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 8.98
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1245.09
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 12.58
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4082.91
+      ResRequirements:
+      - Resource: 13
+        Count: 7300000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 17.61
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2070.55
+      ResRequirements:
+      - Resource: 13
+        Count: 9400000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 20.25
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2093.45
+      ResRequirements:
+      - Resource: 13
+        Count: 13000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 24.3
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2116.36
+      ResRequirements:
+      - Resource: 13
+        Count: 17000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 27.95
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2139.27
+      ResRequirements:
+      - Resource: 13
+        Count: 22000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 32.13
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6162.18
+      ResRequirements:
+      - Resource: 13
+        Count: 27000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 38.57
+    - Type: 6
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
       RoomRequirements: []
-      UpgradeTime: 0.1
-    - Type: 1
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: 0
-      ProductionUpgrade:
-      - Type: 1
-        Count: 10
-      CapacityUpgrade:
-      - Type: 1
-        Count: 100
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      - Type: 6
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 1
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: 0
-      ProductionUpgrade:
-      - Type: 1
-        Count: 10
-      CapacityUpgrade:
-      - Type: 1
-        Count: 100
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      - Type: 6
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 2
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: 2
-      ProductionUpgrade:
-      - Type: 2
-        Count: 0.1
-      CapacityUpgrade:
-      - Type: 2
-        Count: 2
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 2
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: 2
-      ProductionUpgrade:
-      - Type: 2
-        Count: 0.1
-      CapacityUpgrade:
-      - Type: 2
-        Count: 2
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 3
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 3
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 110
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 4
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 4
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 5
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 5
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 6
-      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
-      Level: 0
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 6
-      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
-      Level: 1
-      Production: -1
-      ProductionUpgrade:
-      - Type: 0
-        Count: 10
-      CapacityUpgrade: []
-      ResRequirements:
-      - Resource: 13
-        Count: 100
-      RoomRequirements:
-      - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
+      UpgradeTime: 0
     - Type: 7
       Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
       Level: 0
       Production: -1
       ProductionUpgrade:
       - Type: 0
-        Count: 10
-      CapacityUpgrade: []
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 30
       RoomRequirements:
       - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
+        Level: 2
+      UpgradeTime: 0.000556
     - Type: 7
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
       - Type: 0
-        Count: 10
-      CapacityUpgrade: []
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 45
       RoomRequirements:
       - Type: 0
-        Level: 1
-      UpgradeTime: 0.1
-    - Type: 8
+        Level: 2
+      UpgradeTime: 0.000833
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 200
+      RoomRequirements:
+      - Type: 0
+        Level: 3
+      UpgradeTime: 0.002778
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 240
+      ResRequirements:
+      - Resource: 13
+        Count: 450
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.009722
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 540
+      ResRequirements:
+      - Resource: 13
+        Count: 1900
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.019444
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 4800
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.038889
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 17000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.079167
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 31000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.119444
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 300
+      ResRequirements:
+      - Resource: 13
+        Count: 65000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.175
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 1
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1154.55
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.233333
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 801.45
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 0.3
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 811.64
+      ResRequirements:
+      - Resource: 13
+        Count: 150000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 0.358333
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 821.82
+      ResRequirements:
+      - Resource: 13
+        Count: 210000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 0.433333
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 832
+      ResRequirements:
+      - Resource: 13
+        Count: 280000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 0.558333
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2169.45
+      ResRequirements:
+      - Resource: 13
+        Count: 410000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 0.716667
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 994.42
+      ResRequirements:
+      - Resource: 13
+        Count: 530000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 1.22
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1006.3
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 1.46
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1018.18
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 1.75
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1030.06
+      ResRequirements:
+      - Resource: 13
+        Count: 1400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 2.63
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3096.48
+      ResRequirements:
+      - Resource: 13
+        Count: 1900000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 3.29
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1204.36
+      ResRequirements:
+      - Resource: 13
+        Count: 2400000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 4.28
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1217.94
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 6.42
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1231.52
+      ResRequirements:
+      - Resource: 13
+        Count: 4000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 8.98
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1245.09
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 12.58
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4082.91
+      ResRequirements:
+      - Resource: 13
+        Count: 7300000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 17.61
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2070.55
+      ResRequirements:
+      - Resource: 13
+        Count: 9400000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 20.25
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2093.45
+      ResRequirements:
+      - Resource: 13
+        Count: 13000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 24.3
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2116.36
+      ResRequirements:
+      - Resource: 13
+        Count: 17000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 27.95
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2139.27
+      ResRequirements:
+      - Resource: 13
+        Count: 22000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 32.13
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6162.18
+      ResRequirements:
+      - Resource: 13
+        Count: 27000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 38.57
+    - Type: 7
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 3
       Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
       Level: 0
       Production: -1
       ProductionUpgrade:
       - Type: 0
-        Count: 10
-      CapacityUpgrade: []
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
       ResRequirements:
       - Resource: 13
-        Count: 100
+        Count: 40
       RoomRequirements:
       - Type: 0
-        Level: 2
-      UpgradeTime: 0.1
-    - Type: 8
+        Level: 3
+      UpgradeTime: 0.000556
+    - Type: 3
       Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
       Level: 1
       Production: -1
       ProductionUpgrade:
       - Type: 0
-        Count: 10
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 140
+      RoomRequirements:
+      - Type: 0
+        Level: 3
+      UpgradeTime: 0.0025
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 700
+      RoomRequirements:
+      - Type: 0
+        Level: 3
+      UpgradeTime: 0.0125
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 1400
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.0375
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1080
+      ResRequirements:
+      - Resource: 13
+        Count: 6000
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.075
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 15000
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.15
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 55000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.3
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 100000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.45
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 200000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.675
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2309.09
+      ResRequirements:
+      - Resource: 13
+        Count: 360000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.9
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1214.91
+      ResRequirements:
+      - Resource: 13
+        Count: 460000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.13
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1230.18
+      ResRequirements:
+      - Resource: 13
+        Count: 580000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.35
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1245.45
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.65
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1260.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 2.1
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3598.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1600000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.7
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1506.48
+      ResRequirements:
+      - Resource: 13
+        Count: 2000000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.57
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1524.3
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.48
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1542.12
+      ResRequirements:
+      - Resource: 13
+        Count: 4300000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.58
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1559.94
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.87
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 5002
+      ResRequirements:
+      - Resource: 13
+        Count: 7500000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 12.34
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1823.52
+      ResRequirements:
+      - Resource: 13
+        Count: 9500000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 16.04
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1843.88
+      ResRequirements:
+      - Resource: 13
+        Count: 12000000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 24.07
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1864.24
+      ResRequirements:
+      - Resource: 13
+        Count: 15000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 33.7
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1884.61
+      ResRequirements:
+      - Resource: 13
+        Count: 21000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 47.18
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6494.36
+      ResRequirements:
+      - Resource: 13
+        Count: 28000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 66.05
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2166
+      ResRequirements:
+      - Resource: 13
+        Count: 36000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 75.95
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2188.91
+      ResRequirements:
+      - Resource: 13
+        Count: 52000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 91.15
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2211.82
+      ResRequirements:
+      - Resource: 13
+        Count: 69000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 104.82
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2234.73
+      ResRequirements:
+      - Resource: 13
+        Count: 86000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 120.55
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 8075.82
+      ResRequirements:
+      - Resource: 13
+        Count: 100000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 144.67
+    - Type: 3
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 40
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.000556
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 140
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.0025
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 700
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.0125
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 1400
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.0375
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1080
+      ResRequirements:
+      - Resource: 13
+        Count: 6000
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.075
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 15000
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.15
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 55000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.3
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 100000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.45
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 200000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.675
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2309.09
+      ResRequirements:
+      - Resource: 13
+        Count: 360000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.9
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1214.91
+      ResRequirements:
+      - Resource: 13
+        Count: 460000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.13
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1230.18
+      ResRequirements:
+      - Resource: 13
+        Count: 580000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.35
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1245.45
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.65
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1260.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 2.1
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3598.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1600000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.7
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1506.48
+      ResRequirements:
+      - Resource: 13
+        Count: 2000000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.57
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1524.3
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.48
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1542.12
+      ResRequirements:
+      - Resource: 13
+        Count: 4300000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.58
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1559.94
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.87
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 5002
+      ResRequirements:
+      - Resource: 13
+        Count: 7500000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 12.34
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1823.52
+      ResRequirements:
+      - Resource: 13
+        Count: 9500000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 16.04
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1843.88
+      ResRequirements:
+      - Resource: 13
+        Count: 12000000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 24.07
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1864.24
+      ResRequirements:
+      - Resource: 13
+        Count: 15000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 33.7
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1884.61
+      ResRequirements:
+      - Resource: 13
+        Count: 21000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 47.18
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6494.36
+      ResRequirements:
+      - Resource: 13
+        Count: 28000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 66.05
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2166
+      ResRequirements:
+      - Resource: 13
+        Count: 36000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 75.95
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2188.91
+      ResRequirements:
+      - Resource: 13
+        Count: 52000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 91.15
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2211.82
+      ResRequirements:
+      - Resource: 13
+        Count: 69000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 104.82
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2234.73
+      ResRequirements:
+      - Resource: 13
+        Count: 86000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 120.55
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 8075.82
+      ResRequirements:
+      - Resource: 13
+        Count: 100000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 144.67
+    - Type: 4
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 40
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.000556
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 140
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.0025
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 700
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.0125
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 1400
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.0375
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1080
+      ResRequirements:
+      - Resource: 13
+        Count: 6000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.075
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 15000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.15
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 55000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.3
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 100000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.45
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 200000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.675
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2309.09
+      ResRequirements:
+      - Resource: 13
+        Count: 360000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.9
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1214.91
+      ResRequirements:
+      - Resource: 13
+        Count: 460000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.13
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1230.18
+      ResRequirements:
+      - Resource: 13
+        Count: 580000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.35
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1245.45
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.65
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1260.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 2.1
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 3598.73
+      ResRequirements:
+      - Resource: 13
+        Count: 1600000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.7
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1506.48
+      ResRequirements:
+      - Resource: 13
+        Count: 2000000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.57
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1524.3
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.48
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1542.12
+      ResRequirements:
+      - Resource: 13
+        Count: 4300000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.58
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1559.94
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.87
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 5002
+      ResRequirements:
+      - Resource: 13
+        Count: 7500000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 12.34
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1823.52
+      ResRequirements:
+      - Resource: 13
+        Count: 9500000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 16.04
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1843.88
+      ResRequirements:
+      - Resource: 13
+        Count: 12000000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 24.07
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1864.24
+      ResRequirements:
+      - Resource: 13
+        Count: 15000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 33.7
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1884.61
+      ResRequirements:
+      - Resource: 13
+        Count: 21000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 47.18
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6494.36
+      ResRequirements:
+      - Resource: 13
+        Count: 28000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 66.05
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2166
+      ResRequirements:
+      - Resource: 13
+        Count: 36000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 75.95
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2188.91
+      ResRequirements:
+      - Resource: 13
+        Count: 52000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 91.15
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2211.82
+      ResRequirements:
+      - Resource: 13
+        Count: 69000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 104.82
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2234.73
+      ResRequirements:
+      - Resource: 13
+        Count: 86000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 120.55
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 8075.82
+      ResRequirements:
+      - Resource: 13
+        Count: 100000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 144.67
+    - Type: 5
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 720
+      ResRequirements:
+      - Resource: 13
+        Count: 60
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.000556
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 90
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.0025
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 400
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.0125
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 480
+      ResRequirements:
+      - Resource: 13
+        Count: 900
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.0375
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1140
+      ResRequirements:
+      - Resource: 13
+        Count: 3800
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.075
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 9600
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.15
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 34000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.3
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 63000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.45
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 600
+      ResRequirements:
+      - Resource: 13
+        Count: 130000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.675
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2394.55
+      ResRequirements:
+      - Resource: 13
+        Count: 230000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.9
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 829.45
+      ResRequirements:
+      - Resource: 13
+        Count: 290000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.125
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 839.64
+      ResRequirements:
+      - Resource: 13
+        Count: 370000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.35
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 849.82
+      ResRequirements:
+      - Resource: 13
+        Count: 520000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.65
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 860
+      ResRequirements:
+      - Resource: 13
+        Count: 690000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 2.1
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2927.45
+      ResRequirements:
+      - Resource: 13
+        Count: 1000000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.7
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1027.09
+      ResRequirements:
+      - Resource: 13
+        Count: 1300000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.57
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 2
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1038.97
+      ResRequirements:
+      - Resource: 13
+        Count: 2000000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.48
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1524.3
+      ResRequirements:
+      - Resource: 13
+        Count: 2700000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.58
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1542.12
+      ResRequirements:
+      - Resource: 13
+        Count: 3400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.88
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 4573.27
+      ResRequirements:
+      - Resource: 13
+        Count: 4700000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 12.34
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1803.15
+      ResRequirements:
+      - Resource: 13
+        Count: 6000000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 16.04
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1823.52
+      ResRequirements:
+      - Resource: 13
+        Count: 7900000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 24.07
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1843.88
+      ResRequirements:
+      - Resource: 13
+        Count: 9800000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 33.7
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 1864.24
+      ResRequirements:
+      - Resource: 13
+        Count: 13000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 47.18
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 6050.36
+      ResRequirements:
+      - Resource: 13
+        Count: 17000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 66.05
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2143.09
+      ResRequirements:
+      - Resource: 13
+        Count: 23000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 75.95
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2166
+      ResRequirements:
+      - Resource: 13
+        Count: 32000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 91.15
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2188.91
+      ResRequirements:
+      - Resource: 13
+        Count: 43000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 104.82
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 3
+      CapacityUpgrade:
+      - Type: 0
+        Count: 2211.82
+      ResRequirements:
+      - Resource: 13
+        Count: 54000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 120.55
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade:
+      - Type: 0
+        Count: 4
+      CapacityUpgrade:
+      - Type: 0
+        Count: 8343.82
+      ResRequirements:
+      - Resource: 13
+        Count: 66000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 144.67
+    - Type: 9
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.5
+      CapacityUpgrade:
+      - Type: 1
+        Count: 120
+      ResRequirements:
+      - Resource: 13
+        Count: 30
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.000556
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.04
+      CapacityUpgrade:
+      - Type: 1
+        Count: 9.6
+      ResRequirements:
+      - Resource: 13
+        Count: 45
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.000833
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.04
+      CapacityUpgrade:
+      - Type: 1
+        Count: 10.37
+      ResRequirements:
+      - Resource: 13
+        Count: 200
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.002778
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.05
+      CapacityUpgrade:
+      - Type: 1
+        Count: 11.2
+      ResRequirements:
+      - Resource: 13
+        Count: 450
+      RoomRequirements:
+      - Type: 0
+        Level: 4
+      UpgradeTime: 0.009722
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.16
+      CapacityUpgrade:
+      - Type: 1
+        Count: 132.27
+      ResRequirements:
+      - Resource: 13
+        Count: 1900
+      RoomRequirements:
+      - Type: 0
+        Level: 5
+      UpgradeTime: 0.019444
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.06
+      CapacityUpgrade:
+      - Type: 1
+        Count: 22.67
+      ResRequirements:
+      - Resource: 13
+        Count: 4800
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.038889
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.07
+      CapacityUpgrade:
+      - Type: 1
+        Count: 24.49
+      ResRequirements:
+      - Resource: 13
+        Count: 17000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.079167
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.07
+      CapacityUpgrade:
+      - Type: 1
+        Count: 26.45
+      ResRequirements:
+      - Resource: 13
+        Count: 31000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.119444
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.08
+      CapacityUpgrade:
+      - Type: 1
+        Count: 28.56
+      ResRequirements:
+      - Resource: 13
+        Count: 65000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.175
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.27
+      CapacityUpgrade:
+      - Type: 1
+        Count: 257.07
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.233333
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.11
+      CapacityUpgrade:
+      - Type: 1
+        Count: 51.41
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 0.3
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.12
+      CapacityUpgrade:
+      - Type: 1
+        Count: 55.53
+      ResRequirements:
+      - Resource: 13
+        Count: 150000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 0.358333
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.12
+      CapacityUpgrade:
+      - Type: 1
+        Count: 59.97
+      ResRequirements:
+      - Resource: 13
+        Count: 210000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 0.433333
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.13
+      CapacityUpgrade:
+      - Type: 1
+        Count: 64.77
+      ResRequirements:
+      - Resource: 13
+        Count: 280000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 0.558333
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.46
+      CapacityUpgrade:
+      - Type: 1
+        Count: 491.83
+      ResRequirements:
+      - Resource: 13
+        Count: 410000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 0.716667
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.18
+      CapacityUpgrade:
+      - Type: 1
+        Count: 109.3
+      ResRequirements:
+      - Resource: 13
+        Count: 530000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 1.22
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.2
+      CapacityUpgrade:
+      - Type: 1
+        Count: 118.04
+      ResRequirements:
+      - Resource: 13
+        Count: 830000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 1.46
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.21
+      CapacityUpgrade:
+      - Type: 1
+        Count: 127.48
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 1.75
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.23
+      CapacityUpgrade:
+      - Type: 1
+        Count: 137.68
+      ResRequirements:
+      - Resource: 13
+        Count: 1400000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 2.63
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.77
+      CapacityUpgrade:
+      - Type: 1
+        Count: 929.35
+      ResRequirements:
+      - Resource: 13
+        Count: 1900000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 3.29
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.31
+      CapacityUpgrade:
+      - Type: 1
+        Count: 223.04
+      ResRequirements:
+      - Resource: 13
+        Count: 2400000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 4.28
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.33
+      CapacityUpgrade:
+      - Type: 1
+        Count: 240.89
+      ResRequirements:
+      - Resource: 13
+        Count: 3200000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 6.42
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.36
+      CapacityUpgrade:
+      - Type: 1
+        Count: 260.16
+      ResRequirements:
+      - Resource: 13
+        Count: 4000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 8.98
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.39
+      CapacityUpgrade:
+      - Type: 1
+        Count: 280.97
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 12.58
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 1.32
+      CapacityUpgrade:
+      - Type: 1
+        Count: 1738.5
+      ResRequirements:
+      - Resource: 13
+        Count: 7300000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 17.61
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.53
+      CapacityUpgrade:
+      - Type: 1
+        Count: 442.53
+      ResRequirements:
+      - Resource: 13
+        Count: 9400000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 20.25
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.57
+      CapacityUpgrade:
+      - Type: 1
+        Count: 477.93
+      ResRequirements:
+      - Resource: 13
+        Count: 13000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 24.3
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.61
+      CapacityUpgrade:
+      - Type: 1
+        Count: 516.16
+      ResRequirements:
+      - Resource: 13
+        Count: 17000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 27.95
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 0.66
+      CapacityUpgrade:
+      - Type: 1
+        Count: 557.46
+      ResRequirements:
+      - Resource: 13
+        Count: 22000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 32.13
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: 0
+      ProductionUpgrade:
+      - Type: 1
+        Count: 2.24
+      CapacityUpgrade:
+      - Type: 1
+        Count: 3225.29
+      ResRequirements:
+      - Resource: 13
+        Count: 27000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 38.57
+    - Type: 1
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: 0
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.000556
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
       CapacityUpgrade: []
       ResRequirements:
       - Resource: 13
         Count: 100
       RoomRequirements:
       - Type: 0
-        Level: 2
-      UpgradeTime: 0.1
+        Level: 6
+      UpgradeTime: 0.0025
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 460
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.011111
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 1000
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.034722
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 4300
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.069444
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 10000
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.138889
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 39000
+      RoomRequirements:
+      - Type: 0
+        Level: 7
+      UpgradeTime: 0.275
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 72000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.416667
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 140000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.625
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 260000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.833333
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 320000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.05
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 420000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.26
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 590000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.53
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 780000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 1.96
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.52
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 1400000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.27
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 2300000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.12
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 3100000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.14
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 3900000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.22
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 5300000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 11.52
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 6800000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 14.98
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 9000000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 22.47
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 11000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 31.45
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 15000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 44.03
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 20000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 61.65
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 26000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 70.9
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 37000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 85.07
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 49000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 97.83
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 61000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 112.68
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 75000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 135.02
+    - Type: 10
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.002083
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.5
+      ResRequirements:
+      - Resource: 13
+        Count: 105
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.000556
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000167
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.04
+      ResRequirements:
+      - Resource: 13
+        Count: 160
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.0025
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.00018
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.04
+      ResRequirements:
+      - Resource: 13
+        Count: 725
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.0125
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000194
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.05
+      ResRequirements:
+      - Resource: 13
+        Count: 1600
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.0375
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000656
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.55
+      ResRequirements:
+      - Resource: 13
+        Count: 6800
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.075
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000262
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.09
+      ResRequirements:
+      - Resource: 13
+        Count: 17000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.15
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000283
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.1
+      ResRequirements:
+      - Resource: 13
+        Count: 62000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.3
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000306
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.11
+      ResRequirements:
+      - Resource: 13
+        Count: 110000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.45
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000331
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.12
+      ResRequirements:
+      - Resource: 13
+        Count: 230000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.675
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001116
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1.07
+      ResRequirements:
+      - Resource: 13
+        Count: 410000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.9
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000446
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.21
+      ResRequirements:
+      - Resource: 13
+        Count: 520000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 1.13
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000482
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.23
+      ResRequirements:
+      - Resource: 13
+        Count: 670000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 1.35
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000521
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.25
+      ResRequirements:
+      - Resource: 13
+        Count: 950000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 1.65
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000562
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.27
+      ResRequirements:
+      - Resource: 13
+        Count: 1200000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 2.1
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001897
+      CapacityUpgrade:
+      - Type: 2
+        Count: 2.05
+      ResRequirements:
+      - Resource: 13
+        Count: 1800000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 2.7
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000759
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.46
+      ResRequirements:
+      - Resource: 13
+        Count: 2300000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 4.57
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.00082
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.49
+      ResRequirements:
+      - Resource: 13
+        Count: 3700000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 5.48
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000885
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.53
+      ResRequirements:
+      - Resource: 13
+        Count: 5000000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 6.58
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.000956
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.57
+      ResRequirements:
+      - Resource: 13
+        Count: 6200000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 9.87
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.003227
+      CapacityUpgrade:
+      - Type: 2
+        Count: 3.87
+      ResRequirements:
+      - Resource: 13
+        Count: 8600000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 12.34
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001291
+      CapacityUpgrade:
+      - Type: 2
+        Count: 0.93
+      ResRequirements:
+      - Resource: 13
+        Count: 10000000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 16.04
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001394
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1
+      ResRequirements:
+      - Resource: 13
+        Count: 14000000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 24.07
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001506
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1.08
+      ResRequirements:
+      - Resource: 13
+        Count: 17000000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 33.7
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.001626
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1.17
+      ResRequirements:
+      - Resource: 13
+        Count: 24000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 47.18
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.005488
+      CapacityUpgrade:
+      - Type: 2
+        Count: 7.24
+      ResRequirements:
+      - Resource: 13
+        Count: 32000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 66.05
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.002195
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1.84
+      ResRequirements:
+      - Resource: 13
+        Count: 42000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 75.95
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.002371
+      CapacityUpgrade:
+      - Type: 2
+        Count: 1.99
+      ResRequirements:
+      - Resource: 13
+        Count: 59000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 91.15
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.00256
+      CapacityUpgrade:
+      - Type: 2
+        Count: 2.15
+      ResRequirements:
+      - Resource: 13
+        Count: 79000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 104.82
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.002765
+      CapacityUpgrade:
+      - Type: 2
+        Count: 2.32
+      ResRequirements:
+      - Resource: 13
+        Count: 98000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 120.55
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: 2
+      ProductionUpgrade:
+      - Type: 2
+        Count: 0.009332
+      CapacityUpgrade:
+      - Type: 2
+        Count: 13.44
+      ResRequirements:
+      - Resource: 13
+        Count: 120000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 144.67
+    - Type: 2
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: 2
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 60
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.000556
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 90
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.002778
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 2
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 400
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.016667
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 3
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 900
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.033333
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 4
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 3800
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.111111
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 5
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 9600
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.222222
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 6
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 34000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.416667
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 7
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 63000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.75
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 8
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 130000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 2
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 9
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 230000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 3.96
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 10
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 260000
+      RoomRequirements:
+      - Type: 0
+        Level: 11
+      UpgradeTime: 4.95
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 11
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 330000
+      RoomRequirements:
+      - Type: 0
+        Level: 12
+      UpgradeTime: 5.93
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 12
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 470000
+      RoomRequirements:
+      - Type: 0
+        Level: 13
+      UpgradeTime: 7.26
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 13
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 630000
+      RoomRequirements:
+      - Type: 0
+        Level: 14
+      UpgradeTime: 9.23
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 14
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 930000
+      RoomRequirements:
+      - Type: 0
+        Level: 15
+      UpgradeTime: 11.88
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 15
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 1100000
+      RoomRequirements:
+      - Type: 0
+        Level: 16
+      UpgradeTime: 19.72
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 16
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 1800000
+      RoomRequirements:
+      - Type: 0
+        Level: 17
+      UpgradeTime: 24.13
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 17
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 2500000
+      RoomRequirements:
+      - Type: 0
+        Level: 18
+      UpgradeTime: 28.97
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 18
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 3100000
+      RoomRequirements:
+      - Type: 0
+        Level: 19
+      UpgradeTime: 43.45
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 19
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 4300000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 54.32
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 20
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 5400000
+      RoomRequirements:
+      - Type: 0
+        Level: 21
+      UpgradeTime: 70.6
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 21
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 7200000
+      RoomRequirements:
+      - Type: 0
+        Level: 22
+      UpgradeTime: 105.92
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 22
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 8900000
+      RoomRequirements:
+      - Type: 0
+        Level: 23
+      UpgradeTime: 148.28
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 23
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 12000000
+      RoomRequirements:
+      - Type: 0
+        Level: 24
+      UpgradeTime: 207.6
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 24
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 16000000
+      RoomRequirements:
+      - Type: 0
+        Level: 25
+      UpgradeTime: 290.63
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 25
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 21000000
+      RoomRequirements:
+      - Type: 0
+        Level: 26
+      UpgradeTime: 334.23
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 26
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 29000000
+      RoomRequirements:
+      - Type: 0
+        Level: 27
+      UpgradeTime: 401.08
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 27
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 39000000
+      RoomRequirements:
+      - Type: 0
+        Level: 28
+      UpgradeTime: 461.25
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 28
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 49000000
+      RoomRequirements:
+      - Type: 0
+        Level: 29
+      UpgradeTime: 530.43
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 29
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 60000000
+      RoomRequirements:
+      - Type: 0
+        Level: 30
+      UpgradeTime: 636.53
+    - Type: 11
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 30
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 8
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 150000
+      RoomRequirements:
+      - Type: 0
+        Level: 9
+      UpgradeTime: 0.000556
+    - Type: 8
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 12
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 3000
+      RoomRequirements:
+      - Type: 0
+        Level: 3
+      UpgradeTime: 0.000556
+    - Type: 12
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 13
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 25000
+      RoomRequirements:
+      - Type: 0
+        Level: 6
+      UpgradeTime: 0.000556
+    - Type: 13
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 14
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 90000
+      RoomRequirements:
+      - Type: 0
+        Level: 8
+      UpgradeTime: 0.000556
+    - Type: 14
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 15
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 400000
+      RoomRequirements:
+      - Type: 0
+        Level: 10
+      UpgradeTime: 0.000556
+    - Type: 15
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
+    - Type: 16
+      Prefab: {fileID: 1141117725737046590, guid: caf139ed45a23374faa5eba276eac6e1, type: 3}
+      Level: 0
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements:
+      - Resource: 13
+        Count: 9000000
+      RoomRequirements:
+      - Type: 0
+        Level: 20
+      UpgradeTime: 0.000556
+    - Type: 16
+      Prefab: {fileID: 1141117725737046590, guid: 9f231b1760b41f848b0ca11ed07f2cf9, type: 3}
+      Level: 1
+      Production: -1
+      ProductionUpgrade: []
+      CapacityUpgrade: []
+      ResRequirements: []
+      RoomRequirements: []
+      UpgradeTime: 0
   ui:
     resourceIcons:
     - Type: 0

@@ -11,5 +11,13 @@ namespace vikwhite
         Kitchen = 6,
         Cellar = 7,
         Trophy = 8,
+        Sauna = 9,
+        Alchemy = 10,
+        Academy = 11,
+        Summon = 12,
+        Expeditions = 13,
+        ClanHall = 14,
+        Arena = 15,
+        Forge = 16,
     }
 }

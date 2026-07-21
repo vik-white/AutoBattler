@@ -74,11 +74,14 @@ namespace vikwhite
             var tavern = UnityEngine.Object.FindAnyObjectByType<TavernHierarchy>(FindObjectsInactive.Include);
             foreach (var roomContainer in tavern.Rooms)
             {
+                Debug.Log(roomContainer.Type);
                 var profileData = _profile.Data.Rooms.Find(e => e.Type == roomContainer.Type);
                 var roomConfigs = _configs.Rooms.GetAll()
                     .Where(data => data.Type == roomContainer.Type)
                     .OrderBy(data => data.Level)
                     .ToList();
+                Debug.Log(profileData);
+                Debug.Log(roomConfigs);
                 var roomModel = _roomFactory.Create(
                     profileData.Type,
                     profileData.Level,
