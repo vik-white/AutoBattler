@@ -8,6 +8,8 @@ namespace vikwhite.ECS
     public struct UpgradeConfigsBlob : IComponentData
     {
         public BlobAssetReference<BlobArrayContainer<UpgradeConfig>> Value;
+        public int BreakthroughLevelPeriod;
+        public float BreakthroughMultiply;
     }
 
     public struct CharacterConfigData : IID

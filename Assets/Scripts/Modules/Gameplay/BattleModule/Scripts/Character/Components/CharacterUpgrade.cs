@@ -8,16 +8,22 @@ namespace vikwhite.ECS
         public int StarRank;
         public UpgradeConfig LevelUp;
         public UpgradeConfig StarUp;
+        public int BreakthroughLevelPeriod;
+        public float BreakthroughMultiply;
 
         public float GetStatMultiplier(StatType stat) =>
             CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank,
                 LevelUp.GetStatMultiplier(stat),
-                StarUp.GetStatMultiplier(stat));
+                StarUp.GetStatMultiplier(stat),
+                BreakthroughLevelPeriod,
+                BreakthroughMultiply);
 
         public float GetSkillMultiplier(SkillSlotType slot) =>
             CharacterHandler.GetCompositeMultiplier(LevelRank, StarRank,
                 LevelUp.GetSkillMultiplier(slot),
-                StarUp.GetSkillMultiplier(slot));
+                StarUp.GetSkillMultiplier(slot),
+                BreakthroughLevelPeriod,
+                BreakthroughMultiply);
 
         public float GetSkillMultiplier(in CharacterConfigData config, uint skillID)
         {

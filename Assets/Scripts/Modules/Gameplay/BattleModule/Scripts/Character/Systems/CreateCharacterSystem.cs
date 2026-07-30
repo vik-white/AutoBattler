@@ -14,17 +14,20 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
             var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
             var renderDataBuffer = SystemAPI.GetSingletonBuffer<CharacterRenderData>(true);
-            var upgradeConfigs = SystemAPI.GetSingleton<UpgradeConfigsBlob>().Value;
+            var upgradeConfigData = SystemAPI.GetSingleton<UpgradeConfigsBlob>();
+            var upgradeConfigs = upgradeConfigData.Value;
             foreach (var request in SystemAPI.Query<RefRW<CreateCharacter>>())
             {
                 var renderData = renderDataBuffer.Get(request.ValueRO.ID);
                 var config = renderData.Config.Value;
                 var upgrade = new CharacterUpgrade
                 {
-                    LevelRank = request.ValueRO.Level - 1,
+                    LevelRank = math.max(0, request.ValueRO.Level - 1),
                     StarRank = request.ValueRO.Stars,
                     LevelUp = upgradeConfigs.Get(config.LevelUpgrade),
-                    StarUp = upgradeConfigs.Get(config.StarUpgrade)
+                    StarUp = upgradeConfigs.Get(config.StarUpgrade),
+                    BreakthroughLevelPeriod = upgradeConfigData.BreakthroughLevelPeriod,
+                    BreakthroughMultiply = upgradeConfigData.BreakthroughMultiply,
                 };
                 var characterEntity = ecb.Instantiate(renderData.Prefab);
                 ecb.AddComponent<SceneEntity>(characterEntity);

@@ -10,7 +10,13 @@ namespace vikwhite
 
         public static float Calculate(Character character, StatType stat, int level, int stars)
         {
-            var upgrade = new CharacterUpgrade(Mathf.Max(0, level - 1), Mathf.Max(0, stars), character.LevelUpgrade, character.StarUpgrade);
+            var upgrade = new CharacterUpgrade(
+                Mathf.Max(0, level - 1),
+                Mathf.Max(0, stars),
+                character.LevelUpgrade,
+                character.StarUpgrade,
+                character.Settings.BreakthroughLevelPeriod,
+                character.Settings.BreakthroughMultiply);
             return character.Config.GetStat(stat) * upgrade.GetStatMultiplier(stat);
         }
     }

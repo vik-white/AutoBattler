@@ -32,11 +32,11 @@ namespace vikwhite
             var levelUpgrade = configs.Upgrades.Get(character.LevelUpgrade);
             var starUpgrade = configs.Upgrades.Get(character.StarUpgrade);
 
-            float attack = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Attack);
-            float critChance = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.CritChance);
-            float critValue = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.CritValue);
-            float health = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Health);
-            float defense = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Defense);
+            float attack = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Attack, configs.Settings);
+            float critChance = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.CritChance, configs.Settings);
+            float critValue = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.CritValue, configs.Settings);
+            float health = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Health, configs.Settings);
+            float defense = GetStat(character, levelUpgrade, starUpgrade, levelRank, starRank, StatType.Defense, configs.Settings);
             float attackCooldown = GetSkill(configs, character, SkillSlotType.Attack)?.Cooldown ?? 1f;
 
             GetSkillMight(configs, character, SkillSlotType.Active, skillLevel, out var activeMight, out var activeMultiplier);
@@ -78,13 +78,16 @@ namespace vikwhite
             IUpgradeData starUpgrade,
             int levelRank,
             int starRank,
-            StatType stat)
+            StatType stat,
+            ISettingData settings)
         {
             var multiplier = CharacterHandler.GetCompositeMultiplier(
                 levelRank,
                 starRank,
                 levelUpgrade.GetStatMultiplier(stat),
-                starUpgrade.GetStatMultiplier(stat));
+                starUpgrade.GetStatMultiplier(stat),
+                settings.BreakthroughLevelPeriod,
+                settings.BreakthroughMultiply);
             return character.GetStat(stat) * multiplier;
         }
 

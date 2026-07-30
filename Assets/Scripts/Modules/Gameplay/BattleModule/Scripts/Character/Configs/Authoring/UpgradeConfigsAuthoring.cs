@@ -35,7 +35,9 @@ namespace vikwhite.ECS
 
             AddComponent(entity, new UpgradeConfigsBlob
             {
-                Value = CreateConfigsBlob(configs)
+                Value = CreateConfigsBlob(configs),
+                BreakthroughLevelPeriod = authoring.Configs.Settings.BreakthroughLevelPeriod,
+                BreakthroughMultiply = authoring.Configs.Settings.BreakthroughMultiply,
             });
         }
 

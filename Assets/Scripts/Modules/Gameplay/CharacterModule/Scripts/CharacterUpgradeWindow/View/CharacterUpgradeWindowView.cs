@@ -12,11 +12,13 @@ namespace vikwhite
             BindClick(_view.LevelUpButton, viewModel.OnUpgradeLevel);
             BindClick(_view.PreviousLevelButton, viewModel.OnSelectPreviousLevel);
             BindClick(_view.NextLevelButton, viewModel.OnSelectNextLevel);
+            BindClick(_view.BreakthroughButton, viewModel.OnOpenBreakthrough);
             Bind(viewModel.SelectedLevel, level => _view.Level.text = level.ToString());
             Bind(viewModel.Might, might => _view.Might.text = might);
             Bind(viewModel.ExpResources.Amount, SetLevelUpPrice);
             Bind(viewModel.CanSelectPreviousLevel, value => _view.PreviousLevelButton.interactable = value);
             Bind(viewModel.CanSelectNextLevel, value => _view.NextLevelButton.interactable = value);
+            Bind(viewModel.IsBreakthroughRequired, SetBreakthroughRequired);
             CreateView<StarsView, StarsHierarchy>(_view.Stars).Initialize(viewModel.Stars);
             CreateView<StatsInfoView, StatsInfoHierarchy>(_view.StatsInfo).Initialize(viewModel.StatsInfo);
             _view.Name.text = viewModel.Name;
@@ -29,6 +31,12 @@ namespace vikwhite
         {
             var amountColor = amount >= ViewModel.LevelUpPrice ? ColorHandler.Green : ColorHandler.Red;
             _view.LevelUpPrice.text = $"{amount.ToString().Color(amountColor)}/{ViewModel.LevelUpPrice}";
+        }
+
+        private void SetBreakthroughRequired(bool isRequired)
+        {
+            _view.LevelUpButton.gameObject.SetActive(!isRequired);
+            _view.BreakthroughButton.gameObject.SetActive(isRequired);
         }
     }
 }

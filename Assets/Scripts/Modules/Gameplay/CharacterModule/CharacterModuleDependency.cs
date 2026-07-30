@@ -6,6 +6,7 @@ namespace vikwhite
         {
             Register<ICharacterFactory, CharacterFactory>();
             Register<ICharactersService, CharactersService>();
+            Register<IBreakthroughService, BreakthroughService>();
             Register<Character>();
             
             Register<ICharacterWindow, CharacterWindow>();
@@ -21,6 +22,10 @@ namespace vikwhite
             Register<ICharacterUpgradeWindow, CharacterUpgradeWindow>();
             Register<CharacterUpgradeWindowViewModel>();
             Register<CharacterUpgradeWindowView>();
+
+            Register<IBreakthroughWindow, BreakthroughWindow>();
+            Register<BreakthroughWindowViewModel>();
+            Register<BreakthroughWindowView>();
 
             Register<ICharacterAscendWindow, CharacterAscendWindow>();
             Register<CharacterAscendWindowViewModel>();

@@ -32,6 +32,8 @@ MonoBehaviour:
       BreakthroughMultiply: 5
       BreakthroughLevelPeriod: 20
       BreakthroughHeroesCount: 5
+      BreakthroughEssence: 2
+      BreakthroughExp: 10
   characters:
     IDS:
     - Dummy

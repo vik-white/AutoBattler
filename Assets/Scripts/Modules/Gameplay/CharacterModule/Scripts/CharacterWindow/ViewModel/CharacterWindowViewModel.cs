@@ -14,10 +14,14 @@ namespace vikwhite
         private readonly ICharacterAscendWindow _characterAscendWindow;
         private readonly ICharacterSkillsWindow _characterSkillsWindow;
         private readonly ICharacterWindow _characterWindow;
+        private readonly IBreakthroughWindow _breakthroughWindow;
+        private readonly IBreakthroughService _breakthroughService;
         private readonly List<Character> _characters;
+        private readonly ReactiveProperty<bool> _isBreakthroughRequired = new();
         public string Name;
         public IReadOnlyReactiveProperty<int> Level;
         public IReadOnlyReactiveProperty<int> Might;
+        public IReadOnlyReactiveProperty<bool> IsBreakthroughRequired => _isBreakthroughRequired;
         public ResourceViewModel ExpResources;
         public Sprite Image;
         public UnityAction OnUpgradeLevel;
@@ -26,6 +30,7 @@ namespace vikwhite
         public UnityAction OnOpenSkills;
         public UnityAction OnSelectPreviousCharacter;
         public UnityAction OnSelectNextCharacter;
+        public UnityAction OnOpenBreakthrough;
         public int LevelUpPrice;
         public RarityType Rarity;
         public Sprite ClassIcon;
@@ -39,7 +44,9 @@ namespace vikwhite
             ICharacterAscendWindow characterAscendWindow,
             ICharactersService charactersService,
             ICharacterSkillsWindow characterSkillsWindow,
-            ICharacterWindow characterWindow) : base(character)
+            ICharacterWindow characterWindow,
+            IBreakthroughWindow breakthroughWindow,
+            IBreakthroughService breakthroughService) : base(character)
         {
             _resource = resource;
             _configs = configs;
@@ -47,7 +54,12 @@ namespace vikwhite
             _characterAscendWindow = characterAscendWindow;
             _characterSkillsWindow = characterSkillsWindow;
             _characterWindow = characterWindow;
+            _breakthroughWindow = breakthroughWindow;
+            _breakthroughService = breakthroughService;
             _characters = new List<Character>(charactersService.GetCharacters());
+            AddDisposable(_isBreakthroughRequired);
+            AddDisposable(character.Level.Subscribe(_ => RefreshBreakthroughState()));
+            AddDisposable(character.Stars.Subscribe(_ => RefreshBreakthroughState()));
             Name = character.Config.Name;
             Level = character.Level;
             Might = character.Might;
@@ -64,11 +76,14 @@ namespace vikwhite
             OnOpenSkills = OpenSkills;
             OnSelectPreviousCharacter = SelectPreviousCharacter;
             OnSelectNextCharacter = SelectNextCharacter;
+            OnOpenBreakthrough = OpenBreakthrough;
         }
 
         private void OpenUpgradeInfo() => _characterUpgradeWindow.ShowWindow(Model);
 
         private void OpenAscendInfo() => _characterAscendWindow.ShowWindow(Model);
+
+        private void OpenBreakthrough() => _breakthroughWindow.ShowWindow(Model);
 
         private void OpenSkills()
         {
@@ -94,10 +109,14 @@ namespace vikwhite
         private void LevelUpgrade()
         {
             if (Model.GetMaxLevel() <= Model.Level.Value) return; 
+            if (_breakthroughService.IsRequired(Model)) return;
             if (_resource.GetAmount(ResourceType.Exp).Value < LevelUpPrice) return; 
             _resource.Spend(ResourceType.Exp, LevelUpPrice);
             Model.UpgradeLevel();
         }
+
+        private void RefreshBreakthroughState() =>
+            _isBreakthroughRequired.Value = _breakthroughService.IsRequired(Model);
         
         public override void Dispose()
         {
@@ -108,6 +127,7 @@ namespace vikwhite
             OnOpenSkills = null;
             OnSelectPreviousCharacter = null;
             OnSelectNextCharacter = null;
+            OnOpenBreakthrough = null;
         }
     }
 }

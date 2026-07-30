@@ -17,6 +17,7 @@ namespace vikwhite
     {
         private readonly IConfigs _configs;
         private readonly IResourceService _resources;
+        private readonly IBreakthroughService _breakthroughService;
         private readonly ResourceType _classBookResource;
         private readonly ReactiveProperty<MetaItemTipType> _tip = new();
 
@@ -32,10 +33,13 @@ namespace vikwhite
             Character character,
             ICharacterWindow characterWindow,
             IConfigs configs,
-            IResourceService resources) : base(character)
+            IResourceService resources,
+            ICharactersService characters,
+            IBreakthroughService breakthroughService) : base(character)
         {
             _configs = configs;
             _resources = resources;
+            _breakthroughService = breakthroughService;
             _classBookResource = ResourceHandler.GetBookResourceType(character.Config.Class);
 
             OnSelect = () => characterWindow.ShowWindow(character);
@@ -52,7 +56,13 @@ namespace vikwhite
             foreach (var skill in character.Skills)
                 AddDisposable(skill.Level.Subscribe(_ => RefreshTip()));
             AddDisposable(resources.GetAmount(ResourceType.Exp).Subscribe(_ => RefreshTip()));
+            AddDisposable(resources.GetAmount(ResourceType.Essence).Subscribe(_ => RefreshTip()));
             AddDisposable(resources.GetAmount(_classBookResource).Subscribe(_ => RefreshTip()));
+            foreach (var hero in characters.GetCharacters())
+            {
+                if (hero == character) continue;
+                AddDisposable(hero.Level.Subscribe(_ => RefreshTip()));
+            }
         }
 
         private void RefreshTip()
@@ -91,6 +101,9 @@ namespace vikwhite
 
         private bool CanUpgradeLevel()
         {
+            if (_breakthroughService.IsRequired(Model))
+                return _breakthroughService.CanBreakthrough(Model);
+
             var price = _configs.Settings.LevelUpPrice;
             return Model.Level.Value < Model.GetMaxLevel()
                    && (price <= 0 || _resources.GetAmount(ResourceType.Exp).Value >= price);

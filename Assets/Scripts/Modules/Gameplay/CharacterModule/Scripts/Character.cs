@@ -29,6 +29,7 @@ namespace vikwhite
         public IReadOnlyList<CharacterSkill> Skills => _skills;
         public IUpgradeData LevelUpgrade => _configs.Upgrades.Get(_characterData.LevelUpgrade);
         public IUpgradeData StarUpgrade => _configs.Upgrades.Get(_characterData.StarUpgrade);
+        public ISettingData Settings => _configs.Settings;
 
         public Character(IConfigs configs, IEventDispatcher dispatcher)
         {
