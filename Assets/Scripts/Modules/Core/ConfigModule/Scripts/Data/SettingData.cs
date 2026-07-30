@@ -10,6 +10,8 @@ namespace vikwhite
         float BreakthroughMultiply { get; }
         int BreakthroughLevelPeriod { get; }
         int BreakthroughHeroesCount { get; }
+        int BreakthroughEssence { get; }
+        int BreakthroughExp { get; }
     }
     
     [OneRowConfig][Serializable]
@@ -21,6 +23,8 @@ namespace vikwhite
         public float BreakthroughMultiply;
         public int BreakthroughLevelPeriod;
         public int BreakthroughHeroesCount;
+        public int BreakthroughEssence;
+        public int BreakthroughExp;
         
         int ISettingData.LevelUpPrice => LevelUpPrice;
         int ISettingData.SkillUpPrice => SkillUpPrice;
@@ -28,5 +32,7 @@ namespace vikwhite
         float ISettingData.BreakthroughMultiply => BreakthroughMultiply;
         int ISettingData.BreakthroughLevelPeriod => BreakthroughLevelPeriod;
         int ISettingData.BreakthroughHeroesCount => BreakthroughHeroesCount;
+        int ISettingData.BreakthroughEssence => BreakthroughEssence;
+        int ISettingData.BreakthroughExp => BreakthroughExp;
     }
 }
