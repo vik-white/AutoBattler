@@ -11778,6 +11778,7 @@ MonoBehaviour:
     - BookMage
     - BookSupport
     - BookMystic
+    - Essence
     Data:
     - ID: Exp
       Type: 0
@@ -11818,6 +11819,9 @@ MonoBehaviour:
     - ID: BookMystic
       Type: 0
       Rarity: 2
+    - ID: Essence
+      Type: 0
+      Rarity: 3
   rooms:
     IDS: []
     Data:
