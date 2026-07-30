@@ -17486,6 +17486,8 @@ MonoBehaviour:
       Icon: {fileID: 21300000, guid: 592b10ec98035b94fb46e73a98561953, type: 3}
     - Type: 13
       Icon: {fileID: 21300000, guid: 6aeaa9940399a3142ae29702b2fa4737, type: 3}
+    - Type: 14
+      Icon: {fileID: 21300000, guid: 76ce5723c0474ed48b0c4eb3a35fb410, type: 3}
     rarities:
     - Type: 0
       RewardBG: {fileID: 21300000, guid: bafdd5d81d006984aa755c2813da714a, type: 3}

@@ -17,5 +17,6 @@ namespace vikwhite
         BookSupport = 11,
         BookTank = 12,
         Gold = 13,
+        Essence = 14,
     }
 }
