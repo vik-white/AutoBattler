@@ -7,6 +7,9 @@ namespace vikwhite
         int LevelUpPrice { get; }
         int SkillUpPrice { get; }
         int StarUpPrice { get; }
+        float BreakthroughMultiply { get; }
+        int BreakthroughLevelPeriod { get; }
+        int BreakthroughHeroesCount { get; }
     }
     
     [OneRowConfig][Serializable]
@@ -15,9 +18,15 @@ namespace vikwhite
         public int LevelUpPrice;
         public int SkillUpPrice;
         public int StarUpPrice;
+        public float BreakthroughMultiply;
+        public int BreakthroughLevelPeriod;
+        public int BreakthroughHeroesCount;
         
         int ISettingData.LevelUpPrice => LevelUpPrice;
         int ISettingData.SkillUpPrice => SkillUpPrice;
         int ISettingData.StarUpPrice => StarUpPrice;
+        float ISettingData.BreakthroughMultiply => BreakthroughMultiply;
+        int ISettingData.BreakthroughLevelPeriod => BreakthroughLevelPeriod;
+        int ISettingData.BreakthroughHeroesCount => BreakthroughHeroesCount;
     }
 }
