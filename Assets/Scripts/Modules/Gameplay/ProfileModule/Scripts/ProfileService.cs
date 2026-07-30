@@ -40,6 +40,7 @@ namespace vikwhite
                     new ResourceData{ Type = ResourceType.BookSupport, Amount = 0 },
                     new ResourceData{ Type = ResourceType.BookTank, Amount = 0 },
                     new ResourceData{ Type = ResourceType.Gold, Amount = 100 },
+                    new ResourceData{ Type = ResourceType.Essence, Amount = 0 },
                 },
                 Quests = new (),
                 Rooms = new (),
