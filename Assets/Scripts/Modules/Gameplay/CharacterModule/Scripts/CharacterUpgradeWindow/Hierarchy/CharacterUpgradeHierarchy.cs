@@ -14,6 +14,7 @@ namespace vikwhite
         public Button CloseButton;
         public Button PreviousLevelButton;
         public Button NextLevelButton;
+        public Button BreakthroughButton;
         public Image Image;
         public Image ClassIcon;
         public StarsHierarchy Stars;
