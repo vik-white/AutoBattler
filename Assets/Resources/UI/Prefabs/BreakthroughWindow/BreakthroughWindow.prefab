@@ -589,7 +589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: Defense
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82147ece115a9db41a819eb0a365859e, type: 2}
   m_sharedMaterial: {fileID: 5249480616956449751, guid: 82147ece115a9db41a819eb0a365859e, type: 2}
@@ -1036,8 +1036,8 @@ RectTransform:
   - {fileID: 6251486613265772971}
   - {fileID: 4308731145309506014}
   - {fileID: 3620301367846511001}
-  - {fileID: 447997709963165112}
   - {fileID: 1242866005237940255}
+  - {fileID: 447997709963165112}
   - {fileID: 6619725949992545864}
   - {fileID: 5645984828424526568}
   m_Father: {fileID: 2005289594815546579}
@@ -2102,7 +2102,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 168.055, y: -17.8}
-  m_SizeDelta: {x: 275.33, y: 35.6}
+  m_SizeDelta: {x: 0, y: 35.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4863102735145304351
 CanvasRenderer:
@@ -2308,7 +2308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447997709963165112}
   m_Layer: 5
-  m_Name: RequirementsRes
+  m_Name: RequirementsRes (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2971,7 +2971,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 336.205, y: -17.800018}
-  m_SizeDelta: {x: 36.67, y: 35.6}
+  m_SizeDelta: {x: 0, y: 35.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2471968859957569183
 CanvasRenderer:
@@ -3233,6 +3233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2005289594815546579}
+  - component: {fileID: 6706491970831473996}
   - component: {fileID: 4634355938589387936}
   m_Layer: 5
   m_Name: BreakthroughWindow
@@ -3264,6 +3265,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6706491970831473996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015827576262481715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becba854a1284372b283a3e5bc8f5a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Character::vikwhite.BreakthroughHierarchy
+  NextLevel: {fileID: 426288989633830599}
+  CurrentLevel: {fileID: 2773832825454149465}
+  BreakthroughButton: {fileID: 8563432484085224579}
+  CloseButton: {fileID: 74464091648551930}
+  CloseFadeButton: {fileID: 5714652367080363265}
+  AttackCurrent: {fileID: 5299839157008226862}
+  AttackAdd: {fileID: 8286501052706736045}
+  DefenseCurrent: {fileID: 1347894215340416534}
+  DefenseAdd: {fileID: 7048322274013199379}
+  HealthCurrent: {fileID: 1804778957228333968}
+  HealthAdd: {fileID: 4484306672492448671}
+  EssenceCount: {fileID: 4905608455710097664}
+  ExpCount: {fileID: 645967927423731861}
+  HeroesCount: {fileID: 8643605286698876871}
 --- !u!114 &4634355938589387936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3456,7 +3483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: Health
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 82147ece115a9db41a819eb0a365859e, type: 2}
   m_sharedMaterial: {fileID: 5249480616956449751, guid: 82147ece115a9db41a819eb0a365859e, type: 2}
@@ -4097,3 +4124,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3761578601109506945, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
   m_PrefabInstance: {fileID: 8820685280985665897}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8563432484085224579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 918227441998759402, guid: eadc87ac82fae7f43889f641b4b80d82, type: 3}
+  m_PrefabInstance: {fileID: 8820685280985665897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
