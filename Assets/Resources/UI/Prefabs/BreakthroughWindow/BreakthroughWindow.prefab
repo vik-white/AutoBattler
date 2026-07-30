@@ -3290,6 +3290,7 @@ MonoBehaviour:
   HealthAdd: {fileID: 4484306672492448671}
   EssenceCount: {fileID: 4905608455710097664}
   ExpCount: {fileID: 645967927423731861}
+  HeroesDesc: {fileID: 4877406042626460501}
   HeroesCount: {fileID: 8643605286698876871}
 --- !u!114 &4634355938589387936
 MonoBehaviour:

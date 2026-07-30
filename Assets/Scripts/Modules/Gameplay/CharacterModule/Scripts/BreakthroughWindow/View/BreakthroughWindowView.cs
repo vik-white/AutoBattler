@@ -22,6 +22,7 @@ namespace vikwhite
             Bind(viewModel.HealthAdd, value => _view.HealthAdd.text = value);
             Bind(viewModel.EssenceCount, value => _view.EssenceCount.text = value);
             Bind(viewModel.ExpCount, value => _view.ExpCount.text = value);
+            Bind(viewModel.HeroesDesc, value => _view.HeroesDesc.text = value);
             Bind(viewModel.HeroesCount, value => _view.HeroesCount.text = value);
             Bind(viewModel.CanBreakthrough, value => _view.BreakthroughButton.interactable = value);
         }

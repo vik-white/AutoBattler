@@ -21,6 +21,7 @@ namespace vikwhite
         private readonly ReactiveProperty<string> _healthAdd = new();
         private readonly ReactiveProperty<string> _essenceCount = new();
         private readonly ReactiveProperty<string> _expCount = new();
+        private readonly ReactiveProperty<string> _heroesDesc = new();
         private readonly ReactiveProperty<string> _heroesCount = new();
         private readonly ReactiveProperty<bool> _canBreakthrough = new();
 
@@ -34,6 +35,7 @@ namespace vikwhite
         public IReadOnlyReactiveProperty<string> HealthAdd => _healthAdd;
         public IReadOnlyReactiveProperty<string> EssenceCount => _essenceCount;
         public IReadOnlyReactiveProperty<string> ExpCount => _expCount;
+        public IReadOnlyReactiveProperty<string> HeroesDesc => _heroesDesc;
         public IReadOnlyReactiveProperty<string> HeroesCount => _heroesCount;
         public IReadOnlyReactiveProperty<bool> CanBreakthrough => _canBreakthrough;
         public UnityAction OnBreakthrough;
@@ -60,6 +62,7 @@ namespace vikwhite
                 _healthAdd,
                 _essenceCount,
                 _expCount,
+                _heroesDesc,
                 _heroesCount,
                 _canBreakthrough);
 
@@ -79,6 +82,7 @@ namespace vikwhite
             var nextLevel = currentLevel + 1;
             _currentLevel.Value = $"Lv. {currentLevel}";
             _nextLevel.Value = $"Lv. {nextLevel}";
+            _heroesDesc.Value = $"Level up heroes to {currentLevel} level:";
 
             RefreshStat(StatType.Attack, currentLevel, nextLevel, _attackCurrent, _attackAdd);
             RefreshStat(StatType.Defense, currentLevel, nextLevel, _defenseCurrent, _defenseAdd);

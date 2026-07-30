@@ -21,6 +21,7 @@ namespace vikwhite
         
         public TMP_Text EssenceCount;
         public TMP_Text ExpCount;
+        public TMP_Text HeroesDesc;
         public TMP_Text HeroesCount;
     }
 }
