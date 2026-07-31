@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                     ID = data.ID.CalculateHash32(),
                     Type = data.Type,
                     Targets = CreateTargets(data.Targets),
+                    TargetConditions = CreateTargetConditions(data.TargetConditions),
                     Cooldown = data.Cooldown,
                     Chance = data.Chance,
                     Radius = data.Radius,
@@ -97,6 +98,13 @@ namespace vikwhite.ECS
             var targets = new FixedList64Bytes<TargetType>();
             foreach (var target in targetConfig) targets.Add(target);
             return targets;
+        }
+
+        private FixedList64Bytes<TargetConditionType> CreateTargetConditions(List<TargetConditionType> conditionConfig) {
+            var conditions = new FixedList64Bytes<TargetConditionType>();
+            if (conditionConfig == null) return conditions;
+            foreach (var condition in conditionConfig) conditions.Add(condition);
+            return conditions;
         }
         
         private FixedList64Bytes<SpawnCharacterData> CreateSpawnCharacters(List<SpawnCharacterData> spawnCharacterConfig) {

@@ -20,6 +20,7 @@ namespace vikwhite.Data
         TriggerType Trigger { get; }
         TargetType TriggerSource { get; }
         List<TargetType> Targets { get; }
+        List<TargetConditionType> TargetConditions { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
         List<StatusData> Statuses { get; }
@@ -62,6 +63,7 @@ namespace vikwhite.Data
         public TriggerType Trigger;
         public TargetType TriggerSource;
         public List<TargetType> Targets;
+        public List<TargetConditionType> TargetConditions = new();
         public List<StatData> Stats;
         public List<EffectData> Effects;
         public List<StatusData> Statuses;
@@ -100,6 +102,7 @@ namespace vikwhite.Data
         TriggerType ISkillData.Trigger => Trigger;
         TargetType ISkillData.TriggerSource => TriggerSource;
         List<TargetType> ISkillData.Targets => Targets;
+        List<TargetConditionType> ISkillData.TargetConditions => TargetConditions;
         List<StatData> ISkillData.Stats => Stats;
         List<EffectData> ISkillData.Effects => Effects;
         List<StatusData> ISkillData.Statuses => Statuses;
@@ -136,6 +139,13 @@ namespace vikwhite.Data
             {
                 if (!Enum.TryParse<TargetType>(abilityString, out var type)) continue;
                 Targets.Add(type);
+            }
+
+            TargetConditions = new ();
+            foreach (var conditionString in row["TargetConditions"].Split(";"))
+            {
+                if (!Enum.TryParse<TargetConditionType>(conditionString, out var type)) continue;
+                TargetConditions.Add(type);
             }
             
             Effects = new ();
