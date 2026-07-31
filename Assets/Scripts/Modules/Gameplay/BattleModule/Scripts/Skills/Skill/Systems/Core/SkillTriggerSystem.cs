@@ -39,9 +39,17 @@ namespace vikwhite.ECS
 
             foreach (var damageEvent in SystemAPI.Query<RefRO<GetDamageEvent>>())
             {
-                var source = damageEvent.ValueRO.Character;
-                if (!context.Characters.HasComponent(source)) continue; 
-                requests.Add(new SkillTriggerRequest(source, TriggerType.GetDamage, triggerEntity: damageEvent.ValueRO.Provider));
+                var damagedCharacter = damageEvent.ValueRO.Character;
+                if (!context.Characters.HasComponent(damagedCharacter)) continue;
+
+                requests.Add(new SkillTriggerRequest(damagedCharacter, TriggerType.GetDamage, triggerEntity: damageEvent.ValueRO.Provider));
+
+                if (!damageEvent.ValueRO.IsCrit) continue;
+
+                var critProvider = damageEvent.ValueRO.Provider;
+                if (!context.Characters.HasComponent(critProvider)) continue;
+
+                requests.Add(new SkillTriggerRequest(critProvider, TriggerType.OnCrit, triggerEntity: damagedCharacter));
             }
 
             foreach (var deadEvent in SystemAPI.Query<RefRO<DeadCharacterEvent>>())

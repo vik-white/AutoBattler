@@ -7,5 +7,6 @@ namespace vikwhite.ECS
         Dead = 2,
         Activate = 3,
         BattleStart = 4,
+        OnCrit = 5,
     }
 }

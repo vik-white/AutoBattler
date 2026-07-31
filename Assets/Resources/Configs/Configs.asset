@@ -37,7 +37,6 @@ MonoBehaviour:
   characters:
     IDS:
     - Test
-    - Dummy
     - Brawler
     - Tank
     - Healer
@@ -193,7 +192,7 @@ MonoBehaviour:
       Rarity: 2
       Class: 0
       Scale: 1.3
-      Health: 1400
+      Health: 14000
       Shield: 0
       Attack: 20
       Defense: 1
@@ -208,35 +207,8 @@ MonoBehaviour:
       ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
       SkillAttack: MeleeAttack_3
-      SkillActive: Tank
+      SkillActive: OrbitingFireBoll
       SkillPassive1: TestSkill
-      SkillPassive2: 
-      SkillMeta1: 
-      SkillMeta2: 
-      SkillMeta3: 
-    - ID: Dummy
-      Name: 
-      Prefab: Sceleton
-      Rarity: 2
-      Class: 0
-      Scale: 1.3
-      Health: 5000
-      Shield: 100
-      Attack: 0
-      Defense: 1
-      CritChance: 0.1
-      CritValue: 1.5
-      Squad: 0
-      HealthBar: 1
-      LevelUpgrade: BaseLevelUp
-      StarUpgrade: StarLevelUp
-      SkillUpgrade: SkillLevelUp
-      Image: {fileID: 0}
-      ShardImage: {fileID: 0}
-      HeadPrefab: {fileID: 0}
-      SkillAttack: 
-      SkillActive: 
-      SkillPassive1: 
       SkillPassive2: 
       SkillMeta1: 
       SkillMeta2: 
@@ -4297,13 +4269,6 @@ MonoBehaviour:
       SkillMeta3: 
   map:
     IDS:
-    - Test
-    - Test5
-    - Forest
-    - Forest1
-    - Forest2
-    - walltest
-    - ForestBoss
     - level_1
     - level_2
     - level_3
@@ -4335,34 +4300,6 @@ MonoBehaviour:
     - level_29
     - level_30
     Data:
-    - ID: Test
-      Type: 0
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: Test5
-      Type: 0
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: Forest
-      Type: 0
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: Forest1
-      Type: 1
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: Forest2
-      Type: 1
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: walltest
-      Type: 0
-      Sector: 
-      Prefab: {fileID: 0}
-    - ID: ForestBoss
-      Type: 0
-      Sector: 
-      Prefab: {fileID: 0}
     - ID: level_1
       Type: 0
       Sector: Sector1
@@ -5081,14 +5018,14 @@ MonoBehaviour:
       Name: TestSkill
       Type: 3
       Icon: Heal
-      Cooldown: 5
+      Cooldown: 0
       Chance: 1
       Radius: 1
       AOE: 0
-      Trigger: 4
+      Trigger: 5
       TriggerSource: 0
-      Targets: 01000000
-      TargetsCount: 2
+      Targets: 00000000
+      TargetsCount: 0
       TargetConditions: 
       Stats: []
       Effects:
@@ -5114,7 +5051,7 @@ MonoBehaviour:
       VFXPrefab: 686645142
       ProjectilePrefab: 0
       VFXSpawn: 2
-      Animation: 4
+      Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: TestSkill
       Might: 10
