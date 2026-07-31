@@ -208,8 +208,8 @@ MonoBehaviour:
       ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
       HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
       SkillAttack: MeleeAttack_3
-      SkillActive: TestSkill
-      SkillPassive1: 
+      SkillActive: Tank
+      SkillPassive1: TestSkill
       SkillPassive2: 
       SkillMeta1: 
       SkillMeta2: 
@@ -5085,7 +5085,7 @@ MonoBehaviour:
       Chance: 1
       Radius: 1
       AOE: 0
-      Trigger: 3
+      Trigger: 4
       TriggerSource: 0
       Targets: 01000000
       TargetsCount: 2

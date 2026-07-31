@@ -1,5 +1,7 @@
 using Unity.Collections;
+using Unity.Entities;
 using UnityEngine;
+using Utilities.Extensions;
 using vikwhite.ECS;
 
 namespace vikwhite
@@ -32,6 +34,7 @@ namespace vikwhite
 
             _camera.MoveTo(BattleCameraPosition, 0.5f);
             ECSWorld.CreateEntity(new InitializeSquad { Value = new FixedList512Bytes<CreateCharacter>() });
+            World.DefaultGameObjectInjectionWorld.EntityManager.CreateFrameEntity(new BattleStartEvent());
             ECSWorld.SetEnabled<EndBattleSystem>(true);
             BattleSystemGroup.AllowSetupWhilePaused = false;
             TimeSystem.SetPaused(false);

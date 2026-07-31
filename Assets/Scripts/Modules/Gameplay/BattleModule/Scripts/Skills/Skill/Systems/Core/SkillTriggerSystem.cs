@@ -51,6 +51,22 @@ namespace vikwhite.ECS
                 requests.Add(new SkillTriggerRequest(source, TriggerType.Dead, allowDeadSourceOwner: true));
             }
 
+            var battleStartRequested = false;
+            foreach (var (_, eventEntity) in SystemAPI.Query<RefRO<BattleStartEvent>>().WithEntityAccess())
+            {
+                battleStartRequested = true;
+                ecb.DestroyEntity(eventEntity);
+            }
+
+            if (battleStartRequested)
+            {
+                foreach (var (skills, starterSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StarterSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Stunned>().WithEntityAccess())
+                {
+                    var request = new SkillTriggerRequest(owner, TriggerType.BattleStart);
+                    TriggerReadySkills(ecb, owner, transform.ValueRO, character.ValueRO.GetConfig(), skills, starterSkills, statMultipliers, request, context);
+                }
+            }
+
             foreach (var request in requests)
             {
                 foreach (var (skills, starterSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StarterSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Stunned>().WithEntityAccess())
@@ -73,7 +89,10 @@ namespace vikwhite.ECS
 
                 if (!SkillHandler.CanTriggerSkill(skill, starterSkills, owner, ownerTransform, ownerConfig, skillConfig, request, context)) continue;
 
-                skill.Cooldown = 0f;
+                if (request.Trigger == TriggerType.BattleStart)
+                    skill.BattleStartTriggered = true;
+                else
+                    skill.Cooldown = 0f;
                 
                 if (Random.value > skillConfig.Chance) continue;
 

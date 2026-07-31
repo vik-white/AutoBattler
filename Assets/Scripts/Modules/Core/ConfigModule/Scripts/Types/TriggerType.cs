@@ -6,5 +6,6 @@ namespace vikwhite.ECS
         GetDamage = 1,
         Dead = 2,
         Activate = 3,
+        BattleStart = 4,
     }
 }

@@ -11,7 +11,8 @@ namespace vikwhite.ECS
             return CanProcessOwner(owner, request, context)
                    && MatchesRequestedSkill(owner, skillConfig, request)
                    && skillConfig.Trigger == request.Trigger
-                   && skill.Cooldown >= skillConfig.Cooldown
+                   && (request.Trigger != TriggerType.BattleStart || !skill.BattleStartTriggered)
+                   && (request.Trigger == TriggerType.BattleStart || skill.Cooldown >= skillConfig.Cooldown)
                    && CanStartAnimation(owner, skillConfig, starterSkills, request, context)
                    && MatchesTriggerSource(owner, request.Source, skillConfig.TriggerSource, context)
                    && CanUseSkill(owner, ownerTransform, skillConfig, ownerConfig, request, context);

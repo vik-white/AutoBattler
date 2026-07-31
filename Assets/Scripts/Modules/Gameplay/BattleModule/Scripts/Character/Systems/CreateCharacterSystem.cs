@@ -107,7 +107,11 @@ namespace vikwhite.ECS
             if (slot.Value == 0) return;
             var configBlob = runtimeData.Get(slot.Value);
             var config = configBlob.Value;
-            var cooldown = slot.Type == SkillSlotType.Attack ? config.Cooldown : config.Cooldown * 0.5f;
+            var cooldown = config.Trigger == TriggerType.BattleStart
+                ? 0f
+                : slot.Type == SkillSlotType.Attack
+                    ? config.Cooldown
+                    : config.Cooldown * 0.5f;
             skills.Add(new Skill
             {
                 Config = configBlob,

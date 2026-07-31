@@ -24,6 +24,7 @@ namespace vikwhite.ECS
                     if (isDead) continue;
 
                     var skillConfig = skill.GetConfig();
+                    if (skillConfig.Trigger == TriggerType.BattleStart) continue;
         
                     skill.Cooldown = math.min(skillConfig.Cooldown, skill.Cooldown + dt * SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers));
 
