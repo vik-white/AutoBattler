@@ -36,6 +36,7 @@ MonoBehaviour:
       BreakthroughExp: 10
   characters:
     IDS:
+    - Test
     - Dummy
     - Brawler
     - Tank
@@ -49,7 +50,6 @@ MonoBehaviour:
     - Sceleton
     - SceletonBoss
     - Sceletonminiboss
-    - Test
     - KnightGD
     - MageGD
     - ArcherGD
@@ -187,6 +187,33 @@ MonoBehaviour:
     - LOC-L4-E03
     - LOC-L4-E04
     Data:
+    - ID: Test
+      Name: Test
+      Prefab: IronfistDwarf
+      Rarity: 2
+      Class: 0
+      Scale: 1.3
+      Health: 1400
+      Shield: 0
+      Attack: 20
+      Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
+      Squad: 1
+      HealthBar: 1
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
+      Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
+      ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
+      HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
+      SkillAttack: MeleeAttack_3
+      SkillActive: TestSkill
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
     - ID: Dummy
       Name: 
       Prefab: Sceleton
@@ -533,33 +560,6 @@ MonoBehaviour:
       HeadPrefab: {fileID: 0}
       SkillAttack: MeleeAttack_2
       SkillActive: 
-      SkillPassive1: 
-      SkillPassive2: 
-      SkillMeta1: 
-      SkillMeta2: 
-      SkillMeta3: 
-    - ID: Test
-      Name: Test
-      Prefab: IronfistDwarf
-      Rarity: 2
-      Class: 0
-      Scale: 1.3
-      Health: 1400
-      Shield: 0
-      Attack: 20
-      Defense: 1
-      CritChance: 0.1
-      CritValue: 1.5
-      Squad: 1
-      HealthBar: 1
-      LevelUpgrade: BaseLevelUp
-      StarUpgrade: StarLevelUp
-      SkillUpgrade: SkillLevelUp
-      Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
-      ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
-      HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
-      SkillAttack: MeleeAttack_3
-      SkillActive: TestSkill
       SkillPassive1: 
       SkillPassive2: 
       SkillMeta1: 
@@ -5087,14 +5087,14 @@ MonoBehaviour:
       AOE: 0
       Trigger: 3
       TriggerSource: 0
-      Targets: 04000000
+      Targets: 02000000
+      TargetConditions: 02000000
       Stats: []
-      Effects: []
-      Statuses:
-      - Type: 6
-        Value: 0
-        Duration: 5
-        Period: 0
+      Effects:
+      - Type: 1
+        Stat: -1
+        Value: 220
+      Statuses: []
       Count: 0
       Speed: 0
       Pierce: 0
@@ -5129,6 +5129,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5169,6 +5170,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5209,6 +5211,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5249,6 +5252,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5289,6 +5293,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5329,6 +5334,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5369,6 +5375,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5409,6 +5416,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5449,6 +5457,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5489,6 +5498,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 4
@@ -5531,6 +5541,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 0000000001000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 2
@@ -5571,6 +5582,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 0000000001000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -5611,6 +5623,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -5651,6 +5664,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 5
@@ -5691,6 +5705,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -5728,6 +5743,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 5
         Value: 0.3
@@ -5768,6 +5784,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5808,6 +5825,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 01000000
+      TargetConditions: 
       Stats:
       - Type: 6
         Value: 0.3
@@ -5848,6 +5866,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -5888,6 +5907,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -5925,6 +5945,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -5962,6 +5983,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -5999,6 +6021,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -6036,6 +6059,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 03000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses:
@@ -6077,6 +6101,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 1
         Value: 2
@@ -6117,6 +6142,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 1
       Targets: 03000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6157,6 +6183,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 2
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 0
         Value: 2
@@ -6197,6 +6224,7 @@ MonoBehaviour:
       Trigger: 2
       TriggerSource: 1
       Targets: 03000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6237,6 +6265,7 @@ MonoBehaviour:
       Trigger: 2
       TriggerSource: 1
       Targets: 01000000
+      TargetConditions: 
       Stats:
       - Type: 1
         Value: 2
@@ -6277,6 +6306,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6317,6 +6347,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6357,6 +6388,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6397,6 +6429,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6437,6 +6470,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6477,6 +6511,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6517,6 +6552,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6557,6 +6593,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6597,6 +6634,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6637,6 +6675,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6677,6 +6716,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6717,6 +6757,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6757,6 +6798,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6797,6 +6839,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -6834,6 +6877,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6874,6 +6918,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6914,6 +6959,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -6958,6 +7004,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats:
       - Type: 1
         Value: 0.65
@@ -7001,6 +7048,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -7038,6 +7086,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 5
@@ -7078,6 +7127,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -7118,6 +7168,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 0
         Value: 1.15
@@ -7158,6 +7209,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 01000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 2
@@ -7198,6 +7250,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 01000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses:
@@ -7240,6 +7293,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -7277,6 +7331,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -7314,6 +7369,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 5
         Value: 0.36
@@ -7354,6 +7410,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -7394,6 +7451,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -7432,6 +7490,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7472,6 +7531,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 0000000001000000
+      TargetConditions: 
       Stats:
       - Type: 3
         Value: 2
@@ -7513,6 +7573,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 0000000001000000
+      TargetConditions: 
       Stats:
       - Type: 5
         Value: 0.87
@@ -7553,6 +7614,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7593,6 +7655,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 4
@@ -7636,6 +7699,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 5
@@ -7677,6 +7741,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7717,6 +7782,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7757,6 +7823,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7797,6 +7864,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats:
       - Type: 1
         Value: 0.6
@@ -7840,6 +7908,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 2
@@ -7881,6 +7950,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 0000000001000000
+      TargetConditions: 
       Stats:
       - Type: 5
         Value: 0.95
@@ -7921,6 +7991,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -7961,6 +8032,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -7998,6 +8070,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 5
@@ -8038,6 +8111,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8078,6 +8152,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 2
@@ -8118,6 +8193,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8155,6 +8231,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8195,6 +8272,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 2
@@ -8235,6 +8313,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8275,6 +8354,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8312,6 +8392,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8349,6 +8430,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8386,6 +8468,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8426,6 +8509,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8464,6 +8548,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8502,6 +8587,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8540,6 +8626,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8580,6 +8667,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8621,6 +8709,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8659,6 +8748,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8700,6 +8790,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8740,6 +8831,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8780,6 +8872,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8818,6 +8911,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -8855,6 +8949,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8895,6 +8990,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8935,6 +9031,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -8976,6 +9073,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9014,6 +9112,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9054,6 +9153,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9092,6 +9192,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9132,6 +9233,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 4
@@ -9175,6 +9277,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9213,6 +9316,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9251,6 +9355,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9291,6 +9396,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9328,6 +9434,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9368,6 +9475,7 @@ MonoBehaviour:
       Trigger: 3
       TriggerSource: 0
       Targets: 
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9410,6 +9518,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9450,6 +9559,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9489,6 +9599,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9529,6 +9640,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9570,6 +9682,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9612,6 +9725,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9653,6 +9767,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -9695,6 +9810,7 @@ MonoBehaviour:
       Trigger: 1
       TriggerSource: 0
       Targets: 03000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9737,6 +9853,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats:
       - Type: 1
         Value: 0.75
@@ -9781,7 +9898,8 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 01000000
+      TargetConditions: 01000000
       Stats: []
       Effects:
       - Type: 2
@@ -9824,6 +9942,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9866,6 +9985,7 @@ MonoBehaviour:
       Trigger: 2
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses:
@@ -9911,6 +10031,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -9952,6 +10073,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -9991,6 +10113,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -10030,6 +10153,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -10068,6 +10192,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 00000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 3
@@ -10110,6 +10235,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -10151,6 +10277,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 6
@@ -10192,7 +10319,8 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 02000000
+      TargetConditions: 01000000
       Stats: []
       Effects:
       - Type: 1
@@ -10235,6 +10363,7 @@ MonoBehaviour:
       Trigger: 2
       TriggerSource: 2
       Targets: 00000000
+      TargetConditions: 
       Stats:
       - Type: 5
         Value: 0.8
@@ -10277,7 +10406,8 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 01000000
+      TargetConditions: 01000000
       Stats: []
       Effects:
       - Type: 3
@@ -10320,6 +10450,7 @@ MonoBehaviour:
       Trigger: 2
       TriggerSource: 1
       Targets: 0000000001000000
+      TargetConditions: 
       Stats:
       - Type: 0
         Value: 1.15
@@ -10363,6 +10494,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -10403,6 +10535,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -10448,6 +10581,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 01000000
+      TargetConditions: 
       Stats: []
       Effects: []
       Statuses: []
@@ -10487,6 +10621,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -10528,7 +10663,8 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 01000000
+      TargetConditions: 01000000
       Stats: []
       Effects:
       - Type: 3
@@ -10571,6 +10707,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 02000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -10613,6 +10750,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 01000000
+      TargetConditions: 
       Stats:
       - Type: 0
         Value: 1.15
@@ -10657,6 +10795,7 @@ MonoBehaviour:
       Trigger: 0
       TriggerSource: 0
       Targets: 04000000
+      TargetConditions: 
       Stats: []
       Effects:
       - Type: 1
@@ -10697,7 +10836,8 @@ MonoBehaviour:
       AOE: 0
       Trigger: 0
       TriggerSource: 0
-      Targets: 
+      Targets: 02000000
+      TargetConditions: 01000000
       Stats: []
       Effects:
       - Type: 1
