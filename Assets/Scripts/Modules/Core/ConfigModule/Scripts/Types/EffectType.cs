@@ -8,5 +8,6 @@ namespace vikwhite.ECS
         Shield = 3,
         Spawn = 4,
         Aggro = 5,
+        Stun = 6,
     }
 }

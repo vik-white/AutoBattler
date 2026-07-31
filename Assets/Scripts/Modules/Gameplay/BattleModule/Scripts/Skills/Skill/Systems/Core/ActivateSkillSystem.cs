@@ -13,10 +13,10 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var skillRuntimeData = SystemAPI.GetSingletonBuffer<SkillRuntimeData>(true);
 
-            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithEntityAccess())
+            foreach (var (pendingSkills, character) in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithNone<Stunned>().WithEntityAccess())
                 ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, false);
 
-            foreach (var (events, pendingSkills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<StarterSkill>>().WithEntityAccess())
+            foreach (var (events, pendingSkills, character) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, DynamicBuffer<StarterSkill>>().WithNone<Stunned>().WithEntityAccess())
             {
                 if (!HasAttackEvent(events)) continue;
                 ActivateReadySkills(ecb, character, pendingSkills, skillRuntimeData, true);

@@ -12,6 +12,8 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             foreach (var (status, target, provider) in SystemAPI.Query<RefRW<Status>, RefRO<Target>, RefRO<Provider>>())
             {
+                if (status.ValueRO.Type == EffectType.Stun) continue;
+
                 if(status.ValueRO.TimeSinceLastTick >= 0)
                     status.ValueRW.TimeSinceLastTick -= dt;
                 else

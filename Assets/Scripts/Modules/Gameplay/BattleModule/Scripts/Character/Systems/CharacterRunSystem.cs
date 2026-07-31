@@ -16,7 +16,7 @@ namespace vikwhite.ECS
                 var animator = SystemAPI.GetBuffer<AnimatorControllerParameterComponent>(entity);
                 var param = animator[(int)AnimationType.Running];
 
-                if (SystemAPI.HasComponent<MovementLock>(entity))
+                if (SystemAPI.HasComponent<MovementLock>(entity) || SystemAPI.HasComponent<Stunned>(entity))
                 {
                     param.BoolValue = false;
                     animator[(int)AnimationType.Running] = param;

@@ -53,7 +53,7 @@ namespace vikwhite.ECS
 
             foreach (var request in requests)
             {
-                foreach (var (skills, starterSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StarterSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithEntityAccess())
+                foreach (var (skills, starterSkills, statMultipliers, transform, character, owner) in SystemAPI.Query<DynamicBuffer<Skill>, DynamicBuffer<StarterSkill>, DynamicBuffer<StatMultiply>, RefRO<LocalTransform>, RefRO<Character>>().WithNone<Stunned>().WithEntityAccess())
                 {
                     TriggerReadySkills(ecb, owner, transform.ValueRO, character.ValueRO.GetConfig(), skills, starterSkills, statMultipliers, request, context);
                 }

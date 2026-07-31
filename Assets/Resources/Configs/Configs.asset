@@ -49,6 +49,7 @@ MonoBehaviour:
     - Sceleton
     - SceletonBoss
     - Sceletonminiboss
+    - Test
     - KnightGD
     - MageGD
     - ArcherGD
@@ -532,6 +533,33 @@ MonoBehaviour:
       HeadPrefab: {fileID: 0}
       SkillAttack: MeleeAttack_2
       SkillActive: 
+      SkillPassive1: 
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
+    - ID: Test
+      Name: Test
+      Prefab: IronfistDwarf
+      Rarity: 2
+      Class: 0
+      Scale: 1.3
+      Health: 1400
+      Shield: 0
+      Attack: 20
+      Defense: 1
+      CritChance: 0.1
+      CritValue: 1.5
+      Squad: 1
+      HealthBar: 1
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
+      Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
+      ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
+      HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
+      SkillAttack: MeleeAttack_3
+      SkillActive: TestSkill
       SkillPassive1: 
       SkillPassive2: 
       SkillMeta1: 
@@ -4907,6 +4935,7 @@ MonoBehaviour:
       SpawnInterval: 0.01
   skills:
     IDS:
+    - TestSkill
     - FlowMeleeAttack
     - MeleeAttack_1
     - MeleeAttack_2
@@ -5048,6 +5077,47 @@ MonoBehaviour:
     - EliteArtillery
     - EnemySlowFinisher
     Data:
+    - ID: TestSkill
+      Name: TestSkill
+      Type: 3
+      Icon: Heal
+      Cooldown: 5
+      Chance: 1
+      Radius: 1
+      AOE: 0
+      Trigger: 3
+      TriggerSource: 0
+      Targets: 04000000
+      Stats: []
+      Effects: []
+      Statuses:
+      - Type: 6
+        Value: 0
+        Duration: 5
+        Period: 0
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 686645142
+      ProjectilePrefab: 0
+      VFXSpawn: 2
+      Animation: 4
+      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
+      Description: TestSkill
+      Might: 10
+      LevelMightMultiplier: 0.15
     - ID: FlowMeleeAttack
       Name: 
       Type: 1
@@ -10082,7 +10152,10 @@ MonoBehaviour:
       TriggerSource: 0
       Targets: 04000000
       Stats: []
-      Effects: []
+      Effects:
+      - Type: 6
+        Stat: -1
+        Value: 1.2
       Statuses: []
       Count: 0
       Speed: 0
@@ -10335,6 +10408,9 @@ MonoBehaviour:
       - Type: 1
         Stat: 0
         Value: 0.65
+      - Type: 6
+        Stat: -1
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0

@@ -38,7 +38,8 @@ namespace vikwhite.ECS
                          .WithNone<Dead>()
                          .WithEntityAccess())
             {
-                var isMovementLocked = SystemAPI.HasComponent<MovementLock>(entity);
+                var isMovementLocked = SystemAPI.HasComponent<MovementLock>(entity)
+                                       || SystemAPI.HasComponent<Stunned>(entity);
 
                 var moveVelocity = float3.zero;
                 var direction = float3.zero;
