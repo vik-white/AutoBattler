@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
+using Random = UnityEngine.Random;
 
 namespace vikwhite.ECS
 {
@@ -36,7 +37,11 @@ namespace vikwhite.ECS
             if (HasTarget(config, TargetType.Enemies))
                 AddTargets(targets, entity, isEnemy ? allies : enemies);
 
-            ApplyTargetConditions(targets, config, healths, characters, statMultipliers);
+            if (config.TargetsCount <= 0)
+                ApplyTargetConditions(targets, config, healths, characters, statMultipliers);
+            else
+                SelectTargets(targets, config, healths, characters, statMultipliers);
+
             return targets;
         }
 
@@ -108,6 +113,78 @@ namespace vikwhite.ECS
 
             targets.Clear();
             AddTarget(targets, selectedTarget);
+        }
+
+        private static void SelectTargets(
+            List<Entity> targets,
+            in SkillConfig config,
+            ComponentLookup<Health> healths,
+            ComponentLookup<Character> characters,
+            BufferLookup<StatMultiply> statMultipliers)
+        {
+            var hasConditions = HasTargetConditions(config);
+            if (hasConditions)
+                RemoveTargetsWithoutConditionValues(targets, config, healths, characters, statMultipliers);
+
+            var selectedCount = config.TargetsCount < targets.Count ? config.TargetsCount : targets.Count;
+            for (var i = 0; i < selectedCount; i++)
+            {
+                var selectedIndex = hasConditions
+                    ? GetBestTargetIndex(targets, i, config, healths, characters, statMultipliers)
+                    : Random.Range(i, targets.Count);
+
+                (targets[i], targets[selectedIndex]) = (targets[selectedIndex], targets[i]);
+            }
+
+            if (selectedCount < targets.Count)
+                targets.RemoveRange(selectedCount, targets.Count - selectedCount);
+        }
+
+        private static void RemoveTargetsWithoutConditionValues(
+            List<Entity> targets,
+            in SkillConfig config,
+            ComponentLookup<Health> healths,
+            ComponentLookup<Character> characters,
+            BufferLookup<StatMultiply> statMultipliers)
+        {
+            for (var i = targets.Count - 1; i >= 0; i--)
+            {
+                if (!CanEvaluateConditions(targets[i], config, healths, characters, statMultipliers))
+                    targets.RemoveAt(i);
+            }
+        }
+
+        private static int GetBestTargetIndex(
+            List<Entity> targets,
+            int startIndex,
+            in SkillConfig config,
+            ComponentLookup<Health> healths,
+            ComponentLookup<Character> characters,
+            BufferLookup<StatMultiply> statMultipliers)
+        {
+            var selectedIndex = startIndex;
+            var equalTargetsCount = 1;
+
+            for (var i = startIndex + 1; i < targets.Count; i++)
+            {
+                var candidate = targets[i];
+                var selected = targets[selectedIndex];
+                if (IsBetterTarget(candidate, selected, config, healths, characters, statMultipliers))
+                {
+                    selectedIndex = i;
+                    equalTargetsCount = 1;
+                    continue;
+                }
+
+                if (IsBetterTarget(selected, candidate, config, healths, characters, statMultipliers))
+                    continue;
+
+                equalTargetsCount++;
+                if (Random.Range(0, equalTargetsCount) == 0)
+                    selectedIndex = i;
+            }
+
+            return selectedIndex;
         }
 
         private static bool HasTargetConditions(in SkillConfig config)

@@ -16,6 +16,7 @@ namespace vikwhite.ECS
         public TriggerType Trigger;
         public TargetType TriggerSource;
         public FixedList64Bytes<TargetType> Targets;
+        public int TargetsCount;
         public FixedList64Bytes<TargetConditionType> TargetConditions;
         public FixedList64Bytes<EffectData> Effects;
         public FixedList128Bytes<StatusData> Statuses;

@@ -25,6 +25,7 @@ namespace vikwhite.ECS
                     ID = data.ID.CalculateHash32(),
                     Type = data.Type,
                     Targets = CreateTargets(data.Targets),
+                    TargetsCount = data.TargetsCount,
                     TargetConditions = CreateTargetConditions(data.TargetConditions),
                     Cooldown = data.Cooldown,
                     Chance = data.Chance,

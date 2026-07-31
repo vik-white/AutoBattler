@@ -20,6 +20,7 @@ namespace vikwhite.Data
         TriggerType Trigger { get; }
         TargetType TriggerSource { get; }
         List<TargetType> Targets { get; }
+        int TargetsCount { get; }
         List<TargetConditionType> TargetConditions { get; }
         List<StatData> Stats { get; }
         List<EffectData> Effects { get; }
@@ -63,6 +64,7 @@ namespace vikwhite.Data
         public TriggerType Trigger;
         public TargetType TriggerSource;
         public List<TargetType> Targets;
+        public int TargetsCount;
         public List<TargetConditionType> TargetConditions = new();
         public List<StatData> Stats;
         public List<EffectData> Effects;
@@ -102,6 +104,7 @@ namespace vikwhite.Data
         TriggerType ISkillData.Trigger => Trigger;
         TargetType ISkillData.TriggerSource => TriggerSource;
         List<TargetType> ISkillData.Targets => Targets;
+        int ISkillData.TargetsCount => TargetsCount;
         List<TargetConditionType> ISkillData.TargetConditions => TargetConditions;
         List<StatData> ISkillData.Stats => Stats;
         List<EffectData> ISkillData.Effects => Effects;
