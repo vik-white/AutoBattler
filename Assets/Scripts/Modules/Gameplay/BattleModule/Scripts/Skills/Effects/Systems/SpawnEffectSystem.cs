@@ -12,7 +12,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
-            foreach (var (effect, target) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>>().WithAny<SpawnEffect>())
+            foreach (var (effect, target, provider) in SystemAPI.Query<RefRO<Effect>, RefRO<Target>, RefRO<Provider>>().WithAny<SpawnEffect>())
             {
                 var character = target.ValueRO.Value;
                 var isEnemy = SystemAPI.HasComponent<Enemy>(character);
@@ -27,7 +27,8 @@ namespace vikwhite.ECS
                         Stars = 0,
                         SkillLevel = 1,
                         Position = MathHandler.GetRandomPointInRadius(position.xz, config.SpawnRadius).xoy(),
-                        IsEnemy = isEnemy
+                        IsEnemy = isEnemy,
+                        SummonProvider = provider.ValueRO.Value
                     });
                 }
             }

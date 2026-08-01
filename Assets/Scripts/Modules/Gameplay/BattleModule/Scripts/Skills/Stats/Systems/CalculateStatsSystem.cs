@@ -8,12 +8,16 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) 
         {
-            foreach (var (_, upgrade, entity) in SystemAPI.Query<RefRO<Character>, RefRO<CharacterUpgrade>>().WithEntityAccess())
+            foreach (var (character, upgrade, entity) in SystemAPI.Query<RefRO<Character>, RefRO<CharacterUpgrade>>().WithEntityAccess())
             {
                 var stats = SystemAPI.GetBuffer<StatMultiply>(entity);
                 var statBases = SystemAPI.GetBuffer<StatBase>(entity);
                 for (int i = 0; i < stats.Length; i++)
-                    stats[i] = new StatMultiply{ Value = statBases[i].Value * upgrade.ValueRO.GetStatMultiplier((StatType)i) };
+                    stats[i] = new StatMultiply
+                    {
+                        Value = statBases[i].Value *
+                                character.ValueRO.GetAppliedUpgradeMultiplier(upgrade.ValueRO, (StatType)i)
+                    };
                 
                 foreach (var change in SystemAPI.Query<RefRO<StatChange>>()) {
                     if (change.ValueRO.Target == entity)

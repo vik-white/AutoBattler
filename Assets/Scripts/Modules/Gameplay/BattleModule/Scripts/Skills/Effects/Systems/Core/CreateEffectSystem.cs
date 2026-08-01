@@ -43,12 +43,15 @@ namespace vikwhite.ECS
 
         public float GetEffectValue(ref SystemState state, EffectData effect, Entity entity, uint skillID)
         {
-            var config = SystemAPI.GetComponent<Character>(entity).GetConfig();
+            var character = SystemAPI.GetComponent<Character>(entity);
+            var config = character.GetConfig();
             var upgrade = SystemAPI.GetComponent<CharacterUpgrade>(entity);
 
             var effectValue = effect.Value * upgrade.GetSkillMultiplier(config, skillID);
 
-            if (!config.TryGetStat(effect.Stat, out var baseStat)) return effectValue;
+            if (!character.TryGetBaseStat(effect.Stat, out var baseStat) &&
+                !config.TryGetStat(effect.Stat, out baseStat))
+                return effectValue;
             var statBuffer = SystemAPI.GetBuffer<StatMultiply>(entity);
             return baseStat * statBuffer[(int)effect.Stat].Value * effectValue;
         }

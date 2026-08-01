@@ -119,7 +119,9 @@ namespace vikwhite
                 HealthBarCreated?.Invoke(healthBar);
             }
 
-            if (config.GetSkill(SkillSlotType.Active) != 0 && !args.IsEnemy)
+            if (config.GetSkill(SkillSlotType.Active) != 0
+                && !args.IsEnemy
+                && entityManager.HasComponent<SquadSelection>(characterEntity))
             {
                 var skill = CreateViewModel<BattleSkillViewModel, BattleWindowCharacterArgs>(args);
                 Skills.Add(skill);

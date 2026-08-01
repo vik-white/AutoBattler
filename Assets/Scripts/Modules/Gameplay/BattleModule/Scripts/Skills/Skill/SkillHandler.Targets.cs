@@ -265,7 +265,7 @@ namespace vikwhite.ECS
                         var attackIndex = (int)StatType.Attack;
                         if (attackIndex < stats.Length)
                         {
-                            value = characters[target].GetConfig().Attack * stats[attackIndex].Value;
+                            value = characters[target].BaseAttack * stats[attackIndex].Value;
                             return true;
                         }
                     }

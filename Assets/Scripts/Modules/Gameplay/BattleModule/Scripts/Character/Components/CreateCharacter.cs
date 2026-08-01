@@ -13,6 +13,7 @@ namespace vikwhite.ECS
         public int SkillLevel;
         public bool IsEnemy;
         public float3 Position;
+        public Entity SummonProvider;
     }
 
     public struct SquadSelection : IComponentData

@@ -29,16 +29,52 @@ namespace vikwhite.ECS
                     BreakthroughLevelPeriod = upgradeConfigData.BreakthroughLevelPeriod,
                     BreakthroughMultiply = upgradeConfigData.BreakthroughMultiply,
                 };
-                var characterEntity = ecb.Instantiate(renderData.Prefab);
-                ecb.AddComponent<SceneEntity>(characterEntity);
-
-                ecb.AddComponent(characterEntity, new Character
+                var baseHealth = config.Health;
+                var baseAttack = config.Attack;
+                var baseDefense = config.Defense;
+                var useSummonHealth = request.ValueRO.SummonProvider != Entity.Null && config.SummonHealth > 0f;
+                var useSummonAttack = request.ValueRO.SummonProvider != Entity.Null && config.SummonAttack > 0f;
+                var useSummonDefense = request.ValueRO.SummonProvider != Entity.Null && config.SummonDefense > 0f;
+                if (useSummonHealth || useSummonAttack || useSummonDefense)
+                {
+                    var providerCharacter = SystemAPI.GetComponent<Character>(request.ValueRO.SummonProvider);
+                    var providerUpgrade = SystemAPI.GetComponent<CharacterUpgrade>(request.ValueRO.SummonProvider);
+                    baseHealth = ResolveSummonBaseStat(
+                        baseHealth,
+                        config.SummonHealth,
+                        providerCharacter,
+                        providerUpgrade,
+                        StatType.Health);
+                    baseAttack = ResolveSummonBaseStat(
+                        baseAttack,
+                        config.SummonAttack,
+                        providerCharacter,
+                        providerUpgrade,
+                        StatType.Attack);
+                    baseDefense = ResolveSummonBaseStat(
+                        baseDefense,
+                        config.SummonDefense,
+                        providerCharacter,
+                        providerUpgrade,
+                        StatType.Defense);
+                }
+                var character = new Character
                 {
                     Config = renderData.Config,
                     Level = request.ValueRO.Level,
                     Stars = request.ValueRO.Stars,
                     SkillLevel = request.ValueRO.SkillLevel,
-                });
+                    BaseHealth = baseHealth,
+                    BaseAttack = baseAttack,
+                    BaseDefense = baseDefense,
+                    UseSummonHealth = useSummonHealth,
+                    UseSummonAttack = useSummonAttack,
+                    UseSummonDefense = useSummonDefense,
+                };
+                var characterEntity = ecb.Instantiate(renderData.Prefab);
+                ecb.AddComponent<SceneEntity>(characterEntity);
+
+                ecb.AddComponent(characterEntity, character);
                 if (request.ValueRO.SquadCharacterID != 0)
                 {
                     ecb.AddComponent(characterEntity, new SquadSelection
@@ -70,8 +106,8 @@ namespace vikwhite.ECS
                 });
                 ecb.SetComponent(characterEntity, new PhysicsCollider { Value = collider });
 
-                var health = config.Health * upgrade.GetStatMultiplier(StatType.Health);
-                ecb.AddComponent(characterEntity, new Defense{ Value = config.Defense * upgrade.GetStatMultiplier(StatType.Defense) });
+                var health = character.GetUpgradedBaseStat(upgrade, StatType.Health);
+                ecb.AddComponent(characterEntity, new Defense{ Value = character.GetUpgradedBaseStat(upgrade, StatType.Defense) });
                 ecb.AddComponent(characterEntity, new Health{ Value = health });
                 ecb.AddComponent(characterEntity, new HealthMax{ Value = health });
                 ecb.AddComponent(characterEntity, new Shield{ Value = config.Shield });
@@ -94,6 +130,18 @@ namespace vikwhite.ECS
                 ecb.CreateFrameEntity(new CreateCharacterEvent { Character = characterEntity });
             }
             ecb.Playback(state.EntityManager);
+        }
+
+        private static float ResolveSummonBaseStat(
+            float ownBaseStat,
+            float summonMultiplier,
+            in Character providerCharacter,
+            in CharacterUpgrade providerUpgrade,
+            StatType stat)
+        {
+            return summonMultiplier > 0f
+                ? providerCharacter.GetUpgradedBaseStat(providerUpgrade, stat) * summonMultiplier
+                : ownBaseStat;
         }
 
         private static quaternion GetInitialRotation(bool isEnemy)

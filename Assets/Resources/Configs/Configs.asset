@@ -37,6 +37,7 @@ MonoBehaviour:
   characters:
     IDS:
     - Test
+    - SummonTest
     - Brawler
     - Tank
     - Healer
@@ -196,9 +197,42 @@ MonoBehaviour:
       Shield: 0
       Attack: 20
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 1
+      HealthBar: 1
+      LevelUpgrade: BaseLevelUp
+      StarUpgrade: StarLevelUp
+      SkillUpgrade: SkillLevelUp
+      Image: {fileID: 21300000, guid: 65ec94d6c6984f84eba6e9c8db5d3e86, type: 3}
+      ShardImage: {fileID: 21300000, guid: 4cdd17ef4f397c340a5bbb53263d0a1a, type: 3}
+      HeadPrefab: {fileID: 1627395168336176711, guid: 36f287023e144eb408e3457141e5b7ef, type: 3}
+      SkillAttack: MeleeAttack_3
+      SkillActive: OrbitingFireBoll
+      SkillPassive1: TestSkill
+      SkillPassive2: 
+      SkillMeta1: 
+      SkillMeta2: 
+      SkillMeta3: 
+    - ID: SummonTest
+      Name: SummonTest
+      Prefab: IronfistDwarfRed
+      Rarity: 2
+      Class: 0
+      Scale: 1.3
+      Health: 700
+      Shield: 0
+      Attack: 20
+      Defense: 1
+      SummonHealth: 1
+      SummonAttack: 1
+      SummonDefense: 1
+      CritChance: 0.1
+      CritValue: 1.5
+      Squad: 0
       HealthBar: 1
       LevelUpgrade: BaseLevelUp
       StarUpgrade: StarLevelUp
@@ -223,6 +257,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -250,6 +287,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 20
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -277,6 +317,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 30
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -304,6 +347,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 60
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -331,6 +377,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 80
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -358,6 +407,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 30
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -385,6 +437,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -412,6 +467,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 80
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -439,6 +497,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 65
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -466,6 +527,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 5
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -493,6 +557,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 95
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -520,6 +587,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 50
       Defense: 1
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -547,6 +617,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 70
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -574,6 +647,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -601,6 +677,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 78
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -628,6 +707,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 64
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -655,6 +737,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 69
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -682,6 +767,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 60
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -709,6 +797,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 62
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -736,6 +827,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 80
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.15
       CritValue: 1.5
       Squad: 1
@@ -763,6 +857,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 71
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -790,6 +887,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 95
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -817,6 +917,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 0
       Defense: 0
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0
       CritValue: 1
       Squad: 0
@@ -844,6 +947,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 65
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -871,6 +977,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 73
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -898,6 +1007,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 46
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -925,6 +1037,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 62
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -952,6 +1067,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 72
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -979,6 +1097,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 110
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -1006,6 +1127,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 68
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -1033,6 +1157,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 110
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -1060,6 +1187,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 115
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -1087,6 +1217,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 115
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 0
@@ -1114,6 +1247,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 110
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 1
@@ -1141,6 +1277,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 76
       Defense: 5
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 0
@@ -1168,6 +1307,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 61
       Defense: 3
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.05
       CritValue: 1.5
       Squad: 0
@@ -1195,6 +1337,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1223,6 +1368,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1250,6 +1398,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1277,6 +1428,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1304,6 +1458,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1331,6 +1488,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1359,6 +1519,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1386,6 +1549,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1414,6 +1580,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1442,6 +1611,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1470,6 +1642,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1498,6 +1673,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1526,6 +1704,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 199.5
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1554,6 +1735,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 210.2
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1582,6 +1766,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 184.8
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1610,6 +1797,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 103.9
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1637,6 +1827,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1665,6 +1858,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 96.4
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1693,6 +1889,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 213.9
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1721,6 +1920,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 187.9
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1748,6 +1950,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1776,6 +1981,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1803,6 +2011,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1830,6 +2041,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1857,6 +2071,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1884,6 +2101,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1912,6 +2132,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1940,6 +2163,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1967,6 +2193,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -1995,6 +2224,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2022,6 +2254,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2049,6 +2284,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2076,6 +2314,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2103,6 +2344,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2131,6 +2375,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2158,6 +2405,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2186,6 +2436,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2214,6 +2467,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2242,6 +2498,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2270,6 +2529,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2297,6 +2559,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2325,6 +2590,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2352,6 +2620,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2379,6 +2650,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2406,6 +2680,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2433,6 +2710,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2461,6 +2741,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2488,6 +2771,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2516,6 +2802,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2544,6 +2833,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2572,6 +2864,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2600,6 +2895,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2627,6 +2925,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2655,6 +2956,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2682,6 +2986,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2709,6 +3016,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2736,6 +3046,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2763,6 +3076,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2791,6 +3107,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2818,6 +3137,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2846,6 +3168,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2874,6 +3199,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2902,6 +3230,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2930,6 +3261,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2957,6 +3291,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -2985,6 +3322,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3012,6 +3352,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3039,6 +3382,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3066,6 +3412,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3093,6 +3442,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3121,6 +3473,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3148,6 +3503,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3176,6 +3534,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3204,6 +3565,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3232,6 +3596,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3260,6 +3627,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3287,6 +3657,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3315,6 +3688,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3342,6 +3718,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3369,6 +3748,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3396,6 +3778,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3423,6 +3808,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3451,6 +3839,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3478,6 +3869,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3506,6 +3900,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3534,6 +3931,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3562,6 +3962,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3590,6 +3993,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3617,6 +4023,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3645,6 +4054,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3672,6 +4084,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3699,6 +4114,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3726,6 +4144,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3753,6 +4174,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3781,6 +4205,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3808,6 +4235,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3836,6 +4266,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3864,6 +4297,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3892,6 +4328,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3920,6 +4359,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3947,6 +4389,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 93.8
       Defense: 15
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -3975,6 +4420,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 235.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4002,6 +4450,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 201.1
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4029,6 +4480,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 233.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4056,6 +4510,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 105.8
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4083,6 +4540,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 206.7
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4111,6 +4571,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 145.2
       Defense: 14
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4138,6 +4601,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 217.6
       Defense: 11
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4166,6 +4632,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 90.9
       Defense: 16
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4194,6 +4663,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 202.1
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4222,6 +4694,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 225
       Defense: 12
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -4250,6 +4725,9 @@ MonoBehaviour:
       Shield: 0
       Attack: 146.2
       Defense: 13
+      SummonHealth: 0
+      SummonAttack: 0
+      SummonDefense: 0
       CritChance: 0.1
       CritValue: 1.5
       Squad: 0
@@ -5015,23 +5493,23 @@ MonoBehaviour:
     - EnemySlowFinisher
     Data:
     - ID: TestSkill
-      Name: TestSkill
+      Name: 
       Type: 3
-      Icon: Heal
+      Icon: 
       Cooldown: 0
       Chance: 1
       Radius: 1
       AOE: 0
-      Trigger: 5
+      Trigger: 4
       TriggerSource: 0
       Targets: 00000000
       TargetsCount: 0
       TargetConditions: 
       Stats: []
       Effects:
-      - Type: 3
+      - Type: 4
         Stat: -1
-        Value: 50
+        Value: 1
       Statuses: []
       Count: 0
       Speed: 0
@@ -5039,8 +5517,10 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
+      SpawnCharacters:
+      - ID: 3941001075
+        Probability: 1
+      SpawnRadius: 2
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
@@ -5052,8 +5532,8 @@ MonoBehaviour:
       ProjectilePrefab: 0
       VFXSpawn: 2
       Animation: 0
-      IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
-      Description: TestSkill
+      IconImage: {fileID: 0}
+      Description: 
       Might: 10
       LevelMightMultiplier: 0.15
     - ID: FlowMeleeAttack
