@@ -20,6 +20,9 @@ namespace vikwhite.ECS
         public float Shield;
         public float Attack;
         public float Defense;
+        public float SummonHealth;
+        public float SummonAttack;
+        public float SummonDefense;
         public float CritChance;
         public float CritValue;
         public bool HealthBar;

@@ -17,6 +17,9 @@ namespace vikwhite.Data
         float Shield { get; }
         float Attack { get; }
         float Defense { get; }
+        float SummonHealth { get; }
+        float SummonAttack { get; }
+        float SummonDefense { get; }
         float CritChance { get; }
         float CritValue { get; }
         bool Squad { get; }
@@ -46,6 +49,9 @@ namespace vikwhite.Data
         public float Shield;
         public float Attack;
         public float Defense;
+        public float SummonHealth;
+        public float SummonAttack;
+        public float SummonDefense;
         public float CritChance;
         public float CritValue;
         public bool Squad;
@@ -79,6 +85,9 @@ namespace vikwhite.Data
         float ICharacterData.Shield => Shield;
         float ICharacterData.Attack => Attack;
         float ICharacterData.Defense => Defense;
+        float ICharacterData.SummonHealth => SummonHealth;
+        float ICharacterData.SummonAttack => SummonAttack;
+        float ICharacterData.SummonDefense => SummonDefense;
         float ICharacterData.CritChance => CritChance;
         float ICharacterData.CritValue => CritValue;
         bool ICharacterData.Squad => Squad;
