@@ -38,6 +38,7 @@ namespace vikwhite.Data
         float AuraRadius { get; }
         float AuraInterval { get; }
         List<uint> Skills { get; }
+        List<float> SkillDelays { get; }
         float ImpulseUp { get; }
         float ImpulseProvider { get; }
         uint CastVFXPrefab { get; }
@@ -83,6 +84,7 @@ namespace vikwhite.Data
         public float AuraRadius;
         public float AuraInterval;
         public List<uint> Skills;
+        public List<float> SkillDelays;
         public float ImpulseUp;
         public float ImpulseProvider;
         public uint CastVFXPrefab;
@@ -124,6 +126,7 @@ namespace vikwhite.Data
         float ISkillData.AuraRadius => AuraRadius;
         float ISkillData.AuraInterval => AuraInterval;
         List<uint> ISkillData.Skills => Skills;
+        List<float> ISkillData.SkillDelays => SkillDelays;
         float ISkillData.ImpulseUp => ImpulseUp;
         float ISkillData.ImpulseProvider => ImpulseProvider;
         uint ISkillData.CastVFXPrefab => CastVFXPrefab;
@@ -221,11 +224,32 @@ namespace vikwhite.Data
             }
             
             Skills = new ();
+            SkillDelays = new ();
             foreach (var abilityString in row["Skills"].Split(";"))
             {
-                if(abilityString == "") continue;
-                Skills.Add(abilityString.CalculateHash32());
+                var skillValue = abilityString.Trim();
+                if(skillValue == "") continue;
+
+                ParseSkillValue(skillValue, out var skillID, out var delay);
+                Skills.Add(skillID.CalculateHash32());
+                SkillDelays.Add(delay);
             }
+        }
+
+        private static void ParseSkillValue(string rawValue, out string skillID, out float delay)
+        {
+            skillID = rawValue;
+            delay = 0f;
+
+            var separatorIndex = rawValue.LastIndexOf('-');
+            if (separatorIndex <= 0 || separatorIndex >= rawValue.Length - 1) return;
+
+            var delayValue = rawValue.Substring(separatorIndex + 1).Replace(",", ".");
+            if (!float.TryParse(delayValue, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsedDelay)) return;
+            if (float.IsNaN(parsedDelay) || float.IsInfinity(parsedDelay)) return;
+
+            skillID = rawValue.Substring(0, separatorIndex);
+            delay = Math.Max(0f, parsedDelay);
         }
 
         private static void ParseEffectValue(string rawValue, out StatType stat, out float value)

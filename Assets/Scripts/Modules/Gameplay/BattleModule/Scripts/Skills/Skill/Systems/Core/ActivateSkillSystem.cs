@@ -42,6 +42,36 @@ namespace vikwhite.ECS
 
         private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity triggerSource, Entity trigger, BlobAssetReference<SkillConfig> skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
         {
+            var skillConfig = skill.Value;
+            if (skillConfig.Skills.Length == 0)
+            {
+                CreateSkillActivatedEvent(ecb, character, triggerSource, trigger, skill);
+                return;
+            }
+
+            for (int i = 0; i < skillConfig.Skills.Length; i++)
+            {
+                var nestedSkill = skillRuntimeData.Get(skillConfig.Skills[i]);
+                var delay = i < skillConfig.SkillDelays.Length ? skillConfig.SkillDelays[i] : 0f;
+                if (delay <= 0f)
+                {
+                    CreateSkillActivatedEvent(ecb, character, triggerSource, trigger, nestedSkill);
+                    continue;
+                }
+
+                ecb.CreateSceneEntity(new DelayedSkillActivation
+                {
+                    Character = character,
+                    TriggerSource = triggerSource,
+                    Trigger = trigger,
+                    Skill = nestedSkill,
+                    TimeLeft = delay
+                });
+            }
+        }
+
+        private static void CreateSkillActivatedEvent(EntityCommandBuffer ecb, Entity character, Entity triggerSource, Entity trigger, BlobAssetReference<SkillConfig> skill)
+        {
             ecb.CreateFrameEntity(new SkillActivatedEvent
             {
                 Character = character,
@@ -49,18 +79,6 @@ namespace vikwhite.ECS
                 Trigger = trigger,
                 Skill = skill
             });
-
-            var skillConfig = skill.Value;
-            for (int i = 0; i < skillConfig.Skills.Length; i++)
-            {
-                ecb.CreateFrameEntity(new SkillActivatedEvent
-                {
-                    Character = character,
-                    TriggerSource = triggerSource,
-                    Trigger = trigger,
-                    Skill = skillRuntimeData.Get(skillConfig.Skills[i])
-                });
-            }
         }
 
         private static bool HasAttackEvent(DynamicBuffer<AnimationEventComponent> events)
@@ -70,6 +88,34 @@ namespace vikwhite.ECS
                 if (evnt.nameHash == "Attack".CalculateHash32()) return true;
             }
             return false;
+        }
+    }
+
+    [UpdateInGroup(typeof(SetupSystemGroup))]
+    [UpdateBefore(typeof(ActivateSkillSystem))]
+    public partial struct DelayedSkillActivationSystem : ISystem
+    {
+        public void OnUpdate(ref SystemState state)
+        {
+            var deltaTime = SystemAPI.GetSingleton<Time>().DeltaTime;
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+
+            foreach (var (delayedSkill, entity) in SystemAPI.Query<RefRW<DelayedSkillActivation>>().WithEntityAccess())
+            {
+                delayedSkill.ValueRW.TimeLeft -= deltaTime;
+                if (delayedSkill.ValueRO.TimeLeft > 0f) continue;
+
+                ecb.CreateFrameEntity(new SkillActivatedEvent
+                {
+                    Character = delayedSkill.ValueRO.Character,
+                    TriggerSource = delayedSkill.ValueRO.TriggerSource,
+                    Trigger = delayedSkill.ValueRO.Trigger,
+                    Skill = delayedSkill.ValueRO.Skill
+                });
+                ecb.DestroyEntity(entity);
+            }
+
+            ecb.Playback(state.EntityManager);
         }
     }
 }

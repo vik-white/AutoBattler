@@ -5351,6 +5351,8 @@ MonoBehaviour:
   skills:
     IDS:
     - TestSkill
+    - TestSkill1
+    - TestSkill2
     - FlowMeleeAttack
     - MeleeAttack_1
     - MeleeAttack_2
@@ -5494,6 +5496,49 @@ MonoBehaviour:
     Data:
     - ID: TestSkill
       Name: 
+      Type: 5
+      Icon: 
+      Cooldown: 3
+      ActivateCount: 0
+      Chance: 1
+      Radius: 10
+      AOE: 0
+      Trigger: 0
+      TriggerSource: 0
+      Targets: 04000000
+      TargetsCount: 0
+      TargetConditions: 
+      Stats: []
+      Effects: []
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 863da513450a823c
+      SkillDelays:
+      - 0
+      - 1
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 0
+      ProjectilePrefab: 0
+      VFXSpawn: 0
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
+    - ID: TestSkill1
+      Name: 
       Type: 3
       Icon: 
       Cooldown: 1
@@ -5524,6 +5569,51 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
+      ImpulseUp: 0
+      ImpulseProvider: 0
+      CastVFXPrefab: 0
+      VFXPrefab: 3968037802
+      ProjectilePrefab: 0
+      VFXSpawn: 3
+      Animation: 0
+      IconImage: {fileID: 0}
+      Description: 
+      Might: 10
+      LevelMightMultiplier: 0.15
+    - ID: TestSkill2
+      Name: 
+      Type: 3
+      Icon: 
+      Cooldown: 1
+      ActivateCount: 0
+      Chance: 1
+      Radius: 10
+      AOE: 0
+      Trigger: 0
+      TriggerSource: 0
+      Targets: 02000000
+      TargetsCount: 0
+      TargetConditions: 
+      Stats: []
+      Effects:
+      - Type: 5
+        Stat: -1
+        Value: 3
+      Statuses: []
+      Count: 0
+      Speed: 0
+      Pierce: 0
+      Scale: 0
+      OrbitRadius: 0
+      Lifetime: 0
+      SpawnCharacters: []
+      SpawnRadius: 0
+      AuraLifetime: 0
+      AuraRadius: 0
+      AuraInterval: 0
+      Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5567,6 +5657,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5610,6 +5701,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5653,6 +5745,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5696,6 +5789,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5739,6 +5833,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5782,6 +5877,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5825,6 +5921,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5868,6 +5965,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5911,6 +6009,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5956,6 +6055,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -5999,6 +6099,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6042,6 +6143,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6085,6 +6187,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6128,6 +6231,7 @@ MonoBehaviour:
       AuraRadius: 15
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 2
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6168,6 +6272,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6211,6 +6316,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6254,6 +6360,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -6297,6 +6404,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
@@ -6340,6 +6448,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 3
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -6380,6 +6489,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: bd7108524b0d3033
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -6420,6 +6532,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 3c4729dc5512d8d0
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -6460,6 +6575,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 55058f90b5f02159
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -6500,6 +6618,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 4b90d50d7746bcdf
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -6546,6 +6667,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6589,6 +6711,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6632,6 +6755,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6675,6 +6799,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6718,6 +6843,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6761,6 +6887,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6804,6 +6931,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6847,6 +6975,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6890,6 +7019,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6933,6 +7063,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -6976,6 +7107,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7019,6 +7151,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7062,6 +7195,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7105,6 +7239,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7148,6 +7283,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7191,6 +7327,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7234,6 +7371,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7277,6 +7415,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -7320,6 +7459,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -7360,6 +7500,17 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: efdf7523efdf7523efdf7523efdf7523efdf7523efdf7523efdf7523efdf7523efdf7523efdf7523
+      SkillDelays:
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
@@ -7403,6 +7554,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7446,6 +7598,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -7495,6 +7648,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -7541,6 +7695,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -7581,6 +7736,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: ff1a7c6097bafc28
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -7624,6 +7782,7 @@ MonoBehaviour:
       AuraRadius: 15
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7667,6 +7826,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7710,6 +7870,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7753,6 +7914,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -7799,6 +7961,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -7840,6 +8003,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 74bc5e107f964292
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -7880,6 +8046,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7923,6 +8090,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -7966,6 +8134,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8006,6 +8175,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: daedaa98948d0cc8
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
@@ -8050,6 +8222,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8093,6 +8266,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8137,6 +8311,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1138347339
@@ -8180,6 +8355,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -8225,6 +8401,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -8269,6 +8446,7 @@ MonoBehaviour:
       AuraRadius: 15
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8313,6 +8491,7 @@ MonoBehaviour:
       AuraRadius: 3
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -8356,6 +8535,7 @@ MonoBehaviour:
       AuraRadius: 3
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -8399,6 +8579,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8445,6 +8626,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -8488,6 +8670,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8532,6 +8715,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8575,6 +8759,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8615,6 +8800,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: ee1ae75ef0877dc3
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -8658,6 +8846,7 @@ MonoBehaviour:
       AuraRadius: 10
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8701,6 +8890,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -8744,6 +8934,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8784,6 +8975,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 0d0ba6998e819886
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8827,6 +9021,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8870,6 +9065,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8913,6 +9109,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8953,6 +9150,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -8993,6 +9191,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9033,6 +9232,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9076,6 +9276,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9116,6 +9317,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9157,6 +9359,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9198,6 +9401,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9242,6 +9446,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9285,6 +9490,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9326,6 +9532,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9370,6 +9577,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9414,6 +9622,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9457,6 +9666,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -9497,6 +9707,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9538,6 +9749,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9581,6 +9793,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9624,6 +9837,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -9667,6 +9881,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -9708,6 +9923,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9752,6 +9968,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9792,6 +10009,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: b3775678e87f14b7
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -9836,6 +10056,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -9881,6 +10102,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -9922,6 +10144,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -9963,6 +10186,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10007,6 +10231,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10047,6 +10272,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10090,6 +10316,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10130,6 +10357,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10177,6 +10405,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -10220,6 +10449,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -10263,6 +10493,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10306,6 +10537,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10350,6 +10582,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10395,6 +10628,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10439,6 +10673,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -10484,6 +10719,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10532,6 +10768,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -10577,6 +10814,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 3276869000
@@ -10622,6 +10860,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 2.5
       CastVFXPrefab: 124269216
@@ -10670,6 +10909,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10717,6 +10957,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -10758,6 +10999,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10800,6 +11042,9 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: a6dd504513542957
+      SkillDelays:
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -10842,6 +11087,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10886,6 +11132,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -10931,6 +11178,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 1.5
       ImpulseProvider: 4
       CastVFXPrefab: 124269216
@@ -10975,6 +11223,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11020,6 +11269,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -11065,6 +11315,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -11111,6 +11362,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11156,6 +11408,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -11199,6 +11452,10 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: a6dd5045135429574f5e8a1d
+      SkillDelays:
+      - 0
+      - 0
+      - 0
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 2502407724
@@ -11248,6 +11505,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
@@ -11290,6 +11548,7 @@ MonoBehaviour:
       AuraRadius: 5
       AuraInterval: 1
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -11335,6 +11594,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11380,6 +11640,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11425,6 +11686,7 @@ MonoBehaviour:
       AuraRadius: 4
       AuraInterval: 1
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216
@@ -11470,6 +11732,7 @@ MonoBehaviour:
       AuraRadius: 5
       AuraInterval: 1.5
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11517,6 +11780,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 1059480427
@@ -11561,6 +11825,7 @@ MonoBehaviour:
       AuraRadius: 0
       AuraInterval: 0
       Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 124269216

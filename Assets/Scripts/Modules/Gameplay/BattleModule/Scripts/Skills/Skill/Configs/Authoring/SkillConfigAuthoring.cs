@@ -21,6 +21,7 @@ namespace vikwhite.ECS
 
             foreach (var data in configs.Skills.GetAll())
             {
+                CreateSkills(data.Skills, data.SkillDelays, out var skills, out var skillDelays);
                 var config = new SkillConfig
                 {
                     ID = data.ID.CalculateHash32(),
@@ -52,7 +53,8 @@ namespace vikwhite.ECS
                     AuraLifetime = data.AuraLifetime,
                     AuraRadius = data.AuraRadius,
                     AuraInterval = data.AuraInterval,
-                    Skills = CreateSkills(data.Skills),
+                    Skills = skills,
+                    SkillDelays = skillDelays,
                     ImpulseUp = data.ImpulseUp,
                     ImpulseProvider = data.ImpulseProvider,
                     CastVFXPrefab =  data.CastVFXPrefab,
@@ -116,10 +118,20 @@ namespace vikwhite.ECS
             return spawnCharacters;
         }
         
-        private FixedList64Bytes<uint> CreateSkills(List<uint> skillsConfig) {
-            var skills = new FixedList64Bytes<uint>();
-            foreach (var skill in skillsConfig) skills.Add(skill);
-            return skills;
+        private void CreateSkills(
+            List<uint> skillsConfig,
+            List<float> skillDelaysConfig,
+            out FixedList64Bytes<uint> skills,
+            out FixedList64Bytes<float> skillDelays)
+        {
+            skills = new FixedList64Bytes<uint>();
+            skillDelays = new FixedList64Bytes<float>();
+
+            for (int i = 0; i < skillsConfig.Count; i++)
+            {
+                skills.Add(skillsConfig[i]);
+                skillDelays.Add(skillDelaysConfig != null && i < skillDelaysConfig.Count ? skillDelaysConfig[i] : 0f);
+            }
         }
     }
 }

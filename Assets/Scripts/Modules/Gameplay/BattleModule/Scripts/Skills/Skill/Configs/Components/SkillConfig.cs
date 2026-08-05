@@ -29,6 +29,7 @@ namespace vikwhite.ECS
         public float AuraRadius;
         public float AuraInterval;
         public FixedList64Bytes<uint> Skills;
+        public FixedList64Bytes<float> SkillDelays;
         public float ImpulseUp;
         public float ImpulseProvider;
         public uint CastVFXPrefab;
