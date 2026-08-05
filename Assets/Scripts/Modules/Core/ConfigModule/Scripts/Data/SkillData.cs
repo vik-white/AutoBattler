@@ -157,16 +157,11 @@ namespace vikwhite.Data
                 if(abilityString == "") continue;
                 var parts = abilityString.Split(':');
                 var typeString = parts[0];
-                var subParts = parts[1].Split('-');
-                var valueString = subParts.Length == 1 ? subParts[0] : subParts[1];
-                var dependenceString = subParts.Length == 1 ? "" : subParts[0];
-                var stat = StatType.None;
-                if (!string.IsNullOrEmpty(dependenceString) && !Enum.TryParse(dependenceString, out stat))
-                    stat = StatType.None;
+                ParseEffectValue(parts[1], out var stat, out var value);
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
                 
-                Effects.Add(new EffectData { Type = type, Stat = stat, Value = valueString.ToFloat() });
+                Effects.Add(new EffectData { Type = type, Stat = stat, Value = value });
             }
             
             Statuses = new ();
@@ -175,16 +170,18 @@ namespace vikwhite.Data
                 if(abilityString == "") continue;
                 var parts = abilityString.Split(':');
                 var typeString = parts[0];
-                var valueString = parts[1];
                 var durationString = parts[2];
                 var periodString = parts[3];
+                ParseEffectValue(parts[1], out var stat, out var value);
                 
                 if (!Enum.TryParse<EffectType>(typeString, out var type)) continue;
                 
                 Statuses.Add(new StatusData
                 {
-                    Type = type, 
-                    Value = valueString.ToFloat(),
+                    Type = type,
+                    Stat = stat,
+                    UseStat = stat != StatType.None,
+                    Value = value,
                     Duration = durationString.ToFloat(),
                     Period = periodString.ToFloat(),
                 });
@@ -226,6 +223,19 @@ namespace vikwhite.Data
                 if(abilityString == "") continue;
                 Skills.Add(abilityString.CalculateHash32());
             }
+        }
+
+        private static void ParseEffectValue(string rawValue, out StatType stat, out float value)
+        {
+            var parts = rawValue.Split('-');
+            var valueString = parts.Length == 1 ? parts[0] : parts[1];
+            var statString = parts.Length == 1 ? "" : parts[0];
+
+            stat = StatType.None;
+            if (!string.IsNullOrEmpty(statString) && !Enum.TryParse(statString, out stat))
+                stat = StatType.None;
+
+            value = valueString.ToFloat();
         }
     }
 }

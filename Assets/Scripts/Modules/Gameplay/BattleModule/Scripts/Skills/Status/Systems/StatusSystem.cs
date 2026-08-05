@@ -26,7 +26,8 @@ namespace vikwhite.ECS
                         Target = target.ValueRO.Value, 
                         Data = new EffectData
                         {
-                            Type = status.ValueRO.Type, 
+                            Type = status.ValueRO.Type,
+                            Stat = status.ValueRO.Stat,
                             Value  = status.ValueRO.Value
                         }
                     });

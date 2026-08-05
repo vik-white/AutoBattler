@@ -15,6 +15,7 @@ namespace vikwhite.ECS
                 {
                     Ability = request.ValueRO.Skill,
                     Type = request.ValueRO.Data.Type,
+                    Stat = request.ValueRO.Data.UseStat ? request.ValueRO.Data.Stat : StatType.None,
                     Value = request.ValueRO.Data.Value,
                     Duration = request.ValueRO.Data.Duration,
                     TileLeft = request.ValueRO.Data.Duration,

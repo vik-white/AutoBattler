@@ -6,6 +6,7 @@ namespace vikwhite.ECS
     {
         public BlobAssetReference<SkillConfig> Ability;
         public EffectType Type;
+        public StatType Stat;
         public float Value;
         public float Duration;
         public float TileLeft;
