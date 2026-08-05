@@ -193,7 +193,7 @@ MonoBehaviour:
       Rarity: 2
       Class: 0
       Scale: 1.3
-      Health: 14000
+      Health: 1400
       Shield: 0
       Attack: 20
       Defense: 1
@@ -5351,8 +5351,6 @@ MonoBehaviour:
   skills:
     IDS:
     - TestSkill
-    - TestSkill1
-    - TestSkill2
     - FlowMeleeAttack
     - MeleeAttack_1
     - MeleeAttack_2
@@ -5496,20 +5494,23 @@ MonoBehaviour:
     Data:
     - ID: TestSkill
       Name: 
-      Type: 5
+      Type: 3
       Icon: 
       Cooldown: 3
-      ActivateCount: 0
+      ActivateCount: 1
       Chance: 1
       Radius: 10
       AOE: 0
-      Trigger: 0
+      Trigger: 2
       TriggerSource: 0
-      Targets: 04000000
+      Targets: 00000000
       TargetsCount: 0
       TargetConditions: 
       Stats: []
-      Effects: []
+      Effects:
+      - Type: 7
+        Stat: -1
+        Value: 0.55
       Statuses: []
       Count: 0
       Speed: 0
@@ -5522,104 +5523,14 @@ MonoBehaviour:
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0
-      Skills: 863da513450a823c
-      SkillDelays:
-      - 0
-      - 1
+      Skills: 
+      SkillDelays: []
       ImpulseUp: 0
       ImpulseProvider: 0
       CastVFXPrefab: 0
       VFXPrefab: 0
       ProjectilePrefab: 0
       VFXSpawn: 0
-      Animation: 0
-      IconImage: {fileID: 0}
-      Description: 
-      Might: 10
-      LevelMightMultiplier: 0.15
-    - ID: TestSkill1
-      Name: 
-      Type: 3
-      Icon: 
-      Cooldown: 1
-      ActivateCount: 0
-      Chance: 1
-      Radius: 10
-      AOE: 0
-      Trigger: 0
-      TriggerSource: 0
-      Targets: 04000000
-      TargetsCount: 0
-      TargetConditions: 
-      Stats: []
-      Effects:
-      - Type: 1
-        Stat: 7
-        Value: 1
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Skills: 
-      SkillDelays: []
-      ImpulseUp: 0
-      ImpulseProvider: 0
-      CastVFXPrefab: 0
-      VFXPrefab: 3968037802
-      ProjectilePrefab: 0
-      VFXSpawn: 3
-      Animation: 0
-      IconImage: {fileID: 0}
-      Description: 
-      Might: 10
-      LevelMightMultiplier: 0.15
-    - ID: TestSkill2
-      Name: 
-      Type: 3
-      Icon: 
-      Cooldown: 1
-      ActivateCount: 0
-      Chance: 1
-      Radius: 10
-      AOE: 0
-      Trigger: 0
-      TriggerSource: 0
-      Targets: 02000000
-      TargetsCount: 0
-      TargetConditions: 
-      Stats: []
-      Effects:
-      - Type: 5
-        Stat: -1
-        Value: 3
-      Statuses: []
-      Count: 0
-      Speed: 0
-      Pierce: 0
-      Scale: 0
-      OrbitRadius: 0
-      Lifetime: 0
-      SpawnCharacters: []
-      SpawnRadius: 0
-      AuraLifetime: 0
-      AuraRadius: 0
-      AuraInterval: 0
-      Skills: 
-      SkillDelays: []
-      ImpulseUp: 0
-      ImpulseProvider: 0
-      CastVFXPrefab: 0
-      VFXPrefab: 686645142
-      ProjectilePrefab: 0
-      VFXSpawn: 2
       Animation: 0
       IconImage: {fileID: 0}
       Description: 
@@ -6411,7 +6322,7 @@ MonoBehaviour:
       VFXPrefab: 1319076377
       ProjectilePrefab: 0
       VFXSpawn: 1
-      Animation: 4
+      Animation: 0
       IconImage: {fileID: 21300000, guid: 66a0f1115375d4340a88f44549ff5383, type: 3}
       Description: Speeds up ability recovery
       Might: 10
@@ -10916,7 +10827,7 @@ MonoBehaviour:
       VFXPrefab: 2024482257
       ProjectilePrefab: 0
       VFXSpawn: 1
-      Animation: 0
+      Animation: 4
       IconImage: {fileID: 0}
       Description: "\u041F\u043E\u0441\u043B\u0435 \u0441\u043C\u0435\u0440\u0442\u0438
         \u0437\u0430\u0440\u0430\u0436\u0430\u0435\u0442 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0438\u0445

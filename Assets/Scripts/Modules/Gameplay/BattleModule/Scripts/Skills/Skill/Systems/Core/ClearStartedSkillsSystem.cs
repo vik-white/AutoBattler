@@ -9,7 +9,13 @@ namespace vikwhite.ECS
         public void OnUpdate(ref SystemState state)
         {
             foreach (var starterSkills in SystemAPI.Query<DynamicBuffer<StarterSkill>>().WithAll<Dead>())
-                starterSkills.Clear();
+            {
+                for (var i = starterSkills.Length - 1; i >= 0; i--)
+                {
+                    if (starterSkills[i].Skill.Value.Trigger != TriggerType.Dead)
+                        starterSkills.RemoveAt(i);
+                }
+            }
         }
     }
 }

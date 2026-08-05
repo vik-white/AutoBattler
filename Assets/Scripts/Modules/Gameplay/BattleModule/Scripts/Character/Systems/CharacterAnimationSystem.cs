@@ -16,6 +16,7 @@ namespace vikwhite.ECS
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (!SkillHandler.HasActivationAnimation(skillConfig)) continue;
+                if (dead.HasComponent(skillStartedEvent.ValueRO.Character)) continue;
 
                 PlayAnimation(ref state, skillStartedEvent.ValueRO.Character, skillConfig.Animation, skillStartedEvent.ValueRO.Speed);
             }

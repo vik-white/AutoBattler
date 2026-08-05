@@ -14,6 +14,7 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var movementLocks = SystemAPI.GetComponentLookup<MovementLock>(true);
             var activeSkillAnimationLocks = SystemAPI.GetComponentLookup<ActiveSkillAnimationLock>(true);
+            var deadCharacters = SystemAPI.GetComponentLookup<Dead>(true);
             var startedLocks = new HashSet<Entity>();
             var startedActiveSkillLocks = new HashSet<Entity>();
             var endedLocks = new HashSet<Entity>();
@@ -35,6 +36,7 @@ namespace vikwhite.ECS
             {
                 var skillConfig = skillStartedEvent.ValueRO.Skill.Value;
                 if (!ShouldLockMovement(skillConfig.Animation)) continue;
+                if (deadCharacters.HasComponent(skillStartedEvent.ValueRO.Character)) continue;
                 startedLocks.Add(skillStartedEvent.ValueRO.Character);
 
                 if (skillConfig.Trigger == TriggerType.Activate)

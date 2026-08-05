@@ -23,10 +23,16 @@ namespace vikwhite
                 _view.HealthProgressBarImage.color = viewModel.IsEnemy ? _view.EnemyColor : _view.SquadColor;
 
             viewModel.Died += OnDied;
+            viewModel.Resurrected += OnResurrected;
             Register(Observable.EveryUpdate().Subscribe(_ => UpdateBar()));
 
-            Register(Disposable.Create(() => viewModel.Died -= OnDied));
+            Register(Disposable.Create(() =>
+            {
+                viewModel.Died -= OnDied;
+                viewModel.Resurrected -= OnResurrected;
+            }));
 
+            _view.gameObject.SetActive(!viewModel.IsDead);
             UpdateBar();
         }
 
@@ -38,6 +44,7 @@ namespace vikwhite
                 DisposeAndDestroy();
                 return;
             }
+            if (BaseViewModel.IsDead) return;
 
             var camera = Camera.main;
             if (camera != null && _view.transform is RectTransform rectTransform)
@@ -52,7 +59,13 @@ namespace vikwhite
 
         private void OnDied()
         {
-            DisposeAndDestroy();
+            _view.gameObject.SetActive(false);
+        }
+
+        private void OnResurrected()
+        {
+            _view.gameObject.SetActive(true);
+            UpdateBar();
         }
 
         private void UpdateHealthBars(float healthFill)

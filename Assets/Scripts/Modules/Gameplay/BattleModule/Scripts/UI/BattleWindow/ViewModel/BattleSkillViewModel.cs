@@ -21,6 +21,7 @@ namespace vikwhite
         public UnityAction Activate;
         public UnityAction OnActivate;
         public event Action Died;
+        public event Action Resurrected;
 
         public Sprite RarityBG { get; }
         public Sprite RarityFrame { get; }
@@ -39,8 +40,10 @@ namespace vikwhite
             Activate = OnActivateSkill;
 
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
+            ResurrectCharacterEventSystem.OnExecute += OnResurrectCharacter;
             StartedSkillEventSystem.OnExecute += OnStartedSkill;
             AddDisposable(Disposable.Create(() => DeadCharacterEventSystem.OnExecute -= OnDeadCharacter));
+            AddDisposable(Disposable.Create(() => ResurrectCharacterEventSystem.OnExecute -= OnResurrectCharacter));
             AddDisposable(Disposable.Create(() => StartedSkillEventSystem.OnExecute -= OnStartedSkill));
         }
 
@@ -160,6 +163,14 @@ namespace vikwhite
             Died?.Invoke();
         }
 
+        private void OnResurrectCharacter(ResurrectCharacterEvent evnt)
+        {
+            if (evnt.Character != Model.Character) return;
+
+            IsDead = false;
+            Resurrected?.Invoke();
+        }
+
         private void OnStartedSkill(StartedSkillEvent evnt)
         {
             if (evnt.Character != Model.Character) return;
@@ -185,6 +196,7 @@ namespace vikwhite
             Activate = null;
             OnActivate = null;
             Died = null;
+            Resurrected = null;
         }
     }
 }

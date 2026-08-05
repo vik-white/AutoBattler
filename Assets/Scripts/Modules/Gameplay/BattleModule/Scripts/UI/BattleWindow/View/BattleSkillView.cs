@@ -27,12 +27,14 @@ namespace vikwhite
             BindClick(_view.Button, viewModel.Activate);
             viewModel.OnActivate += PlayAnimation;
             viewModel.Died += OnDied;
+            viewModel.Resurrected += OnResurrected;
             Register(Observable.EveryUpdate().Subscribe(_ => UpdateBars()));
 
             Register(Disposable.Create(() =>
             {
                 viewModel.OnActivate -= PlayAnimation;
                 viewModel.Died -= OnDied;
+                viewModel.Resurrected -= OnResurrected;
             }));
 
             SetDeadState(viewModel.IsDead);
@@ -61,6 +63,12 @@ namespace vikwhite
         private void OnDied()
         {
             SetDeadState(true);
+        }
+
+        private void OnResurrected()
+        {
+            SetDeadState(false);
+            UpdateBars();
         }
 
         private void SetDeadState(bool isDead)

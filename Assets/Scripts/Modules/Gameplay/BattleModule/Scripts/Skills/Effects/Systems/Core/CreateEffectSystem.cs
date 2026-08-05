@@ -11,9 +11,13 @@ namespace vikwhite.ECS
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             var critCounters = SystemAPI.GetComponentLookup<CritCounter>();
             var characters = SystemAPI.GetComponentLookup<Character>(true);
+            var deadCharacters = SystemAPI.GetComponentLookup<Dead>(true);
             var statBuffers = SystemAPI.GetBufferLookup<StatMultiply>(true);
             foreach (var request in SystemAPI.Query<RefRO<CreateEffect>>()) {
                 var type = request.ValueRO.Data.Type;
+                if (type == EffectType.Resurrection && !deadCharacters.HasComponent(request.ValueRO.Target))
+                    continue;
+
                 var provider = request.ValueRO.Provider;
                 var skillID = request.ValueRO.Skill.IsCreated ? request.ValueRO.Skill.Value.ID : 0;
                 var value = GetEffectValue(ref state, request.ValueRO.Data, provider, skillID);
@@ -37,6 +41,7 @@ namespace vikwhite.ECS
                 if (type == EffectType.Shield) ecb.AddComponent<ShieldEffect>(effect);
                 if (type == EffectType.Spawn) ecb.AddComponent<SpawnEffect>(effect);
                 if (type == EffectType.Aggro) ecb.AddComponent<AggroEffect>(effect);
+                if (type == EffectType.Resurrection) ecb.AddComponent<ResurrectionEffect>(effect);
             }
             ecb.Playback(state.EntityManager);
         }
@@ -46,6 +51,9 @@ namespace vikwhite.ECS
             var character = SystemAPI.GetComponent<Character>(entity);
             var config = character.GetConfig();
             var upgrade = SystemAPI.GetComponent<CharacterUpgrade>(entity);
+
+            if (effect.Type == EffectType.Resurrection)
+                return effect.Value;
 
             var effectValue = effect.Value * upgrade.GetSkillMultiplier(config, skillID);
 

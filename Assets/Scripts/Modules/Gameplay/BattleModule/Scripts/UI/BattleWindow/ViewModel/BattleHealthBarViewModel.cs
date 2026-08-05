@@ -15,6 +15,7 @@ namespace vikwhite
         private readonly EntityManager _entityManager;
 
         public event Action Died;
+        public event Action Resurrected;
 
         public bool IsEnemy => Model.IsEnemy;
         public bool IsDead { get; private set; }
@@ -23,12 +24,14 @@ namespace vikwhite
         {
             _entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             DeadCharacterEventSystem.OnExecute += OnDeadCharacter;
+            ResurrectCharacterEventSystem.OnExecute += OnResurrectCharacter;
             AddDisposable(Disposable.Create(() => DeadCharacterEventSystem.OnExecute -= OnDeadCharacter));
+            AddDisposable(Disposable.Create(() => ResurrectCharacterEventSystem.OnExecute -= OnResurrectCharacter));
         }
 
         public bool Exists()
         {
-            return !IsDead && _entityManager.Exists(Model.Character);
+            return _entityManager.Exists(Model.Character);
         }
 
         public Vector3 GetHeadPosition()
@@ -78,6 +81,14 @@ namespace vikwhite
             Died?.Invoke();
         }
 
+        private void OnResurrectCharacter(ResurrectCharacterEvent evnt)
+        {
+            if (evnt.Character != Model.Character) return;
+
+            IsDead = false;
+            Resurrected?.Invoke();
+        }
+
         private float GetHeadOffset(float scale)
         {
             var currentScale = math.max(scale, 0);
@@ -89,6 +100,7 @@ namespace vikwhite
         {
             base.Dispose();
             Died = null;
+            Resurrected = null;
         }
     }
 }

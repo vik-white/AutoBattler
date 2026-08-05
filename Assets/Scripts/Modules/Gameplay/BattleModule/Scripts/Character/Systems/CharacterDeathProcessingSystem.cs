@@ -11,12 +11,19 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(state.WorldUpdateAllocator);
-            foreach (var (events, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>>().WithAll<Dead>().WithEntityAccess())
+            var pendingResurrections = SystemAPI.GetComponentLookup<PendingResurrection>(true);
+            var deadEventHash = "DeadEvent".CalculateHash32();
+
+            foreach (var (events, dead, entity) in SystemAPI.Query<DynamicBuffer<AnimationEventComponent>, RefRW<Dead>>().WithEntityAccess())
             {
                 foreach (var evnt in events)
                 {
-                    if (evnt.nameHash == "DeadEvent".CalculateHash32())
+                    if (evnt.nameHash != deadEventHash) continue;
+
+                    dead.ValueRW.AnimationCompleted = true;
+                    if (!pendingResurrections.HasComponent(entity))
                         ecb.AddComponent<Destroy>(entity);
+                    break;
                 }
             }
             ecb.Playback(state.EntityManager);

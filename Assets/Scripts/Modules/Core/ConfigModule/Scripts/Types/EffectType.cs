@@ -9,5 +9,6 @@ namespace vikwhite.ECS
         Spawn = 4,
         Aggro = 5,
         Stun = 6,
+        Resurrection = 7,
     }
 }

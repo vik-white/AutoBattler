@@ -132,6 +132,7 @@ namespace vikwhite.ECS
                 Trigger = trigger,
                 Skill = skillConfig,
                 WaitForAnimation = SkillHandler.HasActivationAnimation(skillConfig.Value)
+                                   && (skillConfig.Value.Trigger != TriggerType.Dead || character != triggerSource)
             });
         }
 
