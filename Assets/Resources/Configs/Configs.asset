@@ -5507,9 +5507,9 @@ MonoBehaviour:
       TargetConditions: 
       Stats: []
       Effects:
-      - Type: 3
-        Stat: -1
-        Value: 50
+      - Type: 2
+        Stat: 2
+        Value: 0.05
       Statuses: []
       Count: 0
       Speed: 0
