@@ -10,5 +10,6 @@ namespace vikwhite.ECS
         CritValue = 4,
         SkillAttackCooldown = 5,
         SkillActiveCooldown = 6,
+        MissingHP = 7,
     }
 }

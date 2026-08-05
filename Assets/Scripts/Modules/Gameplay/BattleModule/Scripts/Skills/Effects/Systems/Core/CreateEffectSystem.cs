@@ -49,6 +49,13 @@ namespace vikwhite.ECS
 
             var effectValue = effect.Value * upgrade.GetSkillMultiplier(config, skillID);
 
+            if (effect.Stat == StatType.MissingHP)
+            {
+                var healthMax = SystemAPI.GetComponent<HealthMax>(entity).Value;
+                var health = SystemAPI.GetComponent<Health>(entity).Value;
+                return (healthMax - health) * effectValue;
+            }
+
             if (!character.TryGetBaseStat(effect.Stat, out var baseStat) &&
                 !config.TryGetStat(effect.Stat, out baseStat))
                 return effectValue;
