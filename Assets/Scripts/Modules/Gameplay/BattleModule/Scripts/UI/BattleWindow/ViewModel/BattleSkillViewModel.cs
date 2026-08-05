@@ -61,6 +61,7 @@ namespace vikwhite
             {
                 var config = skill.GetConfig();
                 if (config.ID != _skillID) continue;
+                if (!SkillHandler.HasActivationsLeft(skill)) return 0;
                 if (skill.Cooldown >= config.Cooldown) return 1;
                 return config.Cooldown > 0 ? Mathf.Clamp01(skill.Cooldown / config.Cooldown) : 1;
             }
@@ -74,7 +75,9 @@ namespace vikwhite
             foreach (var skill in _entityManager.GetBuffer<Skill>(Model.Character))
             {
                 var config = skill.GetConfig();
-                if (config.ID == _skillID) return Mathf.CeilToInt(config.Cooldown - skill.Cooldown);
+                if (config.ID != _skillID) continue;
+                if (!SkillHandler.HasActivationsLeft(skill)) return 0;
+                return Mathf.CeilToInt(config.Cooldown - skill.Cooldown);
             }
             return 0;
         }
@@ -118,7 +121,7 @@ namespace vikwhite
             {
                 var config = skill.GetConfig();
                 if (config.ID == _skillID)
-                    return skill.Cooldown >= config.Cooldown;
+                    return SkillHandler.HasActivationsLeft(skill) && skill.Cooldown >= config.Cooldown;
             }
 
             return false;

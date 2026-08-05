@@ -29,6 +29,7 @@ namespace vikwhite.ECS
                     TargetsCount = data.TargetsCount,
                     TargetConditions = CreateTargetConditions(data.TargetConditions),
                     Cooldown = data.Cooldown,
+                    ActivateCount = data.ActivateCount,
                     Chance = data.Chance,
                     Radius = data.Radius,
                     AOE = data.AOE,

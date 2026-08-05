@@ -19,5 +19,11 @@ namespace vikwhite.ECS
         {
             return skillConfig.Animation is AnimationType.Attack or AnimationType.Ability;
         }
+
+        public static bool HasActivationsLeft(in Skill skill)
+        {
+            var activateCount = skill.Config.Value.ActivateCount;
+            return activateCount <= 0 || skill.ActivatedCount < activateCount;
+        }
     }
 }

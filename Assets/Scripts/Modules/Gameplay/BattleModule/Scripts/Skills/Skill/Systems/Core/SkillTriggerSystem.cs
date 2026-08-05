@@ -104,6 +104,7 @@ namespace vikwhite.ECS
                 
                 if (Random.value > skillConfig.Chance) continue;
 
+                skill.ActivatedCount++;
                 var isManualActivation = request.Trigger == TriggerType.Activate && request.GetRequestedSkillID(owner) == skillConfig.ID;
                 StartSkill(ecb, owner, request.Source, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), starterSkills, skill.Config, isManualActivation);
             }
