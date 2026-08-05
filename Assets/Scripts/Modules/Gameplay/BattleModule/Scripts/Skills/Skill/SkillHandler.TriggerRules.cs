@@ -60,6 +60,9 @@ namespace vikwhite.ECS
             if (HasTarget(skillConfig, TargetType.Trigger))
                 return CanUseTarget(request.TriggerEntity, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), request.Trigger == TriggerType.Dead, context);
 
+            if (HasTarget(skillConfig, TargetType.TriggerSource))
+                return CanUseTarget(request.Source, ownerTransform, skillConfig, ownerConfig, request.ShouldIgnoreRadius(owner), request.Trigger == TriggerType.Dead, context);
+
             if (HasTarget(skillConfig, TargetType.Target))
                 return CanUseSelectedTarget(owner, ownerTransform, skillConfig, ownerConfig, request, context);
 

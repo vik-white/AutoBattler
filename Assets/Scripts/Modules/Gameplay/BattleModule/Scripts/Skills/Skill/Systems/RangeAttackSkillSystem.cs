@@ -24,7 +24,7 @@ namespace vikwhite.ECS
 
                 if (config.TargetsCount <= 0)
                 {
-                    if (!SkillHandler.TryGetTarget(skill, entity, skillActivatedEvent.ValueRO.Trigger, selectedTargets, out var target))
+                    if (!SkillHandler.TryGetTarget(skill, entity, skillActivatedEvent.ValueRO.TriggerSource, skillActivatedEvent.ValueRO.Trigger, selectedTargets, out var target))
                         continue;
 
                     CreateProjectile(ecb, skill, entity, target, transforms, characters);
@@ -36,6 +36,7 @@ namespace vikwhite.ECS
                 var targets = SkillHandler.GetTargets(
                     skill,
                     entity,
+                    skillActivatedEvent.ValueRO.TriggerSource,
                     skillActivatedEvent.ValueRO.Trigger,
                     selectedTargets,
                     healths,

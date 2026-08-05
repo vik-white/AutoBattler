@@ -5496,20 +5496,20 @@ MonoBehaviour:
       Name: 
       Type: 3
       Icon: 
-      Cooldown: 0
+      Cooldown: 2
       Chance: 1
       Radius: 1
       AOE: 0
-      Trigger: 4
-      TriggerSource: 0
-      Targets: 00000000
+      Trigger: 1
+      TriggerSource: 1
+      Targets: 05000000
       TargetsCount: 0
       TargetConditions: 
       Stats: []
       Effects:
-      - Type: 4
+      - Type: 3
         Stat: -1
-        Value: 1
+        Value: 50
       Statuses: []
       Count: 0
       Speed: 0

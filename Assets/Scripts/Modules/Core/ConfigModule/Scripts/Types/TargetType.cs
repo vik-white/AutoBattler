@@ -7,5 +7,6 @@ namespace vikwhite.ECS
         Enemies = 2,
         Trigger = 3,
         Target = 4,
+        TriggerSource = 5,
     }
 }

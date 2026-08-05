@@ -10,6 +10,7 @@ namespace vikwhite.ECS
         public static List<Entity> GetTargets(
             BlobAssetReference<SkillConfig> skill,
             Entity entity,
+            Entity triggerSource,
             Entity trigger,
             ComponentLookup<Target> selectedTargets,
             ComponentLookup<Health> healths,
@@ -24,6 +25,9 @@ namespace vikwhite.ECS
 
             if (HasTarget(config, TargetType.Self))
                 AddTarget(targets, entity);
+
+            if (HasTarget(config, TargetType.TriggerSource))
+                AddTarget(targets, triggerSource);
 
             if (HasTarget(config, TargetType.Trigger))
                 AddTarget(targets, trigger);
@@ -45,12 +49,18 @@ namespace vikwhite.ECS
             return targets;
         }
 
-        public static bool TryGetTarget(BlobAssetReference<SkillConfig> skill, Entity entity, Entity trigger, ComponentLookup<Target> targets, out Entity target)
+        public static bool TryGetTarget(BlobAssetReference<SkillConfig> skill, Entity entity, Entity triggerSource, Entity trigger, ComponentLookup<Target> targets, out Entity target)
         {
             var config = skill.Value;
             if (HasTarget(config, TargetType.Trigger) && trigger != Entity.Null)
             {
                 target = trigger;
+                return true;
+            }
+
+            if (HasTarget(config, TargetType.TriggerSource) && triggerSource != Entity.Null)
+            {
+                target = triggerSource;
                 return true;
             }
 

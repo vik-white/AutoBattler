@@ -105,11 +105,11 @@ namespace vikwhite.ECS
                 if (Random.value > skillConfig.Chance) continue;
 
                 var isManualActivation = request.Trigger == TriggerType.Activate && request.GetRequestedSkillID(owner) == skillConfig.ID;
-                StartSkill(ecb, owner, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), starterSkills, skill.Config, isManualActivation);
+                StartSkill(ecb, owner, request.Source, request.TriggerEntity, ownerTransform.Position, SkillHandler.GetCooldownRate(activeSkillId, skillConfig.ID, statMultipliers), starterSkills, skill.Config, isManualActivation);
             }
         }
 
-        private static void StartSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, float3 position, float speed, DynamicBuffer<StarterSkill> starterSkills, BlobAssetReference<SkillConfig> skillConfig, bool isManualActivation)
+        private static void StartSkill(EntityCommandBuffer ecb, Entity character, Entity triggerSource, Entity trigger, float3 position, float speed, DynamicBuffer<StarterSkill> starterSkills, BlobAssetReference<SkillConfig> skillConfig, bool isManualActivation)
         {
             if (isManualActivation)
                 RemoveInterruptiblePendingAnimations(starterSkills);
@@ -124,6 +124,7 @@ namespace vikwhite.ECS
 
             starterSkills.Add(new StarterSkill
             {
+                TriggerSource = triggerSource,
                 Trigger = trigger,
                 Skill = skillConfig,
                 WaitForAnimation = SkillHandler.HasActivationAnimation(skillConfig.Value)

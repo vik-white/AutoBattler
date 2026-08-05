@@ -17,8 +17,9 @@ namespace vikwhite.ECS
         public override void Bake(SkillConfigAuthoring authoring) {
             var entity = GetEntity(TransformUsageFlags.None);
             var runtimeData = AddBuffer<SkillRuntimeData>(entity);
+            var configs = DependsOn(authoring.Configs);
 
-            foreach (var data in authoring.Configs.Skills.GetAll())
+            foreach (var data in configs.Skills.GetAll())
             {
                 var config = new SkillConfig
                 {

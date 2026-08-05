@@ -24,6 +24,7 @@ namespace vikwhite.ECS
                 var targets = SkillHandler.GetTargets(
                     skill,
                     entity,
+                    skillActivatedEvent.ValueRO.TriggerSource,
                     skillActivatedEvent.ValueRO.Trigger,
                     selectedTargets,
                     healths,

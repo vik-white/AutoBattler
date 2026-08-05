@@ -35,16 +35,17 @@ namespace vikwhite.ECS
                     continue;
                 }
 
-                ActivateSkill(ecb, character, pendingSkill.Trigger, pendingSkill.Skill, skillRuntimeData);
+                ActivateSkill(ecb, character, pendingSkill.TriggerSource, pendingSkill.Trigger, pendingSkill.Skill, skillRuntimeData);
                 pendingSkills.RemoveAt(i);
             }
         }
 
-        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity trigger, BlobAssetReference<SkillConfig> skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
+        private static void ActivateSkill(EntityCommandBuffer ecb, Entity character, Entity triggerSource, Entity trigger, BlobAssetReference<SkillConfig> skill, DynamicBuffer<SkillRuntimeData> skillRuntimeData)
         {
             ecb.CreateFrameEntity(new SkillActivatedEvent
             {
                 Character = character,
+                TriggerSource = triggerSource,
                 Trigger = trigger,
                 Skill = skill
             });
@@ -55,6 +56,7 @@ namespace vikwhite.ECS
                 ecb.CreateFrameEntity(new SkillActivatedEvent
                 {
                     Character = character,
+                    TriggerSource = triggerSource,
                     Trigger = trigger,
                     Skill = skillRuntimeData.Get(skillConfig.Skills[i])
                 });
