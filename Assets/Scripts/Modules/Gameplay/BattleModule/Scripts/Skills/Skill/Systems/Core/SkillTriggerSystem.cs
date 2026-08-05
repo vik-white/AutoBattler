@@ -44,6 +44,9 @@ namespace vikwhite.ECS
 
                 requests.Add(new SkillTriggerRequest(damagedCharacter, TriggerType.GetDamage, triggerEntity: damageEvent.ValueRO.Provider));
 
+                if (damageEvent.ValueRO.HealthDroppedBelowHalf)
+                    requests.Add(new SkillTriggerRequest(damagedCharacter, TriggerType.HPLessHalf, triggerEntity: damageEvent.ValueRO.Provider));
+
                 if (!damageEvent.ValueRO.IsCrit) continue;
 
                 var critProvider = damageEvent.ValueRO.Provider;

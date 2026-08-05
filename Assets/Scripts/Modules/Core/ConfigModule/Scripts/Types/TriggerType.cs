@@ -8,5 +8,6 @@ namespace vikwhite.ECS
         Activate = 3,
         BattleStart = 4,
         OnCrit = 5,
+        HPLessHalf = 6,
     }
 }

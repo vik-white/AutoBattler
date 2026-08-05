@@ -8,5 +8,6 @@ namespace vikwhite.ECS
         public Entity Provider;
         public float Damage;
         public bool IsCrit;
+        public bool HealthDroppedBelowHalf;
     }
 }

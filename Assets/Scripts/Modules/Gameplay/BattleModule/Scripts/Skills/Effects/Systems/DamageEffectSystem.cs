@@ -8,6 +8,7 @@ namespace vikwhite.ECS
     {
         public void OnUpdate(ref SystemState state) {
             var healths = SystemAPI.GetComponentLookup<Health>();
+            var healthMaxes = SystemAPI.GetComponentLookup<HealthMax>(true);
             var defenses = SystemAPI.GetComponentLookup<Defense>();
             var shields = SystemAPI.GetComponentLookup<Shield>();
             var shieldMaxes = SystemAPI.GetComponentLookup<ShieldMax>();
@@ -17,16 +18,7 @@ namespace vikwhite.ECS
                 var character = target.ValueRO.Value;
                 var defense = defenses[character].Value;
                 var damage = DamageHandler.CalculateDamage(effect.ValueRO.Value, defense);
-                if (damage > 0)
-                {
-                    ecb.CreateFrameEntity(new GetDamageEvent
-                    {
-                        Character = character,
-                        Provider = provider.ValueRO.Value,
-                        Damage = damage,
-                        IsCrit = effect.ValueRO.IsCrit
-                    });
-                }
+                var receivedDamage = damage;
 
                 var shield = shields[character].Value;
                 if (shield > 0)
@@ -49,7 +41,22 @@ namespace vikwhite.ECS
                     }
                 }
 
-                healths[character] = new Health { Value = healths[character].Value - damage };
+                var previousHealth = healths[character].Value;
+                var health = previousHealth - damage;
+                var halfHealth = healthMaxes[character].Value * 0.5f;
+                healths[character] = new Health { Value = health };
+
+                if (receivedDamage > 0)
+                {
+                    ecb.CreateFrameEntity(new GetDamageEvent
+                    {
+                        Character = character,
+                        Provider = provider.ValueRO.Value,
+                        Damage = receivedDamage,
+                        IsCrit = effect.ValueRO.IsCrit,
+                        HealthDroppedBelowHalf = previousHealth >= halfHealth && health < halfHealth
+                    });
+                }
             }
             ecb.Playback(state.EntityManager);
         }
