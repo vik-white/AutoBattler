@@ -17,9 +17,10 @@ namespace vikwhite.ECS
         public override void Bake(UpgradeConfigsAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.None);
+            var source = DependsOn(authoring.Configs);
             var configs = new List<UpgradeConfig>();
 
-            foreach (var levelUpData in authoring.Configs.Upgrades.GetAll())
+            foreach (var levelUpData in source.Upgrades.GetAll())
             {
                 configs.Add(new UpgradeConfig
                 {
@@ -36,8 +37,8 @@ namespace vikwhite.ECS
             AddComponent(entity, new UpgradeConfigsBlob
             {
                 Value = CreateConfigsBlob(configs),
-                BreakthroughLevelPeriod = authoring.Configs.Settings.BreakthroughLevelPeriod,
-                BreakthroughMultiply = authoring.Configs.Settings.BreakthroughMultiply,
+                BreakthroughLevelPeriod = source.Settings.BreakthroughLevelPeriod,
+                BreakthroughMultiply = source.Settings.BreakthroughMultiply,
             });
         }
 

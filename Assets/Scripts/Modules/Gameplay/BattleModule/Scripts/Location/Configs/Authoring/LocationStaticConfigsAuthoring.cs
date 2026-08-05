@@ -15,9 +15,10 @@ namespace vikwhite.ECS
     {
         public override void Bake(LocationStaticConfigsAuthoring authoring) {  
             var entity = GetEntity(TransformUsageFlags.None);
+            var configs = DependsOn(authoring.Configs);
             var locations = new System.Collections.Generic.List<LocationStaticConfig>();
 
-            foreach (var locationData in authoring.Configs.LocationStatic.GetAll())
+            foreach (var locationData in configs.LocationStatic.GetAll())
             {
                 var entities = new FixedList128Bytes<CharacterLevelData>();
                 foreach (var enemy in locationData.Enemies)

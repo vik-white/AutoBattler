@@ -17,9 +17,10 @@ namespace vikwhite.ECS
         public override void Bake(HexPositionsConfigsAuthoring authoring)
         {
             var entity = GetEntity(TransformUsageFlags.None);
+            var configs = DependsOn(authoring.Configs);
             var positions = new List<HexPositionsConfig>();
 
-            foreach (var hexPositionsData in authoring.Configs.HexPositions.GetAll())
+            foreach (var hexPositionsData in configs.HexPositions.GetAll())
             {
                 positions.Add(new HexPositionsConfig
                 {

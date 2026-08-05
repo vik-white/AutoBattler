@@ -18,8 +18,9 @@ namespace vikwhite.ECS
         public override void Bake(CharacterConfigsAuthoring authoring) {
             var entity = GetEntity(TransformUsageFlags.None);
             var runtimeData = AddBuffer<CharacterRenderData>(entity);
+            var configs = DependsOn(authoring.Configs);
 
-            foreach (var characterData in authoring.Configs.Characters.GetAll())
+            foreach (var characterData in configs.Characters.GetAll())
             {
                 var prefab = GetCharacterPrefab(characterData, authoring.Characters);
                 var config = CreateCharacterConfig(characterData, prefab);

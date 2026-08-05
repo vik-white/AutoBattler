@@ -141,6 +141,7 @@ namespace vikwhite.Data
 
         private int LoadJSON(string jsonText) {
             _dictionary = null;
+            IData = null;
             Data = new List<T>();
             IDS = new List<string>();
             if (typeof(T).GetCustomAttribute<OneRowConfigAttribute>() != null) _json = ParseOneRowJSON(jsonText);

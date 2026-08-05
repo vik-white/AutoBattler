@@ -5498,7 +5498,7 @@ MonoBehaviour:
       Icon: 
       Cooldown: 2
       Chance: 1
-      Radius: 1
+      Radius: 10
       AOE: 0
       Trigger: 1
       TriggerSource: 1
@@ -5517,10 +5517,8 @@ MonoBehaviour:
       Scale: 0
       OrbitRadius: 0
       Lifetime: 0
-      SpawnCharacters:
-      - ID: 3941001075
-        Probability: 1
-      SpawnRadius: 2
+      SpawnCharacters: []
+      SpawnRadius: 0
       AuraLifetime: 0
       AuraRadius: 0
       AuraInterval: 0

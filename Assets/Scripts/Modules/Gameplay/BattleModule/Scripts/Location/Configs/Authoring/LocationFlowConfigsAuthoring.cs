@@ -16,10 +16,11 @@ namespace vikwhite.ECS
     {
         public override void Bake(LocationFlowConfigsAuthoring authoring) {  
             var entity = GetEntity(TransformUsageFlags.None);
+            var configs = DependsOn(authoring.Configs);
             var locationConfigs = new List<(uint ID, List<LocationFlowStepData> Steps)>();
 
             var locations = new List<string>();
-            foreach (var locationData in authoring.Configs.LocationFlow.GetAll())
+            foreach (var locationData in configs.LocationFlow.GetAll())
             {
                 if (!locations.Contains(locationData.LocationID)) locations.Add(locationData.LocationID);
             }
@@ -27,7 +28,7 @@ namespace vikwhite.ECS
             foreach (var locationID in locations)
             {
                 var steps = new List<LocationFlowStepData>();
-                foreach (var locationData in authoring.Configs.LocationFlow.GetAll())
+                foreach (var locationData in configs.LocationFlow.GetAll())
                 {
                     if (locationData.LocationID != locationID) continue;
                     var enemies = new FixedList128Bytes<uint>();

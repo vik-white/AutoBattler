@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 using System.Linq;
 #if UNITY_EDITOR
 using Unity.EditorCoroutines.Editor;
+using UnityEditor;
 #endif
 
 namespace vikwhite.Data
@@ -85,11 +85,12 @@ namespace vikwhite.Data
                         if(configLoadedCount == ConfigCore.Fields.Length) {
                             ConfigCore.Fields.ToList().ForEach(e => (e.GetValue(this) as ConfigCore).ConnectParseField(this, e));
                             ConfigCore.Fields.ToList().ForEach(e => (e.GetValue(this) as ConfigCore).ConnectData(this));
+                            EditorUtility.SetDirty(this);
+                            AssetDatabase.SaveAssetIfDirty(this);
                         }
                     }), this);
                 } 
             }
-            EditorUtility.SetDirty(this);
         }
         #endif
     }
